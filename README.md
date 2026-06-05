@@ -76,8 +76,29 @@ Taxonomy (valid topics, verticals, schema types) is defined in
 A sample article scores **100/100/100/100** on Lighthouse (desktop) with
 LCP ~0.6s, CLS 0, TBT 0ms.
 
+## Audit tool — backend scaffolded (feature not built)
+
+The website-audit tool's **backend, environment, and tooling are in place**; the
+feature itself (the `/audit` UI, analysis rules, API routes, AI summary, PDF,
+email) is not built yet. What exists:
+
+- **Stack installed**: Vercel AI SDK (`ai` v6) + `@ai-sdk/anthropic` + `@ai-sdk/react`,
+  Supabase (`@supabase/supabase-js` + `@supabase/ssr`), Cheerio, `zod` v4,
+  `@calcom/embed-react`, `server-only`.
+- **Env**: `src/lib/env.ts` — server-only, lazily + granularly validated, so the
+  content build needs no secrets. See `.env.example`.
+- **AI**: `src/lib/ai/anthropic.ts` — server-only Claude provider + model id.
+- **Data**: `src/lib/db/` — Supabase clients + `supabase/migrations/0001_init.sql`
+  (`audits`, `leads`; RLS deny-by-default). Content (MDX/git) stays separate from
+  app data (DB).
+- **Guardrails** (`src/lib/audit/`): `url-guard` (SSRF — blocks private/metadata/
+  loopback, anti-DNS-rebinding), `safe-fetch` (timeout + size cap + UA +
+  redirect re-validation), `robots` (honor + AI-crawler detection), `pagespeed`
+  (typed PSI/CWV client), `rate-limit` (in-memory now, Upstash seam), and the
+  shared `types` contract (`Finding`, severity = quick-fix | structural, `AuditReport`).
+
 ## Deferred (seams in place, not built)
 
 Forms (server actions + Zod + honeypot), in-article calculators/widgets, the
-website auditor, and **Supabase** for application data. Content (MDX/git) and app
-data (DB) are kept separate — see `src/lib/db/`.
+audit **feature** flows, emailed PDF (`resend` + a PDF lib), and durable
+rate-limiting (Upstash) — installed/wired at their feature phase.

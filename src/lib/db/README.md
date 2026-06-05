@@ -1,19 +1,36 @@
-# `src/lib/db` — application-data seam (placeholder)
+# `src/lib/db` — application data (Supabase)
 
-**Intentionally empty for now. No database dependency is installed.**
+This directory holds **application data** access, kept strictly separate from
+content:
 
-This directory marks the boundary between the two data concerns of the project:
+- **Content** (articles, paths, verticals, authors) lives in MDX under
+  `content/`, is the single source of truth, and is queried through
+  `src/lib/content.ts`. It is version-controlled and built statically by Velite.
+  **It never touches a database.**
+- **Application data** — audit results and captured leads (and any future
+  account/progress features) — lives in **Supabase**. All access goes through
+  this module.
 
-- **Content** (articles, paths, verticals, authors) lives in MDX under `content/`,
-  is the single source of truth, and is queried through `src/lib/content.ts`. It
-  is version-controlled and built statically by Velite. **It never touches a
-  database.**
-- **Application data** (future): contact/lead-form submissions, website-auditor
-  results, and any eventual course-progress or account features. _That_ is where
-  a database (planned: **Supabase**) enters.
+## Layout
 
-When the first application-data feature lands (e.g. the contact form's server
-action), add the client here — e.g. `src/lib/db/client.ts` — and keep all DB
-access behind this module so content and app data stay cleanly separated.
+- `supabase/server.ts` — `server-only`.
+  - `createServiceClient()` — service-role, bypasses RLS, for trusted server
+    writes (storing audits/leads). Never import into client code.
+  - `createSupabaseServerClient()` — request-scoped SSR client (anon key) for
+    future user-scoped reads under RLS.
+- `supabase/client.ts` — `createSupabaseBrowserClient()` for client components.
+- `types.ts` — `Database` types matching the migration (regenerate with
+  `npm run db:types` once a project id is set).
 
-Until then, this is a documented seam only.
+## Schema
+
+See `supabase/migrations/0001_init.sql` (`audits`, `leads`; RLS enabled with no
+public policies → deny-by-default, service-role only). Apply with
+`supabase db push` or via the project's SQL editor.
+
+## Not yet wired
+
+The clients and schema exist, but no feature writes to them yet — lead capture
+and audit persistence are built in their respective phases. Required env vars are
+in `.env.example` (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
+`SUPABASE_SERVICE_ROLE_KEY`).
