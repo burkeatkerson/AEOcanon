@@ -1,6 +1,6 @@
 /**
- * Central navigation config. Single source for header + footer links so the IA
- * scales without editing layout components. Add routes here as they ship.
+ * Central navigation config. Single source for header + footer links, matching
+ * the design's information architecture. Add routes here as they ship.
  */
 
 export interface NavItem {
@@ -8,14 +8,21 @@ export interface NavItem {
   label: string;
 }
 
-/** Primary header nav — only functional routes. */
+/** Primary header nav — the design IA. */
 export const mainNav: NavItem[] = [
   { href: "/", label: "Overview" },
-  { href: "/learn", label: "Education" },
-  { href: "/paths", label: "Paths" },
+  { href: "/canon", label: "The Canon" },
+  { href: "/learn", label: "AEO school" },
+  { href: "/tools", label: "Tools" },
   { href: "/verticals", label: "Industries" },
-  { href: "/audit", label: "Analyzer" },
+  { href: "/pricing", label: "Pricing" },
 ];
+
+/** Header right-side CTAs. */
+export const navCtas = {
+  ghost: { href: "/audit", label: "Free Analyzer" },
+  primary: { href: "/pricing", label: "Done for you" },
+} as const;
 
 export interface FooterColumn {
   title: string;
@@ -24,23 +31,27 @@ export interface FooterColumn {
 
 export const footerNav: FooterColumn[] = [
   {
-    title: "Learn",
+    title: "Services",
     links: [
-      { href: "/learn", label: "Education Center" },
-      { href: "/paths", label: "Learning Paths" },
-      { href: "/verticals", label: "Industries" },
+      { href: "/pricing", label: "Pricing" },
+      { href: "/pricing#gallery", label: "Portfolio" },
+      { href: "/audit", label: "Free audit" },
     ],
   },
   {
-    title: "Tools",
-    links: [{ href: "/audit", label: "AI Analyzer" }],
+    title: "The Canon",
+    links: [
+      { href: "/canon", label: "The framework" },
+      { href: "/manifesto", label: "The Manifesto" },
+      { href: "/whitepaper", label: "Research whitepaper" },
+    ],
   },
   {
-    title: "More",
+    title: "Learn",
     links: [
-      { href: "/llms.txt", label: "llms.txt" },
-      { href: "/feed.xml", label: "RSS" },
-      { href: "/sitemap.xml", label: "Sitemap" },
+      { href: "/learn", label: "AEO school" },
+      { href: "/verticals", label: "Industries" },
+      { href: "/tools", label: "Tools" },
     ],
   },
 ];

@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Logo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
-import { mainNav } from "@/lib/navigation";
+import { mainNav, navCtas } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
 function isActive(pathname: string, href: string): boolean {
@@ -60,15 +60,19 @@ export function SiteHeader() {
 
           <div className="ml-auto flex items-center gap-3">
             <Button
-              href="/audit"
+              href={navCtas.ghost.href}
               variant="ghost"
               size="sm"
               className="hidden sm:inline-flex"
             >
-              Free Analyzer
+              {navCtas.ghost.label}
             </Button>
-            <Button href="/learn" size="sm" className="hidden sm:inline-flex">
-              Explore the Canon
+            <Button
+              href={navCtas.primary.href}
+              size="sm"
+              className="hidden sm:inline-flex"
+            >
+              {navCtas.primary.label}
             </Button>
             <button
               type="button"
@@ -106,11 +110,11 @@ export function SiteHeader() {
                 </Link>
               ))}
               <div className="mt-2 flex gap-3">
-                <Button href="/audit" variant="ghost" size="sm">
-                  Free Analyzer
+                <Button href={navCtas.ghost.href} variant="ghost" size="sm">
+                  {navCtas.ghost.label}
                 </Button>
-                <Button href="/learn" size="sm">
-                  Explore the Canon
+                <Button href={navCtas.primary.href} size="sm">
+                  {navCtas.primary.label}
                 </Button>
               </div>
             </Container>

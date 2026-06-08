@@ -11,6 +11,7 @@ import {
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
+    { url: absoluteUrl("/canon"), changeFrequency: "monthly", priority: 0.9 },
     { url: absoluteUrl("/learn"), changeFrequency: "daily", priority: 0.9 },
     { url: absoluteUrl("/paths"), changeFrequency: "weekly", priority: 0.8 },
     {
@@ -18,6 +19,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    { url: absoluteUrl("/tools"), changeFrequency: "monthly", priority: 0.7 },
+    { url: absoluteUrl("/pricing"), changeFrequency: "monthly", priority: 0.8 },
+    {
+      url: absoluteUrl("/whitepaper"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: absoluteUrl("/manifesto"),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    { url: absoluteUrl("/audit"), changeFrequency: "monthly", priority: 0.7 },
   ];
 
   const articles: MetadataRoute.Sitemap = getAllArticles().map((article) => ({
