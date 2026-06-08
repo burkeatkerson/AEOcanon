@@ -21,7 +21,8 @@ import {
   Steps,
   PullQuote,
 } from "./visuals";
-import { Checklist, Quiz, Accordion } from "./interactive";
+import { Checklist, Quiz, Accordion, AiCitableCheck } from "./interactive";
+import { RagPipeline } from "./diagrams";
 
 /**
  * Single registry of components available to every MDX article. Add a component
@@ -44,6 +45,8 @@ export const mdxComponents: MDXComponents = {
   Checklist,
   Quiz,
   Accordion,
+  AiCitableCheck,
+  RagPipeline,
 };
 
 // Evaluate Velite's compiled MDX (outputFormat: 'function-body') into a React

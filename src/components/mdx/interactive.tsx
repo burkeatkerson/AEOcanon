@@ -156,6 +156,151 @@ export function Quiz({
   );
 }
 
+/**
+ * "Is your site AI-citable?" — a 5-question yes/no self-assessment that scores
+ * the reader's site against the core AEO signals and returns a tiered verdict.
+ * Ephemeral state only (no persistence), so the page stays statically rendered.
+ */
+const AI_CITABLE_QUESTIONS: { q: string; hint: string }[] = [
+  {
+    q: "Does each page answer its main question in the very first sentence?",
+    hint: "Answer-first passages are what engines lift and quote.",
+  },
+  {
+    q: "Are your headings phrased as the real questions people ask?",
+    hint: "Question-shaped H2s match conversational AI queries.",
+  },
+  {
+    q: "Can an AI crawler (GPTBot, ClaudeBot, PerplexityBot) actually reach your content?",
+    hint: "Server-rendered HTML and an allow-listing robots.txt make you reachable.",
+  },
+  {
+    q: "Do your key claims carry a specific stat, source, or named expert inline?",
+    hint: "Evidence density is a top reranking signal.",
+  },
+  {
+    q: "Is your brand mentioned and cited across other reputable sites?",
+    hint: "Off-site brand mentions are the strongest correlate of AI visibility.",
+  },
+];
+
+const AI_CITABLE_VERDICTS: { min: number; label: string; note: string }[] = [
+  {
+    min: 5,
+    label: "AI-citable",
+    note: "You're structured to be the answer. Keep content fresh and widen your off-site footprint.",
+  },
+  {
+    min: 3,
+    label: "Partly citable",
+    note: "The foundation is there, but gaps are letting competitors get quoted first. Fix the unchecked items.",
+  },
+  {
+    min: 1,
+    label: "Hard to cite",
+    note: "Engines can barely extract or trust your pages yet. Start with answer-first writing and crawler access.",
+  },
+  {
+    min: 0,
+    label: "Invisible to AI",
+    note: "Right now an answer engine has little reason to surface you. The good news: every fix below is achievable.",
+  },
+];
+
+export function AiCitableCheck({
+  title = "Is your site AI-citable?",
+}: {
+  title?: string;
+}) {
+  const [answers, setAnswers] = useState<(boolean | null)[]>(() =>
+    AI_CITABLE_QUESTIONS.map(() => null),
+  );
+  const answered = answers.filter((a) => a !== null).length;
+  const score = answers.filter((a) => a === true).length;
+  const complete = answered === AI_CITABLE_QUESTIONS.length;
+  const verdict = AI_CITABLE_VERDICTS.find((v) => score >= v.min);
+
+  return (
+    <section className="border-line bg-panel not-prose my-9 rounded-2xl border p-6 font-sans">
+      <div className="flex items-center justify-between gap-4">
+        <p className="text-accent font-mono text-[10.5px] tracking-[0.1em] uppercase">
+          {title}
+        </p>
+        <p className="text-muted font-mono text-[12px]">
+          {answered} / {AI_CITABLE_QUESTIONS.length}
+        </p>
+      </div>
+      <p className="text-ink-2 mt-2 text-[14.5px] leading-relaxed">
+        Answer five yes/no questions to see how ready your site is to be cited by
+        ChatGPT, Perplexity, and Google AI Overviews.
+      </p>
+
+      <ol className="mt-5 flex flex-col gap-4">
+        {AI_CITABLE_QUESTIONS.map((item, i) => (
+          <li key={item.q} className="border-line border-t pt-4 first:border-t-0">
+            <p className="text-ink text-[15px] leading-snug font-medium">
+              {i + 1}. {item.q}
+            </p>
+            <p className="text-muted mt-1 text-[13px] leading-relaxed">
+              {item.hint}
+            </p>
+            <div className="mt-3 flex gap-2">
+              {[
+                { label: "Yes", value: true },
+                { label: "No", value: false },
+              ].map((opt) => {
+                const active = answers[i] === opt.value;
+                return (
+                  <button
+                    key={opt.label}
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() =>
+                      setAnswers((prev) =>
+                        prev.map((v, j) => (j === i ? opt.value : v)),
+                      )
+                    }
+                    className={cn(
+                      "min-w-[72px] rounded-full border px-4 py-1.5 text-[13.5px] transition-colors",
+                      active && opt.value
+                        ? "border-ok bg-[color-mix(in_oklab,var(--ok)_14%,var(--panel))] text-ink"
+                        : active && !opt.value
+                          ? "border-bad bg-[color-mix(in_oklab,var(--bad)_14%,var(--panel))] text-ink"
+                          : "border-line-2 text-ink-2 hover:border-accent",
+                    )}
+                  >
+                    {opt.label}
+                  </button>
+                );
+              })}
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      {complete && verdict ? (
+        <div className="border-accent bg-accent-soft mt-6 rounded-xl border p-5">
+          <div className="flex items-baseline gap-3">
+            <span className="text-accent font-serif text-[34px] leading-none">
+              {score}/5
+            </span>
+            <span className="text-ink text-[16px] font-medium">
+              {verdict.label}
+            </span>
+          </div>
+          <p className="text-ink-2 mt-2 text-[14px] leading-relaxed">
+            {verdict.note}
+          </p>
+        </div>
+      ) : (
+        <p className="text-muted mt-5 text-[13px]">
+          Answer all five to get your AI-citability verdict.
+        </p>
+      )}
+    </section>
+  );
+}
+
 /** Expandable items — good for myth/fact or inline FAQs. */
 export function Accordion({ items }: { items: { q: string; a: string }[] }) {
   const [open, setOpen] = useState<number | null>(0);
