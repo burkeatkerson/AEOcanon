@@ -1,0 +1,231 @@
+---
+title: "How to Use the AEO Canon as a Diagnostic"
+slug: aeo-canon-diagnostic
+summary: The AEO Canon is a diagnostic, not a checklist — walk its eight pillars in order and the first one you fail is your highest-leverage fix. Here is how to run the audit on your own site.
+topics:
+  - aeo-fundamentals
+  - answer-engines
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: How do I use the AEO Canon as a diagnostic?
+    a: "Walk the eight pillars in their cascade order — Access, Alignment, Extractability, Authority, Credibility, Originality, Freshness, Adaptability — and stop at the first one you fail. That pillar is your highest-leverage fix, because the Canon is a cascade: effort on a lower pillar produces no citations while a higher one is broken."
+  - q: Why fix only the first broken pillar instead of everything at once?
+    a: Because the pillars depend on each other in order. A fix lower in the stack can't compensate for a break higher up — a credible, original page behind a blocked crawler still earns nothing. Fixing the highest broken pillar first is what makes your effort actually reach an engine.
+  - q: How often should I run the Canon diagnostic?
+    a: Periodically, not once. Because engines change frequently (the Adaptability pillar), gates you once passed can reopen — a rendering change breaks Access, a competitor's fresher content erodes your Freshness. Re-running the diagnostic on a schedule catches regressions before they cost you citations.
+---
+
+**The AEO Canon is a diagnostic, not a checklist: walk its eight pillars in order
+and the first one you fail is your highest-leverage fix.** Because the pillars
+form a cascade, you do not work on all of them at once — you find the highest
+broken gate and fix that, because nothing below it can reach an engine until it
+holds.
+
+<KeyTakeaways
+  items={[
+    "Run the Canon top-down; the first pillar you fail is where to work.",
+    "It's a cascade — a fix lower in the stack can't compensate for a break higher up.",
+    "Each gate has a concrete yes/no test you can answer about your own site.",
+    "Re-run periodically: engines change, so passed gates can reopen.",
+    "The goal isn't a perfect score — it's no broken gate.",
+  ]}
+/>
+
+## Run the diagnostic
+
+Step through the eight gates below, answering yes or no for your own site. The
+tool stops at your first broken gate and points you to the pillar deep-dive where
+you should start. Answer honestly rather than aspirationally — the value is in
+finding the real constraint, not the comfortable one.
+
+<CanonDiagnostic />
+
+For the framework behind the questions, see [the full AEO Canon](/learn/aeo-canon)
+and [the three layers of AEO](/learn/three-layers-of-aeo); for a one-page
+reference to scan alongside your result, see
+[the Canon at a glance](/learn/aeo-canon-at-a-glance).
+
+## Why is the Canon a diagnostic and not a checklist?
+
+The Canon is a diagnostic because its pillars depend on each other in a fixed
+order, so the useful question is not "which of these am I missing?" but "which is
+the first one I'm missing?" A checklist invites you to tick off the easy or
+interesting items in any order. A diagnostic forces you to find the one constraint
+that is actually capping your visibility — and to fix it before anything else.
+
+This is the same logic as the theory of constraints in operations: a system's
+throughput is limited by its single tightest bottleneck, and improving anything
+other than the bottleneck produces no gain. AEO works the same way. Your citation
+rate is gated by your highest broken pillar, and polishing the pillars beneath it
+is motion without progress. The diagnostic exists to stop you from optimizing the
+wrong thing — a failure mode that is especially common in AEO, where the most
+visible, fun work (writing more content, adding schema) often sits below the
+actual constraint (a blocked crawler, a missing reputation).
+
+This matters because effort spent below a broken gate is wasted. The dependencies
+run downward: an engine has to read you before it can choose you, and choose you
+before it can keep choosing you. So a break high in the stack neutralizes every
+strength beneath it.
+
+<Callout variant="warning" title="The cascade, made concrete">
+  <p>
+    A perfectly credible, original, freshly-updated page sitting behind a blocked
+    crawler earns zero citations — Access failed, so none of the work above it
+    ever reached an engine. Likewise, a fast and quotable page that answers a
+    question nobody asks AI earns nothing — Alignment failed. The highest broken
+    gate is always the right place to start.
+  </p>
+</Callout>
+
+## What does each gate test?
+
+Each gate reduces a pillar to a single yes/no question you can honestly answer
+about your site. Here is what each one is really checking, in cascade order.
+
+<Steps
+  items={[
+    {
+      title: "Access — can a crawler read your raw HTML?",
+      body: "Test: fetch your page as an AI crawler would, with JavaScript off. If the content isn't there, you fail. Vercel found GPTBot executes zero JavaScript across 500M requests.",
+    },
+    {
+      title: "Alignment — are you answering the real question?",
+      body: "Test: do your headings match the full, conversational questions people actually ask AI, rather than terse keywords? If not, you're retrieved for the wrong queries.",
+    },
+    {
+      title: "Extractability — is your answer liftable?",
+      body: "Test: does each section answer its question in a complete opening sentence that makes sense out of context? If the answer is buried, the engine can't lift it.",
+    },
+    {
+      title: "Authority — does the web vouch for you?",
+      body: "Test: is your brand mentioned and corroborated on reputable third-party sites? Ahrefs found mentions (0.664) outweigh backlinks (0.218) for AI visibility.",
+    },
+    {
+      title: "Credibility — do you show your work?",
+      body: "Test: does every important claim carry an inline statistic, quotation, or named source? Evidence is the top visibility lever in the Princeton GEO study.",
+    },
+    {
+      title: "Originality — are you the primary source?",
+      body: "Test: do your best pages contain first-hand data or insight available nowhere else? If it's all reassembled generic content, the engine has no reason to cite you.",
+    },
+    {
+      title: "Freshness — is your content current and dated?",
+      body: "Test: is key content substantively updated with a visible recent date? Seer found 65% of AI crawler visits go to content under a year old.",
+    },
+    {
+      title: "Adaptability — do you measure and adjust?",
+      body: "Test: do you track citation share per engine on a fixed prompt set and treat tactics as hypotheses? Engines overlap only ~11%, so blind tactics decay.",
+    },
+  ]}
+/>
+
+## How do you interpret your result?
+
+You interpret the result by layer: where your first broken gate falls tells you
+what kind of work you need and how urgent it is. The diagnostic groups into the
+same three layers as the Canon, and each layer fails with a recognizable symptom.
+
+The gate tests above trace to the same evidence as the Canon itself:
+[Vercel's analysis of 500M crawler requests](https://vercel.com/blog/the-rise-of-the-ai-crawler)
+on rendering (Access),
+[Ahrefs' study of 75,000 brands](https://ahrefs.com/blog/ai-overview-brand-correlation/)
+on mentions (Authority), the
+[Princeton GEO study (arXiv 2311.09735)](https://arxiv.org/abs/2311.09735) on
+evidence (Credibility), and
+[Seer Interactive's recency research](https://www.seerinteractive.com/insights/study-ai-brand-visibility-and-content-recency)
+on freshness (Freshness). The diagnostic just turns those findings into questions
+you can answer.
+
+A break in the **Foundation** layer (Access, Alignment, Extractability) shows up
+as broad invisibility — good content that engines simply never surface. It is the
+most urgent break and usually the fastest to fix, because it is technical and
+editorial rather than earned. A break in the **Reputation** layer (Authority,
+Credibility, Originality) shows up as being "almost cited" — retrieved and in the
+running, but passed over for sources the engine trusts more. A break in the
+**Momentum** layer (Freshness, Adaptability) shows up as erosion — citation share
+that declines over time even though the page didn't get worse. Match your symptom
+to the layer and the diagnosis sharpens. We unpack these layers in
+[the three layers of AEO](/learn/three-layers-of-aeo).
+
+<PullQuote cite="The diagnostic mindset">
+  Don't ask what you could improve. Ask what you're failing first — then fix only
+  that.
+</PullQuote>
+
+## What can the diagnostic tell you — and what can't it?
+
+The diagnostic tells you where your binding constraint is; it does not tell you
+that the pillars below it are perfect. This is an important distinction. When the
+tool stops at, say, Authority, it is saying "this is the highest gate you fail,"
+not "everything above it is flawless and everything below it is irrelevant." You
+may have smaller issues in Extractability too — but they are not worth touching
+until Authority holds, because Authority is what is currently capping your
+visibility.
+
+What the diagnostic deliberately does not do is score you. There is no "7 out of
+8" to optimize, because a high score with one early break is worse than a lower
+score with no break high in the stack. A site that passes seven pillars but fails
+Access is invisible; a site that passes Access, Alignment, and Extractability but
+hasn't yet built Reputation is at least in the running. The number of gates you
+pass matters far less than *where* your first failure sits. That is why the tool
+reports a single diagnosis — your first broken gate — rather than a percentage.
+It is built to focus you, not to flatter you.
+
+<Callout variant="tip" title="Be honest at each gate">
+  <p>
+    The diagnostic is only as good as your answers. "Sort of" is a no. If you
+    can't point to concrete evidence that a gate passes — a server-rendered fetch,
+    a real third-party mention, an inline statistic — treat it as a fail. The
+    value is in finding the real constraint, not the comfortable one.
+  </p>
+</Callout>
+
+## How do you act on the diagnosis?
+
+You act on the diagnosis by fixing the first broken gate completely, then
+re-running — not by spreading effort across every pillar. Once the diagnostic
+names your weakest link, open that pillar's deep-dive for the specific moves, make
+the fix, and only then descend to the next gate. This focus is the whole point:
+one decisive fix at the binding constraint beats ten diffuse improvements that
+never reach an engine.
+
+<Steps
+  items={[
+    {
+      title: "Open the named pillar",
+      body: "The diagnostic links you to the deep-dive for your first broken gate. That's your starting point — not the pillar that's most fun to work on.",
+    },
+    {
+      title: "Make the fix and verify",
+      body: "Apply the pillar's specific moves, then confirm the gate now passes (e.g., re-fetch your page with JS off to verify Access).",
+    },
+    {
+      title: "Descend to the next gate",
+      body: "Re-run the diagnostic. With the top break resolved, the next constraint becomes visible — work it the same way.",
+    },
+    {
+      title: "Schedule a re-audit",
+      body: "Engines change, so re-run periodically. A passed gate can reopen when your stack or a competitor's content shifts.",
+    },
+  ]}
+/>
+
+## Why re-run the diagnostic over time?
+
+You re-run the diagnostic because AEO is not a state you reach but one you
+maintain — the eighth pillar, Adaptability, exists precisely because gates reopen.
+A framework change in your CMS can quietly break Access. A competitor publishing
+fresher research can erode your Freshness advantage on a query you used to own. An
+engine adjusting how it weighs sources can change which of your pages get cited.
+
+None of these show up as an error message; they show up as slowly declining
+citation share. A periodic re-audit turns that invisible drift into a specific,
+fixable finding before it compounds. Treat the Canon the way you'd treat a health checkup — not
+because something is necessarily wrong, but because catching the first broken gate
+early is far cheaper than discovering it after your visibility has fallen. Pair the
+diagnostic with [the Canon at a glance](/learn/aeo-canon-at-a-glance) for a fast
+reference, and start the deeper work from [what is AEO](/learn/what-is-aeo) if the
+fundamentals are still new.

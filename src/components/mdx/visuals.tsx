@@ -154,6 +154,42 @@ export function Steps({
   );
 }
 
+/**
+ * Declarative "we believe" creed — numbered tenets with an optional evidence
+ * line. Built for the Manifesto: each tenet reads as a standalone, quotable
+ * statement of belief.
+ */
+export function Tenets({
+  items,
+}: {
+  items: { belief: string; body?: string; proof?: string }[];
+}) {
+  return (
+    <ol className="my-8 flex flex-col gap-8 font-sans">
+      {items.map((t, i) => (
+        <li key={t.belief} className="grid grid-cols-[auto_1fr] gap-5 sm:gap-7">
+          <span className="text-accent font-serif text-[clamp(40px,6vw,56px)] leading-none">
+            {i + 1}
+          </span>
+          <div>
+            <p className="text-ink font-serif text-[clamp(20px,2.6vw,24px)] leading-snug font-medium">
+              {t.belief}
+            </p>
+            {t.body ? (
+              <p className="text-ink-2 mt-2 leading-relaxed">{t.body}</p>
+            ) : null}
+            {t.proof ? (
+              <span className="text-muted mt-3 inline-block font-mono text-[11px] tracking-[0.04em]">
+                {t.proof}
+              </span>
+            ) : null}
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 /** Centered editorial pull quote (the pillar principle, a key line). */
 export function PullQuote({
   children,
