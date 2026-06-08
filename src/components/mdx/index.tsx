@@ -13,6 +13,14 @@ import { Figure } from "./figure";
 import { FAQBlock } from "./faq-block";
 import { ComparisonTable } from "./comparison-table";
 import { MdxLink } from "./mdx-link";
+import {
+  KeyTakeaways,
+  Stat,
+  StatGrid,
+  BarChart,
+  Steps,
+  PullQuote,
+} from "./visuals";
 
 /**
  * Single registry of components available to every MDX article. Add a component
@@ -26,6 +34,12 @@ export const mdxComponents: MDXComponents = {
   Figure,
   FAQBlock,
   ComparisonTable,
+  KeyTakeaways,
+  Stat,
+  StatGrid,
+  BarChart,
+  Steps,
+  PullQuote,
 };
 
 // Evaluate Velite's compiled MDX (outputFormat: 'function-body') into a React
