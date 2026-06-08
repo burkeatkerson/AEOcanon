@@ -14,7 +14,7 @@ export const mainNav: NavItem[] = [
   { href: "/canon", label: "The Canon" },
   { href: "/learn", label: "AEO school" },
   { href: "/tools", label: "Tools" },
-  { href: "/verticals", label: "Industries" },
+  { href: "/industries", label: "Industries" },
   { href: "/pricing", label: "Pricing" },
 ];
 
@@ -50,7 +50,7 @@ export const footerNav: FooterColumn[] = [
     title: "Learn",
     links: [
       { href: "/learn", label: "AEO school" },
-      { href: "/verticals", label: "Industries" },
+      { href: "/industries", label: "Industries" },
       { href: "/tools", label: "Tools" },
     ],
   },

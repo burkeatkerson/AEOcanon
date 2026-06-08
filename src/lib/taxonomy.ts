@@ -3,8 +3,9 @@
  * against. Imported BOTH by `velite.config.ts` (build-time Zod enums that fail
  * the build on unknown tags) and by the app (labels, filters, navigation).
  *
- * Keep this file dependency-free so the Velite config bundler can import it.
+ * Keep this file lightweight so the Velite config bundler can import it.
  */
+import { INDUSTRY_SLUGS, industryName } from "./industries";
 
 /** Educational topic clusters. An article must carry at least one. */
 export const TOPIC_SLUGS = [
@@ -36,33 +37,11 @@ export const TOPIC_LABELS: Record<TopicSlug, string> = {
 };
 
 /** Industry verticals. Articles opt into a vertical hub via these tags. */
-export const VERTICAL_SLUGS = [
-  "saas",
-  "ecommerce",
-  "healthcare",
-  "financial-services",
-  "legal",
-  "real-estate",
-  "education",
-  "hospitality",
-  "home-services",
-  "professional-services",
-] as const;
-
-export type VerticalSlug = (typeof VERTICAL_SLUGS)[number];
-
-export const VERTICAL_LABELS: Record<VerticalSlug, string> = {
-  saas: "SaaS",
-  ecommerce: "E-commerce",
-  healthcare: "Healthcare",
-  "financial-services": "Financial Services",
-  legal: "Legal",
-  "real-estate": "Real Estate",
-  education: "Education",
-  hospitality: "Hospitality",
-  "home-services": "Home Services",
-  "professional-services": "Professional Services",
-};
+// Verticals are the local-business industries defined in src/lib/industries.ts.
+// Article frontmatter `verticals[]` and a vertical hub's `industryTag` validate
+// against this closed set.
+export const VERTICAL_SLUGS = INDUSTRY_SLUGS;
+export { industryName };
 
 /** Drives which JSON-LD an article emits. */
 export const ARTICLE_SCHEMA_TYPES = ["Article", "HowTo", "FAQPage"] as const;
@@ -77,5 +56,5 @@ export function topicLabel(slug: string): string {
 }
 
 export function verticalLabel(slug: string): string {
-  return VERTICAL_LABELS[slug as VerticalSlug] ?? slug;
+  return industryName(slug);
 }

@@ -109,6 +109,48 @@ const TESTIMONIALS = [
   },
 ];
 
+const PROCESS = [
+  {
+    t: "Free audit",
+    d: "See exactly how AI describes your business today. No commitment, no email required to view your score.",
+  },
+  {
+    t: "Strategy call",
+    d: "We walk your results together and map the highest-leverage fixes for your trade and market.",
+  },
+  {
+    t: "Build & launch",
+    d: "Your new AEO-structured site goes live in ~3 weeks — schema, architecture, and answer-first copy included.",
+  },
+  {
+    t: "Publish & grow",
+    d: "We publish your monthly content and track visibility across all five engines, refining as they change.",
+  },
+];
+
+const FAQ = [
+  {
+    q: "Is the website really included for free?",
+    a: "Yes. On both the $1,000 and $2,000 plans, your complete website rebuild — a $12,000+ project on its own — is included at no extra cost. There's no setup fee, and you own the site. The one-time $12,000 build only applies if you want the website without any ongoing content service.",
+  },
+  {
+    q: "What's the 6-month minimum about?",
+    a: "A new website plus consistent content takes a season to compound into durable AI citations. The 6-month minimum ensures we can deliver real results, not a half-finished launch. After six months you can continue month-to-month or cancel anytime — 94% of clients choose to stay.",
+  },
+  {
+    q: "Do I need to understand AEO or anything technical?",
+    a: "Not at all. You tell us about your business; we handle the site, schema, structured data, and writing. You stay focused on the work while we keep you the cited answer.",
+  },
+  {
+    q: "What's the difference between $1,000 and $2,000?",
+    a: "Both include the free website rebuild and the full done-for-you service. Foundation publishes 8 AEO articles a month; Growth doubles that to 16 plus seasonal campaigns, citation-consistency work, and a dedicated strategist — for owners who want to win their category faster.",
+  },
+  {
+    q: "How soon will I see results?",
+    a: "The foundational fixes (site, schema, profile) land in the first few weeks. Being consistently recommended by AI builds over the first quarter as your content and citations accumulate.",
+  },
+];
+
 export default function PricingPage() {
   return (
     <>
@@ -289,6 +331,75 @@ export default function PricingPage() {
                 </span>
               </figcaption>
             </figure>
+          ))}
+        </div>
+      </Section>
+
+      {/* one-time build */}
+      <Section>
+        <div className="border-line bg-paper flex flex-wrap items-center justify-between gap-6 rounded-2xl border p-7">
+          <div className="max-w-[60ch]">
+            <span className="text-muted font-mono text-[10.5px] tracking-[0.1em] uppercase">
+              Website rebuild · one-time
+            </span>
+            <h2 className="mt-1.5 text-[21px] font-medium">
+              Just want the website?
+            </h2>
+            <p className="text-ink-2 mt-1.5 text-[14px] leading-relaxed">
+              Prefer to handle content yourself? We&rsquo;ll design and build
+              your complete AEO-structured site as a one-time project. (Most
+              owners choose a subscription instead, since the build comes free.)
+            </p>
+          </div>
+          <div className="text-right">
+            <div className="font-serif text-[40px] leading-none">
+              $12,000<span className="text-muted text-[20px]">+</span>
+            </div>
+            <Button href="/audit" variant="ghost" size="sm" className="mt-3">
+              Request a quote →
+            </Button>
+          </div>
+        </div>
+      </Section>
+
+      {/* process */}
+      <Section>
+        <SectionHead title="How it works" eyebrow="Four steps, no pressure" />
+        <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {PROCESS.map((step, i) => (
+            <li
+              key={step.t}
+              className="border-line bg-panel rounded-2xl border p-6"
+            >
+              <div className="text-accent font-serif text-[30px] leading-none">
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <h3 className="mt-2.5 text-[16px] font-medium">{step.t}</h3>
+              <p className="text-muted mt-1.5 text-[13px] leading-relaxed">
+                {step.d}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      {/* faq */}
+      <Section>
+        <SectionHead title="Questions, answered" />
+        <div className="mx-auto max-w-[760px]">
+          {FAQ.map((item, i) => (
+            <details
+              key={item.q}
+              className="border-line border-b"
+              open={i === 0}
+            >
+              <summary className="text-ink hover:text-accent cursor-pointer list-none py-4 font-serif text-[17px] [&::-webkit-details-marker]:hidden">
+                {item.q}
+              </summary>
+              <p className="text-ink-2 pb-4 text-[14.5px] leading-relaxed">
+                {item.a}
+              </p>
+            </details>
           ))}
         </div>
       </Section>

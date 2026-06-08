@@ -1,40 +1,287 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/layout/container";
+import { Button } from "@/components/ui/button";
 import { Kicker } from "@/components/ui/eyebrow";
+import { Badge } from "@/components/ui/tag";
 import { ArticleFilter } from "@/components/library/article-filter";
-import { getAllArticles } from "@/lib/content";
+import { ArticleCard } from "@/components/library/cards/article-card";
+import { TabGroup, type TabDef } from "@/components/library/tab-group";
+import {
+  getAllArticles,
+  getAllPaths,
+  getPathWithArticles,
+} from "@/lib/content";
 import { TOPIC_SLUGS } from "@/lib/taxonomy";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Education Center",
+  title: "AEO school — courses, articles & tools",
   description:
-    "Answer-first guides on Answer Engine Optimization (AEO) and SEO. Browse and filter the full library by topic.",
+    "Learn to get found, cited, and recommended by AI search. Structured learning paths, a growing article archive, hands-on tools, and certifications.",
   path: "/learn",
 });
 
-export default function LearnIndexPage() {
+const LEVEL_COLORS = ["var(--c3)", "var(--c4)", "var(--c5)", "var(--c6)"];
+
+const SCHOOL_TOOLS = [
+  {
+    icn: "◎",
+    t: "AI Visibility Audit",
+    d: "How the five major engines describe and recommend you today, scored 0–100.",
+    href: "/audit",
+  },
+  {
+    icn: "⌗",
+    t: "Schema Generator",
+    d: "Copy-paste LocalBusiness & Service structured data tuned for answer engines.",
+    href: "/tools",
+  },
+  {
+    icn: "▤",
+    t: "Content Scorer",
+    d: "Paste a page; get an extractability score and sentence-level rewrite hints.",
+    href: "/tools",
+  },
+  {
+    icn: "◫",
+    t: "Competitive Analyzer",
+    d: "See which competitors the engines name in your category — and why.",
+    href: "/tools",
+  },
+];
+
+function CoursesPane() {
+  const paths = getAllPaths();
+  const latest = getAllArticles().slice(0, 3);
+
+  return (
+    <div>
+      <header className="max-w-3xl">
+        <Kicker>From zero to AEO expert</Kicker>
+        <h1 className="mt-4 text-[clamp(32px,4.6vw,52px)] leading-[1.04] font-medium tracking-[-0.02em]">
+          Learn to get{" "}
+          <em className="text-accent [font-style:italic]">
+            found, cited, and recommended
+          </em>{" "}
+          by AI search.
+        </h1>
+        <p className="text-ink-2 mt-4 text-[19px] leading-relaxed">
+          Structured paths and a growing free archive — built the way the best
+          technical educators teach: read it, then actually do it. Start with
+          the fundamentals, free.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          {paths[0] ? (
+            <Button href={paths[0].url} size="lg">
+              Start {paths[0].title} — Free
+            </Button>
+          ) : null}
+          <Button href="/audit" variant="ghost" size="lg">
+            Not sure where to start? Run the analyzer
+          </Button>
+        </div>
+      </header>
+
+      <section className="mt-12">
+        <div className="mb-6 flex items-baseline justify-between">
+          <h2 className="text-[26px] font-medium tracking-tight">
+            Learning paths, beginner to applied
+          </h2>
+          <span className="text-accent font-mono text-[11px] tracking-[0.1em] uppercase">
+            {paths.length} {paths.length === 1 ? "path" : "paths"}
+          </span>
+        </div>
+        <div className="grid gap-5 sm:grid-cols-2">
+          {paths.map((path, i) => {
+            const resolved = getPathWithArticles(path.slug);
+            const count = resolved?.articles.length ?? 0;
+            const color = LEVEL_COLORS[i % LEVEL_COLORS.length];
+            return (
+              <Link
+                key={path.slug}
+                href={path.url}
+                className="border-line hover:border-accent bg-paper text-ink flex flex-col gap-3 rounded-2xl border p-6 no-underline transition-transform hover:-translate-y-[2px]"
+                style={{ boxShadow: `inset 0 4px 0 ${color}` }}
+              >
+                <div className="flex items-center justify-between">
+                  <Badge
+                    className="capitalize"
+                    style={{ color, borderColor: color }}
+                  >
+                    {path.level}
+                  </Badge>
+                  <span className="text-muted font-mono text-[11px]">
+                    Path {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="text-[22px] font-medium">{path.title}</h3>
+                <p className="text-ink-2 text-[14px] leading-relaxed">
+                  {path.summary}
+                </p>
+                <div className="text-muted mt-auto flex gap-4 font-mono text-[11px]">
+                  <span>
+                    {count} {count === 1 ? "lesson" : "lessons"}
+                  </span>
+                  {path.estimatedHours ? (
+                    <span>~{path.estimatedHours} hrs</span>
+                  ) : null}
+                  <span style={{ color }}>✦ Earns a credential</span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <div className="mb-6 flex items-baseline justify-between">
+          <h2 className="text-[26px] font-medium tracking-tight">
+            Latest from the Canon
+          </h2>
+          <Link href="#" className="text-accent font-mono text-[12px]">
+            Browse all articles →
+          </Link>
+        </div>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {latest.map((article, i) => (
+            <ArticleCard key={article.slug} article={article} index={i} />
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function ArticlesPane() {
   const articles = getAllArticles();
   const usedTopics = TOPIC_SLUGS.filter((topic) =>
     articles.some((a) => a.topics.some((t) => t === topic)),
   );
+  return (
+    <div>
+      <div className="mb-6 flex items-baseline justify-between">
+        <h2 className="text-[26px] font-medium tracking-tight">
+          The article archive
+        </h2>
+        <span className="text-accent font-mono text-[11px] tracking-[0.1em] uppercase">
+          {articles.length} free{" "}
+          {articles.length === 1 ? "article" : "articles"}
+        </span>
+      </div>
+      <ArticleFilter articles={articles} topics={[...usedTopics]} />
+    </div>
+  );
+}
+
+function ToolsPane() {
+  return (
+    <div>
+      <div className="mb-6 flex items-baseline justify-between">
+        <h2 className="text-[26px] font-medium tracking-tight">
+          Interactive tools
+        </h2>
+        <Link href="/tools" className="text-accent font-mono text-[12px]">
+          All tools →
+        </Link>
+      </div>
+      <p className="text-ink-2 mb-8 max-w-[60ch] text-[15px] leading-relaxed">
+        Every tool lives inside a lesson — you don&rsquo;t read about auditing,
+        you audit. Each is also runnable standalone.
+      </p>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {SCHOOL_TOOLS.map((tool) => (
+          <Link
+            key={tool.t}
+            href={tool.href}
+            className="border-line hover:border-accent bg-panel flex flex-col gap-3 rounded-2xl border p-6 transition-colors"
+          >
+            <span className="text-accent text-[22px]">{tool.icn}</span>
+            <h3 className="text-[16px] font-medium">{tool.t}</h3>
+            <p className="text-muted text-[13px] leading-relaxed">{tool.d}</p>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CertsPane() {
+  const paths = getAllPaths();
+  return (
+    <div>
+      <div className="mb-6 flex items-baseline justify-between">
+        <h2 className="text-[26px] font-medium tracking-tight">
+          Certifications
+        </h2>
+        <span className="text-accent font-mono text-[11px] tracking-[0.1em] uppercase">
+          Real credentials
+        </span>
+      </div>
+      <p className="text-ink-2 mb-8 max-w-[62ch] text-[15px] leading-relaxed">
+        Each path ends in a certification: a shareable badge, a public profile,
+        and a downloadable certificate. Finish the path to earn it.
+      </p>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {paths.map((path, i) => {
+          const color = LEVEL_COLORS[i % LEVEL_COLORS.length];
+          return (
+            <Link
+              key={path.slug}
+              href={path.url}
+              className="border-line hover:border-accent bg-paper flex items-center gap-4 rounded-2xl border p-5"
+            >
+              <span
+                className="grid size-11 shrink-0 place-items-center rounded-full text-[18px] text-white"
+                style={{ background: color }}
+              >
+                ✦
+              </span>
+              <span>
+                <span className="block text-[15px] font-medium">
+                  {path.title} Certified
+                </span>
+                <span className="text-muted block font-mono text-[10.5px] capitalize">
+                  {path.level}
+                </span>
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+export default function LearnPage() {
+  const articleCount = getAllArticles().length;
+  const pathCount = getAllPaths().length;
+
+  const tabs: TabDef[] = [
+    { id: "courses", label: "Courses & Paths", content: <CoursesPane /> },
+    {
+      id: "articles",
+      label: "Articles",
+      count: articleCount,
+      content: <ArticlesPane />,
+    },
+    {
+      id: "tools",
+      label: "Tools",
+      count: SCHOOL_TOOLS.length,
+      content: <ToolsPane />,
+    },
+    {
+      id: "certs",
+      label: "Certifications",
+      count: pathCount,
+      content: <CertsPane />,
+    },
+  ];
 
   return (
-    <Container className="py-14">
-      <header className="max-w-3xl">
-        <Kicker>The school</Kicker>
-        <h1 className="mt-4 text-[clamp(34px,5vw,52px)] leading-[1.02] font-medium tracking-[-0.02em]">
-          Education Center
-        </h1>
-        <p className="text-ink-2 mt-5 text-[19px] leading-relaxed">
-          Answer-first guides on Answer Engine Optimization and SEO. Filter by
-          topic to find what you need.
-        </p>
-      </header>
-
-      <div className="mt-10">
-        <ArticleFilter articles={articles} topics={[...usedTopics]} />
-      </div>
+    <Container className="py-10 pb-20">
+      <TabGroup tabs={tabs} />
     </Container>
   );
 }

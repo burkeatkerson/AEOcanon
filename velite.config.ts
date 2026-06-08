@@ -136,8 +136,8 @@ const verticals = defineCollection({
     })
     .transform((data) => ({
       ...data,
-      url: `/verticals/${data.slug}`,
-      canonicalUrl: `${SITE_URL}/verticals/${data.slug}`,
+      url: `/industries/${data.slug}`,
+      canonicalUrl: `${SITE_URL}/industries/${data.slug}`,
     })),
 });
 
