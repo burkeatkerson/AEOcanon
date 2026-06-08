@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-theme-default="light" data-balance="reference" data-scheme="spectrum" data-headline="hybrid">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect x=%2712%27 y=%2716%27 width=%2740%27 height=%277%27 rx=%273.5%27 fill=%27%235b63d6%27/%3E%3Crect x=%2712%27 y=%2729%27 width=%2730%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Crect x=%2712%27 y=%2742%27 width=%2720%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Ccircle cx=%2755%27 cy=%2719.5%27 r=%276%27 fill=%27%23e0563f%27/%3E%3C/svg%3E">
+<title>Industries — AEO Canon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="lc.css">
+<style>
+  .fam{border-top:1px solid var(--line);padding:calc(38px*var(--u)) 0}
+  .fam__head{display:flex;align-items:baseline;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+  .fam__n{font-family:var(--mono);font-size:12px;color:var(--fc)}
+  .fam__head h2{font-size:calc(26px*var(--disp));letter-spacing:-.01em}
+  .fam__head .meta{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:auto}
+  .fam__head .meta b{color:var(--ink)}
+  .vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .vcard{display:flex;flex-direction:column;gap:7px;border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:16px 18px;text-decoration:none;color:var(--ink);border-left:3px solid var(--fc);transition:transform .15s,border-color .15s,box-shadow .15s}
+  .vcard:hover{transform:translateY(-2px);border-color:var(--fc);box-shadow:0 14px 30px -24px rgba(0,0,0,.4)}
+  .vcard__t{font-family:var(--serif);font-size:17px;line-height:1.1}
+  .vcard__m{font-family:var(--mono);font-size:10.5px;color:var(--muted);display:flex;gap:10px}
+  .vcard__m .live{color:var(--fc)}
+  .vcard--soon{opacity:.62}
+  .vcard--soon:hover{transform:none;box-shadow:none}
+  .fam-hs{--fc:var(--c5)}.fam-tr{--fc:var(--c4)}.fam-au{--fc:var(--c1)}.fam-ls{--fc:var(--c6)}
+  .fam-fr{--fc:var(--c3)}.fam-fh{--fc:var(--c2)}.fam-pb{--fc:var(--accent-2)}.fam-rt{--fc:var(--accent)}
+  .howrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px}
+  .howcard{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:22px}
+  .howcard .n{font-family:var(--serif);font-size:30px;color:var(--accent);line-height:1}
+  .howcard h4{font-size:16px;margin:10px 0 5px}.howcard p{font-size:13px;color:var(--muted);line-height:1.5}
+  .idx-jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+  .idx-jump a{font-family:var(--mono);font-size:11.5px;text-decoration:none;color:var(--ink-2);border:1px solid var(--line-2);border-radius:99px;padding:7px 13px;background:var(--panel)}
+  .idx-jump a:hover{border-color:var(--accent);color:var(--accent)}
+  @media(max-width:920px){.vgrid,.howrow{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.vgrid,.howrow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hubbar"><div class="hubbar__in"><a href="../index.html">← All directions</a><span>THE RECORD · INDUSTRIES</span><span class="hubbar__sp">Vertical content hubs</span></div></div>
+<nav class="nav"><div class="nav__in">
+  <a class="brand" href="home.html"><span class="brand__mark"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg></span><span class="brand__wm"><span class="bm-a">AEO</span><span class="bm-c">Canon</span></span></a>
+  <div class="nav__links"><a href="home.html">Overview</a><a href="canon.html">The Canon</a><a href="learn.html">AEO school</a><a href="tool.html">Tools</a><a href="industries.html" class="active">Industries</a><a href="pricing.html">Pricing</a></div>
+  <div class="nav__right"><a class="btn btn--ghost navlink-az" href="analyzer.html">Free Analyzer</a><a class="btn btn--primary" href="pricing.html">Done for you</a></div>
+</div></nav>
+
+<div class="wrap" style="padding-bottom:70px">
+  <header class="hero" style="padding:calc(38px*var(--u)) 0 calc(20px*var(--u))">
+    <div class="kicker">Industry hubs</div>
+    <h1 class="display" style="margin-top:14px;font-size:calc(clamp(32px,4.8vw,56px)*var(--disp))">The canon, <em>spoken in your trade’s language.</em></h1>
+    <p class="lede" style="margin-top:16px;max-width:64ch">Every hub is a self-contained library for one kind of business — the guides, real teardowns, query maps, and copy templates that actually move AI visibility in <em>your</em> world. Same structure as the AEO school; content tuned to how your customers actually ask.</p>
+    <div class="idx-jump">
+      <a href="#hs">Home &amp; Property</a><a href="#tr">Construction &amp; Trades</a><a href="#au">Auto &amp; Transport</a><a href="#ls">Local &amp; Personal</a><a href="#fr">Fitness &amp; Rec</a><a href="#fh">Food &amp; Hospitality</a><a href="#pb">Professional &amp; B2B</a><a href="#rt">Retail &amp; Specialty</a>
+    </div>
+  </header>
+
+  <!-- how hubs work -->
+  <section class="section" style="border-top:none;padding-top:calc(20px*var(--u))">
+    <div class="section__head"><h2>What lives in every hub</h2><span class="eyebrow">Content first — not a pitch</span></div>
+    <div class="howrow">
+      <div class="howcard"><div class="n">01</div><h4>Niche guides</h4><p>Step-by-step playbooks written for your trade — emergency intent, seasonality, service areas.</p></div>
+      <div class="howcard"><div class="n">02</div><h4>Teardowns</h4><p>Real before/after case studies of businesses like yours going from invisible to cited.</p></div>
+      <div class="howcard"><div class="n">03</div><h4>Query maps</h4><p>The actual questions your customers ask AI — mapped to the pages that answer them.</p></div>
+      <div class="howcard"><div class="n">04</div><h4>Copy &amp; schema templates</h4><p>Answer-shaped page templates and structured-data blocks you can lift and adapt.</p></div>
+    </div>
+  </section>
+
+  <!-- FEATURED -->
+  <section class="section">
+    <div class="section__head"><h2>Featured hub</h2><span class="eyebrow">Most complete</span></div>
+    <a class="pcard pcard--p1" href="industry-hub.html" style="--pc:var(--c5)"><div class="pcard__bar"></div><span class="pcard__free">42 articles</span><div class="pcard__in">
+      <div class="pcard__top"><span class="pcard__lvl">Home &amp; Property</span><span class="pcard__no">Hub 01</span></div>
+      <h3>HVAC &amp; Heating / Cooling</h3>
+      <p>The 6pm-in-July emergency, ductless specialization, seasonal demand spikes, and multi-town service areas — the full content library for contractors who win or lose the job in a single AI answer.</p>
+      <div class="pcard__stat"><span>42 guides &amp; articles</span><span>7 teardowns</span><span>1 query map</span><span>12 templates</span></div>
+      <div class="pcard__cert"><span class="seal">▸</span> Curated from&nbsp;<b style="font-weight:600">Fundamentals + Local Playbook</b></div>
+    </div></a>
+  </section>
+
+  <!-- ===== FAMILIES ===== -->
+  <section class="fam fam-hs" id="hs">
+    <div class="fam__head"><span class="fam__n">A</span><h2>Home &amp; Property Services</h2><span class="meta"><b>11</b> verticals · <b>180+</b> articles</span></div>
+    <div class="vgrid">
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">HVAC / Heating &amp; Cooling</span><span class="vcard__m"><span class="live">● Live</span><span>42 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Plumbing</span><span class="vcard__m"><span class="live">● Live</span><span>31 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Electrical</span><span class="vcard__m"><span class="live">● Live</span><span>24 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Roofing</span><span class="vcard__m"><span class="live">● Live</span><span>22 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Landscaping &amp; Lawn Care</span><span class="vcard__m"><span class="live">● Live</span><span>19 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Pest Control</span><span class="vcard__m"><span class="live">● Live</span><span>14 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Garage Doors</span><span class="vcard__m"><span class="live">● Live</span><span>11 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Pool &amp; Spa Service</span><span class="vcard__m"><span class="live">● Live</span><span>12 articles</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">House Cleaning</span><span class="vcard__m"><span>Coming soon</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Window &amp; Gutter</span><span class="vcard__m"><span>Coming soon</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Painting</span><span class="vcard__m"><span>Coming soon</span></span></a>
+    </div>
+  </section>
+
+  <section class="fam fam-tr" id="tr">
+    <div class="fam__head"><span class="fam__n">B</span><h2>Construction &amp; Trades</h2><span class="meta"><b>8</b> verticals · <b>110+</b> articles</span></div>
+    <div class="vgrid">
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">General Contractors</span><span class="vcard__m"><span class="live">● Live</span><span>26 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Remodeling &amp; Renovation</span><span class="vcard__m"><span class="live">● Live</span><span>21 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Concrete &amp; Masonry</span><span class="vcard__m"><span class="live">● Live</span><span>14 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Fencing &amp; Decks</span><span class="vcard__m"><span class="live">● Live</span><span>13 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Flooring</span><span class="vcard__m"><span class="live">● Live</span><span>12 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Solar Installers</span><span class="vcard__m"><span class="live">● Live</span><span>15 articles</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Handyman Services</span><span class="vcard__m"><span>Coming soon</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Excavation &amp; Grading</span><span class="vcard__m"><span>Coming soon</span></span></a>
+    </div>
+  </section>
+
+  <section class="fam fam-au" id="au">
+    <div class="fam__head"><span class="fam__n">C</span><h2>Auto &amp; Transport</h2><span class="meta"><b>7</b> verticals · <b>80+</b> articles</span></div>
+    <div class="vgrid">
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Auto Repair &amp; Mechanics</span><span class="vcard__m"><span class="live">● Live</span><span>23 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Auto Detailing</span><span class="vcard__m"><span class="live">● Live</span><span>14 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Tire &amp; Wheel Shops</span><span class="vcard__m"><span class="live">● Live</span><span>11 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Towing &amp; Roadside</span><span class="vcard__m"><span class="live">● Live</span><span>10 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Moving Companies</span><span class="vcard__m"><span class="live">● Live</span><span>12 articles</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Mobile Mechanics</span><span class="vcard__m"><span>Coming soon</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Auto Glass</span><span class="vcard__m"><span>Coming soon</span></span></a>
+    </div>
+  </section>
+
+  <section class="fam fam-ls" id="ls">
+    <div class="fam__head"><span class="fam__n">D</span><h2>Local &amp; Personal Services</h2><span class="meta"><b>8</b> verticals · <b>90+</b> articles</span></div>
+    <div class="vgrid">
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Salons &amp; Barbershops</span><span class="vcard__m"><span class="live">● Live</span><span>18 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Tattoo Studios</span><span class="vcard__m"><span class="live">● Live</span><span>11 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Pet Grooming</span><span class="vcard__m"><span class="live">● Live</span><span>13 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Dog Training &amp; Boarding</span><span class="vcard__m"><span class="live">● Live</span><span>12 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Photographers</span><span class="vcard__m"><span class="live">● Live</span><span>15 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">DJs &amp; Event Services</span><span class="vcard__m"><span class="live">● Live</span><span>10 articles</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Cleaning &amp; Maid Services</span><span class="vcard__m"><span>Coming soon</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Locksmiths</span><span class="vcard__m"><span>Coming soon</span></span></a>
+    </div>
+  </section>
+
+  <section class="fam fam-fr" id="fr">
+    <div class="fam__head"><span class="fam__n">E</span><h2>Fitness &amp; Recreation</h2><span class="meta"><b>6</b> verticals · <b>60+</b> articles</span></div>
+    <div class="vgrid">
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Gyms &amp; Studios</span><span class="vcard__m"><span class="live">● Live</span><span>16 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Personal Trainers</span><span class="vcard__m"><span class="live">● Live</span><span>13 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Yoga &amp; Pilates</span><span class="vcard__m"><span class="live">● Live</span><span>11 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Martial Arts Dojos</span><span class="vcard__m"><span class="live">● Live</span><span>10 articles</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Golf &amp; Sports Instruction</span><span class="vcard__m"><span>Coming soon</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Climbing &amp; Rec Centers</span><span class="vcard__m"><span>Coming soon</span></span></a>
+    </div>
+  </section>
+
+  <section class="fam fam-fh" id="fh">
+    <div class="fam__head"><span class="fam__n">F</span><h2>Food &amp; Hospitality</h2><span class="meta"><b>6</b> verticals · <b>70+</b> articles</span></div>
+    <div class="vgrid">
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Restaurants</span><span class="vcard__m"><span class="live">● Live</span><span>21 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Cafés &amp; Coffee Shops</span><span class="vcard__m"><span class="live">● Live</span><span>13 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Caterers</span><span class="vcard__m"><span class="live">● Live</span><span>12 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Food Trucks</span><span class="vcard__m"><span class="live">● Live</span><span>9 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Breweries &amp; Taprooms</span><span class="vcard__m"><span class="live">● Live</span><span>11 articles</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Bakeries</span><span class="vcard__m"><span>Coming soon</span></span></a>
+    </div>
+  </section>
+
+  <section class="fam fam-pb" id="pb">
+    <div class="fam__head"><span class="fam__n">G</span><h2>Professional &amp; B2B Services</h2><span class="meta"><b>8</b> verticals · <b>95+</b> articles</span></div>
+    <div class="vgrid">
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Marketing &amp; Creative Agencies</span><span class="vcard__m"><span class="live">● Live</span><span>22 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">IT Services &amp; MSPs</span><span class="vcard__m"><span class="live">● Live</span><span>18 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Web Designers &amp; Devs</span><span class="vcard__m"><span class="live">● Live</span><span>16 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Bookkeeping &amp; Tax Prep</span><span class="vcard__m"><span class="live">● Live</span><span>14 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Business Consultants</span><span class="vcard__m"><span class="live">● Live</span><span>13 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Commercial Cleaning</span><span class="vcard__m"><span class="live">● Live</span><span>12 articles</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Staffing &amp; Recruiting</span><span class="vcard__m"><span>Coming soon</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Print &amp; Sign Shops</span><span class="vcard__m"><span>Coming soon</span></span></a>
+    </div>
+  </section>
+
+  <section class="fam fam-rt" id="rt">
+    <div class="fam__head"><span class="fam__n">H</span><h2>Retail &amp; Specialty</h2><span class="meta"><b>5</b> verticals · <b>45+</b> articles</span></div>
+    <div class="vgrid">
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Florists</span><span class="vcard__m"><span class="live">● Live</span><span>11 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Boutiques &amp; Apparel</span><span class="vcard__m"><span class="live">● Live</span><span>10 articles</span></span></a>
+      <a class="vcard" href="industry-hub.html"><span class="vcard__t">Jewelers</span><span class="vcard__m"><span class="live">● Live</span><span>9 articles</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Furniture &amp; Home Goods</span><span class="vcard__m"><span>Coming soon</span></span></a>
+      <a class="vcard vcard--soon"><span class="vcard__t">Specialty Hobby Shops</span><span class="vcard__m"><span>Coming soon</span></span></a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="master"><div class="master__seal">+</div><div><h3>Don’t see your trade?</h3><p>The core canon applies to any local or small business. Tell us your category and we’ll point you to the closest hub — or build a new one.</p></div><a class="btn btn--ghost" href="journey.html">Suggest an industry →</a></div>
+  </section>
+</div>
+
+<footer class="foot"><div class="wrap"><div class="foot__grid">
+  <div><a class="brand" href="home.html" style="margin-bottom:16px"><span class="brand__mark"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg></span><span class="brand__wm"><span class="bm-a">AEO</span><span class="bm-c">Canon</span></span></a><p class="foot__about">Industry hubs translate the canon into the language and stakes of one trade at a time.</p></div>
+  <div><h5>The canon</h5><ul><li><a href="canon.html">The framework</a></li><li><a href="manifesto.html">The Manifesto</a></li><li><a href="whitepaper.html">Research whitepaper</a></li></ul></div>
+  <div><h5>Learn</h5><ul><li><a href="learn.html">AEO school</a></li><li><a href="tool.html">Tools</a></li></ul></div>
+  <div><h5>Industries</h5><ul><li><a href="#hs">Home &amp; Property</a></li><li><a href="#tr">Trades</a></li><li><a href="#pb">Professional</a></li></ul></div>
+</div></div></footer>
+
+<script src="../shared/theme.js"></script>
+<button class="theme-fab" data-theme-toggle aria-label="Toggle dark mode" title="Toggle light/dark">◐</button>
+</body>
+</html>

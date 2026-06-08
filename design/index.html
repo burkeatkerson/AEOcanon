@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEO Canon — Five Design Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4f3f0; --panel:#ffffff; --ink:#1a1916; --muted:#6f6b63; --line:#e3e0d9;
+    --accent:oklch(0.55 0.13 250);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Spline Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    -webkit-font-smoothing:antialiased;line-height:1.5;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  header.top{padding:80px 0 48px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+  h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(34px,5vw,58px);line-height:1.05;letter-spacing:-.02em;max-width:18ch}
+  h1 em{font-style:italic;color:var(--accent)}
+  .lede{margin-top:24px;max-width:62ch;font-size:18px;color:var(--muted)}
+  .meta-row{display:flex;flex-wrap:wrap;gap:32px;margin-top:36px;font-size:13px;color:var(--muted)}
+  .meta-row b{color:var(--ink);font-weight:600}
+
+  section.dirs{padding:56px 0 100px}
+  .sec-label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:34px 36px;margin-bottom:22px;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;
+    transition:box-shadow .2s,transform .2s;
+  }
+  .card:hover{box-shadow:0 12px 40px -18px rgba(20,18,14,.25);transform:translateY(-2px)}
+  .card__n{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);margin-bottom:14px;letter-spacing:.05em}
+  .card__name{font-family:'Newsreader',serif;font-size:30px;line-height:1.1;margin-bottom:6px;letter-spacing:-.01em}
+  .card__tag{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:18px}
+  .card__desc{font-size:15.5px;color:#44413b;max-width:48ch}
+  .card__opt{margin-top:18px;font-size:13.5px;color:var(--muted)}
+  .card__opt b{color:var(--ink);font-weight:600}
+
+  .swatches{display:flex;gap:8px;margin-bottom:18px}
+  .sw{width:30px;height:30px;border-radius:50%;border:1px solid rgba(0,0,0,.08)}
+  .typesample{font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.4}
+  .links{display:flex;flex-wrap:wrap;gap:8px}
+  .links a{
+    font-family:'JetBrains Mono',monospace;font-size:12px;text-decoration:none;color:var(--ink);
+    border:1px solid var(--line);padding:7px 12px;border-radius:999px;transition:all .15s;background:#fafaf8;
+  }
+  .links a:hover{border-color:var(--accent);color:var(--accent)}
+  .links a.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .links a.primary:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  footer{border-top:1px solid var(--line);padding:40px 0 80px;color:var(--muted);font-size:13.5px;max-width:70ch}
+  footer b{color:var(--ink)}
+  @media(max-width:720px){.card{grid-template-columns:1fr;gap:24px}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div class="eyebrow">AEO Canon · Design Exploration · v1</div>
+      <h1>Five ways to build the <em>authority</em> on Answer Engine Optimization.</h1>
+      <p class="lede">Each direction is a genuinely different take on what this brand could look, feel, and function like — not five skins of one layout. Every direction ships six interactive mid-fidelity screens, in both light and dark mode, with realistic copy throughout. Pick a thread to pull.</p>
+      <div class="meta-row">
+        <span><b>5</b> directions</span>
+        <span><b>6</b> screens each</span>
+        <span><b>Light + dark</b> first-class</span>
+        <span><b>Live</b> discovery journey in every one</span>
+      </div>
+    </header>
+
+    <section class="dirs">
+      <div class="sec-label">★ The synthesis — balance of 01 + 02 →</div>
+
+      <article class="card" style="border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)">
+        <div>
+          <div class="card__n">THE RECORD · 01 + 02</div>
+          <div class="card__name">The Record</div>
+          <div class="card__tag">Editorial authority × canon-as-tool</div>
+          <p class="card__desc">The Journal’s edited reading experience fused with the Reference’s persistent navigability. Ships with a live <b>balance explorer</b> — slide from editorial to reference, switch accent and density, and watch the whole system respond. Your pick carries across every screen.</p>
+          <div class="card__opt"><b>Explore the spectrum:</b> use the “Explore the balance” control in-page (bottom-right).</div>
+        </div>
+        <div>
+          <div class="swatches"><span class="sw" style="background:#1c1a15"></span><span class="sw" style="background:#f3f0ea"></span><span class="sw" style="background:oklch(0.52 0.1 207)"></span></div>
+          <div class="typesample">Newsreader · Spline Sans · JetBrains Mono</div>
+          <div class="links">
+            <a class="primary" href="d6-record/home.html">Homepage</a>
+            <a href="d6-record/article.html">Article</a>
+            <a href="d6-record/learn.html">Learning center</a>
+            <a href="d6-record/journey.html">Discovery journey</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="sec-label" style="margin-top:44px">The original five →</div>
+
+      <article class="card">
+        <div>
+          <div class="card__n">DIRECTION 01</div>
+          <div class="card__name">The Journal</div>
+          <div class="card__tag">Editorial authority · publication-first</div>
+          <p class="card__desc">A serious digital publication. Serif headlines, a strong editorial grid, restraint as a flex. Authority comes from looking like the journal of record for a field. Leans into the “credible canon” half of the brand.</p>
+          <div class="card__opt"><b>Best for:</b> sophisticated marketers; readers who trust what looks edited.</div>
+        </div>
+        <div>
+          <div class="swatches"><span class="sw" style="background:#1a1916"></span><span class="sw" style="background:#f4f3f0"></span><span class="sw" style="background:oklch(0.55 0.13 250)"></span></div>
+          <div class="typesample">Newsreader · Spline Sans · JetBrains Mono</div>
+          <div class="links">
+            <a class="primary" href="d1-journal/home.html">Homepage</a>
+            <a href="d1-journal/learn.html">Learning center</a>
+            <a href="d1-journal/article.html">Article</a>
+            <a href="d1-journal/niche.html">HVAC niche</a>
+            <a href="d1-journal/journey.html">Discovery journey</a>
+            <a href="d1-journal/module.html">Course module</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div>
+          <div class="card__n">DIRECTION 02</div>
+          <div class="card__name">The Reference</div>
+          <div class="card__tag">Documentation · canon-as-tool</div>
+          <p class="card__desc">The canon as a thing you keep open in a tab. Persistent left-rail taxonomy, right-rail contents, monospace wayfinding. Built for looking things up and never getting lost across 350 articles. Leans into the “practical framework” half.</p>
+          <div class="card__opt"><b>Best for:</b> power users, returning learners, deep reference sessions.</div>
+        </div>
+        <div>
+          <div class="swatches"><span class="sw" style="background:#0d1117"></span><span class="sw" style="background:#fbfbfa"></span><span class="sw" style="background:oklch(0.6 0.13 165)"></span></div>
+          <div class="typesample">IBM Plex Serif · Plex Sans · Plex Mono</div>
+          <div class="links">
+            <a class="primary" href="d2-reference/home.html">Homepage</a>
+            <a href="d2-reference/learn.html">Learning center</a>
+            <a href="d2-reference/article.html">Article</a>
+            <a href="d2-reference/niche.html">HVAC niche</a>
+            <a href="d2-reference/journey.html">Discovery journey</a>
+            <a href="d2-reference/module.html">Course module</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div>
+          <div class="card__n">DIRECTION 03</div>
+          <div class="card__name">The Index</div>
+          <div class="card__tag">Swiss · systematic · data-forward</div>
+          <p class="card__desc">A card catalog for a discipline. Numbered entries, a strict grid, tabular data, charts woven into the page. Authority through visible rigor and comprehensiveness. The most “tool-like” and quantitative of the five.</p>
+          <div class="card__opt"><b>Best for:</b> analytically-minded buyers who trust systems and numbers.</div>
+        </div>
+        <div>
+          <div class="swatches"><span class="sw" style="background:#111"></span><span class="sw" style="background:#fff"></span><span class="sw" style="background:oklch(0.6 0.18 28)"></span></div>
+          <div class="typesample">Archivo · Archivo · JetBrains Mono</div>
+          <div class="links">
+            <a class="primary" href="d3-index/home.html">Homepage</a>
+            <a href="d3-index/learn.html">Learning center</a>
+            <a href="d3-index/article.html">Article</a>
+            <a href="d3-index/niche.html">HVAC niche</a>
+            <a href="d3-index/journey.html">Discovery journey</a>
+            <a href="d3-index/module.html">Course module</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div>
+          <div class="card__n">DIRECTION 04</div>
+          <div class="card__name">The Atelier</div>
+          <div class="card__tag">Warm · human · approachable</div>
+          <p class="card__desc">Authority that doesn’t intimidate. Warm paper tones, a humanist serif/sans pairing, conversational copy. Built so an HVAC owner feels welcome and a marketer still feels it’s credible. The friendliest front door.</p>
+          <div class="card__opt"><b>Best for:</b> small-business owners new to the topic; broad top-of-funnel.</div>
+        </div>
+        <div>
+          <div class="swatches"><span class="sw" style="background:#2b2622"></span><span class="sw" style="background:#f7f1e8"></span><span class="sw" style="background:oklch(0.62 0.13 55)"></span></div>
+          <div class="typesample">Source Serif 4 · Hanken Grotesk · mono</div>
+          <div class="links">
+            <a class="primary" href="d4-atelier/home.html">Homepage</a>
+            <a href="d4-atelier/learn.html">Learning center</a>
+            <a href="d4-atelier/article.html">Article</a>
+            <a href="d4-atelier/niche.html">HVAC niche</a>
+            <a href="d4-atelier/journey.html">Discovery journey</a>
+            <a href="d4-atelier/module.html">Course module</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div>
+          <div class="card__n">DIRECTION 05</div>
+          <div class="card__name">The Signal</div>
+          <div class="card__tag">Bold · contemporary · dark-first</div>
+          <p class="card__desc">A confident, modern tech brand. High contrast, oversized type, monospace accents, motion. Designed dark-first with a true light counterpart. Opinionated and current — authority through conviction and craft.</p>
+          <div class="card__opt"><b>Best for:</b> challenger positioning; standing out in a category being defined now.</div>
+        </div>
+        <div>
+          <div class="swatches"><span class="sw" style="background:#0a0a0b"></span><span class="sw" style="background:#ededed"></span><span class="sw" style="background:oklch(0.78 0.17 130)"></span></div>
+          <div class="typesample">Space Grotesk · Spline Sans · Space Mono</div>
+          <div class="links">
+            <a class="primary" href="d5-signal/home.html">Homepage</a>
+            <a href="d5-signal/learn.html">Learning center</a>
+            <a href="d5-signal/article.html">Article</a>
+            <a href="d5-signal/niche.html">HVAC niche</a>
+            <a href="d5-signal/journey.html">Discovery journey</a>
+            <a href="d5-signal/module.html">Course module</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <b>How to read these.</b> Each direction is internally consistent and navigable — every screen links to the other five within its direction, and a theme toggle lives in every header. Copy is plausible-but-fictional. After you’ve walked through them, I’ll lay out the trade-offs: what each optimizes for, what it sacrifices, and which audience segment it serves best.
+    </footer>
+  </div>
+  <script src="shared/theme.js"></script>
+</body>
+</html>

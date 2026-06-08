@@ -1,194 +1,258 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-}
+/*
+ * AEO Canon design system — "Spectrum" scheme.
+ * Tokens are the single source of truth (mirrors Design/playground/brand.html).
+ * Light/dark is driven by the `data-theme` attribute on <html> (see ThemeScript).
+ */
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* Font stacks. The --font-* vars are provided by next/font (see layout.tsx). */
+  --serif: var(--font-newsreader), Georgia, serif;
+  --sans: var(--font-spline), system-ui, sans-serif;
+  --mono: var(--font-jetbrains), ui-monospace, monospace;
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+[data-theme="light"] {
+  --bg: #f4f6fb;
+  --bg-2: #eef1f9;
+  --paper: #fafbfe;
+  --panel: #ffffff;
+  --ink: #181a2b;
+  --ink-2: #3d4163;
+  --muted: #6b6f8c;
+  --faint: #9a9eb8;
+  --line: #e6e8f3;
+  --line-2: #d7daec;
+  --accent: oklch(0.55 0.19 266);
+  --accent-2: oklch(0.56 0.13 18);
+  --accent-soft: oklch(0.95 0.03 266);
+  --c1: oklch(0.6 0.18 25);
+  --c2: oklch(0.7 0.13 70);
+  --c3: oklch(0.58 0.14 155);
+  --c4: oklch(0.56 0.11 205);
+  --c5: oklch(0.55 0.18 266);
+  --c6: oklch(0.54 0.17 305);
+  --ok: oklch(0.58 0.14 155);
+  --warn: oklch(0.62 0.15 60);
+  --bad: oklch(0.56 0.16 25);
+}
+
+[data-theme="dark"] {
+  --bg: #08090d;
+  --bg-2: #101218;
+  --paper: #101218;
+  --panel: #15171f;
+  --ink: #f7f9fd;
+  --ink-2: #d2d6e4;
+  --muted: #8a8fa6;
+  --faint: #585d74;
+  --line: #22252f;
+  --line-2: #2e323d;
+  --accent: oklch(0.74 0.15 264);
+  --accent-2: oklch(0.74 0.14 22);
+  --accent-soft: oklch(0.3 0.07 264);
+  --c1: oklch(0.72 0.16 25);
+  --c2: oklch(0.8 0.13 72);
+  --c3: oklch(0.74 0.13 155);
+  --c4: oklch(0.74 0.11 205);
+  --c5: oklch(0.72 0.16 266);
+  --c6: oklch(0.7 0.16 305);
+  --ok: oklch(0.74 0.13 155);
+  --warn: oklch(0.8 0.13 75);
+  --bad: oklch(0.7 0.16 28);
+}
+
+/*
+ * Map design tokens to Tailwind utilities (`@theme inline` so utilities resolve
+ * the live CSS var and respond to theme switches). Generates bg, text, and
+ * border utilities for every token, plus font-serif/sans/mono and the radius scale.
+ */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-paper: var(--paper);
+  --color-panel: var(--panel);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-soft: var(--accent-soft);
+  --color-c1: var(--c1);
+  --color-c2: var(--c2);
+  --color-c3: var(--c3);
+  --color-c4: var(--c4);
+  --color-c5: var(--c5);
+  --color-c6: var(--c6);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+
+  /* shadcn-compat aliases (a few components/util classes still reference these) */
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --color-border: var(--line);
+
+  --font-serif: var(--serif);
+  --font-sans: var(--sans);
+  --font-mono: var(--mono);
+
+  --radius-sm: 6px;
+  --radius-md: 9px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg);
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  html {
-    @apply font-sans;
+  ::selection {
+    background: var(--accent-soft);
   }
-  /* Offset anchored headings below the sticky header on jump-to. */
+  a {
+    color: inherit;
+  }
+  /* Offset anchored headings below the sticky header. */
   :target {
     scroll-margin-top: 6rem;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--serif);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: var(--serif);
+  }
+  .font-sans {
+    font-family: var(--sans);
+  }
+  .font-mono {
+    font-family: var(--mono);
   }
 }
 
 /*
- * Article prose. Hand-rolled (no typography plugin) to keep the dependency
- * surface small and the markup clean for AI parsing. Applied via `.prose`.
+ * Article prose — editorial serif reading column (mirrors Design .prose).
+ * Applied via `.prose` on the rendered MDX wrapper.
  */
 @layer components {
   .prose {
-    @apply text-foreground/90 text-base leading-7;
+    font-family: var(--serif);
+    font-size: 1.1875rem;
+    line-height: 1.72;
+    color: var(--ink);
   }
   .prose > * + * {
-    @apply mt-5;
-  }
-  .prose h2 {
-    @apply text-foreground mt-12 scroll-mt-24 text-2xl font-semibold tracking-tight;
-  }
-  .prose h3 {
-    @apply text-foreground mt-8 scroll-mt-24 text-xl font-semibold tracking-tight;
-  }
-  .prose h4 {
-    @apply text-foreground mt-6 scroll-mt-24 text-lg font-semibold;
+    margin-top: 1.45em;
   }
   .prose p {
-    @apply leading-7;
+    color: var(--ink);
+  }
+  .prose h2 {
+    font-size: 1.75rem;
+    margin-top: 1.6em;
+    scroll-margin-top: 5.5rem;
+  }
+  .prose h3 {
+    font-size: 1.375rem;
+    margin-top: 1.3em;
+    scroll-margin-top: 5.5rem;
+  }
+  .prose h4 {
+    font-size: 1.15rem;
+    margin-top: 1.1em;
+    scroll-margin-top: 5.5rem;
   }
   .prose a {
-    @apply text-primary font-medium underline decoration-from-font underline-offset-2 hover:opacity-80;
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose a:hover {
+    opacity: 0.8;
+  }
+  .prose strong {
+    font-weight: 600;
+    color: var(--ink);
   }
   .prose ul {
-    @apply list-disc space-y-2 pl-6;
+    padding-left: 1.2em;
+    list-style: disc;
   }
   .prose ol {
-    @apply list-decimal space-y-2 pl-6;
+    padding-left: 1.2em;
+    list-style: decimal;
+  }
+  .prose li {
+    margin-bottom: 0.5em;
   }
   .prose li > ul,
   .prose li > ol {
-    @apply mt-2;
-  }
-  .prose strong {
-    @apply text-foreground font-semibold;
+    margin-top: 0.5em;
   }
   .prose blockquote {
-    @apply border-border text-muted-foreground border-l-2 pl-4 italic;
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    font-style: italic;
+    color: var(--ink-2);
+    font-size: 1.4rem;
+    line-height: 1.4;
   }
   .prose :not(pre) > code {
-    @apply bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em];
+    font-family: var(--mono);
+    font-size: 0.84em;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 2px 6px;
+    font-style: normal;
   }
   .prose pre {
-    @apply border-border my-6 overflow-x-auto rounded-lg border p-4 text-sm leading-relaxed;
-  }
-  .prose pre code {
-    @apply font-mono;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    background: #13141b;
+    color: #e6e1d3;
+    border: 1px solid var(--line-2);
+    border-radius: 12px;
+    padding: 20px 22px;
+    overflow: auto;
   }
   .prose hr {
-    @apply border-border my-10;
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 2.4em 0;
   }
   /* Appended heading permalink (rehype-autolink-headings, behavior: append). */
   .prose .heading-anchor {
-    @apply text-muted-foreground ml-2 no-underline opacity-0 transition-opacity;
+    margin-left: 0.4em;
+    color: var(--faint);
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.15s;
   }
   .prose .heading-anchor::after {
     content: "#";
@@ -196,6 +260,19 @@
   .prose h2:hover .heading-anchor,
   .prose h3:hover .heading-anchor,
   .prose h4:hover .heading-anchor {
-    @apply opacity-100;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-theme-default="light" data-balance="reference" data-scheme="spectrum" data-headline="hybrid">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect x=%2712%27 y=%2716%27 width=%2740%27 height=%277%27 rx=%273.5%27 fill=%27%235b63d6%27/%3E%3Crect x=%2712%27 y=%2729%27 width=%2730%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Crect x=%2712%27 y=%2742%27 width=%2720%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Ccircle cx=%2755%27 cy=%2719.5%27 r=%276%27 fill=%27%23e0563f%27/%3E%3C/svg%3E">
+<title>HVAC Hub — AEO Canon Industries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="lc.css">
+<style>
+  :root{--hc:var(--c5)}
+  [data-theme="light"]{--bg-2:#eef1f9}
+  [data-theme="dark"]{--bg-2:#101218}
+  .ih-head{border-bottom:1px solid var(--line);padding:calc(30px*var(--u)) 0 0}
+  .ih-crumb{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}
+  .ih-crumb a{color:var(--ink-2);text-decoration:none}.ih-crumb a:hover{color:var(--accent)}
+  .ih-top{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;padding-bottom:calc(24px*var(--u))}
+  .ih-cat{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--hc);margin-bottom:12px}
+  .ih-top h1{font-size:calc(clamp(34px,5vw,58px)*var(--disp));line-height:1;letter-spacing:-.02em}
+  .ih-top p{font-size:17px;color:var(--ink-2);max-width:54ch;margin-top:14px}
+  .ih-stats{display:flex;gap:26px;flex-wrap:wrap}
+  .ih-stat .n{font-family:var(--serif);font-size:30px;color:var(--hc);line-height:1}
+  .ih-stat .l{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:6px}
+  .ih-switch{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:14px 0;border-top:1px solid var(--line)}
+  .ih-switch .lab{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);margin-right:4px}
+  .ih-switch select{font-family:var(--mono);font-size:12px;color:var(--ink);background:var(--panel);border:1px solid var(--line-2);border-radius:8px;padding:8px 12px;outline:none}
+
+  /* "what AI says" data band */
+  .aiband{border:1px solid var(--line-2);border-radius:16px;background:var(--paper);padding:26px 28px;margin:calc(26px*var(--u)) 0;border-left:4px solid var(--hc)}
+  .aiband h3{font-size:21px;margin-bottom:6px}
+  .aiband .sub{font-size:13.5px;color:var(--muted);margin-bottom:20px}
+  .aiband__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .aistat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .aistat .big{font-family:var(--serif);font-size:34px;color:var(--hc);line-height:1}
+  .aistat p{font-size:13px;color:var(--ink-2);margin-top:8px;line-height:1.45}
+
+  .ih-section{padding:calc(34px*var(--u)) 0;border-top:1px solid var(--line)}
+  .fmt{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:5px;border:1px solid currentColor}
+  .fmt--guide{color:var(--c3)}.fmt--teardown{color:var(--c1)}.fmt--map{color:var(--c4)}.fmt--template{color:var(--c6)}.fmt--tool{color:var(--accent)}
+
+  /* query map */
+  .qmap{display:flex;flex-direction:column;gap:0}
+  .qrow{display:grid;grid-template-columns:1.5fr 1fr auto;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+  .qrow:hover .qq{color:var(--hc)}
+  .qq{font-family:var(--serif);font-size:16.5px;line-height:1.25}
+  .qq::before{content:"“";color:var(--hc)}.qq::after{content:"”";color:var(--hc)}
+  .qint{font-family:var(--mono);font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .qans{font-family:var(--mono);font-size:11px;color:var(--hc);white-space:nowrap}
+  .qvol{font-family:var(--mono);font-size:10.5px;color:var(--faint);white-space:nowrap}
+
+  /* template cards */
+  .tplgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .tpl{border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden}
+  .tpl__bar{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--bg-2);font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .tpl__bar .dot{width:8px;height:8px;border-radius:50%;background:var(--hc)}
+  .tpl__body{padding:18px}
+  .tpl h4{font-size:17px;margin-bottom:8px}
+  .tpl p{font-size:13.5px;color:var(--muted);line-height:1.5;margin-bottom:14px}
+  .tpl .code{font-family:var(--mono);font-size:11.5px;line-height:1.6;background:#13141b;color:#e6e1d3;border-radius:8px;padding:14px;overflow:auto;margin-bottom:14px}
+  .tpl .code .k{color:#9db7ff}
+  .tpl__foot{display:flex;justify-content:space-between;align-items:center}
+  .tplbtn{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line-2);background:var(--bg-2);color:var(--ink-2);border-radius:8px;padding:8px 13px;cursor:pointer}
+  .tplbtn:hover{border-color:var(--hc);color:var(--hc)}
+
+  .related{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .related a{font-family:var(--mono);font-size:11px;text-decoration:none;color:var(--ink-2);border:1px solid var(--line-2);border-radius:99px;padding:6px 12px;background:var(--panel)}
+  .related a:hover{border-color:var(--hc);color:var(--hc)}
+  /* slim problem→pricing bridge (one, tasteful) */
+  .fixline{display:flex;align-items:center;gap:20px;justify-content:space-between;flex-wrap:wrap;
+    border:1px solid var(--hc);border-radius:14px;background:color-mix(in oklab,var(--hc) 7%,var(--panel));
+    padding:16px 22px;margin:0 0 calc(26px*var(--u));text-decoration:none;color:var(--ink);transition:transform .14s,box-shadow .14s}
+  .fixline:hover{transform:translateY(-1px);box-shadow:0 16px 34px -26px color-mix(in oklab,var(--hc) 60%,transparent)}
+  .fixline__txt{font-size:14.5px;color:var(--ink-2);line-height:1.5;max-width:64ch}
+  .fixline__txt b{color:var(--ink);font-weight:600}
+  .fixline__cta{font-family:var(--mono);font-size:12px;color:var(--hc);white-space:nowrap;font-weight:500}
+  @media(max-width:860px){.ih-top{grid-template-columns:1fr}.aiband__grid{grid-template-columns:1fr}.tplgrid{grid-template-columns:1fr}.qrow{grid-template-columns:1fr;gap:6px}.qans,.qvol{justify-self:start}}
+</style>
+</head>
+<body>
+<div class="hubbar"><div class="hubbar__in"><a href="../index.html">← All directions</a><span>THE RECORD · INDUSTRY HUB</span><span class="hubbar__sp">HVAC · content library</span></div></div>
+<nav class="nav"><div class="nav__in">
+  <a class="brand" href="home.html"><span class="brand__mark"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg></span><span class="brand__wm"><span class="bm-a">AEO</span><span class="bm-c">Canon</span></span></a>
+  <div class="nav__links"><a href="home.html">Overview</a><a href="canon.html">The Canon</a><a href="learn.html">AEO school</a><a href="tool.html">Tools</a><a href="industries.html" class="active">Industries</a><a href="pricing.html">Pricing</a></div>
+  <div class="nav__right"><a class="btn btn--ghost navlink-az" href="analyzer.html">Free Analyzer</a><a class="btn btn--primary" href="pricing.html">Done for you</a></div>
+</div></nav>
+
+<div class="wrap">
+  <header class="ih-head">
+    <div class="ih-crumb"><a href="industries.html">Industries</a><span>/</span><a href="industries.html#hs">Home &amp; Property</a><span>/</span><b style="color:var(--ink)">HVAC</b></div>
+    <div class="ih-top">
+      <div>
+        <div class="ih-cat">Home &amp; Property Services · Hub 01</div>
+        <h1 class="display">AEO for HVAC contractors</h1>
+        <p>Everything we’ve learned about getting heating &amp; cooling businesses found, cited, and recommended by AI search — written for the trade, backed by real teardowns.</p>
+      </div>
+      <div class="ih-stats">
+        <div class="ih-stat"><div class="n">42</div><div class="l">Guides</div></div>
+        <div class="ih-stat"><div class="n">7</div><div class="l">Teardowns</div></div>
+        <div class="ih-stat"><div class="n">68</div><div class="l">Mapped queries</div></div>
+        <div class="ih-stat"><div class="n">12</div><div class="l">Templates</div></div>
+      </div>
+    </div>
+    <div class="ih-switch">
+      <span class="lab">Switch hub</span>
+      <select onchange="if(this.value)location.href=this.value">
+        <option value="">HVAC / Heating &amp; Cooling</option>
+        <option value="industry-hub.html">Plumbing</option>
+        <option value="industry-hub.html">Electrical</option>
+        <option value="industry-hub.html">Roofing</option>
+        <option value="industry-hub.html">Auto Repair</option>
+        <option value="industry-hub.html">Restaurants</option>
+        <option value="industry-hub.html">Marketing Agencies</option>
+      </select>
+      <span class="lab" style="margin-left:10px">Jump</span>
+      <div class="lc-tabs" style="border:none;flex:1">
+        <button class="lc-tab active" data-tab="guides">Guides <span class="ct">42</span></button>
+        <button class="lc-tab" data-tab="teardowns">Teardowns <span class="ct">7</span></button>
+        <button class="lc-tab" data-tab="qmap">Query Map <span class="ct">68</span></button>
+        <button class="lc-tab" data-tab="templates">Templates <span class="ct">12</span></button>
+        <button class="lc-tab" data-tab="tools">Tools <span class="ct">3</span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- GUIDES -->
+  <div class="lc-pane active" data-pane="guides">
+    <div class="aiband">
+      <h3>What AI says about HVAC today</h3>
+      <div class="sub">Sampled across ChatGPT, Perplexity &amp; AI Overviews · “emergency AC repair near me” · 40 metros</div>
+      <div class="aiband__grid">
+        <div class="aistat"><div class="big">2 / 3</div><p>engines name a national lead-gen site before any local contractor</p></div>
+        <div class="aistat"><div class="big">0</div><p>mention same-day or 24/7 availability unless it’s in structured data</p></div>
+        <div class="aistat"><div class="big">58%</div><p>of the answer is pulled from directories, not contractor sites</p></div>
+      </div>
+    </div>
+
+    <a class="fixline" href="pricing.html">
+      <span class="fixline__txt"><b>Right now, 2 of 3 engines hand your emergency calls to a competitor.</b> We rebuild your site and run the HVAC content that fixes it — done for you.</span>
+      <span class="fixline__cta">See how we fix it →</span>
+    </a>
+
+    <section class="ih-section" style="border-top:none;padding-top:0">
+      <div class="section__head"><h2>Start here</h2><span class="eyebrow">The HVAC essentials</span></div>
+      <div class="grid3">
+        <a class="acard" href="article.html"><span class="cat" style="color:var(--c3)">Niche guide</span><h4>The 6pm-in-July playbook: capturing emergency intent</h4><p>Structured availability, service-area, and pricing so “24/7” reaches the answer.</p><div class="acard__foot"><span>22 min</span><span class="fmt fmt--guide">Guide</span></div></a>
+        <a class="acard" href="article.html"><span class="cat" style="color:var(--c3)">Niche guide</span><h4>Ranking for “ductless mini-split installer” specifically</h4><p>How specialization beats generic “HVAC” in the AI answer.</p><div class="acard__foot"><span>14 min</span><span class="fmt fmt--guide">Guide</span></div></a>
+        <a class="acard" href="article.html"><span class="cat" style="color:var(--c3)">Niche guide</span><h4>Multi-town service areas the engines actually understand</h4><p>Service-area schema vs. doorway pages — what works in 2026.</p><div class="acard__foot"><span>16 min</span><span class="fmt fmt--guide">Guide</span></div></a>
+      </div>
+    </section>
+
+    <section class="ih-section">
+      <div class="section__head"><h2>By season &amp; intent</h2><span class="eyebrow">39 more guides</span></div>
+      <a class="arow" href="article.html"><span class="id" style="color:var(--c3)">G-12</span><div><h4>Pre-summer content cadence: publishing before the demand spike</h4><p>The 8-week calendar that gets you cited when AC searches surge.</p></div><span class="m">Seasonal<br>11 min</span></a>
+      <a class="arow" href="article.html"><span class="id" style="color:var(--c3)">G-15</span><div><h4>Heat-pump rebates &amp; incentives: answer pages that earn citations</h4><p>Why “is a heat pump worth it in [state]” is your highest-leverage page.</p></div><span class="m">Intent<br>13 min</span></a>
+      <a class="arow" href="article.html"><span class="id" style="color:var(--c3)">G-18</span><div><h4>Furnace vs. heat pump: writing the comparison AI quotes</h4><p>Decision-support structure for the most-asked winter question.</p></div><span class="m">Comparison<br>10 min</span></a>
+      <a class="arow" href="article.html"><span class="id" style="color:var(--c3)">G-21</span><div><h4>Commercial vs. residential: separating your two AI reputations</h4><p>Why mixed-signal sites get recommended for neither.</p></div><span class="m">Positioning<br>12 min</span></a>
+      <div style="text-align:center;margin-top:26px"><a class="btn btn--ghost btn--lg" href="#">Load all 42 HVAC guides</a></div>
+    </section>
+  </div>
+
+  <!-- TEARDOWNS -->
+  <div class="lc-pane" data-pane="teardowns">
+    <section class="ih-section" style="border-top:none;padding-top:calc(20px*var(--u))">
+      <div class="section__head"><h2>Real before / after teardowns</h2><span class="eyebrow">Anonymized, fully instrumented</span></div>
+      <div class="grid3">
+        <a class="acard" href="article.html" style="border-top:3px solid var(--c1)"><span class="cat" style="color:var(--c1)">Teardown · 1 location</span><h4>From invisible to default in 90 days</h4><p>A 12-truck Austin contractor: what changed, what didn’t move, the one rewrite that did the work.</p><div class="acard__foot"><span>+340% citations</span><span class="fmt fmt--teardown">Teardown</span></div></a>
+        <a class="acard" href="article.html" style="border-top:3px solid var(--c1)"><span class="cat" style="color:var(--c1)">Teardown · multi-location</span><h4>Five branches, five reputations — unifying them</h4><p>How conflicting NAP and service areas were starving every location.</p><div class="acard__foot"><span>4→1 description</span><span class="fmt fmt--teardown">Teardown</span></div></a>
+        <a class="acard" href="article.html" style="border-top:3px solid var(--c1)"><span class="cat" style="color:var(--c1)">Teardown · specialist</span><h4>The mini-split specialist who owned the niche</h4><p>Going deep instead of wide turned a 2-person shop into the cited answer.</p><div class="acard__foot"><span>#1 in Perplexity</span><span class="fmt fmt--teardown">Teardown</span></div></a>
+      </div>
+      <a class="arow" href="article.html" style="margin-top:24px"><span class="id" style="color:var(--c1)">T-04</span><div><h4>The review-velocity experiment: did volume or recency matter more?</h4><p>90 days of controlled review-gathering across two comparable contractors.</p></div><span class="m">Experiment<br>15 min</span></a>
+      <a class="arow" href="article.html"><span class="id" style="color:var(--c1)">T-05</span><div><h4>What happened when a contractor deleted 40 thin city pages</h4><p>Counterintuitive: removing doorway pages lifted citations.</p></div><span class="m">Experiment<br>12 min</span></a>
+    </section>
+  </div>
+
+  <!-- QUERY MAP -->
+  <div class="lc-pane" data-pane="qmap">
+    <section class="ih-section" style="border-top:none;padding-top:calc(20px*var(--u))">
+      <div class="section__head"><h2>The HVAC query map</h2><span class="eyebrow">What customers actually ask AI → the page that wins it</span></div>
+      <p class="lede" style="max-width:62ch;margin-bottom:24px;font-size:16px">Real conversational queries, classified by intent, mapped to the answer-shaped page that earns the citation. This is the backbone of an HVAC content plan.</p>
+      <div class="qmap">
+        <div class="qrow" style="border-top:1px solid var(--line)"><span class="qq">my AC is blowing warm air, do I need a new unit or just a repair?</span><span class="qint">Emergency · diagnostic</span><span class="qans">→ Troubleshooting guide</span></div>
+        <a class="qrow" href="article.html"><span class="qq">who does same-day AC repair near me in [city]?</span><span class="qint">Emergency · local</span><span class="qans">→ Service-area page</span></a>
+        <a class="qrow" href="article.html"><span class="qq">is it worth repairing a 12-year-old furnace or should I replace it?</span><span class="qint">Decision · high-value</span><span class="qans">→ Repair-vs-replace</span></a>
+        <a class="qrow" href="article.html"><span class="qq">how much does a ductless mini-split cost to install?</span><span class="qint">Pricing · research</span><span class="qans">→ Cost guide</span></a>
+        <a class="qrow" href="article.html"><span class="qq">are heat pumps worth it in a cold climate?</span><span class="qint">Comparison · seasonal</span><span class="qans">→ Climate explainer</span></a>
+        <a class="qrow" href="article.html"><span class="qq">what size AC do I need for a 2,000 sq ft house?</span><span class="qint">Technical · pre-purchase</span><span class="qans">→ Sizing calculator</span></a>
+      </div>
+      <div style="text-align:center;margin-top:26px"><a class="btn btn--ghost btn--lg" href="#">See all 68 mapped queries</a></div>
+    </section>
+  </div>
+
+  <!-- TEMPLATES -->
+  <div class="lc-pane" data-pane="templates">
+    <section class="ih-section" style="border-top:none;padding-top:calc(20px*var(--u))">
+      <div class="section__head"><h2>Copy &amp; schema templates</h2><span class="eyebrow">Lift, adapt, ship</span></div>
+      <div class="tplgrid">
+        <div class="tpl"><div class="tpl__bar"><span class="dot"></span> service-area-page.md<span style="margin-left:auto" class="fmt fmt--template">Copy</span></div><div class="tpl__body"><h4>Service-area page template</h4><p>Answer-first structure for “[service] in [town]” that engines lift cleanly — heading, opening claim, proof, availability.</p><button class="tplbtn" data-copy="# Emergency AC Repair in {City}, {State}\n\n{Business} provides same-day AC repair across {City} and {areas}. Licensed, {years} years, {N}+ five-star reviews.\n\n## Availability\nOpen {hours}. 24/7 emergency line: {phone}.">⧉ Copy template</button></div></div>
+        <div class="tpl"><div class="tpl__bar"><span class="dot"></span> hvac-schema.json<span style="margin-left:auto" class="fmt fmt--template">Schema</span></div><div class="tpl__body"><h4>HVACBusiness structured data</h4><div class="code">{<br>&nbsp;"<span class="k">@type</span>":"HVACBusiness",<br>&nbsp;"<span class="k">areaServed</span>":["Austin","Round Rock"],<br>&nbsp;"<span class="k">openingHours</span>":"Mo-Su 00:00-23:59",<br>&nbsp;"<span class="k">makesOffer</span>":"Emergency AC repair"<br>}</div><button class="tplbtn" data-copy='{"@type":"HVACBusiness","areaServed":["Austin","Round Rock"],"openingHours":"Mo-Su 00:00-23:59","makesOffer":"Emergency AC repair"}'>⧉ Copy schema</button></div></div>
+        <div class="tpl"><div class="tpl__bar"><span class="dot"></span> repair-vs-replace.md<span style="margin-left:auto" class="fmt fmt--template">Copy</span></div><div class="tpl__body"><h4>Repair-vs-replace answer block</h4><p>The decision-support paragraph structure for the most-cited HVAC comparison query.</p><button class="tplbtn" data-copy="## Should you repair or replace your {unit}?\n\nReplace if: it's over {age} years, repairs exceed {threshold}% of replacement, or it uses R-22. Repair if: under {age} years and the fix is under {amount}.">⧉ Copy template</button></div></div>
+        <div class="tpl"><div class="tpl__bar"><span class="dot"></span> faq-block.md<span style="margin-left:auto" class="fmt fmt--template">Copy</span></div><div class="tpl__body"><h4>Extractable FAQ block</h4><p>Question-shaped headings with self-contained 40-word answers — the format engines quote verbatim.</p><button class="tplbtn" data-copy="### How fast can you get here for an AC emergency?\nWe dispatch same-day across {areas}, typically within {hours} hours. Our 24/7 line is {phone}.">⧉ Copy template</button></div></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- TOOLS -->
+  <div class="lc-pane" data-pane="tools">
+    <section class="ih-section" style="border-top:none;padding-top:calc(20px*var(--u))">
+      <div class="section__head"><h2>HVAC-tuned tools</h2><span class="eyebrow">Same engines, niche presets</span></div>
+      <div class="toolgrid">
+        <a class="tcard" href="tool.html"><div class="tcard__icn">◎</div><h4>HVAC Visibility Audit</h4><p>Pre-loaded with HVAC query sets and competitor patterns for your metro.</p><span class="tcard__tag">Tuned · emergency-intent queries</span></a>
+        <a class="tcard" href="tool.html"><div class="tcard__icn">⌗</div><h4>HVACBusiness Schema Generator</h4><p>Generates service-area, availability, and offer data specific to heating &amp; cooling.</p><span class="tcard__tag">Tuned · HVACBusiness type</span></a>
+        <a class="tcard" href="tool.html"><div class="tcard__icn">▤</div><h4>Service-Page Scorer</h4><p>Scores a contractor service page for extractability and emergency-intent coverage.</p><span class="tcard__tag">Tuned · local service pages</span></a>
+      </div>
+    </section>
+    <section class="ih-section">
+      <div class="convert"><div><span class="k">Want this done for you?</span><h4>We’ve built AEO-optimized sites for 40+ HVAC contractors.</h4><p>Keep the content; let us run the site, schema, and monthly publishing for your shop.</p></div><a class="btn btn--primary" href="pricing.html">See packages →</a></div>
+    </section>
+  </div>
+</div>
+
+<footer class="foot"><div class="wrap"><div class="foot__grid">
+  <div><a class="brand" href="home.html" style="margin-bottom:16px"><span class="brand__mark"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg></span><span class="brand__wm"><span class="bm-a">AEO</span><span class="bm-c">Canon</span></span></a><p class="foot__about">One hub per trade — the guides, teardowns, query maps, and templates that move AI visibility in your category.</p></div>
+  <div><h5>This hub</h5><ul><li><a href="#" onclick="ihGo('guides');return false">Guides</a></li><li><a href="#" onclick="ihGo('teardowns');return false">Teardowns</a></li><li><a href="#" onclick="ihGo('qmap');return false">Query map</a></li></ul></div>
+  <div><h5>Industries</h5><ul><li><a href="industries.html">All hubs</a></li><li><a href="industries.html#hs">Home &amp; Property</a></li></ul></div>
+  <div><h5>The canon</h5><ul><li><a href="canon.html">Framework</a></li><li><a href="learn.html">AEO school</a></li></ul></div>
+</div></div></footer>
+
+<script src="../shared/theme.js"></script>
+<script>
+  function ihGo(name){
+    document.querySelectorAll('.lc-tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===name));
+    document.querySelectorAll('.lc-pane').forEach(x=>x.classList.toggle('active',x.dataset.pane===name));
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll('.lc-tab').forEach(function(t){t.addEventListener('click',function(){ihGo(t.dataset.tab);});});
+  document.querySelectorAll('.tplbtn').forEach(function(b){b.addEventListener('click',function(){
+    var txt=b.getAttribute('data-copy')||'';if(navigator.clipboard)navigator.clipboard.writeText(txt).catch(function(){});
+    var o=b.textContent;b.textContent='Copied ✓';setTimeout(function(){b.textContent=o;},1300);
+  });});
+</script>
+<button class="theme-fab" data-theme-toggle aria-label="Toggle dark mode" title="Toggle light/dark">◐</button>
+</body>
+</html>

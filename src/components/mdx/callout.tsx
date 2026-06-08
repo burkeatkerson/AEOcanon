@@ -1,40 +1,42 @@
-import { Info, TriangleAlert, Lightbulb, CircleCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type CalloutVariant = "note" | "tip" | "warning" | "success";
+type CalloutVariant = "insight" | "tip" | "warning" | "key" | "definition";
 
 const VARIANTS: Record<
   CalloutVariant,
-  { icon: typeof Info; className: string; label: string }
+  { container: string; head: string; defaultLabel: string }
 > = {
-  note: {
-    icon: Info,
-    className: "border-border bg-muted/50 text-foreground",
-    label: "Note",
+  insight: {
+    container: "border-l-[3px] border-accent bg-accent-soft",
+    head: "text-accent-2",
+    defaultLabel: "Insight",
   },
   tip: {
-    icon: Lightbulb,
-    className:
-      "border-blue-500/30 bg-blue-500/10 text-foreground [&_svg]:text-blue-500",
-    label: "Tip",
+    container: "border border-dashed border-line-2 bg-bg-2",
+    head: "text-ok",
+    defaultLabel: "Tip",
   },
   warning: {
-    icon: TriangleAlert,
-    className:
-      "border-amber-500/30 bg-amber-500/10 text-foreground [&_svg]:text-amber-500",
-    label: "Warning",
+    container:
+      "border-l-[3px] border-warn bg-[color-mix(in_oklab,var(--warn)_10%,var(--panel))]",
+    head: "text-warn",
+    defaultLabel: "Heads up",
   },
-  success: {
-    icon: CircleCheck,
-    className:
-      "border-emerald-500/30 bg-emerald-500/10 text-foreground [&_svg]:text-emerald-500",
-    label: "Success",
+  key: {
+    container: "bg-ink text-bg",
+    head: "text-accent",
+    defaultLabel: "Key point",
+  },
+  definition: {
+    container: "border border-line-2 bg-panel",
+    head: "text-accent",
+    defaultLabel: "Definition",
   },
 };
 
-/** Highlighted aside usable in any MDX article. */
+/** Editorial callout usable in any MDX article (mirrors the design `.co`). */
 export function Callout({
-  variant = "note",
+  variant = "insight",
   title,
   children,
 }: {
@@ -42,18 +44,24 @@ export function Callout({
   title?: string;
   children: React.ReactNode;
 }) {
-  const { icon: Icon, className, label } = VARIANTS[variant];
+  const v = VARIANTS[variant];
   return (
     <div
       className={cn(
-        "my-6 flex gap-3 rounded-lg border p-4 text-sm leading-relaxed",
-        className,
+        "my-7 rounded-xl px-6 py-5 font-sans text-[15px] leading-relaxed",
+        v.container,
       )}
       role="note"
     >
-      <Icon className="mt-0.5 size-5 shrink-0" aria-hidden="true" />
-      <div className="min-w-0 [&>:first-child]:mt-0 [&>:last-child]:mb-0">
-        <p className="mb-1 font-semibold">{title ?? label}</p>
+      <p
+        className={cn(
+          "mb-2 font-mono text-[10.5px] tracking-[0.1em] uppercase",
+          v.head,
+        )}
+      >
+        {title ?? v.defaultLabel}
+      </p>
+      <div className="[&>:first-child]:mt-0 [&>:last-child]:mb-0">
         {children}
       </div>
     </div>

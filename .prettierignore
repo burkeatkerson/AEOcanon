@@ -6,3 +6,4 @@ out/
 build/
 *.lock
 package-lock.json
+design/

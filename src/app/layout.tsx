@@ -1,23 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Newsreader, Spline_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SITE_URL, siteConfig } from "@/lib/site";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { ThemeToggle } from "@/components/brand/theme-toggle";
 import { JsonLd } from "@/components/seo/json-ld";
 import { graph, organizationNode, websiteNode } from "@/lib/structured-data";
 
-// Geist drives `--font-sans` (consumed by @theme in globals.css); Geist Mono
-// drives `--font-geist-mono`. next/font self-hosts both — no layout shift.
-const geistSans = Geist({
-  variable: "--font-sans",
+const serif = Newsreader({
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-newsreader",
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const sans = Spline_Sans({
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-spline",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains",
   display: "swap",
 });
 
@@ -31,6 +40,9 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
 };
 
+// Set data-theme before first paint to avoid a flash of the wrong theme.
+const themeScript = `(function(){try{var k='aeo-theme';var d=document.documentElement;var t=localStorage.getItem(k)||d.getAttribute('data-theme-default')||(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');d.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,13 +51,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      data-theme-default="light"
+      className={`${serif.variable} ${sans.variable} ${mono.variable} h-full`}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <a
           href="#main"
-          className="bg-primary text-primary-foreground sr-only z-50 rounded-md px-4 py-2 focus:not-sr-only focus:absolute focus:top-4 focus:left-4"
+          className="bg-ink text-bg sr-only z-50 rounded-md px-4 py-2 focus:not-sr-only focus:absolute focus:top-4 focus:left-4"
         >
           Skip to content
         </a>
@@ -55,6 +69,7 @@ export default function RootLayout({
           {children}
         </main>
         <SiteFooter />
+        <ThemeToggle />
       </body>
     </html>
   );

@@ -1,8 +1,4 @@
-/**
- * Simple comparison table for MDX. Authors pass columns + rows as data so the
- * markup stays semantic (and easy for answer engines to parse) without writing
- * raw HTML tables.
- */
+/** Comparison table for MDX (mirrors the design `.ctable`). */
 export function ComparisonTable({
   columns,
   rows,
@@ -13,20 +9,22 @@ export function ComparisonTable({
   caption?: string;
 }) {
   return (
-    <div className="my-8 overflow-x-auto">
-      <table className="w-full border-collapse text-sm">
+    <div className="my-8 overflow-x-auto font-sans">
+      <table className="w-full border-collapse text-[13.5px]">
         {caption ? (
-          <caption className="text-muted-foreground mb-2 text-left text-sm">
+          <caption className="text-muted mb-2 text-left text-sm">
             {caption}
           </caption>
         ) : null}
         <thead>
-          <tr className="border-border border-b">
-            {columns.map((col) => (
+          <tr>
+            {columns.map((col, i) => (
               <th
                 key={col}
                 scope="col"
-                className="px-3 py-2 text-left font-semibold"
+                className={`border-ink text-muted border-b-2 px-2.5 py-2.5 font-mono text-[10px] tracking-[0.05em] uppercase ${
+                  i === 0 ? "text-left" : "text-center"
+                }`}
               >
                 {col}
               </th>
@@ -35,9 +33,14 @@ export function ComparisonTable({
         </thead>
         <tbody>
           {rows.map((row, i) => (
-            <tr key={i} className="border-border/60 border-b last:border-0">
+            <tr key={i}>
               {row.map((cell, j) => (
-                <td key={j} className="px-3 py-2 align-top">
+                <td
+                  key={j}
+                  className={`border-line border-b px-2.5 py-[11px] ${
+                    j === 0 ? "text-left font-medium" : "text-center"
+                  }`}
+                >
                   {cell}
                 </td>
               ))}

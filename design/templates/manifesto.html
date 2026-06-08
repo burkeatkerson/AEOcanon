@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-theme-default="light" data-balance="reference" data-scheme="spectrum" data-headline="hybrid">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect x=%2712%27 y=%2716%27 width=%2740%27 height=%277%27 rx=%273.5%27 fill=%27%235b63d6%27/%3E%3Crect x=%2712%27 y=%2729%27 width=%2730%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Crect x=%2712%27 y=%2742%27 width=%2720%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Ccircle cx=%2755%27 cy=%2719.5%27 r=%276%27 fill=%27%23e0563f%27/%3E%3C/svg%3E">
+<title>The AEO Manifesto — AEO Canon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .mf-wrap{max-width:760px;margin:0 auto;padding:0 32px}
+  /* local warning token (not in shared spectrum palette) */
+  [data-theme="light"]{--bad:oklch(0.56 0.16 25)}
+  [data-theme="dark"]{--bad:oklch(0.7 0.16 28)}
+  /* hero */
+  .mf-hero{min-height:78vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0 60px;position:relative}
+  .mf-kicker{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:30px}
+  .mf-hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(48px,9vw,104px);line-height:.96;letter-spacing:-.035em;margin-bottom:30px}
+  .mf-hero h1 em{font-style:italic;color:var(--accent)}
+  .mf-hero .sub{font-family:var(--serif);font-size:clamp(20px,2.6vw,26px);line-height:1.4;color:var(--ink-2);max-width:34ch}
+  .mf-scroll{position:absolute;bottom:34px;left:0;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+  .mf-scroll .ln{width:40px;height:1px;background:var(--line-2)}
+
+  /* statement blocks */
+  .mf-block{padding:60px 0;border-top:1px solid var(--line)}
+  .mf-block.center{text-align:center}
+  .mf-h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.6vw,52px);line-height:1.05;letter-spacing:-.025em;margin-bottom:28px}
+  .mf-h2 em{font-style:italic;color:var(--accent)}
+  .mf-p{font-family:var(--serif);font-size:21px;line-height:1.6;color:var(--ink);margin-bottom:1.1em}
+  .mf-p.muted{color:var(--ink-2)}
+  .mf-p .lead-in{color:var(--accent);font-style:italic}
+  .mf-q{font-family:var(--serif);font-style:italic;font-size:clamp(26px,3.6vw,38px);line-height:1.2;letter-spacing:-.02em;color:var(--ink);margin:0 auto;max-width:20ch}
+  .mf-rule-line{font-family:var(--serif);font-size:24px;line-height:1.5;color:var(--ink)}
+  .mf-rule-line b{color:var(--accent);font-weight:500;font-style:italic}
+  .mf-versus{display:grid;gap:8px;font-family:var(--serif);font-size:clamp(24px,3.4vw,34px);line-height:1.25;letter-spacing:-.02em}
+  .mf-versus .old{color:var(--muted)}
+  .mf-versus .new{color:var(--ink)}
+  .mf-versus .new b{color:var(--accent);font-style:italic;font-weight:500}
+
+  /* debunk stat inline list */
+  .mf-debunk{display:flex;flex-direction:column;gap:0;margin:30px 0;border-top:1px solid var(--line)}
+  .mf-debunk__row{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
+  .mf-debunk__t{font-family:var(--sans);font-size:16px;color:var(--ink-2)}
+  .mf-debunk__t b{color:var(--ink);font-weight:600}
+  .mf-debunk__v{font-family:var(--mono);font-size:13px;color:var(--bad);white-space:nowrap;display:flex;align-items:center;gap:8px}
+  .mf-debunk__v::before{content:"✕";font-size:11px}
+
+  /* the creed — eight tenets */
+  .creed{border-top:1px solid var(--line);padding:60px 0}
+  .creed__lead{text-align:center;margin-bottom:50px}
+  .creed__lead .mf-kicker{margin-bottom:18px}
+  .tenet{display:grid;grid-template-columns:84px 1fr;gap:28px;padding:34px 0;border-top:1px solid var(--line);align-items:start}
+  .tenet:first-of-type{border-top:1.5px solid var(--ink)}
+  .tenet__n{font-family:var(--serif);font-size:60px;line-height:.8;color:var(--accent);font-weight:500;letter-spacing:-.04em}
+  .tenet__b h3{font-family:var(--serif);font-weight:500;font-size:clamp(24px,3vw,32px);line-height:1.1;letter-spacing:-.02em;margin-bottom:14px}
+  .tenet__b h3 em{font-style:italic}
+  .tenet__b p{font-family:var(--serif);font-size:18px;line-height:1.6;color:var(--ink-2)}
+  .tenet__b p strong{color:var(--ink);font-weight:600}
+  .tenet__proof{display:inline-flex;align-items:center;gap:9px;margin-top:16px;font-family:var(--mono);font-size:12px;color:var(--accent);border:1px solid color-mix(in oklab,var(--accent) 35%,transparent);border-radius:99px;padding:6px 14px}
+  .tenet__proof b{color:var(--ink);font-weight:500}
+
+  /* closing */
+  .mf-closer{border-top:1.5px solid var(--ink);padding:70px 0;text-align:center}
+  .mf-closer .stack{font-family:var(--serif);font-size:clamp(26px,3.4vw,36px);line-height:1.25;letter-spacing:-.02em;margin-bottom:10px}
+  .mf-closer .stack .a{color:var(--muted)}.mf-closer .stack .b{color:var(--accent);font-style:italic}
+  .mf-stand{font-family:var(--serif);font-size:22px;line-height:1.6;color:var(--ink);max-width:44ch;margin:0 auto 1em}
+  .mf-final{font-family:var(--serif);font-style:italic;font-size:clamp(30px,4.4vw,48px);line-height:1.1;letter-spacing:-.02em;margin:30px 0 6px}
+  .mf-final .because{color:var(--accent)}
+  .mf-sign{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:40px}
+  .mf-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+
+  .mf-reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .mf-reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.mf-reveal{opacity:1;transform:none}}
+  @media(max-width:640px){.tenet{grid-template-columns:1fr;gap:8px}.tenet__n{font-size:44px}}
+</style>
+</head>
+<body>
+<div class="hubbar"><div class="hubbar__in"><a href="../index.html">← All directions</a><span>THE RECORD · THE MANIFESTO</span><span class="hubbar__sp">What we believe</span></div></div>
+<nav class="nav"><div class="nav__in">
+  <a class="brand" href="home.html"><span class="brand__mark"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg></span><span class="brand__wm"><span class="bm-a">AEO</span><span class="bm-c">Canon</span></span></a>
+  <div class="nav__links"><a href="home.html">Overview</a><a href="canon.html" class="active">The Canon</a><a href="learn.html">AEO school</a><a href="tool.html">Tools</a><a href="industries.html">Industries</a><a href="pricing.html">Pricing</a></div>
+  <div class="nav__right"><a class="btn btn--ghost navlink-az" href="analyzer.html">Free Analyzer</a><a class="btn btn--primary" href="pricing.html">Done for you</a></div>
+</div></nav>
+
+<div class="mf-wrap">
+  <!-- HERO -->
+  <header class="mf-hero">
+    <div class="mf-kicker">The AEO Manifesto</div>
+    <h1>The world changed. The game changed <em>with it.</em></h1>
+    <p class="sub">For thirty years the web asked one question: can people find you? A new one has arrived.</p>
+    <div class="mf-scroll"><span class="ln"></span> Read the creed</div>
+  </header>
+
+  <!-- shift -->
+  <section class="mf-block mf-reveal">
+    <p class="mf-p muted">For thirty years, the web had a single question: <em>can people find you?</em> The answer was a list. Ten blue links. A race to the top. The machine was a directory, and the goal was to be filed correctly.</p>
+    <p class="mf-p">That world still exists. But it is no longer the only world that matters.</p>
+    <h2 class="mf-h2" style="margin-top:.4em">A new question has arrived: <em>when the machine speaks, does it say your name?</em></h2>
+  </section>
+
+  <section class="mf-block mf-reveal">
+    <p class="mf-p muted">When an answer engine responds, it does not hand the user a menu. It gives an answer — one response, synthesized from the sources it trusts most. The cited gain visibility, credibility, and traffic. Everyone else gets nothing.</p>
+    <div class="mf-versus" style="margin-top:.6em">
+      <div class="old">The old game was to rank.</div>
+      <div class="new">The new game is to <b>be cited.</b></div>
+      <div class="old" style="font-size:.7em;margin-top:8px">They are not the same game.</div>
+    </div>
+  </section>
+
+  <!-- wrong game -->
+  <section class="mf-block mf-reveal">
+    <div class="mf-kicker" style="color:var(--muted);margin-bottom:22px">01 — The mistake</div>
+    <h2 class="mf-h2">Most people are playing <em>the wrong game.</em></h2>
+    <p class="mf-p muted">The instinct, when a new system appears, is to map old tactics onto it. What is the AEO version of a backlink? Is there a schema to add, a file to publish, a trick that cracks it open? This instinct is understandable. It is also how you lose.</p>
+    <p class="mf-p">The shortcuts do not work here — and they are not neutral. They are actively counterproductive.</p>
+    <div class="mf-debunk">
+      <div class="mf-debunk__row"><div class="mf-debunk__t"><b>Keyword stuffing</b> — the oldest reflex in optimization</div><div class="mf-debunk__v">lowers visibility 10%</div></div>
+      <div class="mf-debunk__row"><div class="mf-debunk__t"><b>Schema markup</b> — tested across ~2,000 pages</div><div class="mf-debunk__v">no citation lift</div></div>
+      <div class="mf-debunk__row"><div class="mf-debunk__t"><b>The llms.txt file</b> — across all AI crawler requests</div><div class="mf-debunk__v">fetched &lt;0.1%</div></div>
+    </div>
+    <p class="mf-p">But the deeper failure is not the tactics. It is the posture. Gaming signals is not a strategy when the machine is built to detect and correct for gaming.</p>
+    <p class="mf-rule-line">Everything that can be manipulated will eventually be corrected. <b>The only strategy that survives correction is to deserve it.</b></p>
+  </section>
+
+  <!-- what we believe -->
+  <section class="mf-block center mf-reveal">
+    <div class="mf-kicker" style="margin-bottom:22px">02 — The conviction</div>
+    <h2 class="mf-h2">What we believe.</h2>
+    <p class="mf-q">“Becoming the best available source is the entire discipline.”</p>
+    <p class="mf-p muted" style="max-width:48ch;margin:30px auto 0">AEO is not a set of tricks for manipulating machine behavior. It is the practice of being genuinely excellent at communicating — and building the conditions under which any well-designed engine recognizes that excellence. That is not a loophole. It is the design.</p>
+  </section>
+
+  <!-- THE CREED -->
+  <section class="creed mf-reveal">
+    <div class="creed__lead"><div class="mf-kicker">The eight beliefs</div><h2 class="mf-h2" style="margin-bottom:0">Every principle is also just honest, useful communication. That is the point.</h2></div>
+
+    <div class="tenet"><div class="tenet__n">1</div><div class="tenet__b"><h3>Access is the price of admission.</h3><p>If a machine cannot read your page, it cannot quote you. Open your doors to the crawlers, render in plain HTML, load fast. <strong>Fix this first — before everything else.</strong></p></div></div>
+
+    <div class="tenet"><div class="tenet__n">2</div><div class="tenet__b"><h3>Alignment <em>before</em> optimization.</h3><p>You can be the best answer to a question nobody is asking AI. People don’t ask “best CRM small business” — they ask “we’ve outgrown spreadsheets, what should we actually use and why?” <strong>Meet them at their real question.</strong></p></div></div>
+
+    <div class="tenet"><div class="tenet__n">3</div><div class="tenet__b"><h3>The sentence matters more than the page.</h3><p>Engines retrieve passages, not pages — they photocopy a paragraph, they don’t read the book. Write the answer you want quoted and put it first. <strong>The inverted pyramid is the structure of a source worth citing.</strong></p><span class="tenet__proof">44% of citations come from the <b>first third</b> of a page</span></div></div>
+
+    <div class="tenet"><div class="tenet__n">4</div><div class="tenet__b"><h3>Authority lives <em>off</em> your own site.</h3><p>You are what the web says you are. The machine is listening to the room — Reddit, YouTube, Wikipedia, the publications that say your name unprompted. <strong>Give the room something true to say about you.</strong></p><span class="tenet__proof">mentions <b>0.664</b> vs backlinks <b>0.218</b></span></div></div>
+
+    <div class="tenet"><div class="tenet__n">5</div><div class="tenet__b"><h3>Show your work.</h3><p>Numbers, not adjectives. Quotations, not assertions. Named sources and a real author with real credentials. <strong>It is the evidence of a mind that actually engaged with the world — and machines recognize the difference.</strong></p><span class="tenet__proof">statistics <b>+30%</b> · quotations <b>+41%</b></span></div></div>
+
+    <div class="tenet"><div class="tenet__n">6</div><div class="tenet__b"><h3>Say what only you can say.</h3><p>Generic content has always been weak; now it is also infinite. The scarcity has moved to what was always valuable — the specifically true, genuinely known, impossible to replicate. <strong>Your data cannot be scraped. Be the primary source.</strong></p></div></div>
+
+    <div class="tenet"><div class="tenet__n">7</div><div class="tenet__b"><h3>Recency is a form of honesty.</h3><p>An undated page is a claim without a timestamp. Updating content is not maintenance — it is integrity, the ongoing commitment that what you published still reflects reality. <strong>Match your cadence to your topic’s clock-speed.</strong></p></div></div>
+
+    <div class="tenet"><div class="tenet__n">8</div><div class="tenet__b"><h3>Build systems that bend.</h3><p>The engines will change; the signals will shift. Don’t optimize harder for today’s configuration — build the measurement habits and adaptive doctrine to move with the river. <strong>The principles endure. The specifics are written in pencil.</strong></p></div></div>
+  </section>
+
+  <!-- long game -->
+  <section class="mf-block mf-reveal">
+    <div class="mf-kicker" style="color:var(--muted);margin-bottom:22px">03 — The long game</div>
+    <h2 class="mf-h2">A doctrine for a source that <em>compounds.</em></h2>
+    <p class="mf-p muted">Original research becomes the citation all derivative content must reference. Authority earned through genuine presence becomes structural recognition in the engines’ models. Answer-first content earns citation that page-level rankings never could. Measured, updated, maintained — none of this erodes. It accumulates.</p>
+    <div class="mf-versus" style="margin-top:.6em">
+      <div class="old">Shortcuts produce short-term visibility.</div>
+      <div class="new">The Canon produces <b>enduring citation.</b></div>
+    </div>
+    <p class="mf-p" style="margin-top:1.2em">The engines are not finished. They have barely begun. The practitioners who win will not be the ones who cleverly optimized for this quarter’s configuration — they will be the ones who built genuine sources, and had the discipline to update their doctrine as fast as the engines updated theirs.</p>
+  </section>
+
+  <!-- closer -->
+  <section class="mf-closer mf-reveal">
+    <div class="mf-kicker" style="margin-bottom:26px">What we stand for</div>
+    <p class="mf-stand">We stand for content that deserves to be cited. That answers the real question, backs every claim with evidence, says something nobody else has said — and is structured to be lifted and quoted in the first sentence.</p>
+    <p class="mf-stand" style="color:var(--ink-2)">We stand against hollow optimization. Against keyword stuffing that degrades the visibility it seeks. Against gaming a signal rather than earning a reputation.</p>
+    <p class="mf-final">Not because it is clever.<br><span class="because">Because it is right.</span></p>
+    <div class="mf-sign">The AEO Canon · AEOcanon.com</div>
+    <div class="mf-cta">
+      <a class="btn btn--primary btn--lg" href="canon.html">Explore the framework →</a>
+      <a class="btn btn--ghost btn--lg" href="whitepaper.html">Read the research</a>
+    </div>
+  </section>
+</div>
+
+<script src="../shared/theme.js"></script>
+<script>
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -12% 0px'});
+  document.querySelectorAll('.mf-reveal').forEach(function(el){io.observe(el);});
+</script>
+<button class="theme-fab" data-theme-toggle aria-label="Toggle dark mode" title="Toggle light/dark">◐</button>
+</body>
+</html>

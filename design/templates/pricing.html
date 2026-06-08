@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-theme-default="light" data-balance="reference" data-scheme="spectrum" data-headline="hybrid">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect x=%2712%27 y=%2716%27 width=%2740%27 height=%277%27 rx=%273.5%27 fill=%27%235b63d6%27/%3E%3Crect x=%2712%27 y=%2729%27 width=%2730%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Crect x=%2712%27 y=%2742%27 width=%2720%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Ccircle cx=%2755%27 cy=%2719.5%27 r=%276%27 fill=%27%23e0563f%27/%3E%3C/svg%3E">
+<title>Services &amp; Pricing — AEO Canon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="lc.css">
+<style>
+  [data-theme="light"]{--bg-2:#eef1f9}
+  [data-theme="dark"]{--bg-2:#101218}
+  /* value-anchor band */
+  .anchor{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;border:1px solid var(--accent);border-radius:18px;background:var(--accent-soft);padding:22px 28px;margin:calc(8px*var(--u)) 0 calc(34px*var(--u))}
+  .anchor__seal{width:54px;height:54px;border-radius:13px;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:26px;flex:none}
+  .anchor h3{font-size:21px;margin-bottom:4px}
+  .anchor p{font-size:14px;color:var(--ink-2);max-width:62ch}
+  .anchor__big{font-family:var(--serif);font-size:38px;color:var(--accent);line-height:1;text-align:right;white-space:nowrap}
+  .anchor__big small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.04em;margin-top:6px}
+
+  /* subscription tiers */
+  .tiers{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .tier{position:relative;border:1px solid var(--line);border-radius:20px;background:var(--paper);padding:32px;display:flex;flex-direction:column}
+  .tier--feat{border:2px solid var(--accent);background:var(--panel);box-shadow:0 30px 70px -40px color-mix(in oklab,var(--accent) 60%,transparent)}
+  .tier__flag{position:absolute;top:-12px;left:32px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:var(--accent);color:#fff;border-radius:99px;padding:5px 13px}
+  .tier__name{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+  .tier__price{display:flex;align-items:baseline;gap:6px;margin:12px 0 2px}
+  .tier__price .amt{font-family:var(--serif);font-size:54px;letter-spacing:-.03em;line-height:1}
+  .tier__price .per{font-family:var(--mono);font-size:13px;color:var(--muted)}
+  .tier__sub{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-bottom:18px}
+  .tier__hl{font-size:15px;color:var(--ink);background:color-mix(in oklab,var(--accent) 8%,transparent);border-radius:10px;padding:11px 14px;margin-bottom:18px;line-height:1.45}
+  .tier__hl b{color:var(--accent);font-weight:600}
+  .tier ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:24px}
+  .tier li{display:flex;gap:11px;font-size:14.5px;color:var(--ink-2);line-height:1.45}
+  .tier li::before{content:"✓";color:var(--ok);font-weight:700;flex:none}
+  .tier li.x{color:var(--muted)}.tier li.x::before{content:"–";color:var(--faint)}
+  .tier .btn{margin-top:auto;text-align:center;justify-content:center}
+
+  /* one-time build strip */
+  .buildstrip{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;border:1px dashed var(--line-2);border-radius:18px;background:var(--bg-2);padding:28px 32px;margin-top:20px}
+  .buildstrip__name{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+  .buildstrip h3{font-size:24px;margin:8px 0 6px}
+  .buildstrip p{font-size:14px;color:var(--ink-2);max-width:58ch}
+  .buildstrip__right{text-align:right;white-space:nowrap}
+  .buildstrip__amt{font-family:var(--serif);font-size:40px;letter-spacing:-.02em;line-height:1}
+  .buildstrip__amt small{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+  /* portfolio gallery */
+  .galfilters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+  .galchip{font-family:var(--mono);font-size:11.5px;padding:7px 14px;border-radius:99px;border:1px solid var(--line-2);background:var(--panel);cursor:pointer;color:var(--ink-2);transition:.14s}
+  .galchip:hover{border-color:var(--accent)}
+  .galchip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .site{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel);text-decoration:none;color:var(--ink);transition:transform .16s,box-shadow .16s,border-color .16s}
+  .site:hover{transform:translateY(-4px);box-shadow:0 24px 50px -30px rgba(0,0,0,.4);border-color:var(--sc)}
+  .site__chrome{display:flex;align-items:center;gap:6px;padding:8px 12px;border-bottom:1px solid var(--line);background:var(--bg-2)}
+  .site__chrome i{width:8px;height:8px;border-radius:50%;background:var(--line-2)}
+  .site__url{margin-left:8px;font-family:var(--mono);font-size:9.5px;color:var(--muted);background:var(--panel);border-radius:5px;padding:3px 9px;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  /* faux site viewport */
+  .vp{height:188px;overflow:hidden;position:relative;background:var(--panel)}
+  .vp__nav{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid color-mix(in oklab,var(--sc) 20%,var(--line))}
+  .vp__logo{width:26px;height:8px;border-radius:3px;background:var(--sc)}
+  .vp__nav b{margin-left:auto;display:flex;gap:8px}
+  .vp__nav b i{width:18px;height:5px;border-radius:3px;background:var(--line-2)}
+  .vp__hero{padding:16px 14px;background:color-mix(in oklab,var(--sc) 12%,var(--panel))}
+  .vp__h{height:11px;width:78%;border-radius:4px;background:var(--sc);margin-bottom:7px}
+  .vp__h2{height:11px;width:54%;border-radius:4px;background:color-mix(in oklab,var(--sc) 55%,var(--line));margin-bottom:11px}
+  .vp__btn{display:inline-block;height:13px;width:60px;border-radius:99px;background:var(--sc)}
+  .vp__row{display:flex;gap:8px;padding:12px 14px}
+  .vp__card{flex:1;height:42px;border-radius:7px;background:var(--bg-2);border:1px solid var(--line);border-top:3px solid var(--sc)}
+  .site__meta{padding:14px 16px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+  .site__cat{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--sc)}
+  .site__name{font-family:var(--serif);font-size:17px}
+  .site__res{font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;gap:12px;margin-top:2px}
+  .site__res b{color:var(--ink)}
+
+  /* social proof */
+  .proofband{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .proofstat{background:var(--panel);padding:26px 22px}
+  .proofstat .n{font-family:var(--serif);font-size:42px;letter-spacing:-.02em;line-height:1;color:var(--accent)}
+  .proofstat .l{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:9px;line-height:1.45}
+  .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .quote{border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:24px;display:flex;flex-direction:column}
+  .quote__stars{color:var(--c2);letter-spacing:2px;font-size:13px;margin-bottom:12px}
+  .quote__q{font-family:var(--serif);font-size:17px;line-height:1.5;color:var(--ink);margin-bottom:18px}
+  .quote__who{margin-top:auto;display:flex;align-items:center;gap:12px}
+  .quote__av{width:42px;height:42px;border-radius:50%;background:color-mix(in oklab,var(--qc) 22%,transparent);color:var(--qc);display:grid;place-items:center;font-family:var(--serif);font-size:18px;flex:none}
+  .quote__nm{font-size:14px;font-weight:600}
+  .quote__biz{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+  .logos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  .logo-pill{font-family:var(--mono);font-size:12px;color:var(--ink-2);border:1px solid var(--line);border-radius:99px;padding:9px 16px;background:var(--panel)}
+  .logo-pill b{color:var(--ink);font-weight:600}
+
+  /* featured before/after */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .ba__side{padding:28px}
+  .ba__side--before{background:var(--bg-2)}
+  .ba__side--after{background:color-mix(in oklab,var(--accent) 7%,var(--panel));border-left:2px solid var(--accent)}
+  .ba__lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .ba__side--after .ba__lab{color:var(--accent)}
+  .ba__n{font-family:var(--serif);font-size:46px;letter-spacing:-.02em;line-height:1}
+  .ba__side--after .ba__n{color:var(--accent)}
+  .ba__d{font-size:13.5px;color:var(--ink-2);margin-top:8px}
+
+  /* process */
+  .proc{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:p}
+  .proc__step{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:22px;counter-increment:p}
+  .proc__step::before{content:counter(p,decimal-leading-zero);font-family:var(--mono);font-size:12px;color:var(--accent)}
+  .proc__step h4{font-size:17px;margin:8px 0 5px}
+  .proc__step p{font-size:13px;color:var(--muted);line-height:1.5}
+
+  /* faq */
+  .faq{border-top:1px solid var(--line)}
+  .faq__item{border-bottom:1px solid var(--line)}
+  .faq__q{width:100%;text-align:left;background:none;border:none;padding:20px 4px;font-family:var(--serif);font-size:19px;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center}
+  .faq__q::after{content:"+";color:var(--accent);font-size:22px;flex:none}
+  .faq__item.open .faq__q::after{content:"–"}
+  .faq__a{max-height:0;overflow:hidden;transition:max-height .3s;font-size:15px;color:var(--ink-2);line-height:1.6}
+  .faq__item.open .faq__a{max-height:240px;padding-bottom:20px}
+
+  /* final cta */
+  .finalcta{border-radius:24px;background:var(--ink);color:var(--bg);padding:clamp(34px,5vw,60px);text-align:center}
+  .finalcta h2{font-size:clamp(30px,4.6vw,48px);color:var(--bg);letter-spacing:-.02em}
+  .finalcta h2 em{font-style:italic;color:var(--accent)}
+  .finalcta p{max-width:48ch;margin:16px auto 0;color:color-mix(in oklab,var(--bg) 76%,var(--ink));font-size:17px}
+  .finalcta .btn{margin-top:28px}
+
+  /* ===== case-study modal ===== */
+  .cs-modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:24px}
+  .cs-modal[hidden]{display:none}
+  .cs-backdrop{position:absolute;inset:0;background:color-mix(in oklab,var(--ink) 62%,transparent);backdrop-filter:blur(4px);opacity:0;transition:opacity .25s ease}
+  .cs-modal.in .cs-backdrop{opacity:1}
+  .cs-dialog{position:relative;z-index:1;width:min(960px,100%);max-height:min(88vh,760px);background:var(--panel);border:1px solid var(--line-2);
+    border-radius:20px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 40px 100px -40px rgba(0,0,0,.6);
+    opacity:0;transform:translateY(16px) scale(.98);transition:opacity .28s var(--ease,cubic-bezier(.2,.7,.2,1)),transform .28s var(--ease,cubic-bezier(.2,.7,.2,1))}
+  .cs-modal.in .cs-dialog{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.cs-backdrop,.cs-dialog{transition:none}.cs-dialog{transform:none}}
+  .cs-close{position:absolute;top:14px;right:14px;z-index:5;width:36px;height:36px;border-radius:50%;border:1px solid var(--line-2);
+    background:var(--panel);color:var(--ink-2);font-size:15px;cursor:pointer;display:grid;place-items:center;transition:.14s}
+  .cs-close:hover{border-color:var(--accent);color:var(--accent)}
+  .cs-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:40px;height:40px;border-radius:50%;
+    border:1px solid var(--line-2);background:var(--panel);color:var(--ink);font-size:20px;cursor:pointer;display:grid;place-items:center;transition:.14s}
+  .cs-nav:hover{border-color:var(--accent);color:var(--accent)}
+  .cs-prev{left:-20px}.cs-next{right:-20px}
+  .cs-body{display:grid;grid-template-columns:1.05fr 1fr;overflow:hidden;min-height:0}
+  .cs-preview{background:var(--bg-2);padding:26px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--line)}
+  .cs-frame{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);box-shadow:0 18px 40px -26px rgba(0,0,0,.45)}
+  .cs-frame .site__chrome{padding:9px 13px}
+  .cs-frame .vp{height:236px}
+  .cs-content{padding:30px 32px;overflow-y:auto;display:flex;flex-direction:column}
+  .cs-cat{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--csc,var(--accent))}
+  .cs-content h3{font-size:27px;margin:8px 0 3px;line-height:1.05}
+  .cs-url{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-bottom:18px}
+  .cs-block{margin-bottom:16px}
+  .cs-block .lab{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .cs-block p{font-size:14px;color:var(--ink-2);line-height:1.55}
+  .cs-did{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .cs-did li{display:flex;gap:9px;font-size:13.5px;color:var(--ink-2);line-height:1.45}
+  .cs-did li::before{content:"→";color:var(--csc,var(--accent));flex:none}
+  .cs-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 18px}
+  .cs-metric{border:1px solid var(--line);border-radius:11px;padding:13px 15px}
+  .cs-metric.after{border-color:color-mix(in oklab,var(--csc,var(--accent)) 45%,transparent);background:color-mix(in oklab,var(--csc,var(--accent)) 7%,transparent)}
+  .cs-metric .l{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+  .cs-metric .v{font-family:var(--serif);font-size:26px;line-height:1;letter-spacing:-.02em}
+  .cs-metric.after .v{color:var(--csc,var(--accent))}
+  .cs-quote{border-left:3px solid var(--csc,var(--accent));padding:4px 0 4px 16px;margin-bottom:22px}
+  .cs-quote p{font-family:var(--serif);font-style:italic;font-size:15.5px;line-height:1.45;color:var(--ink)}
+  .cs-quote .who{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px;font-style:normal}
+  .cs-cta{margin-top:auto;justify-content:center;text-align:center}
+  .cs-counter{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:5px 12px}
+  .site{cursor:pointer}
+  @media(max-width:760px){
+    .cs-modal{padding:0}
+    .cs-dialog{width:100%;max-height:100vh;height:100vh;border-radius:0}
+    .cs-body{grid-template-columns:1fr;overflow-y:auto}
+    .cs-preview{border-right:none;border-bottom:1px solid var(--line);padding:20px}
+    .cs-frame .vp{height:170px}
+    .cs-content{overflow:visible;padding:24px}
+    .cs-prev{left:8px}.cs-next{right:8px}
+    .cs-counter{bottom:auto;top:14px;left:14px;transform:none}
+  }
+
+  @media(max-width:920px){.tiers{grid-template-columns:1fr}.gallery,.tgrid,.proc{grid-template-columns:1fr 1fr}.proofband{grid-template-columns:1fr 1fr}.anchor,.buildstrip{grid-template-columns:1fr;text-align:left}.anchor__big,.buildstrip__right{text-align:left}.ba{grid-template-columns:1fr}}
+  @media(max-width:560px){.gallery,.tgrid,.proc,.proofband{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hubbar"><div class="hubbar__in"><a href="../index.html">← All directions</a><span>THE RECORD · SERVICES &amp; PRICING</span><span class="hubbar__sp">Website rebuilds + done-for-you AEO</span></div></div>
+<nav class="nav"><div class="nav__in">
+  <a class="brand" href="home.html"><span class="brand__mark"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg></span><span class="brand__wm"><span class="bm-a">AEO</span><span class="bm-c">Canon</span></span></a>
+  <div class="nav__links"><a href="home.html">Overview</a><a href="canon.html">The Canon</a><a href="learn.html">AEO school</a><a href="tool.html">Tools</a><a href="industries.html">Industries</a><a href="pricing.html" class="active">Pricing</a></div>
+  <div class="nav__right"><a class="btn btn--ghost navlink-az" href="analyzer.html">Free Analyzer</a><a class="btn btn--primary" href="#pricing">See pricing</a></div>
+</div></nav>
+
+<header class="hero" style="padding:calc(40px*var(--u)) 0 calc(20px*var(--u))"><div class="wrap">
+  <div class="kicker">Done-for-you AEO · website included</div>
+  <h1 class="display" style="margin-top:14px;font-size:calc(clamp(32px,5vw,60px)*var(--disp))">Get found by the AI your customers are <em>already asking.</em></h1>
+  <p class="lede" style="margin-top:16px;max-width:62ch">We rebuild your website and run the content that makes you the name ChatGPT, Perplexity, and Google AI recommend. You run your business — we keep you the answer.</p>
+  <div style="display:flex;gap:24px;flex-wrap:wrap;margin-top:24px;font-family:var(--mono);font-size:12.5px;color:var(--muted)">
+    <span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:var(--ok)"></span> <b style="color:var(--ink);font-weight:500">120+</b>&nbsp;sites rebuilt</span>
+    <span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:var(--ok)"></span> <b style="color:var(--ink);font-weight:500">9</b>&nbsp;industries</span>
+    <span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:var(--ok)"></span> <b style="color:var(--ink);font-weight:500">94%</b>&nbsp;client retention</span>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
+    <a class="btn btn--primary btn--lg" href="analyzer.html">See your free AI score →</a>
+    <a class="btn btn--ghost btn--lg" href="#pricing">View plans &amp; pricing</a>
+  </div>
+</div></header>
+
+<div class="wrap" style="padding-bottom:80px">
+
+  <!-- problem hook -->
+  <section class="section" style="border-top:none;padding-top:calc(18px*var(--u))">
+    <div class="section__head"><span class="eyebrow">The shift</span><h2>One answer. Not ten links.</h2><p>When someone asks an assistant “who’s the best in town,” they get a single recommendation — and act on it. If that name isn’t yours, the lead never even sees you. Most local sites are invisible to AI. That’s the whole problem we solve.</p></div>
+  </section>
+
+  <!-- portfolio gallery -->
+  <section class="section" id="gallery">
+    <div class="section__head"><h2>Sites we’ve built</h2><span class="eyebrow">Across 9 industries &amp; counting</span></div>
+    <div class="galfilters" id="galfilters">
+      <button class="galchip on" data-f="all">All work</button>
+      <button class="galchip" data-f="home">Home services</button>
+      <button class="galchip" data-f="auto">Auto</button>
+      <button class="galchip" data-f="food">Food</button>
+      <button class="galchip" data-f="pro">Professional</button>
+      <button class="galchip" data-f="wellness">Wellness</button>
+    </div>
+    <div class="gallery" id="gallery-grid">
+      <a class="site" href="analyzer.html" data-cat="home" style="--sc:var(--c5)"><div class="site__chrome"><i></i><i></i><i></i><span class="site__url">lonestarcomfort.com</span></div><div class="vp"><div class="vp__nav"><span class="vp__logo"></span><b><i></i><i></i><i></i></b></div><div class="vp__hero"><div class="vp__h"></div><div class="vp__h2"></div><span class="vp__btn"></span></div><div class="vp__row"><span class="vp__card"></span><span class="vp__card"></span><span class="vp__card"></span></div></div><div class="site__meta"><span class="site__cat">HVAC · Home services</span><span class="site__name">Lone Star Comfort</span><span class="site__res"><span>cited in <b>4/5</b> engines</span><span><b>+340%</b> leads</span></span></div></a>
+
+      <a class="site" href="analyzer.html" data-cat="home" style="--sc:var(--c4)"><div class="site__chrome"><i></i><i></i><i></i><span class="site__url">rapidflowplumbing.com</span></div><div class="vp"><div class="vp__nav"><span class="vp__logo"></span><b><i></i><i></i><i></i></b></div><div class="vp__hero"><div class="vp__h"></div><div class="vp__h2"></div><span class="vp__btn"></span></div><div class="vp__row"><span class="vp__card"></span><span class="vp__card"></span><span class="vp__card"></span></div></div><div class="site__meta"><span class="site__cat">Plumbing · Home services</span><span class="site__name">RapidFlow Plumbing</span><span class="site__res"><span><b>#1</b> in Perplexity</span><span><b>2.1×</b> calls</span></span></div></a>
+
+      <a class="site" href="analyzer.html" data-cat="auto" style="--sc:var(--c1)"><div class="site__chrome"><i></i><i></i><i></i><span class="site__url">summitautoworks.com</span></div><div class="vp"><div class="vp__nav"><span class="vp__logo"></span><b><i></i><i></i><i></i></b></div><div class="vp__hero"><div class="vp__h"></div><div class="vp__h2"></div><span class="vp__btn"></span></div><div class="vp__row"><span class="vp__card"></span><span class="vp__card"></span><span class="vp__card"></span></div></div><div class="site__meta"><span class="site__cat">Auto repair</span><span class="site__name">Summit Auto Works</span><span class="site__res"><span>cited in <b>5/5</b></span><span><b>+58%</b> bookings</span></span></div></a>
+
+      <a class="site" href="analyzer.html" data-cat="food" style="--sc:var(--c2)"><div class="site__chrome"><i></i><i></i><i></i><span class="site__url">harvesttable.co</span></div><div class="vp"><div class="vp__nav"><span class="vp__logo"></span><b><i></i><i></i><i></i></b></div><div class="vp__hero"><div class="vp__h"></div><div class="vp__h2"></div><span class="vp__btn"></span></div><div class="vp__row"><span class="vp__card"></span><span class="vp__card"></span><span class="vp__card"></span></div></div><div class="site__meta"><span class="site__cat">Restaurant · Food</span><span class="site__name">Harvest Table</span><span class="site__res"><span>top AI pick</span><span><b>+220%</b> reservations</span></span></div></a>
+
+      <a class="site" href="analyzer.html" data-cat="pro" style="--sc:var(--accent)"><div class="site__chrome"><i></i><i></i><i></i><span class="site__url">meridianbookkeeping.com</span></div><div class="vp"><div class="vp__nav"><span class="vp__logo"></span><b><i></i><i></i><i></i></b></div><div class="vp__hero"><div class="vp__h"></div><div class="vp__h2"></div><span class="vp__btn"></span></div><div class="vp__row"><span class="vp__card"></span><span class="vp__card"></span><span class="vp__card"></span></div></div><div class="site__meta"><span class="site__cat">Bookkeeping · Professional</span><span class="site__name">Meridian Books</span><span class="site__res"><span>cited in <b>4/5</b></span><span><b>3.4×</b> inquiries</span></span></div></a>
+
+      <a class="site" href="analyzer.html" data-cat="wellness" style="--sc:var(--c6)"><div class="site__chrome"><i></i><i></i><i></i><span class="site__url">ascendpilates.studio</span></div><div class="vp"><div class="vp__nav"><span class="vp__logo"></span><b><i></i><i></i><i></i></b></div><div class="vp__hero"><div class="vp__h"></div><div class="vp__h2"></div><span class="vp__btn"></span></div><div class="vp__row"><span class="vp__card"></span><span class="vp__card"></span><span class="vp__card"></span></div></div><div class="site__meta"><span class="site__cat">Pilates · Wellness</span><span class="site__name">Ascend Pilates</span><span class="site__res"><span>top AI pick</span><span><b>+180%</b> sign-ups</span></span></div></a>
+
+      <a class="site" href="analyzer.html" data-cat="home" style="--sc:var(--c3)"><div class="site__chrome"><i></i><i></i><i></i><span class="site__url">evergreenexteriors.com</span></div><div class="vp"><div class="vp__nav"><span class="vp__logo"></span><b><i></i><i></i><i></i></b></div><div class="vp__hero"><div class="vp__h"></div><div class="vp__h2"></div><span class="vp__btn"></span></div><div class="vp__row"><span class="vp__card"></span><span class="vp__card"></span><span class="vp__card"></span></div></div><div class="site__meta"><span class="site__cat">Roofing · Home services</span><span class="site__name">Evergreen Exteriors</span><span class="site__res"><span>cited in <b>3/5</b></span><span><b>+96%</b> quotes</span></span></div></a>
+
+      <a class="site" href="analyzer.html" data-cat="auto" style="--sc:var(--c4)"><div class="site__chrome"><i></i><i></i><i></i><span class="site__url">apexdetailing.co</span></div><div class="vp"><div class="vp__nav"><span class="vp__logo"></span><b><i></i><i></i><i></i></b></div><div class="vp__hero"><div class="vp__h"></div><div class="vp__h2"></div><span class="vp__btn"></span></div><div class="vp__row"><span class="vp__card"></span><span class="vp__card"></span><span class="vp__card"></span></div></div><div class="site__meta"><span class="site__cat">Auto detailing</span><span class="site__name">Apex Detailing</span><span class="site__res"><span>top AI pick</span><span><b>2.6×</b> bookings</span></span></div></a>
+
+      <a class="site" href="analyzer.html" data-cat="pro" style="--sc:var(--c5)"><div class="site__chrome"><i></i><i></i><i></i><span class="site__url">northstaragency.com</span></div><div class="vp"><div class="vp__nav"><span class="vp__logo"></span><b><i></i><i></i><i></i></b></div><div class="vp__hero"><div class="vp__h"></div><div class="vp__h2"></div><span class="vp__btn"></span></div><div class="vp__row"><span class="vp__card"></span><span class="vp__card"></span><span class="vp__card"></span></div></div><div class="site__meta"><span class="site__cat">Marketing agency · Professional</span><span class="site__name">Northstar Agency</span><span class="site__res"><span>cited in <b>5/5</b></span><span><b>+140%</b> leads</span></span></div></a>
+    </div>
+  </section>
+
+  <!-- social proof stat band -->
+  <section class="section">
+    <div class="proofband">
+      <div class="proofstat"><div class="n">120+</div><div class="l">small-business sites rebuilt &amp; optimized</div></div>
+      <div class="proofstat"><div class="n">3.2×</div><div class="l">average lift in AI citations within 90 days</div></div>
+      <div class="proofstat"><div class="n">94%</div><div class="l">of clients renew past the 6-month minimum</div></div>
+      <div class="proofstat"><div class="n">4.9<span style="font-size:24px">/5</span></div><div class="l">average client rating across 80+ reviews</div></div>
+    </div>
+  </section>
+
+  <!-- testimonials -->
+  <section class="section">
+    <div class="section__head"><h2>What owners say</h2><span class="eyebrow">Real results, real businesses</span></div>
+    <div class="tgrid">
+      <div class="quote" style="--qc:var(--c5)"><div class="quote__stars">★★★★★</div><div class="quote__q">“Within two months ChatGPT was recommending us by name for AC repair. We went from invisible to booked solid through the summer.”</div><div class="quote__who"><span class="quote__av">M</span><div><div class="quote__nm">Marcus T.</div><div class="quote__biz">Lone Star Comfort HVAC · Austin, TX</div></div></div></div>
+      <div class="quote" style="--qc:var(--c2)"><div class="quote__stars">★★★★★</div><div class="quote__q">“The website alone would’ve cost me twelve grand. Getting it free with the content service was a no-brainer — and the writing actually sounds like us.”</div><div class="quote__who"><span class="quote__av">D</span><div><div class="quote__nm">Dana R.</div><div class="quote__biz">Harvest Table · Portland, OR</div></div></div></div>
+      <div class="quote" style="--qc:var(--c1)"><div class="quote__stars">★★★★★</div><div class="quote__q">“I don’t understand the technical side and I don’t need to. They handle everything; I just watch the calls come in. Best marketing decision I’ve made.”</div><div class="quote__who"><span class="quote__av">J</span><div><div class="quote__nm">Jorge M.</div><div class="quote__biz">Summit Auto Works · Denver, CO</div></div></div></div>
+    </div>
+  </section>
+
+  <!-- before/after featured -->
+  <section class="section">
+    <div class="section__head"><h2>One client, 90 days</h2><span class="eyebrow">Lone Star Comfort HVAC · single location</span></div>
+    <div class="ba">
+      <div class="ba__side ba__side--before"><div class="ba__lab">Before</div><div class="ba__n">0/5</div><div class="ba__d">engines named them for “emergency AC repair near me.” Generic site, no schema, no question-first content.</div></div>
+      <div class="ba__side ba__side--after"><div class="ba__lab">After 90 days</div><div class="ba__n">4/5</div><div class="ba__d">engines recommend them by name, with correct service area and same-day availability. <b style="color:var(--accent)">+340% inbound leads.</b></div></div>
+    </div>
+  </section>
+
+  <!-- industries logo wall -->
+  <section class="section">
+    <div class="section__head" style="text-align:center;margin:0 auto 28px"><span class="eyebrow">Industries we serve</span><h2 style="margin-top:10px">Built for blue-collar, trades, and local business.</h2></div>
+    <div class="logos">
+      <span class="logo-pill"><b>HVAC</b></span><span class="logo-pill"><b>Plumbing</b></span><span class="logo-pill"><b>Electrical</b></span><span class="logo-pill"><b>Roofing</b></span><span class="logo-pill"><b>Auto Repair</b></span><span class="logo-pill"><b>Detailing</b></span><span class="logo-pill"><b>Restaurants</b></span><span class="logo-pill"><b>Cafés</b></span><span class="logo-pill"><b>Landscaping</b></span><span class="logo-pill"><b>Fitness</b></span><span class="logo-pill"><b>Salons</b></span><span class="logo-pill"><b>Bookkeeping</b></span><span class="logo-pill"><b>Agencies</b></span><span class="logo-pill"><b>Contractors</b></span>
+    </div>
+  </section>
+
+  <!-- THE OFFER (relocated near bottom) -->
+  <section id="pricing" style="scroll-margin-top:80px">
+    <div class="anchor">
+      <span class="anchor__seal">✦</span>
+      <div><h3>Your $12,000 website rebuild — included free.</h3><p>Every subscription includes a complete, custom AEO-structured website build (a $12,000+ project on its own). No setup fee, no separate invoice. You own the site outright.</p></div>
+      <div class="anchor__big">$0<small>website build on any plan</small></div>
+    </div>
+
+    <div class="section__head" style="margin-bottom:24px"><h2>Done-for-you, monthly</h2><span class="eyebrow">6-month minimum · cancel anytime after</span></div>
+
+    <div class="tiers">
+      <div class="tier tier--feat">
+        <span class="tier__flag">Most chosen</span>
+        <span class="tier__name">Foundation</span>
+        <div class="tier__price"><span class="amt">$1,000</span><span class="per">/ month</span></div>
+        <div class="tier__sub">6-month minimum · website build included</div>
+        <div class="tier__hl">Your new website is <b>built free</b> — then we publish the AEO content that gets you cited, every month.</div>
+        <ul>
+          <li>Full custom website rebuild ($12k value), live in ~3 weeks</li>
+          <li><b style="color:var(--ink);font-weight:600">8 AEO-optimized articles / month</b>, written for your trade</li>
+          <li>Schema + Google Business Profile rebuild</li>
+          <li>Monthly visibility tracking across 5 AI engines</li>
+          <li>Quarterly strategy review</li>
+          <li>AEO school access for your whole team</li>
+        </ul>
+        <a class="btn btn--primary btn--lg" href="analyzer.html">Start with a free audit →</a>
+      </div>
+
+      <div class="tier">
+        <span class="tier__name">Growth</span>
+        <div class="tier__price"><span class="amt">$2,000</span><span class="per">/ month</span></div>
+        <div class="tier__sub">6-month minimum · website build included</div>
+        <div class="tier__hl">Everything in Foundation, at <b>double the publishing pace</b> — for owners who want to dominate their category faster.</div>
+        <ul>
+          <li>Everything in Foundation</li>
+          <li><b style="color:var(--ink);font-weight:600">16 AEO-optimized articles / month</b> + seasonal campaigns</li>
+          <li>Citation-consistency program across the web</li>
+          <li>Competitive gap analysis, refreshed monthly</li>
+          <li>Dedicated AEO strategist</li>
+          <li>Priority publishing &amp; support</li>
+        </ul>
+        <a class="btn btn--ghost btn--lg" href="analyzer.html">Start with a free audit →</a>
+      </div>
+    </div>
+
+    <!-- one-time build -->
+    <div class="buildstrip">
+      <div>
+        <span class="buildstrip__name">Website rebuild · one-time</span>
+        <h3>Just want the website?</h3>
+        <p>Prefer to handle content yourself? We’ll design and build your complete AEO-structured site as a one-time project — schema, architecture, and answer-first copy included. (Most owners choose a subscription instead, since the build comes free.)</p>
+      </div>
+      <div class="buildstrip__right">
+        <div class="buildstrip__amt">$12,000<small>+</small></div>
+        <a class="btn btn--ghost" href="analyzer.html" style="margin-top:12px">Request a quote →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- process -->
+  <section class="section">
+    <div class="section__head"><h2>How it works</h2><span class="eyebrow">Four steps, no pressure</span></div>
+    <div class="proc">
+      <div class="proc__step"><h4>Free audit</h4><p>See exactly how AI describes your business today. No commitment, no email required to view your score.</p></div>
+      <div class="proc__step"><h4>Strategy call</h4><p>We walk your results together and map the highest-leverage fixes for your specific trade and market.</p></div>
+      <div class="proc__step"><h4>Build &amp; launch</h4><p>Your new AEO-structured site goes live in ~3 weeks — schema, architecture, and answer-first copy included.</p></div>
+      <div class="proc__step"><h4>Publish &amp; grow</h4><p>We publish your monthly content and track visibility across all five engines, refining as the engines change.</p></div>
+    </div>
+  </section>
+
+  <!-- faq -->
+  <section class="section">
+    <div class="section__head"><h2>Questions, answered</h2></div>
+    <div class="faq" id="faq">
+      <div class="faq__item open"><button class="faq__q">Is the website really included for free?</button><div class="faq__a">Yes. On both the $1,000 and $2,000 plans, your complete website rebuild — a $12,000+ project on its own — is included at no extra cost. There’s no setup fee, and you own the site. The one-time $12,000 build only applies if you want the website without any ongoing content service.</div></div>
+      <div class="faq__item"><button class="faq__q">What’s the 6-month minimum about?</button><div class="faq__a">A new website plus consistent content takes a season to compound into durable AI citations. The 6-month minimum ensures we can deliver real results, not a half-finished launch. After six months you can continue month-to-month or cancel anytime — 94% of clients choose to stay.</div></div>
+      <div class="faq__item"><button class="faq__q">Do I need to understand AEO or anything technical?</button><div class="faq__a">Not at all. You tell us about your business; we handle the site, schema, structured data, and writing. You stay focused on the work while we keep you the cited answer.</div></div>
+      <div class="faq__item"><button class="faq__q">What’s the difference between $1,000 and $2,000?</button><div class="faq__a">Both include the free website rebuild and the full done-for-you service. Foundation ($1,000) publishes 8 AEO articles a month; Growth ($2,000) doubles that to 16 plus seasonal campaigns, citation-consistency work, and a dedicated strategist — for owners who want to win their category faster.</div></div>
+      <div class="faq__item"><button class="faq__q">How soon will I see results?</button><div class="faq__a">The foundational fixes (site, schema, profile) land in the first few weeks. Being consistently recommended by AI builds over the first quarter as your content and citations accumulate. We measure visibility before every demand spike so you’re named when it counts.</div></div>
+    </div>
+  </section>
+
+  <!-- final cta -->
+  <section style="padding-top:20px">
+    <div class="finalcta">
+      <h2>See where you stand — <em>then decide.</em></h2>
+      <p>Start with a free AI-visibility audit. No signup to see your score, no pressure. If it makes sense, we’ll build you a site that gets cited.</p>
+      <a class="btn btn--primary btn--lg" href="analyzer.html">Run my free audit →</a>
+    </div>
+  </section>
+</div>
+
+<footer class="foot"><div class="wrap"><div class="foot__grid">
+  <div><a class="brand" href="home.html" style="margin-bottom:16px"><span class="brand__mark"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg></span><span class="brand__wm"><span class="bm-a">AEO</span><span class="bm-c">Canon</span></span></a><p class="foot__about">We rebuild small-business websites and run the content engine that keeps them the answer AI recommends.</p></div>
+  <div><h5>Services</h5><ul><li><a href="#pricing">Pricing</a></li><li><a href="#gallery">Portfolio</a></li><li><a href="analyzer.html">Free audit</a></li></ul></div>
+  <div><h5>The canon</h5><ul><li><a href="canon.html">The framework</a></li><li><a href="manifesto.html">The Manifesto</a></li><li><a href="learn.html">AEO school</a></li></ul></div>
+  <div><h5>Industries</h5><ul><li><a href="industries.html">All hubs</a></li><li><a href="industries.html#hs">Home &amp; Property</a></li></ul></div>
+</div></div></footer>
+
+<!-- case-study modal -->
+<div class="cs-modal" id="cs-modal" hidden role="dialog" aria-modal="true" aria-labelledby="cs-name">
+  <div class="cs-backdrop" data-cs-close></div>
+  <div class="cs-dialog">
+    <button class="cs-close" data-cs-close aria-label="Close case study">✕</button>
+    <button class="cs-nav cs-prev" data-cs-prev aria-label="Previous project">‹</button>
+    <button class="cs-nav cs-next" data-cs-next aria-label="Next project">›</button>
+    <div class="cs-body">
+      <div class="cs-preview">
+        <div class="cs-frame" id="cs-frame">
+          <div class="site__chrome"><i></i><i></i><i></i><span class="site__url" id="cs-chrome-url">site.com</span></div>
+          <div class="vp"><div class="vp__nav"><span class="vp__logo"></span><b><i></i><i></i><i></i></b></div><div class="vp__hero"><div class="vp__h"></div><div class="vp__h2"></div><span class="vp__btn"></span></div><div class="vp__row"><span class="vp__card"></span><span class="vp__card"></span><span class="vp__card"></span></div></div>
+        </div>
+      </div>
+      <div class="cs-content">
+        <span class="cs-cat" id="cs-cat"></span>
+        <h3 id="cs-name"></h3>
+        <span class="cs-url" id="cs-url"></span>
+        <div class="cs-block"><div class="lab">The problem</div><p id="cs-problem"></p></div>
+        <div class="cs-block"><div class="lab">What we did</div><ul class="cs-did" id="cs-did"></ul></div>
+        <div class="cs-metrics">
+          <div class="cs-metric"><div class="l" id="cs-mb-l">Before</div><div class="v" id="cs-mb-v"></div></div>
+          <div class="cs-metric after"><div class="l" id="cs-ma-l">After 90 days</div><div class="v" id="cs-ma-v"></div></div>
+        </div>
+        <div class="cs-quote"><p id="cs-quote"></p><div class="who" id="cs-who"></div></div>
+        <a class="btn btn--primary cs-cta" id="cs-cta" href="analyzer.html">Get results like this →</a>
+      </div>
+    </div>
+    <div class="cs-counter"><span id="cs-idx">1</span> / <span id="cs-total">9</span></div>
+  </div>
+</div>
+
+<script src="../shared/theme.js"></script>
+<script>
+  // ---- gallery filter ----
+  document.querySelectorAll('#galfilters .galchip').forEach(function(c){
+    c.addEventListener('click',function(){
+      document.querySelectorAll('#galfilters .galchip').forEach(x=>x.classList.toggle('on',x===c));
+      var f=c.dataset.f;
+      document.querySelectorAll('#gallery-grid .site').forEach(function(s){
+        s.style.display=(f==='all'||s.dataset.cat===f)?'':'none';
+      });
+    });
+  });
+  // ---- faq ----
+  document.querySelectorAll('#faq .faq__item').forEach(function(it){
+    it.querySelector('.faq__q').addEventListener('click',function(){it.classList.toggle('open');});
+  });
+
+  // ---- case-study modal ----
+  var CASES = [
+    {slug:'lone-star-comfort',name:'Lone Star Comfort',url:'lonestarcomfort.com',cat:'HVAC · Home services',sc:'var(--c5)',
+      problem:'A generic template site with no schema. When homeowners asked AI for emergency AC repair, it named national lead-gen sites — never them.',
+      did:['Full AEO-structured rebuild','Service-area + availability schema','8 question-first articles / month'],
+      bl:'Engines naming them',bv:'0/5',al:'After 90 days',av:'4/5',
+      quote:'Within two months ChatGPT was recommending us by name. We went from invisible to booked solid through the summer.',who:'Marcus T. · Owner'},
+    {slug:'rapidflow-plumbing',name:'RapidFlow Plumbing',url:'rapidflowplumbing.com',cat:'Plumbing · Home services',sc:'var(--c4)',
+      problem:'Strong reviews, zero AI visibility. Perplexity recommended competitors two suburbs away for their exact services.',
+      did:['Answer-first service pages','Citation-consistency cleanup','Local entity + GBP rebuild'],
+      bl:'Perplexity rank',bv:'Absent',al:'After 90 days',av:'#1',
+      quote:'We’re now the first name Perplexity gives for emergency plumbing in our city. The phone hasn’t stopped.',who:'Priya N. · Co-owner'},
+    {slug:'summit-auto-works',name:'Summit Auto Works',url:'summitautoworks.com',cat:'Auto repair',sc:'var(--c1)',
+      problem:'A capable shop the engines described only as “auto repair,” burying their specialty work and losing the high-value jobs.',
+      did:['Specialty-service architecture','Schema for every service line','Monthly visibility tracking'],
+      bl:'Engines naming them',bv:'1/5',al:'After 90 days',av:'5/5',
+      quote:'I don’t understand the technical side and I don’t need to. They handle everything; I just watch the bookings come in.',who:'Jorge M. · Owner'},
+    {slug:'harvest-table',name:'Harvest Table',url:'harvesttable.co',cat:'Restaurant · Food',sc:'var(--c2)',
+      problem:'Diners asking AI for “farm-to-table near me” got chains and aggregators. The restaurant’s story never surfaced.',
+      did:['Menu + cuisine structured data','Question-first local content','Review-velocity program'],
+      bl:'AI recommendation',bv:'Never',al:'After 90 days',av:'Top pick',
+      quote:'The website alone would’ve cost twelve grand. Getting it free with the content service was a no-brainer.',who:'Dana R. · Owner'},
+    {slug:'meridian-books',name:'Meridian Books',url:'meridianbookkeeping.com',cat:'Bookkeeping · Professional',sc:'var(--accent)',
+      problem:'A trustworthy firm invisible to AI search. Prospects asking for help got directory listings, not Meridian.',
+      did:['Authority-signal content','Service + FAQ schema','Competitive gap analysis'],
+      bl:'Engines naming them',bv:'0/5',al:'After 90 days',av:'4/5',
+      quote:'Qualified inquiries more than tripled — and they already understand what we do before the first call.',who:'Alan W. · Principal'},
+    {slug:'ascend-pilates',name:'Ascend Pilates',url:'ascendpilates.studio',cat:'Pilates · Wellness',sc:'var(--c6)',
+      problem:'A boutique studio drowned out by big-box gyms in every AI answer about classes nearby.',
+      did:['Class + instructor structured data','Local question-first content','Booking-intent optimization'],
+      bl:'AI recommendation',bv:'Never',al:'After 90 days',av:'Top pick',
+      quote:'New-client sign-ups nearly tripled. People come in already knowing it’s the right fit.',who:'Renee K. · Founder'},
+    {slug:'evergreen-exteriors',name:'Evergreen Exteriors',url:'evergreenexteriors.com',cat:'Roofing · Home services',sc:'var(--c3)',
+      problem:'Storm-season searches went to national quote-mills. A reputable local roofer got none of the AI traffic.',
+      did:['Service-area + storm content','Roofing schema implementation','Seasonal publishing cadence'],
+      bl:'Engines naming them',bv:'0/5',al:'After 90 days',av:'3/5',
+      quote:'Quote requests almost doubled, and they’re better-qualified than anything we got from ads.',who:'Sam D. · Owner'},
+    {slug:'apex-detailing',name:'Apex Detailing',url:'apexdetailing.co',cat:'Auto detailing',sc:'var(--c4)',
+      problem:'A premium detailer lumped in with car washes by every engine, losing the high-ticket ceramic-coating jobs.',
+      did:['Premium-service positioning','Structured pricing + offers','Question-first how-to content'],
+      bl:'AI recommendation',bv:'Generic',al:'After 90 days',av:'Top pick',
+      quote:'We own the high-end detailing searches now. Booking value per customer is way up.',who:'Tomás L. · Owner'},
+    {slug:'northstar-agency',name:'Northstar Agency',url:'northstaragency.com',cat:'Marketing agency · Professional',sc:'var(--c5)',
+      problem:'An agency that markets others couldn’t get itself cited by AI — a credibility problem with prospects.',
+      did:['Thought-leadership content engine','Entity + author authority','Original-research publishing'],
+      bl:'Engines naming them',bv:'2/5',al:'After 90 days',av:'5/5',
+      quote:'Being the cited answer in our own category is the best proof of work we could ask for.',who:'Mara V. · Partner'}
+  ];
+
+  var modal=document.getElementById('cs-modal');
+  var dialog=modal.querySelector('.cs-dialog');
+  var cards=[].slice.call(document.querySelectorAll('#gallery-grid .site'));
+  var RM=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lastFocus=null, current=0, order=[];
+
+  cards.forEach(function(card,i){
+    card.dataset.idx=i;
+    card.addEventListener('click',function(e){ e.preventDefault(); openCase(i); });
+  });
+
+  function visibleOrder(){
+    return cards.map(function(c,i){return i;}).filter(function(i){return cards[i].style.display!=='none';});
+  }
+  function fill(i){
+    var d=CASES[i];
+    dialog.style.setProperty('--csc', d.sc);
+    document.getElementById('cs-frame').style.setProperty('--sc', d.sc);
+    document.getElementById('cs-chrome-url').textContent=d.url;
+    document.getElementById('cs-cat').textContent=d.cat;
+    document.getElementById('cs-name').textContent=d.name;
+    document.getElementById('cs-url').textContent=d.url;
+    document.getElementById('cs-problem').textContent=d.problem;
+    document.getElementById('cs-did').innerHTML=d.did.map(function(x){return '<li>'+x+'</li>';}).join('');
+    document.getElementById('cs-mb-l').textContent=d.bl; document.getElementById('cs-mb-v').textContent=d.bv;
+    document.getElementById('cs-ma-l').textContent=d.al; document.getElementById('cs-ma-v').textContent=d.av;
+    document.getElementById('cs-quote').textContent='“'+d.quote+'”';
+    document.getElementById('cs-who').textContent='— '+d.who+', '+d.name;
+    document.getElementById('cs-cta').textContent='Get results like '+d.name+' →';
+    var pos=order.indexOf(i);
+    document.getElementById('cs-idx').textContent=(pos<0?0:pos+1);
+    document.getElementById('cs-total').textContent=order.length;
+    current=i;
+    try{ history.replaceState(null,'','#case-'+d.slug); }catch(e){}
+    document.querySelector('.cs-content').scrollTop=0;
+  }
+  function openCase(i){
+    order=visibleOrder(); if(order.indexOf(i)<0) order=[i];
+    lastFocus=document.activeElement;
+    fill(i);
+    modal.hidden=false;
+    document.body.style.overflow='hidden';
+    requestAnimationFrame(function(){ modal.classList.add('in'); });
+    setTimeout(function(){ document.querySelector('.cs-close').focus(); }, RM?0:60);
+    document.addEventListener('keydown', onKey);
+  }
+  function closeCase(){
+    modal.classList.remove('in');
+    var done=function(){ modal.hidden=true; document.body.style.overflow=''; };
+    if(RM) done(); else setTimeout(done,260);
+    document.removeEventListener('keydown', onKey);
+    try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){}
+    if(lastFocus&&lastFocus.focus) lastFocus.focus();
+  }
+  function step(dir){
+    if(!order.length) return;
+    var pos=order.indexOf(current);
+    pos=(pos+dir+order.length)%order.length;
+    fill(order[pos]);
+  }
+  function onKey(e){
+    if(e.key==='Escape') closeCase();
+    else if(e.key==='ArrowRight') step(1);
+    else if(e.key==='ArrowLeft') step(-1);
+    else if(e.key==='Tab'){
+      var f=dialog.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])');
+      if(!f.length) return;
+      var first=f[0], last=f[f.length-1];
+      if(e.shiftKey&&document.activeElement===first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey&&document.activeElement===last){ e.preventDefault(); first.focus(); }
+    }
+  }
+  modal.querySelectorAll('[data-cs-close]').forEach(function(b){ b.addEventListener('click',closeCase); });
+  modal.querySelector('[data-cs-prev]').addEventListener('click',function(){ step(-1); });
+  modal.querySelector('[data-cs-next]').addEventListener('click',function(){ step(1); });
+
+  // deep-link: open from hash on load
+  (function(){
+    var m=(location.hash||'').match(/^#case-(.+)$/);
+    if(m){ var idx=CASES.findIndex(function(c){return c.slug===m[1];}); if(idx>=0) openCase(idx); }
+  })();
+</script>
+<button class="theme-fab" data-theme-toggle aria-label="Toggle dark mode" title="Toggle light/dark">◐</button>
+</body>
+</html>

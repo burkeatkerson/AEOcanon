@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-theme-default="light" data-balance="reference" data-scheme="spectrum" data-headline="hybrid">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect x=%2712%27 y=%2716%27 width=%2740%27 height=%277%27 rx=%273.5%27 fill=%27%235b63d6%27/%3E%3Crect x=%2712%27 y=%2729%27 width=%2730%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Crect x=%2712%27 y=%2742%27 width=%2720%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Ccircle cx=%2755%27 cy=%2719.5%27 r=%276%27 fill=%27%23e0563f%27/%3E%3C/svg%3E">
+<title>AEO Canon — Get found by the AI your customers ask</title>
+<meta name="description" content="Paid ads cost more and convert less. Search clicks are vanishing. We rebuild your website and run the content that makes you the business AI recommends.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  [data-theme="light"]{--ok:oklch(0.6 0.13 155);--bad:oklch(0.58 0.18 28);--warn:oklch(0.72 0.15 70);--bg-2:#eef1f9}
+  [data-theme="dark"]{--ok:oklch(0.74 0.13 155);--bad:oklch(0.7 0.16 28);--warn:oklch(0.82 0.14 75);--bg-2:#101218}
+
+  /* hero chat mock */
+  .ov-hero{padding:calc(58px*var(--u)) 0 calc(30px*var(--u))}
+  .ov-hero__grid{display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center}
+  .ov-hero h1{font-size:calc(clamp(34px,5.4vw,62px)*var(--disp));line-height:1;letter-spacing:-.03em;margin:16px 0}
+  .ov-hero h1 em{font-style:italic;color:var(--accent)}
+  .ov-hero .lede{max-width:48ch}
+  .ov-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+  .ov-note{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:16px;display:flex;align-items:center;gap:8px}
+  .chatmock{background:var(--panel);border:1px solid var(--line);border-radius:20px;box-shadow:0 40px 80px -50px rgba(0,0,0,.5);overflow:hidden}
+  .chatmock__bar{display:flex;align-items:center;gap:8px;padding:13px 18px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .chatmock__bar .d{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  .chatmock__body{padding:22px;display:flex;flex-direction:column;gap:12px}
+  .bub{padding:13px 16px;border-radius:16px;font-size:14.5px;line-height:1.45;max-width:88%}
+  .bub--you{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:5px}
+  .bub--ai{align-self:flex-start;background:var(--bg-2);border:1px solid var(--line);color:var(--ink-2);border-bottom-left-radius:5px}
+  .bub--ai b{color:var(--bad)}
+  .bub--punch{align-self:flex-end;background:var(--ink);color:var(--bg);border-bottom-right-radius:5px;font-family:var(--serif);font-style:italic}
+
+  /* engine row */
+  .engines{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;padding:calc(22px*var(--u)) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .engines .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+  .engine{font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line-2);border-radius:99px;padding:8px 15px;background:var(--panel);display:inline-flex;align-items:center;gap:8px}
+  .engine i{width:7px;height:7px;border-radius:50%}
+
+  /* the shift */
+  .shift__lead{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;margin-bottom:calc(30px*var(--u))}
+  .shift__lead p{font-size:16.5px;color:var(--ink-2);line-height:1.6}
+  .shift__lead p b{color:var(--ink)}
+  .shiftcards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .scard{border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:24px;border-top:4px solid var(--sc)}
+  .scard .big{font-family:var(--serif);font-size:46px;letter-spacing:-.02em;line-height:1;color:var(--sc)}
+  .scard .trend{font-family:var(--mono);font-size:11px;color:var(--sc);margin:8px 0 10px;display:flex;align-items:center;gap:6px}
+  .scard p{font-size:14px;color:var(--ink-2);line-height:1.5}
+  .scard p b{color:var(--ink)}
+  .down{--sc:var(--bad)}.up{--sc:var(--accent)}.flat{--sc:var(--warn)}
+
+  /* diverging mini-viz */
+  .diverge{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:26px 28px;margin-top:20px}
+  .diverge__t{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+  .dvrow{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center;margin-bottom:14px;font-size:13px}
+  .dvrow:last-child{margin-bottom:0}
+  .dvtrack{position:relative;height:14px;background:var(--bg-2);border-radius:99px;overflow:hidden}
+  .dvfill{position:absolute;top:0;left:0;height:100%;border-radius:99px}
+  .dvrow .lab{display:flex;flex-direction:column;gap:2px}
+  .dvrow .lab b{font-size:13.5px}
+  .dvrow .lab span{font-family:var(--mono);font-size:10px;color:var(--muted)}
+
+  /* the reality / authority understanding */
+  .reality{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+  .reality__txt{padding:38px;display:flex;flex-direction:column;justify-content:center}
+  .reality__txt h2{font-size:calc(30px*var(--disp));line-height:1.06;margin-bottom:16px}
+  .reality__txt h2 em{font-style:italic;color:var(--accent)}
+  .reality__txt p{font-size:16px;color:var(--ink-2);line-height:1.6;margin-bottom:12px}
+  .reality__viz{background:var(--bg-2);border-left:1px solid var(--line);padding:38px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+  .answerbox{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .answerbox .q{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:12px}
+  .answerbox .a{font-size:15px;color:var(--ink);line-height:1.5}
+  .answerbox .a .miss{color:var(--bad);text-decoration:line-through;text-decoration-color:color-mix(in oklab,var(--bad) 60%,transparent)}
+  .answerbox .a .win{color:var(--accent);font-weight:600}
+  .answer-cap{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center}
+
+  /* services */
+  .svc{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .svccard{position:relative;border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:30px;overflow:hidden;border-top:4px solid var(--vc)}
+  .svccard__icn{width:46px;height:46px;border-radius:12px;background:color-mix(in oklab,var(--vc) 14%,transparent);color:var(--vc);display:grid;place-items:center;margin-bottom:16px}
+  .svccard h3{font-size:23px;margin-bottom:8px}
+  .svccard>p{font-size:14.5px;color:var(--ink-2);line-height:1.55;margin-bottom:16px}
+  .svccard ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .svccard li{display:flex;gap:10px;font-size:14px;color:var(--ink-2)}
+  .svccard li::before{content:"✓";color:var(--vc);font-weight:700;flex:none}
+  .svc-a{--vc:var(--accent)}.svc-b{--vc:var(--c3)}
+  .svc-note{display:flex;align-items:center;gap:14px;border:1px solid var(--line-2);border-radius:14px;background:var(--accent-soft);padding:18px 24px;margin-top:18px}
+  .svc-note .em{font-family:var(--serif);font-size:28px;color:var(--accent);flex:none}
+  .svc-note b{font-size:15px}.svc-note span{font-size:13.5px;color:var(--ink-2)}
+
+  /* authority */
+  .auth{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center}
+  .auth h2{font-size:calc(34px*var(--disp));line-height:1.04;letter-spacing:-.02em;margin-bottom:16px}
+  .auth h2 em{font-style:italic;color:var(--accent)}
+  .auth p{font-size:16px;color:var(--ink-2);line-height:1.6;margin-bottom:20px;max-width:46ch}
+  .authgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .authcard{border:1px solid var(--line);border-radius:14px;background:var(--paper);padding:22px;text-decoration:none;color:var(--ink);transition:transform .15s,border-color .15s}
+  .authcard:hover{transform:translateY(-3px);border-color:var(--ac)}
+  .authcard .n{font-family:var(--mono);font-size:11px;color:var(--ac)}
+  .authcard h4{font-size:18px;margin:8px 0 5px}
+  .authcard p{font-size:13px;color:var(--muted);margin:0;max-width:none}
+  .ac1{--ac:var(--c5)}.ac2{--ac:var(--c3)}.ac3{--ac:var(--c2)}.ac4{--ac:var(--c6)}
+
+  /* final cta */
+  .ov-final{border-radius:24px;background:var(--ink);color:var(--bg);padding:clamp(34px,5vw,60px);text-align:center}
+  .ov-final h2{font-size:clamp(30px,4.6vw,48px);color:var(--bg);letter-spacing:-.02em}
+  .ov-final h2 em{font-style:italic;color:var(--accent)}
+  .ov-final p{max-width:46ch;margin:16px auto 0;color:color-mix(in oklab,var(--bg) 76%,var(--ink));font-size:17px}
+  .ov-final__row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+  .ov-final .btn--ghost{background:transparent;border-color:color-mix(in oklab,var(--bg) 40%,transparent);color:var(--bg)}
+
+  @media(max-width:900px){
+    .ov-hero__grid,.shift__lead,.reality,.svc,.auth{grid-template-columns:1fr;gap:30px}
+    .shiftcards,.authgrid{grid-template-columns:1fr}
+    .reality__viz{border-left:none;border-top:1px solid var(--line)}
+  }
+</style>
+</head>
+<body>
+<div class="hubbar"><div class="hubbar__in">
+  <a href="../index.html">← All directions</a><span>THE RECORD · OVERVIEW</span>
+  <span class="hubbar__sp">Value-first · done-for-you positioning</span>
+</div></div>
+
+<nav class="nav"><div class="nav__in">
+  <a class="brand" href="home.html"><span class="brand__mark"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg></span><span class="brand__wm"><span class="bm-a">AEO</span><span class="bm-c">Canon</span></span></a>
+  <div class="nav__links"><a href="home.html" class="active">Overview</a><a href="canon.html">The Canon</a><a href="learn.html">AEO school</a><a href="tool.html">Tools</a><a href="industries.html">Industries</a><a href="pricing.html">Pricing</a></div>
+  <div class="nav__right"><a class="btn btn--ghost navlink-az" href="analyzer.html">Free Analyzer</a><a class="btn btn--primary" href="pricing.html">Done for you</a></div>
+</div></nav>
+
+<!-- HERO -->
+<header class="ov-hero"><div class="wrap"><div class="ov-hero__grid">
+  <div>
+    <div class="kicker">Done-for-you AI search optimization</div>
+    <h1>Your customers stopped Googling. <em>They’re asking AI.</em></h1>
+    <p class="lede">Paid ads cost more and convert less. Search clicks are vanishing into AI answers. The businesses winning now are the ones AI recommends by name — and that’s exactly what we make you.</p>
+    <div class="ov-cta">
+      <a class="btn btn--primary btn--lg" href="analyzer.html">See your free AI score →</a>
+      <a class="btn btn--ghost btn--lg" href="#how">How it works</a>
+    </div>
+    <p class="ov-note"><span style="width:7px;height:7px;border-radius:50%;background:var(--ok);display:inline-block"></span> No signup to see your score · results in ~60 seconds</p>
+  </div>
+  <div class="chatmock">
+    <div class="chatmock__bar"><span class="d"></span> A customer, this morning</div>
+    <div class="chatmock__body">
+      <div class="bub bub--you">Who’s the best HVAC company near me for a new system?</div>
+      <div class="bub bub--ai">A few well-reviewed options are <b>[a competitor]</b> and <b>[another competitor]</b>…</div>
+      <div class="bub bub--punch">…and not you. Yet.</div>
+    </div>
+  </div>
+</div></div></header>
+
+<!-- engine row -->
+<div class="wrap"><div class="engines">
+  <span class="lbl">Where they ask now</span>
+  <span class="engine"><i style="background:var(--c3)"></i> ChatGPT</span>
+  <span class="engine"><i style="background:var(--accent-2)"></i> Claude</span>
+  <span class="engine"><i style="background:var(--c4)"></i> Perplexity</span>
+  <span class="engine"><i style="background:var(--c2)"></i> Gemini</span>
+  <span class="engine"><i style="background:var(--c5)"></i> Google AI Overviews</span>
+</div></div>
+
+<!-- THE SHIFT -->
+<section class="section"><div class="wrap">
+  <div class="shift__lead">
+    <div>
+      <div class="kicker">The shift</div>
+      <h2 class="display" style="font-size:calc(clamp(28px,4vw,42px)*var(--disp));margin-top:12px">The tide already turned. Most marketing budgets haven’t.</h2>
+    </div>
+    <p>Owners keep pouring money into paid ads and chasing Google rankings — while their customers quietly moved to asking an assistant and trusting the first answer. <b>The channel that wins the customer changed. The spending didn’t.</b></p>
+  </div>
+
+  <div class="shiftcards">
+    <div class="scard down">
+      <div class="big">~60%</div>
+      <div class="trend">▼ and climbing</div>
+      <p>of Google searches now end <b>without a single click</b> — the answer appears on the page, and the visit never reaches you.</p>
+    </div>
+    <div class="scard flat">
+      <div class="big">↑ cost</div>
+      <div class="trend">▲ up · ▼ returns</div>
+      <p>paid-search costs keep rising while conversion falls. <b>You pay more per click for clicks that convert less.</b></p>
+    </div>
+    <div class="scard up">
+      <div class="big">800M+</div>
+      <div class="trend">▲ fastest-growing</div>
+      <p>weekly users now ask ChatGPT, Claude, and Perplexity for recommendations — <b>a buying behavior that didn’t exist three years ago.</b></p>
+    </div>
+  </div>
+
+  <div class="diverge">
+    <div class="diverge__t">Where attention is going · illustrative</div>
+    <div class="dvrow"><div class="lab"><b>AI assistant search</b><span>ChatGPT · Claude · Perplexity</span></div><div class="dvtrack"><div class="dvfill" style="width:82%;background:var(--accent)"></div></div></div>
+    <div class="dvrow"><div class="lab"><b>Traditional Google clicks</b><span>organic + the blue links</span></div><div class="dvtrack"><div class="dvfill" style="width:46%;background:var(--warn)"></div></div></div>
+    <div class="dvrow"><div class="lab"><b>Paid-ad ROI</b><span>PPC return on spend</span></div><div class="dvtrack"><div class="dvfill" style="width:28%;background:var(--bad)"></div></div></div>
+  </div>
+</div></section>
+
+<!-- THE REALITY (authority + understanding) -->
+<section class="section"><div class="wrap">
+  <div class="reality">
+    <div class="reality__txt">
+      <div class="kicker">What’s actually happening</div>
+      <h2 style="margin-top:12px">AI doesn’t give a list. It gives <em>one answer.</em></h2>
+      <p>When someone asks for a recommendation, the assistant names a business or two — and the customer acts on it. There’s no page two. No “scroll down.”</p>
+      <p>You’re either <b style="color:var(--ink)">in that answer, or you’re invisible</b> — and most local businesses are invisible without ever knowing it. That’s the problem we exist to fix.</p>
+    </div>
+    <div class="reality__viz">
+      <div class="answerbox">
+        <div class="q">“best plumber near me, open now”</div>
+        <div class="a">For your area, a reliable option is <span class="miss">[a competitor]</span> — or, after we’re done, <span class="win">your business, by name.</span></div>
+      </div>
+      <div class="answer-cap">One answer decides the lead. We make it yours.</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- HOW WE HELP -->
+<section class="section" id="how"><div class="wrap">
+  <div class="section__head"><h2>How we make you the answer</h2><span class="eyebrow">Done for you, end to end</span></div>
+  <div class="svc">
+    <div class="svccard svc-a">
+      <div class="svccard__icn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 8h18" stroke="currentColor" stroke-width="2"/></svg></div>
+      <h3>A website built to be cited</h3>
+      <p>We rebuild your site from the ground up so AI engines can actually read, trust, and quote it — the part almost every small-business site gets wrong.</p>
+      <ul>
+        <li>Custom, fast, mobile-first rebuild</li>
+        <li>Schema &amp; structured data done right</li>
+        <li>Answer-first pages engines lift verbatim</li>
+        <li>Google Business Profile rebuilt</li>
+      </ul>
+    </div>
+    <div class="svccard svc-b">
+      <div class="svccard__icn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 5h16M4 10h16M4 15h10M4 20h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <h3>Content that earns the recommendation</h3>
+      <p>Every month we publish the answers your customers actually ask AI — the question-first content that gets you named, then keeps you named as the engines evolve.</p>
+      <ul>
+        <li>AEO-optimized articles, written for your trade</li>
+        <li>Mapped to real customer questions</li>
+        <li>Visibility tracked across 5 AI engines</li>
+        <li>Refined every month, season after season</li>
+      </ul>
+    </div>
+  </div>
+  <div class="svc-note">
+    <span class="em">✦</span>
+    <div><b>The website rebuild is included free</b> &nbsp;<span>— a $12,000+ build comes with every done-for-you plan. <a href="pricing.html" style="color:var(--accent)">See plans &amp; pricing →</a></span></div>
+  </div>
+</div></section>
+
+<!-- AUTHORITY -->
+<section class="section"><div class="wrap"><div class="auth">
+  <div>
+    <div class="kicker">Why us</div>
+    <h2 style="margin-top:12px">We don’t guess at this. <em>We wrote the reference.</em></h2>
+    <p>AEO Canon is the working framework for answer-engine optimization — the research, the eight-pillar model, and 350+ articles other practitioners cite. We do this for your business because we documented how it actually works.</p>
+    <a class="btn btn--ghost btn--lg" href="canon.html">Explore the framework →</a>
+  </div>
+  <div class="authgrid">
+    <a class="authcard ac1" href="canon.html"><div class="n">The framework</div><h4>The 8-pillar Canon</h4><p>The model behind every site we build and word we write.</p></a>
+    <a class="authcard ac2" href="whitepaper.html"><div class="n">The research</div><h4>Evidence, not opinion</h4><p>200k+ URLs and a peer-reviewed study, distilled into practice.</p></a>
+    <a class="authcard ac3" href="learn.html"><div class="n">The school</div><h4>350+ articles &amp; courses</h4><p>The reference small-business owners and marketers learn from.</p></a>
+    <a class="authcard ac4" href="manifesto.html"><div class="n">The stance</div><h4>The AEO Manifesto</h4><p>What we believe — and why deserving citation is the only strategy that lasts.</p></a>
+  </div>
+</div></div></section>
+
+<!-- FINAL CTA -->
+<section class="section" style="border:none"><div class="wrap">
+  <div class="ov-final">
+    <h2>See where AI puts you today — <em>free.</em></h2>
+    <p>No signup to see your score. Just your website and about a minute. If it makes sense, we’ll make you the answer.</p>
+    <div class="ov-final__row">
+      <a class="btn btn--primary btn--lg" href="analyzer.html">Run my free audit →</a>
+      <a class="btn btn--ghost btn--lg" href="pricing.html">See plans &amp; pricing</a>
+    </div>
+  </div>
+</div></section>
+
+<footer class="foot"><div class="wrap"><div class="foot__grid">
+  <div><a class="brand" href="home.html" style="margin-bottom:16px"><span class="brand__mark"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg></span><span class="brand__wm"><span class="bm-a">AEO</span><span class="bm-c">Canon</span></span></a><p class="foot__about">We rebuild small-business websites and run the content that makes them the answer AI recommends — backed by the framework we wrote.</p></div>
+  <div><h5>Services</h5><ul><li><a href="pricing.html">Pricing</a></li><li><a href="pricing.html#gallery">Portfolio</a></li><li><a href="analyzer.html">Free audit</a></li></ul></div>
+  <div><h5>The canon</h5><ul><li><a href="canon.html">The framework</a></li><li><a href="manifesto.html">The Manifesto</a></li><li><a href="whitepaper.html">Research whitepaper</a></li></ul></div>
+  <div><h5>Learn</h5><ul><li><a href="learn.html">AEO school</a></li><li><a href="industries.html">Industries</a></li><li><a href="tool.html">Tools</a></li></ul></div>
+</div></div></footer>
+
+<script src="../shared/theme.js"></script>
+<button class="theme-fab" data-theme-toggle aria-label="Toggle dark mode" title="Toggle light/dark">◐</button>
+</body>
+</html>

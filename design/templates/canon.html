@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-theme-default="light" data-balance="reference" data-scheme="spectrum" data-headline="hybrid">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect x=%2712%27 y=%2716%27 width=%2740%27 height=%277%27 rx=%273.5%27 fill=%27%235b63d6%27/%3E%3Crect x=%2712%27 y=%2729%27 width=%2730%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Crect x=%2712%27 y=%2742%27 width=%2720%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Ccircle cx=%2755%27 cy=%2719.5%27 r=%276%27 fill=%27%23e0563f%27/%3E%3C/svg%3E">
+<title>The Canon — The framework for Answer Engine Optimization</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="lc.css">
+<style>
+  .canon-hero{padding:calc(40px*var(--u)) 0 calc(20px*var(--u))}
+  .canon-hero h1{font-size:calc(clamp(34px,5.2vw,64px)*var(--disp));line-height:1;letter-spacing:-.03em;max-width:15ch;margin-bottom:18px}
+  .canon-hero p{font-size:18px;color:var(--ink-2);max-width:56ch}
+  /* AEO = SEO bar */
+  .seobar{margin-top:30px;border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden}
+  .seobar__split{display:flex;height:54px}
+  .seobar__shared{flex:0 0 76%;background:color-mix(in oklab,var(--ink) 7%,transparent);display:flex;align-items:center;padding:0 20px;font-family:var(--mono);font-size:11.5px;color:var(--ink-2);letter-spacing:.02em}
+  .seobar__new{flex:1;background:var(--accent);color:#fff;display:flex;align-items:center;padding:0 16px;font-family:var(--mono);font-size:11px;letter-spacing:.02em}
+  .seobar__cap{display:flex;justify-content:space-between;padding:11px 20px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-2);gap:16px;flex-wrap:wrap}
+  .seobar__cap b{color:var(--ink)}
+  /* glance ribbon */
+  .glance{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:calc(34px*var(--u)) 0 0}
+  .glance__layer{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--paper);border-top:4px solid var(--lc)}
+  .glance__layer h4{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--lc);margin-bottom:4px}
+  .glance__layer .q{font-size:14px;color:var(--ink-2);margin-bottom:12px;font-family:var(--serif);font-style:italic}
+  .glance__layer ol{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .glance__layer li{font-size:13.5px;display:flex;gap:9px;align-items:baseline}
+  .glance__layer li .gn{font-family:var(--mono);font-size:11px;color:var(--lc);min-width:14px}
+  .gl-found{--lc:var(--p2)}.gl-rep{--lc:var(--p3)}.gl-mom{--lc:var(--p4)}
+
+  /* explorer */
+  .explorer{display:grid;grid-template-columns:340px 1fr;gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:8px}
+  .ex-list{border-right:1px solid var(--line);background:var(--paper);max-height:none}
+  .ex-group{border-bottom:1px solid var(--line)}
+  .ex-group:last-child{border-bottom:none}
+  .ex-group__hd{padding:14px 20px 8px;font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--lc);display:flex;align-items:center;gap:8px}
+  .ex-group__hd::after{content:attr(data-q);font-family:var(--serif);font-style:italic;letter-spacing:0;text-transform:none;color:var(--muted);font-size:12px}
+  .ex-pill{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:center;width:100%;text-align:left;background:none;border:none;padding:12px 20px;cursor:pointer;color:var(--ink);border-left:3px solid transparent;font-family:inherit}
+  .ex-pill:hover{background:var(--panel)}
+  .ex-pill.on{background:var(--panel);border-left-color:var(--lc)}
+  .ex-pill__n{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--lc)}
+  .ex-pill.on .ex-pill__n{background:var(--lc);color:#fff;border-color:var(--lc)}
+  .ex-pill__t{font-size:15.5px;font-family:var(--serif)}
+  .ex-pill__s{font-size:11.5px;color:var(--muted);margin-top:1px}
+  .gl-found .ex-pill__n,.gl-found .ex-group__hd{--lc:var(--p2)}
+
+  .ex-detail{padding:34px 38px;min-height:480px;background:var(--panel);position:relative}
+  .ex-detail .lyr{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dc);display:flex;align-items:center;gap:10px;margin-bottom:18px}
+  .ex-detail .lyr .bignum{font-family:var(--serif);font-size:13px;color:var(--dc)}
+  .ex-detail h2{font-size:calc(32px*var(--disp));line-height:1.05;margin-bottom:16px}
+  .ex-principle{font-family:var(--serif);font-size:21px;line-height:1.35;color:var(--ink);border-left:3px solid var(--dc);padding:4px 0 4px 20px;margin-bottom:22px;font-style:italic}
+  .ex-meta-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+  .ex-metaphor{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--paper)}
+  .ex-metaphor .k,.ex-proof .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block}
+  .ex-metaphor p{font-size:14.5px;color:var(--ink-2);line-height:1.45}
+  .ex-proof{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:color-mix(in oklab,var(--dc) 8%,var(--paper))}
+  .ex-proof .big{font-family:var(--serif);font-size:34px;letter-spacing:-.02em;color:var(--dc);line-height:1}
+  .ex-proof .src{font-size:12.5px;color:var(--ink-2);margin-top:8px;line-height:1.4}
+  .ex-moves .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:block}
+  .ex-moves ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .ex-moves li{display:flex;gap:12px;font-size:15px;color:var(--ink-2);line-height:1.45}
+  .ex-moves li::before{content:"→";color:var(--dc);font-family:var(--mono);flex:none}
+  .ex-foot{display:flex;justify-content:space-between;align-items:center;margin-top:26px;padding-top:18px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+  .ex-foot a{color:var(--dc);text-decoration:none}
+
+  .diag{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;border:1px solid var(--line-2);border-radius:16px;background:var(--accent-soft);padding:22px 28px;margin-top:26px}
+  .diag .em{font-family:var(--serif);font-size:30px;color:var(--accent)}
+  .diag h3{font-size:20px;margin-bottom:5px}.diag p{font-size:14px;color:var(--ink-2);max-width:60ch}
+  .closer{text-align:center;padding:calc(48px*var(--u)) 0 calc(20px*var(--u));font-family:var(--serif);font-style:italic;font-size:clamp(22px,3vw,30px);color:var(--ink);letter-spacing:-.01em}
+  @media(max-width:860px){.glance{grid-template-columns:1fr}.explorer{grid-template-columns:1fr}.ex-list{border-right:none;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr}.ex-meta-row{grid-template-columns:1fr}.seobar__shared{flex-basis:65%}}
+</style>
+</head>
+<body>
+<div class="hubbar"><div class="hubbar__in"><a href="../index.html">← All directions</a><span>THE RECORD · THE CANON</span><span class="hubbar__sp">The 8-pillar AEO framework</span></div></div>
+<nav class="nav"><div class="nav__in">
+  <a class="brand" href="home.html"><span class="brand__mark"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg></span><span class="brand__wm"><span class="bm-a">AEO</span><span class="bm-c">Canon</span></span></a>
+  <div class="nav__links"><a href="home.html">Overview</a><a href="canon.html" class="active">The Canon</a><a href="learn.html">AEO school</a><a href="tool.html">Tools</a><a href="industries.html">Industries</a><a href="pricing.html">Pricing</a></div>
+  <div class="nav__right"><a class="btn btn--ghost navlink-az" href="analyzer.html">Free Analyzer</a><a class="btn btn--primary" href="pricing.html">Done for you</a></div>
+</div></nav>
+
+<div class="wrap" style="padding-bottom:70px">
+  <header class="canon-hero">
+    <div class="kicker">The Canon · v1.0 · the framework</div>
+    <h1 class="display" style="margin-top:14px">SEO got you clicked. AEO gets you <em>cited.</em></h1>
+    <p>Eight pillars, in three layers, that make your content the source AI engines read, trust, and quote. Not tricks — the conditions under which any well-built engine recognizes you as the best answer.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px">
+      <a class="btn btn--primary btn--lg" href="whitepaper.html">Read the research whitepaper</a>
+      <a class="btn btn--ghost btn--lg" href="manifesto.html">The AEO Manifesto</a>
+      <a class="btn btn--ghost btn--lg" href="tool.html">Run the visibility audit</a>
+    </div>
+
+    <div class="seobar">
+      <div class="seobar__split">
+        <div class="seobar__shared">≈ 75% carries over from strong SEO — crawlable, authoritative, high-quality</div>
+        <div class="seobar__new">+ the new layer</div>
+      </div>
+      <div class="seobar__cap"><span><b>AEO is SEO extended, not replaced.</b></span><span>New: passage-level extraction · conversational queries · per-engine measurement</span></div>
+    </div>
+
+    <div class="glance">
+      <div class="glance__layer gl-found"><h4>Foundation</h4><div class="q">Can the machine use you?</div><ol><li><span class="gn">1</span> Access</li><li><span class="gn">2</span> Alignment</li><li><span class="gn">3</span> Extractability</li></ol></div>
+      <div class="glance__layer gl-rep"><h4>Reputation</h4><div class="q">Does the web vouch for you?</div><ol><li><span class="gn">4</span> Authority</li><li><span class="gn">5</span> Credibility</li><li><span class="gn">6</span> Originality</li></ol></div>
+      <div class="glance__layer gl-mom"><h4>Momentum</h4><div class="q">Do you stay chosen as things move?</div><ol><li><span class="gn">7</span> Freshness</li><li><span class="gn">8</span> Adaptability</li></ol></div>
+    </div>
+  </header>
+
+  <section class="section" style="border-top:none;padding-top:calc(30px*var(--u))">
+    <div class="section__head"><h2>The pillars are a cascade, not a checklist</h2><span class="eyebrow">Tap a pillar to explore</span></div>
+    <div class="explorer">
+      <div class="ex-list" id="exList"></div>
+      <div class="ex-detail" id="exDetail"></div>
+    </div>
+    <div class="diag">
+      <span class="em">⌖</span>
+      <div><h3>Use it as a diagnostic</h3><p>Walk down the pillars in order. Earlier failures make later efforts irrelevant — a brilliant page behind a blocked crawler is wasted. The first pillar where you break is the place to work.</p></div>
+      <a class="btn btn--primary" href="tool.html">Find where you break →</a>
+    </div>
+  </section>
+
+  <div class="closer">“The principles endure. The specifics are written in pencil.”
+    <div style="margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><a class="btn btn--ghost btn--lg" href="whitepaper.html" style="font-style:normal">Read the full research whitepaper →</a><a class="btn btn--ghost btn--lg" href="manifesto.html" style="font-style:normal">Read the AEO Manifesto →</a></div>
+  </div>
+</div>
+
+<script src="../shared/theme.js"></script>
+<script>
+  var P=[
+    {n:1,layer:'Foundation',q:'Can the machine use you?',cls:'gl-found',dc:'var(--p2)',title:'Access',sub:'The price of admission',principle:'If a machine can’t read your page, it can’t quote you.',metaphor:'The locked door. Pass or fail — no partial credit, no workaround.',big:'0',src:'JavaScript executed by GPTBot — it reads raw HTML only (Vercel, 500M requests)',moves:['Allow AI crawlers (GPTBot, ClaudeBot, PerplexityBot) in robots.txt','Serve server-side or static HTML — not browser-assembled','Stay fast: FCP under 0.4s earned ~3× more citations']},
+    {n:2,layer:'Foundation',q:'Can the machine use you?',cls:'gl-found',dc:'var(--p2)',title:'Alignment',sub:'The compass',principle:'You can be the best answer to a question nobody is asking AI.',metaphor:'The compass before the map. Aim at the real question before you build toward the wrong one.',big:'Q&A',src:'Search was shorthand; AI queries are full conversations. Write for the question actually asked.',moves:['Map real questions — interviews, support, Reddit, prompting the engines','Use the question itself as your heading','Match structure to intent: definitional, comparative, decision-support']},
+    {n:3,layer:'Foundation',q:'Can the machine use you?',cls:'gl-found',dc:'var(--p2)',title:'Extractability',sub:'The mechanism',principle:'Answer engines cite passages, not pages. Write the sentence you want quoted — and put it first.',metaphor:'The pull quote. AI doesn’t read your book; it photocopies a paragraph.',big:'44%',src:'of ChatGPT citations come from the first third of a page (Profound)',moves:['Lead with the claim in the first sentence — answer-first','Make passages self-contained, specific, and evidenced inline','Aim for 120–180 words under a question-shaped heading']},
+    {n:4,layer:'Reputation',q:'Does the web vouch for you?',cls:'gl-rep',dc:'var(--p3)',title:'Authority',sub:'Mentions over links',principle:'AI trusts what the web already trusts. Mentions matter more than links.',metaphor:'Word of mouth at internet scale. The machine listens to the room — give it something true to say.',big:'0.664',src:'brand-mention correlation with AI visibility vs 0.218 for backlinks (Ahrefs, 75k brands)',moves:['Earn genuine presence on Reddit, YouTube, Wikipedia, LinkedIn','Build mentions and corroboration, not just backlinks','Become a recognized entity engines can identify and connect']},
+    {n:5,layer:'Reputation',q:'Does the web vouch for you?',cls:'gl-rep',dc:'var(--p3)',title:'Credibility',sub:'Show your work',principle:'Back every claim. Statistics, quotations, and cited sources are proven to raise AI visibility.',metaphor:'Math homework with the working shown. Receipts, not adjectives.',big:'+41%',src:'visibility lift from adding quotations — the top move in the Princeton GEO study (KDD 2024)',moves:['Replace adjectives with numbers','Attribute quotations and cite sources inline, in the text','Sign the work with a real name and real credentials']},
+    {n:6,layer:'Reputation',q:'Does the web vouch for you?',cls:'gl-rep',dc:'var(--p3)',title:'Originality',sub:'Be the primary source',principle:'Machines are built to find the best source. Originality is what makes you that source.',metaphor:'The lighthouse in a sea of generated content. Be the study everyone cites — not the article that cites it.',big:'∞→1',src:'Generic content is now infinite; specific, owned, first-hand knowledge is the scarce thing',moves:['Run primary research you own','Mine proprietary data and first-hand experience','Take a clear, defended, evidence-backed point of view']},
+    {n:7,layer:'Momentum',q:'Do you stay chosen as things move?',cls:'gl-mom',dc:'var(--p4)',title:'Freshness',sub:'The expiration date',principle:'Answer engines prefer the recent. Undated content reads as expired.',metaphor:'Milk has a date. Still on the shelf, but nobody’s serving it.',big:'65%',src:'of AI crawler visits target content under one year old (Seer, 5,000+ URLs)',moves:['Revise substantively — don’t just change the date','Show a visible published and last-updated date','Match cadence to your topic’s clock-speed']},
+    {n:8,layer:'Momentum',q:'Do you stay chosen as things move?',cls:'gl-mom',dc:'var(--p4)',title:'Adaptability',sub:'The only permanent advantage',principle:'The engines change monthly; your doctrine must too.',metaphor:'The river you can’t step in twice. A compass, not a map — written in pencil.',big:'~11%',src:'average citation overlap between engines — they live in separate citation universes',moves:['Measure share of voice per engine, on a fixed prompt set','Treat every tactic as a hypothesis (schema & llms.txt didn’t hold up)','Build systems that bend — keep what the data confirms']}
+  ];
+  var list=document.getElementById('exList'),detail=document.getElementById('exDetail');
+  var groups=[['Foundation','gl-found','Can the machine use you?'],['Reputation','gl-rep','Does the web vouch for you?'],['Momentum','gl-mom','Do you stay chosen?']];
+  list.innerHTML=groups.map(function(g){
+    var pills=P.filter(p=>p.layer===g[0]).map(function(p){
+      return '<button class="ex-pill" data-n="'+p.n+'"><span class="ex-pill__n">'+p.n+'</span><span><span class="ex-pill__t">'+p.title+'</span><span class="ex-pill__s">'+p.sub+'</span></span></button>';
+    }).join('');
+    return '<div class="ex-group '+g[1]+'"><div class="ex-group__hd" data-q="· '+g[2]+'">'+g[0]+'</div>'+pills+'</div>';
+  }).join('');
+  function show(n){
+    var p=P.find(x=>x.n===n);
+    detail.style.setProperty('--dc',p.dc);
+    detail.innerHTML=
+      '<div class="lyr"><span class="bignum">Pillar '+String(p.n).padStart(2,'0')+'</span> · '+p.layer+'</div>'+
+      '<h2>'+p.title+'</h2>'+
+      '<div class="ex-principle">'+p.principle+'</div>'+
+      '<div class="ex-meta-row">'+
+        '<div class="ex-metaphor"><span class="k">The metaphor</span><p>'+p.metaphor+'</p></div>'+
+        '<div class="ex-proof"><span class="k">The evidence</span><div class="big">'+p.big+'</div><div class="src">'+p.src+'</div></div>'+
+      '</div>'+
+      '<div class="ex-moves"><span class="k">The moves</span><ul>'+p.moves.map(m=>'<li>'+m+'</li>').join('')+'</ul></div>'+
+      '<div class="ex-foot"><span>'+(p.n<8?'Next gate → '+(P.find(x=>x.n===p.n+1).title):'The posture everything else depends on')+'</span><a href="learn.html">Learn this pillar →</a></div>';
+    document.querySelectorAll('.ex-pill').forEach(b=>b.classList.toggle('on',+b.dataset.n===n));
+  }
+  list.addEventListener('click',function(e){var b=e.target.closest('.ex-pill');if(b)show(+b.dataset.n);});
+  show(1);
+</script>
+<button class="theme-fab" data-theme-toggle aria-label="Toggle dark mode" title="Toggle light/dark">◐</button>
+</body>
+</html>

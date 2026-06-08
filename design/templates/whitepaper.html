@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-theme-default="light" data-balance="reference" data-scheme="spectrum" data-headline="hybrid">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect x=%2712%27 y=%2716%27 width=%2740%27 height=%277%27 rx=%273.5%27 fill=%27%235b63d6%27/%3E%3Crect x=%2712%27 y=%2729%27 width=%2730%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Crect x=%2712%27 y=%2742%27 width=%2720%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Ccircle cx=%2755%27 cy=%2719.5%27 r=%276%27 fill=%27%23e0563f%27/%3E%3C/svg%3E">
+<title>The AEO Canon — Research Whitepaper v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="lc.css">
+<style>
+  .wp-masthead{border-bottom:2px solid var(--ink);padding:calc(40px*var(--u)) 0 calc(28px*var(--u))}
+  .wp-pub{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;gap:18px;flex-wrap:wrap;margin-bottom:20px}
+  .wp-masthead h1{font-size:calc(clamp(30px,4.4vw,50px)*var(--disp));line-height:1.04;letter-spacing:-.02em;max-width:24ch;margin-bottom:10px}
+  .wp-masthead .subtitle{font-family:var(--serif);font-size:20px;color:var(--ink-2);font-style:italic;margin-bottom:22px}
+  .wp-byline{font-family:var(--mono);font-size:11.5px;color:var(--muted);display:flex;gap:20px;flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--line)}
+  .wp-byline b{color:var(--ink)}
+  .wp-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .wp-abstract{border:1px solid var(--line-2);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;background:var(--paper);padding:24px 28px;margin:calc(30px*var(--u)) 0}
+  .wp-abstract .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:block}
+  .wp-abstract p{font-family:var(--serif);font-size:16.5px;line-height:1.65;color:var(--ink);margin-bottom:0}
+  .prose h2{display:flex;gap:14px;align-items:baseline}
+  .prose h2 .sn{font-family:var(--mono);font-size:14px;color:var(--accent);font-weight:400}
+  .prose h3{font-family:var(--serif);font-weight:600}
+  .prose h3 .pn{font-family:var(--mono);font-size:12px;color:var(--accent);margin-right:8px}
+  .prose a[target]{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+  .prose a[target]::after{content:" ↗";font-size:.78em;opacity:.6;text-decoration:none}
+  /* academic data table */
+  .wp-table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:14px;margin:1.4em 0}
+  .wp-table caption{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;margin-bottom:10px}
+  .wp-table th{text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:9px 12px;border-bottom:2px solid var(--ink);font-weight:500}
+  .wp-table td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+  .wp-table td.num{font-family:var(--mono);text-align:right}
+  .wp-table tr.hi td{background:color-mix(in oklab,var(--accent) 9%,transparent)}
+  .wp-table tr.neg td{color:var(--fmt-interactive)}
+  .eff-pos{color:var(--ok);font-family:var(--mono);font-weight:500}
+  .eff-neg{color:var(--fmt-interactive);font-family:var(--mono);font-weight:500}
+  /* correlation bars */
+  .corr{font-family:var(--sans);border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:22px 24px;margin:1.5em 0}
+  .corr__t{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+  .corr__row{display:grid;grid-template-columns:160px 1fr 56px;gap:14px;align-items:center;margin-bottom:11px;font-size:13.5px}
+  .corr__track{height:22px;background:color-mix(in oklab,var(--ink) 7%,transparent);border-radius:5px;overflow:hidden}
+  .corr__fill{height:100%;border-radius:5px;width:0;transition:width 1s cubic-bezier(.2,.7,.2,1)}
+  .corr__val{font-family:var(--mono);font-size:12.5px;text-align:right}
+  /* debunk cards */
+  .debunk{border:1px solid var(--line-2);border-radius:12px;background:var(--paper);padding:20px 22px;margin-bottom:14px}
+  .debunk h4{font-size:17px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+  .debunk h4 .x{font-family:var(--mono);font-size:11px;color:#fff;background:var(--fmt-interactive);border-radius:5px;padding:2px 8px;letter-spacing:.04em}
+  .debunk p{font-size:14px;color:var(--ink-2);margin-bottom:0;line-height:1.6}
+  /* references */
+  .refs{list-style:none;counter-reset:r;display:flex;flex-direction:column;gap:12px;font-family:var(--sans)}
+  .refs li{counter-increment:r;display:grid;grid-template-columns:38px 1fr;gap:12px;font-size:13.5px;color:var(--ink-2);line-height:1.5;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .refs li::before{content:"["counter(r)"]";font-family:var(--mono);font-size:11.5px;color:var(--accent)}
+  .refs a{color:var(--accent);text-decoration:none;word-break:break-word}
+  .refs a:hover{text-decoration:underline}
+  .pquote-stat{font-family:var(--serif);font-size:clamp(26px,3.4vw,38px);line-height:1.1;letter-spacing:-.02em;color:var(--ink);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;margin:1.6em 0}
+  .pquote-stat b{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="hubbar"><div class="hubbar__in"><a href="../index.html">← All directions</a><span>THE RECORD · WHITEPAPER</span><span class="hubbar__sp">Research edition · v1.0</span></div></div>
+<nav class="nav"><div class="nav__in">
+  <a class="brand" href="home.html"><span class="brand__mark"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg></span><span class="brand__wm"><span class="bm-a">AEO</span><span class="bm-c">Canon</span></span></a>
+  <div class="nav__links"><a href="home.html">Overview</a><a href="canon.html" class="active">The Canon</a><a href="learn.html">AEO school</a><a href="tool.html">Tools</a><a href="industries.html">Industries</a><a href="pricing.html">Pricing</a></div>
+  <div class="nav__right"><a class="btn btn--ghost navlink-az" href="analyzer.html">Free Analyzer</a><a class="btn btn--primary" href="pricing.html">Done for you</a></div>
+</div></nav>
+
+<header class="wp-masthead"><div class="wrap wrap--mid" style="max-width:920px">
+  <div class="wp-pub"><span>Whitepaper</span><span>Version 1.0 · 2026</span><span>Published by AEOcanon.com</span></div>
+  <h1>The AEO Canon: Eight Foundational Principles of Answer Engine Optimization</h1>
+  <p class="subtitle">A research-grounded framework for earning and sustaining AI citation.</p>
+  <div class="wp-byline"><span>Discipline: <b>Answer Engine Optimization</b></span><span>Evidence base: <b>200,000+ URLs · 75,000 brands · 1 peer-reviewed experiment</b></span><span>23 references</span></div>
+  <div class="wp-actions">
+    <a class="btn btn--primary" href="#" onclick="window.print();return false">Download PDF</a>
+    <a class="btn btn--ghost" href="canon.html">← Back to the interactive framework</a>
+    <a class="btn btn--ghost" href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener">Read the core study (Princeton GEO)</a>
+  </div>
+</div></header>
+
+<div class="doc-shell">
+  <aside class="canon-rail" style="--railw:240px">
+    <h6>Contents</h6>
+    <a class="cr-link" href="#s1"><span class="n">1</span> Introduction</a>
+    <a class="cr-link" href="#s2"><span class="n">2</span> Research foundation</a>
+    <a class="cr-link" href="#s3"><span class="n">3</span> AEO &amp; SEO</a>
+    <a class="cr-link" href="#s4"><span class="n">4</span> The framework</a>
+    <a class="cr-link" href="#s5"><span class="n">5</span> Foundation</a>
+    <a class="cr-link" href="#s6"><span class="n">6</span> Reputation</a>
+    <a class="cr-link" href="#s7"><span class="n">7</span> Momentum</a>
+    <a class="cr-link" href="#s8"><span class="n">8</span> What the evidence debunks</a>
+    <a class="cr-link" href="#s9"><span class="n">9</span> Measuring AEO</a>
+    <a class="cr-link" href="#s10"><span class="n">10</span> Conclusion</a>
+    <a class="cr-link" href="#refs"><span class="n">—</span> References</a>
+  </aside>
+
+  <div class="doc-body"><div class="doc-inner" style="grid-template-columns:minmax(0,760px);justify-content:start">
+  <article class="prose" style="margin-top:0">
+    <div class="wp-abstract"><span class="lab">Abstract</span><p>Answer Engine Optimization (AEO) is the discipline of making content discoverable, trustworthy, and citable by AI answer engines — ChatGPT, Perplexity, Google AI Overviews, Gemini, Copilot, and Claude. This paper presents the AEO Canon: eight evidence-grounded principles in three layers — Foundation, Reputation, Momentum. The central finding: AI citation is governed by the same broad forces as search quality plus a distinct extraction layer. Tactics widely promoted as essentials — schema markup, <code>llms.txt</code>, keyword optimization — show little to no causal effect in controlled testing. The durable advantages are genuine authority, verifiable credibility, and original contribution.</p></div>
+
+    <h2 id="s1"><span class="sn">1</span> The search paradigm has shifted</h2>
+    <p>For three decades the defining question was <em>can users find you in search results?</em> The answer was a click. That question has been superseded by another: <em>does the AI cite you when it answers?</em> The user receives an answer, not a menu — the cited source receives the visibility, and every uncited source receives nothing.</p>
+    <p>The shift is measured, not theoretical. Seer Interactive documented organic click-through falling 61% — from 1.76% to 0.61% — when an AI Overview appears <a href="https://thedigitalbloom.com/learn/google-ai-overviews-top-cited-domains-2025/" target="_blank" rel="noopener">[7,23]</a>. Yet <a href="https://ahrefs.com/blog/ai-brand-visibility-correlations/" target="_blank" rel="noopener">Ahrefs</a> found cited brands saw 35% more organic and 91% more paid clicks. The penalty for absence is real; the reward for citation compounds.</p>
+    <p class="pquote-stat">Only <b>38%</b> of pages cited in AI Overviews still rank in Google's organic top ten — down from <b>76%</b> seven months earlier.</p>
+    <p>That divergence means a significant share of AI citations goes to pages traditional SEO would never surface — and that rankings no longer reliably predict citation. AEO is the field that bridges the gap.</p>
+
+    <h2 id="s2"><span class="sn">2</span> Research foundation &amp; methodology</h2>
+    <p>The Canon is built on primary research, weighted by evidence quality. Controlled experiments are trusted over correlation; correlation is labeled as such.</p>
+    <ul>
+      <li><b>The Princeton GEO Study (2024)</b> — the only peer-reviewed, controlled experiment in the field. Nine content strategies across 10,000 queries, validated on live Perplexity. <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener">arXiv:2311.09735</a></li>
+      <li><b>Ahrefs Brand Visibility Studies</b> — 75,000 brands; plus a 1,885-page controlled schema test. <a href="https://ahrefs.com/blog/ai-brand-visibility-correlations/" target="_blank" rel="noopener">ahrefs.com</a></li>
+      <li><b>SE Ranking</b> — 129,000 domains, 216,524 pages, 20 niches. <a href="https://seranking.com/blog/how-to-optimize-for-chatgpt/" target="_blank" rel="noopener">seranking.com</a></li>
+      <li><b>Vercel / MERJ</b> — 500M+ GPTBot requests; <b>Semrush</b> — 100M+ citation events; <b>Profound</b> — cross-engine divergence.</li>
+    </ul>
+    <p><b>On evidence quality.</b> The field has a surplus of correlational vendor studies and a deficit of controlled experiments. This paper is explicit about which is which.</p>
+
+    <h2 id="s3"><span class="sn">3</span> AEO and SEO: the relationship</h2>
+    <p>AEO does not replace SEO — it extends it. Roughly 70–80% of what drives citation also drives rankings. <a href="https://seranking.com/blog/how-to-optimize-for-chatgpt/" target="_blank" rel="noopener">SE Ranking</a> found referring domains the single strongest predictor of ChatGPT citation; <a href="https://searchengineland.com/ai-overview-fan-out-rankings-boost-citation-odds-study-466426" target="_blank" rel="noopener">Search Engine Land</a> found fan-out ranking boosts citation odds 161%. The genuine divergence is specific: retrieval at the <b>passage</b> level, <b>mentions</b> over links, <b>conversational</b> queries, aggressive <b>freshness</b> weighting, and <b>per-engine</b> divergence (~11% cross-engine overlap).</p>
+
+    <h2 id="s4"><span class="sn">4</span> The Canon framework</h2>
+    <p>Eight principles in three layers. The pillars are sequential: failures at earlier stages make later efforts irrelevant. Walk down it in order; the pillar where you break is the place to work.</p>
+    <table class="wp-table"><caption>The Canon at a glance</caption>
+      <thead><tr><th>Layer</th><th>Pillars</th><th>The question</th></tr></thead>
+      <tbody>
+        <tr><td><b>Foundation</b></td><td>1 Access · 2 Alignment · 3 Extractability</td><td>Can the machine use you?</td></tr>
+        <tr><td><b>Reputation</b></td><td>4 Authority · 5 Credibility · 6 Originality</td><td>Does the web vouch for you?</td></tr>
+        <tr><td><b>Momentum</b></td><td>7 Freshness · 8 Adaptability</td><td>Do you stay chosen as things move?</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="s5"><span class="sn">5</span> Layer One — Foundation</h2>
+    <h3><span class="pn">1</span> Access — the binary gate</h3>
+    <p>A page is machine-readable or it is invisible; no partial credit. <a href="https://vercel.com/blog/the-rise-of-the-ai-crawler" target="_blank" rel="noopener">Vercel/MERJ's</a> analysis of 500M+ GPTBot requests found <b>zero</b> JavaScript execution — crawlers fetch raw HTML only. Permit AI crawlers in <code>robots.txt</code>, serve server-side or static HTML, and stay fast — <a href="https://seranking.com/blog/how-to-optimize-for-chatgpt/" target="_blank" rel="noopener">SE Ranking</a> found FCP under 0.4s earned ~3× more citations.</p>
+    <h3><span class="pn">2</span> Alignment — the compass</h3>
+    <p>You can be the best answer to a question nobody asks AI. Search queries were shorthand; AI queries are full conversations. Map the real questions — and use the question itself as the heading. Seer found 87%+ of ChatGPT citations matched Bing's top results when the exact question was used as the query.</p>
+    <h3><span class="pn">3</span> Extractability — the mechanism</h3>
+    <p>RAG systems retrieve passages, not pages, then a reranker scores them for relevance, authority, and freshness <a href="https://arxiv.org/html/2501.09940v1" target="_blank" rel="noopener">[15]</a>. A passage is citable when it is answer-first, self-contained, factually specific, definitively phrased, evidenced inline, ~120–180 words, positioned early, under a question-shaped heading, and visibly authored. <a href="https://contently.com/2026/04/29/top-sources-llms-cite/" target="_blank" rel="noopener">Profound</a> found 44% of ChatGPT citations come from the first third of a page.</p>
+
+    <h2 id="s6"><span class="sn">6</span> Layer Two — Reputation</h2>
+    <h3><span class="pn">4</span> Authority — mentions over links</h3>
+    <p>Authority is determined off-site — by what the web says about you. <a href="https://ahrefs.com/blog/ai-brand-visibility-correlations/" target="_blank" rel="noopener">Ahrefs (75k brands)</a> measured the correlations with AI visibility:</p>
+    <div class="corr" id="corr"><div class="corr__t">Correlation with AI visibility · Ahrefs, 75,000 brands</div>
+      <div class="corr__row"><span>Branded web mentions</span><div class="corr__track"><div class="corr__fill" data-w="90%" style="background:var(--p1)"></div></div><span class="corr__val">0.664</span></div>
+      <div class="corr__row"><span>YouTube mentions</span><div class="corr__track"><div class="corr__fill" data-w="100%" style="background:var(--p1)"></div></div><span class="corr__val">0.737</span></div>
+      <div class="corr__row"><span>Brand anchors</span><div class="corr__track"><div class="corr__fill" data-w="71%" style="background:var(--accent)"></div></div><span class="corr__val">0.527</span></div>
+      <div class="corr__row"><span>Brand search volume</span><div class="corr__track"><div class="corr__fill" data-w="53%" style="background:var(--accent)"></div></div><span class="corr__val">0.392</span></div>
+      <div class="corr__row"><span>Backlinks</span><div class="corr__track"><div class="corr__fill" data-w="30%" style="background:var(--muted)"></div></div><span class="corr__val">0.218</span></div>
+    </div>
+    <p>Backlinks rank fourth. <a href="https://contently.com/2026/04/29/top-sources-llms-cite/" target="_blank" rel="noopener">Reddit is the most-cited domain</a> across engines; Wikipedia, YouTube, and LinkedIn follow. Authority is earned through genuine presence on the platforms engines already trust.</p>
+    <h3><span class="pn">5</span> Credibility — show your work</h3>
+    <p>The only pillar with controlled experimental proof. The <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener">Princeton GEO study</a> tested nine strategies (baseline PAWC 19.3):</p>
+    <table class="wp-table"><caption>Princeton GEO — content strategy effects</caption>
+      <thead><tr><th>Strategy</th><th class="num">PAWC</th><th class="num">Effect</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>Quotation addition</td><td class="num">27.2</td><td class="num eff-pos">+41%</td></tr>
+        <tr><td>Cite sources</td><td class="num">25.1</td><td class="num eff-pos">+30%</td></tr>
+        <tr><td>Statistics addition</td><td class="num">25.1</td><td class="num eff-pos">+30%</td></tr>
+        <tr><td>Fluency optimization</td><td class="num">23.9</td><td class="num eff-pos">+24%</td></tr>
+        <tr><td>Authoritative tone</td><td class="num">20.1</td><td class="num">+4% n.s.</td></tr>
+        <tr class="neg"><td>Keyword stuffing</td><td class="num">17.7</td><td class="num eff-neg">−10%</td></tr>
+      </tbody>
+    </table>
+    <p>Adding named quotations raised visibility 41% — the largest single effect. Keyword stuffing performed <em>below</em> baseline. Citing sources gave lower-ranked pages a 115% lift. Replace adjectives with numbers; attribute quotations; sign with real credentials.</p>
+    <h3><span class="pn">6</span> Originality — be the primary source</h3>
+    <p>Machines are built to find the best source; original data exists in exactly one place, so the engine cites that place. <a href="https://contently.com/2026/04/29/top-sources-llms-cite/" target="_blank" rel="noopener">Evertune</a> found no single domain exceeds ~5% citation share — the economy is distributed, won through specific, evidenced contribution. Primary research, proprietary data, first-hand experience, and defended opinion are structurally uncopyable. Everything else in the Canon can be replicated; your data cannot.</p>
+
+    <h2 id="s7"><span class="sn">7</span> Layer Three — Momentum</h2>
+    <h3><span class="pn">7</span> Freshness — the expiration date</h3>
+    <p><a href="https://seranking.com/blog/how-to-optimize-for-chatgpt/" target="_blank" rel="noopener">Seer</a> found 65% of AI crawler visits target content under one year old, 89% under three. Ahrefs found AI-cited content is 25.7% fresher than parallel organic results. Revise substantively — not cosmetically — show a visible updated date, and match cadence to the topic's clock-speed.</p>
+    <h3><span class="pn">8</span> Adaptability — written in pencil</h3>
+    <p><a href="https://www.searchenginejournal.com/new-data-top-factors-influencing-chatgpt-citations/561954/" target="_blank" rel="noopener">Semrush</a> documented ChatGPT's Reddit citation rate swinging from ~60% to ~10% in six weeks. Cross-engine citation overlap averages ~11%. Measure per engine on a fixed prompt set, treat every tactic as a hypothesis, and build systems that bend. The principles endure; the specifics are written in pencil.</p>
+
+    <h2 id="s8"><span class="sn">8</span> What the evidence debunks</h2>
+    <div class="debunk"><h4><span class="x">Debunked</span> Schema markup as a citation driver</h4><p><a href="https://www.searchenginejournal.com/schema-markup-didnt-move-ai-citations-in-ahrefs-test/574568/" target="_blank" rel="noopener">Ahrefs' 1,885-page test</a> found AI Overview citations <em>dropped</em> 4.6% after adding JSON-LD; AI Mode and ChatGPT showed zero change. Valuable infrastructure for rich results — not a proven citation lever.</p></div>
+    <div class="debunk"><h4><span class="x">Debunked</span> <code>llms.txt</code> as a citation signal</h4><p>Google's John Mueller: "comparable to the keywords meta tag." OtterlyAI found only 84 of 62,100 AI bot requests (0.1%) fetched it. <a href="https://www.searchenginejournal.com/what-googles-new-ai-guide-actually-debunks-and-what-it-doesnt/575497/" target="_blank" rel="noopener">No engine documents using it</a>.</p></div>
+    <div class="debunk"><h4><span class="x">Debunked</span> Keyword stuffing</h4><p>The Princeton study measured a 10% degradation below baseline. The oldest reflex in optimization actively harms citation.</p></div>
+
+    <h2 id="s9"><span class="sn">9</span> Measuring AEO performance</h2>
+    <p>There is no Search Console for AI; citation is probabilistic and personalized. <a href="https://sparktoro.com/" target="_blank" rel="noopener">Rand Fishkin's</a> 600-volunteer experiment confirmed per-query tracking is unreliable. The reliable unit is <b>share of voice</b>: a fixed set of 20–50 representative prompts, measured <em>per engine</em>, tracked as a trend, paired with server-log crawl confirmation and branded-search signal. Ahrefs found AI-referred visitors converted at ~23× the rate of organic — modest volume, highly qualified.</p>
+
+    <h2 id="s10"><span class="sn">10</span> Conclusion</h2>
+    <p>The durable way to earn AI citation is to deserve it. Machines designed to find the clearest, most specific, best-evidenced, most-trusted source will, over time, find the sources that are genuinely those things. The eight pillars are not tactics — they are a description of what a genuinely excellent, trustworthy, original source looks like in the age of AI.</p>
+    <p class="pquote-stat" style="text-align:center;font-style:italic">The principles endure. The specifics are written in pencil.</p>
+
+    <h2 id="refs">References</h2>
+    <ol class="refs">
+      <li>Aggarwal, Murahari et al. (2024). <i>GEO: Generative Engine Optimization.</i> KDD 2024. <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener">arxiv.org/abs/2311.09735</a></li>
+      <li>Ahrefs (2025). <i>Top Brand Visibility Factors (75k Brands).</i> <a href="https://ahrefs.com/blog/ai-brand-visibility-correlations/" target="_blank" rel="noopener">ahrefs.com/blog/ai-brand-visibility-correlations</a></li>
+      <li>Ahrefs (2025). <i>YouTube Mentions &amp; AI Visibility.</i> Follow-up; YouTube mentions ~0.737.</li>
+      <li>Ahrefs (2026). <i>Schema Markup Didn't Move AI Citations.</i> <a href="https://www.searchenginejournal.com/schema-markup-didnt-move-ai-citations-in-ahrefs-test/574568/" target="_blank" rel="noopener">searchenginejournal.com</a></li>
+      <li>Ahrefs (2026). <i>AI Overviews Citation Analysis: 863k Keywords, 4M URLs.</i></li>
+      <li>SE Ranking (2025). <i>How to Optimize for ChatGPT.</i> <a href="https://seranking.com/blog/how-to-optimize-for-chatgpt/" target="_blank" rel="noopener">seranking.com/blog/how-to-optimize-for-chatgpt</a></li>
+      <li>Seer Interactive (2025). <i>SearchGPT Citation &amp; AI Crawler Recency Studies.</i></li>
+      <li>Vercel / MERJ (2025). <i>GPTBot Crawler Behavior: 500M+ Requests.</i></li>
+      <li>Semrush (2025). <i>AI Citation Volatility Study: 100M+ Events.</i> <a href="https://www.searchenginejournal.com/new-data-top-factors-influencing-chatgpt-citations/561954/" target="_blank" rel="noopener">searchenginejournal.com</a></li>
+      <li>Profound (2025). <i>Cross-Engine Citation Analysis.</i></li>
+      <li>Search Engine Land (2025). <i>AI Overview Fan-Out Rankings Boost Citation Odds 161%.</i> <a href="https://searchengineland.com/ai-overview-fan-out-rankings-boost-citation-odds-study-466426" target="_blank" rel="noopener">searchengineland.com</a></li>
+      <li>Higglo (2025). <i>The Real Factors Behind ChatGPT Citations (129k Domains).</i> <a href="https://www.higglo.io/post/the-real-factors-behind-chatgpt-citations-what-our-study-of-129000-domains-reveals" target="_blank" rel="noopener">higglo.io</a></li>
+      <li>Contently / Peec AI (2026). <i>Top 10 Sources LLMs Cite Most.</i> <a href="https://contently.com/2026/04/29/top-sources-llms-cite/" target="_blank" rel="noopener">contently.com</a></li>
+      <li>Zyppy / Shepard, C. (2025). <i>23 AI Citation Ranking Factors: Meta-Analysis of 54 Studies.</i></li>
+      <li>arXiv (2025). <i>Passage Segmentation for Extractive QA.</i> <a href="https://arxiv.org/html/2501.09940v1" target="_blank" rel="noopener">arxiv.org/html/2501.09940v1</a></li>
+      <li>Fishkin, R. / SparkToro (2026). <i>On the Unreliability of Per-Query AI Visibility Tracking.</i></li>
+      <li>Search Engine Journal (2026). <i>What Google's New AI Guide Debunks.</i> <a href="https://www.searchenginejournal.com/what-googles-new-ai-guide-actually-debunks-and-what-it-doesnt/575497/" target="_blank" rel="noopener">searchenginejournal.com</a></li>
+      <li>The Digital Bloom (2025). <i>Google AI Overviews: Top Cited Domains &amp; Traffic Shifts.</i> <a href="https://thedigitalbloom.com/learn/google-ai-overviews-top-cited-domains-2025/" target="_blank" rel="noopener">thedigitalbloom.com</a></li>
+    </ol>
+    <p style="font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:8px">AEOcanon.com — Version 1.0 · 2026. The AEO Canon is a living framework; principles are updated as new evidence emerges.</p>
+  </article>
+  </div></div>
+</div>
+
+<script src="../shared/theme.js"></script>
+<script>
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.corr__fill').forEach(function(f,i){setTimeout(function(){f.style.width=f.dataset.w;},90*i);});io.unobserve(e.target);}});},{threshold:.3});
+  io.observe(document.getElementById('corr'));
+  var links=[...document.querySelectorAll('.canon-rail a')];var secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+  var io2=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){var i=secs.indexOf(e.target);links.forEach(l=>l.classList.remove('active'));if(links[i])links[i].classList.add('active');}});},{rootMargin:'-12% 0px -80% 0px'});
+  secs.forEach(s=>s&&io2.observe(s));
+</script>
+<button class="theme-fab" data-theme-toggle aria-label="Toggle dark mode" title="Toggle light/dark">◐</button>
+</body>
+</html>

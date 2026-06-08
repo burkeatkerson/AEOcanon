@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEO Canon — Brand Resources &amp; Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Spline+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--serif:'Newsreader',Georgia,serif;--sans:'Spline Sans',system-ui,sans-serif;--mono:'JetBrains Mono',monospace}
+  [data-theme="light"]{--bg:#f4f6fb;--panel:#ffffff;--ink:#181a2b;--ink-2:#3d4163;--muted:#6b6f8c;--faint:#9a9eb8;--line:#e6e8f3;--line-2:#d7daec;
+    --accent:oklch(0.55 0.19 266);--accent-2:oklch(0.56 0.13 18);--accent-soft:oklch(0.95 0.03 266);
+    --c1:oklch(0.6 0.18 25);--c2:oklch(0.7 0.13 70);--c3:oklch(0.58 0.14 155);--c4:oklch(0.56 0.11 205);--c5:oklch(0.55 0.18 266);--c6:oklch(0.54 0.17 305);
+    --ok:oklch(0.6 0.13 150);--bad:oklch(0.56 0.16 25)}
+  [data-theme="dark"]{--bg:#08090d;--panel:#15171f;--ink:#f7f9fd;--ink-2:#d2d6e4;--muted:#8a8fa6;--faint:#585d74;--line:#22252f;--line-2:#2e323d;
+    --accent:oklch(0.74 0.15 264);--accent-2:oklch(0.74 0.14 22);--accent-soft:oklch(0.3 0.07 264);
+    --c1:oklch(0.72 0.16 25);--c2:oklch(0.8 0.13 72);--c3:oklch(0.74 0.13 155);--c4:oklch(0.74 0.11 205);--c5:oklch(0.72 0.16 266);--c6:oklch(0.7 0.16 305);
+    --ok:oklch(0.75 0.13 150);--bad:oklch(0.7 0.16 28)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .page{background:var(--bg);color:var(--ink);min-height:100vh}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 36px}
+  .top{position:sticky;top:0;z-index:30;background:color-mix(in oklab,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .top__in{max-width:1180px;margin:0 auto;padding:0 36px;height:62px;display:flex;align-items:center;gap:16px}
+  .top__t{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}
+  .tgl{margin-left:auto;font-family:var(--mono);font-size:11px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink);border-radius:8px;padding:8px 14px;cursor:pointer}
+
+  /* the "how to use" callout for AI designer/dev */
+  .usage{border:1px solid var(--accent);border-left-width:4px;border-radius:0 14px 14px 0;background:var(--accent-soft);padding:24px 28px;margin:34px 0}
+  .usage .h{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .usage p{font-size:15.5px;color:var(--ink);max-width:80ch;margin-bottom:10px}
+  .usage p:last-child{margin-bottom:0}
+  .usage b{font-weight:600}
+  .usage code{font-family:var(--mono);font-size:.85em;background:var(--panel);border:1px solid var(--line-2);border-radius:5px;padding:1px 6px}
+
+  .head{padding:54px 0 8px}
+  .head .k{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+  .head h1{font-family:var(--serif);font-weight:500;font-size:clamp(34px,5.4vw,60px);line-height:1.02;letter-spacing:-.025em}
+  .head h1 em{font-style:italic;color:var(--accent)}
+
+  .toc{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 8px}
+  .toc a{font-family:var(--mono);font-size:11.5px;text-decoration:none;color:var(--ink-2);border:1px solid var(--line-2);border-radius:99px;padding:7px 13px;background:var(--panel)}
+  .toc a:hover{border-color:var(--accent);color:var(--accent)}
+
+  .sec{padding:44px 0;border-top:1px solid var(--line);scroll-margin-top:72px}
+  .sec__h{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+  .sec__n{font-family:var(--mono);font-size:12px;color:var(--accent)}
+  .sec__h h2{font-family:var(--serif);font-weight:500;font-size:30px;letter-spacing:-.015em}
+  .sec__d{font-size:15px;color:var(--muted);max-width:74ch;margin-bottom:28px}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .panel{border:1px solid var(--line);border-radius:16px;background:var(--panel);overflow:hidden}
+  .stage{min-height:150px;display:grid;place-items:center;padding:34px;position:relative}
+  .stage--ink{background:var(--ink)}
+  .stage--soft{background:var(--accent-soft)}
+  .stage--accent{background:var(--accent)}
+  .cap{border-top:1px solid var(--line);padding:11px 16px;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.03em;display:flex;justify-content:space-between;gap:10px}
+  .cap b{color:var(--ink);font-weight:500}
+
+  /* ===== canonical brand assets ===== */
+  .wm{display:inline-flex;align-items:baseline;font-family:var(--serif);line-height:1;white-space:nowrap}
+  .wm .aeo{font-weight:600}
+  .wm .can{font-style:italic;font-weight:500;color:var(--accent);margin-left:.26em}
+  .on-ink .wm .aeo,.stage--ink .wm .aeo{color:#fff}
+  .on-accent .wm .aeo{color:#fff}.on-accent .wm .can{color:#fff}
+  .desc{font-family:var(--mono);font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+  .stage--ink .desc{color:var(--faint)}
+  .lk{display:inline-flex;align-items:center;gap:13px;text-decoration:none;color:inherit}
+  .lockv{display:inline-flex;flex-direction:column;gap:7px}
+  svg{display:block}
+
+  .specrow{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .specrow span{border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--panel)}
+  .specrow b{color:var(--ink)}
+
+  /* color tokens */
+  .swrow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+  .swatch{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .swatch .chip{height:74px}
+  .swatch .meta{padding:10px 12px;font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.5}
+  .swatch .meta b{color:var(--ink);font-size:11px;display:block;font-family:var(--sans);font-weight:600;text-transform:none;letter-spacing:0}
+  .neutrals{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:14px}
+  .neutrals i{flex:1;height:48px;display:flex;align-items:flex-end;padding:5px;font-family:var(--mono);font-size:8px;color:rgba(127,127,127,.9)}
+
+  /* type specimens */
+  .type{display:flex;flex-direction:column;gap:6px;padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+  .type .lab{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .type .big{line-height:1.05}
+
+  /* clearspace */
+  .clear{position:relative;display:inline-block;padding:34px}
+  .clear::before{content:"";position:absolute;inset:0;border:1px dashed var(--accent);border-radius:6px;opacity:.5}
+  .clear::after{content:"X";position:absolute;top:8px;left:8px;font-family:var(--mono);font-size:10px;color:var(--accent)}
+
+  /* do / dont */
+  .rule{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .rule__stage{min-height:120px;display:grid;place-items:center;padding:26px;background:var(--panel)}
+  .rule__tag{padding:10px 14px;font-family:var(--mono);font-size:11px;display:flex;align-items:center;gap:8px;border-top:1px solid var(--line)}
+  .rule--do .rule__tag{color:var(--ok)}.rule--dont .rule__tag{color:var(--bad)}
+  .rule--do .rule__tag::before{content:"✓"}.rule--dont .rule__tag::before{content:"✕"}
+
+  /* code snippet */
+  .code{font-family:var(--mono);font-size:12px;line-height:1.7;background:#13141b;color:#e6e1d3;border-radius:12px;padding:20px 22px;overflow:auto;position:relative}
+  .code .t{color:#9db7ff}.code .s{color:#9ad6a0}.code .c{color:#7d8499}
+  .copy{position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:10px;border:1px solid #2e323d;background:#1b1e27;color:#aab;border-radius:7px;padding:6px 10px;cursor:pointer}
+  .copy:hover{border-color:var(--accent);color:#fff}
+
+  .foot{padding:44px 0 70px;color:var(--muted);font-family:var(--mono);font-size:11.5px;border-top:1px solid var(--line)}
+  @media(max-width:860px){.grid2,.grid3{grid-template-columns:1fr}.grid4,.swrow{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="top"><div class="top__in">
+  <span class="top__t">AEO CANON · BRAND RESOURCES &amp; GUIDELINES</span>
+  <button class="tgl" id="tgl">◐ Dark</button>
+</div></header>
+
+<div class="wrap">
+  <header class="head">
+    <div class="k">Brand system · v1.0</div>
+    <h1 class="serif">AEO Canon <em>brand kit</em></h1>
+  </header>
+
+  <!-- HOW TO USE — for the AI designer / developer -->
+  <div class="usage">
+    <div class="h">◆ How to use this page — read first</div>
+    <p>This is the <b>single source of truth</b> for the AEO Canon identity. When you (designer or developer) build any page, email, slide, or asset for this brand, pull the logo, colors, and type from here — do not redraw or recolor them.</p>
+    <p><b>Logo:</b> use the <b>primary horizontal lockup</b> (§2) in nav bars and headers. Use the <b>symbol alone</b> (§4) for favicons, app icons, avatars, and tight spaces. Use the <b>stacked</b> lockup (§3) for covers, cards, and centered layouts. Always keep clearspace (§6) and respect min sizes.</p>
+    <p><b>Backgrounds:</b> on light surfaces use the default mark; on dark or photographic surfaces use the <b>on-ink</b> / reversed mark (§5). Never place the colored mark on a busy background.</p>
+    <p><b>Color &amp; type:</b> use only the tokens in §7 and the families in §8 — they match the live site (<code>--accent</code>, <code>--ink</code>, Newsreader / Spline Sans / JetBrains Mono). Copy-paste the ready snippets in §10 directly into markup.</p>
+    <p>The throughline to preserve: <b>authoritative, edited, and “the cited answer.”</b> The descending “first-result” symbol means <em>you are what the engine recommends first</em> — keep that meaning intact.</p>
+  </div>
+
+  <nav class="toc">
+    <a href="#s2">2 · Primary logo</a><a href="#s3">3 · Stacked &amp; orientations</a><a href="#s4">4 · Symbol &amp; icons</a><a href="#s5">5 · Backgrounds</a><a href="#s6">6 · Clearspace &amp; sizing</a><a href="#s7">7 · Color</a><a href="#s8">8 · Typography</a><a href="#s9">9 · Do &amp; Don’t</a><a href="#s10">10 · Copy-paste assets</a>
+  </nav>
+
+  <!-- 2 · PRIMARY LOGO -->
+  <section class="sec" id="s2">
+    <div class="sec__h"><span class="sec__n">02</span><h2>Primary logo</h2></div>
+    <p class="sec__d">The horizontal wordmark is the default. Bold roman “AEO”, italic accent “Canon”. Use the descriptor variants for first-impression contexts (homepage, decks, footers); use the plain wordmark everywhere else.</p>
+    <div class="grid2">
+      <div class="panel"><div class="stage"><span class="wm" style="font-size:34px"><span class="aeo">AEO</span><span class="can">Canon</span></span></div><div class="cap"><b>A1 · Primary wordmark</b><span>default · light bg</span></div></div>
+      <div class="panel"><div class="stage stage--ink on-ink"><span class="wm" style="font-size:34px"><span class="aeo">AEO</span><span class="can">Canon</span></span></div><div class="cap"><b>A3 · Wordmark, reversed</b><span>dark bg</span></div></div>
+      <div class="panel"><div class="stage"><span class="lockv"><span class="wm" style="font-size:30px"><span class="aeo">AEO</span><span class="can">Canon</span></span><span class="desc">Answer Engine Optimization</span></span></div><div class="cap"><b>B2 · With descriptor, left</b><span>headers</span></div></div>
+      <div class="panel"><div class="stage"><span class="wm" style="font-size:26px;align-items:center"><span class="aeo">AEO</span><span class="can">Canon</span><span class="desc" style="margin-left:13px;border-left:1px solid var(--line-2);padding-left:13px;line-height:1.3;white-space:normal;max-width:9ch">Answer Engine Optimization</span></span></div><div class="cap"><b>B5 · Descriptor, right rule</b><span>footers · signatures</span></div></div>
+    </div>
+  </section>
+
+  <!-- 3 · STACKED & ORIENTATIONS -->
+  <section class="sec" id="s3">
+    <div class="sec__h"><span class="sec__n">03</span><h2>Stacked &amp; orientations</h2></div>
+    <p class="sec__d">Three orientations from the same parts: horizontal (default), vertical/stacked (centered layouts, covers), and the square/avatar (social profiles, lockup in a tile).</p>
+    <div class="grid3">
+      <div class="panel"><div class="stage"><a class="lk"><svg width="38" height="38" viewBox="0 0 50 50" aria-label="mark"><rect x="6" y="11" width="32" height="6" rx="3" fill="var(--accent)"/><rect x="6" y="22" width="24" height="6" rx="3" fill="var(--line-2)"/><rect x="6" y="33" width="16" height="6" rx="3" fill="var(--line-2)"/><circle cx="42" cy="14" r="4.5" fill="var(--accent-2)"/></svg><span class="wm" style="font-size:24px"><span class="aeo">AEO</span><span class="can">Canon</span></span></a></div><div class="cap"><b>Horizontal</b><span>nav · default</span></div></div>
+      <div class="panel"><div class="stage"><a class="lk" style="flex-direction:column;gap:11px"><svg width="46" height="46" viewBox="0 0 50 50"><rect x="6" y="11" width="32" height="6" rx="3" fill="var(--accent)"/><rect x="6" y="22" width="24" height="6" rx="3" fill="var(--line-2)"/><rect x="6" y="33" width="16" height="6" rx="3" fill="var(--line-2)"/><circle cx="42" cy="14" r="4.5" fill="var(--accent-2)"/></svg><span class="lockv" style="align-items:center"><span class="wm" style="font-size:26px"><span class="aeo">AEO</span><span class="can">Canon</span></span><span class="desc">Answer Engine Optimization</span></span></a></div><div class="cap"><b>Vertical / stacked</b><span>covers · cards</span></div></div>
+      <div class="panel"><div class="stage"><div style="width:120px;height:120px;border-radius:22px;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px"><svg width="40" height="40" viewBox="0 0 50 50"><rect x="6" y="11" width="32" height="6" rx="3" fill="var(--accent)"/><rect x="6" y="22" width="24" height="6" rx="3" fill="#3a3f55"/><rect x="6" y="33" width="16" height="6" rx="3" fill="#3a3f55"/><circle cx="42" cy="14" r="4.5" fill="#fff"/></svg><span class="wm" style="font-size:16px"><span class="aeo" style="color:#fff">AEO</span><span class="can">Canon</span></span></div></div><div class="cap"><b>Square / avatar</b><span>social · profile</span></div></div>
+    </div>
+  </section>
+
+  <!-- 4 · SYMBOL & ICONS -->
+  <section class="sec" id="s4">
+    <div class="sec__h"><span class="sec__n">04</span><h2>The symbol &amp; app icons</h2></div>
+    <p class="sec__d">The symbol is the descending “first-result” mark — three ranked bars with the accent flag, meaning <em>the cited, first answer</em>. Use it alone where the wordmark won’t fit. Canonical container: rounded square (radius ≈ 24% of size).</p>
+    <div class="grid4">
+      <div class="panel"><div class="stage"><span style="width:64px;height:64px;border-radius:15px;border:1.5px solid var(--ink);display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 15px"><i style="height:8px;background:var(--accent);border-radius:3px"></i><i style="height:8px;background:var(--line-2);border-radius:3px;width:72%"></i><i style="height:8px;background:var(--line-2);border-radius:3px;width:50%"></i></span></div><div class="cap"><b>C4 · Symbol, outline</b><span>light</span></div></div>
+      <div class="panel"><div class="stage stage--ink"><svg width="64" height="64" viewBox="0 0 64 64"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="#3a3f55"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="#3a3f55"/><circle cx="55" cy="19.5" r="6" fill="#fff"/></svg></div><div class="cap"><b>C6 · Symbol on ink</b><span>dark</span></div></div>
+      <div class="panel"><div class="stage stage--accent"><svg width="64" height="64" viewBox="0 0 64 64"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="#fff"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="rgba(255,255,255,.55)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="rgba(255,255,255,.55)"/></svg></div><div class="cap"><b>Symbol, reversed</b><span>on accent</span></div></div>
+      <div class="panel"><div class="stage"><span style="width:64px;height:64px;border-radius:15px;background:var(--accent);display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 15px"><i style="height:8px;background:#fff;border-radius:3px"></i><i style="height:8px;background:rgba(255,255,255,.55);border-radius:3px;width:72%"></i><i style="height:8px;background:rgba(255,255,255,.55);border-radius:3px;width:50%"></i></span></div><div class="cap"><b>App icon</b><span>accent tile</span></div></div>
+    </div>
+    <div class="specrow" style="margin-top:16px">
+      <span>favicon <b>16 / 32px</b> → bars only, drop the flag</span>
+      <span>app icon <b>≥ 48px</b> → bars + flag</span>
+      <span>container radius <b>24%</b></span>
+      <span>flag uses <b>--accent-2</b></span>
+    </div>
+    <div class="grid4" style="margin-top:16px">
+      <div class="panel"><div class="stage" style="min-height:90px;gap:18px;grid-auto-flow:column;display:flex"><span style="width:16px;height:16px;border-radius:4px;background:var(--ink);display:flex;flex-direction:column;justify-content:center;gap:1.5px;padding:0 3px"><i style="height:2px;background:var(--accent)"></i><i style="height:2px;background:#888;width:72%"></i><i style="height:2px;background:#888;width:50%"></i></span><span style="width:32px;height:32px;border-radius:8px;background:var(--ink);display:flex;flex-direction:column;justify-content:center;gap:3px;padding:0 7px"><i style="height:3px;background:var(--accent);border-radius:2px"></i><i style="height:3px;background:#888;border-radius:2px;width:72%"></i><i style="height:3px;background:#888;border-radius:2px;width:50%"></i></span></div><div class="cap"><b>Favicon</b><span>16 · 32px</span></div></div>
+      <div class="panel"><div class="stage" style="min-height:90px"><span style="width:46px;height:46px;border-radius:50%;background:var(--accent-soft);display:flex;flex-direction:column;justify-content:center;gap:4px;padding:0 12px"><i style="height:5px;background:var(--accent);border-radius:2px"></i><i style="height:5px;background:var(--line-2);border-radius:2px;width:72%"></i><i style="height:5px;background:var(--line-2);border-radius:2px;width:50%"></i></span></div><div class="cap"><b>Avatar</b><span>circular</span></div></div>
+      <div class="panel"><div class="stage" style="min-height:90px"><span class="wm" style="font-size:15px"><span class="aeo">AEO</span><span class="can">Canon</span></span></div><div class="cap"><b>Min wordmark</b><span>110px wide</span></div></div>
+      <div class="panel"><div class="stage" style="min-height:90px"><span style="display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line-2);border-radius:99px;padding:6px 12px"><span style="width:16px;height:16px;display:flex;flex-direction:column;justify-content:center;gap:1.5px"><i style="height:2.5px;background:var(--accent);border-radius:1px"></i><i style="height:2.5px;background:var(--line-2);border-radius:1px;width:70%"></i><i style="height:2.5px;background:var(--line-2);border-radius:1px;width:48%"></i></span><span style="font-family:var(--mono);font-size:11px">Certified</span></span></div><div class="cap"><b>Badge use</b><span>credential pill</span></div></div>
+    </div>
+  </section>
+
+  <!-- 5 · BACKGROUNDS -->
+  <section class="sec" id="s5">
+    <div class="sec__h"><span class="sec__n">05</span><h2>Backgrounds</h2></div>
+    <p class="sec__d">Four approved surfaces. Pick the version with the most contrast; never the colored mark on a busy or low-contrast field.</p>
+    <div class="grid4">
+      <div class="panel"><div class="stage" style="background:#fff"><span class="wm" style="font-size:22px"><span class="aeo" style="color:#181a2b">AEO</span><span class="can">Canon</span></span></div><div class="cap"><b>White</b><span>#ffffff</span></div></div>
+      <div class="panel"><div class="stage stage--soft"><span class="wm" style="font-size:22px"><span class="aeo">AEO</span><span class="can">Canon</span></span></div><div class="cap"><b>Tinted</b><span>--accent-soft</span></div></div>
+      <div class="panel"><div class="stage stage--ink on-ink"><span class="wm" style="font-size:22px"><span class="aeo">AEO</span><span class="can">Canon</span></span></div><div class="cap"><b>Ink</b><span>reversed</span></div></div>
+      <div class="panel"><div class="stage stage--accent on-accent"><span class="wm" style="font-size:22px"><span class="aeo">AEO</span><span class="can">Canon</span></span></div><div class="cap"><b>Accent</b><span>all-white mark</span></div></div>
+    </div>
+  </section>
+
+  <!-- 6 · CLEARSPACE & SIZING -->
+  <section class="sec" id="s6">
+    <div class="sec__h"><span class="sec__n">06</span><h2>Clearspace &amp; minimum size</h2></div>
+    <p class="sec__d">Keep clear space of at least the cap-height of “A” (marked X) on all sides. Don’t crowd the mark with other elements.</p>
+    <div class="grid2">
+      <div class="panel"><div class="stage"><span class="clear"><span class="wm" style="font-size:30px"><span class="aeo">AEO</span><span class="can">Canon</span></span></span></div><div class="cap"><b>Clearspace = X</b><span>X = height of “A”</span></div></div>
+      <div class="panel"><div class="stage" style="gap:30px"><span class="wm" style="font-size:11px"><span class="aeo">AEO</span><span class="can">Canon</span></span><span class="wm" style="font-size:16px"><span class="aeo">AEO</span><span class="can">Canon</span></span><span class="wm" style="font-size:22px"><span class="aeo">AEO</span><span class="can">Canon</span></span></div><div class="cap"><b>Min sizes</b><span>wordmark ≥ 96px · symbol ≥ 16px</span></div></div>
+    </div>
+  </section>
+
+  <!-- 7 · COLOR -->
+  <section class="sec" id="s7">
+    <div class="sec__h"><span class="sec__n">07</span><h2>Color</h2></div>
+    <p class="sec__d">Indigo is the primary accent; the secondary hues are category-coding only (used sparingly, never as a rainbow). These are the exact site tokens — use the CSS variable, not a hard-coded hex.</p>
+    <div class="swrow">
+      <div class="swatch"><div class="chip" style="background:var(--accent)"></div><div class="meta"><b>Indigo · primary</b>--accent</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--accent-2)"></div><div class="meta"><b>Coral · secondary</b>--accent-2</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--c3)"></div><div class="meta"><b>Green</b>--c3 · guides</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--c2)"></div><div class="meta"><b>Amber</b>--c2 · teardowns</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--c4)"></div><div class="meta"><b>Teal</b>--c4 · query</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--c6)"></div><div class="meta"><b>Violet</b>--c6 · templates</div></div>
+    </div>
+    <div class="neutrals">
+      <i style="background:var(--bg)">--bg</i><i style="background:var(--panel)">--panel</i><i style="background:var(--line)">--line</i><i style="background:var(--muted);color:#fff">--muted</i><i style="background:var(--ink-2);color:#fff">--ink-2</i><i style="background:var(--ink);color:#fff">--ink</i>
+    </div>
+  </section>
+
+  <!-- 8 · TYPOGRAPHY -->
+  <section class="sec" id="s8">
+    <div class="sec__h"><span class="sec__n">08</span><h2>Typography</h2></div>
+    <p class="sec__d">Three families, one job each. Newsreader = editorial authority (headlines, the wordmark). Spline Sans = clear UI &amp; body. JetBrains Mono = labels, metadata, code.</p>
+    <div class="grid3">
+      <div class="type"><span class="lab">Newsreader · serif</span><span class="big serif" style="font-family:var(--serif);font-size:40px;font-weight:500">Aa</span><span style="font-family:var(--serif);font-size:15px;color:var(--ink-2)">Headlines, wordmark, pull quotes. Use the italic for accent.</span></div>
+      <div class="type"><span class="lab">Spline Sans · sans</span><span class="big" style="font-family:var(--sans);font-size:40px;font-weight:600">Aa</span><span style="font-family:var(--sans);font-size:15px;color:var(--ink-2)">Body copy, UI, buttons, navigation. 400–700.</span></div>
+      <div class="type"><span class="lab">JetBrains Mono</span><span class="big" style="font-family:var(--mono);font-size:38px">Aa</span><span style="font-family:var(--mono);font-size:13px;color:var(--ink-2)">Eyebrows, metadata, code, data labels.</span></div>
+    </div>
+  </section>
+
+  <!-- 9 · DO / DON'T -->
+  <section class="sec" id="s9">
+    <div class="sec__h"><span class="sec__n">09</span><h2>Do &amp; Don’t</h2></div>
+    <div class="grid4">
+      <div class="rule rule--do"><div class="rule__stage"><span class="wm" style="font-size:22px"><span class="aeo">AEO</span><span class="can">Canon</span></span></div><div class="rule__tag">Bold AEO, italic Canon</div></div>
+      <div class="rule rule--dont"><div class="rule__stage"><span class="wm" style="font-size:22px;font-style:italic"><span class="aeo" style="font-weight:400">AEO</span><span class="can" style="font-style:normal;color:var(--ink)">Canon</span></span></div><div class="rule__tag">Don’t swap the weights/italic</div></div>
+      <div class="rule rule--do"><div class="rule__stage" style="background:var(--ink)"><span class="wm" style="font-size:22px"><span class="aeo" style="color:#fff">AEO</span><span class="can">Canon</span></span></div><div class="rule__tag">Reversed on dark</div></div>
+      <div class="rule rule--dont"><div class="rule__stage" style="background:linear-gradient(45deg,#c33,#3c3,#33c)"><span class="wm" style="font-size:22px"><span class="aeo" style="color:#fff">AEO</span><span class="can" style="color:#fff">Canon</span></span></div><div class="rule__tag">Don’t put on busy/clashing fields</div></div>
+      <div class="rule rule--do"><div class="rule__stage"><span style="width:50px;height:50px;border-radius:12px;background:var(--accent);display:flex;flex-direction:column;justify-content:center;gap:5px;padding:0 13px"><i style="height:6px;background:#fff;border-radius:2px"></i><i style="height:6px;background:rgba(255,255,255,.55);border-radius:2px;width:70%"></i><i style="height:6px;background:rgba(255,255,255,.55);border-radius:2px;width:48%"></i></span></div><div class="rule__tag">Symbol in brand color</div></div>
+      <div class="rule rule--dont"><div class="rule__stage"><span style="width:50px;height:50px;border-radius:12px;background:#e0563f;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:0 13px"><i style="height:6px;background:#fff;border-radius:2px"></i><i style="height:6px;background:rgba(255,255,255,.55);border-radius:2px;width:70%"></i><i style="height:6px;background:rgba(255,255,255,.55);border-radius:2px;width:48%"></i></span></div><div class="rule__tag">Don’t recolor the symbol</div></div>
+      <div class="rule rule--do"><div class="rule__stage"><span class="wm" style="font-size:20px"><span class="aeo">AEO</span><span class="can">Canon</span></span></div><div class="rule__tag">Keep clearspace</div></div>
+      <div class="rule rule--dont"><div class="rule__stage"><span class="wm" style="font-size:20px;letter-spacing:.12em"><span class="aeo">AEO</span><span class="can">Canon</span></span></div><div class="rule__tag">Don’t track / distort</div></div>
+    </div>
+  </section>
+
+  <!-- 10 · COPY-PASTE ASSETS -->
+  <section class="sec" id="s10">
+    <div class="sec__h"><span class="sec__n">10</span><h2>Copy-paste assets</h2></div>
+    <p class="sec__d">Drop these straight into site markup. The wordmark is text (no image needed); the symbol is inline SVG. Both inherit theme via CSS variables.</p>
+    <div class="grid2">
+      <div class="panel" style="background:transparent;border:none"><div class="code" id="code-wm"><button class="copy" data-code="code-wm">Copy</button><span class="c">&lt;!-- wordmark · text --&gt;</span><br>&lt;<span class="t">span</span> class=<span class="s">"wm"</span>&gt;<br>&nbsp;&nbsp;&lt;<span class="t">span</span> class=<span class="s">"aeo"</span>&gt;AEO&lt;/<span class="t">span</span>&gt;<br>&nbsp;&nbsp;&lt;<span class="t">span</span> class=<span class="s">"can"</span>&gt;Canon&lt;/<span class="t">span</span>&gt;<br>&lt;/<span class="t">span</span>&gt;</div></div>
+      <div class="panel" style="background:transparent;border:none"><div class="code" id="code-css"><button class="copy" data-code="code-css">Copy</button><span class="c">/* wordmark css */</span><br>.wm{<span class="t">font-family</span>:var(--serif);<span class="t">display</span>:inline-flex;<span class="t">align-items</span>:baseline}<br>.wm .aeo{<span class="t">font-weight</span>:600}<br>.wm .can{<span class="t">font-style</span>:italic;<span class="t">color</span>:var(--accent);<span class="t">margin-left</span>:.26em}</div></div>
+    </div>
+    <div class="panel" style="background:transparent;border:none;margin-top:16px"><div class="code" id="code-svg"><button class="copy" data-code="code-svg">Copy</button><span class="c">&lt;!-- symbol · inline svg (first-result mark) --&gt;</span><br>&lt;<span class="t">svg</span> width=<span class="s">"32"</span> height=<span class="s">"32"</span> viewBox=<span class="s">"0 0 64 64"</span>&gt;<br>&nbsp;&nbsp;&lt;<span class="t">rect</span> x=<span class="s">"12"</span> y=<span class="s">"16"</span> width=<span class="s">"40"</span> height=<span class="s">"7"</span> rx=<span class="s">"3.5"</span> fill=<span class="s">"var(--accent)"</span>/&gt;<br>&nbsp;&nbsp;&lt;<span class="t">rect</span> x=<span class="s">"12"</span> y=<span class="s">"29"</span> width=<span class="s">"30"</span> height=<span class="s">"7"</span> rx=<span class="s">"3.5"</span> fill=<span class="s">"var(--line-2)"</span>/&gt;<br>&nbsp;&nbsp;&lt;<span class="t">rect</span> x=<span class="s">"12"</span> y=<span class="s">"42"</span> width=<span class="s">"20"</span> height=<span class="s">"7"</span> rx=<span class="s">"3.5"</span> fill=<span class="s">"var(--line-2)"</span>/&gt;<br>&nbsp;&nbsp;&lt;<span class="t">circle</span> cx=<span class="s">"55"</span> cy=<span class="s">"19.5"</span> r=<span class="s">"6"</span> fill=<span class="s">"var(--accent-2)"</span>/&gt;<br>&lt;/<span class="t">svg</span>&gt;</div></div>
+  </section>
+
+  <footer class="foot">AEO Canon · brand resources &amp; guidelines · v1.0 · 2026 · the single source of truth for identity — pull from here, don’t redraw</footer>
+</div>
+</div>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#08090d"/><rect x="30" y="34" width="34" height="7" rx="3" fill="#7b80ff"/><rect x="30" y="46" width="26" height="7" rx="3" fill="#3a3f55"/><rect x="30" y="58" width="18" height="7" rx="3" fill="#3a3f55"/><circle cx="70" cy="37" r="6" fill="#e0563f"/></svg></template>
+
+<script>
+  var KEY='aeo-brand-theme';
+  function apply(t){document.documentElement.setAttribute('data-theme',t);document.getElementById('tgl').textContent=t==='dark'?'◐ Light':'◐ Dark';}
+  apply(localStorage.getItem(KEY)||'light');
+  document.getElementById('tgl').onclick=function(){var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';localStorage.setItem(KEY,n);apply(n);};
+  document.querySelectorAll('.copy').forEach(function(b){b.onclick=function(){var el=document.getElementById(b.dataset.code);var txt=el.innerText.replace(/^Copy/,'').trim();if(navigator.clipboard)navigator.clipboard.writeText(txt).catch(function(){});var o=b.textContent;b.textContent='Copied ✓';setTimeout(function(){b.textContent=o;},1300);};});
+</script>
+</body>
+</html>

@@ -1,9 +1,6 @@
 import Image from "next/image";
 
-/**
- * Captioned image for MDX. `alt` is required (accessibility + schema parity).
- * Pass width/height to avoid layout shift; falls back to a responsive block.
- */
+/** Captioned image for MDX. `alt` required (accessibility + schema parity). */
 export function Figure({
   src,
   alt,
@@ -19,7 +16,7 @@ export function Figure({
 }) {
   return (
     <figure className="my-8">
-      <div className="border-border overflow-hidden rounded-lg border">
+      <div className="border-line overflow-hidden rounded-xl border">
         <Image
           src={src}
           alt={alt}
@@ -30,7 +27,7 @@ export function Figure({
         />
       </div>
       {caption ? (
-        <figcaption className="text-muted-foreground mt-2 text-center text-sm">
+        <figcaption className="text-muted mt-2.5 text-center font-sans text-[12.5px]">
           {caption}
         </figcaption>
       ) : null}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-theme-default="light" data-balance="reference" data-scheme="spectrum" data-headline="hybrid">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect x=%2712%27 y=%2716%27 width=%2740%27 height=%277%27 rx=%273.5%27 fill=%27%235b63d6%27/%3E%3Crect x=%2712%27 y=%2729%27 width=%2730%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Crect x=%2712%27 y=%2742%27 width=%2720%27 height=%277%27 rx=%273.5%27 fill=%27%23c7cbe0%27/%3E%3Ccircle cx=%2755%27 cy=%2719.5%27 r=%276%27 fill=%27%23e0563f%27/%3E%3C/svg%3E">
+<title>Tools — AEO Canon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="lc.css">
+<style>
+  [data-theme="light"]{--bg-2:#eef1f9;--warn:oklch(0.72 0.15 70);--bad:oklch(0.58 0.18 28)}
+  [data-theme="dark"]{--bg-2:#101218;--warn:oklch(0.82 0.14 75);--bad:oklch(0.7 0.16 28)}
+
+  /* featured flagship tool */
+  .flag{display:grid;grid-template-columns:1.05fr .95fr;gap:0;border:1px solid var(--accent);border-radius:20px;overflow:hidden;background:var(--panel);box-shadow:0 30px 70px -44px color-mix(in oklab,var(--accent) 60%,transparent)}
+  .flag__l{padding:34px 36px;display:flex;flex-direction:column;justify-content:center}
+  .flag__tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:8px;margin-bottom:14px}
+  .flag__tag .live{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px color-mix(in oklab,var(--ok) 25%,transparent)}
+  .flag h2{font-size:calc(30px*var(--disp));line-height:1.05;margin-bottom:10px}
+  .flag p{font-size:15px;color:var(--ink-2);line-height:1.55;margin-bottom:20px;max-width:46ch}
+  .flagfield{display:flex;gap:10px;flex-wrap:wrap}
+  .flagfield__in{flex:1;min-width:200px;display:flex;align-items:center;gap:9px;border:1.5px solid var(--line-2);border-radius:10px;padding:12px 14px;background:var(--bg)}
+  .flagfield__in .pfx{font-family:var(--mono);font-size:12px;color:var(--faint)}
+  .flagfield input{flex:1;border:none;background:none;outline:none;font-family:var(--mono);font-size:13px;color:var(--ink);min-width:0}
+  .flag__note{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:12px}
+  .flag__r{background:var(--bg-2);border-left:1px solid var(--line);padding:30px;display:flex;align-items:center;justify-content:center}
+  /* mini engine readout visual */
+  .readout{width:100%;max-width:300px;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .readout__bar{padding:10px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10.5px;color:var(--muted);display:flex;align-items:center;gap:7px}
+  .readout__bar .d{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  .readout__row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--line);font-size:13px}
+  .readout__row:last-child{border:none}
+  .readout__row .eng{color:var(--ink-2)}
+  .readout__row .st{font-family:var(--mono);font-size:10.5px;padding:2px 8px;border-radius:5px}
+  .st--named{color:var(--ok);background:color-mix(in oklab,var(--ok) 14%,transparent)}
+  .st--part{color:var(--warn);background:color-mix(in oklab,var(--warn) 16%,transparent)}
+  .st--no{color:var(--bad);background:color-mix(in oklab,var(--bad) 13%,transparent)}
+
+  /* tool grid */
+  .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .tool-c{position:relative;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:24px;display:flex;flex-direction:column;gap:11px;text-decoration:none;color:var(--ink);border-top:4px solid var(--tc);transition:transform .15s,box-shadow .15s,border-color .15s}
+  .tool-c.live:hover{transform:translateY(-3px);box-shadow:0 22px 46px -32px rgba(0,0,0,.4)}
+  .tool-c.soon{opacity:.72;cursor:default}
+  .tool-c__icn{width:44px;height:44px;border-radius:11px;background:color-mix(in oklab,var(--tc) 14%,transparent);color:var(--tc);display:grid;place-items:center}
+  .tool-c h3{font-size:19px;line-height:1.15}
+  .tool-c p{font-size:13.5px;color:var(--muted);line-height:1.5;flex:1}
+  .tool-c__foot{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+  .badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:99px}
+  .badge--live{color:var(--ok);background:color-mix(in oklab,var(--ok) 14%,transparent)}
+  .badge--beta{color:var(--warn);background:color-mix(in oklab,var(--warn) 16%,transparent)}
+  .badge--soon{color:var(--muted);background:color-mix(in oklab,var(--muted) 14%,transparent)}
+  .tool-c__go{font-family:var(--mono);font-size:11.5px;color:var(--tc)}
+  .tool-c.soon .tool-c__go{color:var(--faint)}
+
+  /* posts / content about AI tools */
+  .postlede{max-width:62ch;font-size:16px;color:var(--ink-2);margin-bottom:30px}
+  .feature-post{display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:center;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--paper);margin-bottom:24px}
+  .feature-post__media{background:repeating-linear-gradient(45deg,var(--line) 0 1px,transparent 1px 11px),var(--bg-2);min-height:240px;display:grid;place-items:center;color:var(--faint);font-family:var(--mono);font-size:11px;text-align:center;padding:20px}
+  .feature-post__body{padding:30px 34px 30px 0}
+  .feature-post .cat{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--c4)}
+  .feature-post h3{font-size:26px;line-height:1.1;margin:10px 0 10px}
+  .feature-post p{font-size:14.5px;color:var(--ink-2);line-height:1.55;margin-bottom:14px;max-width:50ch}
+  .feature-post .by{font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;gap:14px}
+
+  @media(max-width:920px){.flag,.feature-post{grid-template-columns:1fr}.flag__r{border-left:none;border-top:1px solid var(--line)}.tools{grid-template-columns:1fr 1fr}.feature-post__body{padding:24px}}
+  @media(max-width:560px){.tools{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hubbar"><div class="hubbar__in"><a href="../index.html">← All directions</a><span>THE RECORD · TOOLS</span><span class="hubbar__sp">Interactive tools + AI-tool coverage</span></div></div>
+<nav class="nav"><div class="nav__in">
+  <a class="brand" href="home.html"><span class="brand__mark"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg></span><span class="brand__wm"><span class="bm-a">AEO</span><span class="bm-c">Canon</span></span></a>
+  <div class="nav__links"><a href="home.html">Overview</a><a href="canon.html">The Canon</a><a href="learn.html">AEO school</a><a href="tool.html" class="active">Tools</a><a href="industries.html">Industries</a><a href="pricing.html">Pricing</a></div>
+  <div class="nav__right"><a class="btn btn--ghost navlink-az" href="analyzer.html">Free Analyzer</a><a class="btn btn--primary" href="pricing.html">Done for you</a></div>
+</div></nav>
+
+<header class="hero" style="padding:calc(38px*var(--u)) 0 calc(18px*var(--u))"><div class="wrap">
+  <div class="kicker">Free interactive tools</div>
+  <h1 class="display" style="margin-top:14px;font-size:calc(clamp(32px,4.8vw,54px)*var(--disp))">See what AI says about you — <em>then fix it.</em></h1>
+  <p class="lede" style="margin-top:16px;max-width:62ch">A free toolkit to diagnose, build, and track your AI search visibility. Start with the AEO Analyzer; pick up the rest as you need them. No signup to run any of them.</p>
+</div></header>
+
+<div class="wrap" style="padding-bottom:80px">
+
+  <!-- FLAGSHIP -->
+  <section style="margin-top:calc(8px*var(--u))">
+    <div class="flag">
+      <div class="flag__l">
+        <span class="flag__tag"><span class="live"></span> Flagship tool · Live</span>
+        <h2>AEO Analyzer</h2>
+        <p>Enter your site and get a 0–100 AI-visibility score — plus exactly how ChatGPT, Perplexity, and Google AI describe and recommend you right now.</p>
+        <form class="flagfield" id="flagForm">
+          <span class="flagfield__in"><span class="pfx">https://</span><input id="flagUrl" placeholder="yourbusiness.com" inputmode="url"></span>
+          <button class="btn btn--primary btn--lg" type="submit">Analyze →</button>
+        </form>
+        <p class="flag__note">Free · no email to see your score · ~60 seconds</p>
+      </div>
+      <div class="flag__r">
+        <div class="readout">
+          <div class="readout__bar"><span class="d"></span> live readout · sample</div>
+          <div class="readout__row"><span class="eng">ChatGPT</span><span class="st st--part">Partial</span></div>
+          <div class="readout__row"><span class="eng">Perplexity</span><span class="st st--no">Absent</span></div>
+          <div class="readout__row"><span class="eng">Google AI Overviews</span><span class="st st--no">Absent</span></div>
+          <div class="readout__row"><span class="eng">Gemini</span><span class="st st--part">Partial</span></div>
+          <div class="readout__row"><span class="eng">Claude</span><span class="st st--named">Named</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOL GRID -->
+  <section class="section">
+    <div class="section__head"><h2>The toolkit</h2><span class="eyebrow">Pick what you need</span></div>
+    <div class="tools">
+      <a class="tool-c live" href="analyzer.html" style="--tc:var(--c5)">
+        <div class="tool-c__icn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>AEO Analyzer</h3>
+        <p>Your AI-visibility score and how five engines describe you. The place to start.</p>
+        <div class="tool-c__foot"><span class="badge badge--live">● Live</span><span class="tool-c__go">Launch →</span></div>
+      </a>
+      <a class="tool-c live" href="#" style="--tc:var(--c6)">
+        <div class="tool-c__icn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 8h10M7 12h10M7 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/></svg></div>
+        <h3>Schema Generator</h3>
+        <p>Generate clean LocalBusiness &amp; Service structured data — copy-paste ready.</p>
+        <div class="tool-c__foot"><span class="badge badge--live">● Live</span><span class="tool-c__go">Launch →</span></div>
+      </a>
+      <a class="tool-c live" href="#" style="--tc:var(--c3)">
+        <div class="tool-c__icn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Content Scorer</h3>
+        <p>Paste a draft or URL; get a citability score for answer-first structure, stats, and quotes.</p>
+        <div class="tool-c__foot"><span class="badge badge--live">● Live</span><span class="tool-c__go">Launch →</span></div>
+      </a>
+      <a class="tool-c live" href="#" style="--tc:var(--c1)">
+        <div class="tool-c__icn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Competitive Analyzer</h3>
+        <p>See who AI recommends instead of you — and the gap you’d need to close to win the answer.</p>
+        <div class="tool-c__foot"><span class="badge badge--live">● Live</span><span class="tool-c__go">Launch →</span></div>
+      </a>
+      <div class="tool-c soon" style="--tc:var(--c4)">
+        <div class="tool-c__icn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z" stroke="currentColor" stroke-width="2"/></svg></div>
+        <h3>Prompt Simulator</h3>
+        <p>See the exact words ChatGPT and Perplexity use about your business across real prompts.</p>
+        <div class="tool-c__foot"><span class="badge badge--beta">Beta soon</span><span class="tool-c__go">Notify me</span></div>
+      </div>
+      <div class="tool-c soon" style="--tc:var(--c2)">
+        <div class="tool-c__icn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 2v4M16 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Citation Tracker</h3>
+        <p>Monitor your share-of-voice across all five engines over time, on a fixed prompt set.</p>
+        <div class="tool-c__foot"><span class="badge badge--soon">Soon</span><span class="tool-c__go">Notify me</span></div>
+      </div>
+      <div class="tool-c soon" style="--tc:var(--accent)">
+        <div class="tool-c__icn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 1 0 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Crawler Access Checker</h3>
+        <p>Is GPTBot, ClaudeBot, or PerplexityBot blocked from your site? Find out in one click.</p>
+        <div class="tool-c__foot"><span class="badge badge--soon">Soon</span><span class="tool-c__go">Notify me</span></div>
+      </div>
+      <div class="tool-c soon" style="--tc:var(--c6)">
+        <div class="tool-c__icn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
+        <h3>Question Finder</h3>
+        <p>Surface the real questions your customers ask AI in your niche — your content backlog.</p>
+        <div class="tool-c__foot"><span class="badge badge--soon">Soon</span><span class="tool-c__go">Notify me</span></div>
+      </div>
+    </div>
+    <div class="convert" style="margin-top:24px">
+      <div><span class="k">Rather not DIY?</span><h4>We run every one of these for you.</h4><p>The done-for-you service uses this exact toolkit to rebuild your site and keep you cited — month after month.</p></div>
+      <a class="btn btn--primary" href="pricing.html">See plans →</a>
+    </div>
+  </section>
+
+  <!-- CONTENT: posts about AI tools -->
+  <section class="section">
+    <div class="section__head"><h2>On AI tools</h2><a class="seeall" href="learn.html">All articles →</a></div>
+    <p class="postlede">We track the tools your customers actually use — the assistants, the search engines, the trackers — and what each shift means for getting your business cited. Reviews and analysis, not hype.</p>
+
+    <article class="feature-post">
+      <div class="feature-post__media">[ COMPARISON CHART ]<br>citation rates by engine</div>
+      <div class="feature-post__body">
+        <span class="cat">Trend analysis · AI engines</span>
+        <h3>ChatGPT vs Perplexity vs Gemini: which actually cites local businesses?</h3>
+        <p>We ran 4,000 local queries across the major assistants and measured who names real businesses — and who defaults to directories. The spread is wider than anyone expects.</p>
+        <div class="by"><span>By Dana Reyes</span><span>16 min</span><span>Updated this week</span></div>
+      </div>
+    </article>
+
+    <div class="grid3">
+      <a class="acard" href="article.html"><span class="cat" style="color:var(--c3)">Tool review</span><h4>We tested 8 “AI visibility” trackers. Most measure the wrong thing.</h4><p>What to look for in a citation tracker — and the metrics that are pure vanity.</p><div class="acard__foot"><span>11 min</span><span>Review</span></div></a>
+      <a class="acard" href="article.html"><span class="cat" style="color:var(--c4)">What it means</span><h4>Claude added web search. Here’s what changes for AEO.</h4><p>A new assistant with real-time retrieval enters the mix — and it reads sources differently.</p><div class="acard__foot"><span>8 min</span><span>Analysis</span></div></a>
+      <a class="acard" href="article.html"><span class="cat" style="color:var(--c5)">First data</span><h4>Google AI Mode: early numbers on who gets cited</h4><p>The first measured look at how AI Mode picks its sources for local and service queries.</p><div class="acard__foot"><span>13 min</span><span>Research</span></div></a>
+      <a class="acard" href="article.html"><span class="cat" style="color:var(--c6)">How-to</span><h4>The free tools we use to see our own AI citations</h4><p>A practical stack for checking what the assistants say about you — no budget required.</p><div class="acard__foot"><span>9 min</span><span>Guide</span></div></a>
+      <a class="acard" href="article.html"><span class="cat" style="color:var(--c2)">Opinion</span><h4>Why “rank tracking” tools are becoming obsolete</h4><p>Position tracking measured a world of ten links. That world is shrinking fast.</p><div class="acard__foot"><span>7 min</span><span>Essay</span></div></a>
+      <a class="acard" href="article.html"><span class="cat" style="color:var(--c1)">Comparison</span><h4>Schema generators, ranked: which output do engines prefer?</h4><p>Not all structured-data tools are equal. We compared the output of the popular ones.</p><div class="acard__foot"><span>10 min</span><span>Review</span></div></a>
+    </div>
+  </section>
+</div>
+
+<footer class="foot"><div class="wrap"><div class="foot__grid">
+  <div><a class="brand" href="home.html" style="margin-bottom:16px"><span class="brand__mark"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg></span><span class="brand__wm"><span class="bm-a">AEO</span><span class="bm-c">Canon</span></span></a><p class="foot__about">Free tools to diagnose and build your AI search visibility — plus honest coverage of the AI tools your customers use.</p></div>
+  <div><h5>Tools</h5><ul><li><a href="analyzer.html">AEO Analyzer</a></li><li><a href="#">Schema Generator</a></li><li><a href="#">Content Scorer</a></li></ul></div>
+  <div><h5>The canon</h5><ul><li><a href="canon.html">The framework</a></li><li><a href="learn.html">AEO school</a></li><li><a href="whitepaper.html">Research</a></li></ul></div>
+  <div><h5>Work with us</h5><ul><li><a href="pricing.html">Pricing</a></li><li><a href="analyzer.html">Free audit</a></li></ul></div>
+</div></div></footer>
+
+<script src="../shared/theme.js"></script>
+<script>
+  // flagship URL field → deep-link into the full audit tool
+  document.getElementById('flagForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=document.getElementById('flagUrl').value.trim();
+    var base='analyzer.html';
+    location.href = v ? base+'#start='+encodeURIComponent(v) : base;
+  });
+  // soft "notify me" for upcoming tools
+  document.querySelectorAll('.tool-c.soon').forEach(function(c){
+    c.addEventListener('click',function(){
+      var go=c.querySelector('.tool-c__go');var o=go.textContent;go.textContent='On the list ✓';setTimeout(function(){go.textContent=o;},1400);
+    });
+  });
+</script>
+<button class="theme-fab" data-theme-toggle aria-label="Toggle dark mode" title="Toggle light/dark">◐</button>
+</body>
+</html>

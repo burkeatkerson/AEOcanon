@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEO Canon — Is your business visible to AI search?</title>
+<meta name="description" content="Free audit: see how ChatGPT, Perplexity, and Google AI describe and recommend your business — then get a clear plan to get cited.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- ===== NAV (global shell) ===== -->
+<nav class="nav"><div class="nav__in">
+  <a class="wm" href="#top" aria-label="AEO Canon home">
+    <svg class="wm__mark" width="30" height="30" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg>
+    <span class="wm__txt"><span class="a">AEO</span><span class="c">Canon</span></span>
+  </a>
+  <div class="nav__links">
+    <a href="#how">How it works</a>
+    <a href="#library">Library</a>
+    <a href="#paths">Learn</a>
+    <a href="#industries">Industries</a>
+  </div>
+  <div class="nav__right">
+    <button class="iconbtn" data-theme-toggle aria-label="Toggle dark mode"><span data-theme-label>Dark</span></button>
+    <a class="btn btn--primary" href="#audit" data-start-audit>Free audit</a>
+  </div>
+</div></nav>
+
+<main id="top">
+  <!-- ===== HERO with audit entry ===== -->
+  <header class="hero"><div class="wrap"><div class="hero__grid">
+    <div>
+      <div class="eyebrow reveal in">Free AI-visibility audit · no signup to see results</div>
+      <h1 class="display reveal in">When someone asks AI <em>“who should I hire?”</em> — does it say your name?</h1>
+      <p class="lede reveal in">Your customers stopped scrolling through ten links. Now they ask ChatGPT, Perplexity, and Google AI — and trust the answer. See how those engines describe your business today, and get a clear plan to become the one they recommend.</p>
+      <div class="hero__trust reveal in">
+        <span><i class="dot"></i> <b>Results first</b> — no email to see your score</span>
+        <span><i class="dot"></i> <b>~60 seconds</b></span>
+        <span><i class="dot"></i> <b>Plain English</b>, no jargon</span>
+      </div>
+    </div>
+
+    <!-- ===== AUDIT TOOL ===== -->
+    <section class="hero__card audit reveal in" id="audit" aria-label="Free website audit tool">
+      <div class="audit__bar"><i id="audit-progress"></i></div>
+      <div class="audit__body">
+        <div id="audit-steps">
+
+          <!-- STEP 1 · URL -->
+          <div class="astep" data-step="url">
+            <div class="astep__eyebrow"><span class="n">01</span><span class="eyebrow">Start here</span></div>
+            <h2>Check your AI visibility</h2>
+            <p class="sub">Enter your website. We’ll scan how AI search sees you — free, instantly.</p>
+            <form id="url-form" novalidate>
+              <div class="urlfield">
+                <span class="urlfield__in"><span class="pfx">https://</span>
+                  <label for="url-input" class="sr-only" style="position:absolute;left:-9999px">Your website URL</label>
+                  <input id="url-input" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.com" aria-describedby="url-error">
+                </span>
+                <button class="btn btn--primary btn--lg" type="submit">Run free audit <span class="btn__arrow">→</span></button>
+              </div>
+              <p class="field-error" id="url-error" hidden role="alert">Please enter a valid website, like yourbusiness.com</p>
+              <p class="urlnote"><span class="dot" style="background:var(--accent)"></span> We check ChatGPT, Perplexity &amp; Google AI Overviews</p>
+            </form>
+          </div>
+
+          <!-- STEP 2 · SCAN (loading) -->
+          <div class="astep" data-step="scan" aria-live="polite">
+            <div class="astep__eyebrow"><span class="n">02</span><span class="eyebrow">Scanning</span></div>
+            <h2>Reading <span class="scan-host" id="scan-host">your-site.com</span>…</h2>
+            <p class="sub">Checking the four things AI engines look for. This takes a few seconds.</p>
+            <div class="scan-lines" id="scan-lines">
+              <div class="scan-line"><span class="ck">✓</span> Fetching pages &amp; checking crawler access</div>
+              <div class="scan-line"><span class="ck">✓</span> Looking for structured data &amp; schema</div>
+              <div class="scan-line"><span class="ck">✓</span> Testing how 3 AI engines describe you</div>
+              <div class="scan-line"><span class="ck">✓</span> Measuring answer-readiness &amp; freshness</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:11px;margin-top:16px;font-family:var(--mono);font-size:12.5px;color:var(--muted)">
+              <span class="scan-spinner" aria-hidden="true"></span> Compiling your scorecard…
+            </div>
+          </div>
+
+          <!-- STEP 3 · SCORE -->
+          <div class="astep" data-step="score">
+            <div class="astep__eyebrow"><span class="n">03</span><span class="eyebrow">Your result</span></div>
+            <div class="scorecard">
+              <div class="score-ring" id="score-ring" role="img" aria-label="AI visibility score">
+                <div class="score-ring__inner"><div class="score-ring__num" id="score-num">0</div><div class="score-ring__of">/ 100</div></div>
+              </div>
+              <div>
+                <span class="scorecard__band" id="score-band">—</span>
+                <h2 style="font-size:24px">Your AI visibility score</h2>
+                <div class="scorecard__host" id="score-host">your-site.com</div>
+              </div>
+            </div>
+            <div class="score-pillars" id="score-pillars"></div>
+            <button class="btn btn--primary btn--block btn--lg" id="to-questions">See what to fix <span class="btn__arrow">→</span></button>
+            <p class="urlnote" style="justify-content:center;margin-top:14px"><span class="dot" style="background:var(--ok)"></span> No email needed yet — your full report is two short questions away</p>
+          </div>
+
+          <!-- STEP 4 · QUESTIONS -->
+          <div class="astep" data-step="questions">
+            <div class="astep__eyebrow"><span class="n">04</span><span class="eyebrow">Personalize</span></div>
+            <h2>A couple of quick things</h2>
+            <p class="sub">So your report fits your business. We auto-detected some of this — just confirm.</p>
+
+            <div class="detect">
+              <div class="detect__h"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Auto-detected about your site</div>
+              <div class="detect__chips">
+                <span class="chip"><span class="tick">✓</span> Industry: <b id="detect-industry">—</b></span>
+                <span class="chip"><span class="tick">✓</span> Built on <b id="detect-platform">—</b></span>
+                <span class="chip"><span class="tick">✓</span> <b id="detect-pages">—</b></span>
+              </div>
+            </div>
+
+            <form id="q-form" novalidate>
+              <div class="fieldrow">
+                <label for="q-industry">Your industry <span class="hint">— change if we got it wrong</span></label>
+                <select class="input" id="q-industry">
+                  <option>Home services</option><option>Auto &amp; repair</option><option>Professional services</option>
+                  <option>Food &amp; hospitality</option><option>Local retail</option><option>Fitness &amp; wellness</option><option>Other</option>
+                </select>
+              </div>
+              <div class="fieldrow">
+                <label for="q-area">Where are your customers? <span class="hint">— city or region (optional)</span></label>
+                <input class="input" id="q-area" type="text" placeholder="e.g. Austin, TX">
+              </div>
+              <div class="fieldrow">
+                <label>What matters most right now?</label>
+                <div class="choice-group" id="q-goal" data-value="More calls" role="group" aria-label="Primary goal">
+                  <button type="button" class="choice on" data-value="More calls" aria-pressed="true">More calls &amp; leads</button>
+                  <button type="button" class="choice" data-value="Beat competitors" aria-pressed="false">Beat competitors</button>
+                  <button type="button" class="choice" data-value="Understand AI search" aria-pressed="false">Understand AI search</button>
+                </div>
+              </div>
+              <button class="btn btn--primary btn--block btn--lg" type="submit">Build my report <span class="btn__arrow">→</span></button>
+            </form>
+          </div>
+
+          <!-- STEP 5 · EMAIL (light) -->
+          <div class="astep" data-step="email">
+            <div class="astep__eyebrow"><span class="n">05</span><span class="eyebrow">Almost there</span></div>
+            <h2>Where should we send the PDF?</h2>
+            <p class="sub">Your full report is ready below. Add your email for a clean, shareable PDF copy — or skip and read it now.</p>
+            <form id="email-form" novalidate>
+              <div class="fieldrow">
+                <label for="email-input" class="sr-only" style="position:absolute;left:-9999px">Email address</label>
+                <input class="input" id="email-input" type="email" autocomplete="email" placeholder="you@business.com" aria-describedby="email-error">
+                <p class="field-error" id="email-error" hidden role="alert">Please enter a valid email address.</p>
+              </div>
+              <button class="btn btn--primary btn--block btn--lg" type="submit">Email me the PDF &amp; show report <span class="btn__arrow">→</span></button>
+              <div style="text-align:center;margin-top:12px"><button type="button" class="linkbtn" id="email-skip">Skip — just show my report</button></div>
+              <div class="email-trust">
+                <span><span class="dot" style="background:var(--ok)"></span> No spam, ever</span>
+                <span><span class="dot" style="background:var(--ok)"></span> One email, then it’s yours</span>
+              </div>
+            </form>
+          </div>
+
+          <!-- STEP 6 · REPORT -->
+          <div class="astep" data-step="report">
+            <div class="astep__eyebrow"><span class="n">06</span><span class="eyebrow">Your report</span></div>
+            <div class="report__head">
+              <div>
+                <h2 style="font-size:26px">AI visibility report</h2>
+                <div class="report__meta"><span id="report-host">your-site.com</span> · <span id="report-meta">—</span></div>
+              </div>
+              <div class="report__score"><span class="n" id="report-score">0</span><span class="of">/ 100 · <span id="report-band">—</span></span></div>
+            </div>
+
+            <!-- streaming AI summary -->
+            <div class="ai-summary-box">
+              <div class="h"><svg class="spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.6 4.2 2.2 5.8 6.4 6.4-4.2.6-5.8 2.2-6.4 6.4-.6-4.2-2.2-5.8-6.4-6.4C9.8 7.8 11.4 6.2 12 2Z"/></svg> AI-written summary</div>
+              <div id="ai-summary" aria-live="polite"></div><span id="ai-cursor" hidden aria-hidden="true"></span>
+            </div>
+
+            <!-- findings: quick vs structural -->
+            <div class="findings-cols">
+              <div class="col-quick">
+                <div class="findings-col__h"><span class="tag"></span> Quick fixes · do this week</div>
+                <div id="fix-quick"></div>
+              </div>
+              <div class="col-struct">
+                <div class="findings-col__h"><span class="tag"></span> Structural · bigger projects</div>
+                <div id="fix-structural"></div>
+              </div>
+            </div>
+
+            <!-- booking CTA -->
+            <div class="report__cta">
+              <div>
+                <h3>Want us to handle it?</h3>
+                <p>Book a free 20-minute call. We’ll walk your report and map the fastest path to getting cited.</p>
+              </div>
+              <a class="btn btn--primary btn--lg" href="#book">Book a free call <span class="btn__arrow">→</span></a>
+            </div>
+            <div class="report__actions">
+              <button class="linkbtn" id="dl-pdf">⬇ Download PDF</button>
+              <button class="linkbtn" data-restart>↺ Audit another site</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div></div></header>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="section" id="how"><div class="wrap">
+    <div class="section__head reveal">
+      <div class="eyebrow">How it works</div>
+      <h2>From “invisible” to “the recommended answer.”</h2>
+      <p>AI search doesn’t rank ten links — it gives one answer. We make sure that answer is you, with a plan you can actually follow.</p>
+    </div>
+    <div class="steps3">
+      <div class="step reveal"><div class="step__icn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="step__n">01</div><h3>See where you stand</h3><p>Run the free audit. In about a minute you’ll know exactly how AI engines describe and recommend your business today.</p></div>
+      <div class="step reveal"><div class="step__icn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="step__n">02</div><h3>Get a clear plan</h3><p>Your report separates quick wins you can do this week from the structural work that compounds over a quarter.</p></div>
+      <div class="step reveal"><div class="step__icn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="step__n">03</div><h3>Do it, or we do it</h3><p>Follow the plan yourself with our free library — or hand us your website and we’ll rebuild it to get cited.</p></div>
+    </div>
+  </div></section>
+
+  <!-- ===== WHY IT MATTERS (metrics) ===== -->
+  <section class="section"><div class="wrap">
+    <div class="section__head reveal">
+      <div class="eyebrow">Why it matters</div>
+      <h2>The search your customers use already changed.</h2>
+    </div>
+    <div class="metric-band reveal">
+      <div class="metric"><div class="n">71%</div><div class="l">of local searches now show an AI answer before any link</div></div>
+      <div class="metric"><div class="n">3.2×</div><div class="l">more likely to be hired when AI names you</div></div>
+      <div class="metric"><div class="n">58%</div><div class="l">of a local AI answer comes from third-party sources, not your site</div></div>
+      <div class="metric"><div class="n">$0</div><div class="l">to find out what AI says about you today</div></div>
+    </div>
+  </div></section>
+
+  <!-- ===== WHAT YOU GET ===== -->
+  <section class="section" id="library"><div class="wrap">
+    <div class="section__head reveal">
+      <div class="eyebrow">Built to teach, not to pitch</div>
+      <h2>Everything you need to get found — most of it free.</h2>
+      <p>We give value before asking for anything. The report appears before any email; the library is open to everyone.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="fcard reveal"><div class="fcard__icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4zM4 9h16" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div><h3>200+ article library</h3><p>Plain-English guides on getting cited by AI, searchable and filterable by your industry and skill level.</p></div>
+      <div class="fcard reveal"><div class="fcard__icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3 3 8l9 5 9-5-9-5ZM3 8v8l9 5 9-5V8" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div><h3>Guided learning paths</h3><p>Step-by-step courses that take you from “what is AI search?” to a working visibility system.</p></div>
+      <div class="fcard reveal"><div class="fcard__icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="11" r="2.5" stroke="currentColor" stroke-width="2"/></svg></div><h3>Industry hubs</h3><p>Hubs for home services, auto, food, professional services and more — tuned to how your customers ask.</p></div>
+    </div>
+  </div></section>
+
+  <!-- ===== CLOSING CTA ===== -->
+  <section class="closer" id="book"><div class="wrap">
+    <div class="closer__box reveal">
+      <h2>Find out what AI says about you — <em>free.</em></h2>
+      <p>No signup to see your score. Just your website and about a minute.</p>
+      <a class="btn btn--primary btn--lg" href="#audit" data-start-audit>Run my free audit <span class="btn__arrow">→</span></a>
+    </div>
+  </div></section>
+</main>
+
+<!-- ===== FOOTER (global shell) ===== -->
+<footer class="foot"><div class="wrap">
+  <div class="foot__grid">
+    <div>
+      <a class="wm" href="#top"><svg class="wm__mark" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="7" rx="3.5" fill="var(--accent)"/><rect x="12" y="29" width="30" height="7" rx="3.5" fill="var(--line-2)"/><rect x="12" y="42" width="20" height="7" rx="3.5" fill="var(--line-2)"/><circle cx="55" cy="19.5" r="6" fill="var(--accent-2)"/></svg><span class="wm__txt"><span class="a">AEO</span><span class="c">Canon</span></span></a>
+      <p class="foot__about">We help small businesses get found, cited, and recommended by AI search — with a free library and a website rebuild when you want it done for you.</p>
+    </div>
+    <div><h5>Product</h5><ul><li><a href="#audit" data-start-audit>Free audit</a></li><li><a href="#how">How it works</a></li><li><a href="#book">Book a call</a></li></ul></div>
+    <div><h5>Learn</h5><ul><li><a href="#library">Article library</a></li><li><a href="#paths">Learning paths</a></li><li><a href="#industries">Industries</a></li></ul></div>
+    <div><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="#">Privacy</a></li></ul></div>
+  </div>
+  <div class="foot__legal"><span>© 2026 AEO Canon</span><span>Answer Engine Optimization, done right.</span></div>
+</div></footer>
+
+<script src="audit.js"></script>
+<script>
+  // PDF action stub
+  document.getElementById('dl-pdf').addEventListener('click', function(){ window.print(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEO Canon — Visual Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --serif:'Newsreader',Georgia,serif; --sans:'Spline Sans',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+}
+/* matched to the live site — Spectrum scheme */
+[data-theme="light"]{
+  --bg:#f4f6fb; --bg-2:#eef1f9; --panel:#ffffff; --ink:#181a2b; --ink-2:#3d4163; --muted:#6b6f8c; --faint:#9a9eb8;
+  --line:#e6e8f3; --line-2:#d7daec;
+  --accent:oklch(0.55 0.19 266); --accent-2:oklch(0.56 0.13 18); --accent-soft:oklch(0.95 0.03 266);
+  --c1:oklch(0.6 0.18 25); --c2:oklch(0.7 0.13 70); --c3:oklch(0.58 0.14 155);
+  --c4:oklch(0.56 0.11 205); --c5:oklch(0.55 0.18 266); --c6:oklch(0.54 0.17 305);
+  --ok:oklch(0.58 0.14 155); --warn:oklch(0.62 0.15 60); --bad:oklch(0.56 0.16 25);
+}
+[data-theme="dark"]{
+  --bg:#08090d; --bg-2:#101218; --panel:#15171f; --ink:#f7f9fd; --ink-2:#d2d6e4; --muted:#8a8fa6; --faint:#585d74;
+  --line:#22252f; --line-2:#2e323d;
+  --accent:oklch(0.74 0.15 264); --accent-2:oklch(0.74 0.14 22); --accent-soft:oklch(0.3 0.07 264);
+  --c1:oklch(0.72 0.16 25); --c2:oklch(0.8 0.13 72); --c3:oklch(0.74 0.13 155);
+  --c4:oklch(0.74 0.11 205); --c5:oklch(0.72 0.16 266); --c6:oklch(0.7 0.16 305);
+  --ok:oklch(0.74 0.13 155); --warn:oklch(0.8 0.13 75); --bad:oklch(0.7 0.16 28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background-color:var(--bg)}
+body{background-color:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.page{background-color:var(--bg);color:var(--ink);min-height:100vh}
+a{color:inherit}
+::selection{background:var(--accent-soft)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:80;background:color-mix(in oklab,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top__in{max-width:1180px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;gap:20px}
+.logo{font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:-.01em}
+.logo b{color:var(--accent)}
+.top__tag{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em}
+.top__right{margin-left:auto;display:flex;gap:10px;align-items:center}
+.jump{font-family:var(--mono);font-size:11px;color:var(--ink-2);border:1px solid var(--line-2);background:var(--panel);border-radius:8px;padding:8px 10px;outline:none}
+.tgl{font-family:var(--mono);font-size:11px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink);border-radius:8px;padding:8px 14px;cursor:pointer}
+.tgl:hover{border-color:var(--accent);color:var(--accent)}
+
+/* page header */
+.phead{padding:70px 0 40px;border-bottom:1px solid var(--line)}
+.phead .k{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+.phead h1{font-family:var(--serif);font-weight:500;font-size:clamp(38px,6vw,68px);line-height:1.02;letter-spacing:-.02em;max-width:18ch}
+.phead p{font-size:19px;color:var(--ink-2);max-width:60ch;margin-top:20px}
+.phead .meta{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;gap:24px;margin-top:26px;flex-wrap:wrap}
+.phead .meta b{color:var(--ink)}
+
+/* section scaffolding */
+.sec{padding:64px 0;border-bottom:1px solid var(--line);scroll-margin-top:70px}
+.sec__head{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;flex-wrap:wrap}
+.sec__num{font-family:var(--mono);font-size:13px;color:var(--accent)}
+.sec__head h2{font-family:var(--serif);font-weight:500;font-size:32px;letter-spacing:-.01em}
+.sec__head p{font-size:15px;color:var(--muted);flex-basis:100%;max-width:70ch}
+.spec{margin-bottom:26px}
+.spec__l{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.spec__l::before{content:"";width:6px;height:6px;background:var(--accent);border-radius:50%}
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.frame{border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden}
+.pad{padding:28px}
+
+/* type helpers */
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.serif{font-family:var(--serif)}
+h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;line-height:1.1}
+.btn{font-family:var(--sans);font-weight:500;font-size:14px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);border-radius:9px;padding:11px 18px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn--ghost{background:none;color:var(--ink)}.btn--ghost:hover{background:none;border-color:var(--accent);color:var(--accent)}
+.btn--sm{padding:8px 13px;font-size:12.5px}
+.ph-img{background:repeating-linear-gradient(45deg,var(--line) 0 1px,transparent 1px 10px),var(--bg-2);border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;color:var(--faint);font-family:var(--mono);font-size:11px;text-align:center;padding:18px}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+
+/* ===== 1. HERO TREATMENTS ===== */
+.hero-type h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,44px);line-height:1.04;letter-spacing:-.02em;margin:14px 0}
+.byl{font-family:var(--mono);font-size:11.5px;color:var(--muted);display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.byl .av{width:30px;height:30px;border-radius:50%;background:var(--accent-soft);border:1px solid var(--line-2);display:grid;place-items:center;font-family:var(--serif);font-style:italic;color:var(--accent);font-size:14px}
+.hero-split{display:grid;grid-template-columns:1.2fr 1fr;gap:0}
+.hero-split>div{padding:30px}.hero-split .ph-img{min-height:100%;border:none;border-radius:0}
+.hero-data .big{font-family:var(--serif);font-size:74px;line-height:.9;color:var(--accent);letter-spacing:-.03em}
+.hero-over{position:relative;border-radius:12px;overflow:hidden;min-height:240px;display:flex;align-items:flex-end}
+.hero-over .ph-img{position:absolute;inset:0;border:none;border-radius:0}
+.hero-over .cap{position:relative;padding:26px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff;width:100%}
+.hero-over .cap h2{font-family:var(--serif);font-weight:500;font-size:26px}
+.hero-narr p.scene{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.45;color:var(--ink-2);margin-bottom:16px}
+
+/* ===== 2. DIVIDERS ===== */
+.dv{padding:18px 0}
+.dv--rule{border-top:1px solid var(--line)}
+.dv--num{display:flex;align-items:center;gap:16px}
+.dv--num .n{font-family:var(--mono);font-size:13px;color:var(--accent)}
+.dv--num .t{font-family:var(--serif);font-size:22px}.dv--num .ln{flex:1;height:1px;background:var(--line)}
+.dv--band{background:var(--accent-soft);border-radius:10px;padding:16px 22px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-2)}
+.dv--sym{text-align:center;color:var(--accent);font-size:18px;letter-spacing:14px}
+.dv--chap{text-align:center}.dv--chap .p{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}.dv--chap .t{font-family:var(--serif);font-size:28px;margin-top:6px}
+.dv--pq{font-family:var(--serif);font-style:italic;font-size:24px;text-align:center;color:var(--ink);max-width:30ch;margin:0 auto;line-height:1.3}
+
+/* ===== 3. CALLOUTS ===== */
+.co{border-radius:12px;padding:20px 22px;font-size:15px;line-height:1.6}
+.co .h{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:9px;display:flex;align-items:center;gap:8px}
+.co p{color:var(--ink-2)}
+.co--insight{border-left:3px solid var(--accent);background:var(--accent-soft)}.co--insight .h{color:var(--accent-2)}
+.co--warn{border-left:3px solid var(--warn);background:color-mix(in oklab,var(--warn) 10%,var(--panel))}.co--warn .h{color:var(--warn)}
+.co--def{border:1px solid var(--line-2);background:var(--panel)}.co--def .h{color:var(--accent)}.co--def b{font-family:var(--serif);font-size:17px}
+.co--tip{border:1px dashed var(--line-2);background:var(--bg-2)}.co--tip .h{color:var(--ok)}
+.co--key{background:var(--ink);color:var(--bg)}.co--key .h{color:var(--accent)}.co--key p{color:color-mix(in oklab,var(--bg) 80%,var(--ink))}
+.co--data{border:1px solid var(--line);background:var(--panel);display:flex;gap:18px;align-items:center}
+.co--data .num{font-family:var(--serif);font-size:46px;color:var(--accent);line-height:1}
+.co--quote{border:none;border-top:2px solid var(--accent);background:var(--panel)}
+.co--quote .q{font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.4;color:var(--ink)}
+.co--quote .a{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:12px}
+.co--xref{background:var(--bg-2);border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px}
+.co--xref a{color:var(--accent);font-weight:500;text-decoration:none;white-space:nowrap}
+
+/* ===== 4. DATA VIZ ===== */
+.stat-hero .n{font-family:var(--serif);font-size:64px;color:var(--accent);line-height:1;letter-spacing:-.03em}
+.stat-hero .c{font-size:14px;color:var(--muted);max-width:24ch;margin-top:8px}
+.statrow{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.statrow>div{flex:1;padding:20px;border-right:1px solid var(--line)}.statrow>div:last-child{border:none}
+.statrow .n{font-family:var(--serif);font-size:30px;color:var(--ink)}.statrow .l{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.05em}
+.bars2{display:flex;flex-direction:column;gap:10px}
+.bar2{display:grid;grid-template-columns:90px 1fr 44px;gap:12px;align-items:center;font-family:var(--mono);font-size:11.5px}
+.bar2 .tr{height:18px;background:var(--bg-2);border-radius:4px;overflow:hidden}.bar2 .fl{height:100%;background:var(--accent);border-radius:4px}
+.ring{--v:72;width:104px;height:104px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--v)*1%),var(--line) 0)}
+.ring i{width:82px;height:82px;border-radius:50%;background:var(--panel);display:grid;place-items:center;font-family:var(--serif);font-size:26px;font-style:normal}
+.gauge{height:14px;border-radius:99px;background:linear-gradient(90deg,var(--bad),var(--warn),var(--ok));position:relative}
+.gauge .pin{position:absolute;top:-6px;width:4px;height:26px;background:var(--ink);border-radius:2px;transform:translateX(-50%)}
+.tl{display:flex;gap:10px;align-items:center;font-family:var(--mono);font-size:12px}
+.tl .dot{width:11px;height:11px;border-radius:50%}
+.heat{display:grid;grid-template-columns:auto repeat(4,1fr);gap:4px;font-family:var(--mono);font-size:10.5px}
+.heat .hh{color:var(--muted);padding:5px;text-align:center}.heat .hr{color:var(--ink-2);padding:8px 5px;display:flex;align-items:center}
+.heat .hc{height:34px;border-radius:5px;display:grid;place-items:center;color:#fff;font-weight:600}
+.mtable{width:100%;border-collapse:collapse;font-size:13.5px}
+.mtable th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;padding:9px 12px;border-bottom:2px solid var(--ink)}
+.mtable td{padding:10px 12px;border-bottom:1px solid var(--line)}
+.line-chart{height:120px;display:flex;align-items:flex-end;gap:6px}
+.line-chart .col{flex:1;background:var(--accent-soft);border-radius:4px 4px 0 0;position:relative;border-top:2px solid var(--accent)}
+
+/* ===== 5. INTERACTIVE ===== */
+.ifield{display:flex;gap:10px}
+.ifield input{flex:1;border:1px solid var(--line-2);border-radius:9px;padding:12px 14px;background:var(--bg);color:var(--ink);font-family:var(--mono);font-size:13px;outline:none}
+.ifield input:focus{border-color:var(--accent)}
+.switch{display:inline-flex;border:1px solid var(--line-2);border-radius:99px;overflow:hidden;font-family:var(--mono);font-size:12px}
+.switch button{padding:9px 18px;border:none;background:none;color:var(--muted);cursor:pointer}
+.switch button.on{background:var(--accent);color:#fff}
+.chk{display:flex;flex-direction:column;gap:2px}
+.chk__item{display:flex;gap:12px;align-items:center;padding:11px 12px;border-radius:9px;cursor:pointer}
+.chk__item:hover{background:var(--bg-2)}
+.chk__box{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--line-2);display:grid;place-items:center;font-size:12px;color:transparent;flex:none}
+.chk__item.on .chk__box{background:var(--accent);border-color:var(--accent);color:#fff}
+.chk__item.on .chk__t{color:var(--muted);text-decoration:line-through}
+.chk__t{font-size:14.5px}
+.chk__bar{height:6px;background:var(--bg-2);border-radius:99px;overflow:hidden;margin-top:12px}.chk__bar span{display:block;height:100%;background:var(--accent);transition:width .3s}
+.rng{width:100%;accent-color:var(--accent)}
+.acc__item{border-bottom:1px solid var(--line)}
+.acc__q{width:100%;text-align:left;background:none;border:none;padding:15px 4px;font-family:var(--serif);font-size:17px;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;gap:12px}
+.acc__q::after{content:"+";color:var(--accent)}.acc__item.on .acc__q::after{content:"–"}
+.acc__a{max-height:0;overflow:hidden;transition:max-height .3s;font-size:14.5px;color:var(--ink-2);line-height:1.6}
+.acc__item.on .acc__a{max-height:160px;padding-bottom:15px}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line)}
+.tabs button{font-family:var(--mono);font-size:12px;padding:11px 16px;border:none;background:none;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--accent)}
+.tabpane{display:none;padding-top:18px;font-size:14.5px;color:var(--ink-2)}.tabpane.on{display:block}
+.tip{border-bottom:2px dotted var(--accent);cursor:help;position:relative}
+.tip:hover::after{content:attr(data-tip);position:absolute;bottom:130%;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);font-family:var(--sans);font-size:12px;padding:8px 12px;border-radius:8px;width:220px;line-height:1.4;z-index:5}
+.code{font-family:var(--mono);font-size:12.5px;line-height:1.7;background:#13141b;color:#e6e1d3;border:1px solid var(--line-2);border-radius:10px;padding:18px 20px;overflow:auto}
+.code .k{color:var(--accent)}.code .s{color:oklch(0.8 0.1 150)}.code .c{color:#7d8a7d}
+.gen{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.gen>div{padding:18px}.gen>div:first-child{border-right:1px solid var(--line)}
+.timeline{display:flex;gap:0;overflow-x:auto;padding-bottom:8px}
+.tlnode{flex:0 0 180px;padding-right:20px;position:relative}
+.tlnode::before{content:"";position:absolute;top:7px;left:0;right:0;height:2px;background:var(--line)}
+.tlnode .d{width:14px;height:14px;border-radius:50%;background:var(--accent);position:relative;z-index:1;margin-bottom:12px}
+.tlnode .yr{font-family:var(--mono);font-size:11px;color:var(--accent)}.tlnode .tx{font-size:13px;color:var(--ink-2);margin-top:4px}
+
+/* ===== 6. QUOTES ===== */
+.pq{font-family:var(--serif);font-style:italic;font-size:30px;line-height:1.3;text-align:center;color:var(--ink);max-width:24ch;margin:0 auto}
+.pq__a{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-align:center;margin-top:18px;font-style:normal}
+.iq{border-left:3px solid var(--accent);padding-left:20px;font-family:var(--serif);font-size:19px;font-style:italic;color:var(--ink-2)}
+.eq{display:flex;gap:16px;align-items:flex-start}
+.eq .av{width:52px;height:52px;border-radius:50%;background:var(--accent-soft);border:1px solid var(--line-2);display:grid;place-items:center;font-family:var(--serif);font-style:italic;color:var(--accent);flex:none;font-size:20px}
+.eq .q{font-family:var(--serif);font-size:17px;line-height:1.4;color:var(--ink)}
+.eq .a{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px}
+.sq{display:flex;gap:20px;align-items:center}.sq .n{font-family:var(--serif);font-size:42px;color:var(--accent);line-height:1;flex:none}
+
+/* ===== 7. CARDS ===== */
+.card{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:22px;display:flex;flex-direction:column;gap:11px;text-decoration:none;color:var(--ink);transition:transform .16s,border-color .16s,box-shadow .16s}
+.card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.card h4{font-size:19px}.card p{font-size:13.5px;color:var(--muted);line-height:1.5}
+.card .foot{margin-top:auto;font-family:var(--mono);font-size:10.5px;color:var(--faint);display:flex;gap:12px}
+.card--compact{padding:15px 18px;gap:6px}.card--compact h4{font-size:15px;font-family:var(--sans);font-weight:600}
+.fmtb{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:5px;border:1px solid currentColor}
+.card .icn{width:42px;height:42px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:18px}
+.card--cta{background:var(--accent-soft);border-color:var(--line-2)}
+.card--case .big{font-family:var(--serif);font-size:38px;color:var(--accent);line-height:1}
+.modnum{font-family:var(--mono);font-size:11px;color:var(--accent);border:1px solid var(--line-2);border-radius:6px;padding:3px 8px;align-self:flex-start}
+
+/* ===== 8. LISTS / STEPS ===== */
+.steps{display:flex;flex-direction:column;gap:18px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start}
+.step .n{font-family:var(--serif);font-size:38px;color:var(--accent);line-height:.9}
+.step h4{font-size:17px;margin-bottom:4px}.step p{font-size:13.5px;color:var(--muted)}
+.flow{display:flex;align-items:center;gap:8px;overflow-x:auto}
+.flow .node{flex:0 0 auto;border:1px solid var(--line-2);border-radius:10px;padding:12px 16px;font-size:13px;background:var(--panel);text-align:center}
+.flow .node .n{font-family:var(--mono);font-size:10px;color:var(--accent)}
+.flow .arrow{color:var(--faint);flex:none}
+.vtl{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--line);padding-left:22px}
+.vtl__item{position:relative;padding:6px 0 20px}
+.vtl__item::before{content:"";position:absolute;left:-29px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)}
+.vtl__item .yr{font-family:var(--mono);font-size:11px;color:var(--accent)}
+.proscons{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pclist{list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14px}
+.pclist li{display:flex;gap:10px}.pclist li::before{font-family:var(--mono)}
+.pclist.pro li::before{content:"+";color:var(--ok)}.pclist.con li::before{content:"−";color:var(--bad)}
+.ranked{display:flex;flex-direction:column;gap:12px}
+.ranked__row{display:grid;grid-template-columns:130px 1fr 34px;gap:12px;align-items:center;font-size:13px}
+.ranked__tr{height:10px;background:var(--bg-2);border-radius:99px;overflow:hidden}.ranked__fl{height:100%;background:var(--accent);border-radius:99px}
+.iconlist{list-style:none;display:flex;flex-direction:column;gap:12px}
+.iconlist li{display:flex;gap:12px;font-size:14.5px;color:var(--ink-2)}
+.iconlist .sym{color:var(--accent);font-size:16px;flex:none}
+
+/* ===== 9. METAPHORS ===== */
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pillar{border:1px solid var(--line);border-radius:14px;padding:22px 18px;text-align:center;border-top:4px solid var(--pc)}
+.pillar .sym{font-size:30px;color:var(--pc)}
+.pillar h4{font-size:17px;margin:10px 0 5px}.pillar p{font-size:12px;color:var(--muted)}
+.pillar--1{--pc:var(--c5)}.pillar--2{--pc:var(--c4)}.pillar--3{--pc:var(--c6)}.pillar--4{--pc:var(--c3)}
+.funnel{display:flex;flex-direction:column;gap:6px;align-items:center}
+.funnel__s{padding:12px;text-align:center;border-radius:8px;background:var(--accent-soft);font-family:var(--mono);font-size:12px;color:var(--accent-2)}
+.dual{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center}
+.dual__side{border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center}
+.dual__side .lab{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+.journeymap{display:flex;align-items:center;gap:0;overflow-x:auto}
+.jm{flex:0 0 auto;display:flex;align-items:center;gap:0}
+.jm__node{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:12px;border:2px solid var(--line-2);color:var(--muted)}
+.jm__node.done{background:var(--accent);border-color:var(--accent);color:#fff}
+.jm__node.now{border-color:var(--accent);color:var(--accent)}
+.jm__seg{width:34px;height:2px;background:var(--line)}.jm__seg.done{background:var(--accent)}
+
+/* full layouts */
+.layout{border:1px solid var(--line-2);border-radius:16px;overflow:hidden;background:var(--panel)}
+.layout__bar{padding:10px 16px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;gap:8px;align-items:center}
+.layout__bar .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.layout__body{padding:34px 38px;max-height:560px;overflow:auto}
+.la-prose{font-family:var(--serif);font-size:16px;line-height:1.7;color:var(--ink)}
+.la-prose p{margin-bottom:1em;color:var(--ink-2)}
+.la-prose h2{font-size:24px;margin:1.2em 0 .4em}
+.foot-note{text-align:center;padding:50px 0 70px;color:var(--muted);font-family:var(--mono);font-size:12px}
+/* ===== 11 CONSOLE & STATUS (new) ===== */
+.board{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.btile{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:16px 14px;border-top:4px solid var(--bc);text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:8px;transition:transform .15s}
+.btile:hover{transform:translateY(-3px)}
+.btile .bn{font-family:var(--mono);font-size:10.5px;color:var(--bc);display:flex;align-items:center;gap:7px}
+.btile .bn::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--bc)}
+.btile h4{font-size:15px;font-family:var(--serif)}
+.btile .bc{font-family:var(--mono);font-size:10px;color:var(--faint)}
+.b1{--bc:var(--c1)}.b2{--bc:var(--c2)}.b3{--bc:var(--c3)}.b4{--bc:var(--c4)}.b5{--bc:var(--c5)}.b6{--bc:var(--c6)}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;padding:5px 11px;border-radius:99px;border:1px solid;display:inline-flex;align-items:center;gap:6px}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.pill--live{color:var(--ok)}.pill--prog{color:var(--c4)}.pill--lock{color:var(--muted)}.pill--new{color:var(--accent)}.pill--soon{color:var(--c2)}
+.kanban{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.kcol{border:1px solid var(--line);border-radius:12px;background:var(--bg-2);padding:12px;display:flex;flex-direction:column;gap:8px}
+.kcol__h{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between}
+.kcard{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:11px 12px;font-size:13px;border-left:3px solid var(--kc,var(--accent))}
+.kcard .kt{font-family:var(--mono);font-size:9.5px;color:var(--muted);margin-top:5px}
+.segbar{display:flex;height:26px;border-radius:7px;overflow:hidden;border:1px solid var(--line)}
+.segbar span{display:grid;place-items:center;font-family:var(--mono);font-size:10px;color:#fff}
+.glyphs{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.glyph{border:1px solid var(--line);border-radius:12px;background:var(--panel);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--accent)}
+.glyph .g{font-size:26px}.glyph .l{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.04em}
+.donut{--v:64;width:120px;height:120px;border-radius:50%;background:conic-gradient(var(--c5) 0 28%,var(--c3) 28% 50%,var(--c4) 50% 72%,var(--c2) 72% 88%,var(--c1) 88% 100%);display:grid;place-items:center}
+.donut i{width:78px;height:78px;border-radius:50%;background:var(--panel);display:grid;place-items:center;font-family:var(--serif);font-size:15px;text-align:center;line-height:1.1}
+.spark{display:flex;align-items:flex-end;gap:3px;height:34px}
+.spark b{flex:1;background:var(--accent);border-radius:2px 2px 0 0;opacity:.85}
+.sov{display:flex;flex-direction:column;gap:9px}
+.sov__row{display:grid;grid-template-columns:96px 1fr 38px;gap:10px;align-items:center;font-family:var(--mono);font-size:11.5px}
+.sov__tr{height:16px;background:var(--bg-2);border-radius:4px;overflow:hidden}.sov__fl{height:100%;border-radius:4px}
+.copychip{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line-2);border-radius:9px;background:var(--bg-2);padding:9px 12px;font-family:var(--mono);font-size:12px;cursor:pointer}
+.copychip:hover{border-color:var(--accent)}
+.copychip .ic{color:var(--accent)}
+.cascade{display:flex;flex-direction:column;gap:0}
+.cgate{display:grid;grid-template-columns:34px 1fr auto;gap:14px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
+.cgate:last-child{border-bottom:none}
+.cgate__n{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;font-family:var(--mono);font-size:12px;border:1.5px solid var(--gc);color:var(--gc)}
+.cgate__n.pass{background:var(--gc);color:#fff}
+.cgate h4{font-size:16px}.cgate__s{font-size:12px;color:var(--muted)}
+.cgate__st{font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:5px;border:1px solid currentColor}
+
+/* ===== 12 ANNOTATION & READING (new) ===== */
+.annot{position:relative;font-family:var(--serif);font-size:18px;line-height:1.8;color:var(--ink)}
+.annot mark{background:var(--accent-soft);color:var(--ink);padding:1px 3px;border-radius:3px}
+.annot .anref{font-family:var(--mono);font-size:10px;color:var(--accent);vertical-align:super;cursor:help}
+.margin-note{display:grid;grid-template-columns:1fr 180px;gap:24px;align-items:start}
+.margin-note__m{font-family:var(--mono);font-size:11.5px;color:var(--muted);line-height:1.5;border-left:2px solid var(--accent);padding-left:12px}
+.pullq-side{border-top:2px solid var(--accent);border-bottom:2px solid var(--accent);padding:16px 0;font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.3;color:var(--ink)}
+.footnote{font-family:var(--sans);font-size:12.5px;color:var(--muted);display:flex;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+.footnote .fn{font-family:var(--mono);color:var(--accent);flex:none}
+.read-meta{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--muted);padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:var(--bg-2)}
+.read-meta b{color:var(--ink)}
+.read-meta .rl{height:5px;flex:1;min-width:80px;background:var(--bg-2);border-radius:99px;overflow:hidden;align-self:center}
+.read-meta .rl span{display:block;height:100%;background:var(--accent)}
+.keyterm{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line-2);border-radius:7px;padding:3px 9px;font-family:var(--mono);font-size:11.5px;background:var(--panel)}
+.keyterm .kk{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.tldr{border:1px dashed var(--accent);border-radius:12px;padding:18px 20px;background:var(--accent-soft)}
+.tldr .h{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-2);margin-bottom:10px}
+.tldr ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.tldr li{display:flex;gap:9px;font-size:14px;color:var(--ink-2)}.tldr li::before{content:"▸";color:var(--accent)}
+
+/* ===== 13 COMPARISON & TABLES (new) ===== */
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.vs__col{padding:22px}.vs__col:first-child{border-right:1px solid var(--line)}
+.vs__mid{display:grid;place-items:center;background:var(--bg-2);padding:0 16px;font-family:var(--serif);font-style:italic;color:var(--muted)}
+.vs__h{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.vs__row{display:flex;gap:10px;font-size:14px;padding:7px 0;color:var(--ink-2)}
+.ctable{width:100%;border-collapse:collapse;font-size:13.5px}
+.ctable th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:10px;border-bottom:2px solid var(--ink);text-align:center}
+.ctable th:first-child{text-align:left}
+.ctable td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:center}
+.ctable td:first-child{text-align:left;font-weight:500}
+.ctable .yes{color:var(--ok)}.ctable .no{color:var(--bad)}.ctable .mid{color:var(--warn)}
+.ctable tr.feat td{background:var(--accent-soft)}
+.matrix2{display:grid;grid-template-columns:auto 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.matrix2>div{background:var(--panel);padding:14px}
+.matrix2 .mh{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;color:var(--muted);text-align:center}
+.matrix2 .mq{font-size:13px;display:flex;align-items:center}
+.scoreband{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.scoreband:last-child{border:none}
+.scoreband .nm{width:120px;font-size:14px}
+.scoreband .bar{flex:1;height:8px;background:var(--bg-2);border-radius:99px;overflow:hidden}
+.scoreband .bar i{display:block;height:100%;border-radius:99px}
+.scoreband .sc{font-family:var(--mono);font-size:13px;width:34px;text-align:right}
+
+/* ===== 14 EMBEDDED TOOLS (new) ===== */
+.tool{border:1px solid var(--line-2);border-radius:14px;overflow:hidden;background:var(--panel)}
+.tool__bar{display:flex;align-items:center;gap:8px;padding:11px 16px;border-bottom:1px solid var(--line);background:var(--bg-2);font-family:var(--mono);font-size:11px;color:var(--muted)}
+.tool__bar .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.tool__bar .tt{margin-left:auto;color:var(--ink)}
+.tool__body{padding:20px}
+.toolbtn{font-family:var(--sans);font-weight:500;font-size:13px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:10px 16px;cursor:pointer}
+.scoredial{--v:0;width:130px;height:130px;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--v)*3.6deg),var(--bg-2) 0);display:grid;place-items:center;margin:0 auto;transition:none}
+.scoredial i{width:100px;height:100px;border-radius:50%;background:var(--panel);display:grid;place-items:center;flex-direction:column;font-family:var(--serif);font-size:34px}
+.scoredial i small{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.kw{display:flex;flex-wrap:wrap;gap:7px}
+.kw span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border-radius:99px;background:var(--bg-2);border:1px solid var(--line);color:var(--ink-2);cursor:pointer}
+.kw span.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.qz__opt{display:flex;gap:11px;align-items:center;padding:12px 14px;border:1px solid var(--line-2);border-radius:10px;cursor:pointer;margin-bottom:8px;font-size:14.5px}
+.qz__opt:hover{border-color:var(--accent)}
+.qz__opt.correct{border-color:var(--ok);background:color-mix(in oklab,var(--ok) 12%,var(--panel))}
+.qz__opt.wrong{border-color:var(--bad);background:color-mix(in oklab,var(--bad) 12%,var(--panel))}
+.qz__k{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;font-family:var(--mono);font-size:11px;flex:none}
+.calc__row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;font-size:14px;border-bottom:1px solid var(--line)}
+.calc__out{font-family:var(--serif);font-size:34px;color:var(--accent);margin-top:12px}
+.stepper{display:flex;align-items:center;gap:0;margin-bottom:16px}
+.stepper__s{flex:1;text-align:center;position:relative;font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.stepper__s::before{content:"";position:absolute;top:11px;left:-50%;right:50%;height:2px;background:var(--line)}
+.stepper__s:first-child::before{display:none}
+.stepper__s.done::before,.stepper__s.now::before{background:var(--accent)}
+.stepper__d{width:24px;height:24px;border-radius:50%;border:2px solid var(--line-2);background:var(--panel);display:grid;place-items:center;margin:0 auto 6px;position:relative;z-index:1;font-size:10px}
+.stepper__s.done .stepper__d{background:var(--accent);border-color:var(--accent);color:#fff}
+.stepper__s.now .stepper__d{border-color:var(--accent);color:var(--accent)}
+
+/* ===== 15 SIDEBARS & NAV (new) ===== */
+.toc-rail{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--bg-2)}
+.toc-rail h6{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.toc-rail a{display:block;font-size:13.5px;color:var(--ink-2);text-decoration:none;padding:6px 0 6px 12px;border-left:2px solid var(--line)}
+.toc-rail a.on{color:var(--accent);border-left-color:var(--accent)}
+.modnav{display:flex;flex-direction:column;gap:2px}
+.modnav a{display:grid;grid-template-columns:26px 1fr auto;gap:10px;align-items:center;padding:10px;border-radius:9px;text-decoration:none;color:var(--ink-2);font-size:13.5px}
+.modnav a:hover{background:var(--bg-2)}.modnav a.on{background:var(--accent-soft);color:var(--ink)}
+.modnav .mk{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;font-size:10px;font-family:var(--mono)}
+.modnav a.done .mk{background:var(--accent);border-color:var(--accent);color:#fff}
+.crumbs{display:flex;gap:8px;align-items:center;font-family:var(--mono);font-size:11.5px;color:var(--muted);flex-wrap:wrap}
+.crumbs b{color:var(--ink)}.crumbs .sp{color:var(--faint)}
+.minibar{display:flex;gap:6px;align-items:center;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.prog-circle{--v:46;width:44px;height:44px;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--v)*3.6deg),var(--bg-2) 0);display:grid;place-items:center;flex:none}
+.prog-circle i{width:32px;height:32px;border-radius:50%;background:var(--panel);display:grid;place-items:center;font-family:var(--mono);font-size:10px}
+.fab{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:var(--bg);border-radius:99px;padding:11px 18px;font-family:var(--mono);font-size:12px;cursor:pointer}
+.fab .d{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.jumpnav{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--line)}
+.jumpnav a{padding:7px 0 7px 14px;text-decoration:none;font-size:13px;color:var(--muted);position:relative}
+.jumpnav a.on{color:var(--accent)}
+.jumpnav a.on::before{content:"";position:absolute;left:-2px;top:0;bottom:0;width:2px;background:var(--accent)}
+
+/* ===== 16 ENGAGEMENT & CTAs (new) ===== */
+.cta-band{border-radius:16px;background:var(--ink);color:var(--bg);padding:30px 34px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.cta-band h3{font-family:var(--serif);font-size:24px;color:var(--bg)}
+.cta-band p{font-size:14px;color:color-mix(in oklab,var(--bg) 78%,var(--ink));margin-top:4px}
+.cta-band .btn{background:var(--accent);border-color:var(--accent);color:#fff}
+.cta-split{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.cta-split>div{padding:24px}.cta-split>div:first-child{border-right:1px solid var(--line)}
+.cta-soft{border:1px solid var(--line-2);border-radius:14px;background:var(--accent-soft);padding:24px;text-align:center}
+.cta-soft h3{font-family:var(--serif);font-size:22px;margin-bottom:8px}
+.cta-soft p{font-size:14px;color:var(--ink-2);max-width:42ch;margin:0 auto 16px}
+.news{display:flex;gap:8px;max-width:380px}
+.news input{flex:1;border:1px solid var(--line-2);border-radius:8px;padding:11px 14px;background:var(--panel);color:var(--ink);font-family:var(--sans);font-size:14px;outline:none}
+.news input:focus{border-color:var(--accent)}
+.rating{display:flex;gap:6px;align-items:center}
+.rating button{background:none;border:none;font-size:22px;color:var(--line-2);cursor:pointer;padding:0}
+.rating button.on{color:var(--accent)}
+.helpful{display:flex;gap:10px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.helpful button{font-family:var(--mono);font-size:12px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink-2);border-radius:8px;padding:7px 13px;cursor:pointer}
+.helpful button:hover{border-color:var(--accent);color:var(--accent)}
+.helpful button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.progress-cta{border:1px solid var(--accent);border-radius:14px;padding:20px 24px;display:flex;gap:18px;align-items:center;background:var(--panel)}
+.gate{border:1px solid var(--line-2);border-radius:14px;background:var(--bg-2);padding:26px;text-align:center;position:relative}
+.gate .lock{font-size:24px;color:var(--accent);margin-bottom:8px}
+.gate h3{font-family:var(--serif);font-size:20px;margin-bottom:6px}
+.gate p{font-size:13.5px;color:var(--muted);margin-bottom:16px}
+.share{display:flex;gap:8px}
+.share button{width:38px;height:38px;border-radius:9px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink-2);font-family:var(--mono);font-size:13px;cursor:pointer}
+.share button:hover{border-color:var(--accent);color:var(--accent)}
+
+@media(max-width:860px){.g3,.g4,.pillars{grid-template-columns:1fr 1fr}.hero-split,.gen,.proscons,.dual,.vs,.cta-split,.margin-note{grid-template-columns:1fr}.vs__col:first-child{border-right:none;border-bottom:1px solid var(--line)}.board{grid-template-columns:1fr 1fr}.glyphs{grid-template-columns:repeat(4,1fr)}.kanban{grid-template-columns:1fr}}
+@media(max-width:560px){.g2,.g3,.g4,.pillars{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="top"><div class="top__in">
+  <span class="logo">AEO <b>Canon</b></span>
+  <span class="top__tag">VISUAL LIBRARY · v1</span>
+  <div class="top__right">
+    <select class="jump" id="jump">
+      <option value="">Jump to…</option>
+      <option value="s1">1 · Hero treatments</option><option value="s2">2 · Dividers</option><option value="s3">3 · Callouts</option><option value="s4">4 · Data viz</option><option value="s5">5 · Interactive</option><option value="s6">6 · Quotes</option><option value="s7">7 · Cards</option><option value="s8">8 · Lists & steps</option><option value="s9">9 · Metaphors</option><option value="s10">10 · Full layouts</option><option value="s11">11 · Console &amp; status</option><option value="s12">12 · Annotation &amp; reading</option><option value="s13">13 · Comparison &amp; tables</option><option value="s14">14 · Embedded tools</option><option value="s15">15 · Sidebars &amp; nav</option><option value="s16">16 · Engagement &amp; CTAs</option>
+    </select>
+    <button class="tgl" id="tgl">◐ Dark</button>
+  </div>
+</div></header>
+
+<div class="wrap">
+  <header class="phead">
+    <div class="k">How this page works · a kit for AI-built content</div>
+    <h1 class="serif">Copy any block from here into an article, course, or module — it’s already on-brand.</h1>
+    <p>This is the component kit behind AEO Canon’s educational content. Every hero, divider, callout, chart, interactive, card, and layout below is built from the live site’s tokens (Newsreader · Spline Sans · the Spectrum palette), so anything you lift drops straight into a page and matches automatically. When you build a lesson or article, assemble it from these parts instead of inventing new styles — pick a hero, break sections with dividers, emphasize with callouts, show evidence with the data treatments, and embed the interactive tools as-is.</p>
+    <div class="meta"><span><b>11</b> categories to pull from</span><span>Built on the <b>live site’s</b> tokens</span><span>Works in <b>light + dark</b></span><span>Toggle the mode, top-right →</span></div>
+  </header>
+
+  <!-- 1 HERO TREATMENTS -->
+  <section class="sec" id="s1">
+    <div class="sec__head"><span class="sec__num">01</span><h2>Article hero treatments</h2><p>How a long-form piece opens. Five ways to set the tone before the first paragraph.</p></div>
+
+    <div class="spec"><div class="spec__l">A · Bold typographic — pure type scale, no image</div>
+      <div class="frame pad hero-type">
+        <span class="eyebrow">Fundamentals · 14 min read</span>
+        <h2>The Citation Economy: why being mentioned now matters more than ranking</h2>
+        <div class="byl"><span class="av">D</span><span>By <b style="color:var(--ink)">Dana Reyes</b></span><span>Updated May 28, 2026</span><span>Cited 1,240×</span></div>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="spec"><div class="spec__l">B · Split — text + visual</div>
+        <div class="frame hero-split">
+          <div><span class="eyebrow">Technical</span><h2 class="serif" style="font-size:26px;margin:12px 0">Schema markup, end to end</h2><p style="font-size:14px;color:var(--muted)">The structured-data stack that lets a model describe you without guessing.</p><div class="byl" style="margin-top:14px"><span>11 min</span></div></div>
+          <div class="ph-img">[ DIAGRAM ]<br>schema layers</div>
+        </div>
+      </div>
+      <div class="spec"><div class="spec__l">C · Image hero with overlay</div>
+        <div class="hero-over"><div class="ph-img">[ FULL-BLEED IMAGE ]</div><div class="cap"><span class="tag" style="color:var(--accent)">Case study</span><h2>From invisible to default in 90 days</h2></div></div>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="spec"><div class="spec__l">D · Data-forward — lead with the stat</div>
+        <div class="frame pad hero-data"><div class="big">94%</div><h2 class="serif" style="font-size:24px;margin:12px 0 0">of local businesses are invisible to AI search. Here’s the gap — and how to close it.</h2><div class="byl" style="margin-top:14px"><span>Research report</span><span>18 min</span></div></div>
+      </div>
+      <div class="spec"><div class="spec__l">E · Narrative opener — scene before headline</div>
+        <div class="frame pad hero-narr"><p class="scene">“It’s 6pm in July. A homeowner’s AC just died. They don’t open ten tabs — they ask an assistant who to call.”</p><h2 class="serif" style="font-size:26px">AEO for HVAC contractors: the complete playbook</h2><div class="byl" style="margin-top:12px"><span>Niche guide · 22 min</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 DIVIDERS -->
+  <section class="sec" id="s2">
+    <div class="sec__head"><span class="sec__num">02</span><h2>Section breaks &amp; dividers</h2><p>Seven ways to segment a 5,000-word read so it breathes.</p></div>
+    <div class="frame pad">
+      <p style="color:var(--muted);font-size:14px">…the model decides which names are safe to put its reputation behind.</p>
+      <div class="dv dv--rule"></div>
+      <div class="spec__l" style="margin:0 0 6px">Hairline rule ↑ · Numbered header ↓</div>
+      <div class="dv dv--num"><span class="n">02</span><span class="t serif">How an answer gets built</span><span class="ln"></span></div>
+      <div class="dv dv--band">Part Two — Reputation · does the web vouch for you?</div>
+      <div class="spec__l" style="margin:18px 0 6px">Accent band ↑ · Symbol divider ↓</div>
+      <div class="dv dv--sym">◈ ◆ ◇ ▣</div>
+      <div class="dv dv--pq">“Ranking was a contest of position. Citation is a contest of trust.”</div>
+      <div class="spec__l" style="margin:6px 0">Pull-quote break ↑ · Chapter break ↓</div>
+      <div class="dv dv--chap"><div class="p">Part One</div><div class="t serif">Foundation</div></div>
+    </div>
+  </section>
+
+  <!-- 3 CALLOUTS -->
+  <section class="sec" id="s3">
+    <div class="sec__head"><span class="sec__num">03</span><h2>Callout &amp; highlight boxes</h2><p>Nine inline blocks that interrupt the read with emphasis — distinct treatments, one system.</p></div>
+    <div class="grid g2">
+      <div class="co co--insight"><div class="h">◈ Here’s what most people miss</div><p>A model recommends you because many independent sources describe you the same way — not because one page argued well.</p></div>
+      <div class="co co--warn"><div class="h">⚠ Common mistake</div><p>Updating the date without updating the substance. Engines compare you to other recent sources; cosmetic freshness still reads as stale.</p></div>
+      <div class="co co--def"><div class="h">Definition</div><p><b>Schema markup</b> — structured data in your HTML that states services, area, and hours as machine-readable facts rather than prose.</p></div>
+      <div class="co co--tip"><div class="h">◆ Expert note</div><p>Lead every passage with the answer. 44% of ChatGPT citations come from the first third of a page.</p></div>
+      <div class="co co--key"><div class="h">Key takeaway</div><p>Mentions outperform links. Build genuine presence on Reddit, YouTube, and Wikipedia — not just backlinks.</p></div>
+      <div class="co co--data"><div class="num">0.664</div><div><div class="tag">Mentions correlation</div><p style="font-size:13.5px">vs 0.218 for backlinks (Ahrefs, 75k brands)</p></div></div>
+      <div class="co co--quote"><div class="q">“Adding named quotations raised AI visibility by 41% — the single largest effect we measured.”</div><div class="a">— Princeton GEO study, KDD 2024</div></div>
+      <div class="co co--xref"><div><div class="tag">Related</div><p style="font-size:14px;color:var(--ink-2)">See our deep-dive on citation consistency</p></div><a href="#">Read →</a></div>
+    </div>
+    <div class="spec" style="margin-top:20px"><div class="spec__l">“Try it yourself” interactive prompt</div>
+      <div class="co co--insight" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap"><div><div class="h">▣ Try it yourself</div><p>Ask ChatGPT to recommend a business like yours. Read what it says.</p></div><a class="btn btn--sm" href="#">Open the audit tool</a></div>
+    </div>
+  </section>
+
+  <!-- 4 DATA VIZ -->
+  <section class="sec" id="s4">
+    <div class="sec__head"><span class="sec__num">04</span><h2>Data visualization styles</h2><p>Editorial, not dashboard-y. Brand palette throughout.</p></div>
+    <div class="grid g3">
+      <div class="frame pad stat-hero"><div class="n">71%</div><div class="c">of local queries now return an AI answer before any link</div></div>
+      <div class="frame pad" style="display:grid;place-items:center"><div class="ring" style="--v:72"><i>72</i></div></div>
+      <div class="frame pad"><div class="spec__l" style="margin-bottom:14px">Score gauge · 0–100</div><div class="gauge"><div class="pin" style="left:64%"></div></div><div style="font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;margin-top:8px"><span>At risk</span><span>64 · Emerging</span><span>Established</span></div></div>
+    </div>
+    <div class="spec" style="margin-top:20px"><div class="spec__l">Stat row</div>
+      <div class="statrow"><div><div class="n">3.2×</div><div class="l">more likely to be hired</div></div><div><div class="n">352</div><div class="l">articles in the canon</div></div><div><div class="n">5</div><div class="l">engines tracked</div></div><div><div class="n">$0</div><div class="l">to check your score</div></div></div>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="frame pad"><div class="spec__l" style="margin-bottom:14px">Comparison bars · you vs competitors</div><div class="bars2">
+        <div class="bar2"><span>You</span><div class="tr"><div class="fl" style="width:34%"></div></div><span>34</span></div>
+        <div class="bar2"><span>Competitor A</span><div class="tr"><div class="fl" style="width:71%;background:var(--accent-2)"></div></div><span>71</span></div>
+        <div class="bar2"><span>Competitor B</span><div class="tr"><div class="fl" style="width:58%;background:var(--accent-2)"></div></div><span>58</span></div>
+      </div></div>
+      <div class="frame pad"><div class="spec__l" style="margin-bottom:14px">Trend · quarterly</div><div class="line-chart"><div class="col" style="height:30%"></div><div class="col" style="height:50%"></div><div class="col" style="height:74%"></div><div class="col" style="height:92%"></div></div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;justify-content:space-between;margin-top:8px"><span>’23</span><span>’24</span><span>’25</span><span>’26</span></div></div>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="frame pad"><div class="spec__l" style="margin-bottom:14px">Pillar heatmap</div><div class="heat">
+        <div class="hh"></div><div class="hh">Acc</div><div class="hh">Auth</div><div class="hh">Ans</div><div class="hh">Cite</div>
+        <div class="hr">You</div><div class="hc" style="background:var(--ok)">82</div><div class="hc" style="background:var(--warn)">48</div><div class="hc" style="background:var(--bad);color:#fff">22</div><div class="hc" style="background:var(--warn)">51</div>
+      </div>
+      <div class="tl" style="margin-top:16px"><span class="dot" style="background:var(--ok)"></span> Strong <span class="dot" style="background:var(--warn);margin-left:12px"></span> Needs work <span class="dot" style="background:var(--bad);margin-left:12px"></span> Critical</div></div>
+      <div class="frame pad"><div class="spec__l" style="margin-bottom:6px">Minimal table</div><table class="mtable"><thead><tr><th>Engine</th><th>Names you</th><th>Specialty</th></tr></thead><tbody><tr><td>ChatGPT</td><td style="color:var(--warn)">Partial</td><td style="color:var(--bad)">No</td></tr><tr><td>Perplexity</td><td style="color:var(--ok)">Yes</td><td style="color:var(--warn)">Partial</td></tr><tr><td>AI Overviews</td><td style="color:var(--bad)">No</td><td style="color:var(--bad)">No</td></tr></tbody></table></div>
+    </div>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="frame pad" style="display:grid;place-items:center;gap:12px"><div class="spec__l" style="justify-self:start;align-self:start">Citation mix · donut</div><div class="donut"><i>5 engines<br>tracked</i></div></div>
+      <div class="frame pad"><div class="spec__l" style="margin-bottom:14px">Sparkline row</div><div style="display:flex;flex-direction:column;gap:14px"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:var(--mono);font-size:12px">Visibility</span><div class="spark"><b style="height:30%"></b><b style="height:45%"></b><b style="height:40%"></b><b style="height:62%"></b><b style="height:78%"></b><b style="height:90%"></b></div></div><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:var(--mono);font-size:12px">Citations</span><div class="spark"><b style="height:20%"></b><b style="height:30%"></b><b style="height:55%"></b><b style="height:48%"></b><b style="height:70%"></b><b style="height:84%"></b></div></div></div></div>
+      <div class="frame pad"><div class="spec__l" style="margin-bottom:14px">Share of voice · per engine</div><div class="sov">
+        <div class="sov__row"><span>ChatGPT</span><div class="sov__tr"><div class="sov__fl" style="width:62%;background:var(--c5)"></div></div><span>62</span></div>
+        <div class="sov__row"><span>Perplexity</span><div class="sov__tr"><div class="sov__fl" style="width:48%;background:var(--c3)"></div></div><span>48</span></div>
+        <div class="sov__row"><span>AI Overviews</span><div class="sov__tr"><div class="sov__fl" style="width:31%;background:var(--c4)"></div></div><span>31</span></div>
+        <div class="sov__row"><span>Gemini</span><div class="sov__tr"><div class="sov__fl" style="width:22%;background:var(--c2)"></div></div><span>22</span></div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 5 INTERACTIVE -->
+  <section class="sec" id="s5">
+    <div class="sec__head"><span class="sec__num">05</span><h2>Interactive elements &amp; tools</h2><p>Embeddable in articles and modules. These actually work — try them.</p></div>
+    <div class="grid g2">
+      <div class="frame pad"><div class="spec__l">URL audit field</div><div class="ifield"><input id="auditUrl" placeholder="yourbusiness.com"><button class="btn" id="auditBtn">Run</button></div><div id="auditOut" style="font-family:var(--mono);font-size:12px;color:var(--accent);margin-top:12px"></div></div>
+      <div class="frame pad"><div class="spec__l">Before / after toggle</div><div class="switch" id="baSwitch"><button class="on" data-ba="before">Before AEO</button><button data-ba="after">After AEO</button></div><p id="baText" style="font-size:14px;color:var(--ink-2);margin-top:14px">Described as generic “HVAC,” absent from 4 of 5 engines.</p></div>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="frame pad"><div class="spec__l">Interactive checklist</div><div class="chk" id="chk">
+        <div class="chk__item"><span class="chk__box">✓</span><span class="chk__t">Allow AI crawlers in robots.txt</span></div>
+        <div class="chk__item"><span class="chk__box">✓</span><span class="chk__t">Serve server-side HTML</span></div>
+        <div class="chk__item"><span class="chk__box">✓</span><span class="chk__t">Add LocalBusiness schema</span></div>
+        <div class="chk__item"><span class="chk__box">✓</span><span class="chk__t">Publish 4 question-first articles</span></div>
+      </div><div class="chk__bar"><span id="chkBar" style="width:0"></span></div><div id="chkCount" style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px">0 of 4 complete</div></div>
+      <div class="frame pad"><div class="spec__l">Range input</div><label style="font-size:14px;color:var(--ink-2)">How many service pages does your site have?</label><input type="range" class="rng" id="rng" min="0" max="50" value="12" style="margin:14px 0"><div style="font-family:var(--serif);font-size:28px;color:var(--accent)"><span id="rngVal">12</span> pages</div></div>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="frame pad"><div class="spec__l">FAQ accordion</div><div id="acc">
+        <div class="acc__item on"><button class="acc__q">Do I need to be technical?</button><div class="acc__a">No — you describe your business; we handle schema, structure, and writing.</div></div>
+        <div class="acc__item"><button class="acc__q">How fast are results?</button><div class="acc__a">Foundational fixes land in month one; recommendation builds over a season.</div></div>
+        <div class="acc__item"><button class="acc__q">Which engines do you track?</button><div class="acc__a">ChatGPT, Perplexity, AI Overviews, Gemini, and Copilot — measured separately.</div></div>
+      </div></div>
+      <div class="frame pad"><div class="spec__l">Tab panel</div><div class="tabs" id="tabs"><button class="on" data-tab="0">ChatGPT</button><button data-tab="1">Perplexity</button><button data-tab="2">AI Overviews</button></div>
+        <div class="tabpane on" data-pane="0">Names two competitors before you. Specialty lost.</div>
+        <div class="tabpane" data-pane="1">Names you — service area correct, specialty partial.</div>
+        <div class="tabpane" data-pane="2">58% of the answer pulled from third-party directories.</div>
+      </div>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="frame pad"><div class="spec__l">Inline tooltip</div><p style="font-size:15px;color:var(--ink-2)">Engines retrieve at the <span class="tip" data-tip="Passage-level retrieval: AI quotes a paragraph, not your whole page.">passage level</span>, so each section must stand on its own.</p>
+        <div class="spec__l" style="margin-top:22px">Live preview generator</div>
+        <div class="gen"><div><div class="tag">Input</div><p style="font-size:13px;color:var(--ink-2);margin-top:8px">Business: Lone Star HVAC<br>Area: Travis County</p></div><div><div class="tag">Output</div><div class="code" style="margin-top:8px;font-size:11px"><span class="c">// schema</span><br>"<span class="k">@type</span>":<span class="s">"HVACBusiness"</span></div></div></div>
+      </div>
+      <div class="frame pad"><div class="spec__l">Code block · schema example</div><div class="code"><span class="c">&lt;script type="application/ld+json"&gt;</span><br>{<br>&nbsp;&nbsp"<span class="k">@type</span>": <span class="s">"LocalBusiness"</span>,<br>&nbsp;&nbsp;"<span class="k">name</span>": <span class="s">"Lone Star Comfort"</span>,<br>&nbsp;&nbsp;"<span class="k">areaServed</span>": <span class="s">"Travis County, TX"</span><br>}</div>
+        <div class="spec__l" style="margin-top:20px">Interactive timeline</div>
+        <div class="timeline"><div class="tlnode"><div class="d"></div><div class="yr">2023</div><div class="tx">AI answers on 22% of local queries</div></div><div class="tlnode"><div class="d"></div><div class="yr">2024</div><div class="tx">38% — citations decouple from rank</div></div><div class="tlnode"><div class="d"></div><div class="yr">2026</div><div class="tx">71% answer-first</div></div></div>
+        <div class="spec__l" style="margin-top:20px">Copy-to-clipboard chip</div>
+        <button class="copychip" id="copychip"><span class="ic">⧉</span><span id="copytxt">aeocanon.com/audit</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 QUOTES -->
+  <section class="sec" id="s6">
+    <div class="sec__head"><span class="sec__num">06</span><h2>Quote &amp; testimonial treatments</h2><p>Six ways to give a voice room.</p></div>
+    <div class="frame pad"><div class="pq">“You don’t rank your way into an AI answer. You earn the quote.”</div><div class="pq__a">— The AEO Canon, Pillar 3</div></div>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="frame pad"><div class="iq">Engines extract answers, not adjectives. Superlatives are invisible.</div></div>
+      <div class="frame pad"><div class="eq"><span class="av">M</span><div><div class="q">“By the next month, Perplexity was naming us.”</div><div class="a">Marcus T. · Lone Star Comfort HVAC</div></div></div></div>
+      <div class="frame pad"><div class="sq"><div class="n">4.2×</div><div><div class="iq" style="border:none;padding:0;font-size:16px">higher engagement after restructuring for extractability</div><div class="a" style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px">— Content Scorer cohort</div></div></div></div>
+    </div>
+    <div class="spec" style="margin-top:20px"><div class="spec__l">Before / after quote pair</div>
+      <div class="grid g2"><div class="co co--warn"><div class="h">Before</div><p>“We just hoped people would find us.”</p></div><div class="co co--insight"><div class="h">After</div><p>“Now the AI recommends us by name for mini-splits.”</p></div></div>
+    </div>
+  </section>
+
+  <!-- 7 CARDS -->
+  <section class="sec" id="s7">
+    <div class="sec__head"><span class="sec__num">07</span><h2>Card patterns</h2><p>The fundamental unit. Nine densities and purposes.</p></div>
+    <div class="grid g3">
+      <a class="card" href="#"><span class="tag">Fundamentals</span><h4>The Citation Economy</h4><p>Why being mentioned beats ranking.</p><div class="foot"><span>14 MIN</span><span>1,240×</span></div></a>
+      <a class="card" href="#"><span class="modnum">Module 05</span><h4>Auditing your AI visibility</h4><div style="display:flex;gap:6px"><span class="fmtb" style="color:var(--accent-2)">Interactive</span><span class="fmtb" style="color:var(--muted)">22 min</span></div><div class="foot"><span>● In progress · 46%</span></div></a>
+      <a class="card card--cta" href="#"><div class="icn">◎</div><h4>See how you show up</h4><p>Eight questions, an honest score.</p><span class="btn btn--sm" style="align-self:flex-start">Start →</span></a>
+      <a class="card" href="#"><div class="icn">⌗</div><h4>Schema Generator</h4><p>Copy-paste structured data.</p><span class="tag" style="margin-top:auto">Launch tool →</span></a>
+      <a class="card card--case" href="#"><div class="big">+340%</div><p style="color:var(--ink-2)">AI citations in 90 days · med spa, 1 location</p><span class="tag" style="margin-top:auto">Read case study →</span></a>
+      <a class="card" href="#"><div class="icn">🜨</div><h4>HVAC &amp; Home Services</h4><p>22 articles · 1 niche path</p><span class="tag" style="margin-top:auto">Open hub →</span></a>
+    </div>
+    <div class="grid g3" style="margin-top:18px">
+      <a class="card card--compact" href="#"><span class="tag">Technical</span><h4>Citation consistency in 6 steps</h4></a>
+      <div class="card"><div class="eq"><span class="av">D</span><div><h4 style="font-size:16px">Dana Reyes</h4><div class="foot" style="margin:4px 0 0">Editor · AEO Canon</div></div></div><p>Covers the citation economy and content architecture.</p></div>
+      <a class="card" href="#"><div class="icn" style="background:color-mix(in oklab,var(--accent) 16%,transparent)">✦</div><h4>AEO Fundamentals Certified</h4><p>Beginner credential · 12 modules</p><span class="tag" style="margin-top:auto;color:var(--ok)">In progress</span></a>
+    </div>
+  </section>
+
+  <!-- 8 LISTS / STEPS -->
+  <section class="sec" id="s8">
+    <div class="sec__head"><span class="sec__num">08</span><h2>List &amp; step treatments</h2><p>Process, ranking, and comparison patterns.</p></div>
+    <div class="grid g2">
+      <div class="frame pad"><div class="spec__l">Numbered steps</div><div class="steps">
+        <div class="step"><span class="n">01</span><div><h4>Read your AI answer</h4><p>Ask three engines to recommend a business like yours.</p></div></div>
+        <div class="step"><span class="n">02</span><div><h4>Fix what they get wrong</h4><p>Schema and copy for description; citations for trust.</p></div></div>
+        <div class="step"><span class="n">03</span><div><h4>Publish the questions</h4><p>Answer what customers actually ask.</p></div></div>
+      </div></div>
+      <div class="frame pad"><div class="spec__l">Vertical timeline</div><div class="vtl">
+        <div class="vtl__item"><div class="yr">Week 1</div><div style="font-size:14px;color:var(--ink-2)">Audit &amp; schema rebuild</div></div>
+        <div class="vtl__item"><div class="yr">Month 1</div><div style="font-size:14px;color:var(--ink-2)">First question-first articles live</div></div>
+        <div class="vtl__item"><div class="yr">Quarter 1</div><div style="font-size:14px;color:var(--ink-2)">Named in 3 of 5 engines</div></div>
+      </div></div>
+    </div>
+    <div class="spec" style="margin-top:20px"><div class="spec__l">Horizontal step flow</div>
+      <div class="frame pad"><div class="flow"><div class="node"><div class="n">01</div>Discovery</div><span class="arrow">→</span><div class="node"><div class="n">02</div>Understanding</div><span class="arrow">→</span><div class="node"><div class="n">03</div>Realization</div><span class="arrow">→</span><div class="node"><div class="n">04</div>Conversion</div></div></div>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="frame pad"><div class="spec__l">Ranked list with score bars</div><div class="ranked">
+        <div class="ranked__row"><span>Mentions</span><div class="ranked__tr"><div class="ranked__fl" style="width:90%"></div></div><span style="font-family:var(--mono)">.66</span></div>
+        <div class="ranked__row"><span>Brand anchors</span><div class="ranked__tr"><div class="ranked__fl" style="width:71%"></div></div><span style="font-family:var(--mono)">.53</span></div>
+        <div class="ranked__row"><span>Backlinks</span><div class="ranked__tr"><div class="ranked__fl" style="width:30%"></div></div><span style="font-family:var(--mono)">.22</span></div>
+      </div></div>
+      <div class="frame pad"><div class="spec__l">Pros / cons split</div><div class="proscons"><ul class="pclist pro"><li>Owned, durable</li><li>Compounds over time</li><li>Uncopyable data</li></ul><ul class="pclist con"><li>Slower to start</li><li>Needs real input</li><li>No shortcuts</li></ul></div></div>
+    </div>
+    <div class="spec" style="margin-top:20px"><div class="spec__l">Icon-labeled list &amp; at-a-glance</div>
+      <div class="frame pad"><ul class="iconlist">
+        <li><span class="sym">◈</span> <b>Access</b> — if a machine can’t read you, it can’t quote you.</li>
+        <li><span class="sym">◆</span> <b>Authority</b> — AI trusts what the web already trusts.</li>
+        <li><span class="sym">◇</span> <b>Answerability</b> — write the sentence you want quoted.</li>
+        <li><span class="sym">▣</span> <b>Citability</b> — be the source nobody else can be.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- 9 METAPHORS -->
+  <section class="sec" id="s9">
+    <div class="sec__head"><span class="sec__num">09</span><h2>Visual metaphors &amp; symbols</h2><p>The brand’s recurring imagery, rendered as reusable elements.</p></div>
+    <div class="spec"><div class="spec__l">The four pillars</div>
+      <div class="pillars">
+        <div class="pillar pillar--1"><div class="sym">◈</div><h4>Discoverability</h4><p>Can the machine reach you?</p></div>
+        <div class="pillar pillar--2"><div class="sym">◆</div><h4>Authority</h4><p>Does the web vouch?</p></div>
+        <div class="pillar pillar--3"><div class="sym">◇</div><h4>Answerability</h4><p>Can it lift your answer?</p></div>
+        <div class="pillar pillar--4"><div class="sym">▣</div><h4>Citability</h4><p>Are you the best source?</p></div>
+      </div>
+    </div>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="frame pad"><div class="spec__l">AEO funnel</div><div class="funnel"><div class="funnel__s" style="width:100%">Discovery</div><div class="funnel__s" style="width:80%">Understanding</div><div class="funnel__s" style="width:60%">Realization</div><div class="funnel__s" style="width:40%;background:var(--accent);color:#fff">Conversion</div></div></div>
+      <div class="frame pad"><div class="spec__l">You vs competitors</div><div class="dual"><div class="dual__side"><div class="lab">You</div><div class="ring" style="--v:34;width:70px;height:70px"><i style="width:54px;height:54px;font-size:18px">34</i></div></div><span style="font-family:var(--mono);color:var(--faint)">vs</span><div class="dual__side"><div class="lab">Top rival</div><div class="ring" style="--v:71;width:70px;height:70px"><i style="width:54px;height:54px;font-size:18px">71</i></div></div></div></div>
+      <div class="frame pad"><div class="spec__l">Dual nature</div><div class="dual" style="grid-template-columns:1fr 1fr;gap:10px"><div class="dual__side" style="border-top:3px solid var(--accent)"><div class="lab">Written by</div><div class="serif" style="font-size:18px">Humans</div></div><div class="dual__side" style="border-top:3px solid var(--c4)"><div class="lab">Structured for</div><div class="serif" style="font-size:18px">Machines</div></div></div></div>
+    </div>
+    <div class="spec" style="margin-top:20px"><div class="spec__l">Learning-path progression map</div>
+      <div class="frame pad"><div class="journeymap"><div class="jm"><div class="jm__node done">✓</div><div class="jm__seg done"></div></div><div class="jm"><div class="jm__node done">✓</div><div class="jm__seg done"></div></div><div class="jm"><div class="jm__node now">5</div><div class="jm__seg"></div></div><div class="jm"><div class="jm__node">6</div><div class="jm__seg"></div></div><div class="jm"><div class="jm__node">7</div><div class="jm__seg"></div></div><div class="jm"><div class="jm__node">★</div></div></div><div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:12px">Module 5 of 12 · next: Content architecture · ★ certification</div></div>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="spec" style="margin:0"><div class="spec__l">Brand glyph set</div>
+        <div class="glyphs">
+          <div class="glyph"><span class="g">◈</span><span class="l">Access</span></div>
+          <div class="glyph"><span class="g">◆</span><span class="l">Authority</span></div>
+          <div class="glyph"><span class="g">◇</span><span class="l">Answer</span></div>
+          <div class="glyph"><span class="g">▣</span><span class="l">Cite</span></div>
+          <div class="glyph"><span class="g">◎</span><span class="l">Audit</span></div>
+          <div class="glyph"><span class="g">⧉</span><span class="l">Schema</span></div>
+          <div class="glyph"><span class="g">⌖</span><span class="l">Target</span></div>
+          <div class="glyph"><span class="g">✦</span><span class="l">Certified</span></div>
+          <div class="glyph"><span class="g">↗</span><span class="l">Growth</span></div>
+          <div class="glyph"><span class="g">⟳</span><span class="l">Fresh</span></div>
+          <div class="glyph"><span class="g">≋</span><span class="l">Signal</span></div>
+          <div class="glyph"><span class="g">∴</span><span class="l">Proof</span></div>
+        </div>
+      </div>
+      <div class="spec" style="margin:0"><div class="spec__l">The pillar cascade · diagnostic gates</div>
+        <div class="frame pad"><div class="cascade">
+          <div class="cgate" style="--gc:var(--c3)"><div class="cgate__n pass">✓</div><div><h4>Access</h4><div class="cgate__s">Crawlable, fast, server-rendered</div></div><span class="cgate__st" style="color:var(--ok)">Pass</span></div>
+          <div class="cgate" style="--gc:var(--c4)"><div class="cgate__n pass">✓</div><div><h4>Alignment</h4><div class="cgate__s">Aimed at real questions</div></div><span class="cgate__st" style="color:var(--ok)">Pass</span></div>
+          <div class="cgate" style="--gc:var(--c5)"><div class="cgate__n">3</div><div><h4>Extractability</h4><div class="cgate__s">Answer-first passages</div></div><span class="cgate__st" style="color:var(--c4)">You break here</span></div>
+          <div class="cgate" style="--gc:var(--faint)"><div class="cgate__n" style="opacity:.5">4</div><div style="opacity:.5"><h4>Authority</h4><div class="cgate__s">Locked until prior gate passes</div></div><span class="cgate__st" style="color:var(--muted)">Waiting</span></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 LAYOUTS -->
+  <section class="sec" id="s10">
+    <div class="sec__head"><span class="sec__num">10</span><h2>Full article layout compositions</h2><p>The elements assembled three ways — same system, genuinely different reading experiences.</p></div>
+
+    <div class="spec"><div class="spec__l">Layout A · research-heavy — data-forward, formal</div>
+      <div class="layout"><div class="layout__bar"><span class="dot"></span> Research report</div><div class="layout__body">
+        <div class="hero-data"><div class="big" style="font-size:56px">94%</div><h2 class="serif" style="font-size:26px;margin:10px 0">The Citation Gap: why most local businesses are invisible to AI search</h2></div>
+        <div class="byl" style="margin:10px 0 20px"><span>Research · 18 min</span><span>Cited 612×</span></div>
+        <div class="statrow" style="margin-bottom:20px"><div><div class="n">38%</div><div class="l">overlap with rank</div></div><div><div class="n">0.66</div><div class="l">mentions corr.</div></div><div><div class="n">~11%</div><div class="l">cross-engine</div></div></div>
+        <p class="la-prose">When an engine answers, it synthesizes — it does not list. The cited source receives the visibility; every uncited source receives nothing…</p>
+        <div class="co co--data" style="margin:8px 0"><div class="num">61%</div><div><div class="tag">CTR drop</div><p style="font-size:13px">when an AI Overview appears</p></div></div>
+      </div></div>
+    </div>
+
+    <div class="grid g2">
+      <div class="spec"><div class="spec__l">Layout B · practical guide — hands-on</div>
+        <div class="layout"><div class="layout__bar"><span class="dot"></span> Niche guide</div><div class="layout__body">
+          <span class="eyebrow">HVAC · 22 min</span><h2 class="serif" style="font-size:24px;margin:10px 0">AEO for HVAC Contractors</h2>
+          <div class="co co--tip" style="margin-bottom:16px"><div class="h">◆ Quick win</div><p>Add same-day availability to your schema today.</p></div>
+          <div class="steps"><div class="step"><span class="n" style="font-size:28px">01</span><div><h4 style="font-size:15px">Capture emergencies</h4><p>Structured availability + service area.</p></div></div><div class="step"><span class="n" style="font-size:28px">02</span><div><h4 style="font-size:15px">Answer the 6pm question</h4><p>“Why is my AC blowing warm?”</p></div></div></div>
+          <div class="chk" style="margin-top:14px"><div class="chk__item on"><span class="chk__box">✓</span><span class="chk__t" style="font-size:13px">Claim Google Business Profile</span></div></div>
+        </div></div>
+      </div>
+      <div class="spec"><div class="spec__l">Layout C · thought-leadership — essay, typographic</div>
+        <div class="layout"><div class="layout__bar"><span class="dot"></span> Opinion</div><div class="layout__body" style="text-align:center">
+          <span class="eyebrow">Essay · 9 min</span>
+          <h2 class="serif" style="font-size:30px;margin:14px 0;text-align:left">AI content can’t win AI search — here’s the paradox</h2>
+          <p class="la-prose" style="text-align:left">The supply of competent, generic writing is now infinite. Which means it is worth nothing to an engine built to find the best source…</p>
+          <div class="dv dv--pq" style="margin:18px auto">“The scarce thing is what was always valuable: the specifically true.”</div>
+          <p class="la-prose" style="text-align:left">Originality stopped being a virtue and became a moat…</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 CONSOLE & STATUS -->
+  <section class="sec" id="s11">
+    <div class="sec__head"><span class="sec__num">11</span><h2>Console &amp; status patterns</h2><p>The site’s spectrum identity — colour as category, not decoration. Boards, pills, and status systems for organizing the canon at scale.</p></div>
+
+    <div class="spec"><div class="spec__l">Category board · the canon at a glance</div>
+      <div class="board">
+        <a class="btile b5" href="#"><span class="bn">§ 1 · Foundation</span><h4>Access &amp; alignment</h4><span class="bc">38 ENTRIES</span></a>
+        <a class="btile b3" href="#"><span class="bn">§ 2 · Trust</span><h4>Authority signals</h4><span class="bc">41 ENTRIES</span></a>
+        <a class="btile b4" href="#"><span class="bn">§ 3 · Extractability</span><h4>Answer-shaped copy</h4><span class="bc">52 ENTRIES</span></a>
+        <a class="btile b2" href="#"><span class="bn">§ 4 · Freshness</span><h4>Cadence &amp; signals</h4><span class="bc">27 ENTRIES</span></a>
+        <a class="btile b1" href="#"><span class="bn">§ 5 · Industries</span><h4>Niche playbooks</h4><span class="bc">68 ENTRIES</span></a>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:20px">
+      <div class="frame pad"><div class="spec__l">Status pills</div>
+        <div class="pills"><span class="pill pill--live">Live</span><span class="pill pill--prog">In progress</span><span class="pill pill--new">New</span><span class="pill pill--soon">Coming soon</span><span class="pill pill--lock">Locked</span></div>
+        <div class="spec__l" style="margin:22px 0 10px">Format segmented bar</div>
+        <div class="segbar"><span style="width:40%;background:var(--c3)">Article</span><span style="width:22%;background:var(--c4)">Interactive</span><span style="width:18%;background:var(--c2)">Video</span><span style="width:20%;background:var(--c6)">Workshop</span></div>
+      </div>
+      <div class="frame pad"><div class="spec__l">Kanban · content pipeline</div>
+        <div class="kanban">
+          <div class="kcol"><div class="kcol__h"><span>Drafting</span><span>3</span></div><div class="kcard" style="--kc:var(--c5)">Schema for dentists<div class="kt">Technical</div></div><div class="kcard" style="--kc:var(--c3)">Review velocity<div class="kt">Med spa</div></div></div>
+          <div class="kcol"><div class="kcol__h"><span>Review</span><span>2</span></div><div class="kcard" style="--kc:var(--c4)">AI Overviews Q2<div class="kt">Trend</div></div></div>
+          <div class="kcol"><div class="kcol__h"><span>Published</span><span>352</span></div><div class="kcard" style="--kc:var(--c2)">Citation Economy<div class="kt">1,240×</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid g3" style="margin-top:20px">
+      <div class="frame pad"><div class="spec__l">Module format key</div>
+        <ul class="iconlist" style="gap:10px">
+          <li><span class="pill pill--live" style="color:var(--c3)">Article</span></li>
+          <li><span class="pill pill--prog" style="color:var(--c2)">Video</span></li>
+          <li><span class="pill" style="color:var(--c4)">Interactive</span></li>
+          <li><span class="pill" style="color:var(--c6)">Workshop</span></li>
+          <li><span class="pill pill--lock">Quiz</span></li>
+        </ul>
+      </div>
+      <div class="frame pad"><div class="spec__l">Mastery rollup</div>
+        <div class="sov" style="gap:12px">
+          <div class="sov__row"><span>Understanding</span><div class="sov__tr"><div class="sov__fl" style="width:72%;background:var(--c5)"></div></div><span>72</span></div>
+          <div class="sov__row"><span>Trust</span><div class="sov__tr"><div class="sov__fl" style="width:45%;background:var(--c3)"></div></div><span>45</span></div>
+          <div class="sov__row"><span>Extract.</span><div class="sov__tr"><div class="sov__fl" style="width:30%;background:var(--c4)"></div></div><span>30</span></div>
+          <div class="sov__row"><span>Freshness</span><div class="sov__tr"><div class="sov__fl" style="width:18%;background:var(--c2)"></div></div><span>18</span></div>
+        </div>
+      </div>
+      <div class="frame pad"><div class="spec__l">Notification toast</div>
+        <div class="co co--key" style="display:flex;gap:12px;align-items:center;padding:16px 18px"><span style="font-size:20px;color:var(--accent)">✦</span><div><div style="font-family:var(--serif);font-size:16px;color:var(--bg)">Badge earned</div><p style="font-size:12.5px;margin-top:2px">First Module Complete · keep the streak going</p></div></div>
+        <div class="spec__l" style="margin:18px 0 8px">Streak counter</div>
+        <div style="display:flex;gap:6px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--muted)"><span style="font-family:var(--serif);font-size:24px;color:var(--accent)">7</span> day streak <span style="margin-left:auto;display:flex;gap:3px">●●●●●●●</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 ANNOTATION & READING -->
+  <section class="sec" id="s12">
+    <div class="sec__head"><span class="sec__num">12</span><h2>Annotation &amp; reading aids</h2><p>Treatments for the 5,000-word read — margin notes, highlights, key terms, and skimmable summaries.</p></div>
+    <div class="grid g2">
+      <div class="frame pad"><div class="spec__l">Highlight + reference marks</div><p class="annot">Engines retrieve at the <mark>passage level</mark>, then a reranker scores each passage for relevance, authority, and freshness<span class="anref">[15]</span>. The implication: every section must <mark>stand on its own</mark>.</p></div>
+      <div class="frame pad"><div class="spec__l">Margin note</div><div class="margin-note"><p style="font-family:var(--serif);font-size:16px;line-height:1.7;color:var(--ink)">A model recommends you because many independent sources describe you the same way — not because one page argued well.</p><div class="margin-note__m">This is the single most counterintuitive idea in the canon — most owners optimize one page.</div></div></div>
+    </div>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="frame pad"><div class="spec__l">TL;DR summary</div><div class="tldr"><div class="h">TL;DR</div><ul><li>Citation beats ranking</li><li>Mentions beat backlinks</li><li>Lead with the answer</li></ul></div></div>
+      <div class="frame pad"><div class="spec__l">Key terms</div><div style="display:flex;flex-wrap:wrap;gap:8px"><span class="keyterm"><span class="kk"></span>AEO</span><span class="keyterm"><span class="kk"></span>RAG</span><span class="keyterm"><span class="kk"></span>Schema</span><span class="keyterm"><span class="kk"></span>Extractability</span><span class="keyterm"><span class="kk"></span>PAWC</span></div><div class="spec__l" style="margin:18px 0 8px">Footnote</div><div class="footnote"><span class="fn">15</span><span>Passage Segmentation for Extractive QA, arXiv 2025.</span></div></div>
+      <div class="frame pad"><div class="spec__l">Reading meta bar</div><div class="read-meta"><span><b>14</b> min</span><span><b>3,180</b> words</span><span>Cited <b>1,240×</b></span></div><div class="read-meta" style="margin-top:10px"><span>Progress</span><span class="rl"><span style="width:64%"></span></span><span><b>64%</b></span></div></div>
+    </div>
+    <div class="spec" style="margin-top:20px"><div class="spec__l">Side pull-quote</div><div class="frame pad"><div class="pullq-side">The businesses winning AEO aren’t the loudest — they’re the most legible.</div></div></div>
+  </section>
+
+  <!-- 13 COMPARISON & TABLES -->
+  <section class="sec" id="s13">
+    <div class="sec__head"><span class="sec__num">13</span><h2>Comparison &amp; table layouts</h2><p>For SEO-vs-AEO explainers, feature matrices, and scorecards.</p></div>
+    <div class="spec"><div class="spec__l">Versus split</div>
+      <div class="vs"><div class="vs__col"><div class="vs__h">Traditional SEO</div><div class="vs__row">◇ Optimizes for rank position</div><div class="vs__row">◇ Wins the click</div><div class="vs__row">◇ Keyword-led</div><div class="vs__row">◇ Page-level</div></div><div class="vs__mid">vs</div><div class="vs__col"><div class="vs__h" style="color:var(--accent)">Answer Engine Optimization</div><div class="vs__row">◆ Optimizes for citation</div><div class="vs__row">◆ Wins the recommendation</div><div class="vs__row">◆ Question-led</div><div class="vs__row">◆ Passage-level</div></div></div>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="frame pad"><div class="spec__l">Feature matrix</div><table class="ctable"><thead><tr><th>Capability</th><th>Foundations</th><th>Authority</th></tr></thead><tbody><tr><td>Website build</td><td class="yes">✓</td><td class="yes">✓</td></tr><tr><td>Articles / mo</td><td>4</td><td>10</td></tr><tr><td>Engine monitoring</td><td class="mid">Quarterly</td><td class="yes">Monthly</td></tr><tr class="feat"><td>Dedicated strategist</td><td class="no">—</td><td class="yes">✓</td></tr></tbody></table></div>
+      <div class="frame pad"><div class="spec__l">Decision matrix</div><div class="matrix2"><div class="mh"></div><div class="mh">Article</div><div class="mh">Course</div><div class="mq">Need one answer</div><div style="text-align:center;color:var(--ok)">●</div><div style="text-align:center;color:var(--faint)">○</div><div class="mq">Build competence</div><div style="text-align:center;color:var(--faint)">○</div><div style="text-align:center;color:var(--ok)">●</div><div class="mq">From a Google search</div><div style="text-align:center;color:var(--ok)">●</div><div style="text-align:center;color:var(--faint)">○</div></div></div>
+    </div>
+    <div class="spec" style="margin-top:20px"><div class="spec__l">Scorecard bands</div><div class="frame pad">
+      <div class="scoreband"><span class="nm">Access</span><div class="bar"><i style="width:82%;background:var(--ok)"></i></div><span class="sc">82</span></div>
+      <div class="scoreband"><span class="nm">Authority</span><div class="bar"><i style="width:48%;background:var(--warn)"></i></div><span class="sc">48</span></div>
+      <div class="scoreband"><span class="nm">Extractability</span><div class="bar"><i style="width:22%;background:var(--bad)"></i></div><span class="sc">22</span></div>
+    </div></div>
+  </section>
+
+  <!-- 14 EMBEDDED TOOLS -->
+  <section class="sec" id="s14">
+    <div class="sec__head"><span class="sec__num">14</span><h2>Embedded interactive tools</h2><p>The Scrimba move — learners <em>do</em> the thing inside the lesson. All functional; try them.</p></div>
+    <div class="grid g2">
+      <div class="tool"><div class="tool__bar"><span class="dot"></span> AI Visibility Audit<span class="tt">TOOL</span></div><div class="tool__body"><div class="ifield" style="margin-bottom:16px"><input id="t14url" placeholder="yourbusiness.com"><button class="toolbtn" id="t14btn">Audit</button></div><div class="scoredial" id="t14dial" style="--v:0"><i><span id="t14score">—</span><small>/ 100</small></i></div><div id="t14band" style="text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:12px">enter a URL to score</div></div></div>
+      <div class="tool"><div class="tool__bar"><span class="dot"></span> Schema Generator<span class="tt">TOOL</span></div><div class="tool__body"><div class="ifield" style="margin-bottom:8px"><input id="t14name" placeholder="Business name" style="font-family:var(--sans)"></div><div class="ifield" style="margin-bottom:12px"><input id="t14area" placeholder="Service area" style="font-family:var(--sans)"><button class="toolbtn" id="t14gen">Generate</button></div><div class="code" id="t14code" style="font-size:11px">// fill the fields and generate</div></div></div>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="tool"><div class="tool__bar"><span class="dot"></span> Content Scorer<span class="tt">TOOL</span></div><div class="tool__body"><p style="font-size:13px;color:var(--muted);margin-bottom:12px">Toggle the signals present in your draft:</p><div class="kw" id="t14kw"><span data-w="20">Statistics</span><span data-w="25">Quotations</span><span data-w="18">Cited sources</span><span data-w="12">Clear headings</span><span data-w="15">Author bio</span><span data-w="10">Recent date</span></div><div class="calc__out" style="margin-top:16px"><span id="t14ksc">0</span><span style="font-size:14px;color:var(--muted);font-family:var(--mono)"> / 100 citability</span></div></div></div>
+      <div class="tool"><div class="tool__bar"><span class="dot"></span> Module Quiz<span class="tt">QUIZ</span></div><div class="tool__body"><p style="font-family:var(--serif);font-size:16px;margin-bottom:14px">What does an answer engine cite?</p><div id="t14quiz"><div class="qz__opt" data-correct="0"><span class="qz__k">A</span> The whole page</div><div class="qz__opt" data-correct="1"><span class="qz__k">B</span> A specific passage</div><div class="qz__opt" data-correct="0"><span class="qz__k">C</span> The meta description</div></div><div id="t14qmsg" style="font-family:var(--mono);font-size:12px;margin-top:10px;color:var(--muted)"></div></div></div>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="tool"><div class="tool__bar"><span class="dot"></span> ROI Calculator<span class="tt">TOOL</span></div><div class="tool__body"><div class="calc__row"><span style="font-size:14px">Monthly leads from AI</span><span style="font-family:var(--mono)" id="t14leads">12</span></div><input type="range" class="rng" id="t14r" min="0" max="100" value="12" style="margin:12px 0"><div class="calc__row" style="border:none"><span style="font-size:14px;color:var(--muted)">Est. annual value @ $400/lead</span></div><div class="calc__out" id="t14roi">$57,600</div></div></div>
+      <div class="tool"><div class="tool__bar"><span class="dot"></span> Workshop Stepper<span class="tt">WORKSHOP</span></div><div class="tool__body"><div class="stepper"><div class="stepper__s done"><div class="stepper__d">✓</div>Audit</div><div class="stepper__s done"><div class="stepper__d">✓</div>Schema</div><div class="stepper__s now"><div class="stepper__d">3</div>Write</div><div class="stepper__s"><div class="stepper__d">4</div>Publish</div></div><p style="font-size:14px;color:var(--ink-2)">Step 3 — Draft one answer-first passage for your top question. Lead with the claim in the first sentence.</p><button class="toolbtn" style="margin-top:14px" id="t14next">Mark step complete →</button></div></div>
+    </div>
+  </section>
+
+  <!-- 15 SIDEBARS & NAV -->
+  <section class="sec" id="s15">
+    <div class="sec__head"><span class="sec__num">15</span><h2>Sidebars &amp; navigation</h2><p>Wayfinding for long reads and multi-module courses.</p></div>
+    <div class="grid g3">
+      <div><div class="spec__l">Sticky TOC rail</div><div class="toc-rail"><h6>On this page</h6><a href="#" class="on">The list is dead</a><a href="#">How answers get built</a><a href="#">Consensus as currency</a><a href="#">Monday morning</a></div></div>
+      <div><div class="spec__l">Module navigator</div><div class="frame pad" style="padding:14px"><div class="modnav"><a class="done" href="#"><span class="mk">✓</span> What AEO is<span style="font-family:var(--mono);font-size:10px;color:var(--faint)">8m</span></a><a class="on" href="#"><span class="mk">5</span> Auditing visibility<span style="font-family:var(--mono);font-size:10px;color:var(--accent)">now</span></a><a href="#"><span class="mk">6</span> Content architecture<span style="font-family:var(--mono);font-size:10px;color:var(--faint)">12m</span></a></div></div></div>
+      <div><div class="spec__l">Jump-link rail</div><div class="frame pad"><div class="jumpnav"><a class="on" href="#">01 Foundation</a><a href="#">02 Reputation</a><a href="#">03 Momentum</a><a href="#">04 Measurement</a></div></div></div>
+    </div>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="frame pad"><div class="spec__l">Breadcrumbs</div><div class="crumbs"><b>Canon</b><span class="sp">/</span>Fundamentals<span class="sp">/</span><b>The Citation Economy</b></div></div>
+      <div class="frame pad" style="display:flex;align-items:center;gap:14px"><div class="prog-circle" style="--v:46"><i>46%</i></div><div><div style="font-size:14px;font-weight:500">Auditing &amp; Measurement</div><div style="font-family:var(--mono);font-size:11px;color:var(--muted)">Module 5 of 10</div></div></div>
+      <div class="frame pad" style="display:flex;align-items:center;justify-content:center;gap:12px"><span class="fab"><span class="d"></span> Resume learning</span></div>
+    </div>
+  </section>
+
+  <!-- 16 ENGAGEMENT & CTAs -->
+  <section class="sec" id="s16">
+    <div class="sec__head"><span class="sec__num">16</span><h2>Engagement &amp; conversion</h2><p>The warm, educational nudges — placed at natural moments, never as pressure.</p></div>
+    <div class="cta-band"><div><h3>Most businesses score below 30/100.</h3><p>Want to see what an AEO-optimized version of your site would look like?</p></div><a class="btn" href="#">See your score →</a></div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="cta-split"><div><div class="tag">Self-serve</div><h3 style="font-family:var(--serif);font-size:20px;margin:8px 0">Learn it yourself</h3><p style="font-size:13.5px;color:var(--muted)">Free in the AEO school.</p></div><div style="background:var(--accent-soft)"><div class="tag">Done for you</div><h3 style="font-family:var(--serif);font-size:20px;margin:8px 0">We run it</h3><p style="font-size:13.5px;color:var(--ink-2)">Site + content retainer.</p></div></div>
+      <div class="cta-soft"><h3>You have the plan. We can execute it.</h3><p>You finished the action-plan module. Talk to a strategist about putting it to work.</p><a class="btn" href="#">Book a call</a></div>
+    </div>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="frame pad"><div class="spec__l">Newsletter inline</div><p style="font-size:14px;margin-bottom:12px">Get the State of AEO, monthly.</p><div class="news"><input placeholder="you@business.com"><button class="btn btn--sm" id="t16sub">Join</button></div><div id="t16msg" style="font-family:var(--mono);font-size:11px;color:var(--accent);margin-top:8px"></div></div>
+      <div class="frame pad"><div class="spec__l">“Was this helpful?”</div><div class="helpful" id="t16help" style="margin-bottom:18px"><span>Was this helpful?</span><button data-v="y">Yes</button><button data-v="n">No</button></div><div class="spec__l">Star rating</div><div class="rating" id="t16rate"><button data-n="1">★</button><button data-n="2">★</button><button data-n="3">★</button><button data-n="4">★</button><button data-n="5">★</button></div></div>
+      <div class="frame pad"><div class="spec__l">Share + gate</div><div class="share" style="margin-bottom:18px"><button>↗</button><button>in</button><button>𝕏</button><button>⧉</button></div><div class="gate"><div class="lock">◆</div><h3>Continue free</h3><p>Create an account to save progress past Module 1.</p><a class="btn btn--sm" href="#">Create account</a></div></div>
+    </div>
+    <div class="spec" style="margin-top:20px"><div class="spec__l">Progress-aware CTA</div><div class="progress-cta"><div class="prog-circle" style="--v:100"><i>✓</i></div><div style="flex:1"><div style="font-family:var(--serif);font-size:18px">You understand AEO.</div><div style="font-size:13.5px;color:var(--muted)">Ready for an AEO-optimized website?</div></div><a class="btn" href="#">See packages →</a></div></div>
+  </section>
+
+  <div class="foot-note">AEO Canon Visual Library · v1 · pull freely, stay cohesive · toggle light/dark, top-right</div>
+</div>
+
+</div><!-- /.page -->
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#08090d"/><text x="50" y="46" font-family="Georgia,serif" font-size="34" fill="#7b80ff" text-anchor="middle">AE</text><text x="50" y="68" font-family="monospace" font-size="9" fill="#d2d6e4" text-anchor="middle" letter-spacing="2">LIBRARY</text></svg></template>
+
+<script>
+  // theme
+  var KEY='aeo-lib-theme';
+  function apply(t){document.documentElement.setAttribute('data-theme',t);document.getElementById('tgl').textContent=t==='dark'?'◐ Light':'◐ Dark';}
+  apply(localStorage.getItem(KEY)||'light');
+  document.getElementById('tgl').onclick=function(){var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';localStorage.setItem(KEY,n);apply(n);};
+  // jump
+  document.getElementById('jump').onchange=function(){if(this.value)document.getElementById(this.value).scrollIntoView();this.value='';};
+  // audit
+  document.getElementById('auditBtn').onclick=function(){var u=document.getElementById('auditUrl').value||'your site';var s=42+((u.split('').reduce((a,c)=>a+c.charCodeAt(0),0))%48);document.getElementById('auditOut').textContent='▸ '+u+' scores '+s+'/100 — '+(s>=70?'Established':s>=50?'Emerging':'At risk');};
+  // before/after
+  var baTx={before:'Described as generic “HVAC,” absent from 4 of 5 engines.',after:'Named for mini-split installation in Travis County across 4 of 5 engines.'};
+  document.querySelectorAll('#baSwitch button').forEach(b=>b.onclick=function(){document.querySelectorAll('#baSwitch button').forEach(x=>x.classList.toggle('on',x===b));document.getElementById('baText').textContent=baTx[b.dataset.ba];});
+  // checklist
+  var chk=document.getElementById('chk');function upd(){var on=chk.querySelectorAll('.chk__item.on').length,tot=chk.querySelectorAll('.chk__item').length;document.getElementById('chkBar').style.width=(on/tot*100)+'%';document.getElementById('chkCount').textContent=on+' of '+tot+' complete';}
+  chk.querySelectorAll('.chk__item').forEach(i=>i.onclick=function(){i.classList.toggle('on');upd();});
+  // range
+  document.getElementById('rng').oninput=function(){document.getElementById('rngVal').textContent=this.value;};
+  // accordion
+  document.querySelectorAll('#acc .acc__q').forEach(q=>q.onclick=function(){q.parentElement.classList.toggle('on');});
+  // tabs
+  document.querySelectorAll('#tabs button').forEach(b=>b.onclick=function(){document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('[data-pane]').forEach(p=>p.classList.toggle('on',p.dataset.pane===b.dataset.tab));});
+  // copy chip
+  var cc=document.getElementById('copychip');if(cc)cc.onclick=function(){var t=document.getElementById('copytxt');var orig=t.textContent;if(navigator.clipboard)navigator.clipboard.writeText(orig).catch(function(){});t.textContent='Copied ✓';setTimeout(function(){t.textContent=orig;},1200);};
+
+  // ---- 14 embedded tools ----
+  var d14=document.getElementById('t14btn');if(d14)d14.onclick=function(){var u=document.getElementById('t14url').value||'your site';var s=42+((u.split('').reduce((a,c)=>a+c.charCodeAt(0),0))%48);var dial=document.getElementById('t14dial');var n=0;var iv=setInterval(function(){n+=2;if(n>=s){n=s;clearInterval(iv);}dial.style.setProperty('--v',n);document.getElementById('t14score').textContent=n;},12);document.getElementById('t14band').textContent=s>=70?'Established':s>=50?'Emerging':'At risk';};
+  var g14=document.getElementById('t14gen');if(g14)g14.onclick=function(){var nm=document.getElementById('t14name').value||'Your Business';var ar=document.getElementById('t14area').value||'Your County, ST';document.getElementById('t14code').innerHTML='<span class="c">// LocalBusiness</span><br>{<br>&nbsp;&nbsp;"<span class="k">@type</span>": <span class="s">"LocalBusiness"</span>,<br>&nbsp;&nbsp;"<span class="k">name</span>": <span class="s">"'+nm+'"</span>,<br>&nbsp;&nbsp;"<span class="k">areaServed</span>": <span class="s">"'+ar+'"</span><br>}';};
+  var kw=document.getElementById('t14kw');if(kw)kw.querySelectorAll('span').forEach(function(s){s.onclick=function(){s.classList.toggle('on');var tot=0;kw.querySelectorAll('span.on').forEach(x=>tot+=+x.dataset.w);document.getElementById('t14ksc').textContent=Math.min(tot,100);};});
+  document.querySelectorAll('#t14quiz .qz__opt').forEach(function(o){o.onclick=function(){var ok=o.dataset.correct==='1';o.classList.add(ok?'correct':'wrong');document.getElementById('t14qmsg').textContent=ok?'✓ Right — engines cite passages, not pages.':'Not quite — engines retrieve at the passage level.';document.getElementById('t14qmsg').style.color=ok?'var(--ok)':'var(--bad)';};});
+  var r14=document.getElementById('t14r');if(r14)r14.oninput=function(){document.getElementById('t14leads').textContent=this.value;document.getElementById('t14roi').textContent='$'+(this.value*400*12).toLocaleString();};
+  var nx=document.getElementById('t14next');if(nx)nx.onclick=function(){var s=document.querySelector('#s14 .stepper__s.now');if(s){s.classList.remove('now');s.classList.add('done');s.querySelector('.stepper__d').textContent='✓';var nextS=s.nextElementSibling;if(nextS)nextS.classList.add('now');}nx.textContent='Step complete ✓';};
+
+  // ---- 16 engagement ----
+  var sub=document.getElementById('t16sub');if(sub)sub.onclick=function(){document.getElementById('t16msg').textContent='✓ Subscribed — see you monthly.';};
+  document.querySelectorAll('#t16help button').forEach(function(b){b.onclick=function(){document.querySelectorAll('#t16help button').forEach(x=>x.classList.toggle('on',x===b));};});
+  document.querySelectorAll('#t16rate button').forEach(function(b){b.onclick=function(){var n=+b.dataset.n;document.querySelectorAll('#t16rate button').forEach(x=>x.classList.toggle('on',+x.dataset.n<=n));};});
+</script>
+</body>
+</html>
