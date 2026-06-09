@@ -141,9 +141,45 @@ const playbooks = defineCollection({
     })),
 });
 
+const tools = defineCollection({
+  name: "ToolDoc",
+  pattern: "tools/**/*.mdx",
+  schema: s
+    .object({
+      title: s.string().max(120),
+      slug: s.slug("tools"),
+      summary: s.string().min(20).max(320),
+      body: s.mdx(),
+      type: s.enum(["review", "roundup", "comparison", "guide"]),
+      // Review-specific fields (optional; power the shared review template):
+      toolName: s.string().optional(),
+      vendorUrl: s.string().url().optional(),
+      category: s.string().optional(),
+      pricingFrom: s.string().optional(),
+      bestFor: s.string().optional(),
+      verdict: s.string().optional(),
+      pros: s.array(s.string()).optional(),
+      cons: s.array(s.string()).optional(),
+      /** Human-readable verification date, e.g. "June 2026". */
+      verified: s.string().optional(),
+      author: s.string(), // author slug; existence enforced in prepare()
+      published: s.isodate(),
+      updated: s.isodate(),
+      schemaType: s.literal("Article").default("Article"),
+      faqs: s.array(s.object({ q: s.string(), a: s.string() })).optional(),
+      metadata: s.metadata(),
+      toc: s.toc(),
+    })
+    .transform((data) => ({
+      ...data,
+      url: `/tools/${data.slug}`,
+      canonicalUrl: `${SITE_URL}/tools/${data.slug}`,
+    })),
+});
+
 export default defineConfig({
   root: "content",
-  collections: { articles, authors, verticals, playbooks },
+  collections: { articles, authors, verticals, playbooks, tools },
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins,
@@ -151,7 +187,7 @@ export default defineConfig({
   // Cross-collection referential integrity. Throwing here aborts `velite build`,
   // which (via the `build` npm script) aborts `next build` — bad references fail
   // the build instead of 404-ing in production.
-  prepare: ({ articles, authors, playbooks }) => {
+  prepare: ({ articles, authors, playbooks, tools }) => {
     const authorSlugs = new Set(authors.map((a) => a.slug));
     const errors: string[] = [];
 
@@ -167,6 +203,14 @@ export default defineConfig({
       if (!authorSlugs.has(playbook.author)) {
         errors.push(
           `Playbook "${playbook.slug}" references unknown author "${playbook.author}".`,
+        );
+      }
+    }
+
+    for (const tool of tools) {
+      if (!authorSlugs.has(tool.author)) {
+        errors.push(
+          `Tool doc "${tool.slug}" references unknown author "${tool.author}".`,
         );
       }
     }

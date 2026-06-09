@@ -9,14 +9,16 @@ import {
   authors as rawAuthors,
   verticals as rawVerticals,
   playbooks as rawPlaybooks,
+  tools as rawTools,
   type Article,
   type Author,
   type Vertical,
   type Playbook,
+  type ToolDoc,
 } from "#velite";
 import { getAllCourses, getCourse, type Course } from "@/lib/courses";
 
-export type { Article, Author, Vertical, Playbook, Course };
+export type { Article, Author, Vertical, Playbook, ToolDoc, Course };
 export { getAllCourses, getCourse };
 
 function byPublishedDesc(a: Article, b: Article): number {
@@ -149,4 +151,18 @@ export function getAllPlaybooks(): Playbook[] {
 
 export function getPlaybook(slug: string): Playbook | undefined {
   return rawPlaybooks.find((p) => p.slug === slug);
+}
+
+// --- Tools (reviews, roundups, comparisons, guides) -------------------------
+
+export function getAllTools(): ToolDoc[] {
+  return [...rawTools].sort((a, b) => b.published.localeCompare(a.published));
+}
+
+export function getTool(slug: string): ToolDoc | undefined {
+  return rawTools.find((t) => t.slug === slug);
+}
+
+export function getToolsByType(type: ToolDoc["type"]): ToolDoc[] {
+  return getAllTools().filter((t) => t.type === type);
 }

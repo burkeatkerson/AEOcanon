@@ -39,6 +39,12 @@ const nextConfig: NextConfig = {
         destination: "/courses/aeo-foundations",
         permanent: true,
       },
+      // Friendly short URL for the DIY measurement guide.
+      {
+        source: "/measure-aeo",
+        destination: "/tools/measure-aeo",
+        permanent: false,
+      },
     ];
   },
 };

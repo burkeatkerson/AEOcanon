@@ -9,6 +9,8 @@ import type {
   LearningResource,
   Organization,
   Person,
+  Review,
+  SoftwareApplication,
   Thing,
   WebSite,
 } from "schema-dts";
@@ -266,6 +268,42 @@ export function datasetNode(opts: {
     variableMeasured: opts.variableMeasured,
     ...(opts.keywords ? { keywords: opts.keywords } : {}),
     isPartOf: { "@id": SITE_ID },
+  };
+}
+
+/**
+ * Review node for a software/tool review, with the reviewed product as a nested
+ * SoftwareApplication. We deliberately omit a numeric reviewRating rather than
+ * fabricate a precise score — the verdict is qualitative.
+ */
+export function reviewNode(opts: {
+  toolName: string;
+  vendorUrl?: string;
+  category?: string;
+  path: string;
+  datePublished: string;
+  dateModified: string;
+  authorUrl?: string;
+  verdict?: string;
+}): Review {
+  const itemReviewed: SoftwareApplication = {
+    "@type": "SoftwareApplication",
+    name: opts.toolName,
+    applicationCategory: opts.category ?? "BusinessApplication",
+    ...(opts.vendorUrl ? { url: opts.vendorUrl } : {}),
+  };
+  return {
+    "@type": "Review",
+    "@id": absoluteUrl(`${opts.path}#review`),
+    url: absoluteUrl(opts.path),
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified,
+    itemReviewed,
+    ...(opts.verdict ? { reviewBody: opts.verdict } : {}),
+    publisher: { "@id": ORG_ID },
+    ...(opts.authorUrl
+      ? { author: { "@id": absoluteUrl(`${opts.authorUrl}#person`) } }
+      : {}),
   };
 }
 

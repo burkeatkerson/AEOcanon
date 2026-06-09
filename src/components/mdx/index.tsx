@@ -27,6 +27,8 @@ import { RagPipeline } from "./diagrams";
 import { CanonMap } from "./canon-map";
 import { CanonDiagnostic } from "./canon-diagnostic";
 import { RelatedQuestions } from "./related-questions";
+import { ToolComparison } from "./tool-comparison";
+import { ProsCons } from "./pros-cons";
 import { AuthorityAudit } from "@/components/authority/authority-audit";
 
 /**
@@ -56,6 +58,8 @@ export const mdxComponents: MDXComponents = {
   CanonMap,
   CanonDiagnostic,
   RelatedQuestions,
+  ToolComparison,
+  ProsCons,
   AuthorityAudit,
 };
 
