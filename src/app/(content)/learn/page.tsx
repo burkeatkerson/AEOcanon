@@ -6,11 +6,13 @@ import { Kicker } from "@/components/ui/eyebrow";
 import { Badge } from "@/components/ui/tag";
 import { ArticleFilter } from "@/components/library/article-filter";
 import { ArticleCard } from "@/components/library/cards/article-card";
+import { TopicGrid } from "@/components/library/topic-grid";
 import { TabGroup, type TabDef } from "@/components/library/tab-group";
 import {
   getAllArticles,
   getAllPaths,
   getPathWithArticles,
+  getUsedTopics,
 } from "@/lib/content";
 import { TOPIC_SLUGS } from "@/lib/taxonomy";
 import { buildMetadata } from "@/lib/seo";
@@ -86,10 +88,10 @@ function CoursesPane() {
       <section className="mt-12">
         <div className="mb-6 flex items-baseline justify-between">
           <h2 className="text-[26px] font-medium tracking-tight">
-            Learning paths, beginner to applied
+            Courses, beginner to applied
           </h2>
           <span className="text-accent font-mono text-[11px] tracking-[0.1em] uppercase">
-            {paths.length} {paths.length === 1 ? "path" : "paths"}
+            {paths.length} {paths.length === 1 ? "course" : "courses"}
           </span>
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
@@ -112,7 +114,7 @@ function CoursesPane() {
                     {path.level}
                   </Badge>
                   <span className="text-muted font-mono text-[11px]">
-                    Path {String(i + 1).padStart(2, "0")}
+                    Course {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
                 <h3 className="text-[22px] font-medium">{path.title}</h3>
@@ -137,10 +139,10 @@ function CoursesPane() {
       <section className="mt-12">
         <div className="mb-6 flex items-baseline justify-between">
           <h2 className="text-[26px] font-medium tracking-tight">
-            Latest from the Canon
+            Latest articles
           </h2>
-          <Link href="#" className="text-accent font-mono text-[12px]">
-            Browse all articles →
+          <Link href="/topics" className="text-accent font-mono text-[12px]">
+            Browse by topic →
           </Link>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -149,6 +151,28 @@ function CoursesPane() {
           ))}
         </div>
       </section>
+    </div>
+  );
+}
+
+function TopicsPane() {
+  const topics = getUsedTopics();
+  return (
+    <div>
+      <div className="mb-6 flex items-baseline justify-between">
+        <h2 className="text-[26px] font-medium tracking-tight">
+          Browse by topic
+        </h2>
+        <Link href="/topics" className="text-accent font-mono text-[12px]">
+          All topics →
+        </Link>
+      </div>
+      <p className="text-ink-2 mb-8 max-w-[60ch] text-[15px] leading-relaxed">
+        A topic gathers every article on a subject. The same articles get
+        sequenced into courses — so you can browse freely or follow a guided
+        order.
+      </p>
+      <TopicGrid topics={topics} />
     </div>
   );
 }
@@ -219,8 +243,8 @@ function CertsPane() {
         </span>
       </div>
       <p className="text-ink-2 mb-8 max-w-[62ch] text-[15px] leading-relaxed">
-        Each path ends in a certification: a shareable badge, a public profile,
-        and a downloadable certificate. Finish the path to earn it.
+        Each course ends in a certification: a shareable badge, a public
+        profile, and a downloadable certificate. Finish the course to earn it.
       </p>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {paths.map((path, i) => {
@@ -256,9 +280,16 @@ function CertsPane() {
 export default function LearnPage() {
   const articleCount = getAllArticles().length;
   const pathCount = getAllPaths().length;
+  const topicCount = getUsedTopics().length;
 
   const tabs: TabDef[] = [
-    { id: "courses", label: "Courses & Paths", content: <CoursesPane /> },
+    { id: "courses", label: "Courses", content: <CoursesPane /> },
+    {
+      id: "topics",
+      label: "Topics",
+      count: topicCount,
+      content: <TopicsPane />,
+    },
     {
       id: "articles",
       label: "Articles",

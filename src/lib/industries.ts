@@ -1,7 +1,7 @@
 /**
  * Industry taxonomy — local-business families and their verticals, mirroring
- * design/templates/industries.html. Each vertical is an "industry hub": a
- * self-contained content library (guides, teardowns, query maps, templates)
+ * design/templates/industries.html. Each vertical is an "industry library": a
+ * self-contained content set (guides, teardowns, query maps, templates)
  * for one trade. A vertical's live/article-count status is computed from real
  * content (see src/lib/content.ts), so the catalog stays honest.
  */

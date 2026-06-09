@@ -47,6 +47,34 @@ export function getArticlesByVertical(tag: string): Article[] {
   return getAllArticles().filter((a) => a.verticals.some((v) => v === tag));
 }
 
+/** A topic with its article count — for topic listings and the topics index. */
+export type TopicWithCount = { slug: string; count: number };
+
+/**
+ * Topics that have at least one published article, ordered by article count
+ * (desc). Drives the /topics index so empty categories never surface.
+ */
+export function getUsedTopics(): TopicWithCount[] {
+  const counts = new Map<string, number>();
+  for (const article of getAllArticles()) {
+    for (const topic of article.topics) {
+      counts.set(topic, (counts.get(topic) ?? 0) + 1);
+    }
+  }
+  return [...counts.entries()]
+    .map(([slug, count]) => ({ slug, count }))
+    .sort((a, b) => b.count - a.count || a.slug.localeCompare(b.slug));
+}
+
+/**
+ * Courses (learning paths) that include at least one article carrying the given
+ * topic — i.e. the ordered curricula that use this topic's content.
+ */
+export function getCoursesForTopic(topic: string): LearningPath[] {
+  const slugs = new Set(getArticlesByTopic(topic).map((a) => a.slug));
+  return getAllPaths().filter((p) => p.items.some((item) => slugs.has(item)));
+}
+
 export function getArticlesByAuthor(authorSlug: string): Article[] {
   return getAllArticles().filter((a) => a.author === authorSlug);
 }
@@ -128,7 +156,7 @@ export function getVerticalByTag(tag: string): Vertical | undefined {
   return rawVerticals.find((v) => v.industryTag === tag);
 }
 
-/** Vertical hubs (pillars) an article belongs to via its `verticals` tags. */
+/** Industry libraries an article belongs to via its `verticals` tags. */
 export function getVerticalsForArticle(article: Article): Vertical[] {
   return getAllVerticals().filter((v) =>
     article.verticals.includes(v.industryTag),

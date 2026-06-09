@@ -398,7 +398,7 @@ export default function HomePage() {
           }
           description="No signup to see your score. Just your website and about a minute."
           primary={{ href: "/audit", label: "Run my free audit →" }}
-          secondary={{ href: "/learn", label: "Explore the Education Center" }}
+          secondary={{ href: "/learn", label: "Explore the AEO School" }}
         />
       </Section>
     </>

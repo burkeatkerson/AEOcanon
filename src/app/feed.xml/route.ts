@@ -13,7 +13,7 @@ function escapeXml(value: string): string {
 // Built entirely from build-time content — prerender as a static file.
 export const dynamic = "force-static";
 
-/** RSS 2.0 feed for the Education Center, generated from the article pool. */
+/** RSS 2.0 feed for the AEO School, generated from the article pool. */
 export function GET() {
   const articles = getAllArticles();
   const self = absoluteUrl("/feed.xml");
@@ -47,7 +47,7 @@ export function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>${escapeXml(siteConfig.name)} — Education Center</title>
+    <title>${escapeXml(siteConfig.name)} — AEO School</title>
     <link>${absoluteUrl("/learn")}</link>
     <description>${escapeXml(siteConfig.description)}</description>
     <language>en-us</language>

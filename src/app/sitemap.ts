@@ -5,6 +5,7 @@ import {
   getAllAuthors,
   getAllPaths,
   getAllVerticals,
+  getUsedTopics,
 } from "@/lib/content";
 
 /** Generated from every content collection; lastModified tracks `updated`. */
@@ -13,7 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
     { url: absoluteUrl("/canon"), changeFrequency: "monthly", priority: 0.9 },
     { url: absoluteUrl("/learn"), changeFrequency: "daily", priority: 0.9 },
-    { url: absoluteUrl("/paths"), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl("/courses"), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl("/topics"), changeFrequency: "weekly", priority: 0.8 },
     {
       url: absoluteUrl("/industries"),
       changeFrequency: "weekly",
@@ -63,5 +65,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.4,
   }));
 
-  return [...staticRoutes, ...articles, ...paths, ...verticals, ...authors];
+  const topics: MetadataRoute.Sitemap = getUsedTopics().map((topic) => ({
+    url: absoluteUrl(`/topics/${topic.slug}`),
+    changeFrequency: "weekly",
+    priority: 0.6,
+  }));
+
+  return [
+    ...staticRoutes,
+    ...articles,
+    ...paths,
+    ...verticals,
+    ...authors,
+    ...topics,
+  ];
 }

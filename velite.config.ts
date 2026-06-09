@@ -114,8 +114,9 @@ const paths = defineCollection({
     })
     .transform((data) => ({
       ...data,
-      url: `/paths/${data.slug}`,
-      canonicalUrl: `${SITE_URL}/paths/${data.slug}`,
+      // Public surface is "Courses"; the data model stays a learning path.
+      url: `/courses/${data.slug}`,
+      canonicalUrl: `${SITE_URL}/courses/${data.slug}`,
     })),
 });
 

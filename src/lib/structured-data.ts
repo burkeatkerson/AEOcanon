@@ -163,6 +163,24 @@ export function courseNode(path: LearningPath, articles: Article[]): Course {
   };
 }
 
+/** CollectionPage node for a topic landing page (a category of articles). */
+export function topicPageNodes(topic: {
+  name: string;
+  description: string;
+  path: string;
+}): Thing[] {
+  return [
+    {
+      "@type": "CollectionPage",
+      "@id": absoluteUrl(`${topic.path}#collection`),
+      name: topic.name,
+      description: topic.description,
+      url: absoluteUrl(topic.path),
+      isPartOf: { "@id": SITE_ID },
+    },
+  ];
+}
+
 export function collectionPageNodes(vertical: Vertical): Thing[] {
   return [
     {

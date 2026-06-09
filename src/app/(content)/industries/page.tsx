@@ -8,7 +8,7 @@ import { getAllVerticals, getArticlesByVertical } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Industries — vertical content hubs",
+  title: "Industries — AEO content libraries by trade",
   description:
     "The Canon, spoken in your trade's language. A self-contained AEO library for each industry — guides, teardowns, query maps, and templates tuned to how your customers actually ask.",
   path: "/industries",
@@ -44,7 +44,7 @@ export default function IndustriesIndexPage() {
     <Container className="py-12 pb-20">
       {/* hero */}
       <header className="max-w-4xl">
-        <Kicker>Industry hubs</Kicker>
+        <Kicker>Industries</Kicker>
         <h1 className="mt-4 text-[clamp(32px,4.8vw,56px)] leading-[1.04] font-medium tracking-[-0.02em]">
           The Canon,{" "}
           <em className="text-accent [font-style:italic]">
@@ -52,9 +52,9 @@ export default function IndustriesIndexPage() {
           </em>
         </h1>
         <p className="text-ink-2 mt-5 max-w-[64ch] text-[18px] leading-relaxed">
-          Every hub is a self-contained library for one kind of business — the
-          guides, real teardowns, query maps, and copy templates that actually
-          move AI visibility in <em>your</em> world.
+          Every industry library is a self-contained set for one kind of
+          business — the guides, real teardowns, query maps, and copy templates
+          that actually move AI visibility in <em>your</em> world.
         </p>
         <div className="mt-6 flex flex-wrap gap-2">
           {FAMILIES.map((f) => (
@@ -69,11 +69,11 @@ export default function IndustriesIndexPage() {
         </div>
       </header>
 
-      {/* what lives in every hub */}
+      {/* what lives in every industry library */}
       <section className="mt-12">
         <div className="mb-6 flex items-baseline justify-between">
           <h2 className="text-[26px] font-medium tracking-tight">
-            What lives in every hub
+            What lives in every industry library
           </h2>
           <span className="text-accent font-mono text-[11px] tracking-[0.1em] uppercase">
             Content first — not a pitch
@@ -179,7 +179,7 @@ export default function IndustriesIndexPage() {
           </h2>
           <p className="text-ink-2 max-w-[60ch] text-[14px]">
             The core Canon applies to any local or small business. Run the
-            analyzer and we&rsquo;ll point you to the closest hub.
+            analyzer and we&rsquo;ll point you to the closest industry library.
           </p>
         </div>
         <Button href="/audit" variant="ghost">

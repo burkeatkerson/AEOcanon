@@ -36,10 +36,38 @@ export const TOPIC_LABELS: Record<TopicSlug, string> = {
   "analytics-measurement": "Analytics & Measurement",
 };
 
-/** Industry verticals. Articles opt into a vertical hub via these tags. */
+/** One-line description per topic — used on topic landing pages and listings. */
+export const TOPIC_DESCRIPTIONS: Record<TopicSlug, string> = {
+  "aeo-fundamentals":
+    "The core concepts of Answer Engine Optimization — what it is, how AI answers are built, and why being cited is the new visibility.",
+  "answer-engines":
+    "How AI answer engines like ChatGPT, Perplexity, and Google AI Overviews retrieve, rank, and cite the sources they quote.",
+  "structured-data":
+    "Schema.org markup and structured data that help engines parse, understand, and trust what your page is about.",
+  "content-strategy":
+    "Planning, writing, and structuring content so it earns AI citations and search rankings at the same time.",
+  "technical-seo":
+    "Crawlability, rendering, and speed — the technical foundations that make your site readable to machines.",
+  "on-page-seo":
+    "Optimizing individual pages — headings, answer-first passages, internal links — for both search and AI.",
+  "keyword-research":
+    "Finding the real questions and conversational queries your audience asks, and the intent behind them.",
+  "link-building":
+    "Earning the links, brand mentions, and off-site authority that answer engines use to decide whom to trust.",
+  "local-seo":
+    "Getting found by AI and search for location-based, near-me, and service-area queries.",
+  "analytics-measurement":
+    "Tracking rankings, citation share, and AI referral traffic to prove what is actually working.",
+};
+
+export function topicDescription(slug: string): string {
+  return TOPIC_DESCRIPTIONS[slug as TopicSlug] ?? "";
+}
+
+/** Industry verticals. Articles opt into an industry library via these tags. */
 // Verticals are the local-business industries defined in src/lib/industries.ts.
-// Article frontmatter `verticals[]` and a vertical hub's `industryTag` validate
-// against this closed set.
+// Article frontmatter `verticals[]` and an industry library's `industryTag`
+// validate against this closed set.
 export const VERTICAL_SLUGS = INDUSTRY_SLUGS;
 export { industryName };
 

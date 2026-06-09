@@ -59,7 +59,7 @@ function ComingSoon({ what }: { what: string }) {
   );
 }
 
-export default async function IndustryHubPage({
+export default async function IndustryPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -118,7 +118,7 @@ export default async function IndustryHubPage({
         </div>
       ) : (
         <p className="text-muted mt-4 text-sm">
-          Guides for this hub are being written.
+          Guides for this industry are being written.
         </p>
       )}
     </div>

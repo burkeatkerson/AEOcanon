@@ -17,6 +17,16 @@ const nextConfig: NextConfig = {
   // (e.g. article.url) derived from frontmatter, which the Route literal types
   // reject. Referential integrity is instead guaranteed by Velite's build-time
   // validation (see velite.config.ts).
+
+  // The "Learning Paths" surface was renamed to "Courses" (public label).
+  // Permanently redirect the old URLs so existing links and indexed pages
+  // continue to resolve.
+  async redirects() {
+    return [
+      { source: "/paths", destination: "/courses", permanent: true },
+      { source: "/paths/:slug", destination: "/courses/:slug", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -42,7 +42,7 @@ export default async function AuthorPage({
   const jsonLd = graph([
     personNode(author),
     breadcrumbNode([
-      { name: "Education Center", path: "/learn" },
+      { name: "AEO School", path: "/learn" },
       { name: author.name, path: author.url },
     ]),
   ]);
@@ -129,7 +129,7 @@ export default async function AuthorPage({
           href="/learn"
           className="text-muted hover:text-accent font-mono text-[12px]"
         >
-          ← Back to the Education Center
+          ← Back to the AEO School
         </Link>
       </p>
     </Container>

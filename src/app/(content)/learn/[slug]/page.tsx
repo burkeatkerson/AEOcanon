@@ -73,11 +73,23 @@ export default async function ArticlePage({
   const pillarVerticals = getVerticalsForArticle(article);
   const updatedDiffers = article.updated !== article.published;
 
+  // Articles always carry at least one topic (enforced by the schema); the
+  // first is treated as primary for the breadcrumb trail.
+  const primaryTopic = article.topics[0];
+
   const jsonLd = graph([
     ...articleContentNodes(article, author),
     ...(author ? [personNode(author)] : []),
     breadcrumbNode([
-      { name: "Education Center", path: "/learn" },
+      { name: "AEO School", path: "/learn" },
+      ...(primaryTopic
+        ? [
+            {
+              name: topicLabel(primaryTopic),
+              path: `/topics/${primaryTopic}`,
+            },
+          ]
+        : []),
       { name: article.title, path: article.url },
     ]),
   ]);
@@ -93,8 +105,19 @@ export default async function ArticlePage({
             className="text-muted flex flex-wrap gap-2 font-mono text-[11.5px]"
           >
             <Link href="/learn" className="hover:text-accent">
-              Education Center
+              AEO School
             </Link>
+            {primaryTopic ? (
+              <>
+                <span className="text-faint">/</span>
+                <Link
+                  href={`/topics/${primaryTopic}`}
+                  className="hover:text-accent"
+                >
+                  {topicLabel(primaryTopic)}
+                </Link>
+              </>
+            ) : null}
             <span className="text-faint">/</span>
             <span className="text-ink">{article.title}</span>
           </nav>
@@ -103,7 +126,7 @@ export default async function ArticlePage({
           <header className="mt-4">
             <div className="flex flex-wrap gap-1.5">
               {article.topics.map((topic) => (
-                <TagLink key={topic} href={`/learn?topic=${topic}`}>
+                <TagLink key={topic} href={`/topics/${topic}`}>
                   {topicLabel(topic)}
                 </TagLink>
               ))}

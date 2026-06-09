@@ -21,7 +21,7 @@ export function SiteHeader() {
 
   return (
     <header>
-      {/* hub strip */}
+      {/* announcement strip */}
       <div className="bg-ink text-bg font-mono text-[11px] tracking-[0.05em]">
         <Container className="flex h-[30px] items-center gap-4">
           <span className="opacity-90">

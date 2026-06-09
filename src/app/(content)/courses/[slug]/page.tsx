@@ -41,7 +41,8 @@ export default async function PathPage({
   const jsonLd = graph([
     courseNode(path, path.articles),
     breadcrumbNode([
-      { name: "Learning Paths", path: "/paths" },
+      { name: "AEO School", path: "/learn" },
+      { name: "Courses", path: "/courses" },
       { name: path.title, path: path.url },
     ]),
   ]);
@@ -53,8 +54,12 @@ export default async function PathPage({
         aria-label="Breadcrumb"
         className="text-muted flex flex-wrap gap-2 font-mono text-[11.5px]"
       >
-        <Link href="/paths" className="hover:text-accent">
-          Learning Paths
+        <Link href="/learn" className="hover:text-accent">
+          AEO School
+        </Link>
+        <span className="text-faint">/</span>
+        <Link href="/courses" className="hover:text-accent">
+          Courses
         </Link>
         <span className="text-faint">/</span>
         <span className="text-ink">{path.title}</span>

@@ -1,5 +1,11 @@
 import { absoluteUrl, siteConfig } from "@/lib/site";
-import { getAllArticles, getAllPaths, getAllVerticals } from "@/lib/content";
+import {
+  getAllArticles,
+  getAllPaths,
+  getAllVerticals,
+  getUsedTopics,
+} from "@/lib/content";
+import { topicLabel, topicDescription } from "@/lib/taxonomy";
 
 // Built entirely from build-time content — prerender as a static file.
 export const dynamic = "force-static";
@@ -13,6 +19,7 @@ export function GET() {
   const articles = getAllArticles();
   const paths = getAllPaths();
   const verticals = getAllVerticals();
+  const topics = getUsedTopics();
 
   const lines: string[] = [];
   lines.push(`# ${siteConfig.name}`);
@@ -20,11 +27,11 @@ export function GET() {
   lines.push(`> ${siteConfig.description}`);
   lines.push("");
   lines.push(
-    "All content is answer-first and structured for extraction. Articles are the single source of truth; learning paths and industry hubs are curated views over them.",
+    "All content is answer-first and structured for extraction. Articles are the single source of truth; courses (learning paths) and industry libraries are curated views over them.",
   );
   lines.push("");
 
-  lines.push("## Education Center (articles)");
+  lines.push("## AEO School (articles)");
   lines.push("");
   for (const article of articles) {
     lines.push(
@@ -33,7 +40,16 @@ export function GET() {
   }
   lines.push("");
 
-  lines.push("## Learning Paths");
+  lines.push("## Topics");
+  lines.push("");
+  for (const topic of topics) {
+    lines.push(
+      `- [${topicLabel(topic.slug)}](${absoluteUrl(`/topics/${topic.slug}`)}): ${topicDescription(topic.slug)}`,
+    );
+  }
+  lines.push("");
+
+  lines.push("## Courses (learning paths)");
   lines.push("");
   for (const path of paths) {
     lines.push(`- [${path.title}](${absoluteUrl(path.url)}): ${path.summary}`);

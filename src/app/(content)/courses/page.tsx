@@ -7,15 +7,15 @@ import { getAllPaths, getPathWithArticles } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Learning Paths",
+  title: "Courses",
   description:
-    "Guided curricula that sequence articles from the library into a course — from AEO fundamentals to advanced structured data.",
-  path: "/paths",
+    "Guided courses that sequence articles from the library into an ordered curriculum — from AEO fundamentals to advanced structured data.",
+  path: "/courses",
 });
 
 const LEVEL_COLORS = ["var(--c3)", "var(--c4)", "var(--c5)", "var(--c6)"];
 
-export default function PathsIndexPage() {
+export default function CoursesIndexPage() {
   const paths = getAllPaths();
 
   return (
@@ -23,12 +23,12 @@ export default function PathsIndexPage() {
       <header className="max-w-3xl">
         <Kicker>Guided courses</Kicker>
         <h1 className="mt-4 text-[clamp(34px,5vw,52px)] leading-[1.02] font-medium tracking-[-0.02em]">
-          Learning Paths
+          Courses
         </h1>
         <p className="text-ink-2 mt-5 text-[19px] leading-relaxed">
-          Ordered curricula that sequence articles from the library into a
-          guided course. The articles stay the single source of truth — paths
-          just set the order.
+          Ordered courses that sequence articles from the library into a guided
+          curriculum. The articles stay the single source of truth — a course
+          just sets the order.
         </p>
       </header>
 
