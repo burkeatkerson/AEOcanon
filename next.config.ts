@@ -45,6 +45,12 @@ const nextConfig: NextConfig = {
         destination: "/tools/measure-aeo",
         permanent: false,
       },
+      // Friendly short URL for the 30-day small business plan.
+      {
+        source: "/30-day-aeo-plan",
+        destination: "/learn/30-day-aeo-plan",
+        permanent: false,
+      },
       // The eight pillar deep-dives moved from /learn/aeo-pillar-<name> articles
       // to their own /pillars/<name> section (children of the /aeo-canon hub).
       ...[
