@@ -5,6 +5,7 @@ import {
   getAllAuthors,
   getAllPaths,
   getAllVerticals,
+  getAllPlaybooks,
   getUsedTopics,
 } from "@/lib/content";
 
@@ -21,6 +22,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/learn"), changeFrequency: "daily", priority: 0.9 },
     { url: absoluteUrl("/courses"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/topics"), changeFrequency: "weekly", priority: 0.8 },
+    {
+      url: absoluteUrl("/authority"),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
     {
       url: absoluteUrl("/industries"),
       changeFrequency: "weekly",
@@ -76,6 +82,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const playbooks: MetadataRoute.Sitemap = getAllPlaybooks().map((p) => ({
+    url: absoluteUrl(p.url),
+    lastModified: p.updated,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   return [
     ...staticRoutes,
     ...articles,
@@ -83,5 +96,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...verticals,
     ...authors,
     ...topics,
+    ...playbooks,
   ];
 }

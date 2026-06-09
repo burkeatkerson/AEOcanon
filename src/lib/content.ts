@@ -9,13 +9,15 @@ import {
   authors as rawAuthors,
   paths as rawPaths,
   verticals as rawVerticals,
+  playbooks as rawPlaybooks,
   type Article,
   type Author,
   type LearningPath,
   type Vertical,
+  type Playbook,
 } from "#velite";
 
-export type { Article, Author, LearningPath, Vertical };
+export type { Article, Author, LearningPath, Vertical, Playbook };
 
 /** A learning path with its `items` resolved to full, ordered articles. */
 export type PathWithArticles = LearningPath & { articles: Article[] };
@@ -161,4 +163,14 @@ export function getVerticalsForArticle(article: Article): Vertical[] {
   return getAllVerticals().filter((v) =>
     article.verticals.includes(v.industryTag),
   );
+}
+
+// --- Authority playbooks ----------------------------------------------------
+
+export function getAllPlaybooks(): Playbook[] {
+  return [...rawPlaybooks].sort((a, b) => a.title.localeCompare(b.title));
+}
+
+export function getPlaybook(slug: string): Playbook | undefined {
+  return rawPlaybooks.find((p) => p.slug === slug);
 }

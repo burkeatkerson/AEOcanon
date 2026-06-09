@@ -220,6 +220,19 @@ export function datasetNode(opts: {
   };
 }
 
+/** FAQPage node from a plain list of Q&As (for non-content-pool pages). */
+export function faqNode(path: string, faqs: { q: string; a: string }[]): FAQPage {
+  return {
+    "@type": "FAQPage",
+    "@id": absoluteUrl(`${path}#faq`),
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: { "@type": "Answer", text: faq.a },
+    })),
+  };
+}
+
 /** Article node for a standalone research report (not a content-pool Article). */
 export function researchArticleNode(opts: {
   headline: string;

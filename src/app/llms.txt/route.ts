@@ -3,6 +3,7 @@ import {
   getAllArticles,
   getAllPaths,
   getAllVerticals,
+  getAllPlaybooks,
   getUsedTopics,
 } from "@/lib/content";
 import { topicLabel, topicDescription } from "@/lib/taxonomy";
@@ -20,6 +21,7 @@ export function GET() {
   const paths = getAllPaths();
   const verticals = getAllVerticals();
   const topics = getUsedTopics();
+  const playbooks = getAllPlaybooks();
 
   const lines: string[] = [];
   lines.push(`# ${siteConfig.name}`);
@@ -53,6 +55,15 @@ export function GET() {
   lines.push("");
   for (const path of paths) {
     lines.push(`- [${path.title}](${absoluteUrl(path.url)}): ${path.summary}`);
+  }
+  lines.push("");
+
+  lines.push("## Off-site & authority playbooks");
+  lines.push("");
+  for (const playbook of playbooks) {
+    lines.push(
+      `- [${playbook.title}](${absoluteUrl(playbook.url)}): ${playbook.summary}`,
+    );
   }
   lines.push("");
 

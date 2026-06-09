@@ -142,9 +142,36 @@ const verticals = defineCollection({
     })),
 });
 
+const playbooks = defineCollection({
+  name: "Playbook",
+  pattern: "playbooks/**/*.mdx",
+  schema: s
+    .object({
+      title: s.string().max(120),
+      slug: s.slug("playbooks"),
+      summary: s.string().min(20).max(320),
+      body: s.mdx(),
+      // The platform/surface this playbook covers (e.g. "Reddit"). Optional so
+      // synthesis playbooks (branded mentions, the audit) can omit it.
+      platform: s.string().optional(),
+      author: s.string(), // author slug; existence enforced in prepare()
+      published: s.isodate(),
+      updated: s.isodate(),
+      schemaType: s.literal("Article").default("Article"),
+      faqs: s.array(s.object({ q: s.string(), a: s.string() })).optional(),
+      metadata: s.metadata(),
+      toc: s.toc(),
+    })
+    .transform((data) => ({
+      ...data,
+      url: `/authority/${data.slug}`,
+      canonicalUrl: `${SITE_URL}/authority/${data.slug}`,
+    })),
+});
+
 export default defineConfig({
   root: "content",
-  collections: { articles, authors, paths, verticals },
+  collections: { articles, authors, paths, verticals, playbooks },
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins,
@@ -152,7 +179,7 @@ export default defineConfig({
   // Cross-collection referential integrity. Throwing here aborts `velite build`,
   // which (via the `build` npm script) aborts `next build` — bad references fail
   // the build instead of 404-ing in production.
-  prepare: ({ articles, authors, paths }) => {
+  prepare: ({ articles, authors, paths, playbooks }) => {
     const articleSlugs = new Set(articles.map((a) => a.slug));
     const authorSlugs = new Set(authors.map((a) => a.slug));
     const errors: string[] = [];
@@ -161,6 +188,14 @@ export default defineConfig({
       if (!authorSlugs.has(article.author)) {
         errors.push(
           `Article "${article.slug}" references unknown author "${article.author}".`,
+        );
+      }
+    }
+
+    for (const playbook of playbooks) {
+      if (!authorSlugs.has(playbook.author)) {
+        errors.push(
+          `Playbook "${playbook.slug}" references unknown author "${playbook.author}".`,
         );
       }
     }

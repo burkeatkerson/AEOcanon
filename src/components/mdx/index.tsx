@@ -26,6 +26,7 @@ import { Checklist, Quiz, Accordion, AiCitableCheck } from "./interactive";
 import { RagPipeline } from "./diagrams";
 import { CanonMap } from "./canon-map";
 import { CanonDiagnostic } from "./canon-diagnostic";
+import { AuthorityAudit } from "@/components/authority/authority-audit";
 
 /**
  * Single registry of components available to every MDX article. Add a component
@@ -53,6 +54,7 @@ export const mdxComponents: MDXComponents = {
   Tenets,
   CanonMap,
   CanonDiagnostic,
+  AuthorityAudit,
 };
 
 // Evaluate Velite's compiled MDX (outputFormat: 'function-body') into a React
