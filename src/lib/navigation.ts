@@ -42,6 +42,7 @@ export const footerNav: FooterColumn[] = [
     title: "The Canon",
     links: [
       { href: "/canon", label: "The framework" },
+      { href: "/pillars", label: "The 8 pillars" },
       { href: "/manifesto", label: "The Manifesto" },
       { href: "/whitepaper", label: "Research whitepaper" },
       { href: "/state-of-aeo-2026", label: "State of AEO 2026" },

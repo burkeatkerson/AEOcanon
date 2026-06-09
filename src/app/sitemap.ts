@@ -6,6 +6,7 @@ import {
   getAllCourses,
   getAllVerticals,
   getAllPlaybooks,
+  getAllPillars,
   getUsedTopics,
 } from "@/lib/content";
 
@@ -20,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     { url: absoluteUrl("/learn"), changeFrequency: "daily", priority: 0.9 },
+    { url: absoluteUrl("/pillars"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/courses"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/topics"), changeFrequency: "weekly", priority: 0.8 },
     {
@@ -97,6 +99,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const pillars: MetadataRoute.Sitemap = getAllPillars().map((p) => ({
+    url: absoluteUrl(p.url),
+    lastModified: p.updated,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
   return [
     ...staticRoutes,
     ...articles,
@@ -105,5 +114,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...authors,
     ...topics,
     ...playbooks,
+    ...pillars,
   ];
 }

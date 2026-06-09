@@ -45,6 +45,22 @@ const nextConfig: NextConfig = {
         destination: "/tools/measure-aeo",
         permanent: false,
       },
+      // The eight pillar deep-dives moved from /learn/aeo-pillar-<name> articles
+      // to their own /pillars/<name> section (children of the /aeo-canon hub).
+      ...[
+        "access",
+        "alignment",
+        "extractability",
+        "authority",
+        "credibility",
+        "originality",
+        "freshness",
+        "adaptability",
+      ].map((slug) => ({
+        source: `/learn/aeo-pillar-${slug}`,
+        destination: `/pillars/${slug}`,
+        permanent: true,
+      })),
     ];
   },
 };

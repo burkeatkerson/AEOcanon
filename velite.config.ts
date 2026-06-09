@@ -177,9 +177,33 @@ const tools = defineCollection({
     })),
 });
 
+const pillars = defineCollection({
+  name: "PillarDoc",
+  pattern: "pillars/**/*.mdx",
+  schema: s
+    .object({
+      title: s.string().max(120),
+      slug: s.slug("pillars"),
+      summary: s.string().min(20).max(320),
+      body: s.mdx(),
+      author: s.string(), // author slug; existence enforced in prepare()
+      published: s.isodate(),
+      updated: s.isodate(),
+      schemaType: s.literal("Article").default("Article"),
+      faqs: s.array(s.object({ q: s.string(), a: s.string() })).optional(),
+      metadata: s.metadata(),
+      toc: s.toc(),
+    })
+    .transform((data) => ({
+      ...data,
+      url: `/pillars/${data.slug}`,
+      canonicalUrl: `${SITE_URL}/pillars/${data.slug}`,
+    })),
+});
+
 export default defineConfig({
   root: "content",
-  collections: { articles, authors, verticals, playbooks, tools },
+  collections: { articles, authors, verticals, playbooks, tools, pillars },
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins,
@@ -187,7 +211,7 @@ export default defineConfig({
   // Cross-collection referential integrity. Throwing here aborts `velite build`,
   // which (via the `build` npm script) aborts `next build` — bad references fail
   // the build instead of 404-ing in production.
-  prepare: ({ articles, authors, playbooks, tools }) => {
+  prepare: ({ articles, authors, playbooks, tools, pillars }) => {
     const authorSlugs = new Set(authors.map((a) => a.slug));
     const errors: string[] = [];
 
@@ -211,6 +235,14 @@ export default defineConfig({
       if (!authorSlugs.has(tool.author)) {
         errors.push(
           `Tool doc "${tool.slug}" references unknown author "${tool.author}".`,
+        );
+      }
+    }
+
+    for (const pillar of pillars) {
+      if (!authorSlugs.has(pillar.author)) {
+        errors.push(
+          `Pillar "${pillar.slug}" references unknown author "${pillar.author}".`,
         );
       }
     }

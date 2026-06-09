@@ -10,15 +10,17 @@ import {
   verticals as rawVerticals,
   playbooks as rawPlaybooks,
   tools as rawTools,
+  pillars as rawPillars,
   type Article,
   type Author,
   type Vertical,
   type Playbook,
   type ToolDoc,
+  type PillarDoc,
 } from "#velite";
 import { getAllCourses, getCourse, type Course } from "@/lib/courses";
 
-export type { Article, Author, Vertical, Playbook, ToolDoc, Course };
+export type { Article, Author, Vertical, Playbook, ToolDoc, PillarDoc, Course };
 export { getAllCourses, getCourse };
 
 function byPublishedDesc(a: Article, b: Article): number {
@@ -165,4 +167,14 @@ export function getTool(slug: string): ToolDoc | undefined {
 
 export function getToolsByType(type: ToolDoc["type"]): ToolDoc[] {
   return getAllTools().filter((t) => t.type === type);
+}
+
+// --- Pillars (AEO Canon deep-dives) -----------------------------------------
+
+export function getAllPillars(): PillarDoc[] {
+  return [...rawPillars];
+}
+
+export function getPillar(slug: string): PillarDoc | undefined {
+  return rawPillars.find((p) => p.slug === slug);
 }

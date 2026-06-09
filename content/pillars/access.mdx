@@ -1,0 +1,163 @@
+---
+title: "Access — Can a Crawler Read Your Page at All?"
+slug: access
+summary: Access is the first pillar of the AEO Canon and a binary gate — if an AI crawler can't read your page, it can't quote you. Most AI crawlers execute no JavaScript, so server-rendered, fast, allowed HTML is the price of admission.
+author: jordan-vega
+published: 2026-01-20
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: Why can't AI cite my website?
+    a: The most common reason is access — AI crawlers can't read your page. Most fetch raw HTML and execute essentially no JavaScript, so client-rendered content is invisible to them. If your robots.txt blocks AI crawlers, or your content only appears after JavaScript runs, you're absent from the candidate set before any other factor matters.
+  - q: Do AI crawlers run JavaScript?
+    a: Mostly no. Vercel and MERJ, analyzing over 500 million GPTBot requests, found zero evidence of JavaScript execution — the crawler reads the raw HTML and nothing more. Google's Gemini is the exception, since it uses Google's rendering infrastructure. For everything else, assume your content must exist in the server-rendered HTML.
+  - q: How do I let AI crawlers access my site?
+    a: Allow them in robots.txt (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, and others), serve server-side-rendered or static HTML so content exists without JavaScript, and keep the page fast. Then verify by fetching your page as a crawler would — with JavaScript disabled — and confirming the content is there.
+  - q: Does page speed affect AI citations?
+    a: Yes. Fast pages are crawled more reliably and appear to be favored — SE Ranking found pages with a First Contentful Paint under 0.4 seconds earned roughly three times more citations. Speed is part of access because a crawler that times out or is throttled never sees your content.
+---
+
+**Access is the first pillar of the AEO Canon, and it is a binary gate: if an AI
+crawler can't read your page, it can't quote you.** There is no partial credit and
+no workaround — every other pillar is irrelevant until this one passes. The good
+news is that access problems are specific and fixable.
+
+<KeyTakeaways
+  items={[
+    "Access is a pass/fail gate — unreadable content can't be cited, full stop.",
+    "Most AI crawlers execute no JavaScript: Vercel/MERJ found zero JS execution across 500M+ GPTBot requests.",
+    "Serve server-rendered or static HTML, and allow AI crawlers in robots.txt.",
+    "Speed matters: pages with FCP under 0.4s earned ~3x more citations (SE Ranking).",
+    "Verify by fetching your page with JavaScript off — if the content isn't there, neither is your visibility.",
+  ]}
+/>
+
+## Why is Access a binary gate?
+
+Access is a binary gate because an answer engine can only cite text it has
+actually read. If your content isn't in the HTML the crawler receives, you are
+not a weak candidate for citation — you are not a candidate at all. This is what
+makes Access different from every other pillar: Authority, Credibility, and the
+rest are matters of degree, but Access is pass/fail. A brilliantly written,
+perfectly authoritative page behind a blocked crawler earns exactly nothing.
+
+That's why the Canon puts Access first and treats it as a cascade gate: there is
+no point optimizing anything downstream until you've confirmed the machine can
+read you. Most "Why isn't my site cited by AI?" investigations end here.
+
+## Do AI crawlers actually read JavaScript?
+
+No — most AI crawlers read raw HTML and execute essentially no JavaScript. This is
+the single most important technical fact in AEO, and it's measured, not
+theoretical.
+
+<StatGrid>
+  <Stat
+    value="0"
+    label="JavaScript executed by GPTBot across 500M+ requests (Vercel & MERJ)"
+    color="var(--c2)"
+  />
+  <Stat
+    value="~3x"
+    label="more citations for pages with First Contentful Paint under 0.4s (SE Ranking)"
+    color="var(--accent)"
+  />
+</StatGrid>
+
+[Vercel, with MERJ, analyzed more than 500 million GPTBot requests](https://vercel.com/blog/the-rise-of-the-ai-crawler)
+and found **zero evidence of JavaScript execution**. The crawler fetches your raw
+HTML and stops; anything assembled client-side — content injected by React, Vue,
+or any framework after load — is simply invisible to it. Google's Gemini is the
+notable exception, because it rides Google's existing rendering pipeline, but for
+ChatGPT, Claude, Perplexity, and the rest, the rule is: **if it's not in the
+server response, it doesn't exist.**
+
+This catches a surprising number of modern sites. A single-page app that looks
+perfect in a browser can serve an AI crawler an empty shell — a `<div id="root">`
+and a script tag. The content humans see is rendered by JavaScript the crawler
+never runs.
+
+## Why does speed belong in Access?
+
+Speed belongs in Access because a crawler that times out, gets throttled, or
+abandons a slow page never reads your content — so slowness is a soft version of
+being unreadable.
+[SE Ranking found that pages with a First Contentful Paint under 0.4 seconds
+earned roughly three times more citations](https://seranking.com) than slower
+pages. Whether that's pure causation or fast pages simply correlating with
+well-built sites, the practical conclusion is the same: a fast, lightweight,
+server-rendered page is both more crawlable and more favored. Core Web Vitals
+were always good practice; for AEO they're table stakes.
+
+## How do you apply the Access pillar?
+
+Apply Access by making your content exist in the raw HTML, allowing the crawlers,
+and keeping the page fast — then verifying it. Work the checklist below; if you
+can't tick every box, this is where your AEO program starts.
+
+<Steps
+  items={[
+    {
+      title: "Serve content server-side",
+      body: "Use server-side rendering or static generation so your content is in the initial HTML response, not assembled by client-side JavaScript.",
+    },
+    {
+      title: "Allow AI crawlers in robots.txt",
+      body: "Explicitly permit GPTBot, ClaudeBot, PerplexityBot, Google-Extended, and others. A disallow here is an invisible AEO killer.",
+    },
+    {
+      title: "Stay fast",
+      body: "Optimize Core Web Vitals — aim for a very fast First Contentful Paint. Speed aids both crawling and apparent favorability.",
+    },
+    {
+      title: "Verify as a crawler",
+      body: "Fetch your page with JavaScript disabled (or view the raw HTML). If your main content isn't there, the crawler doesn't see it either.",
+    },
+  ]}
+/>
+
+<Checklist
+  title="Apply the Access pillar"
+  items={[
+    "My main content appears in the raw HTML with JavaScript disabled.",
+    "My robots.txt explicitly allows GPTBot, ClaudeBot, and PerplexityBot.",
+    "I'm not blocking AI crawlers at the CDN/WAF level (e.g. bot filtering).",
+    "My key pages load fast (First Contentful Paint well under a second).",
+    "I've fetched a page as a crawler would and confirmed the content is present.",
+  ]}
+/>
+
+## What are the most common Access mistakes?
+
+The most common Access mistakes are invisible because the site looks fine to
+humans — the failure only shows up when a JavaScript-free crawler arrives.
+
+<Callout variant="warning" title="The silent killers of Access">
+  <p>
+    <strong>Client-side rendering:</strong> a single-page app that serves crawlers
+    an empty shell. <strong>Blocking AI crawlers:</strong> a robots.txt disallow,
+    or aggressive bot filtering at the CDN, that quietly excludes you.{" "}
+    <strong>Content behind interaction:</strong> answers hidden in tabs,
+    accordions, or modals that only populate on click. <strong>Slowness:</strong>{" "}
+    pages so heavy the crawler times out. Each makes great content uncitable — and
+    none of them are visible in a normal browser test.
+  </p>
+</Callout>
+
+A particularly costly version: blocking AI crawlers "to protect content," then
+wondering why AI never recommends you. You can't be cited by a system you've shut
+the door on. If your goal is visibility, the door has to be open.
+
+## Where Access fits in the Canon
+
+Access is the foundation beneath the foundation — pass it, and you've earned the
+right to compete on the pillars that follow. It answers the first question of the
+[Foundation layer](/learn/aeo-canon): can the machine use you at all? Once a crawler can
+read you, the next question is whether you're answering what people actually ask —
+[Alignment](/pillars/alignment) — and then whether your answer is easy to lift,
+[Extractability](/pillars/extractability).
+
+If you suspect Access is your problem, the fastest diagnosis is in
+[why isn't my site being cited by AI?](/learn/why-isnt-my-site-cited-by-ai), and
+the full framework is [The AEO Canon](/learn/aeo-canon). Fix the door first; everything
+else depends on it.

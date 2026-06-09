@@ -31,7 +31,7 @@ export default function AuthorityIndexPage() {
           brand mentions far more than backlinks. These playbooks show how to earn
           genuine presence on the surfaces engines read most, the honest way. No
           gaming, no manipulation; the{" "}
-          <Link href="/learn/aeo-pillar-authority" className="text-accent">
+          <Link href="/pillars/authority" className="text-accent">
             Authority pillar
           </Link>{" "}
           rejects it because engines do.

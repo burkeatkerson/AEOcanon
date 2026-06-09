@@ -158,7 +158,7 @@ export default async function PlaybookPage({
                 Off-Site &amp; Authority Playbooks
               </Link>
               , built on the{" "}
-              <Link href="/learn/aeo-pillar-authority" className="text-accent">
+              <Link href="/pillars/authority" className="text-accent">
                 Authority pillar
               </Link>{" "}
               of <Link href="/learn/aeo-canon" className="text-accent">The AEO Canon</Link>.

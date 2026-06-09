@@ -50,7 +50,7 @@ const QUESTIONS: { question: string; ifNo: string }[] = [
 ];
 
 function pillarHref(title: string): string {
-  return `/learn/aeo-pillar-${title.toLowerCase()}`;
+  return `/pillars/${title.toLowerCase()}`;
 }
 
 /**

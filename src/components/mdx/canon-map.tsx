@@ -5,9 +5,9 @@ import Link from "next/link";
 import { PILLARS, LAYERS, type CanonLayer } from "@/lib/canon";
 import { cn } from "@/lib/utils";
 
-/** Deep-dive article URL for a pillar (slugs are aeo-pillar-<title>). */
+/** Deep-dive page URL for a pillar (e.g. /pillars/access). */
 function pillarHref(title: string): string {
-  return `/learn/aeo-pillar-${title.toLowerCase()}`;
+  return `/pillars/${title.toLowerCase()}`;
 }
 
 /**

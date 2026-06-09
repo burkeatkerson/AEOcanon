@@ -7,7 +7,7 @@ import { KnowledgeCheck } from "@/components/courses/knowledge-check";
 import { LessonNav } from "@/components/courses/lesson-nav";
 import { Checklist } from "@/components/mdx/interactive";
 import { getAllCourses, getLesson } from "@/lib/courses";
-import { getAuthor, getArticle } from "@/lib/content";
+import { getAuthor, getArticle, getPillar } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 import {
   breadcrumbNode,
@@ -55,7 +55,7 @@ export default async function LessonPage({
   const { course, lesson, index } = found;
 
   const author = getAuthor(course.authorSlug);
-  const article = getArticle(lesson.articleSlug);
+  const article = getArticle(lesson.articleSlug) ?? getPillar(lesson.articleSlug);
   const lessonPath = `/courses/${course.slug}/${lesson.slug}`;
 
   const jsonLd = graph([

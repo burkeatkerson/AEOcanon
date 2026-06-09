@@ -4,6 +4,7 @@ import {
   getAllCourses,
   getAllVerticals,
   getAllPlaybooks,
+  getAllPillars,
   getUsedTopics,
 } from "@/lib/content";
 import { topicLabel, topicDescription } from "@/lib/taxonomy";
@@ -22,6 +23,7 @@ export function GET() {
   const topics = getUsedTopics();
   const playbooks = getAllPlaybooks();
   const courses = getAllCourses();
+  const pillars = getAllPillars();
 
   const lines: string[] = [];
   lines.push(`# ${siteConfig.name}`);
@@ -31,6 +33,18 @@ export function GET() {
   lines.push(
     "All content is answer-first and structured for extraction. Articles are the single source of truth; courses (learning paths) and industry libraries are curated views over them.",
   );
+  lines.push("");
+
+  lines.push("## The AEO Canon (framework pillars)");
+  lines.push("");
+  lines.push(
+    `- [The AEO Canon](${absoluteUrl("/learn/aeo-canon")}): The eight-pillar framework for being cited by AI answer engines, organized in three layers (Foundation, Reputation, Momentum).`,
+  );
+  for (const pillar of pillars) {
+    lines.push(
+      `- [${pillar.title}](${absoluteUrl(pillar.url)}): ${pillar.summary}`,
+    );
+  }
   lines.push("");
 
   lines.push("## AEO School (articles)");

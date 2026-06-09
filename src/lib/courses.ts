@@ -235,7 +235,7 @@ export const COURSES: Course[] = [
           "Explain why placement and structure beat format.",
           "Add inline evidence that makes a passage safe to cite.",
         ],
-        articleSlug: "aeo-pillar-extractability",
+        articleSlug: "extractability",
         takeaways: [
           "Lead with the answer in the first sentence under a question-shaped heading.",
           "Make passages self-contained (~120–180 words) so they make sense lifted out of context.",
@@ -290,7 +290,7 @@ export const COURSES: Course[] = [
           "Identify the off-site surfaces engines read most.",
           "Audit your own off-site authority footprint.",
         ],
-        articleSlug: "aeo-pillar-authority",
+        articleSlug: "authority",
         takeaways: [
           "Brand mentions correlate with AI visibility far more than backlinks (0.664 vs 0.218, Ahrefs).",
           "Reddit, YouTube, and Wikipedia are among the most-cited domains in AI answers.",
@@ -350,7 +350,7 @@ export const COURSES: Course[] = [
           "Set up per-engine measurement on a fixed prompt set.",
           "Treat tactics as hypotheses and adapt as engines change.",
         ],
-        articleSlug: "aeo-pillar-adaptability",
+        articleSlug: "adaptability",
         takeaways: [
           "Measure citation share and AI referral traffic, not just rankings.",
           "Track per engine — they overlap on only a fraction of citations.",
