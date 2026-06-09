@@ -44,6 +44,7 @@ export const footerNav: FooterColumn[] = [
       { href: "/canon", label: "The framework" },
       { href: "/manifesto", label: "The Manifesto" },
       { href: "/whitepaper", label: "Research whitepaper" },
+      { href: "/state-of-aeo-2026", label: "State of AEO 2026" },
     ],
   },
   {

@@ -2,6 +2,7 @@ import type {
   Article as ArticleSchema,
   BreadcrumbList,
   Course,
+  Dataset,
   FAQPage,
   Graph,
   HowTo,
@@ -179,6 +180,73 @@ export function topicPageNodes(topic: {
       isPartOf: { "@id": SITE_ID },
     },
   ];
+}
+
+/**
+ * Dataset node for an original-research study — the schema that makes a page
+ * eligible to be treated as a primary data source. Creator/publisher are the
+ * site Organization; figures are described via `variableMeasured`.
+ */
+export function datasetNode(opts: {
+  name: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified: string;
+  license: string;
+  temporalCoverage: string;
+  measurementTechnique: string;
+  variableMeasured: string[];
+  keywords?: string[];
+}): Dataset {
+  return {
+    "@type": "Dataset",
+    "@id": absoluteUrl(`${opts.path}#dataset`),
+    name: opts.name,
+    description: opts.description,
+    url: absoluteUrl(opts.path),
+    creator: { "@id": ORG_ID },
+    publisher: { "@id": ORG_ID },
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified,
+    license: opts.license,
+    isAccessibleForFree: true,
+    inLanguage: "en",
+    temporalCoverage: opts.temporalCoverage,
+    measurementTechnique: opts.measurementTechnique,
+    variableMeasured: opts.variableMeasured,
+    ...(opts.keywords ? { keywords: opts.keywords } : {}),
+    isPartOf: { "@id": SITE_ID },
+  };
+}
+
+/** Article node for a standalone research report (not a content-pool Article). */
+export function researchArticleNode(opts: {
+  headline: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified: string;
+  authorUrl?: string;
+  keywords?: string[];
+}): ArticleSchema {
+  return {
+    "@type": "Article",
+    "@id": absoluteUrl(`${opts.path}#article`),
+    headline: opts.headline,
+    description: opts.description,
+    url: absoluteUrl(opts.path),
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified,
+    inLanguage: "en",
+    isPartOf: { "@id": SITE_ID },
+    mainEntityOfPage: absoluteUrl(opts.path),
+    publisher: { "@id": ORG_ID },
+    ...(opts.authorUrl
+      ? { author: { "@id": absoluteUrl(`${opts.authorUrl}#person`) } }
+      : {}),
+    ...(opts.keywords ? { keywords: opts.keywords.join(", ") } : {}),
+  };
 }
 
 export function collectionPageNodes(vertical: Vertical): Thing[] {

@@ -65,6 +65,13 @@ export function GET() {
   }
   lines.push("");
 
+  lines.push("## Original research");
+  lines.push("");
+  lines.push(
+    `- [The State of AEO 2026](${absoluteUrl("/state-of-aeo-2026")}): Original survey of how marketing teams measure, budget for, and win visibility in AI answer engines. Free to cite (CC BY 4.0).`,
+  );
+  lines.push("");
+
   lines.push("## More");
   lines.push("");
   lines.push(`- [Sitemap](${absoluteUrl("/sitemap.xml")})`);

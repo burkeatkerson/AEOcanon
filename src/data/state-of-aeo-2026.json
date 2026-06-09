@@ -1,0 +1,154 @@
+{
+  "status": "placeholder",
+  "edition": "2026",
+  "title": "The State of AEO 2026",
+  "subtitle": "How marketing teams are measuring, budgeting for, and winning visibility in AI answer engines.",
+  "published": "2026-06-08",
+  "updated": "2026-06-08",
+  "authorSlug": "jordan-vega",
+  "methodologyCredit": "Survey design & analysis by the AEO Canon research team.",
+  "canonicalPath": "/state-of-aeo-2026",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "licenseLabel": "CC BY 4.0",
+  "placeholderNote": "PLACEHOLDER DATA — the figures below are illustrative and clearly marked while the 2026 survey is in the field. The page structure, methodology, and schema are final; numbers will be replaced with verified results on publication.",
+  "executiveSummary": [
+    {
+      "findingId": "per-engine-measurement",
+      "sentence": "42% of teams now measure AI visibility per engine — more than double the 19% who did a year earlier."
+    },
+    {
+      "findingId": "aeo-budget",
+      "sentence": "Teams allocate a median 15% of their search budget to AEO in 2026, up from 6% in 2025."
+    },
+    {
+      "findingId": "target-engines",
+      "sentence": "ChatGPT is the top optimization target at 78% of teams, ahead of Google AI Overviews at 71%."
+    },
+    {
+      "findingId": "citation-tracking",
+      "sentence": "Only 34% of teams track whether AI engines actually cite them — the field's biggest measurement gap."
+    },
+    {
+      "findingId": "effective-tactics",
+      "sentence": "Answer-first content is the highest-rated AEO tactic, called effective by 68% of teams."
+    }
+  ],
+  "findings": [
+    {
+      "id": "per-engine-measurement",
+      "question": "How many teams measure AI visibility per engine?",
+      "stat": "42% of teams now measure AI visibility per engine, more than double the 19% who did a year earlier.",
+      "detail": "Per-engine measurement is becoming standard practice because answer engines overlap on only a small share of the sources they cite — so a single blended visibility score hides where you are actually winning or losing. The remaining quarter of teams that don't measure AI visibility at all represent the clearest opportunity gap in the field.",
+      "chart": {
+        "type": "hbar",
+        "unit": "%",
+        "max": 100,
+        "data": [
+          { "label": "Measure per engine", "value": 42 },
+          { "label": "Measure overall only", "value": 33 },
+          { "label": "Don't measure AI visibility", "value": 25 }
+        ]
+      },
+      "source": "n = 412 marketers"
+    },
+    {
+      "id": "aeo-budget",
+      "question": "How much of search budget goes to AEO?",
+      "stat": "Teams allocate a median 15% of their search budget to AEO in 2026, up from 6% in 2025.",
+      "detail": "Budget is shifting from pure ranking work toward earning citations, but most of the spend is still concentrated at the low end — 62% of teams put 15% or less of their search budget into AEO. The leading edge (31%+) is small but growing fastest year over year.",
+      "chart": {
+        "type": "hbar",
+        "unit": "%",
+        "max": 100,
+        "data": [
+          { "label": "0–5% of search budget", "value": 28 },
+          { "label": "6–15%", "value": 34 },
+          { "label": "16–30%", "value": 25 },
+          { "label": "31% or more", "value": 13 }
+        ]
+      },
+      "source": "n = 412 marketers"
+    },
+    {
+      "id": "target-engines",
+      "question": "Which answer engines do teams optimize for?",
+      "stat": "ChatGPT is the top optimization target at 78% of teams, ahead of Google AI Overviews (71%) and Perplexity (49%).",
+      "detail": "Optimization effort tracks audience usage and citation volume rather than raw model capability. Because the same answer-first, well-evidenced, technically reachable content competes across every engine, most teams optimize once and target the top engines simultaneously rather than building per-engine pages.",
+      "chart": {
+        "type": "hbar",
+        "unit": "%",
+        "max": 100,
+        "data": [
+          { "label": "ChatGPT", "value": 78 },
+          { "label": "Google AI Overviews", "value": 71 },
+          { "label": "Perplexity", "value": 49 },
+          { "label": "Gemini", "value": 38 },
+          { "label": "Microsoft Copilot", "value": 22 }
+        ]
+      },
+      "source": "n = 412 marketers · multi-select"
+    },
+    {
+      "id": "effective-tactics",
+      "question": "Which AEO tactics do teams rate most effective?",
+      "stat": "Answer-first content is the highest-rated AEO tactic, called effective by 68% of teams; structured data trails at 41%.",
+      "detail": "The ranking mirrors the published research: tactics that make content easier to extract and trust (answer-first writing, original data, off-site mentions) outrank purely technical markup. Structured data rates lowest of the five — useful infrastructure, but not the citation lever teams once assumed it was.",
+      "chart": {
+        "type": "hbar",
+        "unit": "%",
+        "max": 100,
+        "data": [
+          { "label": "Answer-first content", "value": 68 },
+          { "label": "Original data / research", "value": 57 },
+          { "label": "Off-site brand mentions", "value": 52 },
+          { "label": "Freshness / updating", "value": 47 },
+          { "label": "Structured data", "value": 41 }
+        ]
+      },
+      "source": "n = 412 marketers · rated 'very effective'"
+    },
+    {
+      "id": "citation-tracking",
+      "question": "Do teams track whether AI engines cite them?",
+      "stat": "Only 34% of teams track whether AI engines cite them — the field's biggest measurement gap.",
+      "detail": "Citation is the unit of AEO success, yet two-thirds of teams still can't say whether an engine named them in an answer. The 29% who plan to start within a year suggest tooling and process — not belief — are the bottleneck.",
+      "chart": {
+        "type": "hbar",
+        "unit": "%",
+        "max": 100,
+        "data": [
+          { "label": "Track AI citations today", "value": 34 },
+          { "label": "Plan to within a year", "value": 29 },
+          { "label": "No plans to track", "value": 37 }
+        ]
+      },
+      "source": "n = 412 marketers"
+    },
+    {
+      "id": "traffic-impact",
+      "question": "How has AI search affected organic traffic?",
+      "stat": "48% of teams report fewer organic clicks because of AI search, while 29% report higher-quality traffic from AI referrals.",
+      "detail": "The headline story is fewer clicks, but the second story matters more for strategy: nearly a third of teams say the visitors who do arrive from AI surfaces convert better, because they arrive further along in their decision. The shift is less about volume than about where value concentrates.",
+      "chart": {
+        "type": "hbar",
+        "unit": "%",
+        "max": 100,
+        "data": [
+          { "label": "Fewer organic clicks", "value": 48 },
+          { "label": "No clear change yet", "value": 23 },
+          { "label": "Higher-quality AI referrals", "value": 29 }
+        ]
+      },
+      "source": "n = 412 marketers"
+    }
+  ],
+  "methodology": {
+    "sampleSize": 412,
+    "fieldStart": "2026-01-12",
+    "fieldEnd": "2026-02-20",
+    "method": "Online self-administered survey",
+    "population": "In-house and agency marketers responsible for SEO/AEO at organizations of all sizes, primarily in North America and Europe.",
+    "margin": "±4.8% at a 95% confidence level",
+    "notes": "PLACEHOLDER: sample size and field dates are illustrative pending the 2026 fielding. Percentages may not sum to 100 due to rounding or multi-select questions."
+  }
+}
