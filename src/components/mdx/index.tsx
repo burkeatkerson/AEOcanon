@@ -26,6 +26,7 @@ import { Checklist, Quiz, Accordion, AiCitableCheck } from "./interactive";
 import { RagPipeline } from "./diagrams";
 import { CanonMap } from "./canon-map";
 import { CanonDiagnostic } from "./canon-diagnostic";
+import { RelatedQuestions } from "./related-questions";
 import { AuthorityAudit } from "@/components/authority/authority-audit";
 
 /**
@@ -54,6 +55,7 @@ export const mdxComponents: MDXComponents = {
   Tenets,
   CanonMap,
   CanonDiagnostic,
+  RelatedQuestions,
   AuthorityAudit,
 };
 

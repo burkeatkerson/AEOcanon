@@ -1,0 +1,101 @@
+---
+title: "How Do I Get Cited by ChatGPT?"
+slug: how-to-get-cited-by-chatgpt
+summary: To get cited by ChatGPT, make sure it can crawl your page, answer the question in a self-contained opening sentence, back it with inline evidence, and earn off-site authority — because ChatGPT retrieves and quotes passages, not whole pages.
+topics:
+  - answer-engines
+  - aeo-fundamentals
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: How does ChatGPT decide which sources to cite?
+    a: When ChatGPT searches the web, it retrieves candidate passages, reranks them on relevance, authority, and freshness, and cites the sources of the passages it actually uses to compose the answer. Citation happens at the passage level, so a single strong, self-contained passage can be cited even if the rest of the page is ordinary.
+  - q: Does ChatGPT cite pages it learned during training?
+    a: No — it can paraphrase training knowledge but can't reliably attribute it, and that knowledge is frozen at its cutoff. Citations come from ChatGPT's live search/retrieval layer, so your route to being cited is winning retrieval, not being in the training data.
+  - q: How fast can I get cited by ChatGPT?
+    a: Extractability fixes — rewriting passages answer-first, adding evidence — can change how you're parsed within a crawl cycle (days to weeks). Building the off-site authority that helps you win competitive queries takes longer, typically months.
+  - q: Do I need to optimize separately for ChatGPT versus other engines?
+    a: No. ChatGPT, Perplexity, and Google AI Overviews share the same retrieve-rerank-cite approach, so answer-first, well-evidenced, reachable content competes across all of them. Optimize once for the behavior, not per engine.
+---
+
+**To get cited by ChatGPT, write the answer to a specific question in a
+self-contained opening sentence, back it with inline evidence, make the page
+crawlable, and earn off-site authority — because ChatGPT quotes passages, not
+pages.** Being cited is the product of surviving its retrieve-rerank-cite
+pipeline, and you optimize for each stage.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Make your best answer a clean, self-contained passage that opens with the
+    answer, supported by a specific stat or source, on a page ChatGPT can crawl —
+    then earn the off-site mentions that make ChatGPT trust you. It cites the
+    passage that best, most credibly answers the question.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "ChatGPT cites passages, not pages — write the sentence you want quoted, first.",
+    "Citations come from its live search layer, not training data.",
+    "Lead with the answer; 44% of ChatGPT citations come from the first third of a page (Profound).",
+    "Back claims with inline evidence and earn off-site authority to win competitive queries.",
+    "The same approach works across ChatGPT, Perplexity, and Google AI Overviews.",
+  ]}
+/>
+
+## What does ChatGPT actually cite?
+
+ChatGPT cites the specific passage it used to answer — not your whole page and not
+your domain. When it searches the web, it retrieves candidate passages, reranks
+them for the exact query, and attributes the sources of the few it draws on. That
+means a single excellent paragraph can earn a citation even on an otherwise
+ordinary page, and a great page can be skipped if its best answer is buried. We
+break this down in
+[how AI engines choose what to cite](/learn/how-ai-engines-choose-citations).
+
+## Where on the page should the answer go?
+
+Put the answer first — in the opening sentence under a question-shaped heading.
+[Profound's analysis found 44% of ChatGPT citations come from the first third of
+a page](/learn/aeo-pillar-extractability), so a buried answer rarely gets lifted.
+Lead with a complete, quotable statement, then support it. This is the discipline
+of [extractability](/learn/aeo-pillar-extractability): write the sentence you want
+ChatGPT to quote, and put it at the top.
+
+## How do I make the answer credible enough to quote?
+
+Back every important claim with a specific statistic, a named source, or a direct
+quotation, in the same passage. A grounded model prefers low-risk material it can
+repeat safely, so an evidenced sentence is easier to cite than an unsupported one.
+The [Princeton GEO study (arXiv 2311.09735)](https://arxiv.org/abs/2311.09735)
+confirmed this — adding citations, quotations, and statistics were the
+top-performing tactics for raising a source's visibility in AI answers. This is
+[credibility](/learn/aeo-pillar-credibility) — showing your work — and it's why
+concrete, sourced answers outperform confident-but-vague ones.
+
+## Why won't ChatGPT cite me even though I rank?
+
+If you rank in Google but ChatGPT ignores you, the usual cause is that your best
+answer isn't extractable, isn't reachable, or your source isn't trusted off-site.
+ChatGPT can't cite a page it can't crawl (serve real HTML, allow its crawler), it
+won't lift an answer that's buried, and it favors sources the wider web vouches
+for. Walk the [AEO Canon diagnostic](/learn/aeo-canon-diagnostic) to find your
+first broken gate.
+
+## What should I do first?
+
+Start by rewriting your most important page answer-first: open each section with a
+complete answer, add one inline stat or source, and confirm ChatGPT's crawler can
+read the rendered HTML. Then build genuine off-site mentions so your source is
+trusted on competitive questions. That sequence — extractable, evidenced,
+reachable, trusted — is the core of [what is AEO](/learn/what-is-aeo).
+
+<RelatedQuestions
+  items={[
+    { q: "How do I show up in Google AI Overviews?", a: "Same foundation, plus winning Google's index: be crawlable, answer-first, evidenced, and authoritative.", href: "/learn/show-up-in-google-ai-overviews" },
+    { q: "Why isn't my site being cited by AI?", a: "Usually a broken gate — access, a buried answer, or weak off-site trust. Diagnose top-down.", href: "/learn/why-isnt-my-site-cited-by-ai" },
+    { q: "What content format does AI cite most?", a: "Answer-first, self-contained passages under question-shaped headings — not any single 'format'.", href: "/learn/content-format-ai-cites-most" },
+  ]}
+/>

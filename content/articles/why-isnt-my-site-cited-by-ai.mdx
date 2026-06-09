@@ -1,0 +1,111 @@
+---
+title: "Why Isn't My Site Being Cited by AI?"
+slug: why-isnt-my-site-cited-by-ai
+summary: Your site usually isn't cited by AI because of a broken gate in the cascade — AI crawlers can't read it, your answer is buried, or the wider web doesn't vouch for you. Diagnose top-down and fix the highest break first.
+topics:
+  - answer-engines
+  - aeo-fundamentals
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: Why is my content not showing up in AI answers?
+    a: "Almost always because of one specific broken gate, not a vague quality problem. The common causes, in order — AI crawlers can't read your page (client-side rendering or blocked bots), you're answering the wrong question, your answer is buried instead of answer-first, or the wider web doesn't vouch for you. Fix the highest break first."
+  - q: How do I know which problem I have?
+    a: Walk the AEO Canon as a cascade. Check access first (can an AI crawler read your raw HTML?), then alignment (are you answering the real question?), then extractability (is the answer in the first sentence?), then authority (does the web mention you?). The first gate you fail is your fix.
+  - q: I rank well in Google but AI ignores me. Why?
+    a: Ranking means Google can read and rank your page, but AI citation also requires an extractable, liftable answer and trusted off-site signals. The usual culprit is a buried answer or thin off-site authority — your foundation is fine, but the extraction-and-trust layer is missing.
+  - q: Could JavaScript be the reason I'm not cited?
+    a: Often, yes. Most AI crawlers don't execute JavaScript — Vercel found GPTBot ran zero JavaScript across 500 million requests. If your content is assembled client-side, AI crawlers may see an empty shell, so serving server-rendered or static HTML is essential.
+---
+
+**Your site usually isn't cited by AI because of one broken gate — AI crawlers
+can't read it, your answer is buried, or the web doesn't vouch for you — not
+because of vague "low quality."** AEO failures are specific and locatable, and the
+fix is to diagnose top-down and repair the highest break first.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Find your one broken gate, in order: <strong>Access</strong> (can an AI
+    crawler read your raw HTML?), <strong>Alignment</strong> (are you answering the
+    real question?), <strong>Extractability</strong> (is the answer in the first
+    sentence?), then <strong>Authority</strong> (does the web mention you?). The
+    first failure is what's keeping you uncited.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Non-citation is a specific broken gate, not a vague quality issue.",
+    "Most common cause: AI crawlers can't read client-rendered pages.",
+    "Vercel found GPTBot executed zero JavaScript across 500M requests.",
+    "Other gates: wrong question (alignment), buried answer (extractability), no off-site trust (authority).",
+    "Fix the highest broken gate first — lower fixes can't compensate.",
+  ]}
+/>
+
+## What's the most common reason AI doesn't cite a site?
+
+The most common reason is that AI crawlers literally can't read the page. Most AI
+crawlers fetch raw HTML and don't run JavaScript —
+[Vercel found GPTBot executed zero JavaScript across more than 500 million
+requests](https://vercel.com/blog/the-rise-of-the-ai-crawler). If your content is
+assembled client-side, the crawler sees an empty shell, and nothing downstream can
+save you. Serving server-rendered or static HTML, and allowing AI crawlers in
+robots.txt, is the precondition for everything else — the
+[Access pillar](/learn/aeo-pillar-access).
+
+## How do I diagnose the real problem?
+
+Diagnose it as a cascade, because the gates depend on each other and the first
+break is the one that matters. Work down in order and stop at your first "no":
+
+<Steps
+  items={[
+    {
+      title: "Access — can a crawler read your raw HTML?",
+      body: "Fetch your page with JavaScript off. If the content isn't there, this is your problem. Fix it before anything else.",
+    },
+    {
+      title: "Alignment — are you answering the real question?",
+      body: "If your page targets a keyword nobody asks AI, you'll never be retrieved for the real question. Write for the actual query.",
+    },
+    {
+      title: "Extractability — is the answer first?",
+      body: "If the answer is buried mid-article, the engine can't lift it. Lead each section with a complete, self-contained answer.",
+    },
+    {
+      title: "Authority — does the web vouch for you?",
+      body: "If you're retrieved but never chosen, the reranker likely trusts competitors more. Build off-site brand mentions.",
+    },
+  ]}
+/>
+
+Our interactive [AEO Canon diagnostic](/learn/aeo-canon-diagnostic) walks this
+exact cascade and points you to the deep-dive for your first broken gate.
+
+## Why do I rank in Google but get ignored by AI?
+
+If you rank but AI ignores you, your foundation is fine and the missing piece is
+the extraction-and-trust layer. Google can read and rank a page whose best answer
+is buried; an answer engine can't lift it. Likewise, links may earn you rankings
+while thin off-site *mentions* leave you under-trusted for citation. The fix is
+answer-first rewriting plus genuine brand mentions — not more of what already got
+you ranked.
+
+## What should I fix first?
+
+Fix the highest broken gate, then re-check — don't spread effort across all of
+them. If access is broken, no amount of great content reaches an engine; if the
+answer is buried, no amount of authority gets it quoted. One decisive fix at the
+binding constraint beats ten diffuse tweaks. Start from
+[what is AEO](/learn/what-is-aeo) for the full model.
+
+<RelatedQuestions
+  items={[
+    { q: "How do I get cited by ChatGPT?", a: "Answer-first, evidenced passages on a crawlable page, plus off-site authority.", href: "/learn/how-to-get-cited-by-chatgpt" },
+    { q: "How do I show up in Google AI Overviews?", a: "Be retrievable in Google's index and the most liftable, credible answer for the query.", href: "/learn/show-up-in-google-ai-overviews" },
+    { q: "How do I know if AI is citing my competitors?", a: "Run your priority prompts across engines on a fixed schedule and log who gets named.", href: "/learn/track-competitor-ai-citations" },
+  ]}
+/>
