@@ -1,0 +1,132 @@
+---
+title: Why Per-Engine Measurement Beats a Blended Average
+slug: per-engine-vs-blended-measurement
+summary: Measure AI visibility per engine, not as one blended average. Profound found only ~11% citation overlap across engines, so a single "AI visibility" number averages together separate universes — hiding where you actually win or lose. Here's why per-engine tracking is the only honest read.
+topics:
+  - analytics-measurement
+  - answer-engines
+author: jordan-vega
+published: 2026-02-10
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: Should I measure AI visibility per engine or as a blended average?
+    a: Per engine. The major answer engines cite largely different sources — Profound found only about 11% citation overlap across them — so a single blended "AI visibility" score averages together separate universes and hides where you're actually winning or losing. Track share of voice separately for each engine your audience uses, then watch each trend.
+  - q: Why does a blended AI visibility score mislead?
+    a: Because it can mask large per-engine swings. You might dominate Perplexity and be invisible in Google AI Overviews, yet a blended average shows a mediocre middle number that points you nowhere. With only ~11% cross-engine overlap, the engines aren't measuring the same thing, so averaging them produces a figure that doesn't correspond to any real surface.
+  - q: How much do AI engines overlap in what they cite?
+    a: Very little. Profound found only about 11% of cited sources are shared across the major engines, and citations are volatile within each one (Semrush found 40–60% of cited sources change month to month). Each engine runs a different index, retrieval pipeline, and ranking emphasis, so winning one is no guarantee of winning another.
+  - q: Is a blended average ever useful?
+    a: Only as a rough executive headline, and even then with caveats. If leadership wants one number, report it alongside the per-engine breakdown so the average never hides a collapse on a specific engine. For any decision about where to invest, use the per-engine view — that's where the actionable signal lives.
+---
+
+**Measure AI visibility per engine, not as one blended average: [Profound found
+only about 11% citation overlap across engines](https://www.tryprofound.com), so a
+single "AI visibility" number averages together separate universes and hides where
+you actually win or lose.** Each engine is its own game; a blended score is a figure
+that corresponds to no real surface.
+
+<Callout variant="key" title="The short answer">
+  <p>
+    Track share of voice <strong>per engine</strong>. With only{" "}
+    <strong>~11% cross-engine overlap</strong> (Profound), a blended average can show
+    a comfortable middle number while you&apos;re collapsing on the one engine your
+    buyers actually use. Report each engine separately and watch each trend.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Engines cite different sources — Profound found only ~11% citation overlap across them.",
+    "A blended average can hide a collapse on one engine behind strength on another.",
+    "Each engine has its own index, retrieval, and ranking emphasis — winning one ≠ winning all.",
+    "Track share of voice per engine; reserve a blended number for executive headlines only.",
+    "Per-engine measurement is the Adaptability pillar in practice.",
+  ]}
+/>
+
+## Why does a blended average mislead?
+
+A blended average misleads because it combines engines that barely agree on what to
+cite, producing a number that matches no real surface. Profound found only about
+11% of cited sources are shared across the major engines — they're effectively
+separate universes. So if you average a 60% share of voice in Perplexity with a 5%
+share in Google AI Overviews, the "32%" blended figure describes nothing you can
+act on: you're not at 32% anywhere. Worse, it can stay flat while one engine
+quietly collapses, because a gain elsewhere offsets it.
+
+## How little do engines actually overlap?
+
+Engines overlap remarkably little: about 11% of cited sources are shared across
+them, per Profound. The cause is structural — each engine runs a different index, a
+different retrieval-and-rerank pipeline, and a different weighting of freshness,
+authority, and community sources. On top of that, citations are volatile *within*
+each engine: [Semrush found 40–60% of LLM-cited sources change month to
+month](https://www.semrush.com/blog/url-volatility-ai-overviews/). Low overlap
+across engines and high churn within them is exactly the situation where a single
+averaged number is least trustworthy.
+
+<ComparisonTable
+  rowHeaders
+  caption="Blended average vs per-engine measurement"
+  columns={["", "Blended average", "Per-engine"]}
+  rows={[
+    ["What it reports", "One combined 'AI visibility' score", "A share of voice for each engine"],
+    ["With ~11% overlap", "Averages separate universes", "Reflects each engine's reality"],
+    ["Hides a one-engine collapse?", "Yes", "No"],
+    ["Tells you where to act", "No", "Yes — by engine"],
+    ["Best use", "A rough exec headline (with caveats)", "Every real decision"],
+  ]}
+/>
+
+## What does per-engine measurement look like?
+
+Per-engine measurement reports a separate share of voice for each engine you track,
+on the same fixed prompt set, so you can see exactly where you stand on each. The
+mechanics are the same as any [share-of-voice](/learn/share-of-voice-ai-search)
+program — you just never collapse the results into one figure.
+
+<Steps
+  items={[
+    { title: "Run one prompt set across each engine", body: "Use the same fixed questions on every engine so the engines are comparable to each other, not to a moving target." },
+    { title: "Score each engine separately", body: "Compute brand and competitive share of voice per engine — ChatGPT, Perplexity, Google AI Overviews, and any others your audience uses." },
+    { title: "Prioritize by audience", body: "Weight your attention toward the engines your buyers actually use, not toward whichever inflates the average." },
+    { title: "Track each trend over time", body: "Watch the slope per engine; a healthy total can still hide a sharp decline on the one that matters most." },
+  ]}
+/>
+
+Why do engines differ so much in the first place? Because they retrieve and rank
+differently — the mechanics are in [ChatGPT vs Perplexity vs Google AI Overviews:
+how citation differs](/learn/chatgpt-vs-perplexity-vs-google-ai-overviews) and [how
+AI engines choose citations](/learn/how-ai-engines-choose-citations).
+
+## Is a blended number ever OK?
+
+A blended number is acceptable only as a rough executive headline, and only when
+it's reported *alongside* the per-engine breakdown so it can't hide a collapse. If
+leadership wants one figure to glance at, give them one — but make every decision
+about where to invest from the per-engine view, because that's where the signal is.
+The moment a blended score starts driving strategy, you're optimizing for an average
+of universes that don't overlap.
+
+<Callout variant="warning" title="The averaging trap">
+  <p>
+    A flat blended score can mean &quot;steady everywhere&quot; or &quot;surging on
+    one engine, sinking on another.&quot; You cannot tell which from the average —
+    and they call for opposite responses. Always keep the per-engine breakdown in
+    view, and treat any blended figure as a headline, never a diagnosis.
+  </p>
+</Callout>
+
+## Where this fits in the Canon
+
+Per-engine measurement is the [Adaptability pillar](/pillars/adaptability) made
+operational: the engines change monthly and overlap little, so you measure each one
+and adapt on its own evidence. It's the discipline behind
+[share of voice](/learn/share-of-voice-ai-search) and the reason a single "AI
+visibility" number is a trap.
+
+Related: [ChatGPT vs Perplexity vs Google AI
+Overviews](/learn/chatgpt-vs-perplexity-vs-google-ai-overviews), [how to measure
+your AI visibility](/measure-aeo), and [the best AI visibility
+tools](/tools/best-ai-visibility-tools) (track each engine separately).

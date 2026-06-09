@@ -15,6 +15,7 @@ import { ComparisonTable } from "./comparison-table";
 import { DecisionBlock } from "./decision-block";
 import { BeforeAfter } from "./before-after";
 import { PassageScorer } from "./passage-scorer";
+import { DownloadButton } from "./download-button";
 import { Pre } from "./pre";
 import { MdxLink } from "./mdx-link";
 import {
@@ -51,6 +52,7 @@ export const mdxComponents: MDXComponents = {
   DecisionBlock,
   BeforeAfter,
   PassageScorer,
+  DownloadButton,
   KeyTakeaways,
   Stat,
   StatGrid,

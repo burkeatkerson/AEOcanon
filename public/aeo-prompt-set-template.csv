@@ -1,0 +1,11 @@
+Prompt,Intent tier,Topic / product,Engine,Date checked,Brand mentioned (Y/N),Site cited (Y/N),Competitors cited,Notes
+"Best [your category] for [use case]?",Decision,,ChatGPT,,,,,
+"[Your brand] vs [competitor] — which is better?",Decision,,ChatGPT,,,,,
+"Is [your brand] worth it?",Decision,,Perplexity,,,,,
+"Top [category] tools in 2026",Decision,,Google AI Overviews,,,,,
+"How do I choose a [category] tool?",Consideration,,ChatGPT,,,,,
+"What should I look for in a [category]?",Consideration,,Perplexity,,,,,
+"[Category] for [specific industry/team size]",Consideration,,ChatGPT,,,,,
+"Alternatives to [competitor]",Consideration,,Perplexity,,,,,
+"What is [category]?",Awareness,,Google AI Overviews,,,,,
+"How does [category/process] work?",Awareness,,ChatGPT,,,,,

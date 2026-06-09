@@ -5,9 +5,11 @@ summary: Build your AI prompt set from the real questions customers ask on the w
 type: guide
 author: jordan-vega
 published: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-09
 schemaType: Article
 faqs:
+  - q: Is there a prompt-set template I can download?
+    a: Yes — this page has a free CSV template you can download and fill in. It comes pre-structured with the columns that matter (prompt, intent tier, topic, engine, date checked, brand mentioned, site cited, competitors cited, notes) and example rows across decision, consideration, and awareness intent. Replace the bracketed placeholders with your own questions and start logging.
   - q: What is a prompt set in AI visibility tracking?
     a: A prompt set is the fixed list of questions you run across AI engines to measure whether they cite you. It's the foundation of any AI visibility program — manual or tool-based — because every measurement is only as good as the questions you track. Aim for 15–30 real, high-intent questions and keep the list stable so readings stay comparable over time.
   - q: How many prompts should I track?
@@ -116,6 +118,31 @@ deliberately (new products, new competitor questions) and date the additions, bu
 keep a stable core. Because AI citations are volatile, you need a fixed set to
 distinguish real trends from noise — the [Adaptability pillar](/pillars/adaptability)
 depends on consistent measurement.
+
+## Get the prompt-set template (free)
+
+Download a ready-made CSV with the structure above — the columns that matter and
+example rows across decision, consideration, and awareness intent. Replace the
+bracketed placeholders with your own questions and start logging who gets cited.
+
+<DownloadButton href="/aeo-prompt-set-template.csv" filename="aeo-prompt-set-template.csv">
+  Download the prompt-set template (CSV)
+</DownloadButton>
+
+Prefer to copy it? Here's the structure — paste it into a spreadsheet:
+
+```text
+Prompt,Intent tier,Topic / product,Engine,Date checked,Brand mentioned (Y/N),Site cited (Y/N),Competitors cited,Notes
+"Best [your category] for [use case]?",Decision,,ChatGPT,,,,,
+"[Your brand] vs [competitor] — which is better?",Decision,,ChatGPT,,,,,
+"Is [your brand] worth it?",Decision,,Perplexity,,,,,
+"How do I choose a [category] tool?",Consideration,,ChatGPT,,,,,
+"Alternatives to [competitor]",Consideration,,Perplexity,,,,,
+"What is [category]?",Awareness,,Google AI Overviews,,,,,
+```
+
+Keep one row per prompt-and-engine combination, log a fresh check each cycle, and
+track the trend — never a single reading.
 
 ## Step 5 — Put it to work
 
