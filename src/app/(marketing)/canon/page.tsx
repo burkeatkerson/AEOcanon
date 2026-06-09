@@ -35,11 +35,11 @@ export default function CanonPage() {
           which any well-built engine recognizes you as the best answer.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <Button href="/whitepaper" size="lg">
-            Read the research whitepaper
+          <Button href="/learn/aeo-canon" size="lg">
+            Explore the full Canon
           </Button>
-          <Button href="/manifesto" variant="ghost" size="lg">
-            The AEO Manifesto
+          <Button href="/whitepaper" variant="ghost" size="lg">
+            Read the research whitepaper
           </Button>
           <Button href="/audit" variant="ghost" size="lg">
             Run the visibility audit

@@ -25,6 +25,13 @@ const nextConfig: NextConfig = {
     return [
       { source: "/paths", destination: "/courses", permanent: true },
       { source: "/paths/:slug", destination: "/courses/:slug", permanent: true },
+      // The thin "framework" overview was consolidated into the comprehensive
+      // /learn/aeo-canon hub (the canonical Canon page).
+      {
+        source: "/learn/the-aeo-canon-framework",
+        destination: "/learn/aeo-canon",
+        permanent: true,
+      },
     ];
   },
 };
