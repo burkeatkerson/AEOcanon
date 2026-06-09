@@ -12,6 +12,8 @@ import { Callout } from "./callout";
 import { Figure } from "./figure";
 import { FAQBlock } from "./faq-block";
 import { ComparisonTable } from "./comparison-table";
+import { BeforeAfter } from "./before-after";
+import { PassageScorer } from "./passage-scorer";
 import { MdxLink } from "./mdx-link";
 import {
   KeyTakeaways,
@@ -43,6 +45,8 @@ export const mdxComponents: MDXComponents = {
   Figure,
   FAQBlock,
   ComparisonTable,
+  BeforeAfter,
+  PassageScorer,
   KeyTakeaways,
   Stat,
   StatGrid,
