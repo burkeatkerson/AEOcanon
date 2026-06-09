@@ -1,0 +1,177 @@
+---
+title: How to Allow AI Crawlers in robots.txt
+slug: allow-ai-crawlers-robots-txt
+summary: AI engines can only cite pages their crawlers are allowed to fetch. This guide gives you a verified, copy-paste robots.txt block that explicitly allows GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, and Bingbot — plus the one mistake that silently blocks them all.
+topics:
+  - technical-seo
+author: priya-nair
+published: 2026-02-02
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: How do I allow AI crawlers in robots.txt?
+    a: Add an explicit group for each AI user-agent with an empty Disallow (or Allow / ), or simply make sure no rule disallows them. AI crawlers obey the most specific matching user-agent group, so a per-bot group granting access overrides a restrictive wildcard. The copy-paste block in this guide allows GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, PerplexityBot, Google-Extended, and Bingbot.
+  - q: Does robots.txt actually block AI crawlers?
+    a: Yes, for the major, well-behaved crawlers. OpenAI, Anthropic, Perplexity, and Google all document that their crawlers respect robots.txt, so a Disallow rule keeps them out. It is not a security control — it relies on the crawler honoring it — but the major AI crawlers do honor it, which is exactly why an accidental Disallow silently costs you citations.
+  - q: What's the most common robots.txt mistake that blocks AI?
+    a: "A site-wide \"User-agent: * / Disallow: /\" left over from a staging environment, or a blanket block of unfamiliar bots. Because the wildcard group applies to any crawler without its own group, it blocks every AI crawler at once. Always check for a stray Disallow / before assuming an engine just isn't crawling you."
+  - q: Where does the robots.txt file go?
+    a: At the root of your domain, served at https://yourdomain.com/robots.txt. It must be reachable over HTTP(S) at that exact path, return a 200 status, and be served as text/plain. Crawlers fetch it before crawling; a robots.txt that 404s is treated as "no restrictions," but one that errors (5xx) can pause crawling entirely.
+---
+
+**AI engines can only cite pages their crawlers are allowed to fetch, so allowing
+the major AI crawlers in robots.txt is the first technical step in AEO.** The fix
+is short: give each AI user-agent an explicit, permissive group — or at minimum
+make sure no rule disallows them. Here is a verified, copy-paste block.
+
+<Callout variant="key" title="The short answer">
+  <p>
+    Paste the block below into <code>https://yourdomain.com/robots.txt</code>,
+    swap in your real sitemap URL, and confirm the file returns <strong>200</strong>{" "}
+    as <code>text/plain</code>. AI crawlers obey the most specific matching
+    user-agent group, so these per-bot groups grant access even if a wildcard rule
+    is restrictive.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "AI engines can't cite what their crawlers can't fetch — robots.txt is the gate.",
+    "Major AI crawlers (OpenAI, Anthropic, Perplexity, Google, Bing) document that they honor robots.txt.",
+    "The most specific user-agent group wins, so a per-bot Allow overrides a restrictive wildcard.",
+    "The #1 mistake is a leftover 'Disallow: /' that silently blocks every crawler.",
+    "robots.txt lives at the domain root and must return 200 as text/plain.",
+  ]}
+/>
+
+## What's the copy-paste robots.txt block?
+
+Here is a complete robots.txt that explicitly allows the major AI crawlers. Copy
+it, replace the sitemap URL with your own, and deploy it to your domain root.
+
+```txt
+# robots.txt — explicitly allow major AI crawlers
+# Replace the Sitemap URL with your own. Deploy at https://yourdomain.com/robots.txt
+
+# OpenAI — training crawler
+User-agent: GPTBot
+Allow: /
+
+# OpenAI — surfaces sites in ChatGPT search
+User-agent: OAI-SearchBot
+Allow: /
+
+# OpenAI — user-initiated fetches from ChatGPT
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic — training crawler
+User-agent: ClaudeBot
+Allow: /
+
+# Anthropic — search indexing
+User-agent: Claude-SearchBot
+Allow: /
+
+# Perplexity — search index
+User-agent: PerplexityBot
+Allow: /
+
+# Google — controls use of your content for Gemini AI training & grounding
+User-agent: Google-Extended
+Allow: /
+
+# Microsoft Bing — index that feeds Copilot and other AI answers
+User-agent: Bingbot
+Allow: /
+
+# Everyone else (keep your existing rules here)
+User-agent: *
+Allow: /
+
+Sitemap: https://yourdomain.com/sitemap.xml
+```
+
+An empty `Disallow:` line is equivalent to `Allow: /` — both mean "crawl
+everything." Use whichever your team prefers; the block above uses `Allow: /` for
+readability.
+
+## How does robots.txt allow or block a crawler?
+
+robots.txt allows or blocks a crawler by matching its user-agent to the most
+specific group in the file and applying that group's rules. Each AI crawler looks
+for a group whose `User-agent` matches its own name; if it finds one, it obeys
+that group and **ignores the wildcard `*` group entirely**. That's why an explicit
+`User-agent: GPTBot` group with `Allow: /` lets GPTBot in even if `User-agent: *`
+says `Disallow: /`.
+
+This is the [access](/pillars/access) pillar at its most literal: access is a
+binary gate, and robots.txt is the lock. For which specific bots to list and what
+each one does, see [which AI crawlers should you allow?](/learn/which-ai-crawlers-to-allow)
+
+## What's the one mistake that blocks every AI crawler?
+
+The mistake is a leftover site-wide `Disallow: /` with no per-bot exceptions —
+usually copied from a staging environment that was meant to stay private.
+
+<Callout variant="warning" title="The block that costs you every citation">
+  <p>
+    This single group blocks <em>every</em> crawler that doesn&apos;t have its own
+    group — including all AI crawlers:
+  </p>
+</Callout>
+
+```txt
+# DANGER: this blocks every AI crawler that lacks its own group
+User-agent: *
+Disallow: /
+```
+
+If you see that in production, you are invisible to AI engines no matter how good
+your content is. Either remove the `Disallow: /`, or add the explicit per-bot
+groups from the block above so the AI crawlers match their own rules instead of the
+wildcard.
+
+## How do you test it yourself?
+
+Verify your robots.txt is live and permissive before assuming anything else is
+wrong.
+
+<Steps
+  items={[
+    { title: "Fetch the file", body: "Open https://yourdomain.com/robots.txt in a browser, or run: curl -s https://yourdomain.com/robots.txt" },
+    { title: "Confirm the status and type", body: "It must return HTTP 200 and Content-Type text/plain. A 404 means 'no rules' (crawlable), but a 5xx error can pause crawling." },
+    { title: "Search for a stray Disallow", body: "Look for any 'Disallow: /' that isn't scoped to a path you intend to hide." },
+    { title: "Simulate a crawler fetch", body: "Run: curl -s -A \"GPTBot\" https://yourdomain.com/ and confirm you get your real HTML back, not a block page." },
+  ]}
+/>
+
+```bash
+# Fetch your robots.txt and check it
+curl -s https://yourdomain.com/robots.txt
+
+# Fetch your homepage as GPTBot would, and confirm real HTML comes back
+curl -s -A "GPTBot" https://yourdomain.com/ | head -n 40
+```
+
+<Checklist
+  title="robots.txt readiness"
+  items={[
+    "robots.txt is served at the domain root and returns HTTP 200 as text/plain.",
+    "No site-wide 'Disallow: /' applies to AI crawlers.",
+    "The major AI user-agents have explicit Allow groups (or are covered by a permissive wildcard).",
+    "A 'Sitemap:' line points to your real sitemap URL.",
+    "A curl fetch with an AI user-agent returns your actual HTML.",
+  ]}
+/>
+
+## Where this fits in the Canon
+
+Allowing AI crawlers is step one of the [access](/pillars/access) pillar — the
+binary gate that decides whether an engine can read you at all. Robots.txt only
+governs *permission*; the content still has to be in the HTML the crawler fetches,
+which is the rendering side of access.
+
+Next: [which AI crawlers should you allow?](/learn/which-ai-crawlers-to-allow),
+[how to check if AI crawlers can read your site](/learn/check-ai-crawlers-can-read-site),
+and [why JavaScript breaks your AI citation eligibility](/learn/javascript-breaks-ai-citation).

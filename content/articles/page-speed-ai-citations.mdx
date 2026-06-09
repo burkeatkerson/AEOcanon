@@ -1,0 +1,153 @@
+---
+title: Does Page Speed Affect AI Citations?
+slug: page-speed-ai-citations
+summary: Yes — page speed affects AI citations. SE Ranking found pages with a First Contentful Paint under 0.4 seconds earned roughly three times more AI citations than slower pages. Crawlers have budgets and timeouts, so slow pages get fetched less. Here's how to measure and fix it.
+topics:
+  - technical-seo
+author: priya-nair
+published: 2026-02-07
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: Does page speed affect AI citations?
+    a: Yes. SE Ranking found pages with a First Contentful Paint (FCP) under 0.4 seconds earned roughly three times more AI citations than slower pages. Speed is part of crawlability — crawlers operate on time and resource budgets, so a fast page is fetched more reliably and completely, while a slow one risks being throttled, timed out, or skipped.
+  - q: Why would a crawler care how fast my page is?
+    a: Because crawlers have finite budgets and timeouts. A fast server lets a crawler fetch more of your pages in the same window and reduces the chance a request times out before your content arrives. Speed also correlates with clean, well-built pages, and it's a direct factor in the access pillar — a crawler that times out never sees your content at all.
+  - q: What speed metric matters most for AEO?
+    a: First Contentful Paint (FCP) and time to first byte (TTFB) are the most relevant, because they measure how fast the server delivers content a crawler can read. SE Ranking's finding centered on FCP under 0.4 seconds. Server response time is the lever you most control — render on the server, cache aggressively, and serve from a CDN close to the requester.
+  - q: How do I make my pages faster for crawlers?
+    a: Lower server response time and ship less. Use static generation or cached server-side rendering so the HTML is ready instantly, put a CDN in front of it, compress responses (gzip/brotli), optimize images, and minimize render-blocking JavaScript. For crawlers specifically, the biggest win is having the content in fast-served HTML rather than assembled client-side.
+---
+
+**Yes — page speed affects AI citations: [SE Ranking found pages with a First
+Contentful Paint under 0.4 seconds earned roughly three times more AI citations
+than slower pages](https://seranking.com).** Crawlers work on budgets and timeouts,
+so a fast page gets fetched reliably while a slow one risks being throttled or
+skipped. Speed is part of the access gate, not a nice-to-have.
+
+<Callout variant="key" title="The short answer">
+  <p>
+    Speed is a citation factor. SE Ranking found <strong>FCP under 0.4s ≈ 3×</strong>{" "}
+    more AI citations. Crawlers have budgets and timeouts, so reduce{" "}
+    <strong>server response time</strong> first — static or cached HTML, a CDN, and
+    less render-blocking JavaScript.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "SE Ranking: pages with FCP under 0.4s earned ~3× more AI citations than slower pages.",
+    "Crawlers have finite budgets and timeouts — slow pages get fetched less reliably.",
+    "TTFB and FCP matter most: how fast the server delivers readable content.",
+    "Biggest lever: serve ready HTML (static/cached SSR) from a CDN, not client-assembled content.",
+    "Speed is part of the access pillar — a crawler that times out never sees you.",
+  ]}
+/>
+
+## Does speed really change citation rates?
+
+Yes — speed measurably changes citation rates. SE Ranking's analysis found that
+pages with a First Contentful Paint under 0.4 seconds earned roughly three times
+more AI citations than slower pages. That's a large gap for a single technical
+factor, and it lines up with how crawling works: faster pages are simply fetched
+more reliably and more completely.
+
+## Why does a crawler care about speed?
+
+A crawler cares about speed because it operates on finite time and resource
+budgets. A fast server lets it fetch more of your pages per crawl window, and it
+lowers the chance a request times out before your HTML finishes arriving. Slow
+responses can trigger throttling — the crawler backs off to avoid overloading you —
+and a request that times out means your content was never read at all. That's the
+[access](/pillars/access) pillar in its bluntest form: speed is part of whether the
+crawler can reach your content, not just how pleasant the page feels.
+
+## How do you measure it?
+
+Measure server response time with curl — it needs no tools and reflects what a
+crawler experiences. This prints the timing breakdown, including time to first byte
+(TTFB) and total time:
+
+```bash
+# Server timing as a crawler experiences it
+curl -s -o /dev/null \
+  -w "DNS:    %{time_namelookup}s\nConnect: %{time_connect}s\nTTFB:    %{time_starttransfer}s\nTotal:   %{time_total}s\n" \
+  https://yourdomain.com/
+```
+
+```text
+DNS:    0.008s
+Connect: 0.021s
+TTFB:    0.180s
+Total:   0.240s
+```
+
+A TTFB well under ~0.2s and a fast total is the goal. For lab metrics including FCP
+and Largest Contentful Paint, run Lighthouse:
+
+```bash
+# Lighthouse performance audit (Node required)
+npx lighthouse https://yourdomain.com/ --only-categories=performance --view
+```
+
+## How do you make pages faster for crawlers?
+
+Make pages faster by cutting server response time and shipping less to render. In
+rough order of impact for crawlers:
+
+<Steps
+  items={[
+    { title: "Serve ready HTML", body: "Use static generation (SSG) or cached server-side rendering so the HTML is complete on first byte — no waiting on client-side assembly." },
+    { title: "Put a CDN in front", body: "Cache and serve pages from edge locations close to the requester to cut network and server time." },
+    { title: "Compress responses", body: "Enable gzip or brotli so HTML, CSS, and JS transfer in fewer bytes." },
+    { title: "Cut render-blocking JavaScript", body: "Ship less JS, defer non-critical scripts, and avoid assembling content client-side." },
+    { title: "Optimize images and fonts", body: "Use modern formats (AVIF/WebP), correct sizing, and preloaded or system fonts." },
+  ]}
+/>
+
+A minimal cache-and-compress example for nginx — serve static HTML fast and
+compressed:
+
+```nginx
+# nginx: compress text responses and cache static assets
+gzip on;
+gzip_types text/html text/css application/javascript application/json;
+
+location ~* \.(?:css|js|woff2|avif|webp)$ {
+  add_header Cache-Control "public, max-age=31536000, immutable";
+}
+```
+
+<Callout variant="tip" title="The biggest single win">
+  <p>
+    For most sites the largest speed gain for crawlers is moving from client-side
+    rendering to <strong>static or cached server-side HTML</strong>. It fixes
+    crawlability (the content is in the HTML) and speed (the HTML is ready on first
+    byte) at once. See{" "}
+    <a href="/learn/javascript-breaks-ai-citation">why JavaScript breaks AI citation
+    eligibility</a>.
+  </p>
+</Callout>
+
+<Checklist
+  title="Speed for crawlers"
+  items={[
+    "TTFB is low (well under ~0.2s) on a curl timing check.",
+    "Pages are served as static or cached HTML, not assembled client-side.",
+    "A CDN serves content from locations near the requester.",
+    "Responses are gzip/brotli compressed.",
+    "Render-blocking JavaScript is minimized and images use modern formats.",
+  ]}
+/>
+
+## Where this fits in the Canon
+
+Page speed is the third dimension of the [access](/pillars/access) pillar, alongside
+permission (robots.txt) and rendering (server-side HTML): a crawler must be allowed
+in, able to read the content, and able to fetch it before timing out. Fast, ready
+HTML satisfies all three at once.
+
+Related: [why JavaScript breaks AI citation
+eligibility](/learn/javascript-breaks-ai-citation), [server-side vs client-side
+rendering](/learn/server-side-vs-client-side-rendering), and [how to check if AI
+crawlers can read your site](/learn/check-ai-crawlers-can-read-site).

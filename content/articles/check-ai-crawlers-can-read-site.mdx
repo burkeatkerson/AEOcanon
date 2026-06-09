@@ -1,0 +1,134 @@
+---
+title: How to Check if AI Crawlers Can Read Your Site
+slug: check-ai-crawlers-can-read-site
+summary: Most AI crawlers don't run JavaScript, so the test is simple — view what's in the raw HTML, not the rendered DOM. This guide walks through the JS-disabled browser test and curl checks that show you exactly what GPTBot and PerplexityBot see.
+topics:
+  - technical-seo
+author: priya-nair
+published: 2026-02-04
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: How do I check if AI crawlers can read my site?
+    a: "Look at the raw HTML the server returns, not the rendered DOM. Two quick tests, that should agree: (1) in your browser, disable JavaScript and reload — if your main content disappears, crawlers can't see it either; (2) run curl with an AI user-agent and read the HTML it returns. If your answer text is present in both, AI crawlers can read it."
+  - q: Why not just use 'Inspect Element' to check?
+    a: Because Inspect shows the rendered DOM after JavaScript has run, which is not what a non-rendering crawler sees. Use 'View Source' (Ctrl+U / Cmd+Option+U) or curl to see the raw HTML the server actually sent. If content is in the DOM but not in View Source, it was added by JavaScript and most AI crawlers will miss it.
+  - q: What command shows me what GPTBot sees?
+    a: "Run: curl -s -A \"GPTBot\" https://yourdomain.com/ and read the output. That fetches the page with GPTBot's user-agent and prints the raw HTML the server returned — the same bytes the crawler receives. Pipe it to grep to check for a specific answer: curl -s -A \"GPTBot\" https://yourdomain.com/ | grep -i \"your answer phrase\"."
+  - q: My content shows in the browser but not in curl — why?
+    a: Because it's rendered client-side. The browser ran JavaScript that fetched and injected the content into the DOM; curl (like most AI crawlers) doesn't run JavaScript, so it only sees the initial server HTML, which lacks that content. The fix is server-side rendering or prerendering so the content is in the initial HTML.
+---
+
+**Most AI crawlers don't run JavaScript, so checking whether they can read your
+site means looking at the raw HTML the server returns — not the rendered DOM in
+your dev tools.** Two quick tests show you exactly what GPTBot and PerplexityBot
+see: disable JavaScript in the browser, and fetch the page with curl.
+
+<Callout variant="key" title="The short answer">
+  <p>
+    Test what&apos;s in the <strong>raw HTML</strong>, not the rendered DOM. If your
+    main content survives with <strong>JavaScript disabled</strong> and appears in a{" "}
+    <code>curl</code> fetch, AI crawlers can read it. If it vanishes, it&apos;s
+    client-rendered and most crawlers can&apos;t see it.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "AI crawlers mostly read raw HTML — test that, not the post-JavaScript DOM.",
+    "Use View Source (Ctrl+U) or curl, not Inspect Element, which shows the rendered DOM.",
+    "The JS-disabled browser test mimics what a non-rendering crawler sees.",
+    "curl -s -A \"GPTBot\" URL shows you the exact bytes the crawler receives.",
+    "Content in the DOM but not in View Source is invisible to most AI crawlers.",
+  ]}
+/>
+
+## Why doesn't 'Inspect Element' tell the truth?
+
+Inspect Element doesn't tell the truth about crawlability because it shows the
+*rendered DOM* — the page after your JavaScript has executed and injected content.
+A non-rendering crawler never runs that JavaScript, so it sees only the *raw HTML*
+the server sent. The two can differ wildly: a client-rendered app often ships an
+almost-empty `<div id="root">` that Inspect shows full of content, while View
+Source shows it empty. Always test the raw HTML — that's the [access](/pillars/access)
+reality.
+
+## How do you run the JS-disabled browser test?
+
+Disable JavaScript in your browser and reload the page — what remains is
+approximately what a non-rendering crawler sees.
+
+<Steps
+  items={[
+    { title: "Open DevTools command menu", body: "On the page, open DevTools (F12), then press Ctrl+Shift+P (Cmd+Shift+P on macOS)." },
+    { title: "Disable JavaScript", body: "Type 'Disable JavaScript', select it, and keep DevTools open (the setting only applies while it is)." },
+    { title: "Reload the page", body: "Hard-reload (Ctrl+Shift+R). The page now renders without running any JavaScript." },
+    { title: "Look for your answer", body: "Is your headline, main content, and key answer text still visible? If the page is blank or shows a spinner, crawlers see the same nothing." },
+    { title: "Re-enable JavaScript", body: "Remove the 'Disable JavaScript' override when you're done." },
+  ]}
+/>
+
+## How do you check with curl?
+
+Fetch the page with an AI user-agent and read the raw HTML it returns — this is the
+exact response the crawler receives, with no rendering involved.
+
+```bash
+# See the raw HTML GPTBot receives (first 60 lines)
+curl -s -A "GPTBot" https://yourdomain.com/ | head -n 60
+
+# Check whether a specific answer is present in the raw HTML
+curl -s -A "GPTBot" https://yourdomain.com/ | grep -i "your answer phrase"
+
+# Compare a few crawlers at once — counts of a key phrase in each response
+for ua in "GPTBot" "PerplexityBot" "Bingbot"; do
+  count=$(curl -s -A "$ua" https://yourdomain.com/ | grep -ic "your answer phrase")
+  echo "$ua: $count match(es)"
+done
+```
+
+If `grep` finds your answer text, the crawler can read it. If it returns nothing
+while the phrase is clearly on the rendered page, your content is being injected by
+JavaScript after load — invisible to crawlers that don't render.
+
+<Callout variant="tip" title="Also check the status and headers">
+  <p>
+    Add <code>-I</code> to see response headers, or <code>-o /dev/null -w
+    &quot;%&#123;http_code&#125;\n&quot;</code> to print just the status code. Confirm the
+    crawler gets a <strong>200</strong>, not a <strong>403</strong> (blocked), a{" "}
+    <strong>302</strong> to a login wall, or a soft <strong>404</strong>. Some
+    sites serve bots a different response than browsers — this catches that.
+  </p>
+</Callout>
+
+```bash
+# Confirm the crawler gets a 200, not a block or redirect
+curl -s -o /dev/null -w "%{http_code}\n" -A "GPTBot" https://yourdomain.com/
+```
+
+## What should you do if the test fails?
+
+If your content fails the test — present in the DOM but missing from View Source
+and curl — it's client-rendered, and the fix is to put it in the initial HTML via
+server-side rendering, static generation, or prerendering. That's covered in [why
+JavaScript breaks your AI citation eligibility](/learn/javascript-breaks-ai-citation)
+and [how to make a single-page app citable by AI](/learn/make-spa-citable).
+
+<Checklist
+  title="Crawler-readability check"
+  items={[
+    "With JavaScript disabled, my main content and key answers still render.",
+    "View Source (not Inspect) contains my answer text.",
+    "A curl fetch with an AI user-agent returns that text.",
+    "The crawler receives a 200 status, not a 403, redirect, or soft 404.",
+    "Bots get the same content as browsers (no divergent responses).",
+  ]}
+/>
+
+## Where this fits in the Canon
+
+This test is how you verify the [access](/pillars/access) pillar in practice —
+proving an engine can actually read your content before you worry about anything
+else. It pairs with the permission checks in the [robots.txt
+guide](/learn/allow-ai-crawlers-robots-txt) and leads into the rendering fixes in
+[why JavaScript breaks AI citation eligibility](/learn/javascript-breaks-ai-citation).

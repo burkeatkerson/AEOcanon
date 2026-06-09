@@ -1,0 +1,161 @@
+---
+title: How to Read Server Logs for AI Crawler Activity
+slug: read-server-logs-ai-crawlers
+summary: Your server logs are the ground truth for whether AI crawlers reach your site. This guide gives copy-paste grep commands to find GPTBot, ClaudeBot, and PerplexityBot hits, count their visits, spot what they crawl, and catch the 403s and 404s that block citations.
+topics:
+  - technical-seo
+author: priya-nair
+published: 2026-02-06
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: How do I see AI crawler activity in my server logs?
+    a: Grep your access log for the AI user-agent strings. For example, grep -iE "GPTBot|OAI-SearchBot|ClaudeBot|Claude-SearchBot|PerplexityBot|Google-Extended|Bingbot" /var/log/nginx/access.log shows every AI crawler request. Server logs are ground truth — unlike analytics, they record bot traffic that JavaScript-based tracking never sees.
+  - q: What should I look for in AI crawler logs?
+    a: Three things — whether the bots arrive at all, which pages they fetch, and what status codes they get. Lots of 200s on your key pages is healthy. A wall of 403s means you're blocking them; 404s mean they're chasing dead URLs; 5xx means your server is erroring on them. Frequency and recency also tell you how actively each engine is crawling you.
+  - q: Why aren't AI crawlers in my analytics?
+    a: Because most analytics tools rely on JavaScript that bots don't execute, so crawler visits never fire the tracking script. Server logs record every raw HTTP request regardless of JavaScript, which is why they're the reliable source for bot activity. If you only look at analytics, AI crawlers are invisible to you.
+  - q: Can crawler user-agents be faked in logs?
+    a: Yes — a user-agent string is self-reported and can be spoofed, so a line claiming to be GPTBot isn't proof it's really OpenAI. For most AEO monitoring that's fine; you're gauging activity, not enforcing security. If you need certainty, verify the request's IP against the operator's published IP ranges or reverse-DNS, the way you would verify Googlebot.
+---
+
+**Your server logs are the ground truth for whether AI crawlers actually reach
+your site — and unlike analytics, they record bot traffic that JavaScript tracking
+never sees.** A few grep commands tell you which AI crawlers visit, what they
+fetch, and whether they're hitting blocks. Here are the copy-paste commands.
+
+<Callout variant="key" title="The short answer">
+  <p>
+    Grep your access log for AI user-agents:{" "}
+    <code>grep -iE &quot;GPTBot|ClaudeBot|PerplexityBot|OAI-SearchBot|Bingbot&quot;
+    /var/log/nginx/access.log</code>. Then check three things:{" "}
+    <strong>do they arrive, what do they fetch, and what status codes do they
+    get?</strong> Logs see bots that analytics can&apos;t.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Server logs record every raw HTTP request — including bots that JavaScript analytics miss.",
+    "Grep the access log for AI user-agent strings to find crawler activity.",
+    "Watch status codes: 200 is healthy; 403 = blocked, 404 = dead URLs, 5xx = errors.",
+    "Track frequency and which pages each engine crawls to see what it values.",
+    "User-agents can be spoofed; verify by IP/reverse-DNS if you need certainty.",
+  ]}
+/>
+
+## Why server logs instead of analytics?
+
+Use server logs because they record every HTTP request at the server, while most
+analytics tools rely on JavaScript that crawlers don't run. AI crawlers fetch your
+HTML and leave without firing a tracking pixel, so they're invisible in analytics
+but fully present in logs. If you want to know whether GPTBot is really crawling
+you — a core [access](/pillars/access) question — the log is the only honest answer.
+
+Access logs are usually at `/var/log/nginx/access.log` (nginx) or
+`/var/log/apache2/access.log` (Apache); managed hosts expose them in their
+dashboard or CLI.
+
+## How do you find AI crawler hits?
+
+Grep the access log for the AI user-agent strings. This prints every request from a
+major AI crawler:
+
+```bash
+# Every AI crawler request in the log
+grep -iE "GPTBot|OAI-SearchBot|ChatGPT-User|ClaudeBot|Claude-SearchBot|PerplexityBot|Google-Extended|Bingbot" \
+  /var/log/nginx/access.log
+```
+
+To count how often each crawler visits, loop over the user-agents:
+
+```bash
+# Count requests per AI crawler
+for ua in GPTBot OAI-SearchBot ChatGPT-User ClaudeBot Claude-SearchBot PerplexityBot Bingbot; do
+  count=$(grep -ic "$ua" /var/log/nginx/access.log)
+  printf "%-18s %s\n" "$ua" "$count"
+done
+```
+
+## What should you look for?
+
+Look for three things: that the bots arrive, which pages they fetch, and what
+status codes they receive. The status codes are where citation problems show up.
+
+### Are they getting blocked? (status codes)
+
+In a default combined log format, the status code is the field right after the
+request. This pulls AI-crawler lines and shows their status codes, tallied:
+
+```bash
+# Status codes AI crawlers are receiving (combined log format)
+grep -iE "GPTBot|ClaudeBot|PerplexityBot|Bingbot" /var/log/nginx/access.log \
+  | awk '{print $9}' | sort | uniq -c | sort -rn
+```
+
+```text
+   842 200
+    36 301
+    11 404
+     4 403
+```
+
+A healthy result is mostly `200`. A pile of `403` means you're blocking the crawler
+(check robots.txt and any WAF/firewall rules); `404` means it's chasing dead URLs
+(fix links or redirects); `5xx` means your server is erroring under bot load.
+
+### What are they crawling?
+
+See which pages a specific crawler fetches most — this reveals what an engine finds
+worth re-crawling:
+
+```bash
+# Top 20 paths GPTBot requested
+grep -i "GPTBot" /var/log/nginx/access.log \
+  | awk '{print $7}' | sort | uniq -c | sort -rn | head -20
+```
+
+### How recently did they visit?
+
+```bash
+# The last 10 PerplexityBot requests, with timestamp and path
+grep -i "PerplexityBot" /var/log/nginx/access.log | tail -10
+```
+
+<Callout variant="tip" title="Watching live traffic">
+  <p>
+    To watch crawlers hit your site in real time, tail the log and filter:{" "}
+    <code>tail -f /var/log/nginx/access.log | grep -iE
+    &quot;GPTBot|ClaudeBot|PerplexityBot&quot;</code>. Useful right after you change
+    robots.txt or ship a rendering fix, to confirm bots are getting 200s.
+  </p>
+</Callout>
+
+## Can you trust the user-agent?
+
+Treat the user-agent as a useful signal, not proof: it's self-reported and can be
+spoofed, so a line claiming to be GPTBot might not be OpenAI. For AEO monitoring —
+gauging activity and catching blocks — that's fine. If you need certainty (for
+firewall allowlisting, say), verify the request IP against the operator's published
+IP ranges or use reverse-DNS, exactly as you'd verify Googlebot.
+
+<Steps
+  items={[
+    { title: "Locate your access log", body: "nginx: /var/log/nginx/access.log · Apache: /var/log/apache2/access.log · managed hosts: dashboard or CLI export." },
+    { title: "Grep for AI user-agents", body: "Run the combined grep above to confirm the major AI crawlers are reaching you at all." },
+    { title: "Tally their status codes", body: "Use the awk/uniq command to check they get 200s, not 403/404/5xx." },
+    { title: "Inspect what they crawl", body: "List the top paths per bot to see what each engine re-fetches and values." },
+    { title: "Re-check after changes", body: "After a robots.txt or rendering fix, tail the log to confirm bots now get 200s." },
+  ]}
+/>
+
+## Where this fits in the Canon
+
+Reading logs is how you monitor the [access](/pillars/access) pillar over time —
+proof that crawlers arrive and aren't being blocked. Treat it as a recurring check,
+which is the [adaptability](/pillars/adaptability) pillar applied to infrastructure:
+crawler behavior and user-agents change, so re-read the logs periodically.
+
+Related: [the robots.txt guide](/learn/allow-ai-crawlers-robots-txt), [which AI
+crawlers to allow](/learn/which-ai-crawlers-to-allow), and [how to check if AI
+crawlers can read your site](/learn/check-ai-crawlers-can-read-site).

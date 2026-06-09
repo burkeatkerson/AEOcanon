@@ -1,0 +1,194 @@
+---
+title: How to Make a Single-Page App Citable by AI
+slug: make-spa-citable
+summary: A client-rendered SPA ships an empty shell that AI crawlers can't read. To make it citable, get your content into the initial HTML — by migrating to an SSR/SSG framework, adding server rendering to your existing app, or prerendering routes to static HTML. Here are the patterns, with code.
+topics:
+  - technical-seo
+author: priya-nair
+published: 2026-02-08
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: How do I make a single-page app citable by AI?
+    a: Get your content into the initial HTML response, because AI crawlers read raw HTML and don't run JavaScript. Three paths do this — migrate to a meta-framework with server-side rendering or static generation (Next.js, Nuxt, SvelteKit, Remix), add server rendering to your existing app, or prerender your routes to static HTML. The test of success is that a curl fetch already contains your content.
+  - q: Is prerendering the same as server-side rendering?
+    a: Closely related but not identical. Server-side rendering builds the HTML fresh on each request; prerendering generates the HTML ahead of time (at build) or caches a rendered snapshot and serves that to crawlers. Both put content in the initial HTML. Prerendering is often the lighter retrofit for an existing SPA you can't fully rewrite.
+  - q: Is serving prerendered HTML to bots considered cloaking?
+    a: Not when the prerendered content matches what users see. Cloaking means showing crawlers materially different content to manipulate ranking. Serving a bot a prerendered snapshot of the same page a user gets — same text, same answer — is an accepted way to make a SPA crawlable, sometimes called dynamic rendering. Keep the content identical and you're fine.
+  - q: Do I have to abandon React or Vue to be citable?
+    a: No. React, Vue, and Svelte all support server-side rendering and static generation through their meta-frameworks, and standalone SSR is possible too. You keep your components and interactivity; you just render the citable content on the server and hydrate in the browser. The framework isn't the problem — shipping an empty shell is.
+---
+
+**A client-rendered single-page app ships an empty shell that AI crawlers can't
+read, so to make it citable you must get your content into the initial HTML.**
+Three patterns do that — migrate to an SSR/SSG framework, add server rendering to
+your existing app, or prerender routes to static HTML — and all of them pass the
+same test: a `curl` fetch already contains your content.
+
+<Callout variant="key" title="The short answer">
+  <p>
+    Put the content in the <strong>initial HTML</strong>. Best long-term: migrate to
+    a meta-framework with <strong>SSR/SSG</strong> (Next.js, Nuxt, SvelteKit,
+    Remix). Lighter retrofit: <strong>prerender</strong> your routes to static HTML
+    and serve that. Success = <code>curl</code> returns your answer text.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "AI crawlers read raw HTML and don't run JS, so a client-rendered SPA looks empty to them.",
+    "Fix: get content into the initial HTML via SSR, SSG, or prerendering.",
+    "Best long-term: a meta-framework (Next.js, Nuxt, SvelteKit, Remix) with server rendering.",
+    "Lighter retrofit: prerender routes to static HTML and serve snapshots to crawlers.",
+    "Serving matching prerendered content to bots is not cloaking — keep it identical to users'.",
+  ]}
+/>
+
+## Why can't AI cite a single-page app?
+
+AI can't cite a typical SPA because it renders content client-side: the server
+sends a near-empty `<div id="root">` and JavaScript fills it in the browser. A
+crawler that doesn't run JavaScript — which is [most of
+them](/learn/javascript-breaks-ai-citation) — sees the empty shell and concludes
+there's nothing to cite. This is the [access](/pillars/access) pillar failing at the
+rendering layer. The fix isn't to drop your framework; it's to render the citable
+content before it reaches the crawler.
+
+## What are the three paths to a citable SPA?
+
+The three paths are migrating to a server-rendering framework, adding server
+rendering to your existing app, or prerendering routes to static HTML — in rough
+order of effort and durability.
+
+<ComparisonTable
+  rowHeaders
+  caption="Three ways to make a SPA citable"
+  columns={["Approach", "Effort", "Best when"]}
+  rows={[
+    ["Migrate to a meta-framework", "High", "You can invest in a durable, long-term fix"],
+    ["Add SSR to your app", "Medium", "You want to keep your stack but render on the server"],
+    ["Prerender routes to static HTML", "Low–medium", "Content is mostly static and a rewrite isn't feasible"],
+    ["Dynamic rendering (serve snapshots to bots)", "Low", "A quick retrofit for an existing SPA"],
+  ]}
+/>
+
+## Path 1: migrate to an SSR/SSG framework
+
+The most durable fix is to move to a meta-framework that renders on the server by
+default. In Next.js, Nuxt, SvelteKit, or Remix, page content is server-rendered (or
+statically generated) so it's in the HTML the crawler receives. A Next.js Server
+Component renders fully before it ships:
+
+```tsx
+// app/products/[id]/page.tsx — server-rendered; HTML ships with content
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const product = await getProduct(id); // runs on the server
+
+  return (
+    <main>
+      <h1>{product.name}</h1>
+      {/* In the initial HTML — crawlers and users both get it */}
+      <p>{product.description}</p>
+    </main>
+  );
+}
+```
+
+## Path 2: add server rendering to your existing app
+
+If you keep your current stack, render your app to an HTML string on the server and
+send that in the response, then hydrate in the browser. A minimal Express + React
+example:
+
+```jsx
+// server.js — render the app to HTML on each request, then hydrate client-side
+import express from "express";
+import { renderToString } from "react-dom/server";
+import App from "./src/App.js";
+
+const app = express();
+
+app.get("*", (req, res) => {
+  const appHtml = renderToString(<App url={req.url} />);
+  res.send(`<!doctype html>
+<html>
+  <head><title>My App</title></head>
+  <body>
+    <div id="root">${appHtml}</div>
+    <script src="/static/bundle.js"></script>
+  </body>
+</html>`);
+});
+
+app.listen(3000);
+```
+
+Now the crawler receives real content inside `#root` instead of an empty div, and
+the browser hydrates `bundle.js` for interactivity. Vite, for example, provides an
+SSR build mode to produce the server and client bundles for this pattern.
+
+## Path 3: prerender routes to static HTML
+
+If your content is mostly static and a rewrite isn't feasible, prerender each route
+to an HTML file at build time and serve those files. Tools like prerendering
+plugins crawl your running app and write out static HTML per route:
+
+```bash
+# Example: build, then prerender routes to static HTML (tool-specific)
+npm run build
+npx prerender-spa-plugin   # or react-snap, vite-plugin-ssg, etc.
+```
+
+Alternatively, **dynamic rendering** serves crawlers a cached, fully-rendered
+snapshot while users keep the live app — via a prerender middleware or a service.
+This is an accepted retrofit, not cloaking, **as long as the snapshot matches what
+users see**.
+
+<Callout variant="warning" title="Keep bot and user content identical">
+  <p>
+    Serving crawlers a prerendered snapshot is fine; serving them{" "}
+    <em>different</em> content to manipulate visibility is cloaking, which engines
+    penalize. The prerendered HTML must contain the same text and answers a human
+    gets. When in doubt, diff the bot response against the rendered page.
+  </p>
+</Callout>
+
+## How do you confirm it worked?
+
+Confirm the fix the same way a crawler would — by reading the raw HTML.
+
+<Steps
+  items={[
+    { title: "Fetch as a crawler", body: "Run: curl -s -A \"GPTBot\" https://yourdomain.com/your-route | grep -i \"your answer phrase\"" },
+    { title: "Expect a match", body: "If grep returns your content, it's in the initial HTML and crawlers can read it." },
+    { title: "Run the JS-disabled test", body: "Disable JavaScript in the browser and reload — your content should still render." },
+    { title: "Check key routes", body: "Test every route you want cited, not just the homepage — SPAs often render some routes and not others." },
+  ]}
+/>
+
+<Checklist
+  title="SPA citability"
+  items={[
+    "Citable routes render their content into the initial HTML (SSR, SSG, or prerender).",
+    "curl with an AI user-agent returns the answer text for each route.",
+    "Pages survive the JavaScript-disabled browser test.",
+    "Any bot-served snapshot is identical to what users see (no cloaking).",
+    "Interactivity is handled by hydration, not by rendering content from scratch in the browser.",
+  ]}
+/>
+
+## Where this fits in the Canon
+
+Making a SPA citable is the rendering fix for the [access](/pillars/access) pillar —
+turning an empty shell into HTML a crawler can read. Once the content is in the
+HTML, [extractability](/pillars/extractability) governs how liftable each passage is.
+
+Related: [why JavaScript breaks AI citation
+eligibility](/learn/javascript-breaks-ai-citation), [server-side vs client-side
+rendering](/learn/server-side-vs-client-side-rendering), and [how to check if AI
+crawlers can read your site](/learn/check-ai-crawlers-can-read-site).

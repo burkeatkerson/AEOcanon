@@ -1,0 +1,157 @@
+---
+title: Which AI Crawlers Should You Allow?
+slug: which-ai-crawlers-to-allow
+summary: Not all AI crawlers do the same job. Search and user-fetch bots (OAI-SearchBot, ChatGPT-User, Claude-SearchBot, PerplexityBot, Bingbot) drive citations and should be allowed; training crawlers (GPTBot, ClaudeBot) and Google-Extended are an opt-in choice. Here's what each one does.
+topics:
+  - technical-seo
+author: priya-nair
+published: 2026-02-03
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: Which AI crawlers should I allow for citations?
+    a: Allow the search-indexing and user-fetch crawlers — OAI-SearchBot and ChatGPT-User (OpenAI), Claude-SearchBot (Anthropic), PerplexityBot (Perplexity), and Bingbot (Microsoft) — because these build the indexes and fetch the pages that AI answers cite. These are the ones that directly affect whether you can be surfaced and quoted.
+  - q: What's the difference between GPTBot and OAI-SearchBot?
+    a: GPTBot crawls content to train and improve OpenAI's models; OAI-SearchBot crawls to surface and cite sites in ChatGPT's search results. Allowing OAI-SearchBot (and ChatGPT-User, for real-time fetches) is what makes you eligible to be cited in ChatGPT. GPTBot is about training-data inclusion, which is a separate, values-based choice.
+  - q: Should I allow training crawlers like GPTBot and ClaudeBot?
+    a: That's an opt-in decision, not a citation requirement. Blocking GPTBot or ClaudeBot opts your content out of model training but does not, by itself, stop you from being cited by the corresponding search and user-fetch bots. Allow them if you're comfortable contributing to training and want maximum long-term presence; block them if you want to opt out of training.
+  - q: What is Google-Extended?
+    a: Google-Extended is a robots.txt token, not a separate crawler. It controls whether Google may use content it has already crawled (via Googlebot) for Gemini AI training and for grounding AI answers. Allowing it opts your content into Google's generative AI uses; it doesn't change normal Google Search crawling, which Googlebot handles.
+---
+
+**Not all AI crawlers do the same job: search and user-fetch bots drive citations
+and should be allowed, while training crawlers are an opt-in choice that doesn't
+control citation eligibility.** Knowing which is which lets you be citable
+everywhere without making decisions you didn't intend.
+
+<Callout variant="key" title="The short answer">
+  <p>
+    <strong>Allow the citation-driving bots:</strong> OAI-SearchBot, ChatGPT-User,
+    Claude-SearchBot, PerplexityBot, and Bingbot. <strong>Decide deliberately</strong>{" "}
+    on the training crawlers (GPTBot, ClaudeBot) and Google-Extended — these govern
+    model-training and generative use, not whether you can be cited.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Search/index + user-fetch bots drive citations: OAI-SearchBot, ChatGPT-User, Claude-SearchBot, PerplexityBot, Bingbot.",
+    "Training crawlers (GPTBot, ClaudeBot) govern model-training inclusion — a separate, values-based choice.",
+    "Google-Extended is a robots.txt token controlling Gemini training/grounding, not a crawler.",
+    "Blocking a training crawler does not, by itself, stop the matching search bot from citing you.",
+    "When in doubt, allow the citation bots; decide training opt-in on your own terms.",
+  ]}
+/>
+
+## What does each AI crawler actually do?
+
+Each AI crawler falls into one of three jobs: training (improving models), search
+indexing (building the index AI answers draw from), or user-fetch (grabbing a page
+in real time when a user asks). The table maps every major user-agent to its
+operator, job, and whether allowing it affects your citation eligibility.
+
+<ComparisonTable
+  rowHeaders
+  caption="The major AI crawlers and what each one does"
+  columns={["User-agent", "Operator", "Job", "Allow for citations?"]}
+  rows={[
+    ["GPTBot", "OpenAI", "Model training", "Optional (training opt-in)"],
+    ["OAI-SearchBot", "OpenAI", "Search indexing for ChatGPT", "Yes"],
+    ["ChatGPT-User", "OpenAI", "Real-time user-initiated fetch", "Yes"],
+    ["ClaudeBot", "Anthropic", "Model training", "Optional (training opt-in)"],
+    ["Claude-SearchBot", "Anthropic", "Search indexing for Claude", "Yes"],
+    ["PerplexityBot", "Perplexity", "Search index", "Yes"],
+    ["Google-Extended", "Google", "Gemini training & grounding token", "Optional (generative opt-in)"],
+    ["Bingbot", "Microsoft", "Bing index (feeds Copilot/AI answers)", "Yes"],
+  ]}
+/>
+
+## Which bots actually drive AI citations?
+
+The bots that drive citations are the search-indexing and user-fetch crawlers,
+because they're what build the retrievable index and fetch the live pages AI
+answers quote. Concretely: **OAI-SearchBot** and **ChatGPT-User** make you eligible
+in ChatGPT, **Claude-SearchBot** in Claude, **PerplexityBot** in Perplexity, and
+**Bingbot** in the Bing index that feeds Copilot and some other AI surfaces. If you
+allow nothing else, allow these — blocking them removes you from the candidate set
+an engine can cite, which is the [access](/pillars/access) gate slamming shut.
+
+## What about the training crawlers?
+
+Training crawlers — GPTBot and ClaudeBot — are a separate, values-based decision,
+not a citation lever. They crawl content to train and improve the underlying
+models. Blocking them opts your content out of training but does **not**, on its
+own, stop the matching search bot from indexing and citing you. So the choice is
+about whether you want to contribute to model training, not about visibility:
+
+- **Allow them** if you're comfortable contributing to training and want maximum
+  long-term presence in the models themselves.
+- **Block them** if you want to opt out of training while staying citable via the
+  search bots.
+
+`Google-Extended` works similarly: it's a robots.txt token (not a crawler) that
+controls whether Google uses already-crawled content for Gemini training and for
+grounding AI answers. Allowing it opts you into Google's generative uses; it
+doesn't change normal Google Search crawling, which Googlebot handles.
+
+<DecisionBlock
+  title="Allow, or decide deliberately?"
+  options={[
+    { label: "always allow", when: [
+      "OAI-SearchBot & ChatGPT-User — to be citable in ChatGPT.",
+      "Claude-SearchBot & PerplexityBot — to be citable in Claude and Perplexity.",
+      "Bingbot — to stay in the Bing index that feeds Copilot.",
+    ] },
+    { label: "decide deliberately", when: [
+      "GPTBot & ClaudeBot — only if you want to contribute to model training.",
+      "Google-Extended — only if you want content used for Gemini training/grounding.",
+      "You have legal, licensing, or brand reasons to opt out of training.",
+    ] },
+  ]}
+/>
+
+## How do you put this in robots.txt?
+
+Add an explicit group per user-agent you want to allow, exactly as in the [robots.txt
+guide](/learn/allow-ai-crawlers-robots-txt). If you want to allow citation bots but
+opt out of training, allow the search/user bots and disallow the training ones:
+
+```txt
+# Citable in AI answers, but opted out of model training
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Opt OUT of training/generative use
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+```
+
+User-agent strings change as vendors add crawlers, so re-check the official docs
+periodically — keeping this list current is the [adaptability](/pillars/adaptability)
+pillar applied to crawl management.
+
+## Where this fits in the Canon
+
+Choosing which crawlers to allow is the permission half of the [access](/pillars/access)
+pillar. Pair it with the [copy-paste robots.txt guide](/learn/allow-ai-crawlers-robots-txt)
+and then confirm the bots can actually read your rendered HTML in [how to check if
+AI crawlers can read your site](/learn/check-ai-crawlers-can-read-site).

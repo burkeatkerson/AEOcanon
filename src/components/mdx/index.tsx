@@ -15,6 +15,7 @@ import { ComparisonTable } from "./comparison-table";
 import { DecisionBlock } from "./decision-block";
 import { BeforeAfter } from "./before-after";
 import { PassageScorer } from "./passage-scorer";
+import { Pre } from "./pre";
 import { MdxLink } from "./mdx-link";
 import {
   KeyTakeaways,
@@ -42,6 +43,7 @@ import { AuthorityAudit } from "@/components/authority/authority-audit";
  */
 export const mdxComponents: MDXComponents = {
   a: MdxLink as MDXComponents["a"],
+  pre: Pre as MDXComponents["pre"],
   Callout,
   Figure,
   FAQBlock,

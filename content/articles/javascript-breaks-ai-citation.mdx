@@ -1,0 +1,184 @@
+---
+title: Why JavaScript Breaks Your AI Citation Eligibility
+slug: javascript-breaks-ai-citation
+summary: Vercel and MERJ analyzed 500M+ GPTBot requests and found zero JavaScript execution — so content rendered client-side is invisible to AI crawlers. If your answer only appears after JS runs, you can't be cited. Here are the SSR, SSG, and prerender fixes, with code.
+topics:
+  - technical-seo
+author: priya-nair
+published: 2026-02-05
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: Why does JavaScript break AI citations?
+    a: Because most AI crawlers don't execute JavaScript. Vercel and MERJ, analyzing over 500 million GPTBot requests, found zero evidence of JavaScript execution — the crawler reads the raw HTML and stops. If your content is rendered client-side, it isn't in that raw HTML, so the crawler sees an empty shell and can't cite what isn't there.
+  - q: Do any AI crawlers run JavaScript?
+    a: Google's Gemini is the main exception, because it can use Google's existing rendering infrastructure. For OpenAI's GPTBot and OAI-SearchBot, Anthropic's crawlers, and PerplexityBot, you should assume no JavaScript execution. Designing for the non-rendering case keeps you citable everywhere rather than only on the one engine that renders.
+  - q: How do I fix client-rendered content for AEO?
+    a: Render the content on the server so it's in the initial HTML response. Use server-side rendering (SSR) or static site generation (SSG) in a framework like Next.js, Nuxt, or Remix, or add prerendering for a pure single-page app. The goal is that a curl fetch — with no JavaScript — already contains your answer text.
+  - q: Is client-side rendering always bad for AEO?
+    a: Not always — it's fine for content that doesn't need to be cited or indexed, like logged-in dashboards. It's only a problem for public, citable content. The fix isn't to abandon JavaScript frameworks; it's to render the citable content on the server and hydrate for interactivity, so crawlers get full HTML and users still get an app.
+---
+
+**JavaScript breaks AI citation eligibility because most AI crawlers don't run it —
+[Vercel and MERJ analyzed over 500 million GPTBot requests and found zero
+JavaScript execution](https://vercel.com/blog/the-rise-of-the-ai-crawler).** If
+your content is assembled client-side, it isn't in the raw HTML the crawler reads,
+so you're invisible no matter how good the content is. The fix is to render on the
+server.
+
+<Callout variant="key" title="The short answer">
+  <p>
+    AI crawlers read <strong>raw HTML</strong> and don&apos;t execute JavaScript
+    (Vercel/MERJ, 500M+ GPTBot requests). Client-rendered content isn&apos;t in that
+    HTML, so it can&apos;t be cited. Move citable content to <strong>SSR, SSG, or
+    prerender</strong> so it&apos;s in the initial response.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Vercel/MERJ: 500M+ GPTBot requests showed zero JavaScript execution.",
+    "Client-rendered content isn't in the raw HTML, so crawlers can't see or cite it.",
+    "Google's Gemini can render; assume OpenAI, Anthropic, and Perplexity crawlers can't.",
+    "Fix it with server-side rendering, static generation, or prerendering.",
+    "You can keep your JS framework — just render citable content on the server.",
+  ]}
+/>
+
+## Why can't AI crawlers see client-rendered content?
+
+AI crawlers can't see client-rendered content because they fetch the raw HTML and
+don't run the JavaScript that would build it. The Vercel/MERJ analysis of 500M+
+GPTBot requests found no JavaScript execution at all — the crawler takes the
+server's initial response and nothing more. A client-rendered app typically ships a
+near-empty shell like this:
+
+```html
+<!-- What the server sends for a client-rendered app -->
+<!doctype html>
+<html>
+  <head><title>My App</title></head>
+  <body>
+    <div id="root"></div>
+    <script src="/static/bundle.js"></script>
+  </body>
+</html>
+```
+
+A browser runs `bundle.js`, which fetches data and fills `#root` with your content.
+A crawler doesn't — so it sees an empty `#root` and concludes the page has no
+content. This is the [access](/pillars/access) gate failing at the rendering layer:
+permission was fine, but there's nothing to read.
+
+## How do you confirm this is your problem?
+
+Confirm it by comparing the raw HTML to the rendered page: if your answer is on
+screen but missing from `curl`, JavaScript is the culprit.
+
+```bash
+# If this prints nothing but the text is clearly on the page, it's client-rendered
+curl -s -A "GPTBot" https://yourdomain.com/ | grep -i "your answer phrase"
+```
+
+The full procedure — including the JS-disabled browser test — is in [how to check
+if AI crawlers can read your site](/learn/check-ai-crawlers-can-read-site).
+
+## What are the fixes?
+
+The fix is to get your content into the initial HTML response through server-side
+rendering, static generation, or prerendering. All three produce HTML that already
+contains your answer before any JavaScript runs.
+
+<ComparisonTable
+  rowHeaders
+  caption="Rendering strategies that make content crawler-visible"
+  columns={["Strategy", "When it renders", "Best for"]}
+  rows={[
+    ["Static generation (SSG)", "At build time", "Content that changes infrequently — docs, articles, marketing"],
+    ["Server-side rendering (SSR)", "At request time, on the server", "Personalized or frequently-changing content"],
+    ["Prerendering", "Cached HTML served to bots", "Existing SPAs you can't fully rewrite"],
+    ["Client-side only (CSR)", "In the browser, after fetch", "Logged-in app views that needn't be cited"],
+  ]}
+/>
+
+### Static generation or server-side rendering (Next.js)
+
+In an App-Router framework, components render on the server by default, so the
+answer is in the HTML. A Server Component that fetches data renders fully before it
+reaches the browser — or the crawler:
+
+```tsx
+// app/guides/[slug]/page.tsx — renders on the server; HTML ships with content
+export default async function GuidePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const guide = await getGuide(slug); // runs on the server
+
+  return (
+    <article>
+      <h1>{guide.title}</h1>
+      {/* This answer is in the initial HTML — crawlers can read it */}
+      <p>{guide.answer}</p>
+    </article>
+  );
+}
+```
+
+For static generation, pre-build the pages so they're served as ready HTML:
+
+```tsx
+// Pre-render every guide at build time (SSG)
+export async function generateStaticParams() {
+  const guides = await getAllGuides();
+  return guides.map((g) => ({ slug: g.slug }));
+}
+```
+
+### Prerendering for an existing SPA
+
+If you can't rewrite a single-page app, add a prerender layer that serves cached,
+fully-rendered HTML to crawlers. The deeper patterns are in [how to make a
+single-page app citable by AI](/learn/make-spa-citable).
+
+## Can you still use a JavaScript framework?
+
+Yes — the problem was never JavaScript frameworks; it's shipping an empty shell that
+only fills in client-side. React, Vue, Svelte, and their meta-frameworks (Next.js,
+Nuxt, SvelteKit, Remix) all support server rendering. Render citable content on the
+server, then hydrate for interactivity: crawlers get full HTML, users get the app.
+
+<Callout variant="warning" title="The 'works in my browser' trap">
+  <p>
+    Client-rendered content looks perfect in your browser, in screenshots, and in
+    Inspect Element — so the problem hides until you check the raw HTML. Don&apos;t
+    trust the rendered page; trust <code>curl</code> and View Source. The content
+    that isn&apos;t in the initial HTML doesn&apos;t exist as far as the crawler is
+    concerned.
+  </p>
+</Callout>
+
+<Checklist
+  title="Render for crawlers"
+  items={[
+    "Citable content is in the initial HTML (server-rendered, static, or prerendered).",
+    "A curl fetch with an AI user-agent returns the answer text.",
+    "The page survives the JavaScript-disabled browser test.",
+    "Only non-citable views (e.g. logged-in app) rely on client-side rendering.",
+    "You hydrate for interactivity rather than rendering content from scratch in the browser.",
+  ]}
+/>
+
+## Where this fits in the Canon
+
+This is the rendering half of the [access](/pillars/access) pillar — permission
+(robots.txt) gets the crawler in, but rendering decides whether there's anything for
+it to read. Once content is in the HTML, [extractability](/pillars/extractability)
+decides how liftable it is.
+
+Related: [server-side vs client-side rendering for AI
+crawlers](/learn/server-side-vs-client-side-rendering), [how to make a single-page
+app citable](/learn/make-spa-citable), and [how to check if AI crawlers can read
+your site](/learn/check-ai-crawlers-can-read-site).
