@@ -7,7 +7,13 @@ import { KnowledgeCheck } from "@/components/courses/knowledge-check";
 import { LessonNav } from "@/components/courses/lesson-nav";
 import { Checklist } from "@/components/mdx/interactive";
 import { getAllCourses, getLesson } from "@/lib/courses";
-import { getAuthor, getArticle, getPillar } from "@/lib/content";
+import {
+  getAuthor,
+  getArticle,
+  getPillar,
+  getTool,
+  getPlaybook,
+} from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 import {
   breadcrumbNode,
@@ -55,7 +61,14 @@ export default async function LessonPage({
   const { course, lesson, index } = found;
 
   const author = getAuthor(course.authorSlug);
-  const article = getArticle(lesson.articleSlug) ?? getPillar(lesson.articleSlug);
+  // A lesson reuses a canonical page from any content cluster — a /learn article,
+  // a pillar, a /tools page, or an /authority playbook. All share url/title/
+  // summary/metadata, so the lesson card renders identically whichever it is.
+  const article =
+    getArticle(lesson.articleSlug) ??
+    getPillar(lesson.articleSlug) ??
+    getTool(lesson.articleSlug) ??
+    getPlaybook(lesson.articleSlug);
   const lessonPath = `/courses/${course.slug}/${lesson.slug}`;
 
   const jsonLd = graph([

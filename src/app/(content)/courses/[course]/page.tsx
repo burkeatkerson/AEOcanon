@@ -187,9 +187,9 @@ export default async function CourseSyllabusPage({
           {course.certificate}.
         </h2>
         <p className="text-ink-2 mt-2 max-w-[60ch] text-[14.5px] leading-relaxed">
-          Complete every lesson and pass the knowledge checks to claim a shareable
-          Tier 1 credential — proof you've mastered the foundations of getting
-          cited by AI.
+          Complete every lesson and pass the knowledge checks to claim a shareable{" "}
+          {course.certificate} — proof you've mastered {course.title}. Practitioner
+          certificates stack toward full AEO mastery.
         </p>
         <div className="mt-4">
           <Button href={`${coursePath}/${first.slug}`}>Begin Lesson 1 →</Button>
