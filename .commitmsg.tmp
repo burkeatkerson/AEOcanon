@@ -1,0 +1,16 @@
+Add: course preview on the AI & LLMs for Marketers intro page
+
+Apply the same course-preview embed to the second Foundation course.
+
+- Copy the deck to public/ai-and-llms-preview.html (source kept in
+  design/); embed it via the existing CoursePreview iframe on
+  /courses/ai-and-llms-for-marketers.
+- Parameterize CoursePreview's click-to-load poster so each deck shows
+  its own cover: optional preview.poster { headline, subhead } on the
+  Course type. Foundations = "AEO / Foundations"; this course = "AI /
+  & LLMs for Marketers". Subhead auto-shrinks for longer titles so it
+  never overflows the cover.
+- Both courses now opt in via data; the embed stays a visual
+  enhancement (crawlable content + Course schema unchanged).
+
+Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>

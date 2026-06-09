@@ -44,8 +44,13 @@ export interface Course {
   /**
    * Optional course-preview presentation. `url` points to a self-contained deck
    * served from /public (embedded in an isolated iframe on the intro page).
+   * `poster` mirrors the deck's own cover for the click-to-load state.
    */
-  preview?: { url: string; title: string };
+  preview?: {
+    url: string;
+    title: string;
+    poster?: { headline: string; subhead: string };
+  };
 }
 
 export const COURSES: Course[] = [
@@ -64,6 +69,7 @@ export const COURSES: Course[] = [
     preview: {
       url: "/aeo-foundations-preview.html",
       title: "AEO Foundations",
+      poster: { headline: "AEO", subhead: "Foundations" },
     },
     outcomes: [
       "Explain what AEO is and why being cited matters more than ranking.",
@@ -417,7 +423,12 @@ export const COURSES: Course[] = [
     estimatedHours: 3,
     authorSlug: "jordan-vega",
     published: "2026-06-08",
-    updated: "2026-06-08",
+    updated: "2026-06-09",
+    preview: {
+      url: "/ai-and-llms-preview.html",
+      title: "AI & LLMs for Marketers",
+      poster: { headline: "AI", subhead: "& LLMs for Marketers" },
+    },
     outcomes: [
       "Explain what an LLM is and how it generates answers.",
       "Describe how models are trained and where their knowledge comes from.",

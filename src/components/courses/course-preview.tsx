@@ -10,8 +10,19 @@ import { useState } from "react";
  * "open in new tab" link is the no-JS / fallback path. The embed is a visual
  * enhancement; the page's crawlable content lives in the surrounding HTML.
  */
-export function CoursePreview({ url, title }: { url: string; title: string }) {
+export function CoursePreview({
+  url,
+  title,
+  poster,
+}: {
+  url: string;
+  title: string;
+  /** Cover text for the click-to-load poster (mirrors the deck's own cover). */
+  poster?: { headline: string; subhead: string };
+}) {
   const [open, setOpen] = useState(false);
+  // Shrink the subhead for longer titles so it never overflows the 1200px cover.
+  const subheadSize = poster && poster.subhead.length > 14 ? 64 : 80;
 
   return (
     <section aria-labelledby="course-preview" className="mt-12">
@@ -49,28 +60,44 @@ export function CoursePreview({ url, title }: { url: string; title: string }) {
               aria-hidden="true"
             >
               <rect width="1200" height="800" fill="#0b0f17" />
-              <text
-                x="600"
-                y="430"
-                textAnchor="middle"
-                fontFamily="Georgia, 'Times New Roman', serif"
-                fontSize="300"
-                fontWeight="500"
-                fill="#eaeef6"
-              >
-                AEO
-              </text>
-              <text
-                x="600"
-                y="540"
-                textAnchor="middle"
-                fontFamily="Georgia, 'Times New Roman', serif"
-                fontStyle="italic"
-                fontSize="80"
-                fill="#82a0ff"
-              >
-                Foundations
-              </text>
+              {poster ? (
+                <>
+                  <text
+                    x="600"
+                    y="430"
+                    textAnchor="middle"
+                    fontFamily="Georgia, 'Times New Roman', serif"
+                    fontSize="300"
+                    fontWeight="500"
+                    fill="#eaeef6"
+                  >
+                    {poster.headline}
+                  </text>
+                  <text
+                    x="600"
+                    y="540"
+                    textAnchor="middle"
+                    fontFamily="Georgia, 'Times New Roman', serif"
+                    fontStyle="italic"
+                    fontSize={subheadSize}
+                    fill="#82a0ff"
+                  >
+                    {poster.subhead}
+                  </text>
+                </>
+              ) : (
+                <text
+                  x="600"
+                  y="430"
+                  textAnchor="middle"
+                  fontFamily="Georgia, 'Times New Roman', serif"
+                  fontSize="120"
+                  fontWeight="500"
+                  fill="#eaeef6"
+                >
+                  {title}
+                </text>
+              )}
             </svg>
             <span className="relative flex items-center gap-2.5 rounded-full border border-white/20 bg-black/40 px-5 py-2.5 font-sans text-[14.5px] font-medium text-white backdrop-blur-sm transition-colors group-hover:border-white/40 group-hover:bg-black/60">
               <span aria-hidden>▶</span>
