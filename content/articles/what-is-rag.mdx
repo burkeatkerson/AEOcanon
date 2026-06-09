@@ -3,6 +3,7 @@ title: "How Does Retrieval-Augmented Generation (RAG) Work?"
 slug: what-is-rag
 summary: Retrieval-augmented generation (RAG) works by retrieving relevant passages from an external source, then having a language model generate an answer grounded in them. It is the architecture behind every AI answer engine.
 topics:
+  - ai-fundamentals
   - answer-engines
   - aeo-fundamentals
 author: jordan-vega
@@ -129,6 +130,33 @@ The two-part structure — retrieve, then generate — is the whole idea in the 
 The retriever supplies grounded fact; the generator supplies fluent language. The
 quality of the answer depends on both, but _which sources get cited_ is decided
 in retrieval and reranking, before the model writes a word.
+
+## What are the building blocks of a RAG system?
+
+A RAG system is assembled from a few distinct components, each of which has its
+own behavior worth understanding. Knowing them turns "RAG" from a black box into a
+pipeline you can actually optimize for.
+
+<ComparisonTable
+  caption="The building blocks of retrieval-augmented generation"
+  columns={["Component", "What it does", "Why it matters for citation"]}
+  rows={[
+    ["Chunking", "Splits pages into passages before indexing", "A buried answer split across chunks may never be retrieved whole"],
+    ["Embeddings", "Turn each passage into a meaning vector", "Clear, single-idea passages embed sharply and match queries"],
+    ["Vector index", "Stores vectors for fast similarity search", "Your passage must be in it — i.e. crawlable — to compete"],
+    ["Reranker", "Re-scores candidates for the exact query", "Authority and relevance here decide the final shortlist"],
+    ["Context window", "Holds the top passages for the model", "Only a few passages fit; tight ones win the slot"],
+    ["Generator (LLM)", "Writes the grounded, cited answer", "Quotes the passage that best, most safely answers"],
+  ]}
+/>
+
+Each block has a dedicated guide: [embeddings](/learn/what-are-embeddings) and how
+text becomes searchable meaning; [the reranker](/learn/what-is-a-reranker) and how
+the shortlist is scored; and [the context window](/learn/what-is-a-context-window)
+that bounds how many passages reach the model. The chunking step — how a document
+is split into answerable passages — is an active research problem, examined in work
+like
+["Passage Segmentation of Documents for Extractive Question Answering" (arXiv 2501.09940)](https://arxiv.org/abs/2501.09940).
 
 ## Why does RAG reduce hallucinations?
 

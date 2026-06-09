@@ -11,6 +11,7 @@ import { INDUSTRY_SLUGS, industryName } from "./industries";
 export const TOPIC_SLUGS = [
   "aeo-fundamentals",
   "answer-engines",
+  "ai-fundamentals",
   "structured-data",
   "content-strategy",
   "technical-seo",
@@ -26,6 +27,7 @@ export type TopicSlug = (typeof TOPIC_SLUGS)[number];
 export const TOPIC_LABELS: Record<TopicSlug, string> = {
   "aeo-fundamentals": "AEO Fundamentals",
   "answer-engines": "Answer Engines",
+  "ai-fundamentals": "AI & LLM Fundamentals",
   "structured-data": "Structured Data",
   "content-strategy": "Content Strategy",
   "technical-seo": "Technical SEO",
@@ -42,6 +44,8 @@ export const TOPIC_DESCRIPTIONS: Record<TopicSlug, string> = {
     "The core concepts of Answer Engine Optimization — what it is, how AI answers are built, and why being cited is the new visibility.",
   "answer-engines":
     "How AI answer engines like ChatGPT, Perplexity, and Google AI Overviews retrieve, rank, and cite the sources they quote.",
+  "ai-fundamentals":
+    "How AI language models actually work — training, tokens, embeddings, context windows, RAG, and limits like hallucination and knowledge cutoffs.",
   "structured-data":
     "Schema.org markup and structured data that help engines parse, understand, and trust what your page is about.",
   "content-strategy":

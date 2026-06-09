@@ -1,0 +1,119 @@
+---
+title: "What Is a Reranker?"
+slug: what-is-a-reranker
+summary: A reranker is the model that re-scores retrieved passages for a specific query, weighing relevance, authority, and freshness to pick the few an AI engine actually uses. It is where citations are won or lost.
+topics:
+  - ai-fundamentals
+  - answer-engines
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: What does a reranker do?
+    a: A reranker takes the candidate passages returned by initial retrieval and re-scores them for the exact query, ordering them by how well they actually answer it. Retrieval casts a wide, fast net by vector similarity; the reranker is the slower, smarter second pass that decides which few passages an engine will use and cite.
+  - q: How is reranking different from retrieval?
+    a: Retrieval is recall-oriented — it quickly finds many plausibly relevant passages using embedding similarity. Reranking is precision-oriented — it carefully compares each candidate against the query and re-orders them, often catching the best answer that pure similarity ranked lower. Together they balance speed and accuracy.
+  - q: What signals does a reranker weigh?
+    a: Primarily relevance (does this passage directly and completely answer the query?), authority (is the source trustworthy?), and freshness (is it current, when the query is time-sensitive?). These are the same signals that determine which sources an AI answer engine cites.
+  - q: How do I get my content past the reranker?
+    a: Answer the question completely in a self-contained opening sentence, back it with inline evidence, keep it current, and build off-site authority so the source is trusted. The reranker rewards passages that are clearly the best, most credible answer to the specific query.
+---
+
+**A reranker is the model that re-scores retrieved passages for a specific query —
+weighing relevance, authority, and freshness — to choose the few that an AI engine
+will actually use and cite.** Retrieval gets your passage into the room; the
+reranker decides whether it wins. It is the single stage where most citations are
+won or lost.
+
+<KeyTakeaways
+  items={[
+    "A reranker is a precise second pass that re-scores retrieved candidates for the exact query.",
+    "Retrieval optimizes for recall (find many); reranking optimizes for precision (pick the best few).",
+    "Rerankers weigh relevance, authority, and freshness above raw keyword or vector match.",
+    "Only the top-ranked passages reach the model and become eligible to be cited.",
+    "Answer-first, evidenced, current, authoritative passages are what survive reranking.",
+  ]}
+/>
+
+<RagPipeline
+  highlight="rerank"
+  caption="The reranker (stage 3) re-scores retrieved candidates before the model generates and cites."
+/>
+
+## What does a reranker do in the pipeline?
+
+A reranker sits between retrieval and generation, taking the candidate passages
+that initial retrieval found and putting them in the right order for the specific
+query. Retrieval is fast and broad — it uses [embedding](/learn/what-are-embeddings)
+similarity to pull dozens or hundreds of plausibly relevant passages. But "similar
+in meaning" isn't the same as "best answer to this exact question," so a reranker
+takes a closer, more expensive look at each candidate and re-scores it. Only the
+top few survive into the [context window](/learn/what-is-a-context-window) and
+inform the answer.
+
+This two-pass design — cheap recall, then precise ranking — is how modern
+retrieval balances speed against quality, and it's the heart of
+[how AI engines choose what to cite](/learn/how-ai-engines-choose-citations).
+
+## How is reranking different from retrieval?
+
+Reranking differs from retrieval in goal and cost: retrieval maximizes recall
+cheaply; reranking maximizes precision at higher cost. Retrieval asks "what might
+be relevant?" and errs toward including too much. Reranking asks "of these, which
+actually answer the question best?" and ruthlessly narrows the set.
+
+<Callout variant="insight" title="Why two passes beat one">
+  <p>
+    Pure vector similarity can rank a passage highly because it's broadly
+    on-topic, even if it never answers the question. The reranker catches this —
+    promoting the passage that resolves the query and demoting the one that merely
+    mentions it. That correction is why a lower-retrieved page can still be the
+    one that gets cited.
+  </p>
+</Callout>
+
+## What signals does a reranker weigh?
+
+A reranker weighs three signals above all: relevance, authority, and freshness.
+These are the same factors that decide every AI citation, which is why the
+reranker is the most important stage for AEO.
+
+<Steps
+  items={[
+    {
+      title: "Relevance",
+      body: "Does the passage directly and completely answer this specific query, ideally in its opening sentence? Partial or tangential answers lose.",
+    },
+    {
+      title: "Authority",
+      body: "Is the source trusted? Off-site reputation and brand mentions feed this — engines prefer sources the wider web vouches for.",
+    },
+    {
+      title: "Freshness",
+      body: "For time-sensitive queries, recency is reweighted. A current passage beats a stale one even if the stale one is otherwise strong.",
+    },
+  ]}
+/>
+
+These map directly to pillars of [The AEO Canon](/learn/aeo-canon):
+[extractability](/learn/aeo-pillar-extractability) for relevance,
+[authority](/learn/aeo-pillar-authority) for trust, and
+[freshness](/learn/aeo-pillar-freshness) for recency. Research on how to segment
+documents into well-formed, answerable passages — like
+["Passage Segmentation of Documents for Extractive Question Answering" (arXiv 2501.09940)](https://arxiv.org/abs/2501.09940)
+— underlines how much the *shape* of a passage affects whether it scores well.
+
+## How do you get your content past the reranker?
+
+You get past the reranker by being the clearly best, most credible answer to the
+exact question — not merely on-topic. In practice that means: lead with a complete
+answer in the first sentence, make the passage self-contained, support the claim
+with an inline statistic or named source, keep it current, and build the off-site
+authority that marks your source as trustworthy. The reranker is, in effect, a
+machine that rewards genuinely excellent answers — which is the whole premise of
+[what is AEO](/learn/what-is-aeo).
+
+See the stage before it in [what are embeddings](/learn/what-are-embeddings), the
+full flow in [what is RAG](/learn/what-is-rag), and what the surviving passages are
+used for in [what is grounding](/learn/what-is-grounding).

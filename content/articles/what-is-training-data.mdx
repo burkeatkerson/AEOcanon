@@ -1,0 +1,104 @@
+---
+title: "What Is Training Data (and Where Do AI Models Get It)?"
+slug: what-is-training-data
+summary: Training data is the text an AI model learns from — typically trillions of tokens drawn from the public web, books, code, and licensed sources. Its breadth, quality, and recency shape everything the model knows.
+topics:
+  - ai-fundamentals
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: What is training data for an AI model?
+    a: Training data is the body of text (and sometimes images, audio, or code) an AI model learns from during pretraining. For an LLM it's typically trillions of tokens drawn from the public web, digitized books, code repositories, reference works, and licensed datasets. The model never stores this text verbatim; it learns statistical patterns from it.
+  - q: Where do LLMs get their training data?
+    a: Mostly from large web crawls (such as Common Crawl), plus books, Wikipedia, code from public repositories, and increasingly licensed or proprietary datasets. Labs filter and deduplicate this raw text heavily for quality and safety before training. The exact mix is usually only partly disclosed in model documentation.
+  - q: Does my website end up in AI training data?
+    a: It can, if your pages are publicly crawlable and not excluded. But being in the training data is not the same as being cited — training knowledge is frozen and unattributed. To be named as a source in an answer, you need to be retrievable at query time, which is what AEO optimizes for.
+  - q: How much training data does an LLM need?
+    a: A lot. DeepMind's Chinchilla study found compute-optimal training uses roughly 20 tokens of data per model parameter, so frontier models train on trillions of tokens. Data quality and diversity matter as much as raw volume — cleaner, broader data produces more capable models.
+---
+
+**Training data is the text an AI model learns from — typically trillions of
+tokens drawn from the public web, books, code, and licensed sources — and its
+breadth, quality, and recency shape everything the model knows.** What goes into
+training determines what comes out: a model's facts, its biases, its blind spots,
+and the date its knowledge stops.
+
+<KeyTakeaways
+  items={[
+    "Training data is the corpus an LLM learns patterns from — trillions of tokens of text.",
+    "Common sources: web crawls (e.g. Common Crawl), books, Wikipedia, public code, licensed datasets.",
+    "Models learn patterns from this text; they don't store it verbatim.",
+    "Chinchilla showed data scale matters as much as model size — ~20 tokens per parameter.",
+    "Being in training data ≠ being cited. Citation comes from retrieval, not training.",
+  ]}
+/>
+
+## What counts as training data?
+
+Training data is any text a model is shown during pretraining so it can learn to
+predict the next token. In practice it's an enormous, filtered mixture: large web
+crawls like Common Crawl, digitized books, Wikipedia and other reference works,
+public code repositories, and — increasingly — licensed or proprietary datasets
+labs pay for. Before training, this raw text is heavily cleaned, deduplicated, and
+filtered for quality and safety, because noisy data produces a noisy model.
+
+Crucially, the model does not keep this text. It compresses statistical patterns
+from the data into its parameters, which is why an LLM can paraphrase what it
+learned but can't reliably quote a source — the mechanism behind
+[how LLMs work](/learn/how-llms-work) and a root cause of
+[hallucination](/learn/why-do-ai-models-hallucinate).
+
+## Where do AI labs get their data?
+
+AI labs assemble training data from a few major buckets, then filter aggressively.
+The public web is the largest source by volume; curated collections (books,
+encyclopedias, code) add quality and structure; and licensed deals supply data
+that is high-value or otherwise unavailable.
+
+<Callout variant="definition" title="Common Crawl">
+  <p>
+    <strong>Common Crawl</strong> is a free, public archive of billions of web
+    pages that underlies much LLM pretraining. Most labs don't use it raw — they
+    filter it down to a fraction of its size for quality. The exact final recipe
+    is usually only partially disclosed in a model's documentation.
+  </p>
+</Callout>
+
+How much is needed is a settled question in broad strokes: DeepMind's 2022
+Chinchilla study,
+["Training Compute-Optimal Large Language Models" (arXiv 2203.15556)](https://arxiv.org/abs/2203.15556),
+established that data should scale with model size — roughly 20 tokens per
+parameter — pushing the field toward training on trillions of tokens. We cover
+how that data is used in [how AI models are trained](/learn/how-ai-models-are-trained).
+
+## Does my content end up in training data?
+
+Your content can end up in training data if it's publicly crawlable, but that is
+not the prize it sounds like. Two facts deflate it. First, training knowledge is
+**frozen** at the model's [knowledge cutoff](/learn/what-is-a-knowledge-cutoff)
+and **unattributed** — even if your page shaped the model's weights, the model
+can't name you. Second, anything published after the cutoff is invisible to the
+base model entirely.
+
+<PullQuote cite="The AEO reframe">
+  Being absorbed into a model is anonymous and frozen. Being retrieved at query
+  time is named and current. Optimize for the second.
+</PullQuote>
+
+This is the distinction that makes AEO a real discipline: your route to visibility
+is not the training corpus but the **retrieval** layer, where engines pull current,
+trustworthy sources and cite them. Original, first-hand content is especially
+valuable here, because it exists in exactly one place — the heart of the
+[originality pillar](/learn/aeo-pillar-originality).
+
+## Why does training data matter for AEO?
+
+Training data matters for AEO because it clarifies where you can and can't win.
+You can't reliably engineer your way into a frozen, anonymous training corpus —
+but you can make your content the best, most current, most citable source the
+retrieval layer surfaces. Understanding the difference keeps you from optimizing
+for the wrong target. Start from [what is AEO](/learn/what-is-aeo), see how
+retrieval works in [what is RAG](/learn/what-is-rag), and learn why freshness is
+its own discipline in [the freshness pillar](/learn/aeo-pillar-freshness).

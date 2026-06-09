@@ -1,0 +1,104 @@
+---
+title: "What Is a Knowledge Cutoff?"
+slug: what-is-a-knowledge-cutoff
+summary: A knowledge cutoff is the date after which an AI model's built-in training knowledge stops. The model knows nothing that happened later unless it retrieves live sources — which is why search augmentation and freshness matter.
+topics:
+  - ai-fundamentals
+  - answer-engines
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: What is a knowledge cutoff in AI?
+    a: A knowledge cutoff is the date up to which an AI model's training data extends. The model has no built-in knowledge of anything that happened after that date — new events, releases, prices, or facts — because it wasn't trained on them. Labs publish each model's cutoff in its documentation.
+  - q: Why do AI models have a knowledge cutoff?
+    a: Because training is a one-time snapshot. A model learns from a fixed dataset collected up to a certain date, then its weights are frozen. Updating that built-in knowledge requires retraining or fine-tuning, which is expensive and infrequent — so between updates, the model's internal knowledge is stuck at the cutoff.
+  - q: How does an AI answer questions about recent events?
+    a: Only by retrieving live information. A model connected to web search or a retrieval system (RAG) can pull current sources at query time and answer about events after its cutoff. A base model with no retrieval will either decline or guess from outdated patterns — a common cause of confident errors.
+  - q: How does the knowledge cutoff affect my content?
+    a: New content published after a model's cutoff is invisible to that model's training entirely. The only way it can surface is through retrieval. That makes being crawlable, current, and clearly dated essential — it's how fresh content enters AI answers despite the cutoff.
+---
+
+**A knowledge cutoff is the date after which an AI model's built-in training
+knowledge stops — it knows nothing that happened later unless it retrieves live
+sources.** Every base model is, in effect, frozen at a moment in time. Understanding
+that moment explains why AI can be confidently out of date, and why retrieval and
+freshness exist.
+
+<KeyTakeaways
+  items={[
+    "A knowledge cutoff is the date a model's training data ends.",
+    "The model has no built-in knowledge of anything after it — events, releases, prices, facts.",
+    "Cutoffs exist because training is a frozen snapshot; updating means retraining.",
+    "Only retrieval (search/RAG) lets a model answer about post-cutoff events.",
+    "Content published after a model's cutoff can only reach it through retrieval — so be crawlable and current.",
+  ]}
+/>
+
+## What does a knowledge cutoff mean?
+
+A knowledge cutoff means a model's internal knowledge ends at a specific date and
+goes no further. Everything the model "knows" on its own was learned from
+[training data](/learn/what-is-training-data) collected up to that point; after it,
+the model is blind unless told otherwise. Labs publish the cutoff for each model in
+its documentation, and it's one of the first things to check when you evaluate a
+model for factual work.
+
+The cause is structural: as covered in
+[how AI models are trained](/learn/how-ai-models-are-trained), training freezes the
+model's weights. The knowledge isn't continuously updated like a search index —
+it's a photograph taken on the cutoff date.
+
+<Callout variant="definition" title="Knowledge cutoff vs. release date">
+  <p>
+    These differ. A model's <strong>knowledge cutoff</strong> is when its training
+    data ends; its <strong>release date</strong> is when it shipped — always later,
+    because training and evaluation take time. So even a brand-new model has a
+    cutoff weeks or months before its launch, and knows nothing in that gap.
+  </p>
+</Callout>
+
+## Why does it cause confident errors?
+
+A knowledge cutoff causes confident errors because a base model doesn't know that
+it doesn't know. Ask it about something after its cutoff and it won't necessarily
+say "I'm not sure" — it will often answer anyway, extrapolating from older
+patterns. The result is a fluent, authoritative-sounding answer that's simply out
+of date: a recommendation for a superseded product, a "latest" version that isn't,
+a price that changed. This is a specific, common flavor of
+[hallucination](/learn/why-do-ai-models-hallucinate).
+
+## How do models answer about recent events?
+
+Models answer about recent events only by retrieving live information at query
+time. A [search-augmented model](/learn/base-vs-search-augmented-models) connected
+to web search or [retrieval-augmented generation](/learn/what-is-rag) — the
+approach from
+["Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (arXiv 2005.11401)](https://arxiv.org/abs/2005.11401)
+— can fetch current sources and ground its answer in them, bypassing the cutoff
+entirely. This
+is the key reason the industry is shifting from base models toward
+retrieval-grounded systems: it's the only way to keep answers current without
+constant retraining.
+
+<PullQuote cite="The cutoff, escaped">
+  Training is frozen; retrieval is live. The cutoff is the wall — retrieval is the
+  door through which new content reaches the answer.
+</PullQuote>
+
+## What does the cutoff mean for getting cited?
+
+The knowledge cutoff is, quietly, one of the strongest arguments for AEO. Anything
+you publish after a model's cutoff cannot be in its training — so the *only* way
+your new content reaches that model's answers is through retrieval. That puts a
+premium on being crawlable, current, and clearly dated, so retrieval systems
+surface you for time-sensitive queries.
+
+It's also why [freshness is its own pillar](/learn/aeo-pillar-freshness): engines
+weight recent content because they're compensating for stale model memory. Keeping
+content updated and visibly dated is how you stay on the live side of the cutoff —
+the practical heart of [what is AEO](/learn/what-is-aeo).
+
+For which models have which cutoffs and capabilities right now, see
+[the major LLMs of 2026](/learn/major-llms-2026).

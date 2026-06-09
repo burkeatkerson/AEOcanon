@@ -1,0 +1,132 @@
+---
+title: "How Do Large Language Models Work?"
+slug: how-llms-work
+summary: LLMs work by breaking text into tokens, converting them to embeddings, using a transformer's attention mechanism to weigh context, and predicting the next token one at a time — repeated to generate full answers.
+topics:
+  - ai-fundamentals
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: How does an LLM generate text?
+    a: It generates text one token at a time. The model reads your prompt as tokens, converts them to numeric vectors (embeddings), passes them through transformer layers that use attention to weigh how each token relates to the others, and outputs a probability distribution over the next token. It picks one, appends it, and repeats until the answer is complete.
+  - q: What is the attention mechanism?
+    a: Attention is the core operation of the transformer architecture that lets a model weigh which earlier tokens matter most when predicting the next one. It's how the model keeps track of context — connecting a pronoun to the noun it refers to, or a question to the relevant detail. It was introduced in the 2017 paper "Attention Is All You Need."
+  - q: Does an LLM look things up while it answers?
+    a: Not by default. A base model answers purely from patterns learned during training — it has no live access to the web. Only when an LLM is connected to retrieval (RAG) or a search tool does it pull in external, current information. That difference is why some AI answers cite sources and others can't.
+  - q: Why does the same prompt give different answers?
+    a: Because generation is probabilistic. At each step the model has a distribution over possible next tokens and samples from it; a setting called temperature controls how much randomness is allowed. Higher temperature means more varied output; lower means more deterministic, repeatable answers.
+---
+
+**LLMs work by turning text into tokens, converting those tokens into numeric
+vectors, using a transformer's attention mechanism to weigh context, and then
+predicting the next token one at a time.** Repeat that prediction step a few
+hundred times and you get a full answer. Every capability — writing, reasoning,
+summarizing — is built on this single loop.
+
+<KeyTakeaways
+  items={[
+    "Text in, text out: an LLM predicts the next token, appends it, and repeats.",
+    "Tokens become embeddings (vectors); the transformer's attention weighs how tokens relate.",
+    "The transformer architecture (2017's 'Attention Is All You Need') is what made this scale.",
+    "A base model answers only from training — it doesn't look anything up unless connected to retrieval.",
+    "Generation is probabilistic, which is why answers vary and why models can sound certain while being wrong.",
+  ]}
+/>
+
+## What are the steps from prompt to answer?
+
+An LLM turns your prompt into an answer through a fixed sequence of steps,
+repeated for every token it produces. The loop is the same whether the model is
+writing a poem or debugging code.
+
+<Steps
+  items={[
+    {
+      title: "Tokenize the input",
+      body: "Your text is split into tokens — words or word-pieces. 'unbelievable' might become 'un', 'believ', 'able'. See tokenization for why this matters.",
+    },
+    {
+      title: "Embed the tokens",
+      body: "Each token is mapped to a high-dimensional vector (an embedding) that encodes its meaning and position, so the model can do math on language.",
+    },
+    {
+      title: "Apply attention across layers",
+      body: "Stacked transformer layers use attention to weigh how strongly each token should influence every other — building a context-aware representation.",
+    },
+    {
+      title: "Predict the next token",
+      body: "The model outputs a probability distribution over all possible next tokens and selects one (with some controlled randomness).",
+    },
+    {
+      title: "Repeat",
+      body: "The chosen token is appended to the sequence and the whole process runs again — until the answer is finished.",
+    },
+  ]}
+/>
+
+The pieces above each have their own guide:
+[tokenization](/learn/what-is-tokenization),
+[embeddings](/learn/what-are-embeddings), and the
+[context window](/learn/what-is-a-context-window) that bounds how much text the
+model can attend to at once.
+
+## What is attention, and why does it matter?
+
+Attention is the operation that lets a model decide which earlier tokens matter
+most when predicting the next one — and it is the breakthrough that made modern
+LLMs possible. Introduced in the 2017 paper
+["Attention Is All You Need" (arXiv 1706.03762)](https://arxiv.org/abs/1706.03762),
+the transformer architecture replaced slower sequential processing with attention
+that can relate every token to every other token in parallel.
+
+<Callout variant="insight" title="Why attention is the whole game">
+  <p>
+    Attention is how a model links "it" to the noun three sentences back, or a
+    question to the one fact in a long passage that answers it. For content, the
+    practical implication is direct: a clear, self-contained passage is easier
+    for attention to resolve correctly than one riddled with vague references —
+    which is exactly what
+    <a href="/learn/aeo-pillar-extractability"> extractability</a> rewards.
+  </p>
+</Callout>
+
+## Does an LLM know facts, or just predict words?
+
+An LLM stores a compressed, lossy impression of its training data in its
+parameters — so it "knows" facts only in the sense that the patterns make them
+likely to be reproduced. There is no database inside the model you can look up;
+there are billions of weights that make true-sounding text probable. This is why
+a model can nail a common fact and fabricate a rare one with equal confidence,
+the root of [hallucination](/learn/why-do-ai-models-hallucinate).
+
+It is also why a plain model can't tell you where an answer came from. To make
+answers current and citable, engines connect the model to external sources via
+[retrieval-augmented generation](/learn/what-is-rag) — covered next, and the
+mechanism behind every AI answer that shows its sources.
+
+## Why does the same prompt give different answers?
+
+The same prompt gives different answers because text generation is probabilistic:
+at each step the model samples from a distribution of possible next tokens rather
+than always choosing the single most likely one. A parameter called
+**temperature** controls how much randomness is permitted — low temperature
+produces near-deterministic, repeatable answers; higher temperature produces more
+varied, creative ones. This is useful to know for AEO measurement: because output
+varies, tracking whether an engine cites you means testing a fixed prompt set
+repeatedly, not just once.
+
+## Why does this matter for getting cited?
+
+How an LLM works matters for AEO because it tells you what the machine can
+actually use. It reads tokens, not pages; it resolves meaning through attention,
+not skimming; and it answers from training unless it's been grounded in live
+sources. Content that is cleanly tokenizable, semantically clear, and
+self-contained is content a model can represent and reuse accurately. That is the
+bridge from "how LLMs work" to [what is AEO](/learn/what-is-aeo) and the practices
+in [The AEO Canon](/learn/aeo-canon).
+
+Next: see where a model's knowledge comes from in
+[how AI models are trained](/learn/how-ai-models-are-trained), or how engines add
+live knowledge in [what is RAG](/learn/what-is-rag).

@@ -1,0 +1,115 @@
+---
+title: "Base vs. Search-Augmented AI Models: What's the Difference?"
+slug: base-vs-search-augmented-models
+summary: A base model answers only from its frozen training; a search-augmented model retrieves live sources at query time and can cite them. The difference decides whether AI answers are current, verifiable — and whether they can cite you.
+topics:
+  - ai-fundamentals
+  - answer-engines
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: What is the difference between a base model and a search-augmented model?
+    a: A base model answers purely from knowledge frozen into its weights during training — it can't access anything newer than its knowledge cutoff and can't cite sources. A search-augmented model retrieves live, external information at query time and grounds its answer in those sources, so it can be current and attributable. Most AI answer engines are search-augmented.
+  - q: Is ChatGPT a base or search-augmented model?
+    a: Both, depending on mode. The underlying model (e.g. GPT-5.5) is a base model; ChatGPT becomes search-augmented when it uses its browsing/search tool to pull live web results. Answers with citations are search-augmented; answers drawn purely from training are not.
+  - q: Why does this distinction matter for being cited?
+    a: Only search-augmented systems can cite your content, because only they retrieve live sources at answer time. A base model can paraphrase what it absorbed in training but can't name you. So AEO is fundamentally about winning in the retrieval layer of search-augmented systems.
+  - q: When is a base model good enough?
+    a: For tasks that don't depend on current or verifiable facts — drafting, brainstorming, summarizing text you provide, coding patterns — a base model is fast and capable. For anything time-sensitive, factual, or that needs sources, search augmentation is far safer.
+---
+
+**A base model answers only from its frozen training data; a search-augmented
+model retrieves live sources at query time and can cite them.** That single
+difference determines whether an AI answer is current, whether it's verifiable —
+and whether it can cite your content at all.
+
+<KeyTakeaways
+  items={[
+    "A base model answers from frozen, internal knowledge — no live access, no citations.",
+    "A search-augmented model retrieves live sources at query time and grounds its answer in them.",
+    "Most AI answer engines are search-augmented; the same underlying model can run either way.",
+    "Only search-augmented systems can cite you, because only they fetch sources at answer time.",
+    "AEO is the practice of winning in that retrieval layer.",
+  ]}
+/>
+
+## What is a base model?
+
+A base model is a trained LLM answering purely from the knowledge compressed into
+its weights — nothing more. It has no connection to the live web, so it can't
+know anything past its [knowledge cutoff](/learn/what-is-a-knowledge-cutoff), and
+it can't point to a source because it isn't reading one; it's generating from
+patterns (see [how LLMs work](/learn/how-llms-work)). A base model is fast,
+self-contained, and often impressively knowledgeable about stable topics — but
+it's frozen and unattributable.
+
+## What is a search-augmented model?
+
+A search-augmented model pairs the LLM with retrieval, so it fetches relevant,
+current sources at query time and grounds its answer in them. When you ask a
+time-sensitive or factual question, the system retrieves passages, reranks them,
+and feeds the best into the model, which composes an answer and cites what it used.
+This is [retrieval-augmented generation](/learn/what-is-rag) in action — the
+technique introduced in
+["Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (arXiv 2005.11401)](https://arxiv.org/abs/2005.11401)
+— and it's how an answer becomes [grounded](/learn/what-is-grounding).
+
+<RagPipeline
+  caption="A search-augmented model adds the retrieve → rerank → cite layer on top of a base model."
+/>
+
+## How do they compare?
+
+Base and search-augmented models trade off speed and self-containment against
+currency and verifiability. The comparison makes the stakes clear.
+
+<ComparisonTable
+  caption="Base model vs. search-augmented model"
+  columns={["Dimension", "Base model", "Search-augmented model"]}
+  rows={[
+    ["Knowledge source", "Frozen training weights", "Training + live retrieved sources"],
+    ["Currency", "Stops at the knowledge cutoff", "Up to date at query time"],
+    ["Citations", "Cannot cite sources", "Cites the sources it used"],
+    ["Hallucination risk", "Higher (answers from memory)", "Lower (grounded in sources)"],
+    ["Speed & cost", "Faster, cheaper", "Slower, more expensive per query"],
+    ["Best for", "Drafting, summarizing, stable knowledge", "Current, factual, source-backed answers"],
+    ["Can cite your content?", "No", "Yes"],
+  ]}
+/>
+
+Note the last row: it's the whole reason AEO exists. A base model might have
+absorbed your page during training, but it can't name you; a search-augmented
+model can — if you win retrieval.
+
+## Is ChatGPT base or search-augmented?
+
+ChatGPT is both, depending on the mode. The underlying model is a base model;
+ChatGPT becomes search-augmented when it invokes its browsing/search tool to pull
+live results. The same is true across the field — the model and the search layer
+are separable, and an answer's behavior depends on which is engaged. A practical
+tell: if the answer shows citations or "sources," it was search-augmented; if it
+reads as confident prose with no links, it likely came from training alone.
+
+<Callout variant="insight" title="Why the field is moving to search augmentation">
+  <p>
+    Frozen knowledge ages and can't be checked. As users demand current,
+    trustworthy answers, engines increasingly default to retrieval — which is good
+    news for content owners, because retrieval is the only path by which a model
+    can discover and cite something you published.
+  </p>
+</Callout>
+
+## Why does this matter for AEO?
+
+This distinction matters for AEO because your entire opportunity lives in the
+search-augmented path. You can't reliably influence a base model's frozen weights,
+and even if you could, it couldn't credit you. But every search-augmented answer
+runs a retrieval-and-rerank step where current, authoritative, well-structured
+sources win — and get named. Optimizing for that is exactly what
+[what is AEO](/learn/what-is-aeo) and [The AEO Canon](/learn/aeo-canon) teach.
+
+Next: [what is a knowledge cutoff](/learn/what-is-a-knowledge-cutoff) for why base
+models go stale, or [why AI models hallucinate](/learn/why-do-ai-models-hallucinate)
+for the risk grounding is designed to reduce.

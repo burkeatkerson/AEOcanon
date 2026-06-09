@@ -1,0 +1,122 @@
+---
+title: "What Is a Large Language Model (LLM)?"
+slug: what-is-an-llm
+summary: A large language model (LLM) is an AI system trained on vast amounts of text to predict the next token, which lets it generate fluent language, answer questions, and power tools like ChatGPT, Claude, and Gemini.
+topics:
+  - ai-fundamentals
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: What is a large language model in simple terms?
+    a: A large language model (LLM) is an AI trained on huge amounts of text to predict the next piece of text given what came before. By doing that prediction extremely well, it can write, summarize, translate, answer questions, and hold a conversation. ChatGPT, Claude, Gemini, and Llama are all LLMs.
+  - q: What does the "large" in large language model mean?
+    a: The word "large" refers to both the model's size — billions of internal parameters (the adjustable weights it learns) — and the scale of its training data, typically trillions of words. Scale is what separates an LLM from earlier, smaller language models and is a major reason LLMs became broadly capable.
+  - q: Are ChatGPT and an LLM the same thing?
+    a: Not quite. The LLM is the underlying model (e.g., GPT-5.5); ChatGPT is the product built around it — the chat interface, safety layers, tools, and often live web retrieval. One LLM can power many products, and one product can switch between several LLMs.
+  - q: Do LLMs understand language the way people do?
+    a: No. An LLM has no beliefs or understanding in the human sense; it models statistical patterns in language so well that its output is often useful and coherent. That distinction matters because it explains both why LLMs are powerful and why they can confidently produce wrong answers.
+---
+
+**A large language model (LLM) is an AI system trained on vast amounts of text to
+predict the next token — and by doing that prediction well, it can write,
+answer questions, and reason over language.** Every major AI assistant —
+ChatGPT, Claude, Gemini, Copilot — is built on one. Understanding what an LLM is
+(and is not) is the foundation for understanding how AI answer engines decide
+what to cite.
+
+<KeyTakeaways
+  items={[
+    "An LLM is an AI trained to predict the next token of text, scaled up to billions of parameters and trillions of training words.",
+    "Fluent writing, answering, and summarizing all emerge from that one prediction objective.",
+    "The model (e.g. GPT-5.5) is distinct from the product (e.g. ChatGPT) built around it.",
+    "LLMs model patterns in language — they don't 'understand' or hold beliefs, which is why they can be confidently wrong.",
+    "How an LLM is trained and retrieved from determines whether it can cite your content.",
+  ]}
+/>
+
+## What does a large language model actually do?
+
+A large language model does one core thing: given a sequence of text, it predicts
+what comes next. You type a question; the model repeatedly predicts the most
+likely next token (a word or word-piece), appends it, and predicts again, until
+it has produced an answer. Everything an LLM appears to "know" or "do" is a
+product of having learned, from enormous amounts of text, which continuations are
+plausible.
+
+That sounds almost too simple to explain ChatGPT, but next-token prediction at
+scale turns out to be remarkably general. To predict the next word in a sentence
+about chemistry, a coding problem, or a legal clause, the model has to absorb a
+great deal of structure about the world as it appears in text. We walk through
+the mechanism in [how LLMs work](/learn/how-llms-work).
+
+## Why is it called "large"?
+
+It's called "large" because of two kinds of scale: the number of parameters in
+the model and the volume of text it learns from. Parameters are the adjustable
+internal weights the model tunes during training; modern frontier LLMs have tens
+to hundreds of billions of them. Training data runs to trillions of tokens — much
+of the public web, books, code, and more, covered in
+[what is training data](/learn/what-is-training-data).
+
+<Callout variant="definition" title="Token, parameter, model">
+  <p>
+    A <strong>token</strong> is the unit of text an LLM reads and predicts —
+    roughly a word or word-piece (see{" "}
+    <a href="/learn/what-is-tokenization">tokenization</a>). A{" "}
+    <strong>parameter</strong> is one of the model's learned weights. The{" "}
+    <strong>model</strong> is the trained network of those parameters.
+  </p>
+</Callout>
+
+Scale matters because capability rose sharply with it. The transformer
+architecture behind modern LLMs was introduced in the 2017 paper
+["Attention Is All You Need" (arXiv 1706.03762)](https://arxiv.org/abs/1706.03762),
+and scaling that architecture up — more parameters, more data, more compute — is
+what produced today's broadly capable models.
+
+## Is the LLM the same as ChatGPT?
+
+No — the LLM is the engine; the assistant is the car built around it. GPT-5.5 is a
+model; ChatGPT is a product that wraps a model with a chat interface, safety
+systems, memory, tools, and often live web search. The distinction is practical:
+when an answer engine cites a web page, that citation usually comes from the
+product's retrieval layer, not from the model's training. We map current models
+and their makers in [the major LLMs of 2026](/learn/major-llms-2026).
+
+## Do LLMs understand what they say?
+
+LLMs do not understand language the way humans do; they model statistical
+patterns in it. The model has no beliefs, intentions, or awareness — it produces
+the text that its training makes most plausible. This is the single most useful
+thing to internalize about LLMs, because it explains their two defining traits at
+once: they are astonishingly fluent, and they can state false things with total
+confidence.
+
+<PullQuote cite="The core caveat">
+  An LLM doesn't know whether it's right. It knows what's plausible — which is
+  usually, but not always, the same thing.
+</PullQuote>
+
+That gap between "plausible" and "true" is why answer engines increasingly pair
+LLMs with retrieval from live, citable sources — the subject of
+[retrieval-augmented generation](/learn/what-is-rag) — and why
+[AI models hallucinate](/learn/why-do-ai-models-hallucinate) when they answer
+from memory alone.
+
+## Why do LLMs matter for AEO?
+
+LLMs matter for AEO because they are the systems deciding which sources to read,
+trust, and quote when they answer a user's question. If you want to be the source
+an AI cites, you have to understand how these models take in text (tokens),
+represent meaning ([embeddings](/learn/what-are-embeddings)), and get grounded in
+external content ([RAG](/learn/what-is-rag)). That understanding turns
+[answer engine optimization](/learn/what-is-aeo) from guesswork into engineering —
+and it underpins every pillar of [The AEO Canon](/learn/aeo-canon), starting with
+writing passages a model can cleanly lift
+([extractability](/learn/aeo-pillar-extractability)).
+
+Start with [how LLMs work](/learn/how-llms-work) to see the prediction mechanism
+in action, or [how AI models are trained](/learn/how-ai-models-are-trained) to
+understand where their knowledge — and their blind spots — come from.

@@ -1,0 +1,105 @@
+---
+title: "What Are Embeddings in AI?"
+slug: what-are-embeddings
+summary: Embeddings are numeric vectors that represent the meaning of text, so an AI can compare ideas by mathematical similarity rather than exact words. They are how semantic search and retrieval find the right passage.
+topics:
+  - ai-fundamentals
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: What is an embedding in simple terms?
+    a: An embedding is a list of numbers (a vector) that captures the meaning of a piece of text, so that texts with similar meanings have similar vectors. It lets a computer measure how related two pieces of text are by how close their vectors are — even when they share no words.
+  - q: How do embeddings power search and RAG?
+    a: A retrieval system converts every passage into an embedding and stores them in a vector index. When a query arrives, it's embedded too, and the system finds the passages whose vectors are closest in meaning. This semantic match — not keyword overlap — is how retrieval-augmented generation finds the right source to ground an answer.
+  - q: Are embeddings the same as keywords?
+    a: No. Keywords match exact strings; embeddings match meaning. A query for "how to lower my heating bill" can retrieve a passage about "reducing HVAC energy costs" because their embeddings are close, even though the words differ. This is why writing clearly about one idea matters more than repeating exact phrases.
+  - q: Where did embeddings come from?
+    a: The modern idea was popularized by Word2Vec (Mikolov et al., 2013), which showed that words could be mapped to vectors capturing semantic relationships. Today's models produce far richer embeddings for whole passages, but the core insight — meaning as geometry — is the same.
+---
+
+**Embeddings are numeric vectors that represent the meaning of text, so an AI can
+compare ideas by mathematical closeness rather than matching exact words.** They
+are the bridge between human language and machine math — and the reason an answer
+engine can find your passage even when the user's words don't match yours.
+
+<KeyTakeaways
+  items={[
+    "An embedding is a vector (list of numbers) that encodes the meaning of text.",
+    "Similar meanings produce nearby vectors; retrieval finds passages by vector closeness.",
+    "Embeddings match meaning, not keywords — synonyms and paraphrases still match.",
+    "The idea traces to Word2Vec (2013); today's models embed whole passages richly.",
+    "Clear, single-idea passages produce sharp embeddings that retrieve reliably.",
+  ]}
+/>
+
+## What is an embedding, really?
+
+An embedding is a point in a high-dimensional space that represents what a piece
+of text means. A model converts text into a vector — often hundreds or thousands
+of numbers — positioned so that texts about similar things land near each other
+and unrelated texts land far apart. "Meaning" becomes geometry: closeness in the
+space corresponds to closeness in meaning.
+
+This is what tokens become after [tokenization](/learn/what-is-tokenization): the
+model maps token sequences into this semantic space as part of
+[how LLMs work](/learn/how-llms-work). The foundational demonstration was
+[Word2Vec (Mikolov et al., 2013, arXiv 1301.3781)](https://arxiv.org/abs/1301.3781),
+which showed word vectors could capture analogies — famously, the vector math
+"king − man + woman" lands near "queen."
+
+<Callout variant="definition" title="Vector & vector index">
+  <p>
+    A <strong>vector</strong> is an embedding — a list of numbers locating text in
+    meaning-space. A <strong>vector index</strong> is a database of those vectors
+    built for fast "nearest-neighbor" search, so a system can find the passages
+    most similar to a query in milliseconds across millions of entries.
+  </p>
+</Callout>
+
+## How do embeddings power retrieval and RAG?
+
+Embeddings power retrieval by turning "find relevant text" into "find nearby
+vectors." A retrieval system embeds every passage in advance and stores the
+vectors in an index. When a query comes in, it's embedded too, and the system
+returns the passages whose vectors sit closest to the query's. That semantic
+match is the first stage of [retrieval-augmented generation](/learn/what-is-rag)
+and the reason engines can pull the right source without exact keyword overlap.
+
+<PullQuote cite="Meaning over matching">
+  Embeddings are why "lower my heating bill" can find your page about "reducing
+  HVAC energy costs." The words differ; the meaning is close.
+</PullQuote>
+
+The practical upshot for content is large: you do not need to repeat a user's
+exact phrasing to be retrieved. You need to be unmistakably, clearly *about* the
+thing they're asking — which is the heart of the
+[alignment pillar](/learn/aeo-pillar-alignment).
+
+## Why do clear passages embed better?
+
+Clear, single-idea passages embed better because a focused passage produces a
+sharp, unambiguous vector, while a passage that wanders across several topics
+produces a muddy one that matches no query well. Each chunk an engine indexes is
+embedded independently, so a paragraph that makes one point lands precisely in
+meaning-space; a paragraph that makes four lands in the blurry average of all of
+them.
+
+This is the technical reason behind a core AEO instruction: keep passages
+self-contained and about one question. A tight passage isn't just easier for a
+human to read — it's literally easier for a model to retrieve, because its meaning
+is unambiguous. That's [extractability](/learn/aeo-pillar-extractability) seen from
+the embedding side.
+
+## Why do embeddings matter for AEO?
+
+Embeddings matter for AEO because they decide whether your content even enters the
+running to be cited. If the embedding of your best passage isn't close to the
+embeddings of the questions your audience asks, you're never retrieved — and
+nothing downstream can save you. Writing clearly about one idea per passage, in
+natural language, is how you land in the right region of meaning-space.
+
+See how retrieved passages get re-scored in [what is a reranker](/learn/what-is-a-reranker),
+how they ground an answer in [what is RAG](/learn/what-is-rag), and how it all
+connects to getting cited in [what is AEO](/learn/what-is-aeo).

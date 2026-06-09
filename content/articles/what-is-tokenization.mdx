@@ -1,0 +1,113 @@
+---
+title: "What Is Tokenization in AI?"
+slug: what-is-tokenization
+summary: Tokenization is how an AI model breaks text into tokens — words or word-pieces — that it can process numerically. Tokens are the unit LLMs read, predict, and bill by, and they shape cost, limits, and clarity.
+topics:
+  - ai-fundamentals
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: What is a token in an LLM?
+    a: A token is the basic unit of text an LLM reads and generates — usually a word or a word-piece, not always a whole word. Common words are often one token; rarer words split into several. As a rough rule of thumb in English, one token is about four characters, or roughly 0.75 words.
+  - q: Why don't models just use words?
+    a: Because subword tokenization handles any input gracefully. Splitting rare or novel words into known pieces (like 'token' + 'ization') lets the model represent words it never saw in training, handle typos and other languages, and keep its vocabulary a manageable size. Pure whole-word vocabularies would be huge and brittle.
+  - q: Why does tokenization affect cost and limits?
+    a: Because LLMs are priced and bounded by tokens, not words. API costs are per token, and a model's context window is measured in tokens. Verbose or unusual text uses more tokens for the same meaning, raising cost and consuming more of the available context.
+  - q: How many tokens is a typical page?
+    a: Very roughly, 750 words is about 1,000 tokens in English. So a 1,500-word article is around 2,000 tokens. Code, non-English text, and unusual formatting can use more tokens per word than plain prose.
+---
+
+**Tokenization is how an AI model breaks text into tokens — words or word-pieces —
+that it can turn into numbers and process.** Tokens are the atomic unit of
+everything an LLM does: it reads in tokens, predicts in tokens, is priced per
+token, and has limits measured in tokens. Understanding them explains a lot of
+otherwise-mysterious AI behavior.
+
+<KeyTakeaways
+  items={[
+    "A token is a word or word-piece — the unit an LLM actually reads and predicts.",
+    "Common words are one token; rare words split into several (e.g. 'tokenization' → 'token' + 'ization').",
+    "Rough rule: ~4 characters or ~0.75 words per token in English (≈1,000 tokens per 750 words).",
+    "Tokens drive both cost (priced per token) and limits (context window measured in tokens).",
+    "Cleaner, conventional text tokenizes more efficiently than unusual or cluttered text.",
+  ]}
+/>
+
+## What exactly is a token?
+
+A token is the smallest chunk of text an LLM handles — typically a whole common
+word or a piece of a less common one. Modern models use **subword tokenization**:
+frequent words map to a single token, while rarer words break into familiar
+fragments. "dog" is one token; "tokenization" might split into "token" and
+"ization." Each token is then converted into an [embedding](/learn/what-are-embeddings)
+the model can do math on, the first step in [how LLMs work](/learn/how-llms-work).
+
+<Callout variant="definition" title="Subword tokenization">
+  <p>
+    Instead of a dictionary of whole words, models learn a vocabulary of
+    word-pieces (commonly via an algorithm called byte-pair encoding). This lets
+    them represent <em>any</em> string — new words, names, typos, code, other
+    languages — by composing known pieces, while keeping the vocabulary to a
+    manageable size (tens of thousands of tokens).
+  </p>
+</Callout>
+
+## Why not just use whole words?
+
+Models don't use whole words because subword tokens are far more flexible and
+efficient. A whole-word vocabulary would be enormous, would break on any word it
+never saw, and would handle misspellings and other languages poorly. Subword
+tokenization solves all three: it can build "antidisestablishmentarianism" or a
+brand-new product name out of pieces it already knows, with no special cases. The
+dominant method, byte-pair encoding, was adapted for language models in
+["Neural Machine Translation of Rare Words with Subword Units" (arXiv 1508.07909)](https://arxiv.org/abs/1508.07909);
+lab tokenizer documentation then lets you see exactly how a given string splits —
+useful when a passage behaves unexpectedly.
+
+## Why do tokens determine cost and limits?
+
+Tokens determine cost and limits because LLMs measure both in tokens, not words.
+API pricing is per token (input and output), and a model's
+[context window](/learn/what-is-a-context-window) — the maximum text it can
+consider at once — is a token count. Two consequences follow:
+
+<Steps
+  items={[
+    {
+      title: "Verbosity costs money",
+      body: "Padded, repetitive text uses more tokens to say the same thing, raising API cost and filling context faster.",
+    },
+    {
+      title: "Unusual text costs more tokens",
+      body: "Code, emoji, non-English scripts, and odd formatting often use more tokens per unit of meaning than plain prose.",
+    },
+    {
+      title: "Budgets are finite",
+      body: "Everything — your prompt, retrieved sources, and the answer — shares one token budget. Efficient text leaves more room for the parts that matter.",
+    },
+  ]}
+/>
+
+As a working estimate, **750 English words is roughly 1,000 tokens**, so a typical
+1,500-word article is about 2,000 tokens.
+
+## How does tokenization affect getting cited?
+
+Tokenization affects citation indirectly but really: content that tokenizes
+cleanly and says more per token is cheaper to process and easier for a model to
+represent accurately. When an answer engine retrieves passages and fits them into
+a limited context window, concise, conventionally-written passages compete better
+than bloated ones — there's simply more room for them, and less noise around the
+point. That's another angle on why
+[extractability](/learn/aeo-pillar-extractability) rewards tight, answer-first
+passages.
+
+It also reframes a familiar mistake: keyword stuffing doesn't just fail to help
+[AEO](/learn/what-is-aeo) — it wastes tokens, diluting the signal in every passage
+the model reads. Write for meaning per token.
+
+Next: [what are embeddings](/learn/what-are-embeddings) for what happens to tokens
+after they're split, or [the context window](/learn/what-is-a-context-window) for
+the limit they're measured against.

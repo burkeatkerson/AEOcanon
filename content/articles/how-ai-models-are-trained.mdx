@@ -1,0 +1,121 @@
+---
+title: "How Are AI Models Trained?"
+slug: how-ai-models-are-trained
+summary: AI models are trained in stages — large-scale pretraining on text to learn language, then fine-tuning and reinforcement learning from human feedback (RLHF) to make them helpful, honest, and safe to use.
+topics:
+  - ai-fundamentals
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: How is an LLM trained, step by step?
+    a: "In three broad stages. (1) Pretraining: the model learns language by predicting the next token across trillions of words of text. (2) Supervised fine-tuning: it learns to follow instructions from curated example prompts and responses. (3) Reinforcement learning from human feedback (RLHF): humans rank outputs and the model is tuned toward the preferred ones, making it more helpful and safe."
+  - q: How much data does it take to train an LLM?
+    a: Trillions of tokens. DeepMind's 2022 Chinchilla study found that for compute-optimal training, models should see roughly 20 tokens of data per parameter — so a 70-billion-parameter model was trained on about 1.4 trillion tokens. Frontier models since have used even more data and compute.
+  - q: What is RLHF?
+    a: Reinforcement learning from human feedback (RLHF) is the stage where humans rate or rank a model's responses, and the model is optimized to produce the kinds of answers people prefer. It's the main reason a raw next-token predictor becomes a helpful, well-behaved assistant rather than just an autocomplete engine.
+  - q: Does training give a model live knowledge of the world?
+    a: No. Training is a snapshot. Once a model is trained, its built-in knowledge is frozen at its knowledge cutoff date and does not update until it is retrained or fine-tuned. To answer about anything newer, the model needs retrieval or a search tool.
+---
+
+**AI models are trained in stages: massive pretraining on text to learn language,
+then fine-tuning and reinforcement learning from human feedback (RLHF) to make
+them helpful and safe.** That pipeline is where a model's abilities — and its
+blind spots, biases, and knowledge cutoff — all come from.
+
+<KeyTakeaways
+  items={[
+    "Stage 1 — pretraining: learn language by predicting the next token across trillions of words.",
+    "Stage 2 — fine-tuning: learn to follow instructions from curated examples.",
+    "Stage 3 — RLHF: humans rank outputs; the model is tuned toward preferred answers.",
+    "Chinchilla (2022) found compute-optimal training needs ~20 tokens of data per parameter.",
+    "Training is a frozen snapshot — built-in knowledge stops at the knowledge cutoff.",
+  ]}
+/>
+
+## What are the stages of training an LLM?
+
+Training an LLM happens in three broad stages, each doing a different job:
+pretraining builds raw language ability, fine-tuning teaches the model to follow
+instructions, and RLHF aligns it with what people actually want.
+
+<Steps
+  items={[
+    {
+      title: "Pretraining",
+      body: "The model is shown trillions of tokens of text and learns to predict the next one. This is where it absorbs grammar, facts, reasoning patterns, and style — at enormous compute cost.",
+    },
+    {
+      title: "Supervised fine-tuning (SFT)",
+      body: "The pretrained model is trained on curated prompt–response examples written or vetted by humans, teaching it to follow instructions rather than just continue text.",
+    },
+    {
+      title: "Reinforcement learning from human feedback (RLHF)",
+      body: "Humans rank multiple model outputs; a reward model learns those preferences, and the LLM is optimized to produce answers people rate as helpful, honest, and harmless.",
+    },
+  ]}
+/>
+
+The raw output of stage one is a [base model](/learn/base-vs-search-augmented-models)
+— fluent but unaligned. Stages two and three are what turn it into the polite,
+instruction-following assistant you actually talk to.
+
+## How much data and compute does training take?
+
+Training a frontier LLM takes trillions of tokens of text and millions of dollars
+of compute. The most influential guidance on the right balance is DeepMind's 2022
+Chinchilla study,
+["Training Compute-Optimal Large Language Models" (arXiv 2203.15556)](https://arxiv.org/abs/2203.15556),
+which trained over 400 models and found that for a fixed compute budget, model
+size and training data should scale together — roughly **20 tokens of data per
+parameter.** To prove it, they trained a 70-billion-parameter model (Chinchilla)
+on about **1.4 trillion tokens** and beat a much larger model trained on less
+data.
+
+<Callout variant="insight" title="Why the data-to-size ratio matters">
+  <p>
+    Chinchilla's lesson — that many models were under-trained on data for their
+    size — reshaped the field toward training on far more text. It's also why the
+    quality, breadth, and recency of
+    <a href="/learn/what-is-training-data"> training data</a> became a central
+    competitive question, not an afterthought.
+  </p>
+</Callout>
+
+## What does RLHF actually change?
+
+RLHF changes a model from a raw text-predictor into a usable assistant by tuning
+it toward human-preferred behavior. A pretrained model will happily continue a
+prompt in unhelpful, unsafe, or rambling ways; RLHF teaches it to answer the
+question, decline harmful requests, admit uncertainty, and match the tone people
+expect. Most of what feels like an assistant's "personality" and judgment is a
+product of this stage. Labs document their training and alignment choices in model
+cards and system documentation — the kind of lab documentation worth reading when
+you evaluate a model.
+
+## Why is a trained model frozen in time?
+
+A trained model is frozen because training produces a fixed set of weights — once
+learning stops, the model's built-in knowledge does not change until it is
+retrained. Everything it absorbed has a cutoff date, after which it knows nothing
+unless told. This is the [knowledge cutoff](/learn/what-is-a-knowledge-cutoff),
+and it is the reason models can be confidently out of date and why
+[retrieval-augmented generation](/learn/what-is-rag) exists: to feed the model
+current information at answer time rather than waiting for the next training run.
+
+## Why does training matter for AEO?
+
+Training matters for AEO because it determines what a model knows on its own
+versus what it must look up — and only the "look up" path can cite your content.
+A model's parametric knowledge is frozen and unattributable; your opportunity to
+be cited lives in the retrieval layer, where current, trustworthy, well-structured
+sources are pulled in at query time. That's the link from training to
+[what is AEO](/learn/what-is-aeo): you can't get baked into the model, but you can
+become the source it retrieves and trusts — which is what
+[authority](/learn/aeo-pillar-authority) and the rest of
+[The AEO Canon](/learn/aeo-canon) are about.
+
+Next: [what is training data](/learn/what-is-training-data) for where a model's
+knowledge comes from, or [why AI models hallucinate](/learn/why-do-ai-models-hallucinate)
+for what happens when that knowledge runs out.

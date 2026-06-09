@@ -1,0 +1,109 @@
+---
+title: "What Is Grounding in AI?"
+slug: what-is-grounding
+summary: Grounding is connecting an AI model's answer to real, retrieved source material so its claims are supported by evidence it can cite — rather than generated from memory alone. It's how AI answers earn trust.
+topics:
+  - ai-fundamentals
+  - answer-engines
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: What does it mean to ground an AI answer?
+    a: Grounding means basing an answer on specific, retrieved source documents rather than on the model's internal memory alone. A grounded answer can point to the passages it used, so its claims are checkable. An ungrounded answer is generated purely from training patterns, with no source to verify against.
+  - q: How is grounding different from RAG?
+    a: RAG is the technique; grounding is the goal. Retrieval-augmented generation is the architecture that fetches passages and feeds them to the model; grounding is what that achieves — answers anchored in and attributable to real sources. You use RAG to ground a model's output.
+  - q: Does grounding stop hallucination?
+    a: It reduces it substantially but not completely. Grounding gives the model real text to draw on instead of guessing, which prevents many fabrications. But if the retrieved sources are wrong, or the model strays from them, a grounded answer can still be inaccurate. Grounding is only as good as the sources it stands on.
+  - q: How does grounding decide which source gets cited?
+    a: The model cites the sources of the passages it actually used to compose the answer. So whichever retrieved, reranked passage best and most safely supports a claim is the one that earns the citation — which is why being the clearest, most credible source on a question is the path to being named.
+---
+
+**Grounding is connecting an AI model's answer to real, retrieved source material
+so its claims are supported by evidence it can cite — instead of generated from
+memory alone.** It is what separates a trustworthy, attributable AI answer from a
+confident guess, and it is the reason your content can be named as a source at all.
+
+<KeyTakeaways
+  items={[
+    "Grounding bases an answer on retrieved sources, not just the model's frozen memory.",
+    "RAG is the technique; grounding is the goal it achieves — checkable, attributable answers.",
+    "Grounding sharply reduces hallucination but can't fix wrong or missing sources.",
+    "The model cites the sources of the passages it actually used to support its claims.",
+    "Being the clearest, most credible source on a question is how you earn the citation.",
+  ]}
+/>
+
+<RagPipeline
+  highlight="cite"
+  caption="Grounding: the model answers from retrieved passages and attributes the sources it used."
+/>
+
+## What does it mean to ground an answer?
+
+To ground an answer is to anchor it in specific, external source material that the
+model reads at answer time — so every claim traces back to something verifiable.
+An ungrounded model answers from the lossy patterns in its weights (see
+[how LLMs work](/learn/how-llms-work)); it can be fluent and often right, but it
+has no source to point to and no way to know what's changed since training. A
+grounded model is handed real passages and told to answer from them, so its output
+can carry citations.
+
+The plumbing that makes grounding possible is
+[retrieval-augmented generation](/learn/what-is-rag), introduced in
+["Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (arXiv 2005.11401)](https://arxiv.org/abs/2005.11401).
+RAG is the *how*; grounding is the *why*.
+
+## How is grounding different from RAG?
+
+Grounding and RAG are related but not identical: RAG is the architecture,
+grounding is the property it delivers. You implement RAG — retrieve, rerank,
+generate — in order to *ground* the model's answer in sources. It's worth keeping
+the distinction because grounding is the outcome users and AEO practitioners
+actually care about: an answer that is anchored in, and attributable to, real
+content. Other techniques (tools, live search, structured databases) can ground a
+model too; RAG is just the most common.
+
+## Does grounding eliminate hallucination?
+
+Grounding reduces hallucination significantly but does not eliminate it. By giving
+the model real text to work from, grounding removes the gaps where a model would
+otherwise invent — the main driver of fabrication. But it has two failure modes:
+if retrieval surfaces an inaccurate source, the model can faithfully repeat a wrong
+fact ("garbage in, garbage out"); and a model can still drift from its sources.
+
+<Callout variant="warning" title="Grounding is only as good as its sources">
+  <p>
+    A grounded answer inherits the trustworthiness of what it stands on. That's
+    exactly why engines weight source authority and freshness so heavily — and why
+    being an accurate, well-evidenced, current source is both good practice and
+    good <a href="/learn/aeo-pillar-credibility">credibility</a>. We cover the
+    failure mode in depth in
+    <a href="/learn/why-do-ai-models-hallucinate"> why AI models hallucinate</a>.
+  </p>
+</Callout>
+
+The contrast between grounded and ungrounded systems is the subject of
+[base vs. search-augmented models](/learn/base-vs-search-augmented-models) — the
+difference between a model answering from frozen memory and one answering from live
+sources.
+
+## How does grounding decide who gets cited?
+
+Grounding decides citations at the passage level: the model attributes its answer
+to the sources of the specific passages it used. If your passage was retrieved,
+survived [the reranker](/learn/what-is-a-reranker), and then gave the model the
+cleanest, most credible support for a claim, your source gets named. If a
+competitor's passage answered more completely or carried better evidence, theirs
+does instead.
+
+This is the precise mechanism that makes AEO actionable: you optimize to be the
+passage a grounded model reaches for. That means writing self-contained,
+answer-first passages, evidencing them inline, keeping them current, and earning
+the authority that makes engines trust you — the core of
+[what is AEO](/learn/what-is-aeo) and [The AEO Canon](/learn/aeo-canon).
+
+Next: [base vs. search-augmented models](/learn/base-vs-search-augmented-models) for
+when a model is grounded at all, or [why AI models hallucinate](/learn/why-do-ai-models-hallucinate)
+for what happens when grounding fails.
