@@ -1,97 +1,144 @@
 ---
 title: "How Do I Get Mentioned by Perplexity?"
 slug: get-mentioned-by-perplexity
-summary: To get mentioned by Perplexity, be crawlable, answer-first, and current, and earn presence on the high-trust sources Perplexity favors — it leans on fresh, diverse, citable sources and shows its citations by design.
+summary: Perplexity runs its own crawler and index, retrieves in real time, shows citations by design, and is the most SEO-aligned answer engine — with a strong Reddit and recency bias. To get mentioned, be crawlable by PerplexityBot, answer-first, genuinely current, and present on the high-trust sources it favors.
 topics:
   - answer-engines
   - aeo-fundamentals
 author: jordan-vega
 published: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-09
 schemaType: Article
 faqs:
   - q: How does Perplexity choose its sources?
-    a: Perplexity retrieves live web sources, reranks them for the query, and cites the ones it uses — and it surfaces those citations prominently by design. It tends to favor source diversity and recency, drawing heavily on high-trust community and reference sites alongside primary sources.
-  - q: Does Perplexity favor any particular sites?
-    a: It leans on widely-trusted, frequently-cited domains — Reddit, Wikipedia, YouTube, and authoritative publications are consistently among the most-cited across AI engines. But it also cites primary sources and original data, so being the genuine best answer still wins.
+    a: Perplexity retrieves live web sources against its own index, reranks them for the query, and cites the ones it uses — surfacing those citations prominently by design. It favors source diversity and recency, and leans on high-trust community and reference sites (notably Reddit) alongside primary sources and pages that already rank well in classic search.
+  - q: Is Perplexity really the most SEO-aligned engine?
+    a: Yes, more than the others. Perplexity's retrieval correlates closely with classic search relevance, so content that ranks well organically tends to be the content it retrieves and cites. That makes strong traditional SEO — crawlability, relevance, authority — unusually transferable to Perplexity visibility, more so than for ChatGPT (Bing-grounded with training memory) or the Google AI surfaces.
+  - q: Does Perplexity have its own crawler?
+    a: Yes — PerplexityBot indexes the web for Perplexity, and Perplexity-User fetches pages in real time when a user's question requires it. Allow both in robots.txt so you're eligible to be retrieved and cited. If PerplexityBot can't reach your rendered HTML, you can't be in its candidate set.
   - q: How important is freshness for Perplexity?
-    a: Very, for time-sensitive queries. Perplexity emphasizes current information, and answer engines broadly favor recent content — Seer found 65% of AI crawler visits target content under a year old. Keep key pages updated and visibly dated.
-  - q: Is getting cited by Perplexity different from ChatGPT?
-    a: The mechanics are the same retrieve-rerank-cite pipeline, so the same answer-first, evidenced, crawlable, authoritative content competes on both. Perplexity is more citation-forward in its UI and tends to weight source diversity and recency, but you don't need a separate strategy.
+    a: Very, for time-sensitive queries. Perplexity emphasizes current information and real-time retrieval, and answer engines broadly favor recent content — Seer found 65% of AI crawler visits target content under a year old. Keep key pages substantively updated and visibly dated to stay citable.
+  - q: How is getting cited by Perplexity different from ChatGPT?
+    a: Different plumbing. Perplexity retrieves live against its own index and is the most SEO-aligned engine; ChatGPT is grounded largely in Bing's index and can answer from training memory. They overlap only ~11% in what they cite (Profound), so winning Perplexity doesn't mean winning ChatGPT — measure and tune them separately.
 ---
 
-**To get mentioned by Perplexity, make your page crawlable, answer-first, and
-current, and earn presence on the high-trust sources it favors — Perplexity
-retrieves live, diverse, recent sources and cites them by design.** It's the most
-citation-forward engine, which makes it a great place to earn visibility with
-genuinely strong content.
+**To get mentioned by Perplexity, be crawlable by PerplexityBot, answer-first, and
+genuinely current, and earn presence on the high-trust sources it favors —
+Perplexity runs its own index, retrieves in real time, and is the most SEO-aligned
+of the answer engines.** Strong classic SEO ports to Perplexity better than to any
+other engine, which makes it the most predictable place to earn AI visibility.
 
-<Callout variant="key" title="Quick answer">
+<Callout variant="insight" title="What's different about Perplexity">
   <p>
-    Be reachable and answer-first, keep your content current, and build genuine
-    authority on the trusted sources Perplexity draws from. It favors fresh,
-    diverse, citable sources — so be the clearest, most up-to-date answer and make
-    sure the wider web vouches for you.
+    Perplexity is the most <strong>retrieval-pure and SEO-aligned</strong> engine.
+    It runs <strong>its own crawler and index</strong> (PerplexityBot), retrieves
+    <strong> live</strong>, and shows its citations by design. Its rankings
+    correlate closely with classic search relevance, so <strong>content that ranks
+    organically tends to get cited</strong>. It carries a pronounced{" "}
+    <strong>Reddit and recency bias</strong>. Unlike ChatGPT, there&apos;s little
+    &quot;training memory&quot; effect — if you&apos;re not retrievable and current,
+    you&apos;re not cited.
   </p>
 </Callout>
 
 <KeyTakeaways
   items={[
-    "Perplexity retrieves live sources, reranks them, and shows citations by design.",
-    "It favors source diversity and recency, leaning on high-trust domains.",
-    "Reddit, Wikipedia, and YouTube are consistently among the most-cited domains across engines.",
-    "Freshness matters: 65% of AI crawler visits target content under a year old (Seer).",
-    "Same retrieve-rerank-cite pipeline as other engines — no separate strategy needed.",
+    "Perplexity runs its own crawler/index (PerplexityBot) and retrieves live, citing sources by design.",
+    "It's the most SEO-aligned engine — content that ranks organically tends to be what it cites.",
+    "Strong Reddit and recency bias; high-trust community and reference sites are favored.",
+    "Freshness is a direct lever: 65% of AI crawler visits target content under a year old (Seer).",
+    "It overlaps only ~11% with other engines (Profound) — tune for it separately.",
   ]}
 />
 
 ## How does Perplexity pick what to cite?
 
-Perplexity picks citations by retrieving live web passages, reranking them for the
-query, and quoting the sources it actually uses — then displaying those citations
-prominently, since attribution is core to its product. Like every answer engine,
-it runs a [retrieve-rerank-cite pipeline](/learn/how-ai-engines-choose-citations);
-what stands out is how visibly it surfaces sources and how much it weights
-diversity and recency.
+Perplexity picks citations by retrieving live web passages against its own index,
+reranking them for the query, and quoting the sources it actually uses — then
+displaying those citations prominently, since attribution is core to its product.
+It runs the universal [retrieve-rerank-cite
+pipeline](/learn/how-ai-engines-choose-citations), but two things stand out: it
+relies on **its own crawler and index** rather than borrowing another engine's, and
+it weights **diversity and recency** heavily. There's little of the "answer from
+memory" behavior that [ChatGPT](/learn/how-to-get-cited-by-chatgpt) shows — if you
+aren't retrievable, you aren't cited.
+
+## Why is Perplexity the most SEO-aligned engine?
+
+Perplexity is the most SEO-aligned engine because its retrieval correlates closely
+with classic search relevance — the pages that rank well organically tend to be the
+pages it retrieves and cites. That makes traditional SEO unusually transferable
+here: crawlability, topical relevance, internal linking, and authority all do
+double duty. If you already invest in SEO, Perplexity is where that work converts to
+AI citations most directly — more so than for the Bing-grounded engines or Google's
+own AI surfaces, which overlap with each other and with Perplexity only ~11%
+([Profound](/learn/per-engine-vs-blended-measurement)).
+
+## Does Perplexity have its own crawler?
+
+Yes — **PerplexityBot** indexes the web for Perplexity, and **Perplexity-User**
+fetches pages in real time when a user's question requires it. Allow both in
+robots.txt so you're eligible to be retrieved and cited; if PerplexityBot can't read
+your rendered HTML, you're not in the candidate set at all. This is the
+[access](/pillars/access) pillar, and the specifics are in [which AI crawlers
+should you allow?](/learn/which-ai-crawlers-to-allow) and the [robots.txt
+guide](/learn/allow-ai-crawlers-robots-txt).
 
 ## What sources does Perplexity favor?
 
-Perplexity favors a mix of high-trust community sites, reference works, and
-primary sources. Reddit, Wikipedia, and YouTube rank among the most-cited domains
-across AI engines, and Perplexity draws on them heavily alongside authoritative
-publications and original data. The practical implication: your own genuine
-[authority](/pillars/authority) — being talked about and corroborated
-across trusted sites — strongly affects whether Perplexity reaches for you.
+Perplexity favors a mix of high-trust community sites, reference works, and primary
+sources — with a pronounced **Reddit** lean. Reddit is the single most-cited domain
+across AI engines, and Perplexity draws on it heavily alongside Wikipedia, YouTube,
+authoritative publications, and original data. So your genuine
+[authority](/pillars/authority) — being talked about and corroborated across trusted
+sites — strongly affects whether Perplexity reaches for you. Go deeper in [do I need
+to be on Reddit to get cited by AI?](/learn/reddit-ai-citations)
 
 ## How much does freshness matter?
 
-Freshness matters a lot, especially for anything time-sensitive. Answer engines
-weight recent content, and
-[Seer found 65% of AI crawler visits target content under a year old](https://www.seerinteractive.com/insights/study-ai-brand-visibility-and-content-recency).
-Perplexity's emphasis on current information makes
-[freshness](/pillars/freshness) — substantively updating pages and
-showing a visible date — a direct lever for staying citable there.
+Freshness matters a lot, especially for time-sensitive queries, because Perplexity
+emphasizes current information and retrieves in real time.
+[Seer found 65% of AI crawler visits target content under a year
+old](https://www.seerinteractive.com/insights/study-ai-brand-visibility-and-content-recency),
+and recency is one of Perplexity's clearest biases. Substantively updating your key
+pages and showing a visible last-updated date is a direct
+[freshness](/pillars/freshness) lever for staying citable here.
 
-## Do I need a Perplexity-specific strategy?
+## Where on the page should the answer go?
 
-No — the same fundamentals win across engines. Perplexity uses the same pipeline
-as ChatGPT and Google AI Overviews, so answer-first, evidenced, crawlable,
-authoritative content competes everywhere. The only Perplexity-specific emphases
-are recency and source diversity, both of which you address through freshness and
-genuine off-site presence. Start from [what is AEO](/learn/what-is-aeo).
+Lead with the answer, in a self-contained passage of roughly 120–180 words under a
+question-shaped heading — the same [extractability](/pillars/extractability)
+discipline that wins every engine. Perplexity's citation-forward UI means a clean,
+liftable, well-sourced passage is immediately visible to users as the cited source,
+so the payoff for tight answer-first writing is especially direct.
 
-## What should I do first?
+## Your Perplexity citation checklist
 
-Update and tighten your most important page: make the answer lead, add a current
-stat or source, show a visible last-updated date, and confirm it's crawlable. Then
-keep building genuine mentions on the trusted sources Perplexity reads. Current,
-credible, well-sourced answers are exactly what a citation-forward engine wants to
-show.
+<Checklist
+  title="Perplexity citation checklist"
+  items={[
+    "PerplexityBot and Perplexity-User are allowed in robots.txt and can read your rendered HTML.",
+    "Your pages rank well in classic organic search for the target questions.",
+    "Key answers are answer-first (~120–180 words) under question-shaped headings.",
+    "Time-sensitive pages are substantively updated and show a visible date.",
+    "You have genuine, helpful presence on Reddit and relevant communities.",
+    "Claims carry inline evidence (stat, quote, named source).",
+    "You track Perplexity citation share separately from other engines.",
+  ]}
+/>
+
+## Where this fits in the Canon
+
+Perplexity rewards the full Canon, but leans hardest on [access](/pillars/access)
+(its own crawler must reach you), [freshness](/pillars/freshness) (recency bias),
+and [authority](/pillars/authority) (Reddit and trusted sources) — with classic SEO
+doing more work here than anywhere else. Measure it with [per-engine share of
+voice](/learn/per-engine-vs-blended-measurement).
 
 <RelatedQuestions
   items={[
-    { q: "How do I get cited by ChatGPT?", a: "Answer-first, evidenced passages on a crawlable page, plus off-site authority.", href: "/learn/how-to-get-cited-by-chatgpt" },
-    { q: "Do I need to be on Reddit to get cited by AI?", a: "Not required, but Reddit is the #1 cited domain — genuine participation is high-leverage.", href: "/learn/reddit-ai-citations" },
+    { q: "How is Perplexity different from ChatGPT and Google AI Overviews?", a: "Own index and most SEO-aligned; the engines overlap only ~11% in what they cite.", href: "/learn/chatgpt-vs-perplexity-vs-google-ai-overviews" },
+    { q: "Do I need to be on Reddit to get cited by AI?", a: "Not required, but Reddit is the #1 cited domain — and Perplexity leans on it heavily.", href: "/learn/reddit-ai-citations" },
     { q: "How long does AEO take to work?", a: "Extractability fixes land in weeks; authority and freshness compound over months.", href: "/learn/how-long-does-aeo-take" },
   ]}
 />

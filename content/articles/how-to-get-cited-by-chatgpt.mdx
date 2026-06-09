@@ -1,101 +1,164 @@
 ---
 title: "How Do I Get Cited by ChatGPT?"
 slug: how-to-get-cited-by-chatgpt
-summary: To get cited by ChatGPT, make sure it can crawl your page, answer the question in a self-contained opening sentence, back it with inline evidence, and earn off-site authority — because ChatGPT retrieves and quotes passages, not whole pages.
+summary: ChatGPT sources two ways — live retrieval grounded in Bing's index, plus parametric training memory — and leans on Wikipedia and Reddit. To get cited, win Bing-grounded retrieval with crawlable, answer-first, evidenced passages and build the broad off-site authority that also feeds its memory.
 topics:
   - answer-engines
   - aeo-fundamentals
 author: jordan-vega
 published: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-09
 schemaType: Article
 faqs:
   - q: How does ChatGPT decide which sources to cite?
-    a: When ChatGPT searches the web, it retrieves candidate passages, reranks them on relevance, authority, and freshness, and cites the sources of the passages it actually uses to compose the answer. Citation happens at the passage level, so a single strong, self-contained passage can be cited even if the rest of the page is ordinary.
-  - q: Does ChatGPT cite pages it learned during training?
-    a: No — it can paraphrase training knowledge but can't reliably attribute it, and that knowledge is frozen at its cutoff. Citations come from ChatGPT's live search/retrieval layer, so your route to being cited is winning retrieval, not being in the training data.
+    a: When ChatGPT searches the web, it retrieves candidate passages (grounded largely in Bing's index), reranks them on relevance, authority, and freshness, and links the sources of the passages it actually uses. Citation happens at the passage level, so a single strong, self-contained passage can be cited even if the rest of the page is ordinary. Without a search, it answers from training memory and may name brands it "knows" without linking them.
+  - q: What is ChatGPT's training memory and does it cite it?
+    a: Training memory is ChatGPT's parametric knowledge — what it absorbed during training, frozen at its cutoff. It shapes which brands and facts ChatGPT recalls and mentions without searching, but it can't reliably attribute or link that knowledge. Linked citations come from the live retrieval layer (Bing-grounded), so being in training data helps you be mentioned, while winning retrieval is how you get cited with a link.
+  - q: Why does ChatGPT lean on Wikipedia and Reddit?
+    a: Because they're high-trust, high-coverage sources its retrieval and training both weight heavily — Wikipedia for entities and definitions, Reddit for real-world opinion and comparisons. A correct Wikipedia entity and genuine, helpful presence in relevant subreddits measurably improve your odds of being surfaced, which is why off-site authority matters as much as on-page work for ChatGPT.
+  - q: Should I optimize for Bing to get cited by ChatGPT?
+    a: Yes, indirectly. Because ChatGPT's live search is grounded largely in Bing's index, being crawlable and present in Bing helps you enter ChatGPT's retrieval candidate set. Submit and verify your site in Bing Webmaster Tools, make sure BingBot can read your rendered HTML, and the same content that wins Bing will feed ChatGPT's search.
   - q: How fast can I get cited by ChatGPT?
-    a: Extractability fixes — rewriting passages answer-first, adding evidence — can change how you're parsed within a crawl cycle (days to weeks). Building the off-site authority that helps you win competitive queries takes longer, typically months.
-  - q: Do I need to optimize separately for ChatGPT versus other engines?
-    a: No. ChatGPT, Perplexity, and Google AI Overviews share the same retrieve-rerank-cite approach, so answer-first, well-evidenced, reachable content competes across all of them. Optimize once for the behavior, not per engine.
+    a: Extractability fixes — rewriting passages answer-first, adding inline evidence — can change how you're parsed within a crawl cycle (days to weeks). Entering Bing's index is similarly quick. The off-site authority and entity presence that win competitive queries and shape training memory take longer, typically months.
 ---
 
-**To get cited by ChatGPT, write the answer to a specific question in a
-self-contained opening sentence, back it with inline evidence, make the page
-crawlable, and earn off-site authority — because ChatGPT quotes passages, not
-pages.** Being cited is the product of surviving its retrieve-rerank-cite
-pipeline, and you optimize for each stage.
+**To get cited by ChatGPT, win its Bing-grounded retrieval with crawlable,
+answer-first, evidenced passages — and build the broad authority and entity
+presence that put you in its training memory and on the high-trust sources
+(Wikipedia, Reddit) it leans on.** ChatGPT sources answers two different ways, and
+getting cited means serving both.
 
-<Callout variant="key" title="Quick answer">
+<Callout variant="insight" title="What's different about ChatGPT">
   <p>
-    Make your best answer a clean, self-contained passage that opens with the
-    answer, supported by a specific stat or source, on a page ChatGPT can crawl —
-    then earn the off-site mentions that make ChatGPT trust you. It cites the
-    passage that best, most credibly answers the question.
+    ChatGPT is <strong>dual-sourced</strong>. When it searches, it grounds answers
+    largely in <strong>Bing's index</strong> and links the passages it uses. When
+    it doesn&apos;t search, it answers from <strong>training memory</strong> — its
+    parametric knowledge, frozen at a cutoff — and may name brands it &quot;knows&quot;
+    without a link. It also leans heavily on <strong>Wikipedia and Reddit</strong> as
+    trusted sources. So visibility comes from two places: winning Bing-grounded
+    retrieval, and being well-enough known to live in its memory and trusted domains.
   </p>
 </Callout>
 
 <KeyTakeaways
   items={[
-    "ChatGPT cites passages, not pages — write the sentence you want quoted, first.",
-    "Citations come from its live search layer, not training data.",
-    "Lead with the answer; 44% of ChatGPT citations come from the first third of a page (Profound).",
-    "Back claims with inline evidence and earn off-site authority to win competitive queries.",
-    "The same approach works across ChatGPT, Perplexity, and Google AI Overviews.",
+    "ChatGPT sources two ways: live Bing-grounded retrieval (linked citations) and training memory (unlinked recall).",
+    "Linked citations come from retrieval — so being crawlable and present in Bing's index matters.",
+    "It leans on Wikipedia and Reddit; a correct entity and genuine community presence help.",
+    "Lead with the answer — Profound found 44% of ChatGPT citations come from the first third of a page.",
+    "Engines overlap only ~11% (Profound), so ChatGPT is its own game — measure it on its own.",
   ]}
 />
+
+## How does ChatGPT source its answers?
+
+ChatGPT sources answers in two distinct modes, and the difference drives your
+whole strategy. When it runs a live search, it retrieves candidate passages —
+grounded largely in **Bing's index** — reranks them, and **links** the sources of
+the passages it actually uses. When it doesn't search, it answers from **training
+memory**: the parametric knowledge it absorbed during training, frozen at its
+cutoff, which lets it *mention* brands and facts it "knows" but not reliably link
+them. Linked citations therefore come from retrieval; unlinked brand mentions can
+come from memory. To be visible in both, you have to win retrieval *and* be
+well-enough known to be remembered.
+
+This dual sourcing is what makes ChatGPT different from a pure-retrieval engine
+like Perplexity — and why [winning one engine doesn't win the
+others](/learn/per-engine-vs-blended-measurement) (Profound found only ~11%
+citation overlap across engines).
 
 ## What does ChatGPT actually cite?
 
 ChatGPT cites the specific passage it used to answer — not your whole page and not
-your domain. When it searches the web, it retrieves candidate passages, reranks
-them for the exact query, and attributes the sources of the few it draws on. That
-means a single excellent paragraph can earn a citation even on an otherwise
-ordinary page, and a great page can be skipped if its best answer is buried. We
-break this down in
-[how AI engines choose what to cite](/learn/how-ai-engines-choose-citations).
+your domain. A single excellent, self-contained paragraph can earn a linked
+citation on an otherwise ordinary page, while a great page gets skipped if its best
+answer is buried. The mechanics are the universal retrieve-rerank-cite pipeline,
+detailed in [how AI engines choose what to
+cite](/learn/how-ai-engines-choose-citations) and [what is
+RAG](/learn/what-is-rag) — ChatGPT's twist is just which index it retrieves from
+(Bing) and that it can fall back on memory.
+
+## Should I optimize for Bing to get cited by ChatGPT?
+
+Yes — indirectly but importantly. Because ChatGPT's live search is grounded largely
+in Bing's index, being crawlable and present in Bing is how you enter its retrieval
+candidate set. Concretely: submit and verify your site in Bing Webmaster Tools,
+confirm BingBot can read your rendered HTML, and fix anything keeping you out of
+Bing's index. The same content that ranks in Bing feeds ChatGPT's search — which is
+also why [Microsoft Copilot](/learn/get-cited-by-copilot), likewise Bing-grounded,
+tends to reward the same work.
 
 ## Where on the page should the answer go?
 
 Put the answer first — in the opening sentence under a question-shaped heading.
-[Profound's analysis found 44% of ChatGPT citations come from the first third of
-a page](/pillars/extractability), so a buried answer rarely gets lifted.
-Lead with a complete, quotable statement, then support it. This is the discipline
-of [extractability](/pillars/extractability): write the sentence you want
-ChatGPT to quote, and put it at the top.
+[Profound found 44% of ChatGPT citations come from the first third of a
+page](/pillars/extractability), so a buried answer rarely gets lifted. Lead with a
+complete, quotable statement, then support it. This is
+[extractability](/pillars/extractability): write the sentence you want ChatGPT to
+quote, and put it at the top, in roughly 120–180 self-contained words.
 
 ## How do I make the answer credible enough to quote?
 
-Back every important claim with a specific statistic, a named source, or a direct
+Back every important claim with a specific statistic, named source, or direct
 quotation, in the same passage. A grounded model prefers low-risk material it can
 repeat safely, so an evidenced sentence is easier to cite than an unsupported one.
 The [Princeton GEO study (arXiv 2311.09735)](https://arxiv.org/abs/2311.09735)
-confirmed this — adding citations, quotations, and statistics were the
-top-performing tactics for raising a source's visibility in AI answers. This is
-[credibility](/pillars/credibility) — showing your work — and it's why
-concrete, sourced answers outperform confident-but-vague ones.
+confirmed it — adding quotations, statistics, and cited sources were the
+top-performing tactics for raising a source's visibility. This is
+[credibility](/pillars/credibility): showing your work.
 
-## Why won't ChatGPT cite me even though I rank?
+## How do I get into ChatGPT's memory and trusted sources?
 
-If you rank in Google but ChatGPT ignores you, the usual cause is that your best
-answer isn't extractable, isn't reachable, or your source isn't trusted off-site.
-ChatGPT can't cite a page it can't crawl (serve real HTML, allow its crawler), it
-won't lift an answer that's buried, and it favors sources the wider web vouches
-for. Walk the [AEO Canon diagnostic](/learn/aeo-canon-diagnostic) to find your
-first broken gate.
+Get into ChatGPT's memory and trusted sources by being broadly known and genuinely
+present where it looks — especially **Wikipedia and Reddit**. A correct, well-cited
+Wikipedia entity helps ChatGPT "know" your brand; authentic, helpful participation
+in the subreddits where your category is discussed puts you in a source it weights
+heavily. More broadly, off-site brand mentions are the strongest correlate of AI
+visibility — [Ahrefs found brand mentions correlated at 0.664 versus 0.218 for
+backlinks](/pillars/authority) across 75,000 brands. This is the
+[authority](/pillars/authority) pillar, and for ChatGPT it does double duty: it
+feeds both retrieval trust and the training data that becomes memory. Go deeper in
+[do I need to be on Reddit to get cited by AI?](/learn/reddit-ai-citations)
 
-## What should I do first?
+## Why won't ChatGPT cite me even though I rank in Google?
 
-Start by rewriting your most important page answer-first: open each section with a
-complete answer, add one inline stat or source, and confirm ChatGPT's crawler can
-read the rendered HTML. Then build genuine off-site mentions so your source is
-trusted on competitive questions. That sequence — extractable, evidenced,
-reachable, trusted — is the core of [what is AEO](/learn/what-is-aeo).
+If you rank in Google but ChatGPT ignores you, the usual cause is that you're not
+in *Bing's* index, your best answer isn't extractable, or your source isn't trusted
+off-site. Google rankings don't feed ChatGPT — Bing's index does — so a page can be
+strong in Google and invisible to ChatGPT. Confirm Bing can crawl and has indexed
+you, make the answer answer-first, and build the off-site trust ChatGPT favors. Walk
+the [AEO Canon diagnostic](/learn/aeo-canon-diagnostic) to find your first broken
+gate.
+
+## Your ChatGPT citation checklist
+
+<Checklist
+  title="ChatGPT citation checklist"
+  items={[
+    "BingBot can crawl your rendered HTML and your site is indexed in Bing (Bing Webmaster Tools).",
+    "OAI-SearchBot and ChatGPT-User are allowed in robots.txt.",
+    "Your key answers open answer-first (~120–180 words) under question-shaped headings.",
+    "Each answer carries an inline statistic, quotation, or named source.",
+    "You have a correct, well-cited Wikipedia entity (where notable).",
+    "You participate genuinely on Reddit / communities in your category.",
+    "You earn off-site brand mentions, not just backlinks.",
+    "You track ChatGPT citation share separately from other engines.",
+  ]}
+/>
+
+## Where this fits in the Canon
+
+Getting cited by ChatGPT exercises the whole Canon: [access](/pillars/access)
+(crawlable, in Bing's index), [extractability](/pillars/extractability)
+(answer-first passages), [credibility](/pillars/credibility) (inline evidence), and
+[authority](/pillars/authority) (Wikipedia, Reddit, brand mentions). Because it's
+its own engine, measure it with [per-engine share of
+voice](/learn/per-engine-vs-blended-measurement).
 
 <RelatedQuestions
   items={[
-    { q: "How do I show up in Google AI Overviews?", a: "Same foundation, plus winning Google's index: be crawlable, answer-first, evidenced, and authoritative.", href: "/learn/show-up-in-google-ai-overviews" },
+    { q: "How is ChatGPT different from Perplexity and Google AI Overviews?", a: "Different index and sourcing — ChatGPT is Bing-grounded with training memory; the engines overlap only ~11%.", href: "/learn/chatgpt-vs-perplexity-vs-google-ai-overviews" },
+    { q: "How do I get cited by Microsoft Copilot?", a: "Copilot is also Bing-grounded, so the same Bing presence and answer-first work pays off twice.", href: "/learn/get-cited-by-copilot" },
     { q: "Why isn't my site being cited by AI?", a: "Usually a broken gate — access, a buried answer, or weak off-site trust. Diagnose top-down.", href: "/learn/why-isnt-my-site-cited-by-ai" },
-    { q: "What content format does AI cite most?", a: "Answer-first, self-contained passages under question-shaped headings — not any single 'format'.", href: "/learn/content-format-ai-cites-most" },
   ]}
 />

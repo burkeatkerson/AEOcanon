@@ -1,0 +1,156 @@
+---
+title: "How Do I Get Cited by Gemini?"
+slug: get-cited-by-gemini
+summary: Gemini is Google's assistant, grounded in Google Search for current questions and governed by the Google-Extended token for AI use of your content. To get cited, allow Google-Extended, win Google-grounded retrieval with crawlable answer-first pages, and build the authority Google already trusts.
+topics:
+  - answer-engines
+  - aeo-fundamentals
+author: jordan-vega
+published: 2026-02-12
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: How do I get cited by Gemini?
+    a: Allow the Google-Extended token in robots.txt, make your pages crawlable and answer-first, and build genuine authority — because Gemini grounds many answers in Google Search and draws on content Google already trusts. For current questions it retrieves and cites live sources, so the same crawlable, evidenced, authoritative content that wins Google AI Overviews tends to win Gemini.
+  - q: What is Google-Extended and do I need to allow it?
+    a: Google-Extended is a robots.txt token that controls whether Google may use your content for generative AI products like Gemini, including grounding and training. It's separate from Googlebot (which handles Search crawling), so blocking Google-Extended can keep you out of Gemini's AI uses while leaving Search intact. To be eligible for Gemini, allow Google-Extended.
+  - q: Is getting cited by Gemini the same as Google AI Overviews?
+    a: They share a model family and Google's grounding, so the foundations overlap heavily — but they're different surfaces with different contexts (a standalone assistant vs. a search feature) and don't cite identically. Optimize the same fundamentals, then measure Gemini separately, because engine and surface citations overlap far less than people assume.
+  - q: Does Gemini cite sources or just answer?
+    a: For questions where it grounds in Google Search, Gemini surfaces and links supporting sources; for things it answers from the model's own knowledge, it may not cite. Your route to being cited is winning the grounded-retrieval path — be current, crawlable, answer-first, and authoritative so Gemini reaches for you when it checks the web.
+---
+
+**To get cited by Gemini, allow the Google-Extended token, win Google-grounded
+retrieval with crawlable answer-first pages, and build the authority Google already
+trusts.** Gemini is Google's assistant, and for current questions it grounds its
+answers in Google Search — so much of what wins Google's other AI surfaces wins
+here too, with one extra permission step.
+
+<Callout variant="insight" title="What's different about Gemini">
+  <p>
+    Gemini is a <strong>standalone Google assistant</strong> that, for current
+    questions, <strong>grounds answers in Google Search</strong> and links its
+    sources. Two things set it apart: AI use of your content is gated by the{" "}
+    <strong>Google-Extended</strong> robots token (separate from Googlebot), so you
+    must opt in; and it blends <strong>grounded retrieval with the model&apos;s own
+    knowledge</strong>, citing sources mainly on the grounded path. Win Google&apos;s
+    trust and retrieval, and explicitly allow Google-Extended.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Gemini grounds many answers in Google Search and links sources on the grounded path.",
+    "Google-Extended is a robots.txt token gating AI use of your content — allow it to be eligible.",
+    "It's separate from Googlebot, so you can be in Search but blocked from Gemini if you disallow it.",
+    "Foundations match Google's other AI surfaces: crawlable, authoritative, answer-first, fresh.",
+    "Measure Gemini separately — surfaces overlap far less than people assume (~11%, Profound).",
+  ]}
+/>
+
+## How does Gemini source its answers?
+
+Gemini sources answers two ways: from the model's own trained knowledge, and — for
+current or specific questions — by **grounding in Google Search**, where it
+retrieves live results and links the supporting sources. Citations appear mainly on
+that grounded path. Because the grounding draws on Google's index, the
+crawlability, authority, and relevance you build for Google Search feed Gemini's
+retrieval, much as they do for [AI Overviews](/learn/show-up-in-google-ai-overviews)
+and [AI Mode](/learn/show-up-in-google-ai-mode). The difference is context: Gemini is
+a general assistant, so it grounds selectively rather than on every query.
+
+## What is Google-Extended and why does it matter?
+
+Google-Extended is a robots.txt token that controls whether Google may use your
+content for its generative AI products — including grounding and training for
+Gemini — **separately from Googlebot**, which handles ordinary Search crawling.
+That separation is the key, easily-missed point: you can rank in Google Search while
+being opted out of Gemini if Google-Extended is disallowed. To be eligible for
+Gemini, allow it:
+
+```txt
+# Allow Google's generative AI (Gemini) to use your content
+User-agent: Google-Extended
+Allow: /
+```
+
+The full treatment is in [which AI crawlers should you
+allow?](/learn/which-ai-crawlers-to-allow) and the [robots.txt
+guide](/learn/allow-ai-crawlers-robots-txt). This is the permission half of the
+[access](/pillars/access) pillar, specific to Google's AI.
+
+## What content does Gemini reward?
+
+Gemini rewards the same content Google's other AI surfaces do: crawlable, fast,
+server-rendered pages; genuine [authority](/pillars/authority) and relevance; and
+[answer-first, extractable](/pillars/extractability) passages it can lift cleanly.
+For grounded answers it favors current information, so [freshness](/pillars/freshness)
+matters on time-sensitive topics. In short, if you're winning Google AI Overviews,
+you're most of the way to Gemini — once Google-Extended is allowed.
+
+## How is Gemini different from Google AI Overviews?
+
+Gemini and AI Overviews share Google's model family and grounding, so their
+foundations overlap heavily — but they're different surfaces serving different
+contexts (a conversational assistant versus a search-results feature), and they
+don't cite identically. Treat the shared fundamentals as one investment, then
+measure Gemini on its own, because — as with every engine pair — citation overlap is
+lower than intuition suggests (Profound found only ~11% across engines).
+
+## How do you confirm you're cited by Gemini?
+
+Confirm it by testing, not assuming — run your prompt set in the Gemini app and
+read what it does with each question. Because Gemini grounds selectively, the test
+has to be deliberate:
+
+<Steps
+  items={[
+    { title: "Use current, specific phrasings", body: "General questions get answered from memory without citations; current or specific ones trigger grounding. Phrase prompts the way a buyer actually would, with present-tense, specific intent." },
+    { title: "Check for linked sources", body: "When Gemini grounds, it surfaces supporting links. Note whether your domain appears and for which sub-questions — that's a citation; an unlinked brand mention is memory, not retrieval." },
+    { title: "Confirm Google-Extended is allowed", body: "If you're absent everywhere, re-check robots.txt — a disallowed Google-Extended silently removes you from Gemini's eligible set while leaving Search intact." },
+    { title: "Track over time, per surface", body: "Citations are volatile and Gemini differs from AI Overviews and AI Mode, so log results on a schedule and keep Gemini's numbers separate." },
+  ]}
+/>
+
+<Callout variant="warning" title="Common Gemini mistakes">
+  <p>
+    <strong>Silently opting out:</strong> a disallowed <code>Google-Extended</code>{" "}
+    keeps you out of Gemini even while you rank in Search — the most common own-goal.{" "}
+    <strong>Assuming Search rank carries over:</strong> ranking #1 in Google
+    doesn&apos;t guarantee a Gemini citation; the grounded reranker still picks the
+    best passage. <strong>Only testing general questions:</strong> those answer from
+    memory and never cite, so you conclude &quot;Gemini doesn&apos;t use me&quot;
+    when you simply never triggered grounding.
+  </p>
+</Callout>
+
+## Your Gemini citation checklist
+
+<Checklist
+  title="Gemini citation checklist"
+  items={[
+    "Google-Extended is allowed in robots.txt (separate from Googlebot).",
+    "Your pages are crawlable, fast, and server-rendered for Google.",
+    "You have genuine authority and relevance for the target topic.",
+    "Key answers are answer-first (~120–180 words) under question-shaped headings.",
+    "Claims carry inline evidence; time-sensitive pages are fresh and dated.",
+    "You track Gemini citations separately from Google AI Overviews and AI Mode.",
+  ]}
+/>
+
+## Where this fits in the Canon
+
+Gemini exercises the same Canon as Google's other surfaces — [access](/pillars/access)
+(plus the Google-Extended opt-in), [authority](/pillars/authority),
+[extractability](/pillars/extractability), and [freshness](/pillars/freshness) — with
+the one distinctive requirement of explicitly allowing Google's generative AI to use
+your content. Measure it with [per-engine share of
+voice](/learn/per-engine-vs-blended-measurement).
+
+<RelatedQuestions
+  items={[
+    { q: "How do I show up in Google AI Overviews?", a: "Same Google grounding and fan-out; Gemini shares the foundation but is a separate surface.", href: "/learn/show-up-in-google-ai-overviews" },
+    { q: "Which AI crawlers should I allow?", a: "Allow the citation-driving bots and decide on Google-Extended, which gates Gemini's use of your content.", href: "/learn/which-ai-crawlers-to-allow" },
+    { q: "Why per-engine measurement beats a blended average", a: "Engines and surfaces overlap only ~11% — a blended score hides where you actually stand.", href: "/learn/per-engine-vs-blended-measurement" },
+  ]}
+/>

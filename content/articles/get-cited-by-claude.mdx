@@ -1,0 +1,177 @@
+---
+title: "How Do I Get Cited by Claude?"
+slug: get-cited-by-claude
+summary: Claude answers from training for general questions and retrieves and cites live web sources for current ones. To get cited, allow Anthropic's crawlers (ClaudeBot, Claude-SearchBot, Claude-User), be answer-first and reachable, and give it the well-evidenced content it reasons over.
+topics:
+  - answer-engines
+  - aeo-fundamentals
+author: jordan-vega
+published: 2026-02-14
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: How do I get cited by Claude?
+    a: Allow Anthropic's crawlers (ClaudeBot, Claude-SearchBot, and Claude-User) in robots.txt, make your pages crawlable and answer-first, and back claims with clear evidence — because when Claude needs current information it retrieves and cites live web sources. For general questions it answers from training, so broad authority that puts you in its knowledge also helps. Clear, well-structured, credible content is what Claude reaches for.
+  - q: Does Claude search the web and cite sources?
+    a: Yes, when a question calls for current or specific information, Claude retrieves live web results and links the sources it uses; for general knowledge it answers from training without citing. Your path to a linked citation is the retrieval path — be reachable by Anthropic's crawlers, answer-first, current, and credible so Claude surfaces you when it checks the web.
+  - q: Which crawlers do I allow for Claude?
+    a: ClaudeBot (Anthropic's training crawler), Claude-SearchBot (search indexing), and Claude-User (real-time user-initiated fetches). Allow Claude-SearchBot and Claude-User to be eligible for cited web answers; ClaudeBot governs training-data inclusion, which is a separate opt-in. If these can't reach your rendered HTML, Claude can't retrieve you.
+  - q: What kind of content does Claude favor?
+    a: Claude is known for careful reasoning over its sources, so it favors content that is clearly structured, internally consistent, and well-evidenced — claims backed by specific statistics, named sources, and quotations. Vague or unsupported assertions are exactly what a cautious model declines to repeat, so the credibility pillar matters especially here.
+---
+
+**To get cited by Claude, allow Anthropic's crawlers, be answer-first and
+reachable, and give it the clear, well-evidenced content it reasons over — because
+Claude retrieves and cites live web sources when a question needs current
+information, and answers from training otherwise.** Credibility and clean structure
+matter especially for a model built around careful reasoning.
+
+<Callout variant="insight" title="What's different about Claude">
+  <p>
+    Claude (Anthropic) <strong>answers from training</strong> for general questions
+    and <strong>retrieves and cites live web sources</strong> when a query needs
+    current information. It uses its own crawlers — <strong>ClaudeBot</strong>{" "}
+    (training), <strong>Claude-SearchBot</strong> (search indexing), and{" "}
+    <strong>Claude-User</strong> (real-time fetches) — so you opt in explicitly. And
+    because Claude is built around <strong>careful reasoning over its sources</strong>,
+    it leans toward clear, internally consistent, well-evidenced content and away
+    from vague or unsupported claims.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Claude retrieves and cites live web sources for current questions; answers from training otherwise.",
+    "Allow ClaudeBot, Claude-SearchBot, and Claude-User so it can reach and retrieve you.",
+    "It reasons carefully over sources — clear, consistent, well-evidenced content wins.",
+    "Credibility (inline stats, quotes, named sources) is an especially strong lever here.",
+    "Measure Claude separately — engines overlap only ~11% (Profound).",
+  ]}
+/>
+
+## How does Claude source its answers?
+
+Claude sources answers two ways. For general knowledge, it answers from its
+**training** — its parametric knowledge, which it can paraphrase but not reliably
+link. For current or specific questions, it **retrieves live web results and cites
+the sources** it uses. Linked citations come from that retrieval path, so — as with
+[ChatGPT](/learn/how-to-get-cited-by-chatgpt) — being broadly known helps you be
+*mentioned* from memory, while winning retrieval is how you get *cited* with a link.
+The underlying flow is the universal [retrieve-rerank-cite
+pipeline](/learn/how-ai-engines-choose-citations).
+
+## Which crawlers do I allow for Claude?
+
+Allow Anthropic's three crawlers, each of which does a different job:
+
+- **Claude-SearchBot** — indexes the web for Claude's search; allow it to be
+  eligible for cited web answers.
+- **Claude-User** — fetches a page in real time when a user's question requires it;
+  allow it so Claude can read a page on demand.
+- **ClaudeBot** — the training crawler; allowing it opts your content into model
+  training (a separate, values-based choice that helps you be "known").
+
+```txt
+# Allow Claude's search + user-fetch (and, optionally, training)
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+```
+
+This is the permission half of the [access](/pillars/access) pillar; the full
+breakdown is in [which AI crawlers should you
+allow?](/learn/which-ai-crawlers-to-allow) Make sure your content is in the
+server-rendered HTML, too — most crawlers don't run JavaScript, per
+[why JavaScript breaks AI citation eligibility](/learn/javascript-breaks-ai-citation).
+
+## What content does Claude favor?
+
+Claude favors content it can reason over confidently: clearly structured,
+internally consistent, and well-evidenced. Because the model is deliberately
+cautious about what it asserts, an unsupported or self-contradictory claim is
+exactly what it declines to repeat — while a passage backed by a specific statistic,
+a named source, or a direct quotation is safe to cite. This makes
+[credibility](/pillars/credibility) an especially strong lever for Claude. The
+[Princeton GEO study (arXiv 2311.09735)](https://arxiv.org/abs/2311.09735) found
+quotations, statistics, and cited sources were the top tactics for AI visibility —
+guidance that lands with particular force for a reasoning-first model.
+
+## Where on the page should the answer go?
+
+Lead with the answer, in a self-contained passage of roughly 120–180 words under a
+question-shaped heading — the [extractability](/pillars/extractability) discipline
+every engine rewards. For Claude, pair it with tight logical structure: make the
+claim, then the evidence, then the implication, so the model can follow and trust
+the reasoning it's lifting.
+
+## How is Claude different from the other engines?
+
+Claude differs in its sourcing mix and its temperament: it blends training-based
+answers with cited web retrieval (like ChatGPT), uses its own dedicated crawlers
+(like Perplexity), and reasons unusually carefully over what it cites. It doesn't
+share Google's or Bing's index, so visibility on those surfaces doesn't carry over.
+As always, winning one engine doesn't win the others — Profound found only ~11%
+citation overlap — so [measure Claude
+separately](/learn/per-engine-vs-blended-measurement).
+
+## How do you confirm you're cited by Claude?
+
+Confirm it by testing with web search engaged and reading what Claude actually
+cites — distinguishing a linked citation from a memory-based mention:
+
+<Steps
+  items={[
+    { title: "Ask with web search on", body: "Pose your real buyer questions to Claude with web search enabled, using current, specific phrasings that push it to retrieve rather than answer from memory." },
+    { title: "Read the cited sources", body: "Check whether your domain appears among the linked sources for each answer — a link is a retrieval citation; an unlinked name is recall from training." },
+    { title: "Re-check crawler access", body: "If you're never retrieved, confirm Claude-SearchBot and Claude-User are allowed and that your answer is in the server-rendered HTML." },
+    { title: "Track over time, separately", body: "Citations are volatile and Claude differs from other engines, so log results on a schedule and keep Claude's numbers on their own." },
+  ]}
+/>
+
+<Callout variant="warning" title="Common Claude mistakes">
+  <p>
+    <strong>Blocking its crawlers:</strong> disallowing Claude-SearchBot or
+    Claude-User removes you from cited web answers entirely.{" "}
+    <strong>Unsupported claims:</strong> a reasoning-first model is especially
+    reluctant to repeat assertions it can&apos;t verify — vague, sourceless content
+    underperforms here. <strong>JavaScript-only content:</strong> if your answer
+    isn&apos;t in the server-rendered HTML, Claude&apos;s crawlers can&apos;t read
+    it (most don&apos;t execute JavaScript).
+  </p>
+</Callout>
+
+## Your Claude citation checklist
+
+<Checklist
+  title="Claude citation checklist"
+  items={[
+    "Claude-SearchBot and Claude-User are allowed in robots.txt (and ClaudeBot if you opt into training).",
+    "Your content is in the server-rendered HTML the crawlers can read.",
+    "Key answers are answer-first (~120–180 words) under question-shaped headings.",
+    "Claims are backed by specific stats, named sources, or quotations.",
+    "Content is clearly structured and internally consistent (easy to reason over).",
+    "Time-sensitive pages are current and dated; you've earned genuine authority.",
+    "You track Claude citations separately from other engines.",
+  ]}
+/>
+
+## Where this fits in the Canon
+
+Claude leans hardest on [access](/pillars/access) (allow its crawlers, serve real
+HTML) and [credibility](/pillars/credibility) (well-reasoned, evidenced content),
+on the universal [extractability](/pillars/extractability) and
+[authority](/pillars/authority) foundation. Because it's its own engine, measure it
+with [per-engine share of voice](/learn/per-engine-vs-blended-measurement).
+
+<RelatedQuestions
+  items={[
+    { q: "Which AI crawlers should I allow?", a: "ClaudeBot, Claude-SearchBot, and Claude-User each do a different job — allow the search and user bots to be cited.", href: "/learn/which-ai-crawlers-to-allow" },
+    { q: "How do I add statistics, quotes & citations that get cited?", a: "Inline evidence is the credibility lever Claude rewards most — here's how to do it.", href: "/learn/statistics-quotes-citations-aeo" },
+    { q: "How is Claude different from ChatGPT and Perplexity?", a: "Different index and temperament; the engines overlap only ~11% in what they cite.", href: "/learn/chatgpt-vs-perplexity-vs-google-ai-overviews" },
+  ]}
+/>
