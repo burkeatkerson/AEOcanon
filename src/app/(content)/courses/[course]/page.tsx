@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/tag";
 import { Button } from "@/components/ui/button";
+import { CoursePreview } from "@/components/courses/course-preview";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getAllCourses, getCourse } from "@/lib/courses";
 import { getAuthor, getArticle } from "@/lib/content";
@@ -112,6 +113,11 @@ export default async function CourseSyllabusPage({
           </Button>
         </div>
       </header>
+
+      {/* course preview presentation (data-driven; only when set) */}
+      {course.preview ? (
+        <CoursePreview url={course.preview.url} title={course.preview.title} />
+      ) : null}
 
       {/* outcomes */}
       <section className="mt-12 max-w-3xl" aria-labelledby="outcomes">

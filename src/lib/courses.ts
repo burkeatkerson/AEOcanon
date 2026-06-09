@@ -41,6 +41,11 @@ export interface Course {
   updated: string;
   outcomes: string[];
   lessons: Lesson[];
+  /**
+   * Optional course-preview presentation. `url` points to a self-contained deck
+   * served from /public (embedded in an isolated iframe on the intro page).
+   */
+  preview?: { url: string; title: string };
 }
 
 export const COURSES: Course[] = [
@@ -55,7 +60,11 @@ export const COURSES: Course[] = [
     estimatedHours: 3,
     authorSlug: "jordan-vega",
     published: "2026-06-08",
-    updated: "2026-06-08",
+    updated: "2026-06-09",
+    preview: {
+      url: "/aeo-foundations-preview.html",
+      title: "AEO Foundations",
+    },
     outcomes: [
       "Explain what AEO is and why being cited matters more than ranking.",
       "Describe how AI answer engines retrieve, rerank, and cite sources.",
