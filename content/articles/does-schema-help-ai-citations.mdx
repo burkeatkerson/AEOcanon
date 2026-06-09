@@ -1,0 +1,140 @@
+---
+title: "Does Schema Markup Help You Get Cited by AI?"
+slug: does-schema-help-ai-citations
+summary: No — controlled testing shows schema markup produces no measurable lift in AI citations. Ahrefs' 1,885-page difference-in-differences study found no uplift, and a slight decline on AI Overviews. Schema is still valid infrastructure for other reasons.
+topics:
+  - structured-data
+  - aeo-fundamentals
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: Does schema markup help you get cited by AI?
+    a: No — there's no measurable citation lift. Ahrefs' controlled study of 1,885 pages that added JSON-LD schema found no uplift in AI citations on any platform, and a small but statistically significant decline on Google AI Overviews. Schema is valid infrastructure for rich results and entity clarity, but it is not a proven AI-citation lever.
+  - q: Why doesn't schema help AI citations?
+    a: Because answer engines primarily read the visible, rendered text of a page, not the structured-data blocks in the head. searchVIU and others have found AI crawlers parse the human-readable HTML — the same passages a reader sees — so the answer-first prose, not the JSON-LD, is what gets extracted and cited.
+  - q: Should I remove schema markup then?
+    a: No. Schema still earns rich results in traditional search, helps engines and the Knowledge Graph understand your entities, and powers features like FAQ and HowTo eligibility. Keep it as low-cost infrastructure — just don't expect it to raise your AI citation rate.
+  - q: What actually helps with AI citations instead?
+    a: Answer-first, self-contained passages; inline evidence (statistics, quotations, named sources); genuine off-site authority; and freshness. Those are the levers controlled testing supports — not markup.
+---
+
+**No — schema markup produces no measurable lift in AI citations.** The most
+rigorous public test to date found that adding structured data did not raise
+citation rates on any AI platform, and slightly lowered them on Google AI
+Overviews. Schema remains useful infrastructure — but not as a citation lever.
+
+<Callout variant="key" title="Verdict">
+  <p>
+    Adding schema markup does <strong>not</strong> increase how often AI engines
+    cite you. In Ahrefs' controlled 1,885-page test, the effect was statistical
+    noise on AI Mode and ChatGPT and a small <em>negative</em> on AI Overviews.
+    Keep schema for rich results and entity clarity — not for AEO citations.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Controlled testing shows no AI-citation lift from adding schema markup.",
+    "Ahrefs' 1,885-page difference-in-differences study: AI Mode +2.4%, ChatGPT +2.2% (noise), AI Overviews −4.6% (significant).",
+    "Engines read visible, rendered HTML — not the JSON-LD in the head (searchVIU).",
+    "Schema is still valid for rich results, entity understanding, and FAQ/HowTo eligibility.",
+    "The real citation levers are answer-first writing, inline evidence, authority, and freshness.",
+  ]}
+/>
+
+## What does the controlled evidence show?
+
+The controlled evidence shows no positive effect of schema on AI citations. In
+May 2026, [Ahrefs published a study](https://ahrefs.com/blog/schema-ai-citations/)
+that tracked **1,885 pages** which added JSON-LD schema between August 2025 and
+March 2026, matched against roughly **4,000 control pages**, and ran a
+difference-in-differences analysis (plus three other statistical tests) on
+citations 30 days before versus after the markup was added. This is the gold
+standard for isolating cause: it compares pages that changed against similar pages
+that didn't.
+
+<ComparisonTable
+  caption="Ahrefs: change in AI citations after adding schema (1,885 pages vs ~4,000 controls)"
+  columns={["Platform", "Change after adding schema", "Interpretation"]}
+  rows={[
+    ["Google AI Mode", "+2.4%", "Statistical noise"],
+    ["ChatGPT", "+2.2%", "Statistical noise"],
+    ["Google AI Overviews", "−4.6%", "Significant — slight decline"],
+  ]}
+/>
+
+The small positives on AI Mode and ChatGPT sit close enough to zero that Ahrefs
+classifies them as noise across thousands of URLs. The AI Overviews decline was
+statistically significant (odds of chance roughly 1 in 2,500). The conclusion was
+blunt: **"adding schema produced no major uplift in citations on any platform."**
+
+## Why doesn't schema move AI citations?
+
+Schema doesn't move AI citations because engines extract from the visible,
+rendered text — not the structured-data block in your page's head. Analyses of AI
+crawler behavior, including work by searchVIU, find that AI crawlers parse the
+human-readable HTML a reader actually sees, then retrieve and quote passages from
+it. Your JSON-LD describes the page to traditional search features, but the
+sentence an engine lifts comes from your prose.
+
+<Callout variant="insight" title="The mechanism, not the markup">
+  <p>
+    An answer engine cites the <em>passage</em> that best answers the question.
+    That passage lives in your visible content — which is why
+    <a href="/learn/aeo-pillar-extractability"> extractability</a> (answer-first,
+    self-contained writing) is the lever, and markup is not. Schema can tell a
+    parser "this is an FAQ"; it can't make a buried answer quotable.
+  </p>
+</Callout>
+
+This also fits the broader evidence: the Princeton GEO study found the tactics
+that lift AI visibility are citations, quotations, and statistics — content
+qualities, not metadata. Markup wasn't the differentiator.
+
+## What is schema markup actually good for?
+
+Schema markup is genuinely valuable — just not for AI citations. It remains a
+core part of technical SEO and entity clarity, and you should keep using it for
+the things it actually does.
+
+<Steps
+  items={[
+    {
+      title: "Rich results in traditional search",
+      body: "Schema powers rich snippets, review stars, FAQ accordions, breadcrumbs, and other enhanced listings in classic search results.",
+    },
+    {
+      title: "Entity understanding & the Knowledge Graph",
+      body: "Structured data helps engines connect your pages to defined entities (organizations, people, products) — supporting how you're recognized.",
+    },
+    {
+      title: "Unambiguous machine parsing",
+      body: "Schema removes ambiguity about what a page is — useful wherever a system needs structured facts rather than prose.",
+    },
+    {
+      title: "Feature eligibility",
+      body: "Some search features require valid markup to appear at all. Schema is the price of admission for them.",
+    },
+  ]}
+/>
+
+This is exactly the position [The AEO Canon](/learn/aeo-canon) takes and our guide
+to [structured data for AEO](/learn/structured-data-for-aeo) details: schema is
+**valid infrastructure, not a proven citation lever.** Implement it correctly,
+then stop expecting it to raise your AI visibility.
+
+## What should you do instead?
+
+Instead of relying on markup, invest in the levers controlled testing actually
+supports: answer-first, self-contained passages
+([extractability](/learn/aeo-pillar-extractability)); inline statistics,
+quotations, and named sources ([credibility](/learn/aeo-pillar-credibility));
+genuine off-site authority; and freshness. Keep your schema clean for the rich
+results and entity clarity it earns — and put your AEO effort where the evidence
+points.
+
+This is one of several widely-believed tactics that don't survive controlled
+testing — see the full set in [AI search optimization myths, debunked](/learn/aeo-myths),
+and the foundations in [what is AEO](/learn/what-is-aeo).

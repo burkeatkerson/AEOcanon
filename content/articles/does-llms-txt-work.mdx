@@ -1,0 +1,117 @@
+---
+title: "Does llms.txt Actually Work?"
+slug: does-llms-txt-work
+summary: No — no major AI engine uses llms.txt. OtterlyAI found just 84 of 62,100 AI bot requests touched the file (0.1%), and Google's John Mueller compared it to the long-ignored keywords meta tag. It's harmless, low-cost infrastructure — not a citation lever.
+topics:
+  - aeo-fundamentals
+  - technical-seo
+author: jordan-vega
+published: 2026-06-08
+updated: 2026-06-08
+schemaType: Article
+faqs:
+  - q: Does llms.txt actually work for AI visibility?
+    a: No. No major AI engine has confirmed using llms.txt, and server-log studies show AI crawlers essentially ignore it. OtterlyAI found only 84 of 62,100 AI bot requests touched the file over 90 days — 0.1%. It doesn't increase how often AI engines cite you.
+  - q: What is llms.txt?
+    a: llms.txt is a proposed text file (like robots.txt) that site owners place at the root to point AI models at their important content. The idea is reasonable, but adoption by the engines hasn't happened — they don't read it in practice, so it has no effect on citations today.
+  - q: What did Google say about llms.txt?
+    a: Google's John Mueller said none of the AI services have stated they use llms.txt, that server logs show they don't even check for it, and that "to me, it's comparable to the keywords meta tag" — a self-declared signal search engines have ignored for over a decade because it's owner-controlled and easy to manipulate.
+  - q: Should I bother creating an llms.txt file?
+    a: "It's optional and harmless. Creating one is cheap and won't hurt, so as low-effort infrastructure it's fine — we publish one ourselves. Just don't expect citation lift, and don't prioritize it over the things that actually work — answer-first content, evidence, and authority."
+---
+
+**No — no major AI engine uses llms.txt today.** Server-log studies show AI
+crawlers essentially ignore the file, and Google has compared it to the
+long-dead keywords meta tag. It's harmless, low-cost infrastructure you can
+publish if you like — but it is not a citation lever.
+
+<Callout variant="key" title="Verdict">
+  <p>
+    <strong>llms.txt does not improve your AI visibility.</strong> The engines
+    don't read it: OtterlyAI logged just 84 of 62,100 AI bot requests touching it
+    (0.1%), and Google's John Mueller likened it to the keywords meta tag. Publish
+    one if you want — it's cheap and harmless — but expect no citation lift.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "No major AI engine has confirmed using llms.txt, and logs show they don't fetch it.",
+    "OtterlyAI: 84 of 62,100 AI bot requests touched the file over 90 days — 0.1%.",
+    "Google's John Mueller called it 'comparable to the keywords meta tag.'",
+    "It's owner-controlled and self-declared — the kind of signal engines learned to ignore.",
+    "Harmless to publish; not a substitute for real content, evidence, and authority.",
+  ]}
+/>
+
+## What is llms.txt supposed to do?
+
+llms.txt is a proposed root-level text file — modeled on robots.txt — that lets a
+site owner point AI models at its most important content in a clean, curated form.
+The intent is sensible: give models a tidy map instead of making them crawl
+everything. The problem isn't the idea; it's that the engines never adopted it.
+A standard only works if the systems it targets actually read it, and they don't.
+
+## What does the evidence show?
+
+The evidence shows AI engines essentially ignore llms.txt. The clearest data
+comes from [OtterlyAI's 90-day experiment](https://otterly.ai/blog/the-llms-txt-experiment/),
+which correctly implemented the file and watched the logs.
+
+<ComparisonTable
+  caption="The llms.txt claim vs. the measured reality"
+  columns={["The claim", "The reality (OtterlyAI, 90 days)"]}
+  rows={[
+    ["AI crawlers read llms.txt to find your content", "84 of 62,100 AI bot requests touched it — 0.1%"],
+    ["It boosts your AI visibility", "It performed ~3× worse than an average content page"],
+    ["The engines support it", "No major engine confirms use; logs show they don't fetch it"],
+  ]}
+/>
+
+Google's perspective is equally direct.
+[As reported by Search Engine Journal](https://www.searchenginejournal.com/google-says-llms-txt-comparable-to-keywords-meta-tag/544804/),
+John Mueller said: "none of the AI services have said they're using LLMs.txt (and
+you can tell when you look at your server logs that they don't even check for it).
+To me, it's comparable to the keywords meta tag."
+
+<Callout variant="insight" title="Why the keywords-meta-tag comparison stings">
+  <p>
+    The keywords meta tag died because it was <em>self-declared and
+    owner-controlled</em> — trivially gamed, so engines stopped trusting it.
+    llms.txt has the same shape: you tell the engine what to think of your site.
+    Engines have spent two decades learning to weight independent signals over
+    self-declarations, which is why <a href="/learn/aeo-pillar-authority">authority</a>
+    (what others say about you) beats anything you assert about yourself.
+  </p>
+</Callout>
+
+## What is llms.txt actually good for?
+
+llms.txt is fine as cheap, harmless infrastructure — just not as an AEO tactic.
+If publishing one costs you ten minutes, there's little downside: it may help the
+occasional tool that does parse it, it signals that you think about AI access, and
+standards sometimes gain adoption later. We even publish one ourselves, for
+exactly those low-stakes reasons — not because we expect it to lift citations.
+
+<Callout variant="warning" title="The real risk is opportunity cost">
+  <p>
+    The danger isn't that llms.txt hurts you — it's that chasing speculative files
+    distracts from what works. Every hour spent perfecting an ignored file is an
+    hour not spent writing answer-first passages or earning a brand mention.
+    Treat it as a five-minute checkbox, then move on.
+  </p>
+</Callout>
+
+## What should you do instead?
+
+Instead of betting on llms.txt, make sure AI crawlers can actually reach and read
+your content — server-rendered HTML, allowed crawlers, fast pages
+([the Access pillar](/learn/aeo-pillar-access)) — and then make that content
+answer-first, evidenced, and authoritative. Those are the levers that move
+citations. Publish an llms.txt if you want the checkbox; don't mistake it for a
+strategy.
+
+This is one of several tactics that sound plausible but don't hold up — see the
+full roundup in [AI search optimization myths, debunked](/learn/aeo-myths),
+including [whether schema markup helps AI citations](/learn/does-schema-help-ai-citations),
+and start with [what is AEO](/learn/what-is-aeo).
