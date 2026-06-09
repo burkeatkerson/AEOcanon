@@ -18,6 +18,10 @@ faqs:
     a: Because AI answers reduce clicks, so position in a link list matters less than whether you're named in the answer at all. Share of voice measures exactly that — how often you're the cited source — which is the visibility that survives in a zero-click, answer-first world. Rankings tell you where you sit in a list nobody may scroll; SOV tells you whether you're in the answer.
   - q: Why does my share of voice keep changing?
     a: Because AI answers are non-deterministic and citations are volatile. The same prompt can yield different sources run to run, and Semrush found 40–60% of cited sources change month to month. Commentators like Rand Fishkin have stressed how unpredictable AI answers are. So a single reading is noise — measure a fixed prompt set repeatedly and judge the trend, not any one result.
+  - q: What counts as an appearance — a mention or a citation?
+    a: They're different and worth tracking separately. A mention is your brand name in the answer text (awareness, but no click); a citation is your site listed as a source (the high-value appearance that credits you and can earn the rare click). Sentiment matters too — being named as the recommendation beats being named as the cautionary tale. Track mention share of voice and citation share of voice separately.
+  - q: What's a good AI share of voice?
+    a: Higher than your direct competitors on the questions that matter — not a fixed number. Absolute share of voice runs lower than people expect because citations are spread thin (Evertune found no single domain exceeds about 5% in a given space), so 15–20% on core buying questions can be category-leading. Judge it relative to rivals, weighted toward decision-stage questions, and as a trend.
 ---
 
 **Share of voice in AI search is the percentage of your tracked questions where an
@@ -82,6 +86,28 @@ average hides where you're winning or losing. That's important enough to have it
 own guide: [why per-engine measurement beats a blended
 average](/learn/per-engine-vs-blended-measurement).
 
+### A worked example
+
+Say you track five questions on one engine and log who each answer cites:
+
+<ComparisonTable
+  rowHeaders
+  caption="Example: one engine, five prompts (✓ = brand appears in the answer)"
+  columns={["Prompt", "You", "Competitor A", "Competitor B"]}
+  rows={[
+    ["Best X for small teams?", "✓", "✓", ""],
+    ["X vs Y — which is better?", "", "✓", "✓"],
+    ["Is X worth it?", "✓", "", ""],
+    ["Top X tools in 2026", "✓", "✓", "✓"],
+    ["How do I choose an X?", "", "✓", ""],
+  ]}
+/>
+
+You appear in 3 of 5 answers, so your **brand SOV is 60%** (3 ÷ 5). Across all brand
+appearances — yours (3) plus Competitor A's (4) and Competitor B's (2), nine in
+total — your **competitive SOV is 33%** (3 ÷ 9). Run the same five prompts next
+week and the numbers will move; that's why you track the trend, not the snapshot.
+
 ## Why is share of voice the metric that matters?
 
 Share of voice matters most because AI answers compress many results into one
@@ -91,6 +117,26 @@ regardless of where you'd have ranked. SOV measures the thing that now drives
 visibility: presence inside the answer. It pairs with two supporting metrics — AI
 referral traffic (visits from chatgpt.com, perplexity.ai, and the like) and
 branded-search lift — but citation share is the headline number.
+
+## What counts as an appearance — a mention or a citation?
+
+Decide up front what counts, because "appearing" in an AI answer has three distinct
+levels and conflating them muddies the metric:
+
+- **Mention** — your brand name appears in the answer text, with no link. It builds
+  awareness and signals authority, but the reader can't click through.
+- **Citation** — your site is listed as a source for the answer (the linked
+  footnote or source card). This is the highest-value appearance: it credits you as
+  the source and earns the rare click.
+- **Sentiment** — *how* you're named. Being cited as the recommendation is a
+  different result from being named as the cautionary example, even though both
+  count as an "appearance."
+
+Track **mention SOV** and **citation SOV** separately — being widely mentioned but
+rarely cited (or the reverse) calls for different work. Position matters too: a name
+in the first sentence carries more weight than one buried in a closing list,
+mirroring the [extractability](/pillars/extractability) bias toward the top of the
+answer.
 
 ## How do you track it?
 
@@ -112,6 +158,21 @@ automate it, see [the best AI visibility tools](/tools/best-ai-visibility-tools)
 to benchmark rivals, see [how to track competitor AI
 citations](/learn/track-competitor-ai-citations).
 
+## What's a good share of voice?
+
+A "good" share of voice is higher than your direct competitors' on the questions
+that matter to you — not a fixed percentage. Absolute SOV numbers run lower than
+people expect, because AI citations are spread thin: [Evertune found no single
+domain exceeds about 5% of citations in a given space](https://www.evertune.ai). So
+a 15–20% brand SOV on your core buying questions can be category-leading, while a
+flashy 60% on awareness questions nobody buys from is worth little.
+
+Judge SOV three ways: **relative** (you versus named competitors), **weighted by
+intent** (decision-stage questions count more than awareness), and **as a trend**
+(up-and-to-the-right beats a high but sliding number). Set your baseline from the
+first month of readings, then target steady gains on the decision questions that
+precede a purchase.
+
 ## Why does the number keep moving?
 
 The number keeps moving because AI answers are non-deterministic and citations are
@@ -130,6 +191,26 @@ defensible trend.
     schedule and report the trend.</strong> Treat exact percentages as directional,
     and watch the slope over weeks — that&apos;s the{" "}
     <a href="/pillars/adaptability">Adaptability pillar</a> applied to measurement.
+  </p>
+</Callout>
+
+## What are the most common share-of-voice mistakes?
+
+The most common mistakes turn a useful metric into a misleading one — and most of
+them are easy to avoid once you know the trap.
+
+<Callout variant="warning" title="What corrupts a share-of-voice number">
+  <p>
+    <strong>Measuring once:</strong> a single reading is noise, not a number.{" "}
+    <strong>Churning the prompt set:</strong> swap questions and you lose
+    comparability — freeze the list and add deliberately.{" "}
+    <strong>Blending engines:</strong> averaging across engines that barely overlap
+    hides where you actually stand (see{" "}
+    <a href="/learn/per-engine-vs-blended-measurement">per-engine vs blended</a>).{" "}
+    <strong>Counting mentions and citations as one thing:</strong> they're different
+    wins and need separate tracking. <strong>Chasing vanity questions:</strong> high
+    SOV on questions that never precede a purchase flatters the dashboard and changes
+    nothing.
   </p>
 </Callout>
 

@@ -18,6 +18,10 @@ faqs:
     a: Very little. Profound found only about 11% of cited sources are shared across the major engines, and citations are volatile within each one (Semrush found 40–60% of cited sources change month to month). Each engine runs a different index, retrieval pipeline, and ranking emphasis, so winning one is no guarantee of winning another.
   - q: Is a blended average ever useful?
     a: Only as a rough executive headline, and even then with caveats. If leadership wants one number, report it alongside the per-engine breakdown so the average never hides a collapse on a specific engine. For any decision about where to invest, use the per-engine view — that's where the actionable signal lives.
+  - q: How many AI engines should I track?
+    a: Track every engine your audience actually uses, and no more — usually three to five (ChatGPT, Perplexity, Google AI Overviews, and sometimes Gemini or Copilot). Because tools price by prompts times engines, adding engines your buyers don't use just inflates cost and dilutes attention. Prioritize by where your customers are, then score each engine separately.
+  - q: Can I roll per-engine scores into one KPI?
+    a: Only as a headline over the per-engine breakdown — and a usage-weighted index beats a naive average, weighting each engine's share of voice by the share of your audience that uses it. Even then, never optimize against the rolled-up number; make decisions from the per-engine view, because a single figure can hide a collapse on the engine that matters most.
 ---
 
 **Measure AI visibility per engine, not as one blended average: [Profound found
@@ -55,6 +59,29 @@ share in Google AI Overviews, the "32%" blended figure describes nothing you can
 act on: you're not at 32% anywhere. Worse, it can stay flat while one engine
 quietly collapses, because a gain elsewhere offsets it.
 
+### A worked example: how the blend hides a collapse
+
+Watch what a single averaged number conceals. Suppose you track three engines and
+report a naive average:
+
+<ComparisonTable
+  rowHeaders
+  caption="Example: the blended average holds at 40% while one engine halves"
+  columns={["Engine", "Month 1 SOV", "Month 2 SOV"]}
+  rows={[
+    ["Perplexity", "60%", "75%"],
+    ["ChatGPT", "30%", "30%"],
+    ["Google AI Overviews", "30%", "15%"],
+    ["Blended average", "40%", "40%"],
+  ]}
+/>
+
+The blended 40% is identical both months, so a dashboard built on it reports
+"steady — nothing to do." But Google AI Overviews just **halved**, masked by a gain
+in Perplexity. If AI Overviews is where your buyers are, you're losing badly and the
+average is actively hiding it. The per-engine view makes that collapse impossible to
+miss — and tells you exactly which engine to investigate.
+
 ## How little do engines actually overlap?
 
 Engines overlap remarkably little: about 11% of cited sources are shared across
@@ -62,9 +89,12 @@ them, per Profound. The cause is structural — each engine runs a different ind
 different retrieval-and-rerank pipeline, and a different weighting of freshness,
 authority, and community sources. On top of that, citations are volatile *within*
 each engine: [Semrush found 40–60% of LLM-cited sources change month to
-month](https://www.semrush.com/blog/url-volatility-ai-overviews/). Low overlap
-across engines and high churn within them is exactly the situation where a single
-averaged number is least trustworthy.
+month](https://www.semrush.com/blog/url-volatility-ai-overviews/). Ahrefs has
+watched a single source's presence swing from 76% to 38% across a tracking window,
+and Semrush found Google keeps a given URL in an AI Overview only about 3.87 days on
+average. So each engine is not only different from the others but a moving target in
+its own right. Low overlap across engines and high churn within them is exactly the
+situation where a single averaged number is least trustworthy.
 
 <ComparisonTable
   rowHeaders
@@ -100,6 +130,21 @@ differently — the mechanics are in [ChatGPT vs Perplexity vs Google AI Overvie
 how citation differs](/learn/chatgpt-vs-perplexity-vs-google-ai-overviews) and [how
 AI engines choose citations](/learn/how-ai-engines-choose-citations).
 
+## How should you report per-engine results?
+
+Report per-engine results as small multiples, not one merged line — a compact panel
+per engine showing its share-of-voice trend, side by side. That layout keeps each
+engine's reality visible while letting you scan the whole picture at a glance. Three
+practices keep the report honest:
+
+- **One row per engine, with its trend.** Show current SOV and the direction over
+  the last several readings, per engine — never just a single combined figure.
+- **Order by audience, not by score.** Put the engines your buyers actually use
+  first, so attention follows revenue rather than whichever number looks best.
+- **Annotate changes.** Note when an engine shipped a known update or when you
+  changed tactics, so a swing has context — the kind of evidence the
+  [Adaptability pillar](/pillars/adaptability) runs on.
+
 ## Is a blended number ever OK?
 
 A blended number is acceptable only as a rough executive headline, and only when
@@ -108,6 +153,13 @@ leadership wants one figure to glance at, give them one — but make every decis
 about where to invest from the per-engine view, because that's where the signal is.
 The moment a blended score starts driving strategy, you're optimizing for an average
 of universes that don't overlap.
+
+If you must roll up to one figure, a **usage-weighted index** beats a naive average:
+weight each engine's share of voice by the share of your audience that actually uses
+it, so the number at least tracks the surfaces that matter to you rather than
+treating a niche engine and your buyers' main engine as equals. It still hides
+per-engine detail, so keep it as a headline sitting on top of the breakdown — never
+as the figure you optimize against.
 
 <Callout variant="warning" title="The averaging trap">
   <p>
