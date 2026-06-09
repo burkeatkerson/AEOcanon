@@ -8,12 +8,7 @@ import { ArticleFilter } from "@/components/library/article-filter";
 import { ArticleCard } from "@/components/library/cards/article-card";
 import { TopicGrid } from "@/components/library/topic-grid";
 import { TabGroup, type TabDef } from "@/components/library/tab-group";
-import {
-  getAllArticles,
-  getAllPaths,
-  getPathWithArticles,
-  getUsedTopics,
-} from "@/lib/content";
+import { getAllArticles, getAllCourses, getUsedTopics } from "@/lib/content";
 import { TOPIC_SLUGS } from "@/lib/taxonomy";
 import { buildMetadata } from "@/lib/seo";
 
@@ -54,7 +49,7 @@ const SCHOOL_TOOLS = [
 ];
 
 function CoursesPane() {
-  const paths = getAllPaths();
+  const courses = getAllCourses();
   const latest = getAllArticles().slice(0, 3);
 
   return (
@@ -74,9 +69,9 @@ function CoursesPane() {
           the fundamentals, free.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          {paths[0] ? (
-            <Button href={paths[0].url} size="lg">
-              Start {paths[0].title} — Free
+          {courses[0] ? (
+            <Button href={`/courses/${courses[0].slug}`} size="lg">
+              Start {courses[0].title} — Free
             </Button>
           ) : null}
           <Button href="/audit" variant="ghost" size="lg">
@@ -91,18 +86,17 @@ function CoursesPane() {
             Courses, beginner to applied
           </h2>
           <span className="text-accent font-mono text-[11px] tracking-[0.1em] uppercase">
-            {paths.length} {paths.length === 1 ? "course" : "courses"}
+            {courses.length} {courses.length === 1 ? "course" : "courses"}
           </span>
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
-          {paths.map((path, i) => {
-            const resolved = getPathWithArticles(path.slug);
-            const count = resolved?.articles.length ?? 0;
+          {courses.map((course, i) => {
+            const count = course.lessons.length;
             const color = LEVEL_COLORS[i % LEVEL_COLORS.length];
             return (
               <Link
-                key={path.slug}
-                href={path.url}
+                key={course.slug}
+                href={`/courses/${course.slug}`}
                 className="border-line hover:border-accent bg-paper text-ink flex flex-col gap-3 rounded-2xl border p-6 no-underline transition-transform hover:-translate-y-[2px]"
                 style={{ boxShadow: `inset 0 4px 0 ${color}` }}
               >
@@ -111,22 +105,22 @@ function CoursesPane() {
                     className="capitalize"
                     style={{ color, borderColor: color }}
                   >
-                    {path.level}
+                    {course.level}
                   </Badge>
                   <span className="text-muted font-mono text-[11px]">
                     Course {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <h3 className="text-[22px] font-medium">{path.title}</h3>
+                <h3 className="text-[22px] font-medium">{course.title}</h3>
                 <p className="text-ink-2 text-[14px] leading-relaxed">
-                  {path.summary}
+                  {course.summary}
                 </p>
                 <div className="text-muted mt-auto flex gap-4 font-mono text-[11px]">
                   <span>
                     {count} {count === 1 ? "lesson" : "lessons"}
                   </span>
-                  {path.estimatedHours ? (
-                    <span>~{path.estimatedHours} hrs</span>
+                  {course.estimatedHours ? (
+                    <span>~{course.estimatedHours} hrs</span>
                   ) : null}
                   <span style={{ color }}>✦ Earns a credential</span>
                 </div>
@@ -231,7 +225,7 @@ function ToolsPane() {
 }
 
 function CertsPane() {
-  const paths = getAllPaths();
+  const courses = getAllCourses();
   return (
     <div>
       <div className="mb-6 flex items-baseline justify-between">
@@ -247,12 +241,12 @@ function CertsPane() {
         profile, and a downloadable certificate. Finish the course to earn it.
       </p>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {paths.map((path, i) => {
+        {courses.map((course, i) => {
           const color = LEVEL_COLORS[i % LEVEL_COLORS.length];
           return (
             <Link
-              key={path.slug}
-              href={path.url}
+              key={course.slug}
+              href={`/courses/${course.slug}`}
               className="border-line hover:border-accent bg-paper flex items-center gap-4 rounded-2xl border p-5"
             >
               <span
@@ -263,10 +257,10 @@ function CertsPane() {
               </span>
               <span>
                 <span className="block text-[15px] font-medium">
-                  {path.title} Certified
+                  {course.certificate}
                 </span>
-                <span className="text-muted block font-mono text-[10.5px] capitalize">
-                  {path.level}
+                <span className="text-muted block font-mono text-[10.5px]">
+                  {course.title}
                 </span>
               </span>
             </Link>
@@ -279,7 +273,7 @@ function CertsPane() {
 
 export default function LearnPage() {
   const articleCount = getAllArticles().length;
-  const pathCount = getAllPaths().length;
+  const courseCount = getAllCourses().length;
   const topicCount = getUsedTopics().length;
 
   const tabs: TabDef[] = [
@@ -305,7 +299,7 @@ export default function LearnPage() {
     {
       id: "certs",
       label: "Certifications",
-      count: pathCount,
+      count: courseCount,
       content: <CertsPane />,
     },
   ];

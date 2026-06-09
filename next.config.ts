@@ -32,6 +32,13 @@ const nextConfig: NextConfig = {
         destination: "/learn/aeo-canon",
         permanent: true,
       },
+      // The thin "AEO Fundamentals" path was replaced by the structured
+      // AEO Foundations course.
+      {
+        source: "/courses/aeo-fundamentals",
+        destination: "/courses/aeo-foundations",
+        permanent: true,
+      },
     ];
   },
 };

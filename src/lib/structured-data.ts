@@ -6,12 +6,13 @@ import type {
   FAQPage,
   Graph,
   HowTo,
+  LearningResource,
   Organization,
   Person,
   Thing,
   WebSite,
 } from "schema-dts";
-import type { Article, Author, LearningPath, Vertical } from "@/lib/content";
+import type { Article, Author, Vertical } from "@/lib/content";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 import { topicLabel } from "@/lib/taxonomy";
 
@@ -147,20 +148,68 @@ export function articleContentNodes(
   return nodes;
 }
 
-export function courseNode(path: LearningPath, articles: Article[]): Course {
+/** Course node for a structured course (syllabus page). */
+export function courseNode(opts: {
+  title: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified: string;
+  authorUrl?: string;
+  lessons: { title: string; path: string }[];
+}): Course {
   return {
     "@type": "Course",
-    "@id": absoluteUrl(`${path.url}#course`),
-    name: path.title,
-    description: path.summary,
-    url: path.canonicalUrl,
+    "@id": absoluteUrl(`${opts.path}#course`),
+    name: opts.title,
+    description: opts.description,
+    url: absoluteUrl(opts.path),
     inLanguage: "en",
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified,
     provider: { "@id": ORG_ID },
-    hasPart: articles.map((a) => ({
-      "@type": "Course",
-      name: a.title,
-      url: a.canonicalUrl,
+    publisher: { "@id": ORG_ID },
+    ...(opts.authorUrl
+      ? { author: { "@id": absoluteUrl(`${opts.authorUrl}#person`) } }
+      : {}),
+    hasPart: opts.lessons.map((l) => ({
+      "@type": "LearningResource",
+      name: l.title,
+      url: absoluteUrl(l.path),
     })),
+  };
+}
+
+/** LearningResource node for a single lesson page. */
+export function lessonResourceNode(opts: {
+  title: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified: string;
+  authorUrl?: string;
+  courseName: string;
+  coursePath: string;
+}): LearningResource {
+  return {
+    "@type": "LearningResource",
+    "@id": absoluteUrl(`${opts.path}#lesson`),
+    name: opts.title,
+    description: opts.description,
+    url: absoluteUrl(opts.path),
+    inLanguage: "en",
+    learningResourceType: "Lesson",
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified,
+    provider: { "@id": ORG_ID },
+    ...(opts.authorUrl
+      ? { author: { "@id": absoluteUrl(`${opts.authorUrl}#person`) } }
+      : {}),
+    isPartOf: {
+      "@type": "Course",
+      name: opts.courseName,
+      url: absoluteUrl(opts.coursePath),
+    },
   };
 }
 

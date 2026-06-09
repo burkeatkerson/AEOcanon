@@ -7,20 +7,17 @@
 import {
   articles as rawArticles,
   authors as rawAuthors,
-  paths as rawPaths,
   verticals as rawVerticals,
   playbooks as rawPlaybooks,
   type Article,
   type Author,
-  type LearningPath,
   type Vertical,
   type Playbook,
 } from "#velite";
+import { getAllCourses, getCourse, type Course } from "@/lib/courses";
 
-export type { Article, Author, LearningPath, Vertical, Playbook };
-
-/** A learning path with its `items` resolved to full, ordered articles. */
-export type PathWithArticles = LearningPath & { articles: Article[] };
+export type { Article, Author, Vertical, Playbook, Course };
+export { getAllCourses, getCourse };
 
 function byPublishedDesc(a: Article, b: Article): number {
   return b.published.localeCompare(a.published);
@@ -69,12 +66,21 @@ export function getUsedTopics(): TopicWithCount[] {
 }
 
 /**
- * Courses (learning paths) that include at least one article carrying the given
- * topic — i.e. the ordered curricula that use this topic's content.
+ * Courses whose lessons reuse at least one article carrying the given topic —
+ * i.e. the guided curricula that draw on this topic's content.
  */
-export function getCoursesForTopic(topic: string): LearningPath[] {
+export function getCoursesForTopic(topic: string): Course[] {
   const slugs = new Set(getArticlesByTopic(topic).map((a) => a.slug));
-  return getAllPaths().filter((p) => p.items.some((item) => slugs.has(item)));
+  return getAllCourses().filter((c) =>
+    c.lessons.some((l) => slugs.has(l.articleSlug)),
+  );
+}
+
+/** Courses whose lessons reuse the given article — for back-linking. */
+export function getCoursesForArticle(articleSlug: string): Course[] {
+  return getAllCourses().filter((c) =>
+    c.lessons.some((l) => l.articleSlug === articleSlug),
+  );
 }
 
 export function getArticlesByAuthor(authorSlug: string): Article[] {
@@ -112,36 +118,6 @@ export function getAllAuthors(): Author[] {
 
 export function getAuthor(slug: string): Author | undefined {
   return rawAuthors.find((a) => a.slug === slug);
-}
-
-// --- Learning paths ---------------------------------------------------------
-
-export function getAllPaths(): LearningPath[] {
-  return [...rawPaths];
-}
-
-export function getPath(slug: string): LearningPath | undefined {
-  return rawPaths.find((p) => p.slug === slug);
-}
-
-/**
- * Resolve a path's ordered `items` slugs to full articles. Build-time
- * validation guarantees every slug resolves, but we filter defensively.
- */
-export function getPathWithArticles(
-  slug: string,
-): PathWithArticles | undefined {
-  const path = getPath(slug);
-  if (!path) return undefined;
-  const articles = path.items
-    .map((itemSlug) => getArticle(itemSlug))
-    .filter((a): a is Article => a !== undefined);
-  return { ...path, articles };
-}
-
-/** Paths (pillars) that include the given article — for back-linking. */
-export function getPathsForArticle(articleSlug: string): LearningPath[] {
-  return getAllPaths().filter((p) => p.items.includes(articleSlug));
 }
 
 // --- Verticals --------------------------------------------------------------

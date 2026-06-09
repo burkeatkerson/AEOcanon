@@ -11,7 +11,6 @@ import {
   TOPIC_SLUGS,
   VERTICAL_SLUGS,
   ARTICLE_SCHEMA_TYPES,
-  PATH_LEVELS,
 } from "./src/lib/taxonomy";
 
 // Velite runs in its own Node process and does not load Next's .env, so this
@@ -93,33 +92,6 @@ const authors = defineCollection({
     .transform((data) => ({ ...data, url: `/authors/${data.slug}` })),
 });
 
-const paths = defineCollection({
-  name: "LearningPath",
-  pattern: "paths/**/*.mdx",
-  schema: s
-    .object({
-      title: s.string().max(120),
-      slug: s.slug("paths"),
-      summary: s.string().min(20).max(320),
-      body: s.mdx(),
-      level: s.enum(PATH_LEVELS).default("beginner"),
-      estimatedHours: s.number().min(0).optional(),
-      // Ordered list of article slugs; each is verified in prepare().
-      items: s.array(s.string()).min(1),
-      schemaType: s.literal("Course").default("Course"),
-      published: s.isodate().optional(),
-      updated: s.isodate().optional(),
-      metadata: s.metadata(),
-      toc: s.toc(),
-    })
-    .transform((data) => ({
-      ...data,
-      // Public surface is "Courses"; the data model stays a learning path.
-      url: `/courses/${data.slug}`,
-      canonicalUrl: `${SITE_URL}/courses/${data.slug}`,
-    })),
-});
-
 const verticals = defineCollection({
   name: "Vertical",
   pattern: "verticals/**/*.mdx",
@@ -171,7 +143,7 @@ const playbooks = defineCollection({
 
 export default defineConfig({
   root: "content",
-  collections: { articles, authors, paths, verticals, playbooks },
+  collections: { articles, authors, verticals, playbooks },
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins,
@@ -179,8 +151,7 @@ export default defineConfig({
   // Cross-collection referential integrity. Throwing here aborts `velite build`,
   // which (via the `build` npm script) aborts `next build` — bad references fail
   // the build instead of 404-ing in production.
-  prepare: ({ articles, authors, paths, playbooks }) => {
-    const articleSlugs = new Set(articles.map((a) => a.slug));
+  prepare: ({ articles, authors, playbooks }) => {
     const authorSlugs = new Set(authors.map((a) => a.slug));
     const errors: string[] = [];
 
@@ -197,25 +168,6 @@ export default defineConfig({
         errors.push(
           `Playbook "${playbook.slug}" references unknown author "${playbook.author}".`,
         );
-      }
-    }
-
-    for (const path of paths) {
-      for (const itemSlug of path.items) {
-        if (!articleSlugs.has(itemSlug)) {
-          errors.push(
-            `Learning path "${path.slug}" references missing article slug "${itemSlug}".`,
-          );
-        }
-      }
-      const seen = new Set<string>();
-      for (const itemSlug of path.items) {
-        if (seen.has(itemSlug)) {
-          errors.push(
-            `Learning path "${path.slug}" lists duplicate article slug "${itemSlug}".`,
-          );
-        }
-        seen.add(itemSlug);
       }
     }
 

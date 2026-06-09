@@ -13,7 +13,7 @@ import {
   getArticle,
   getAuthor,
   getRelatedArticles,
-  getPathsForArticle,
+  getCoursesForArticle,
   getVerticalsForArticle,
 } from "@/lib/content";
 import { topicLabel, verticalLabel } from "@/lib/taxonomy";
@@ -69,7 +69,7 @@ export default async function ArticlePage({
 
   const author = getAuthor(article.author);
   const related = getRelatedArticles(article);
-  const pillarPaths = getPathsForArticle(article.slug);
+  const partOfCourses = getCoursesForArticle(article.slug);
   const pillarVerticals = getVerticalsForArticle(article);
   const updatedDiffers = article.updated !== article.published;
 
@@ -174,15 +174,17 @@ export default async function ArticlePage({
             </p>
           ) : null}
 
-          {(pillarPaths.length > 0 || pillarVerticals.length > 0) && (
+          {(partOfCourses.length > 0 || pillarVerticals.length > 0) && (
             <section className="border-line mt-12 border-t pt-8">
               <h2 className="text-muted font-mono text-[11px] tracking-[0.1em] uppercase">
                 Part of
               </h2>
               <ul className="mt-3 flex flex-wrap gap-2">
-                {pillarPaths.map((path) => (
-                  <li key={path.slug}>
-                    <TagLink href={path.url}>Path: {path.title}</TagLink>
+                {partOfCourses.map((course) => (
+                  <li key={course.slug}>
+                    <TagLink href={`/courses/${course.slug}`}>
+                      Course: {course.title}
+                    </TagLink>
                   </li>
                 ))}
                 {pillarVerticals.map((vertical) => (

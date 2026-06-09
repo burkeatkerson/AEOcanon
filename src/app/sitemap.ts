@@ -3,7 +3,7 @@ import { absoluteUrl } from "@/lib/site";
 import {
   getAllArticles,
   getAllAuthors,
-  getAllPaths,
+  getAllCourses,
   getAllVerticals,
   getAllPlaybooks,
   getUsedTopics,
@@ -54,12 +54,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const paths: MetadataRoute.Sitemap = getAllPaths().map((path) => ({
-    url: absoluteUrl(path.url),
-    lastModified: path.updated ?? path.published,
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
+  const courses: MetadataRoute.Sitemap = getAllCourses().flatMap((course) => [
+    {
+      url: absoluteUrl(`/courses/${course.slug}`),
+      lastModified: course.updated,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    ...course.lessons.map((lesson) => ({
+      url: absoluteUrl(`/courses/${course.slug}/${lesson.slug}`),
+      lastModified: course.updated,
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    })),
+  ]);
 
   const verticals: MetadataRoute.Sitemap = getAllVerticals().map(
     (vertical) => ({
@@ -92,7 +100,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticRoutes,
     ...articles,
-    ...paths,
+    ...courses,
     ...verticals,
     ...authors,
     ...topics,

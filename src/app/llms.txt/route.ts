@@ -1,7 +1,7 @@
 import { absoluteUrl, siteConfig } from "@/lib/site";
 import {
   getAllArticles,
-  getAllPaths,
+  getAllCourses,
   getAllVerticals,
   getAllPlaybooks,
   getUsedTopics,
@@ -18,10 +18,10 @@ export const dynamic = "force-static";
  */
 export function GET() {
   const articles = getAllArticles();
-  const paths = getAllPaths();
   const verticals = getAllVerticals();
   const topics = getUsedTopics();
   const playbooks = getAllPlaybooks();
+  const courses = getAllCourses();
 
   const lines: string[] = [];
   lines.push(`# ${siteConfig.name}`);
@@ -51,10 +51,12 @@ export function GET() {
   }
   lines.push("");
 
-  lines.push("## Courses (learning paths)");
+  lines.push("## Courses");
   lines.push("");
-  for (const path of paths) {
-    lines.push(`- [${path.title}](${absoluteUrl(path.url)}): ${path.summary}`);
+  for (const course of courses) {
+    lines.push(
+      `- [${course.title}](${absoluteUrl(`/courses/${course.slug}`)}): ${course.summary}`,
+    );
   }
   lines.push("");
 

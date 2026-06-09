@@ -126,14 +126,14 @@ export default async function TopicPage({
             {courses.map((course) => (
               <Link
                 key={course.slug}
-                href={course.url}
+                href={`/courses/${course.slug}`}
                 className="border-line hover:border-accent bg-paper text-ink flex flex-col gap-3 rounded-2xl border p-6 no-underline transition-transform hover:-translate-y-[2px]"
               >
                 <div className="flex items-center justify-between">
                   <Badge className="capitalize">{course.level}</Badge>
                   <span className="text-muted font-mono text-[11px]">
-                    {course.items.length}{" "}
-                    {course.items.length === 1 ? "lesson" : "lessons"}
+                    {course.lessons.length}{" "}
+                    {course.lessons.length === 1 ? "lesson" : "lessons"}
                   </span>
                 </div>
                 <h3 className="text-[20px] font-medium">{course.title}</h3>
