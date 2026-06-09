@@ -1,0 +1,148 @@
+---
+title: "The sameAs Strategy: Connecting Your Entity"
+slug: sameas-strategy
+summary: The schema.org sameAs property links your entity to its authoritative reference pages — Wikipedia, Wikidata, official profiles — so engines can confidently merge them into one identity. It won't directly lift citations, but it's a core disambiguation signal. Here's the JSON-LD and how to use it.
+topics:
+  - structured-data
+  - technical-seo
+author: priya-nair
+published: 2026-02-27
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: What is the sameAs property in schema?
+    a: "sameAs is a schema.org property whose value is a list of URLs that all refer to the same entity — typically your Wikipedia and Wikidata pages and your official profiles (LinkedIn, Crunchbase, X, GitHub, etc.). It tells engines 'this Organization or Person is the same thing as those authoritative references,' which helps them disambiguate and merge scattered mentions into one entity."
+  - q: Does sameAs improve AI citations?
+    a: Not directly. Like schema generally, controlled testing found no measurable AI-citation lift from markup — sameAs is a disambiguation signal, not a citation hack. What it does is help engines confidently connect your site to your known entity and its reference pages, which strengthens recognition and trust. Use it for entity clarity, not as a ranking lever.
+  - q: Which URLs should I put in sameAs?
+    a: Authoritative pages that unambiguously refer to the same entity — your Wikipedia article and Wikidata item first, then official, verifiable profiles you control (LinkedIn company/person page, Crunchbase, X, GitHub, YouTube, Facebook). Only include URLs that genuinely represent the entity; don't pad it with marketing links, which weakens the signal.
+  - q: Where do I put the sameAs markup?
+    a: In JSON-LD in the head or body of the relevant page — Organization markup on your homepage or about page, Person markup on author/profile pages. Keep one authoritative entity definition per entity, reference it consistently, and make sure the linked profiles point back where possible, so the connections are mutually corroborating.
+---
+
+**The schema.org `sameAs` property links your entity to its authoritative reference
+pages — Wikipedia, Wikidata, official profiles — so engines can confidently merge
+them into one identity.** It won't directly lift citations, but it's a core
+disambiguation signal that strengthens recognition. Here's the markup and how to
+use it well.
+
+<Callout variant="insight" title="What sameAs is for">
+  <p>
+    <code>sameAs</code> declares that your <strong>Organization</strong> or{" "}
+    <strong>Person</strong> is the <em>same entity</em> as a list of authoritative
+    URLs (Wikipedia, Wikidata, official profiles). Its job is{" "}
+    <strong>disambiguation</strong> — helping engines link scattered mentions to one
+    known thing — <strong>not</strong> a citation boost. Schema, including sameAs,{" "}
+    <a href="/learn/does-schema-help-ai-citations">shows no direct citation lift</a>;
+    use it for entity clarity.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "sameAs lists URLs that all refer to the same entity, merging them in engines' understanding.",
+    "It's a disambiguation signal, not a citation lever — schema shows no direct citation lift.",
+    "Best values: Wikipedia and Wikidata first, then official, verifiable profiles you control.",
+    "Put Organization sameAs on home/about; Person sameAs on author/profile pages.",
+    "Quality over quantity — only URLs that genuinely represent the entity.",
+  ]}
+/>
+
+## What does sameAs actually do?
+
+`sameAs` tells engines that the entity described on your page is the same thing as
+the entities at a list of reference URLs. When you point your Organization markup at
+your Wikipedia article, your Wikidata item, and your official profiles, you're
+giving engines an explicit, machine-readable bridge between your site and the
+authoritative records they already trust — exactly the [entity
+disambiguation](/learn/how-ai-recognizes-entities) they need to link mentions
+confidently. It resolves "is this the same Acme as the one in Wikidata?" with a yes.
+
+## Does sameAs help with AI citations?
+
+No — not directly, and it's important to be honest about that. Controlled testing
+found [schema markup produces no measurable AI-citation
+lift](/learn/does-schema-help-ai-citations), and `sameAs` is schema. Its value is
+*entity clarity*: it strengthens how reliably engines recognize and connect your
+entity, which is a precondition for the [authority](/pillars/authority) and
+[credibility](/pillars/credibility) that do drive citations. Treat sameAs as
+plumbing that helps engines understand who you are — not as a lever that raises your
+citation rate on its own.
+
+## What's the JSON-LD?
+
+Here's Organization markup with a `sameAs` array. Put it in a JSON-LD script on your
+homepage or about page, and replace the placeholders with your real entity details
+and authoritative URLs.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Acme Analytics",
+  "url": "https://www.acme.example",
+  "logo": "https://www.acme.example/logo.png",
+  "description": "Acme Analytics builds AI visibility tracking for marketing teams.",
+  "sameAs": [
+    "https://en.wikipedia.org/wiki/Acme_Analytics",
+    "https://www.wikidata.org/wiki/Q00000000",
+    "https://www.linkedin.com/company/acme-analytics",
+    "https://www.crunchbase.com/organization/acme-analytics",
+    "https://x.com/acmeanalytics",
+    "https://github.com/acme-analytics"
+  ]
+}
+```
+
+For a person (an author or executive), use `Person` with their own `sameAs`:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jordan Vega",
+  "jobTitle": "Principal AEO Strategist",
+  "worksFor": { "@type": "Organization", "name": "Acme Analytics" },
+  "url": "https://www.acme.example/authors/jordan-vega",
+  "sameAs": [
+    "https://www.wikidata.org/wiki/Q00000001",
+    "https://www.linkedin.com/in/jordan-vega",
+    "https://x.com/jordanvega"
+  ]
+}
+```
+
+## Which URLs belong in sameAs?
+
+Include only URLs that unambiguously refer to the same entity, in rough order of
+authority:
+
+<Steps
+  items={[
+    { title: "Knowledge bases first", body: "Your Wikipedia article and Wikidata item — the references engines weight most for entity identity." },
+    { title: "Official, verifiable profiles", body: "LinkedIn, Crunchbase, X, GitHub, YouTube, Facebook — accounts you control that clearly represent the entity." },
+    { title: "Skip the padding", body: "Don't add marketing pages, partner links, or anything that doesn't represent the entity itself — noise weakens the signal." },
+    { title: "Make links mutual where possible", body: "Ensure the linked profiles point back to your site, so the connections corroborate each other." },
+  ]}
+/>
+
+<Callout variant="warning" title="Common sameAs mistakes">
+  <p>
+    <strong>Padding with marketing URLs:</strong> sameAs is for entity references,
+    not promotion. <strong>Linking the wrong entity:</strong> a personal profile in
+    an Organization's sameAs (or vice versa) confuses rather than clarifies.{" "}
+    <strong>Markup that contradicts the page:</strong> keep the JSON-LD in sync with
+    visible facts. <strong>Expecting a citation bump:</strong> it's a disambiguation
+    signal — pair it with real authority to see results.
+  </p>
+</Callout>
+
+## Where this fits in the Canon
+
+sameAs is one declarative tool in [building your entity](/learn/build-your-entity) —
+the disambiguation plumbing under [entity AEO](/learn/what-is-entity-aeo). It serves
+[authority](/pillars/authority) and [credibility](/pillars/credibility) indirectly,
+by making the entity those pillars describe unmistakable to engines. Pair it with
+[Wikidata](/learn/how-to-get-into-wikidata) and a [Knowledge
+Panel](/learn/google-knowledge-panel), and see [how to implement structured
+data](/learn/structured-data-for-aeo) for the wider markup picture.
