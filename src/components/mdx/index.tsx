@@ -12,6 +12,7 @@ import { Callout } from "./callout";
 import { Figure } from "./figure";
 import { FAQBlock } from "./faq-block";
 import { ComparisonTable } from "./comparison-table";
+import { DecisionBlock } from "./decision-block";
 import { BeforeAfter } from "./before-after";
 import { PassageScorer } from "./passage-scorer";
 import { MdxLink } from "./mdx-link";
@@ -45,6 +46,7 @@ export const mdxComponents: MDXComponents = {
   Figure,
   FAQBlock,
   ComparisonTable,
+  DecisionBlock,
   BeforeAfter,
   PassageScorer,
   KeyTakeaways,

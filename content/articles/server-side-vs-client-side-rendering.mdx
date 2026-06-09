@@ -1,0 +1,127 @@
+---
+title: "Server-Side vs Client-Side Rendering for AI Crawlers"
+slug: server-side-vs-client-side-rendering
+summary: For AI crawlers, server-side rendering wins decisively. Vercel and MERJ analyzed 500M+ GPTBot requests and found zero JavaScript execution — so client-rendered content is invisible to most AI engines. If the answer isn't in the server HTML, you can't be cited. Here's how to decide.
+topics:
+  - technical-seo
+author: jordan-vega
+published: 2026-01-31
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: Do AI crawlers execute JavaScript?
+    a: Mostly no. Vercel and MERJ, analyzing over 500 million GPTBot requests, found zero evidence of JavaScript execution — the crawler fetches the raw HTML and nothing more. Google's Gemini is the exception, because it can use Google's rendering infrastructure. For ChatGPT, Perplexity, and most others, assume your content must exist in the server-rendered HTML.
+  - q: Is server-side or client-side rendering better for AEO?
+    a: Server-side rendering (or static generation) is decisively better. Because most AI crawlers don't run JavaScript, content that only appears after client-side rendering is invisible to them — and an engine can't cite what it can't read. SSR and SSG put the full answer in the initial HTML response, which is exactly what crawlers retrieve.
+  - q: Can I still use a client-side framework like React?
+    a: Yes, as long as the content is rendered on the server. Frameworks like Next.js, Nuxt, and Remix support server-side rendering and static generation, so you can build with React or Vue and still ship server-rendered HTML. The framework isn't the problem; shipping an empty shell that fills in via client-side JavaScript is.
+  - q: How do I check if my content is visible to AI crawlers?
+    a: Fetch your page the way a crawler does — disable JavaScript in your browser, or view the raw HTML response (curl or "view source," not the rendered DOM in dev tools). If your main content and answers are present, crawlers can read you. If you see an empty shell or a loading spinner, your content is client-rendered and invisible to most AI engines.
+---
+
+**For AI crawlers, server-side rendering wins decisively: most don't run
+JavaScript, so client-rendered content is invisible to them.** [Vercel and MERJ
+analyzed over 500 million GPTBot requests and found zero JavaScript
+execution](https://vercel.com/blog/the-rise-of-the-ai-crawler) — the crawler reads
+the raw HTML and nothing more. If your answer only appears after client-side
+rendering, you can't be cited.
+
+<Callout variant="key" title="Verdict">
+  <p>
+    <strong>Server-side rendering (or static generation) wins.</strong> Most AI
+    crawlers execute <strong>no JavaScript</strong> (Vercel/MERJ, 500M+ GPTBot
+    requests), so client-rendered content simply isn&apos;t seen. Use SSR/SSG so the
+    full answer is in the initial HTML. You can still build with React — just render
+    it on the server.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Vercel/MERJ: 500M+ GPTBot requests showed zero JavaScript execution.",
+    "Client-rendered content is invisible to most AI crawlers — they read raw HTML only.",
+    "Google's Gemini is the exception (it can use Google's rendering); assume others don't.",
+    "SSR and SSG put the full answer in the initial HTML response — what crawlers retrieve.",
+    "You can use React/Vue — just render on the server, not in an empty client shell.",
+  ]}
+/>
+
+## Do AI crawlers run JavaScript?
+
+Most AI crawlers do not run JavaScript. The clearest evidence comes from Vercel and
+MERJ, who analyzed more than 500 million GPTBot requests and found no evidence of
+JavaScript execution at all — the crawler fetches the raw HTML and stops there.
+Google's Gemini is the notable exception, since it can lean on Google's existing
+rendering infrastructure, but for ChatGPT, Perplexity, and the rest you should
+assume the crawler sees only what's in the server response. This is the binary gate
+of the [access](/pillars/access) pillar: if the crawler can't read it, nothing else
+about your content matters.
+
+## Why does rendering decide whether you get cited?
+
+Rendering decides citability because an answer engine can only cite text it
+retrieved, and it retrieves the HTML the server returns. With server-side rendering
+(SSR) or static site generation (SSG), the full content — your answer, headings, and
+evidence — is in that initial HTML response. With pure client-side rendering (CSR),
+the server returns a near-empty shell and the content is assembled in the browser by
+JavaScript the crawler never runs. To a non-rendering crawler, a CSR page looks
+blank. You can be the best answer on the web and still be invisible.
+
+<ComparisonTable
+  rowHeaders
+  caption="Server-side vs client-side rendering for AI crawlers"
+  columns={["Dimension", "Client-side (CSR)", "Server-side (SSR/SSG)"]}
+  rows={[
+    ["Content in initial HTML", "No — assembled in the browser", "Yes — fully present"],
+    ["Visible to non-JS crawlers", "No (most AI engines)", "Yes"],
+    ["What GPTBot sees", "An empty shell", "The full answer"],
+    ["Citability", "Effectively zero", "Eligible to be cited"],
+    ["Can use React/Vue?", "Yes", "Yes — rendered on the server"],
+    ["Also helps classic SEO", "Weaker", "Yes"],
+  ]}
+/>
+
+## Can you still use React or other JS frameworks?
+
+Yes — you can use React, Vue, or any modern framework, as long as the content is
+rendered on the server. Frameworks like Next.js, Nuxt, and Remix exist precisely to
+give you component-based development *and* server-rendered HTML through SSR or SSG.
+The problem was never JavaScript frameworks; it's shipping a single empty `<div>`
+that only fills with content after client-side hydration. Render on the server,
+hydrate for interactivity, and crawlers get the full page while users still get the
+app experience.
+
+## How should you decide?
+
+Default to server-side rendering or static generation for anything you want cited,
+and reserve pure client-side rendering for content that doesn't need to be found.
+
+<DecisionBlock
+  title="Which rendering strategy?"
+  options={[
+    { label: "SSR / SSG", when: [
+      "You want the content cited by AI engines or ranked in search.",
+      "The page holds answers, articles, products, or anything public-facing.",
+      "You're building with a framework that supports server rendering (Next.js, Nuxt, Remix).",
+    ] },
+    { label: "client-side rendering", when: [
+      "The content is behind a login or app shell that needn't be indexed.",
+      "It's a highly interactive dashboard, not a citable answer.",
+      "Crawler visibility genuinely doesn't matter for that view.",
+    ] },
+  ]}
+/>
+
+To verify, fetch your page as a crawler would — disable JavaScript or view the raw
+HTML source (not the rendered DOM). If your answer is there, you're visible; if you
+see a spinner or an empty shell, it isn't.
+
+## Where this fits in the Canon
+
+Server-side vs client-side rendering is the most technical expression of the
+[access](/pillars/access) pillar — the binary gate that determines whether an engine
+can read you at all. It pairs with [extractability](/pillars/extractability): once
+the content is in the HTML, structure decides how liftable it is.
+
+Related: [schema markup vs clean HTML for AI](/learn/schema-vs-clean-html) and the
+foundations in [what is AEO?](/learn/what-is-aeo)
