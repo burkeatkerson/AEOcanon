@@ -49,6 +49,16 @@ that corresponds to no real surface.
   ]}
 />
 
+<Heatmap
+  caption="Illustrative: one site, very different per engine — why a blended average misleads"
+  columns={["ChatGPT", "Perplexity", "AI Overviews", "Gemini"]}
+  rows={[
+    { label: "“best X for Y”", cells: [{ value: "Often", tone: "ok" }, { value: "Rarely", tone: "bad" }, { value: "Sometimes", tone: "warn" }, { value: "Rarely", tone: "bad" }] },
+    { label: "“X alternatives”", cells: [{ value: "Sometimes", tone: "warn" }, { value: "Often", tone: "ok" }, { value: "Rarely", tone: "bad" }, { value: "Sometimes", tone: "warn" }] },
+    { label: "“is X worth it”", cells: [{ value: "Rarely", tone: "bad" }, { value: "Often", tone: "ok" }, { value: "Sometimes", tone: "warn" }, { value: "Rarely", tone: "bad" }] },
+  ]}
+/>
+
 ## Why does a blended average mislead?
 
 A blended average misleads because it combines engines that barely agree on what to

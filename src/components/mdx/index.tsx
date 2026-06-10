@@ -44,6 +44,14 @@ import { PillarSelfAssessment } from "./pillar-self-assessment";
 import { CanonSpine } from "./canon-spine";
 import { PillarMark, PillarChip } from "./pillar-mark";
 import { LiftedPassage } from "./lifted-passage";
+import { SemanticSpace } from "./semantic-space";
+import { EntityGraph } from "./entity-graph";
+import { TokenStrip } from "./token-strip";
+import { ContextWindow } from "./context-window";
+import { Timeline } from "./timeline";
+import { ThreeLayers } from "./three-layers";
+import { SovBars, Heatmap, Gauge, Funnel, VersusSplit } from "./data-viz";
+import { EngineTabs } from "./engine-tabs";
 
 /**
  * Single registry of components available to every MDX article. Add a component
@@ -90,6 +98,18 @@ export const mdxComponents: MDXComponents = {
   PillarMark,
   PillarChip,
   LiftedPassage,
+  SemanticSpace,
+  EntityGraph,
+  TokenStrip,
+  ContextWindow,
+  Timeline,
+  ThreeLayers,
+  SovBars,
+  Heatmap,
+  Gauge,
+  Funnel,
+  VersusSplit,
+  EngineTabs,
 };
 
 // Evaluate Velite's compiled MDX (outputFormat: 'function-body') into a React

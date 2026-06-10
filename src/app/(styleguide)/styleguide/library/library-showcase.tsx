@@ -5,6 +5,14 @@ import { cn } from "@/lib/utils";
 import { CanonSpine } from "@/components/mdx/canon-spine";
 import { PillarMark } from "@/components/mdx/pillar-mark";
 import { LiftedPassage } from "@/components/mdx/lifted-passage";
+import { SemanticSpace } from "@/components/mdx/semantic-space";
+import { EntityGraph } from "@/components/mdx/entity-graph";
+import { TokenStrip } from "@/components/mdx/token-strip";
+import { ContextWindow } from "@/components/mdx/context-window";
+import { Timeline } from "@/components/mdx/timeline";
+import { ThreeLayers } from "@/components/mdx/three-layers";
+import { SovBars, Heatmap, Gauge, Funnel, VersusSplit } from "@/components/mdx/data-viz";
+import { EngineTabs } from "@/components/mdx/engine-tabs";
 
 const SPINE_PILLARS = [
   "Access", "Alignment", "Extractability", "Authority",
@@ -254,6 +262,7 @@ const JUMP = [
   ["s12", "12 · Annotation & reading"], ["s13", "13 · Comparison & tables"],
   ["s14", "14 · Embedded tools"], ["s15", "15 · Sidebars & nav"],
   ["s16", "16 · Engagement & CTAs"],
+  ["s17", "17 · Concept explainers & data-viz"],
 ];
 
 // deterministic 42–90 "score" from a string (mirrors the design's demo logic)
@@ -363,6 +372,7 @@ export function LibraryShowcase() {
         <EmbeddedTools />
         <Sidebars />
         <Engagement />
+        <ConceptViz />
 
         <p className="text-muted py-14 text-center font-mono text-[12px]">
           AEO Canon Visual Library · v2 · pull freely, stay cohesive · toggle
@@ -2540,6 +2550,98 @@ function Engagement() {
           </div>
           <Btn>See packages →</Btn>
         </div>
+      </Spec>
+    </Section>
+  );
+}
+
+// ---- 17. CONCEPT EXPLAINERS & NEW DATA-VIZ ---------------------------------
+
+function ConceptViz() {
+  return (
+    <Section
+      id="s17"
+      num="17"
+      title="Concept explainers & data-viz"
+      blurb="Interactive components that make abstract AEO ideas concrete, plus the editorial data-viz used across articles. All theme-aware and drop-in for MDX."
+    >
+      <Spec label="Embeddings — meaning as coordinates (interactive)">
+        <SemanticSpace />
+      </Spec>
+      <Spec label="Entity recognition — corroboration (interactive)">
+        <EntityGraph />
+      </Spec>
+      <Spec label="Tokenization — what the model reads (interactive)">
+        <TokenStrip />
+      </Spec>
+      <Spec label="The context window — a token budget (interactive)">
+        <ContextWindow />
+      </Spec>
+      <Spec label="The three layers of the Canon">
+        <ThreeLayers />
+      </Spec>
+      <Spec label="Timeline">
+        <Timeline
+          items={[
+            { label: "Training cutoff", body: "The model's knowledge freezes here." },
+            { label: "Release date", body: "Ships later — already behind its own cutoff." },
+            { label: "Now", body: "Only retrieval reaches past the cutoff.", highlight: true },
+          ]}
+          caption="A clean vertical timeline for sequences in time."
+        />
+      </Spec>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Spec label="Share-of-voice bars">
+          <SovBars
+            unit="%"
+            caption="Illustrative profile"
+            data={[
+              { label: "ChatGPT", value: 42, color: "var(--c5)" },
+              { label: "Perplexity", value: 31, color: "var(--c3)" },
+              { label: "AI Overviews", value: 18, color: "var(--c4)" },
+            ]}
+          />
+        </Spec>
+        <Spec label="Score gauge">
+          <Gauge value={64} label="AI visibility · 0–100" caption="A pin on a red→amber→green track." />
+        </Spec>
+      </div>
+      <Spec label="Funnel">
+        <Funnel
+          steps={[
+            { label: "100 searches", pct: 100 },
+            { label: "AI answer appears", pct: 74 },
+            { label: "Few click a link", pct: 40 },
+            { label: "Cited source captures them", pct: 24, highlight: true },
+          ]}
+          caption="Narrowing stages — the zero-click economics in one picture."
+        />
+      </Spec>
+      <Spec label="Heatmap">
+        <Heatmap
+          caption="Illustrative — one site across engines"
+          columns={["ChatGPT", "Perplexity", "AI Overviews"]}
+          rows={[
+            { label: "“best X for Y”", cells: [{ value: "Often", tone: "ok" }, { value: "Rarely", tone: "bad" }, { value: "Sometimes", tone: "warn" }] },
+            { label: "“X alternatives”", cells: [{ value: "Sometimes", tone: "warn" }, { value: "Often", tone: "ok" }, { value: "Rarely", tone: "bad" }] },
+          ]}
+        />
+      </Spec>
+      <Spec label="Versus split">
+        <VersusSplit
+          left={{ title: "Classic SEO", items: ["Optimises for rank", "Wins the click", "Keyword-led"] }}
+          right={{ title: "AEO", items: ["Optimises for citation", "Wins the recommendation", "Question-led"] }}
+        />
+      </Spec>
+      <Spec label="Engine tabs (interactive)">
+        <EngineTabs
+          label="How each engine cites"
+          tabs={[
+            { label: "ChatGPT", body: "Leans on its retrieval stack and community sources, with a volatile source mix." },
+            { label: "Perplexity", body: "Citation-forward — real-time retrieval, many numbered sources per answer." },
+            { label: "AI Overviews", body: "Built on Google's index; favours already-ranking content and cites fresher pages." },
+          ]}
+        />
       </Spec>
     </Section>
   );

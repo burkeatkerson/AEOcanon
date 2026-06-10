@@ -36,6 +36,16 @@ freshness exist.
   ]}
 />
 
+<Timeline
+  items={[
+    { label: "Training cutoff", body: "The model’s training data ends. Its built-in knowledge is frozen here — a photograph taken on this date." },
+    { label: "Release date", body: "The model ships later (training and evaluation take time), so even a brand-new model is already behind its own cutoff." },
+    { label: "After the cutoff", body: "New events, releases, prices, and facts are invisible to the model’s memory — it can be confidently out of date." },
+    { label: "Now — retrieval bridges the gap", body: "Only live retrieval (search / RAG) reaches past the cutoff. Crawlable, current content is how you get into those answers.", highlight: true },
+  ]}
+  caption="A base model is frozen at its cutoff; retrieval is the only bridge to anything newer."
+/>
+
 ## What does a knowledge cutoff mean?
 
 A knowledge cutoff means a model's internal knowledge ends at a specific date and

@@ -46,6 +46,15 @@ not as a single blended score.
   ]}
 />
 
+<EngineTabs
+  label="How each engine cites"
+  tabs={[
+    { label: "ChatGPT", body: "Composes answers from its retrieval stack and has leaned heavily on community sources like Reddit, with a volatile source mix that shifts over time." },
+    { label: "Perplexity", body: "Citation-forward by design — retrieves in real time and shows many numbered sources per answer, so being one of those numbered sources is the whole game." },
+    { label: "Google AI Overviews", body: "Built on Google’s search index: favours content that already ranks, refreshes fast (holding a given URL about 3.87 days on average), and cites notably fresher pages." },
+  ]}
+/>
+
 ## How much do the engines actually overlap?
 
 The engines overlap surprisingly little — only about 11% of cited sources are
