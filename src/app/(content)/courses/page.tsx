@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Kicker } from "@/components/ui/eyebrow";
-import { Badge } from "@/components/ui/tag";
+import { CourseCard } from "@/components/library/cards/course-card";
 import { getAllCourses } from "@/lib/courses";
 import { buildMetadata } from "@/lib/seo";
 
@@ -12,8 +11,6 @@ export const metadata: Metadata = buildMetadata({
     "Guided courses that turn the AEO library into an ordered curriculum — with objectives, knowledge checks, and a certificate. Start with the Foundation tier.",
   path: "/courses",
 });
-
-const LEVEL_COLORS = ["var(--c3)", "var(--c4)", "var(--c5)", "var(--c6)"];
 
 export default function CoursesIndexPage() {
   const courses = getAllCourses();
@@ -34,34 +31,9 @@ export default function CoursesIndexPage() {
       </header>
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2">
-        {courses.map((course, i) => {
-          const color = LEVEL_COLORS[i % LEVEL_COLORS.length];
-          return (
-            <Link
-              key={course.slug}
-              href={`/courses/${course.slug}`}
-              className="border-line hover:border-accent bg-paper text-ink flex flex-col gap-3 rounded-2xl border p-6 no-underline transition-transform hover:-translate-y-[2px]"
-              style={{ boxShadow: `inset 0 4px 0 ${color}` }}
-            >
-              <div className="flex items-center justify-between">
-                <Badge className="capitalize" style={{ color, borderColor: color }}>
-                  {course.level}
-                </Badge>
-                <span className="text-muted font-mono text-[11px]">
-                  {course.lessons.length} lessons
-                  {course.estimatedHours ? ` · ~${course.estimatedHours}h` : null}
-                </span>
-              </div>
-              <h2 className="text-[22px] font-medium">{course.title}</h2>
-              <p className="text-ink-2 text-[14px] leading-relaxed">
-                {course.summary}
-              </p>
-              <span className="text-muted mt-auto font-mono text-[11px]">
-                {course.tier} tier · ✦ {course.certificate}
-              </span>
-            </Link>
-          );
-        })}
+        {courses.map((course, i) => (
+          <CourseCard key={course.slug} course={course} index={i} />
+        ))}
       </div>
     </Container>
   );

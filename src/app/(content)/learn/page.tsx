@@ -3,9 +3,9 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { Kicker } from "@/components/ui/eyebrow";
-import { Badge } from "@/components/ui/tag";
 import { ArticleFilter } from "@/components/library/article-filter";
 import { ArticleCard } from "@/components/library/cards/article-card";
+import { CourseCard } from "@/components/library/cards/course-card";
 import { TopicGrid } from "@/components/library/topic-grid";
 import { TabGroup, type TabDef } from "@/components/library/tab-group";
 import { getAllArticles, getAllCourses, getUsedTopics } from "@/lib/content";
@@ -90,43 +90,9 @@ function CoursesPane() {
           </span>
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
-          {courses.map((course, i) => {
-            const count = course.lessons.length;
-            const color = LEVEL_COLORS[i % LEVEL_COLORS.length];
-            return (
-              <Link
-                key={course.slug}
-                href={`/courses/${course.slug}`}
-                className="border-line hover:border-accent bg-paper text-ink flex flex-col gap-3 rounded-2xl border p-6 no-underline transition-transform hover:-translate-y-[2px]"
-                style={{ boxShadow: `inset 0 4px 0 ${color}` }}
-              >
-                <div className="flex items-center justify-between">
-                  <Badge
-                    className="capitalize"
-                    style={{ color, borderColor: color }}
-                  >
-                    {course.level}
-                  </Badge>
-                  <span className="text-muted font-mono text-[11px]">
-                    Course {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <h3 className="text-[22px] font-medium">{course.title}</h3>
-                <p className="text-ink-2 text-[14px] leading-relaxed">
-                  {course.summary}
-                </p>
-                <div className="text-muted mt-auto flex gap-4 font-mono text-[11px]">
-                  <span>
-                    {count} {count === 1 ? "lesson" : "lessons"}
-                  </span>
-                  {course.estimatedHours ? (
-                    <span>~{course.estimatedHours} hrs</span>
-                  ) : null}
-                  <span style={{ color }}>✦ Earns a credential</span>
-                </div>
-              </Link>
-            );
-          })}
+          {courses.map((course, i) => (
+            <CourseCard key={course.slug} course={course} index={i} />
+          ))}
         </div>
       </section>
 
