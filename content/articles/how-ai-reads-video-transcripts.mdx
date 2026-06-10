@@ -1,0 +1,104 @@
+---
+title: "How AI Reads Video Transcripts"
+slug: how-ai-reads-video-transcripts
+summary: AI answer engines mostly don't watch video — they read its transcript and metadata as text, then retrieve and cite passages the same way they cite an article. So an accurate, well-structured transcript is what makes a video extractable. Captions, titles, and descriptions complete the text layer engines actually read.
+topics:
+  - ai-fundamentals
+  - answer-engines
+author: jordan-vega
+published: 2026-03-26
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: Do AI engines watch video or read the transcript?
+    a: For citations, they mostly read the transcript and metadata as text rather than watching the footage. A video's spoken words, captions, title, and description become text an engine retrieves and quotes the same way it quotes an article. Multimodal models that interpret frames directly are emerging, but the transcript is still the primary citable surface today — so transcript quality determines whether your video gets cited.
+  - q: Where does a video's transcript come from?
+    a: From captions or speech-to-text. Platforms like YouTube auto-generate captions, and tools can transcribe any audio, but auto-transcripts contain errors — wrong terms, missing punctuation, no speaker structure. Because the transcript is what the engine reads, those errors directly reduce how extractable and accurate your video looks. A corrected, well-formatted transcript is far more citable.
+  - q: Does transcript quality affect whether a video gets cited?
+    a: Yes, directly. The transcript is the text an engine extracts passages from, so an inaccurate or unstructured transcript gives it poor material to quote — buried answers, garbled terms, no clear statements. A clean transcript with the answer stated plainly, ideally with headings or timestamps, makes the citable passages obvious, just like answer-first writing does for an article.
+  - q: How do I make a video transcript more extractable?
+    a: Correct the auto-transcript for accuracy, add punctuation and structure, and make sure the key answers are stated plainly in the spoken content itself. Publish the transcript as readable text on a crawlable page (not only inside the player), add a short answer-first summary and key points, and use clear titles and descriptions. You're applying answer-first, extractable writing to the spoken word.
+---
+
+**AI answer engines mostly don't watch video — they read its transcript and metadata
+as text, then retrieve and cite passages the same way they cite an article.** So an
+accurate, well-structured transcript is what makes a video extractable; captions,
+titles, and descriptions complete the text layer engines actually read.
+
+<Callout variant="insight" title="What an engine actually 'sees'">
+  <p>
+    To an answer engine, a video is mostly its <strong>transcript</strong> plus its{" "}
+    <strong>title and description</strong> — text it retrieves and quotes like any
+    article. It generally does <strong>not</strong> watch the footage to answer.
+    Multimodal models that read frames directly are emerging, but today the{" "}
+    <strong>transcript is the citable surface</strong>, so its accuracy and structure
+    decide whether your video gets cited.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "For citations, engines read the transcript and metadata as text — they don't watch the footage.",
+    "A video is retrieved and quoted the same way an article is, from its text layer.",
+    "Auto-captions contain errors; a corrected, structured transcript is far more extractable.",
+    "State the key answers plainly in the spoken content, so the transcript has clear passages to lift.",
+    "Publish the transcript as readable text on a crawlable page, not only inside the player.",
+  ]}
+/>
+
+## How does an engine turn a video into citable text?
+
+An engine turns a video into citable text by treating its transcript and metadata as
+a document. The audio is converted to text (via captions or speech-to-text), and
+that text — plus the title and description — enters the same
+[retrieve-rerank-cite pipeline](/learn/how-ai-engines-choose-citations) as any
+article: the engine retrieves relevant passages, reranks them, and quotes the best
+one, attributing the video. The pixels of the footage usually play no part in
+answering. So a video's citability is decided by the quality of its text, exactly
+like a written page — which makes [extractability](/pillars/extractability) the
+governing pillar.
+
+## Why do auto-captions fall short?
+
+Auto-captions fall short because they're error-prone and unstructured, and the
+engine reads them literally. Auto-transcription mangles technical terms and proper
+nouns, drops punctuation, and produces an undifferentiated wall of text with no
+speakers or sections. Since that text *is* what the engine extracts from, the
+errors become your video's citable material: garbled terms read as garbled facts,
+and a buried answer in a punctuation-free block is hard to lift cleanly. A corrected
+transcript with real sentences, structure, and the answer stated plainly gives the
+engine something worth quoting.
+
+## What makes a transcript extractable?
+
+A transcript is extractable when it reads like answer-first writing: accurate,
+structured, and with the key answers stated plainly. Apply the same craft you'd use
+for an article:
+
+<Steps
+  items={[
+    { title: "Correct the text", body: "Fix misheard terms and proper nouns, add punctuation, and break it into real sentences and paragraphs." },
+    { title: "Add structure", body: "Section headings or timestamps with labels help an engine (and a reader) locate the answer to each question." },
+    { title: "Say the answer plainly on camera", body: "If the spoken content states the answer in a clear sentence, the transcript has a clean passage to quote — answer-first applies to speech too." },
+    { title: "Publish it as crawlable text", body: "Put the transcript on a real page in your HTML, with an answer-first summary and key points — not only inside the video player." },
+  ]}
+/>
+
+## Where does multimodal understanding fit?
+
+Multimodal models — which can interpret video frames and audio directly — are
+emerging and will read more than the transcript over time. But for citation today,
+the transcript remains the primary surface, and designing for it is the safe,
+effective choice: a clean transcript helps every engine, multimodal or not. The
+forward look is in [the multimodal future of
+citation](/learn/multimodal-future-of-citation), and the underlying idea of mapping
+content into a shared space is [embeddings](/learn/what-are-embeddings).
+
+## Where this fits in the Canon
+
+How AI reads transcripts is [extractability](/pillars/extractability) applied to the
+spoken word — the answer has to exist as clean, liftable text. It's the mechanism
+under [AEO for video](/learn/aeo-for-video) and [podcast
+AEO](/learn/podcast-aeo), and it's why publishing video also benefits from YouTube's
+authority signal — see the [YouTube AEO
+playbook](/authority/youtube-aeo-playbook).
