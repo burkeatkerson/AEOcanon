@@ -1,0 +1,37 @@
+---
+term: "RAG (Retrieval-Augmented Generation)"
+slug: rag
+definition: RAG is the technique behind most AI answer engines, where the model first retrieves relevant documents from the live web or an index and then generates an answer grounded in what it found.
+aka:
+  - Retrieval-Augmented Generation
+related:
+  - grounding
+  - embeddings
+  - vector-search
+  - chunking
+pillars:
+  - extractability
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**RAG is how an AI answer engine looks something up before it answers.** Instead
+of relying only on what a language model memorized during training, a
+retrieval-augmented system first fetches relevant passages — from the live web, a
+search index, or a private knowledge base — and feeds them to the model as context
+so the generated answer is grounded in real, current sources.
+
+This two-step shape (retrieve, then generate) is why AEO works at all. The
+retrieval step decides which pages are even eligible to be quoted, and it operates
+on passages, not whole pages — so being [extractable](/pillars/extractability)
+(clean, self-contained, answer-first paragraphs) is what gets you pulled into the
+context window. If a crawler can't [access](/pillars/access) your content as text,
+you're invisible to the retrieval step no matter how good your writing is.
+
+**Example.** When you ask Perplexity a question, it runs a search, pulls the top
+matching passages from several sites, and writes an answer that cites them
+inline. Your paragraph competes to be one of those retrieved passages — that
+competition is the whole game.

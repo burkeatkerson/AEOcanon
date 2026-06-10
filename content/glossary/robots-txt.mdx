@@ -1,0 +1,34 @@
+---
+term: "robots.txt"
+slug: robots-txt
+definition: robots.txt is a plain text file at the root of your domain that tells crawlers which user-agents may access which parts of your site, and is how you allow or block AI crawlers.
+aka:
+  - robots file
+related:
+  - gptbot
+  - claudebot
+  - llms-txt
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**robots.txt is the doorman for crawlers.** It's a simple text file at
+`example.com/robots.txt` that lists rules per user-agent — which bot can or can't
+fetch which paths. It's how you control AI crawlers like [GPTBot](/glossary/gptbot),
+[ClaudeBot](/glossary/claudebot), and [PerplexityBot](/glossary/perplexitybot),
+allowing the ones that cite you and blocking any you don't want.
+
+It's central to the [access](/pillars/access) pillar, and it's where the single most
+common AEO mistake happens: a blanket `Disallow: /` or an overly broad default that
+silently blocks the very crawlers you want, making you invisible to AI answers
+without any error or warning. Two caveats matter — robots.txt is a public, voluntary
+standard that reputable crawlers honor but that provides no real security, and it
+must live at the domain root to be read at all.
+
+**Example.** To welcome AI citation crawlers, you'd include blocks like
+`User-agent: PerplexityBot` / `Allow: /`. To audit it, fetch your own
+`/robots.txt` and confirm none of the bots you care about are disallowed.

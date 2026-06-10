@@ -201,9 +201,51 @@ const pillars = defineCollection({
     })),
 });
 
+const glossary = defineCollection({
+  name: "GlossaryTerm",
+  pattern: "glossary/**/*.mdx",
+  schema: s
+    .object({
+      term: s.string().max(120),
+      slug: s.slug("glossary"),
+      // The one-sentence, answer-first definition — the quotable unit. Doubles
+      // as the meta description and the DefinedTerm.description in schema.
+      definition: s.string().min(20).max(320),
+      body: s.mdx(),
+      // Alternate names / synonyms, used by the index search filter.
+      aka: s.array(s.string()).default([]),
+      // Related glossary slugs (2–4). Not hard-validated here so a term can link
+      // ahead to entries added in a later batch; the page resolves and filters
+      // missing ones at render time.
+      related: s.array(s.string()).default([]),
+      // Relevant pillar slugs (lowercased pillar titles) for cross-linking.
+      pillars: s.array(s.string()).default([]),
+      author: s.string(), // author slug; existence enforced in prepare()
+      published: s.isodate(),
+      updated: s.isodate(),
+      schemaType: s.literal("Article").default("Article"),
+      faqs: s.array(s.object({ q: s.string(), a: s.string() })).optional(),
+      metadata: s.metadata(),
+      toc: s.toc(),
+    })
+    .transform((data) => ({
+      ...data,
+      url: `/glossary/${data.slug}`,
+      canonicalUrl: `${SITE_URL}/glossary/${data.slug}`,
+    })),
+});
+
 export default defineConfig({
   root: "content",
-  collections: { articles, authors, verticals, playbooks, tools, pillars },
+  collections: {
+    articles,
+    authors,
+    verticals,
+    playbooks,
+    tools,
+    pillars,
+    glossary,
+  },
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins,
@@ -211,7 +253,7 @@ export default defineConfig({
   // Cross-collection referential integrity. Throwing here aborts `velite build`,
   // which (via the `build` npm script) aborts `next build` — bad references fail
   // the build instead of 404-ing in production.
-  prepare: ({ articles, authors, playbooks, tools, pillars }) => {
+  prepare: ({ articles, authors, playbooks, tools, pillars, glossary }) => {
     const authorSlugs = new Set(authors.map((a) => a.slug));
     const errors: string[] = [];
 
@@ -243,6 +285,14 @@ export default defineConfig({
       if (!authorSlugs.has(pillar.author)) {
         errors.push(
           `Pillar "${pillar.slug}" references unknown author "${pillar.author}".`,
+        );
+      }
+    }
+
+    for (const term of glossary) {
+      if (!authorSlugs.has(term.author)) {
+        errors.push(
+          `Glossary term "${term.slug}" references unknown author "${term.author}".`,
         );
       }
     }

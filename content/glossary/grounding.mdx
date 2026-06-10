@@ -1,0 +1,33 @@
+---
+term: "Grounding"
+slug: grounding
+definition: Grounding is the practice of tying an AI model's answer to specific retrieved sources, so the response reflects real documents rather than the model's unverified internal memory.
+related:
+  - rag
+  - citation
+  - corroboration
+pillars:
+  - credibility
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Grounding is what keeps an AI answer tethered to real sources instead of
+invention.** A grounded response is built from documents the system actually
+retrieved, so its claims can be traced back to and cited from those sources;
+an ungrounded response is the model guessing from memory, which is where
+hallucinations come from.
+
+For AEO, grounding is the mechanism that turns your content into a citation. When
+an engine grounds an answer in your page, it both uses your words and names you as
+the source. To be reliably grounded, your claims need to be clearly stated,
+self-contained, and backed by evidence — the [credibility](/pillars/credibility)
+and [extractability](/pillars/extractability) work — so the engine treats your
+passage as the safe thing to quote and attribute.
+
+**Example.** Ask Google AI Overviews a factual question and it shows a short answer
+with source links beneath it. Those links are the grounding — the pages the answer
+was built from. Being one of them is the goal of every AEO tactic.

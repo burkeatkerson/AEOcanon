@@ -5,6 +5,7 @@ import {
   getAllVerticals,
   getAllPlaybooks,
   getAllPillars,
+  getAllGlossary,
   getUsedTopics,
 } from "@/lib/content";
 import { topicLabel, topicDescription } from "@/lib/taxonomy";
@@ -24,6 +25,7 @@ export function GET() {
   const playbooks = getAllPlaybooks();
   const courses = getAllCourses();
   const pillars = getAllPillars();
+  const glossary = getAllGlossary();
 
   const lines: string[] = [];
   lines.push(`# ${siteConfig.name}`);
@@ -88,6 +90,18 @@ export function GET() {
   for (const vertical of verticals) {
     lines.push(
       `- [${vertical.title}](${absoluteUrl(vertical.url)}): ${vertical.summary}`,
+    );
+  }
+  lines.push("");
+
+  lines.push("## Glossary (AEO encyclopedia)");
+  lines.push("");
+  lines.push(
+    `- [The AEO Glossary](${absoluteUrl("/glossary")}): A searchable, answer-first encyclopedia of answer-engine optimization terms.`,
+  );
+  for (const term of glossary) {
+    lines.push(
+      `- [${term.term}](${absoluteUrl(term.url)}): ${term.definition}`,
     );
   }
   lines.push("");

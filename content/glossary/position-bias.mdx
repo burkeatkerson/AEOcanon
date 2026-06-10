@@ -1,0 +1,33 @@
+---
+term: "Position Bias"
+slug: position-bias
+definition: Position bias is the tendency of retrieval and language models to weight content near the start of a page or passage more heavily, making where you place an answer matter as much as the answer itself.
+related:
+  - inverted-pyramid
+  - passage-retrieval
+  - reranking
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Position bias means earlier content gets more weight.** Both retrieval systems
+and language models disproportionately attend to material near the beginning — of a
+page, a section, or a passage — so an answer buried at the bottom is less likely to
+be retrieved, read, and cited than the same answer placed up top. Placement is a
+ranking factor, not just a stylistic choice.
+
+This is the mechanical case for answer-first writing, the heart of the
+[extractability](/pillars/extractability) pillar. Leading each section with its
+direct answer puts your most quotable sentence where attention concentrates;
+making a reader (or model) wade through preamble first squanders that prime
+position. It's also why the [inverted pyramid](/glossary/inverted-pyramid) structure
+works so well for AI.
+
+**Example.** Two pages contain the identical answer to "how long does paint take to
+dry," but one states it in the first sentence and the other after four paragraphs of
+backstory. Position bias makes the first far more likely to be the one an engine
+lifts.

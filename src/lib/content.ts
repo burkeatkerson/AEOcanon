@@ -11,16 +11,27 @@ import {
   playbooks as rawPlaybooks,
   tools as rawTools,
   pillars as rawPillars,
+  glossary as rawGlossary,
   type Article,
   type Author,
   type Vertical,
   type Playbook,
   type ToolDoc,
   type PillarDoc,
+  type GlossaryTerm,
 } from "#velite";
 import { getAllCourses, getCourse, type Course } from "@/lib/courses";
 
-export type { Article, Author, Vertical, Playbook, ToolDoc, PillarDoc, Course };
+export type {
+  Article,
+  Author,
+  Vertical,
+  Playbook,
+  ToolDoc,
+  PillarDoc,
+  GlossaryTerm,
+  Course,
+};
 export { getAllCourses, getCourse };
 
 function byPublishedDesc(a: Article, b: Article): number {
@@ -177,4 +188,27 @@ export function getAllPillars(): PillarDoc[] {
 
 export function getPillar(slug: string): PillarDoc | undefined {
   return rawPillars.find((p) => p.slug === slug);
+}
+
+// --- Glossary (the AEO encyclopedia) ----------------------------------------
+
+/** All glossary terms, sorted alphabetically by term. */
+export function getAllGlossary(): GlossaryTerm[] {
+  return [...rawGlossary].sort((a, b) =>
+    a.term.localeCompare(b.term, "en", { sensitivity: "base" }),
+  );
+}
+
+export function getGlossaryTerm(slug: string): GlossaryTerm | undefined {
+  return rawGlossary.find((t) => t.slug === slug);
+}
+
+/**
+ * Resolve a term's `related` slugs to full terms, dropping any that don't exist
+ * yet — so an entry can safely link ahead to terms added in a later batch.
+ */
+export function getRelatedGlossary(term: GlossaryTerm): GlossaryTerm[] {
+  return term.related
+    .map((slug) => getGlossaryTerm(slug))
+    .filter((t): t is GlossaryTerm => Boolean(t));
 }

@@ -1,0 +1,32 @@
+---
+term: "PerplexityBot"
+slug: perplexitybot
+definition: PerplexityBot is Perplexity's web crawler that indexes pages so they can be retrieved and cited in Perplexity's answers, identified by the PerplexityBot user-agent.
+related:
+  - gptbot
+  - claudebot
+  - robots-txt
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**PerplexityBot is the crawler that lets Perplexity find and cite your pages.**
+Unlike pure training crawlers, its job is indexing for retrieval — it gathers
+content so Perplexity's answer engine can surface and link your page as a source.
+It identifies itself with the `PerplexityBot` user-agent and checks
+[robots.txt](/glossary/robots-txt).
+
+Because PerplexityBot feeds a citation-driven engine, allowing it is squarely an
+AEO move: block it and you remove yourself from Perplexity's pool of citable
+sources. As with all AI crawlers, it needs your content available as crawlable,
+server-rendered HTML — the [access](/pillars/access) pillar — since browser-only
+content won't be seen. This is the difference between citation crawlers, which you
+generally want to allow, and training crawlers, where allowing is optional.
+
+**Example.** If your robots.txt accidentally blocks PerplexityBot, your pages
+simply stop appearing as sources in Perplexity answers, no matter how good they
+are — a silent, self-inflicted loss of visibility.

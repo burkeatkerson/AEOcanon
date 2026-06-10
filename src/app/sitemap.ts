@@ -7,6 +7,7 @@ import {
   getAllVerticals,
   getAllPlaybooks,
   getAllPillars,
+  getAllGlossary,
   getUsedTopics,
 } from "@/lib/content";
 
@@ -35,6 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     { url: absoluteUrl("/tools"), changeFrequency: "monthly", priority: 0.7 },
+    { url: absoluteUrl("/glossary"), changeFrequency: "weekly", priority: 0.7 },
     { url: absoluteUrl("/pricing"), changeFrequency: "monthly", priority: 0.8 },
     {
       url: absoluteUrl("/whitepaper"),
@@ -106,6 +108,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const glossary: MetadataRoute.Sitemap = getAllGlossary().map((t) => ({
+    url: absoluteUrl(t.url),
+    lastModified: t.updated,
+    changeFrequency: "monthly",
+    priority: 0.5,
+  }));
+
   return [
     ...staticRoutes,
     ...articles,
@@ -115,5 +124,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...topics,
     ...playbooks,
     ...pillars,
+    ...glossary,
   ];
 }

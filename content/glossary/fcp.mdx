@@ -1,0 +1,35 @@
+---
+term: "First Contentful Paint (FCP)"
+slug: fcp
+definition: First Contentful Paint is a performance metric measuring how long after navigation the browser renders the first piece of page content, used as a proxy for how quickly a page becomes useful.
+aka:
+  - FCP
+related:
+  - ssr
+  - ssg
+  - gptbot
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**First Contentful Paint measures how fast something first appears on screen.** It
+clocks the moment from when a visitor navigates to your page to when the browser
+paints the first text or image — a core web-performance signal for how quickly your
+content becomes available, to people and to machines alike.
+
+Speed belongs to the [access](/pillars/access) pillar because slow pages are crawled
+less thoroughly and frustrate the path to your content. Fast first render correlates
+with stronger AI visibility — the Canon's Access pillar notes that pages painting
+content in well under half a second tend to earn substantially more citations — so
+performance isn't a vanity metric; it's part of being reliably reachable. The most
+effective lever is serving content as pre-rendered HTML rather than assembling it in
+the browser.
+
+**Example.** A static page that ships its text in the initial HTML can hit a fast
+FCP because the content is there immediately; a heavy single-page app that must
+download and run JavaScript before anything appears posts a slow FCP — and risks
+being under-read by crawlers that don't wait.

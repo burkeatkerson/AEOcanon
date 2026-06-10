@@ -1,0 +1,34 @@
+---
+term: "Embeddings"
+slug: embeddings
+definition: Embeddings are numerical representations of text that capture its meaning, letting AI systems find passages that are semantically related to a query even when they share no exact keywords.
+related:
+  - vector-search
+  - rag
+  - chunking
+  - reranking
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Embeddings turn text into coordinates that encode meaning.** Each passage is
+converted into a long list of numbers (a vector) positioned so that pieces of text
+with similar meaning sit close together — regardless of whether they use the same
+words. This is what lets an answer engine match a conversational question to a
+relevant passage on your site.
+
+Embeddings are why keyword stuffing is obsolete and why writing for *meaning*
+matters. Retrieval no longer looks for an exact phrase; it looks for the passage
+whose embedding is nearest to the question's embedding. So a paragraph that clearly
+and completely expresses one idea — the [extractability](/pillars/extractability)
+discipline — embeds cleanly and gets matched, while a vague or padded one lands in
+fuzzy, low-relevance space and gets skipped.
+
+**Example.** A page that says "how to lower your monthly energy bill" can be
+retrieved for the query "ways to spend less on electricity" because their
+embeddings are close in meaning, even with almost no shared words. That semantic
+match is embeddings at work.

@@ -1,0 +1,34 @@
+---
+term: "Server-Side Rendering (SSR)"
+slug: ssr
+definition: Server-side rendering is when a web server generates a page's full HTML for each request and sends it ready-to-read, so content is present immediately for both browsers and AI crawlers.
+aka:
+  - SSR
+related:
+  - ssg
+  - fcp
+  - robots-txt
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Server-side rendering means the page arrives as complete HTML.** The server does
+the work of assembling the page and returns finished markup on every request, so the
+content exists in the very first response — no browser-side JavaScript execution
+required to see it.
+
+This matters enormously for AEO because AI crawlers generally read raw HTML and do
+not run JavaScript. With SSR, your text is right there for them; with client-only
+rendering, the crawler may receive a near-empty shell and miss your content
+entirely. SSR (or its static cousin, [SSG](/glossary/ssg)) is therefore one of the
+most direct ways to satisfy the [access](/pillars/access) pillar — making sure the
+machine can actually read you, which is the non-negotiable price of being citable.
+
+**Example.** Request an SSR page and "view source" shows your full article text in
+the HTML. Do the same on a client-rendered app and you may see only a `<div
+id="root">` with the real content injected later by JavaScript the crawler never
+executes.

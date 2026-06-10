@@ -1,0 +1,34 @@
+---
+term: "Chunking"
+slug: chunking
+definition: Chunking is how a retrieval system splits your page into smaller passages before indexing it, so AI engines retrieve and cite chunks of a page rather than the whole document.
+related:
+  - passage-retrieval
+  - embeddings
+  - rag
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Chunking is the step where your page gets cut into bite-sized passages.** Before
+a retrieval system can search your content, it divides each page into chunks —
+often a few sentences to a paragraph each — and embeds them individually. The
+engine then retrieves and quotes the *chunk*, not the page, which is why AEO
+optimizes passages rather than documents.
+
+How your content gets chunked is partly out of your control, but your structure
+heavily influences it. Clear headings and self-contained paragraphs encourage clean
+chunk boundaries that align with complete thoughts; a wall of text gets split
+arbitrarily, sometimes mid-idea, producing a chunk that's incoherent on its own and
+unlikely to be retrieved. Writing each paragraph as a standalone answer — the
+[extractability](/pillars/extractability) pillar — is effectively writing your own
+chunks.
+
+**Example.** A 2,000-word guide might be chunked into 30 passages. If your key
+answer sits in one tidy, well-headed paragraph, it becomes one strong chunk an
+engine can lift whole; if it's spread across a rambling section, no single chunk
+captures it.

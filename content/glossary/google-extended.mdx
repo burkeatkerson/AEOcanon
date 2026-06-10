@@ -1,0 +1,33 @@
+---
+term: "Google-Extended"
+slug: google-extended
+definition: Google-Extended is a robots.txt control that lets you opt out of having your content used to train Google's Gemini and Vertex AI models, without affecting Google Search or AI Overviews.
+related:
+  - gptbot
+  - robots-txt
+  - answer-engine
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Google-Extended is a training opt-out, not a search setting.** It's a token you
+place in [robots.txt](/glossary/robots-txt) to tell Google not to use your content
+for training its generative models (Gemini, Vertex AI). Critically, it is not a
+separate crawler and has no effect on how Googlebot indexes you for Search — or on
+whether you appear in AI Overviews.
+
+This distinction trips people up constantly. Blocking Google-Extended does not
+remove you from AI Overviews, because those are served through Googlebot, and Google
+offers no dedicated opt-out from AI Overviews short of blocking Googlebot entirely —
+which would also delete you from Search. So Google-Extended is purely a
+content-rights lever about model training; it is not an AEO visibility control. Your
+actual AI Overview visibility is governed by ordinary crawlability — the
+[access](/pillars/access) pillar — and the quality of your answer.
+
+**Example.** A site adds `User-agent: Google-Extended` / `Disallow: /` to keep its
+content out of Gemini's training set, and its Google Search rankings and AI Overview
+appearances are completely unchanged — exactly as intended.

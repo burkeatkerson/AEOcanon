@@ -1,0 +1,32 @@
+---
+term: "ClaudeBot"
+slug: claudebot
+definition: ClaudeBot is Anthropic's web crawler that collects content used to train its Claude models, identified by the ClaudeBot user-agent and controllable via robots.txt.
+related:
+  - gptbot
+  - perplexitybot
+  - robots-txt
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**ClaudeBot is Anthropic's crawler for gathering training data.** It fetches public
+pages to help train the Claude family of models, identifies itself with the
+`ClaudeBot` user-agent, and respects [robots.txt](/glossary/robots-txt) directives.
+Anthropic uses separate user-agents for user-initiated live fetches, so allowing or
+blocking ClaudeBot governs training use specifically.
+
+As with other AI crawlers, ClaudeBot reads the HTML your server returns; content
+that only appears after JavaScript runs in a browser is effectively absent to it.
+Serving your content as crawlable, server-rendered text is the [access](/pillars/access)
+pillar at work. The decision to allow ClaudeBot is a content-rights choice rather
+than a direct AEO lever — it affects whether your material informs the model, not
+whether a specific answer cites you today.
+
+**Example.** A publisher that wants to keep its archives out of model training adds
+a `User-agent: ClaudeBot` / `Disallow: /` block to robots.txt, while a site
+pursuing maximum reach leaves it allowed alongside the other AI crawlers.

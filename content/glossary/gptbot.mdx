@@ -1,0 +1,33 @@
+---
+term: "GPTBot"
+slug: gptbot
+definition: GPTBot is OpenAI's web crawler that gathers content to train its models, identified by the GPTBot user-agent and controllable through your robots.txt file.
+related:
+  - claudebot
+  - perplexitybot
+  - google-extended
+  - robots-txt
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**GPTBot is OpenAI's crawler for collecting training data.** It fetches public web
+pages to help train OpenAI's models, announces itself with the `GPTBot`
+user-agent, and obeys [robots.txt](/glossary/robots-txt), so site owners can allow
+or block it. It is distinct from OAI-SearchBot, which powers ChatGPT's live search
+citations — blocking GPTBot restricts training use, not search visibility.
+
+For AEO, the key fact is that crawlers like GPTBot read raw HTML and do not execute
+JavaScript, so any content assembled in the browser is invisible to them. Being
+crawlable as server-rendered text is the [access](/pillars/access) pillar — the
+price of admission. Whether to *allow* GPTBot specifically is a separate rights
+decision: allowing it permits training use but doesn't directly earn citations, and
+blocking it won't remove you from ChatGPT's search results.
+
+**Example.** Adding `User-agent: GPTBot` followed by `Disallow: /` to your
+robots.txt tells OpenAI not to use your site for training — while leaving the
+search and live-fetch crawlers free to cite you, if you allow those separately.

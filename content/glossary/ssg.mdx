@@ -1,0 +1,35 @@
+---
+term: "Static Site Generation (SSG)"
+slug: ssg
+definition: Static site generation is when pages are pre-rendered to finished HTML files at build time, so every visitor and crawler gets fully-formed, fast-loading content with no per-request work.
+aka:
+  - SSG
+  - static generation
+related:
+  - ssr
+  - fcp
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Static site generation bakes your pages into ready HTML ahead of time.** Instead
+of building the page on each request, the site is rendered once at build time into
+static files that are served as-is. The result is the same crawler-friendly outcome
+as [SSR](/glossary/ssr) — complete HTML in the first response — with even faster
+delivery, since there's no server computation per visit.
+
+For AEO, SSG is close to ideal. The content is fully present for AI crawlers that
+don't run JavaScript, and pages load fast, helping both [First Contentful
+Paint](/glossary/fcp) and reliable crawling — the [access](/pillars/access) pillar.
+The trade-off is freshness: because pages are built in advance, frequently changing
+content needs a rebuild or a hybrid approach to stay current, which is worth
+planning around.
+
+**Example.** A documentation site or blog generated with a static framework ships
+plain HTML files to a CDN. Crawlers read the text instantly, visitors get sub-second
+loads, and there's no app server to slow down or fail — a strong default for
+content meant to be cited.

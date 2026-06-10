@@ -1,0 +1,35 @@
+---
+term: "Vector Search"
+slug: vector-search
+definition: Vector search is a retrieval method that finds passages by meaning rather than keywords, comparing the numeric embedding of a query against the embeddings of indexed content to surface the closest matches.
+aka:
+  - semantic search
+related:
+  - embeddings
+  - reranking
+  - rag
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Vector search finds content by meaning, not exact words.** It represents both the
+question and every indexed passage as [embeddings](/glossary/embeddings) — vectors
+positioned by meaning — and retrieves the passages whose vectors sit closest to the
+query's. This semantic matching is the retrieval backbone of modern answer engines.
+
+For AEO, vector search is why you optimize for clear ideas rather than keyword
+density. A passage that expresses one concept cleanly and completely lands in a
+precise spot in vector space and gets matched to the questions it truly answers; a
+vague, padded, or multi-topic passage embeds into a muddy region and matches nothing
+well. Writing one self-contained idea per passage — the
+[extractability](/pillars/extractability) discipline — is, in effect, optimizing for
+vector search.
+
+**Example.** A page titled "trimming an overgrown hedge" can be retrieved by vector
+search for the query "how do I cut back a bush that got too big," because the
+meanings are near each other in vector space even though the wording differs
+completely.

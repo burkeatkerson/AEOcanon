@@ -3,6 +3,8 @@ import type {
   BreadcrumbList,
   Course,
   Dataset,
+  DefinedTerm,
+  DefinedTermSet,
   FAQPage,
   Graph,
   HowTo,
@@ -346,6 +348,51 @@ export function researchArticleNode(opts: {
       ? { author: { "@id": absoluteUrl(`${opts.authorUrl}#person`) } }
       : {}),
     ...(opts.keywords ? { keywords: opts.keywords.join(", ") } : {}),
+  };
+}
+
+const GLOSSARY_SET_ID = absoluteUrl("/glossary#termset");
+
+/**
+ * DefinedTerm node for a single glossary entry. Links back to the glossary's
+ * DefinedTermSet so the encyclopedia reads as one structured vocabulary.
+ */
+export function definedTermNode(opts: {
+  term: string;
+  definition: string;
+  path: string;
+}): DefinedTerm {
+  return {
+    "@type": "DefinedTerm",
+    "@id": absoluteUrl(`${opts.path}#term`),
+    name: opts.term,
+    description: opts.definition,
+    url: absoluteUrl(opts.path),
+    inDefinedTermSet: GLOSSARY_SET_ID,
+  };
+}
+
+/** DefinedTermSet node for the glossary index — the vocabulary as a whole. */
+export function definedTermSetNode(opts: {
+  name: string;
+  description: string;
+  path: string;
+  terms: { term: string; path: string }[];
+}): DefinedTermSet {
+  return {
+    "@type": "DefinedTermSet",
+    "@id": GLOSSARY_SET_ID,
+    name: opts.name,
+    description: opts.description,
+    url: absoluteUrl(opts.path),
+    isPartOf: { "@id": SITE_ID },
+    hasDefinedTerm: opts.terms.map((t) => ({
+      "@type": "DefinedTerm",
+      "@id": absoluteUrl(`${t.path}#term`),
+      name: t.term,
+      url: absoluteUrl(t.path),
+      inDefinedTermSet: GLOSSARY_SET_ID,
+    })),
   };
 }
 

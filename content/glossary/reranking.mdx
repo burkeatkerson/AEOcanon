@@ -1,0 +1,34 @@
+---
+term: "Reranking"
+slug: reranking
+definition: Reranking is a second pass in retrieval where an initial set of candidate passages is reordered by a more precise relevance model, deciding which few actually make it into the AI's answer.
+related:
+  - vector-search
+  - passage-retrieval
+  - position-bias
+pillars:
+  - extractability
+  - authority
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Reranking is the cut from "retrieved" to "actually used."** A first, fast search
+pulls a broad set of candidate passages; a slower, sharper model then scores those
+candidates for true relevance and reorders them, and only the top few survive into
+the context the AI writes its answer from. Being retrieved isn't enough — you have to
+win the rerank.
+
+This is where the quality of your passage earns its keep. Reranking models reward
+passages that directly and completely answer the specific question, so a tight,
+self-contained, on-point paragraph — the [extractability](/pillars/extractability)
+pillar — outranks one that's merely topically related. Signals of trust and
+[authority](/pillars/authority) can also tilt which of several good candidates gets
+promoted when relevance is close.
+
+**Example.** A query might retrieve 50 candidate passages, but the reranker keeps
+only the best 5 for the model to read. If your paragraph is relevant but buried in
+hedging and tangents, it gets retrieved and then dropped at the rerank — present in
+the pool, absent from the answer.
