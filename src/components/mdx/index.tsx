@@ -36,6 +36,11 @@ import { RelatedQuestions } from "./related-questions";
 import { ToolComparison } from "./tool-comparison";
 import { ProsCons } from "./pros-cons";
 import { AuthorityAudit } from "@/components/authority/authority-audit";
+import { AeoAuditChecklist } from "./aeo-audit-checklist";
+import { PromptSetBuilder } from "./prompt-set-builder";
+import { RobotsTxtGenerator } from "./robots-txt-generator";
+import { ContentBriefBuilder } from "./content-brief-builder";
+import { PillarSelfAssessment } from "./pillar-self-assessment";
 
 /**
  * Single registry of components available to every MDX article. Add a component
@@ -73,6 +78,11 @@ export const mdxComponents: MDXComponents = {
   ToolComparison,
   ProsCons,
   AuthorityAudit,
+  AeoAuditChecklist,
+  PromptSetBuilder,
+  RobotsTxtGenerator,
+  ContentBriefBuilder,
+  PillarSelfAssessment,
 };
 
 // Evaluate Velite's compiled MDX (outputFormat: 'function-body') into a React

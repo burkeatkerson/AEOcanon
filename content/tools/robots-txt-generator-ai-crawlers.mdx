@@ -1,0 +1,57 @@
+---
+title: "robots.txt Generator for AI Crawlers"
+slug: robots-txt-generator-ai-crawlers
+summary: Toggle each AI crawler — GPTBot, OAI-SearchBot, PerplexityBot, ClaudeBot, Google-Extended, and more — to allow or block, add your sitemap, and copy a ready-to-use robots.txt. Each crawler is labelled by what it actually does, so you allow the bots that get you cited.
+type: guide
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: Should I allow AI crawlers in robots.txt?
+    a: To be cited in AI answers, yes — allow the crawlers that power citations, such as OAI-SearchBot (ChatGPT), PerplexityBot, and Bingbot (Copilot). If a crawler can't fetch your page, that engine can't quote it. Blocking training crawlers like GPTBot or ClaudeBot is a separate rights decision and won't improve or remove your citations; this generator labels each bot so you can choose deliberately.
+  - q: What's the difference between AI search crawlers and training crawlers?
+    a: Search crawlers (OAI-SearchBot, PerplexityBot, Bingbot) fetch pages so an engine can cite them in live answers — these are the ones that drive your AI visibility. Training crawlers (GPTBot, ClaudeBot, CCBot, Google-Extended) collect content to train models. Blocking training crawlers restricts how your content trains AI but does not remove you from that engine's search citations.
+  - q: Does blocking Google-Extended remove me from AI Overviews?
+    a: No. Google-Extended only controls whether your content is used to train Gemini and Vertex AI. It has no effect on Google Search or AI Overviews, which are served by Googlebot — and Google offers no separate opt-out from AI Overviews short of blocking Googlebot, which would remove you from Search entirely. Blocking Google-Extended is purely a training choice.
+  - q: Where do I put the robots.txt file?
+    a: At the root of your domain, reachable at example.com/robots.txt. It must be a plain text file served from the top level — a robots.txt in a subfolder is ignored. Remember robots.txt is a public, voluntary standard that reputable crawlers honor; it signals intent but is not access control or security.
+---
+
+**Toggle each AI crawler to allow or block, add your sitemap, and copy a
+ready-to-use robots.txt — generated in your browser.** AI engines can only cite
+pages their crawlers are allowed to fetch, so the goal for visibility is simple:
+allow the bots that get you cited, and decide about the rest on purpose.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Allow the <strong>citation crawlers</strong> (OAI-SearchBot, PerplexityBot,
+    Bingbot) so engines can quote you. Blocking <strong>training crawlers</strong>{" "}
+    (GPTBot, ClaudeBot, CCBot, Google-Extended) is a rights choice that{" "}
+    <strong>won&apos;t change your citations</strong>. Each bot below is labelled by
+    what it actually does.
+  </p>
+</Callout>
+
+<RobotsTxtGenerator />
+
+## Allow the right bots — and know what each one does
+
+The single most common mistake is silently blocking the crawlers you want, usually
+with a blanket `Disallow: /` or a restrictive default that catches AI user-agents.
+The fix is to be explicit. Allow the search and live-fetch bots that drive
+citations; only block training bots if you have a deliberate reason to. And
+remember the Google nuance: [blocking Google-Extended does not remove you from AI
+Overviews](/learn/show-up-in-google-ai-overviews), because those are served by
+Googlebot, which has no separate AI opt-out. This is the [Access
+pillar](/pillars/access) — the price of admission, with no partial credit.
+
+## Where to go next
+
+For the full, copy-paste reference block and the one mistake that silently blocks
+every AI crawler, read [how to allow AI crawlers in robots.txt](/learn/allow-ai-crawlers-robots-txt).
+Then confirm it actually worked with [how to check AI crawlers can read your
+site](/learn/check-ai-crawlers-can-read-site), and make sure your content isn't
+hidden behind JavaScript in [why JavaScript breaks AI
+citation](/learn/javascript-breaks-ai-citation). Access is pillar one of [The AEO
+Canon](/learn/aeo-canon).
