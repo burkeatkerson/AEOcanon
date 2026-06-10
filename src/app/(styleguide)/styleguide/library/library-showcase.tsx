@@ -2,6 +2,14 @@
 
 import { useState, useSyncExternalStore } from "react";
 import { cn } from "@/lib/utils";
+import { CanonSpine } from "@/components/mdx/canon-spine";
+import { PillarMark } from "@/components/mdx/pillar-mark";
+import { LiftedPassage } from "@/components/mdx/lifted-passage";
+
+const SPINE_PILLARS = [
+  "Access", "Alignment", "Extractability", "Authority",
+  "Credibility", "Originality", "Freshness", "Adaptability",
+];
 
 /**
  * The visual library — the full component kit behind AEO Canon's educational
@@ -1486,6 +1494,22 @@ function Metaphors() {
       title="Visual metaphors & symbols"
       blurb="The brand’s recurring imagery, rendered as reusable elements."
     >
+      <Spec label="The Canon motif · pillar icon language + the spine">
+        <div className="border-line bg-bg-2 mb-5 grid grid-cols-4 gap-2 rounded-2xl border p-4 sm:grid-cols-8">
+          {SPINE_PILLARS.map((p) => (
+            <div key={p} className="flex flex-col items-center gap-1.5">
+              <PillarMark pillar={p} size={26} />
+              <span className="text-muted font-mono text-[9px] tracking-[0.04em] uppercase">
+                {p.slice(0, 6)}
+              </span>
+            </div>
+          ))}
+        </div>
+        <CanonSpine active="extractability" />
+      </Spec>
+      <Spec label="The signature “lifted passage” diagram">
+        <LiftedPassage />
+      </Spec>
       <Spec label="The four pillars">
         <div className="grid grid-cols-2 gap-3.5 lg:grid-cols-4">
           {pillars.map(([sym, h, p, c]) => (

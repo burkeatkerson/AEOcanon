@@ -41,6 +41,9 @@ import { PromptSetBuilder } from "./prompt-set-builder";
 import { RobotsTxtGenerator } from "./robots-txt-generator";
 import { ContentBriefBuilder } from "./content-brief-builder";
 import { PillarSelfAssessment } from "./pillar-self-assessment";
+import { CanonSpine } from "./canon-spine";
+import { PillarMark, PillarChip } from "./pillar-mark";
+import { LiftedPassage } from "./lifted-passage";
 
 /**
  * Single registry of components available to every MDX article. Add a component
@@ -83,6 +86,10 @@ export const mdxComponents: MDXComponents = {
   RobotsTxtGenerator,
   ContentBriefBuilder,
   PillarSelfAssessment,
+  CanonSpine,
+  PillarMark,
+  PillarChip,
+  LiftedPassage,
 };
 
 // Evaluate Velite's compiled MDX (outputFormat: 'function-body') into a React
