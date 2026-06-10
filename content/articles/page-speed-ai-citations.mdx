@@ -47,7 +47,7 @@ skipped. Speed is part of the access gate, not a nice-to-have.
 ## Does speed really change citation rates?
 
 Yes — speed measurably changes citation rates. SE Ranking's analysis found that
-pages with a First Contentful Paint under 0.4 seconds earned roughly three times
+pages with a [First Contentful Paint](/glossary/fcp) under 0.4 seconds earned roughly three times
 more AI citations than slower pages. That's a large gap for a single technical
 factor, and it lines up with how crawling works: faster pages are simply fetched
 more reliably and more completely.
@@ -65,8 +65,8 @@ crawler can reach your content, not just how pleasant the page feels.
 ## How do you measure it?
 
 Measure server response time with curl — it needs no tools and reflects what a
-crawler experiences. This prints the timing breakdown, including time to first byte
-(TTFB) and total time:
+crawler experiences. This prints the timing breakdown, including [time to first byte
+(TTFB)](/glossary/ttfb) and total time:
 
 ```bash
 # Server timing as a crawler experiences it
@@ -83,7 +83,7 @@ Total:   0.240s
 ```
 
 A TTFB well under ~0.2s and a fast total is the goal. For lab metrics including FCP
-and Largest Contentful Paint, run Lighthouse:
+and [Largest Contentful Paint](/glossary/lcp), run Lighthouse:
 
 ```bash
 # Lighthouse performance audit (Node required)

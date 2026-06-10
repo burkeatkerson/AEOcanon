@@ -37,7 +37,7 @@ and whether it can cite your content at all.
 
 ## What is a base model?
 
-A base model is a trained LLM answering purely from the knowledge compressed into
+A base model is a trained [LLM](/glossary/large-language-model) answering purely from the knowledge compressed into
 its weights — nothing more. It has no connection to the live web, so it can't
 know anything past its [knowledge cutoff](/learn/what-is-a-knowledge-cutoff), and
 it can't point to a source because it isn't reading one; it's generating from
@@ -49,7 +49,7 @@ it's frozen and unattributable.
 
 A search-augmented model pairs the LLM with retrieval, so it fetches relevant,
 current sources at query time and grounds its answer in them. When you ask a
-time-sensitive or factual question, the system retrieves passages, reranks them,
+time-sensitive or factual question, the system retrieves passages, [reranks](/glossary/reranking) them,
 and feeds the best into the model, which composes an answer and cites what it used.
 This is [retrieval-augmented generation](/learn/what-is-rag) in action — the
 technique introduced in
@@ -85,7 +85,7 @@ model can — if you win retrieval.
 
 ## Is ChatGPT base or search-augmented?
 
-ChatGPT is both, depending on the mode. The underlying model is a base model;
+[ChatGPT](/glossary/chatgpt) is both, depending on the mode. The underlying model is a base model;
 ChatGPT becomes search-augmented when it invokes its browsing/search tool to pull
 live results. The same is true across the field — the model and the search layer
 are separable, and an answer's behavior depends on which is engaged. A practical

@@ -56,7 +56,7 @@ server.
 
 ## Why can't AI crawlers see client-rendered content?
 
-AI crawlers can't see client-rendered content because they fetch the raw HTML and
+AI crawlers can't see content built by [client-side rendering](/glossary/client-side-rendering) because they fetch the raw HTML and
 don't run the JavaScript that would build it. The Vercel/MERJ analysis of 500M+
 GPTBot requests found no JavaScript execution at all — the crawler takes the
 server's initial response and nothing more. A client-rendered app typically ships a
@@ -94,8 +94,8 @@ if AI crawlers can read your site](/learn/check-ai-crawlers-can-read-site).
 
 ## What are the fixes?
 
-The fix is to get your content into the initial HTML response through server-side
-rendering, static generation, or prerendering. All three produce HTML that already
+The fix is to get your content into the initial HTML response through [server-side
+rendering](/glossary/ssr), [static generation](/glossary/ssg), or prerendering. All three produce HTML that already
 contains your answer before any JavaScript runs.
 
 <ComparisonTable
@@ -157,7 +157,7 @@ single-page app citable by AI](/learn/make-spa-citable).
 Yes — the problem was never JavaScript frameworks; it's shipping an empty shell that
 only fills in client-side. React, Vue, Svelte, and their meta-frameworks (Next.js,
 Nuxt, SvelteKit, Remix) all support server rendering. Render citable content on the
-server, then hydrate for interactivity: crawlers get full HTML, users get the app.
+server, then [hydrate](/glossary/hydration) for interactivity: crawlers get full HTML, users get the app.
 
 <Callout variant="warning" title="The 'works in my browser' trap">
   <p>

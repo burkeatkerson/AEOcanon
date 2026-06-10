@@ -46,7 +46,7 @@ same test: a `curl` fetch already contains your content.
 
 ## Why can't AI cite a single-page app?
 
-AI can't cite a typical SPA because it renders content client-side: the server
+AI can't cite a typical SPA because it renders content [client-side](/glossary/client-side-rendering): the server
 sends a near-empty `<div id="root">` and JavaScript fills it in the browser. A
 crawler that doesn't run JavaScript — which is [most of
 them](/learn/javascript-breaks-ai-citation) — sees the empty shell and concludes
@@ -75,8 +75,9 @@ order of effort and durability.
 ## Path 1: migrate to an SSR/SSG framework
 
 The most durable fix is to move to a meta-framework that renders on the server by
-default. In Next.js, Nuxt, SvelteKit, or Remix, page content is server-rendered (or
-statically generated) so it's in the HTML the crawler receives. A Next.js Server
+default. In Next.js, Nuxt, SvelteKit, or Remix, page content is
+[server-rendered](/glossary/ssr) (or
+[statically generated](/glossary/ssg)) so it's in the HTML the crawler receives. A Next.js Server
 Component renders fully before it ships:
 
 ```tsx
@@ -129,7 +130,7 @@ app.listen(3000);
 ```
 
 Now the crawler receives real content inside `#root` instead of an empty div, and
-the browser hydrates `bundle.js` for interactivity. Vite, for example, provides an
+the browser [hydrates](/glossary/hydration) `bundle.js` for interactivity. Vite, for example, provides an
 SSR build mode to produce the server and client bundles for this pattern.
 
 ## Path 3: prerender routes to static HTML

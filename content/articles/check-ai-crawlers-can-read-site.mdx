@@ -45,10 +45,10 @@ see: disable JavaScript in the browser, and fetch the page with curl.
 
 ## Why doesn't 'Inspect Element' tell the truth?
 
-Inspect Element doesn't tell the truth about crawlability because it shows the
+Inspect Element doesn't tell the truth about [crawlability](/glossary/crawlability) because it shows the
 *rendered DOM* — the page after your JavaScript has executed and injected content.
 A non-rendering crawler never runs that JavaScript, so it sees only the *raw HTML*
-the server sent. The two can differ wildly: a client-rendered app often ships an
+the server sent. The two can differ wildly: a [client-rendered](/glossary/client-side-rendering) app often ships an
 almost-empty `<div id="root">` that Inspect shows full of content, while View
 Source shows it empty. Always test the raw HTML — that's the [access](/pillars/access)
 reality.
@@ -110,7 +110,7 @@ curl -s -o /dev/null -w "%{http_code}\n" -A "GPTBot" https://yourdomain.com/
 
 If your content fails the test — present in the DOM but missing from View Source
 and curl — it's client-rendered, and the fix is to put it in the initial HTML via
-server-side rendering, static generation, or prerendering. That's covered in [why
+[server-side rendering](/glossary/ssr), [static generation](/glossary/ssg), or prerendering. That's covered in [why
 JavaScript breaks your AI citation eligibility](/learn/javascript-breaks-ai-citation)
 and [how to make a single-page app citable by AI](/learn/make-spa-citable).
 
@@ -130,5 +130,5 @@ and [how to make a single-page app citable by AI](/learn/make-spa-citable).
 This test is how you verify the [access](/pillars/access) pillar in practice —
 proving an engine can actually read your content before you worry about anything
 else. It pairs with the permission checks in the [robots.txt
-guide](/learn/allow-ai-crawlers-robots-txt) and leads into the rendering fixes in
+guide](/learn/allow-ai-crawlers-robots-txt) (see [Google's robots.txt documentation](https://developers.google.com/search/docs/crawling-indexing/robots/intro)) and leads into the rendering fixes in
 [why JavaScript breaks AI citation eligibility](/learn/javascript-breaks-ai-citation).

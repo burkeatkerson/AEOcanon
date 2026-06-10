@@ -39,13 +39,13 @@ and the date its knowledge stops.
 
 Training data is any text a model is shown during pretraining so it can learn to
 predict the next token. In practice it's an enormous, filtered mixture: large web
-crawls like Common Crawl, digitized books, Wikipedia and other reference works,
+crawls like [Common Crawl](/glossary/common-crawl), digitized books, Wikipedia and other reference works,
 public code repositories, and — increasingly — licensed or proprietary datasets
 labs pay for. Before training, this raw text is heavily cleaned, deduplicated, and
 filtered for quality and safety, because noisy data produces a noisy model.
 
 Crucially, the model does not keep this text. It compresses statistical patterns
-from the data into its parameters, which is why an LLM can paraphrase what it
+from the data into its parameters, which is why an [LLM](/glossary/large-language-model) can paraphrase what it
 learned but can't reliably quote a source — the mechanism behind
 [how LLMs work](/learn/how-llms-work) and a root cause of
 [hallucination](/learn/why-do-ai-models-hallucinate).
@@ -88,7 +88,7 @@ base model entirely.
 </PullQuote>
 
 This is the distinction that makes AEO a real discipline: your route to visibility
-is not the training corpus but the **retrieval** layer, where engines pull current,
+is not the training corpus but the **[retrieval](/glossary/retrieval)** layer, where engines pull current,
 trustworthy sources and cite them. Original, first-hand content is especially
 valuable here, because it exists in exactly one place — the heart of the
 [originality pillar](/pillars/originality).

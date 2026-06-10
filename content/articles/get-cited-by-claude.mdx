@@ -53,22 +53,22 @@ matter especially for a model built around careful reasoning.
 
 Claude sources answers two ways. For general knowledge, it answers from its
 **training** — its parametric knowledge, which it can paraphrase but not reliably
-link. For current or specific questions, it **retrieves live web results and cites
+link. For current or specific questions, it **[retrieves](/glossary/retrieval) live web results and cites
 the sources** it uses. Linked citations come from that retrieval path, so — as with
 [ChatGPT](/learn/how-to-get-cited-by-chatgpt) — being broadly known helps you be
-*mentioned* from memory, while winning retrieval is how you get *cited* with a link.
+*mentioned* from memory, while winning retrieval is how you get *[cited](/glossary/citation)* with a link.
 The underlying flow is the universal [retrieve-rerank-cite
 pipeline](/learn/how-ai-engines-choose-citations).
 
 ## Which crawlers do I allow for Claude?
 
-Allow Anthropic's three crawlers, each of which does a different job:
+Allow [Anthropic's](https://docs.anthropic.com/) three crawlers, each of which does a different job:
 
 - **Claude-SearchBot** — indexes the web for Claude's search; allow it to be
   eligible for cited web answers.
 - **Claude-User** — fetches a page in real time when a user's question requires it;
   allow it so Claude can read a page on demand.
-- **ClaudeBot** — the training crawler; allowing it opts your content into model
+- **[ClaudeBot](/glossary/claudebot)** — the training crawler; allowing it opts your content into model
   training (a separate, values-based choice that helps you be "known").
 
 ```txt

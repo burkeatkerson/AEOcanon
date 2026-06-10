@@ -40,12 +40,12 @@ what to cite.
 
 A large language model does one core thing: given a sequence of text, it predicts
 what comes next. You type a question; the model repeatedly predicts the most
-likely next token (a word or word-piece), appends it, and predicts again, until
+likely next [token](/glossary/token) (a word or word-piece), appends it, and predicts again, until
 it has produced an answer. Everything an LLM appears to "know" or "do" is a
 product of having learned, from enormous amounts of text, which continuations are
 plausible.
 
-That sounds almost too simple to explain ChatGPT, but next-token prediction at
+That sounds almost too simple to explain [ChatGPT](/glossary/chatgpt), but next-token prediction at
 scale turns out to be remarkably general. To predict the next word in a sentence
 about chemistry, a coding problem, or a legal clause, the model has to absorb a
 great deal of structure about the world as it appears in text. We walk through
@@ -70,7 +70,7 @@ of the public web, books, code, and more, covered in
   </p>
 </Callout>
 
-Scale matters because capability rose sharply with it. The transformer
+Scale matters because capability rose sharply with it. The [transformer](/glossary/transformer)
 architecture behind modern LLMs was introduced in the 2017 paper
 ["Attention Is All You Need" (arXiv 1706.03762)](https://arxiv.org/abs/1706.03762),
 and scaling that architecture up — more parameters, more data, more compute — is

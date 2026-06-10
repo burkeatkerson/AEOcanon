@@ -49,7 +49,7 @@ rendering, you can't be cited.
 ## Do AI crawlers run JavaScript?
 
 Most AI crawlers do not run JavaScript. The clearest evidence comes from Vercel and
-MERJ, who analyzed more than 500 million GPTBot requests and found no evidence of
+MERJ, who analyzed more than 500 million [GPTBot](/glossary/gptbot) requests and found no evidence of
 JavaScript execution at all — the crawler fetches the raw HTML and stops there.
 Google's Gemini is the notable exception, since it can lean on Google's existing
 rendering infrastructure, but for ChatGPT, Perplexity, and the rest you should
@@ -60,9 +60,9 @@ about your content matters.
 ## Why does rendering decide whether you get cited?
 
 Rendering decides citability because an answer engine can only cite text it
-retrieved, and it retrieves the HTML the server returns. With server-side rendering
-(SSR) or static site generation (SSG), the full content — your answer, headings, and
-evidence — is in that initial HTML response. With pure client-side rendering (CSR),
+retrieved, and it retrieves the HTML the server returns. With [server-side rendering
+(SSR)](/glossary/ssr) or [static site generation (SSG)](/glossary/ssg), the full content — your answer, headings, and
+evidence — is in that initial HTML response. With pure [client-side rendering (CSR)](/glossary/client-side-rendering),
 the server returns a near-empty shell and the content is assembled in the browser by
 JavaScript the crawler never runs. To a non-rendering crawler, a CSR page looks
 blank. You can be the best answer on the web and still be invisible.
@@ -87,7 +87,7 @@ Yes — you can use React, Vue, or any modern framework, as long as the content 
 rendered on the server. Frameworks like Next.js, Nuxt, and Remix exist precisely to
 give you component-based development *and* server-rendered HTML through SSR or SSG.
 The problem was never JavaScript frameworks; it's shipping a single empty `<div>`
-that only fills with content after client-side hydration. Render on the server,
+that only fills with content after client-side [hydration](/glossary/hydration). Render on the server,
 hydrate for interactivity, and crawlers get the full page while users still get the
 app experience.
 

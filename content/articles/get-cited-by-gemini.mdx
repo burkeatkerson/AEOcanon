@@ -51,8 +51,8 @@ here too, with one extra permission step.
 ## How does Gemini source its answers?
 
 Gemini sources answers two ways: from the model's own trained knowledge, and — for
-current or specific questions — by **grounding in Google Search**, where it
-retrieves live results and links the supporting sources. Citations appear mainly on
+current or specific questions — by **[grounding](/glossary/grounding) in Google Search**, where it
+[retrieves](/glossary/retrieval) live results and links the supporting sources. Citations appear mainly on
 that grounded path. Because the grounding draws on Google's index, the
 crawlability, authority, and relevance you build for Google Search feed Gemini's
 retrieval, much as they do for [AI Overviews](/learn/show-up-in-google-ai-overviews)
@@ -61,7 +61,7 @@ a general assistant, so it grounds selectively rather than on every query.
 
 ## What is Google-Extended and why does it matter?
 
-Google-Extended is a robots.txt token that controls whether Google may use your
+[Google-Extended](/glossary/google-extended) is a [robots.txt](/glossary/robots-txt) token that controls whether Google may use your
 content for its generative AI products — including grounding and training for
 Gemini — **separately from Googlebot**, which handles ordinary Search crawling.
 That separation is the key, easily-missed point: you can rank in Google Search while
@@ -99,7 +99,7 @@ lower than intuition suggests (Profound found only ~11% across engines).
 
 ## How do you confirm you're cited by Gemini?
 
-Confirm it by testing, not assuming — run your prompt set in the Gemini app and
+Confirm it by testing, not assuming — run your prompt set in the [Gemini app](https://gemini.google.com/) and
 read what it does with each question. Because Gemini grounds selectively, the test
 has to be deliberate:
 

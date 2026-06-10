@@ -19,8 +19,8 @@ faqs:
     a: Because generation is probabilistic. At each step the model has a distribution over possible next tokens and samples from it; a setting called temperature controls how much randomness is allowed. Higher temperature means more varied output; lower means more deterministic, repeatable answers.
 ---
 
-**LLMs work by turning text into tokens, converting those tokens into numeric
-vectors, using a transformer's attention mechanism to weigh context, and then
+**LLMs work by turning text into [tokens](/glossary/token), converting those tokens into numeric
+vectors, using a transformer's [attention](/glossary/attention) mechanism to weigh context, and then
 predicting the next token one at a time.** Repeat that prediction step a few
 hundred times and you get a full answer. Every capability — writing, reasoning,
 summarizing — is built on this single loop.
@@ -89,7 +89,7 @@ Attention is the operation that lets a model decide which earlier tokens matter
 most when predicting the next one — and it is the breakthrough that made modern
 LLMs possible. Introduced in the 2017 paper
 ["Attention Is All You Need" (arXiv 1706.03762)](https://arxiv.org/abs/1706.03762),
-the transformer architecture replaced slower sequential processing with attention
+the [transformer architecture](/glossary/transformer) replaced slower sequential processing with attention
 that can relate every token to every other token in parallel.
 
 <Callout variant="insight" title="Why attention is the whole game">
@@ -124,7 +124,7 @@ mechanism behind every AI answer that shows its sources.
 The same prompt gives different answers because text generation is probabilistic:
 at each step the model samples from a distribution of possible next tokens rather
 than always choosing the single most likely one. A parameter called
-**temperature** controls how much randomness is permitted — low temperature
+[**temperature**](/glossary/temperature) controls how much randomness is permitted — low temperature
 produces near-deterministic, repeatable answers; higher temperature produces more
 varied, creative ones. This is useful to know for AEO measurement: because output
 varies, tracking whether an engine cites you means testing a fixed prompt set

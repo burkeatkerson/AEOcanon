@@ -20,7 +20,8 @@ faqs:
 
 **Toggle each AI crawler to allow or block, add your sitemap, and copy a
 ready-to-use robots.txt — generated in your browser.** AI engines can only cite
-pages their crawlers are allowed to fetch, so the goal for visibility is simple:
+pages their crawlers are allowed to [fetch](/glossary/crawlability), so the goal for
+visibility is simple:
 allow the bots that get you cited, and decide about the rest on purpose.
 
 <Callout variant="key" title="Quick answer">
@@ -40,11 +41,14 @@ allow the bots that get you cited, and decide about the rest on purpose.
 The single most common mistake is silently blocking the crawlers you want, usually
 with a blanket `Disallow: /` or a restrictive default that catches AI user-agents.
 The fix is to be explicit. Allow the search and live-fetch bots that drive
-citations; only block training bots if you have a deliberate reason to. And
-remember the Google nuance: [blocking Google-Extended does not remove you from AI
+[citations](/glossary/citation); only block training bots if you have a deliberate
+reason to. And remember the Google nuance: blocking
+[Google-Extended](/glossary/google-extended) does not [remove you from AI
 Overviews](/learn/show-up-in-google-ai-overviews), because those are served by
 Googlebot, which has no separate AI opt-out. This is the [Access
-pillar](/pillars/access) — the price of admission, with no partial credit.
+pillar](/pillars/access) — the price of admission, with no partial credit. For the
+syntax rules themselves, see [Google's robots.txt
+documentation](https://developers.google.com/search/docs/crawling-indexing/robots/intro).
 
 ## Where to go next
 

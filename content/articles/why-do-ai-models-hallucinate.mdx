@@ -48,7 +48,7 @@ maps the phenomenon's types, causes, and mitigations in depth.
 
 ## Why does it happen at all?
 
-Hallucination happens because of what an LLM fundamentally is: a next-token
+Hallucination happens because of what an [LLM](/glossary/large-language-model) fundamentally is: a next-token
 predictor that optimizes for plausibility, not truth. As covered in
 [how LLMs work](/learn/how-llms-work), the model generates the continuation its
 training makes most likely. Most of the time, plausible and true coincide. But the
@@ -85,13 +85,13 @@ citations are a notorious failure mode.
 
 ## How is hallucination reduced?
 
-Hallucination is reduced most effectively by grounding the model in retrieved
+Hallucination is reduced most effectively by grounding the model in [retrieved](/glossary/retrieval)
 sources, so it answers from real text instead of guessing. Pairing the LLM with
 [retrieval-augmented generation](/learn/what-is-rag) — the approach introduced in
 ["Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (arXiv 2005.11401)](https://arxiv.org/abs/2005.11401)
 — narrows the gaps where a model would otherwise invent, and lets it cite what it
 used. Other mitigations help too: retrieving from authoritative sources, asking
-the model to cite, using lower temperature for factual work, and human review.
+the model to cite, using lower [temperature](/glossary/temperature) for factual work, and human review.
 
 <Callout variant="warning" title="Grounding is a reduction, not a cure">
   <p>

@@ -53,16 +53,16 @@ influence each one.
 ## How does an engine link a name to an entity?
 
 An engine links a name to an entity through entity linking: it spots a mention in
-the text and matches it against a knowledge graph of known things, each with a
+the text and matches it against a [knowledge graph](/glossary/knowledge-graph) of known things, each with a
 stable identifier, attributes, and relationships. This is the machinery behind
-Google's "things, not strings" Knowledge Graph, and AI answer engines reason the
+Google's "things, not strings" [Knowledge Graph](https://en.wikipedia.org/wiki/Google_Knowledge_Graph), and AI answer engines reason the
 same way. The link is what turns the string "Acme Analytics" into *the* company with
 a founding date, a category, named people, and a trust profile — everything the
 engine needs to decide whether to rely on you.
 
 ## How does it disambiguate same-named things?
 
-It disambiguates using context and learned representations. When a name could mean
+It handles [disambiguation](/glossary/disambiguation) using context and learned representations. When a name could mean
 several things, the engine weighs the surrounding words and the candidate entities'
 known relationships to choose the right one — and [embeddings](/learn/what-are-embeddings),
 which place words and entities in a numeric space where related things cluster, let
@@ -76,7 +76,7 @@ retrieval-and-reasoning stack described in [how LLMs work](/learn/how-llms-work)
 ## How does recognition become trust?
 
 Once an engine has linked you to a known entity, it judges trust from what's
-attached to that entity — its attributes, its corroboration across reputable
+attached to that entity — its attributes, its [corroboration](/glossary/corroboration) across reputable
 sources, and its track record. An entity that trusted sources describe consistently
 is a safe one to surface; an unrecognized or contested entity is not. This is why
 entity recognition is the precondition for the [authority](/pillars/authority) and

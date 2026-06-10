@@ -40,7 +40,7 @@ well-written paragraph can earn a citation that an entire mediocre page cannot.
 
 ## What is the pipeline that produces a citation?
 
-The pipeline that produces a citation is retrieval-augmented generation (RAG):
+The pipeline that produces a citation is [retrieval-augmented generation (RAG)](https://en.wikipedia.org/wiki/Retrieval-augmented_generation):
 the engine embeds your question, retrieves candidate passages, reranks them,
 feeds the survivors to a language model, and then attributes the sources of the
 passages the model used. Each stage is a filter, and your content has to survive
@@ -63,7 +63,7 @@ guide focuses on what each stage means for getting cited.
 ## Stage 1 — Retrieval: are you even in the candidate set?
 
 Retrieval decides whether your passage is _considered_ at all. The engine
-converts the user's query into a vector (an embedding) and finds the passages in
+converts the user's query into a vector (an [embedding](/glossary/embeddings)) and finds the passages in
 its index whose vectors are closest in meaning — not whose words match exactly.
 If your content was never crawled, or is locked behind JavaScript the crawler
 cannot render, you are absent from the candidate set and nothing downstream can
@@ -80,7 +80,7 @@ save you.
 
 Because retrieval works on meaning, not keywords, the goal is semantic clarity:
 say plainly what you mean, in language a model can map to the question. This is
-also why retrieval operates on chunks — pages are split into passages before
+also why retrieval operates on [chunks](/glossary/chunking) — pages are split into passages before
 embedding, so the passage, not the page, is what gets matched.
 
 The mechanics reward a specific writing habit. Each passage is converted to an
@@ -95,7 +95,7 @@ words, but you do need to clearly be about the same thing.
 
 ## Stage 2 — Reranking: which passages actually win?
 
-Reranking is where citations are won and lost. After retrieval returns dozens or
+[Reranking](/glossary/reranking) is where citations are won and lost. After retrieval returns dozens or
 hundreds of candidate passages, a reranking model re-scores them for the specific
 query, weighing three signals above all: **relevance, authority, and freshness.**
 Only the top few survive to inform the answer.
@@ -169,7 +169,7 @@ link graph and more about your presence in the web's collective conversation.
 </PullQuote>
 
 On-page signals still matter — clear authorship, visible credentials, citations
-to primary sources, and accurate, current information all help a model decide
+to [primary sources](/glossary/primary-source), and accurate, current information all help a model decide
 your passage is safe to surface. But they work in concert with the off-site
 reputation that does the heaviest lifting, which is why the
 [authority pillar](/pillars/authority) treats AEO as part content

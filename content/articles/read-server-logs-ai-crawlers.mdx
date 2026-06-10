@@ -49,7 +49,7 @@ fetch, and whether they're hitting blocks. Here are the copy-paste commands.
 Use server logs because they record every HTTP request at the server, while most
 analytics tools rely on JavaScript that crawlers don't run. AI crawlers fetch your
 HTML and leave without firing a tracking pixel, so they're invisible in analytics
-but fully present in logs. If you want to know whether GPTBot is really crawling
+but fully present in logs. If you want to know whether [GPTBot](/glossary/gptbot) is really crawling
 you — a core [access](/pillars/access) question — the log is the only honest answer.
 
 Access logs are usually at `/var/log/nginx/access.log` (nginx) or
@@ -101,7 +101,7 @@ grep -iE "GPTBot|ClaudeBot|PerplexityBot|Bingbot" /var/log/nginx/access.log \
 ```
 
 A healthy result is mostly `200`. A pile of `403` means you're blocking the crawler
-(check robots.txt and any WAF/firewall rules); `404` means it's chasing dead URLs
+(check [robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro) and any WAF/firewall rules); `404` means it's chasing dead URLs
 (fix links or redirects); `5xx` means your server is erroring under bot load.
 
 ### What are they crawling?

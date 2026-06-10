@@ -48,7 +48,7 @@ An ungrounded model answers from the lossy patterns in its weights (see
 [how LLMs work](/learn/how-llms-work)); it can be fluent and often right, but it
 has no source to point to and no way to know what's changed since training. A
 grounded model is handed real passages and told to answer from them, so its output
-can carry citations.
+can carry [citations](/glossary/citation).
 
 The plumbing that makes grounding possible is
 [retrieval-augmented generation](/learn/what-is-rag), introduced in
@@ -92,7 +92,7 @@ sources.
 ## How does grounding decide who gets cited?
 
 Grounding decides citations at the passage level: the model attributes its answer
-to the sources of the specific passages it used. If your passage was retrieved,
+to the sources of the specific passages it used. If your passage was [retrieved](/glossary/retrieval),
 survived [the reranker](/learn/what-is-a-reranker), and then gave the model the
 cleanest, most credible support for a claim, your source gets named. If a
 competitor's passage answered more completely or carried better evidence, theirs

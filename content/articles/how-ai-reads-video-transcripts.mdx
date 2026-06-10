@@ -52,7 +52,7 @@ An engine turns a video into citable text by treating its transcript and metadat
 a document. The audio is converted to text (via captions or speech-to-text), and
 that text — plus the title and description — enters the same
 [retrieve-rerank-cite pipeline](/learn/how-ai-engines-choose-citations) as any
-article: the engine retrieves relevant passages, reranks them, and quotes the best
+article: the engine [retrieves](/glossary/retrieval) relevant passages, reranks them, and quotes the best
 one, attributing the video. The pixels of the footage usually play no part in
 answering. So a video's citability is decided by the quality of its text, exactly
 like a written page — which makes [extractability](/pillars/extractability) the
@@ -73,7 +73,8 @@ engine something worth quoting.
 
 A transcript is extractable when it reads like answer-first writing: accurate,
 structured, and with the key answers stated plainly. Apply the same craft you'd use
-for an article:
+for an article, and describe the video with [VideoObject schema](https://schema.org/VideoObject)
+so the transcript, title, and description are also available as structured data:
 
 <Steps
   items={[
@@ -86,7 +87,7 @@ for an article:
 
 ## Where does multimodal understanding fit?
 
-Multimodal models — which can interpret video frames and audio directly — are
+[Multimodal](/glossary/multimodal) models — which can interpret video frames and audio directly — are
 emerging and will read more than the transcript over time. But for citation today,
 the transcript remains the primary surface, and designing for it is the safe,
 effective choice: a clean transcript helps every engine, multimodal or not. The

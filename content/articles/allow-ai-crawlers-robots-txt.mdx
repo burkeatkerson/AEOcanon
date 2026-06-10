@@ -101,8 +101,8 @@ readability.
 robots.txt allows or blocks a crawler by matching its user-agent to the most
 specific group in the file and applying that group's rules. Each AI crawler looks
 for a group whose `User-agent` matches its own name; if it finds one, it obeys
-that group and **ignores the wildcard `*` group entirely**. That's why an explicit
-`User-agent: GPTBot` group with `Allow: /` lets GPTBot in even if `User-agent: *`
+that group and **ignores the wildcard `*` group entirely** ([Google: robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro)). That's why an explicit
+`User-agent: GPTBot` group with `Allow: /` lets [GPTBot](/glossary/gptbot) in even if `User-agent: *`
 says `Disallow: /`.
 
 This is the [access](/pillars/access) pillar at its most literal: access is a

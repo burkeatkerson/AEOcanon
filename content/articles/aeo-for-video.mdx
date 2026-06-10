@@ -75,7 +75,8 @@ playbook](/authority/youtube-aeo-playbook).
 ## What makes a video citable?
 
 A video is citable when its content exists as accurate, well-structured text and it
-lives where engines look. Concretely:
+lives where engines look — helped by [VideoObject schema](https://schema.org/VideoObject)
+that describes it as an entity. Concretely:
 
 <Steps
   items={[
@@ -91,7 +92,8 @@ lives where engines look. Concretely:
 Host on YouTube for authority and reach, and embed on your own site with the text
 that makes it citable. A bare embed isn't enough — video players are heavy
 JavaScript, and [most AI crawlers don't run JavaScript](/learn/javascript-breaks-ai-citation),
-so the player itself is invisible to them. Pair every embed with a full transcript,
+so the player itself is invisible to them. That [client-side
+rendering](/glossary/client-side-rendering) is exactly what engines skip. Pair every embed with a full transcript,
 an answer-first summary, and the key points in your crawlable HTML. That way the
 citable content lives in the page, while YouTube carries the authority signal.
 
@@ -114,4 +116,5 @@ text) plus [authority](/pillars/authority) (YouTube's ~0.737 signal). Go deeper 
 the mechanism in [how AI reads video
 transcripts](/learn/how-ai-reads-video-transcripts), the authority side in the
 [YouTube AEO playbook](/authority/youtube-aeo-playbook), and the bigger picture in
-[the multimodal future of citation](/learn/multimodal-future-of-citation).
+[the multimodal future of citation](/learn/multimodal-future-of-citation) as engines
+become more [multimodal](/glossary/multimodal).

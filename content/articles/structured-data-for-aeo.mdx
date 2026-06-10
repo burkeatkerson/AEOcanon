@@ -20,23 +20,23 @@ faqs:
     a: Use JSON-LD. It is the format Google recommends, it keeps markup separate from presentation, and it is the easiest to generate from typed data and validate.
 ---
 
-**To implement structured data for AEO, emit schema.org JSON-LD that labels each
+**To implement structured data for AEO, emit schema.org [JSON-LD](/glossary/json-ld) that labels each
 content type, keep it consistent with the visible page, and validate it before
-shipping.** Done well, structured data tells an answer engine exactly what your
+shipping.** Done well, [structured data](/glossary/schema-markup) tells an answer engine exactly what your
 page is — and which passages are safe to quote.
 
 ## Why structured data helps answer engines
 
 Answer engines decompose a page into units they can reuse: a definition, a step,
 a question-and-answer pair. Structured data makes those units explicit instead of
-forcing the model to infer them from raw HTML.
+forcing the model to infer them from raw HTML ([Google's structured-data overview](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) covers the basics).
 
 ## Step 1: Pick the right schema type
 
 Match the markup to the content's job:
 
-- **Article** — explanatory or editorial content.
-- **FAQPage** — a set of discrete question/answer pairs.
+- **[Article](/glossary/article-schema)** — explanatory or editorial content.
+- **[FAQPage](/glossary/faqpage-schema)** — a set of discrete question/answer pairs.
 - **HowTo** — an ordered procedure with steps.
 
 ### Don't over-mark

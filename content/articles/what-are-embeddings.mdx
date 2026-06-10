@@ -62,7 +62,7 @@ which showed word vectors could capture analogies — famously, the vector math
 
 ## How do embeddings power retrieval and RAG?
 
-Embeddings power retrieval by turning "find relevant text" into "find nearby
+Embeddings power [retrieval](/glossary/retrieval) by turning "find relevant text" into "find nearby
 vectors." A retrieval system embeds every passage in advance and stores the
 vectors in an index. When a query comes in, it's embedded too, and the system
 returns the passages whose vectors sit closest to the query's. That semantic
@@ -83,7 +83,7 @@ thing they're asking — which is the heart of the
 
 Clear, single-idea passages embed better because a focused passage produces a
 sharp, unambiguous vector, while a passage that wanders across several topics
-produces a muddy one that matches no query well. Each chunk an engine indexes is
+produces a muddy one that matches no query well. Each [chunk](/glossary/chunking) an engine indexes is
 embedded independently, so a paragraph that makes one point lands precisely in
 meaning-space; a paragraph that makes four lands in the blurry average of all of
 them.
@@ -102,6 +102,6 @@ embeddings of the questions your audience asks, you're never retrieved — and
 nothing downstream can save you. Writing clearly about one idea per passage, in
 natural language, is how you land in the right region of meaning-space.
 
-See how retrieved passages get re-scored in [what is a reranker](/learn/what-is-a-reranker),
+See how retrieved passages get [re-scored](/glossary/reranking) in [what is a reranker](/learn/what-is-a-reranker),
 how they ground an answer in [what is RAG](/learn/what-is-rag), and how it all
 connects to getting cited in [what is AEO](/learn/what-is-aeo).

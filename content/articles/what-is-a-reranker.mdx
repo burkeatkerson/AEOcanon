@@ -43,7 +43,7 @@ won or lost.
 
 ## What does a reranker do in the pipeline?
 
-A reranker sits between retrieval and generation, taking the candidate passages
+A reranker sits between [retrieval](/glossary/retrieval) and generation, taking the candidate passages
 that initial retrieval found and putting them in the right order for the specific
 query. Retrieval is fast and broad — it uses [embedding](/learn/what-are-embeddings)
 similarity to pull dozens or hundreds of plausibly relevant passages. But "similar
@@ -58,8 +58,8 @@ retrieval balances speed against quality, and it's the heart of
 
 ## How is reranking different from retrieval?
 
-Reranking differs from retrieval in goal and cost: retrieval maximizes recall
-cheaply; reranking maximizes precision at higher cost. Retrieval asks "what might
+Reranking differs from retrieval in goal and cost: retrieval maximizes [recall](/glossary/recall)
+cheaply; reranking maximizes [precision](/glossary/precision) at higher cost. Retrieval asks "what might
 be relevant?" and errs toward including too much. Reranking asks "of these, which
 actually answer the question best?" and ruthlessly narrows the set.
 

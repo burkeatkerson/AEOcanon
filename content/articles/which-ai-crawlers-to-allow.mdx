@@ -70,15 +70,15 @@ operator, job, and whether allowing it affects your citation eligibility.
 
 The bots that drive citations are the search-indexing and user-fetch crawlers,
 because they're what build the retrievable index and fetch the live pages AI
-answers quote. Concretely: **OAI-SearchBot** and **ChatGPT-User** make you eligible
-in ChatGPT, **Claude-SearchBot** in Claude, **PerplexityBot** in Perplexity, and
-**Bingbot** in the Bing index that feeds Copilot and some other AI surfaces. If you
+answers quote. Concretely: **[OAI-SearchBot](/glossary/oai-searchbot)** and **ChatGPT-User** make you eligible
+in ChatGPT, **Claude-SearchBot** in Claude, **[PerplexityBot](/glossary/perplexitybot)** in Perplexity, and
+**[Bingbot](/glossary/bingbot)** in the Bing index that feeds Copilot and some other AI surfaces. If you
 allow nothing else, allow these — blocking them removes you from the candidate set
 an engine can cite, which is the [access](/pillars/access) gate slamming shut.
 
 ## What about the training crawlers?
 
-Training crawlers — GPTBot and ClaudeBot — are a separate, values-based decision,
+Training crawlers — [GPTBot](/glossary/gptbot) and [ClaudeBot](/glossary/claudebot) — are a separate, values-based decision,
 not a citation lever. They crawl content to train and improve the underlying
 models. Blocking them opts your content out of training but does **not**, on its
 own, stop the matching search bot from indexing and citing you. So the choice is
@@ -89,7 +89,7 @@ about whether you want to contribute to model training, not about visibility:
 - **Block them** if you want to opt out of training while staying citable via the
   search bots.
 
-`Google-Extended` works similarly: it's a robots.txt token (not a crawler) that
+`Google-Extended` works similarly: it's a [robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro) token (not a crawler) that
 controls whether Google uses already-crawled content for Gemini training and for
 grounding AI answers. Allowing it opts you into Google's generative uses; it
 doesn't change normal Google Search crawling, which Googlebot handles.

@@ -81,7 +81,7 @@ a price that changed. This is a specific, common flavor of
 
 ## How do models answer about recent events?
 
-Models answer about recent events only by retrieving live information at query
+Models answer about recent events only by [retrieving](/glossary/retrieval) live information at query
 time. A [search-augmented model](/learn/base-vs-search-augmented-models) connected
 to web search or [retrieval-augmented generation](/learn/what-is-rag) — the
 approach from
@@ -89,7 +89,7 @@ approach from
 — can fetch current sources and ground its answer in them, bypassing the cutoff
 entirely. This
 is the key reason the industry is shifting from base models toward
-retrieval-grounded systems: it's the only way to keep answers current without
+retrieval-[grounded](/glossary/grounding) systems: it's the only way to keep answers current without
 constant retraining.
 
 <PullQuote cite="The cutoff, escaped">
@@ -102,7 +102,7 @@ constant retraining.
 The knowledge cutoff is, quietly, one of the strongest arguments for AEO. Anything
 you publish after a model's cutoff cannot be in its training — so the *only* way
 your new content reaches that model's answers is through retrieval. That puts a
-premium on being crawlable, current, and clearly dated, so retrieval systems
+premium on being [crawlable](/glossary/crawlability), current, and clearly dated, so retrieval systems
 surface you for time-sensitive queries.
 
 It's also why [freshness is its own pillar](/pillars/freshness): engines

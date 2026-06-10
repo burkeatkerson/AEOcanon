@@ -51,13 +51,13 @@ attention.
 
 ## What is Google AI Mode?
 
-Google AI Mode is a dedicated, conversational search experience powered by Gemini
+Google AI Mode is a dedicated, conversational search experience powered by [Gemini](/glossary/gemini)
 that runs on Google's search index. Where a classic search returns links and an
 [AI Overview](/learn/show-up-in-google-ai-overviews) adds a synthesized summary
 above them, AI Mode is a full chat-style surface built for exploratory, multi-step
 questions — you ask, it answers with citations, and you ask follow-ups. Under the
 hood it uses the same retrieve-rerank-cite foundation as the rest of Google's AI
-surfaces, but it leans much harder on **query fan-out**.
+surfaces, but it leans much harder on **[query fan-out](/glossary/query-fan-out)**.
 
 ## How is AI Mode different from AI Overviews?
 
@@ -65,7 +65,7 @@ AI Mode differs from AI Overviews in depth of fan-out and, consequently, in whic
 sources it cites. Both are Gemini over Google's index, but AI Mode decomposes a
 conversational query into *many more* sub-queries and follow-ups, retrieves for
 each, and synthesizes across the whole set. The measurable result is low overlap:
-**overlap analyses put shared URLs between AI Mode and AI Overviews at only about
+**overlap analyses put shared URLs between AI Mode and [AI Overviews](/glossary/google-ai-overviews) at only about
 13.7%**. That single number is the headline for this guide — being cited in
 Overviews tells you little about whether you'll appear in AI Mode, so you can't
 treat them as one surface. It's a vivid local case of the broader finding that
@@ -101,7 +101,7 @@ fan-out.
 The foundation is the same one that wins every Google surface: technical
 [access](/pillars/access) (crawlable, fast, server-rendered HTML Googlebot can
 read), genuine [authority](/pillars/authority) and relevance, and
-[freshness](/pillars/freshness). AI Mode doesn't replace those requirements — it
+[freshness](/pillars/freshness) ([Google's own AI-features guidance](https://developers.google.com/search/docs/appearance/ai-features) describes these surfaces). AI Mode doesn't replace those requirements — it
 adds breadth on top of them. If Googlebot can't read you or the wider web doesn't
 trust you, fan-out never reaches you.
 

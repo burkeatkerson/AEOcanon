@@ -44,9 +44,9 @@ instructions, the conversation history, your current prompt, any documents
 retrieved to ground the answer, and the answer being generated token by token. If
 the total exceeds the window, something has to give.
 
-Because the window is measured in tokens, [tokenization](/learn/what-is-tokenization)
+Because the window is measured in [tokens](/glossary/token), [tokenization](/learn/what-is-tokenization)
 directly affects how much fits: verbose or unusual text consumes the budget
-faster. And because the model attends across everything in the window at once
+faster. And because the model [attends](/glossary/attention) across everything in the window at once
 (see [how LLMs work](/learn/how-llms-work)), what you put in it — and what you
 leave out — shapes the answer.
 
@@ -74,7 +74,7 @@ When text exceeds the window, the model simply cannot see the overflow — so
 systems decide what to keep. They truncate, drop older turns, or summarize history
 to make room. The consequence is concrete: a fact outside the window has zero
 chance of influencing the answer, no matter how relevant it is. This is why long
-documents are split into passages and only the most relevant chunks are pulled in,
+documents are split into passages and only the most relevant [chunks](/glossary/chunking) are pulled in,
 a problem studied directly in work like
 ["Passage Segmentation of Documents for Extractive Question Answering" (arXiv 2501.09940)](https://arxiv.org/abs/2501.09940),
 which examines how to break documents into passages that answer questions well.
