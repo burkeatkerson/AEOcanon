@@ -48,7 +48,7 @@ server logs to confirm which, then fix that one gate.
 ## How do I find the actual cause?
 
 Walk the access gates in order and stop at the first failure. Check
-[robots.txt](/learn/allow-ai-crawlers-robots-txt) for a `Disallow` on GPTBot, then
+[robots.txt](/learn/allow-ai-crawlers-robots-txt) for a `Disallow` on GPTBot (OpenAI [documents its crawlers and how robots.txt controls them](https://developers.openai.com/api/docs/bots)), then
 your CDN or firewall — [Cloudflare can block AI bots by
 default](/learn/does-cloudflare-block-ai-crawlers), above your own config. Next
 confirm the page returns real content to a [raw
@@ -69,7 +69,7 @@ sure that when GPTBot does arrive, there's real content to read.
 Then it probably hasn't prioritized you yet. New, low-authority domains with few
 inbound links get crawled late, because crawlers favor established, well-linked
 sites. Speed up discovery by [submitting a
-sitemap](/learn/does-a-sitemap-help-ai-crawlers), building strong internal links so
+sitemap](/learn/does-a-sitemap-help-ai-crawlers) (Google [explains how sitemaps aid crawlers in discovering pages](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview)), building strong internal links so
 no page is orphaned, and earning a few [external
 mentions](/learn/mentions-vs-backlinks) that put you on the map. This is the
 [Access pillar](/pillars/access) plus a little authority to get noticed.

@@ -48,8 +48,8 @@ them, with no SEO upside in return.
 
 Because Google never used GPTBot to begin with. Search engines and answer engines
 run their own crawlers — Googlebot for Google, [GPTBot for
-OpenAI](/learn/which-ai-crawlers-to-allow), and so on — and a `Disallow` rule for
-one user-agent in [robots.txt](/learn/allow-ai-crawlers-robots-txt) is invisible to
+OpenAI](/learn/which-ai-crawlers-to-allow) ([a distinct user-agent OpenAI documents separately](https://developers.openai.com/api/docs/bots)), and so on — and a `Disallow` rule for
+one user-agent in [robots.txt](/learn/allow-ai-crawlers-robots-txt) [applies only to that named crawler](https://developers.google.com/search/docs/crawling-indexing/robots/intro), invisible to
 the others. So your ranking signals, index status, and organic clicks don't move at
 all when you block GPTBot. The two systems simply don't share plumbing.
 

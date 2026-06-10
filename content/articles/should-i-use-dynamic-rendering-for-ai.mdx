@@ -48,7 +48,9 @@ everyone the same crawlable HTML, with no separate bot path to maintain.
 ## What problem does dynamic rendering solve?
 
 The same one [JavaScript breaks](/learn/javascript-breaks-ai-citation): crawlers that
-don't run scripts can't read client-side content. Dynamic rendering detects the
+don't run scripts can't read client-side content (Google's [JavaScript SEO
+basics](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics)
+cover how rendering affects what crawlers see). Dynamic rendering detects the
 requester and serves bots a pre-rendered HTML snapshot while humans get the
 single-page app. For a JavaScript-heavy site that can't be re-architected quickly,
 it's a legitimate way to become readable to engines without rebuilding the
@@ -62,7 +64,8 @@ serving different content to bots requires care to stay honest and consistent. [
 server-side or static rendering](/learn/server-side-vs-client-side-rendering) avoids
 all of that: one code path, the same crawlable HTML for everyone, nothing to keep in
 sync. That's why it's the recommended fix when feasible — and dynamic rendering the
-fallback when it isn't.
+fallback when it isn't. [Google now treats dynamic rendering as a workaround](https://developers.google.com/search/docs/crawling-indexing/javascript/dynamic-rendering)
+and recommends SSR, static rendering, or hydration instead.
 
 ## Will it actually get me cited?
 

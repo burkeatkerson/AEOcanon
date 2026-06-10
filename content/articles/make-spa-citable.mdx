@@ -50,7 +50,7 @@ AI can't cite a typical SPA because it renders content [client-side](/glossary/c
 sends a near-empty `<div id="root">` and JavaScript fills it in the browser. A
 crawler that doesn't run JavaScript — which is [most of
 them](/learn/javascript-breaks-ai-citation) — sees the empty shell and concludes
-there's nothing to cite. This is the [access](/pillars/access) pillar failing at the
+there's nothing to cite (Google's own [JavaScript SEO basics](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics) cover the same rendering pitfalls). This is the [access](/pillars/access) pillar failing at the
 rendering layer. The fix isn't to drop your framework; it's to render the citable
 content before it reaches the crawler.
 
@@ -148,7 +148,7 @@ npx prerender-spa-plugin   # or react-snap, vite-plugin-ssg, etc.
 Alternatively, **dynamic rendering** serves crawlers a cached, fully-rendered
 snapshot while users keep the live app — via a prerender middleware or a service.
 This is an accepted retrofit, not cloaking, **as long as the snapshot matches what
-users see**.
+users see** — though Google now [recommends SSR, static rendering, or hydration instead](https://developers.google.com/search/docs/crawling-indexing/javascript/dynamic-rendering).
 
 <Callout variant="warning" title="Keep bot and user content identical">
   <p>
