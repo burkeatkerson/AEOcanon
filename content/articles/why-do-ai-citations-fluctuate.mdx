@@ -1,0 +1,80 @@
+---
+title: "Why Do My AI Citations Keep Changing?"
+slug: why-do-ai-citations-fluctuate
+summary: AI citations fluctuate because answers are probabilistic and the systems behind them keep changing — the same prompt can cite different sources run to run, and model updates, index refreshes, and reranking shifts move things further. Track trends across a fixed prompt set rather than reacting to any single answer.
+topics:
+  - analytics-measurement
+  - answer-engines
+author: jordan-vega
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: Why do my AI citations keep changing?
+    a: Because AI answers are probabilistic and the systems keep changing. The same prompt can cite different sources from one run to the next, and model updates, index refreshes, and reranking changes shift results further. This citation volatility is normal, so track trends across a fixed prompt set rather than reacting to one answer.
+  - q: Is citation volatility a problem?
+    a: It's expected, not a malfunction. Because generation involves randomness and the underlying retrieval and ranking change over time, some variation is built in. It becomes a signal only as a trend — a sustained decline matters, but a single different answer usually doesn't.
+  - q: How do I measure citations despite the fluctuation?
+    a: Run a fixed prompt set repeatedly and look at the trend, not the snapshot. Averaging results over multiple runs and time periods smooths out the noise of any single answer, so you can see whether your citation share is genuinely rising or falling rather than just varying.
+  - q: What causes a real, sustained drop in citations?
+    a: Usually content decay, a competitor improving, or a change in how an engine retrieves and ranks. If a decline persists across runs, investigate those — stale facts, a stronger rival, or an algorithm shift — rather than attributing it to normal variation. Persistence is what separates a real drop from noise.
+---
+
+**AI citations fluctuate because answers are probabilistic and the systems behind them
+keep changing — the same prompt can cite different sources run to run, and model
+updates, index refreshes, and reranking shifts move things further.** Track trends
+across a fixed prompt set rather than reacting to any single answer.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Because AI answers are <strong>probabilistic</strong> and the systems{" "}
+    <strong>keep changing</strong>. The same prompt can cite different sources run to
+    run, and <strong>model updates, index refreshes, and reranking shifts</strong>{" "}
+    move things further. This volatility is <strong>normal</strong> — track{" "}
+    <strong>trends across a fixed prompt set</strong>, not single answers.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "AI generation involves randomness, so the same prompt can vary run to run.",
+    "Model updates, index refreshes, and reranking changes shift citations over time.",
+    "Citation volatility is expected, not a malfunction.",
+    "Measure trends across multiple runs to smooth out the noise.",
+    "A sustained decline signals decay, a stronger competitor, or an engine change.",
+  ]}
+/>
+
+## Why isn't citation stable?
+
+Because it's not designed to be. AI generation involves [randomness](/glossary/temperature),
+so the same prompt can produce different answers — and citations — from one run to the
+next. On top of that, the systems keep changing: model updates, index refreshes, and
+[reranking](/glossary/reranking) shifts all move results. This [citation
+volatility](/glossary/citation-volatility) is a built-in property of answer engines,
+not a sign anything is broken.
+
+## So how do I measure anything?
+
+Trends, not snapshots. Run a [fixed prompt set](/learn/how-to-track-ai-citations)
+repeatedly and look at the pattern over multiple runs and time periods — averaging
+across runs smooths out the noise of any single answer, so you can see whether your
+[citation share](/learn/share-of-voice-ai-search) is genuinely rising or falling. This
+is exactly why the [Adaptability pillar](/pillars/adaptability) insists on measuring
+the same questions consistently rather than reacting to one-offs.
+
+## When is a drop real?
+
+When it persists. A single different answer is almost always noise, but a sustained
+decline across runs is a signal worth investigating — usually [content
+decay](/learn/does-content-decay-affect-ai-citation), a competitor improving, or a
+change in how an engine retrieves and ranks. Persistence is what separates a real drop
+from normal variation, so let the trend, not a bad day, trigger your response.
+
+<RelatedQuestions
+  items={[
+    { q: "How do I know if my AEO is working?", a: "Judge by trends in per-engine citation share across a fixed prompt set, not single answers.", href: "/learn/how-to-tell-if-aeo-is-working" },
+    { q: "How do I track my AI citations?", a: "Run a fixed prompt set across engines on a schedule and log whether and how you're cited.", href: "/learn/how-to-track-ai-citations" },
+    { q: "Does content decay affect AI citation?", a: "Yes — stale pages lose citations to fresher, more accurate competitors over time.", href: "/learn/does-content-decay-affect-ai-citation" },
+  ]}
+/>

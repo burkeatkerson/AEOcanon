@@ -1,0 +1,82 @@
+---
+title: "Can I A/B Test for AEO?"
+slug: how-to-ab-test-for-aeo
+summary: Classic A/B testing doesn't fit AEO, because you can't split-test an AI answer and citations are noisy — instead, test changes sequentially by measuring citation share on a fixed prompt set before and after a change, holding everything else steady. It's before/after measurement, not a controlled split.
+topics:
+  - analytics-measurement
+  - answer-engines
+author: jordan-vega
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: Can I A/B test for AEO?
+    a: Not in the classic split-test sense — you can't show different page versions to an AI engine the way you can to users. Instead, test sequentially — measure citation share on a fixed prompt set, make one change, and measure again after the engines re-crawl, holding other variables steady. It's before/after testing against citation noise, not a controlled split.
+  - q: Why doesn't traditional A/B testing work for AEO?
+    a: Because there's no audience to split and the outcome is noisy. An engine sees one version of your page, not two, and citations fluctuate run to run, so a simultaneous split with clean attribution isn't possible. You measure change over time instead, which means controlling for the volatility rather than randomizing it away.
+  - q: How do I test an AEO change reliably?
+    a: Establish a baseline by running your prompt set repeatedly, make one isolated change, wait for re-crawl, then measure the same prompts again over several runs. Change one thing at a time so you can attribute the effect, and judge by a sustained shift in citation share, not a single answer.
+  - q: How long should I wait to see the effect of a change?
+    a: Long enough for engines to re-crawl and for the trend to separate from noise — often a few weeks for retrieval-based engines, longer for authority-driven changes. Measure across multiple runs after the change so normal citation volatility doesn't masquerade as a result.
+---
+
+**Classic A/B testing doesn't fit AEO, because you can't split-test an AI answer and
+citations are noisy — instead, test changes sequentially by measuring citation share
+on a fixed prompt set before and after a change, holding everything else steady.** It's
+before/after measurement against the noise, not a controlled split.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Not in the classic sense — you <strong>can't split-test an AI answer</strong>,
+    and citations are noisy. Instead test <strong>sequentially</strong>: baseline
+    your prompt set, <strong>change one thing</strong>, wait for re-crawl, and
+    measure again over several runs. Judge by a{" "}
+    <strong>sustained shift in citation share</strong>, not a single answer.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "You can't show an engine two page versions, so classic A/B testing doesn't apply.",
+    "Test sequentially: measure, change one thing, re-measure after re-crawl.",
+    "Change one variable at a time so you can attribute the effect.",
+    "Judge by a sustained shift in citation share, not one answer.",
+    "Allow weeks for re-crawl, longer for authority-driven changes.",
+  ]}
+/>
+
+## Why doesn't classic A/B testing work?
+
+Because there's no audience to split and the outcome is noisy. An engine sees one
+version of your page, not two simultaneously, so you can't randomize users into
+variants the way you would for a landing page — and [citations fluctuate run to
+run](/learn/why-do-ai-citations-fluctuate), so even a split wouldn't give clean
+attribution. AEO testing has to control for the volatility rather than randomize it
+away.
+
+## What's the workable method?
+
+Sequential before/after. Establish a baseline by [running your prompt
+set](/learn/how-to-track-ai-citations) repeatedly, make one isolated change, wait for
+the engines to re-crawl, then measure the same prompts again across several runs.
+Changing one thing at a time is what lets you attribute the effect, and judging by a
+*sustained* shift in [citation share](/learn/share-of-voice-ai-search) — not a single
+answer — is what separates a real result from noise. That disciplined iteration is the
+[Adaptability pillar](/pillars/adaptability) in practice.
+
+## How long until I see the effect?
+
+Long enough for re-crawl and for the trend to clear the noise. For retrieval-based
+engines that's often a [few weeks](/learn/how-fast-does-ai-pick-up-new-content);
+authority-driven changes take [longer to compound](/learn/how-long-to-build-aeo-authority).
+Measure across multiple runs after the change so normal citation volatility doesn't
+masquerade as a result — and resist judging the change the day after you ship it, when
+you're seeing variance, not effect.
+
+<RelatedQuestions
+  items={[
+    { q: "Why do my AI citations keep changing?", a: "AI answers are probabilistic and engines shift — expect run-to-run variation, track trends.", href: "/learn/why-do-ai-citations-fluctuate" },
+    { q: "How do I track my AI citations?", a: "Run a fixed prompt set across engines on a schedule and log whether and how you're cited.", href: "/learn/how-to-track-ai-citations" },
+    { q: "How do I know if my AEO is working?", a: "Judge by trends in per-engine citation share across a fixed prompt set, not single answers.", href: "/learn/how-to-tell-if-aeo-is-working" },
+  ]}
+/>
