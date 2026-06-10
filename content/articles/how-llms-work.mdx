@@ -35,6 +35,17 @@ summarizing — is built on this single loop.
   ]}
 />
 
+<ProcessFlow
+  steps={[
+    { label: "Prompt", sub: "your text goes in" },
+    { label: "Tokenize", sub: "split into tokens" },
+    { label: "Predict", sub: "weigh context, pick the next token" },
+    { label: "Repeat", sub: "append and predict again" },
+    { label: "Answer", sub: "tokens become text" },
+  ]}
+  caption="An LLM generates one token at a time, each conditioned on everything before it."
+/>
+
 ## What are the steps from prompt to answer?
 
 An LLM turns your prompt into an answer through a fixed sequence of steps,
@@ -91,6 +102,8 @@ that can relate every token to every other token in parallel.
     <a href="/pillars/extractability"> extractability</a> rewards.
   </p>
 </Callout>
+
+<TokenStrip />
 
 ## Does an LLM know facts, or just predict words?
 

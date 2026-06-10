@@ -50,7 +50,7 @@ import { TokenStrip } from "./token-strip";
 import { ContextWindow } from "./context-window";
 import { Timeline } from "./timeline";
 import { ThreeLayers } from "./three-layers";
-import { SovBars, Heatmap, Gauge, Funnel, VersusSplit } from "./data-viz";
+import { SovBars, Heatmap, Gauge, Funnel, VersusSplit, ProcessFlow } from "./data-viz";
 import { EngineTabs } from "./engine-tabs";
 
 /**
@@ -109,6 +109,7 @@ export const mdxComponents: MDXComponents = {
   Gauge,
   Funnel,
   VersusSplit,
+  ProcessFlow,
   EngineTabs,
 };
 

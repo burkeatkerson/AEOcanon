@@ -235,3 +235,42 @@ export function VersusSplit({
     </figure>
   );
 }
+
+/** Horizontal labelled process flow — stages with arrows between (prompt → answer). */
+export function ProcessFlow({
+  steps,
+  caption,
+}: {
+  steps: { label: string; sub?: string }[];
+  caption?: string;
+}) {
+  return (
+    <figure className="not-prose my-8 font-sans">
+      <div className="flex items-stretch gap-2 overflow-x-auto pb-1">
+        {steps.map((s, i) => (
+          <div key={s.label} className="flex items-stretch gap-2">
+            <div className="border-line-2 bg-panel flex min-w-[120px] flex-1 flex-col rounded-xl border p-3 text-center">
+              <span className="text-accent font-mono text-[10px]">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="text-ink mt-1 text-[14px] font-medium">{s.label}</span>
+              {s.sub ? (
+                <span className="text-muted mt-1 text-[12px] leading-snug">{s.sub}</span>
+              ) : null}
+            </div>
+            {i < steps.length - 1 ? (
+              <span className="text-faint self-center" aria-hidden>
+                →
+              </span>
+            ) : null}
+          </div>
+        ))}
+      </div>
+      {caption ? (
+        <figcaption className="text-muted mt-3 text-[12.5px] leading-relaxed">
+          {caption}
+        </figcaption>
+      ) : null}
+    </figure>
+  );
+}
