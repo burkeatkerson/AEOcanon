@@ -1,0 +1,5 @@
+Page URL,Target question,Published,Last updated,Clock-speed (fast/med/slow),Next review due,Citation share trend (up/flat/down),Priority (H/M/L),Notes
+/example-page-1,"Best [category] for [use case]?",2026-01-15,2026-06-01,fast,2026-07-01,down,H,"Pricing changed; competitor now cited"
+/example-page-2,"How does [process] work?",2025-09-10,2026-03-20,slow,2026-09-20,flat,M,"Evergreen; light review"
+/example-page-3,"[X] vs [Y]",2026-02-01,2026-05-15,med,2026-08-15,up,M,"Add new competitor"
+/example-page-4,"What is [term]?",2025-06-01,2025-06-01,slow,2026-06-01,flat,L,"Verify facts still current"
