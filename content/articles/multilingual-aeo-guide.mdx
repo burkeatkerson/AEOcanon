@@ -1,0 +1,108 @@
+---
+title: "The Multilingual AEO Guide: Get Cited in Every Language You Serve"
+slug: multilingual-aeo-guide
+summary: To be cited by AI in each language you serve, publish genuinely native, answer-first content per language — not machine-translated dumps — and signal language clearly with hreflang, the lang attribute, and distinct URLs. Earn authority within each language, because citations don't transfer between them.
+topics:
+  - content-strategy
+  - technical-seo
+author: priya-nair
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: How do you do AEO for a multilingual site?
+    a: Publish genuinely native, answer-first content for each language — written or expertly edited by someone fluent, not machine-dumped — on distinct URLs per language, and signal the language clearly with hreflang annotations and the HTML lang attribute. Then earn authority within each language, because AI citations are won per language and don't transfer from one to another.
+  - q: Does machine-translated content get cited by AI?
+    a: Rarely, and it's risky. Bulk machine translation reads as generic and can be low-quality or subtly wrong, failing the originality and credibility bars engines reward — and at scale it can dilute your site. Native or expert-edited translation that reads naturally and keeps the evidence intact is what earns citations.
+  - q: What is hreflang and does it matter for AEO?
+    a: hreflang is a markup annotation that tells engines which language and region each version of a page is for, so the right language is served to the right user. It's part of being correctly understood — confirm each localized page is crawlable, has the correct lang attribute, declares hreflang alternates, and sets inLanguage in its schema. It clarifies language; it isn't a citation lever on its own.
+  - q: Should each language have its own URL?
+    a: Yes. Give each language a distinct, crawlable URL (a subdirectory like /es/ or a subdomain), each self-referencing its canonical and listing its hreflang alternates. One page that swaps languages with JavaScript is hard for AI crawlers — which mostly read raw HTML — to read in any language. Separate, server-rendered URLs are the reliable pattern.
+---
+
+**To be cited by AI in each language you serve, publish genuinely native, answer-first
+content per language — not machine-translated dumps — and signal language clearly with
+hreflang, the `lang` attribute, and distinct URLs.** Citations are earned per language
+and [don't transfer between them](/learn/ai-citation-across-languages), so each language
+needs real content and real authority.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Treat each language as its own site: <strong>native, answer-first content</strong>{" "}
+    (not bulk machine translation), on <strong>distinct crawlable URLs</strong>, with{" "}
+    <strong>hreflang</strong>, the correct <strong>lang attribute</strong>, and{" "}
+    <code>inLanguage</code> schema. Then earn authority <strong>within</strong> each
+    language — citations don&apos;t carry over.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Each language needs genuinely native, answer-first content — machine-dumped translation rarely gets cited.",
+    "Give every language a distinct, crawlable, server-rendered URL.",
+    "Signal language with hreflang, the HTML lang attribute, and inLanguage in schema.",
+    "Build authority within each language; English visibility doesn't transfer.",
+    "Measure citation share per language, not as one blended number.",
+  ]}
+/>
+
+## How do you do AEO for a multilingual site?
+
+Treat each language as its own AEO project. The fundamentals are identical — be
+readable, answer the real questions answer-first, be evidenced and credible, earn
+authority — but you apply them *per language*, because [engines cite different sources
+in each language](/learn/ai-citation-across-languages). That means native content
+written or expertly edited by someone fluent in both the language and the topic, on its
+own URL, aimed at the questions speakers of that language actually ask (which are
+rarely literal translations of the English ones).
+
+## Does machine-translated content get cited?
+
+Rarely, and it can hurt you. Bulk machine translation reads as generic, can be subtly
+wrong, and fails the [originality](/pillars/originality) and
+[credibility](/pillars/credibility) bars engines reward — and publishing it at scale
+risks diluting your site. The goal isn't to *have* a Spanish page; it's to have the
+*best Spanish answer* to the question. Native or expert-edited translation that reads
+naturally and preserves the evidence is what earns citations; a translated wall of text
+usually doesn't.
+
+## How do you signal language to AI crawlers?
+
+Make the language unmistakable in the markup. Give each language a distinct URL, set the
+HTML `lang` attribute, declare `hreflang` alternates that point to every language
+version (plus an `x-default`), and set `inLanguage` in the page's schema. Each localized
+page should self-reference its own canonical, not point back to the English one.
+
+```html
+<html lang="es">
+<head>
+  <link rel="alternate" hreflang="en" href="https://example.com/guide" />
+  <link rel="alternate" hreflang="es" href="https://example.com/es/guia" />
+  <link rel="alternate" hreflang="x-default" href="https://example.com/guide" />
+  <link rel="canonical" href="https://example.com/es/guia" />
+</head>
+```
+
+These signals clarify *which* language a page is for; they aren't a citation lever on
+their own. And they only help if the page is actually [crawlable as server-rendered
+HTML](/learn/javascript-breaks-ai-citation) — a single page that swaps languages with
+JavaScript is hard for AI crawlers, which mostly read raw HTML, to read in any language.
+
+## How do you build authority in each language?
+
+Earn it natively. The mentions, reviews, and communities that vouch for you differ by
+market, so authority built in English doesn't count for much in Spanish. Get genuinely
+mentioned on the local-language platforms, press, and communities that matter in each
+market — the per-language version of the [Authority pillar](/pillars/authority).
+Confirm crawler access for every locale, too: see [how to allow AI
+crawlers](/learn/allow-ai-crawlers-robots-txt).
+
+## Where this fits in the Canon
+
+Multilingual AEO is the full [AEO Canon](/learn/aeo-canon) executed per language, and
+it leans on the [Adaptability pillar](/pillars/adaptability) — separate universes,
+measured separately. Pair it with [AI citation across
+languages](/learn/ai-citation-across-languages) for the why, [international AEO
+strategy](/learn/international-aeo-strategy) to decide which languages to build, and
+[AEO for non-English markets](/learn/non-english-markets-aeo) for where the
+opportunity is largest.
