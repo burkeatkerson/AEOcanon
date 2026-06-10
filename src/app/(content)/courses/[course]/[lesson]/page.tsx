@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Container } from "@/components/layout/container";
 import { JsonLd } from "@/components/seo/json-ld";
 import { KnowledgeCheck } from "@/components/courses/knowledge-check";
 import { LessonNav } from "@/components/courses/lesson-nav";
@@ -91,7 +90,7 @@ export default async function LessonPage({
   ]);
 
   return (
-    <Container className="py-12">
+    <div className="py-12">
       <JsonLd graph={jsonLd} />
       <article className="mx-auto max-w-[760px]">
         <nav
@@ -203,6 +202,6 @@ export default async function LessonPage({
 
         <LessonNav course={course} index={index} />
       </article>
-    </Container>
+    </div>
   );
 }

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Container } from "@/components/layout/container";
 import { Kicker } from "@/components/ui/eyebrow";
 import { Button } from "@/components/ui/button";
 import { getAllPlaybooks } from "@/lib/content";
@@ -19,18 +18,20 @@ export default function AuthorityIndexPage() {
   const rest = playbooks.filter((p) => p.slug !== "off-site-authority-audit");
 
   return (
-    <Container className="py-12 pb-20">
+    <div className="py-12 pb-20">
       <header className="max-w-3xl">
         <Kicker>Off-site &amp; authority</Kicker>
         <h1 className="mt-4 text-[clamp(32px,4.8vw,52px)] leading-[1.04] font-medium tracking-[-0.02em]">
           Build the authority{" "}
-          <em className="text-accent [font-style:italic]">AI already trusts.</em>
+          <em className="text-accent [font-style:italic]">
+            AI already trusts.
+          </em>
         </h1>
         <p className="text-ink-2 mt-5 max-w-[64ch] text-[18px] leading-relaxed">
           Answer engines trust what the wider web vouches for — and they weigh
-          brand mentions far more than backlinks. These playbooks show how to earn
-          genuine presence on the surfaces engines read most, the honest way. No
-          gaming, no manipulation; the{" "}
+          brand mentions far more than backlinks. These playbooks show how to
+          earn genuine presence on the surfaces engines read most, the honest
+          way. No gaming, no manipulation; the{" "}
           <Link href="/pillars/authority" className="text-accent">
             Authority pillar
           </Link>{" "}
@@ -66,7 +67,9 @@ export default function AuthorityIndexPage() {
                   {p.platform}
                 </span>
               ) : null}
-              <h3 className="text-[18px] leading-snug font-medium">{p.title}</h3>
+              <h3 className="text-[18px] leading-snug font-medium">
+                {p.title}
+              </h3>
               <p className="text-ink-2 text-[13.5px] leading-relaxed">
                 {p.summary}
               </p>
@@ -89,6 +92,6 @@ export default function AuthorityIndexPage() {
           </Button>
         ) : null}
       </div>
-    </Container>
+    </div>
   );
 }

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { Kicker } from "@/components/ui/eyebrow";
 import { FAMILIES } from "@/lib/industries";
@@ -41,7 +40,7 @@ export default function IndustriesIndexPage() {
   const liveSlugs = new Set(getAllVerticals().map((v) => v.slug));
 
   return (
-    <Container className="py-12 pb-20">
+    <div className="py-12 pb-20">
       {/* hero */}
       <header className="max-w-4xl">
         <Kicker>Industries</Kicker>
@@ -186,6 +185,6 @@ export default function IndustriesIndexPage() {
           Run the analyzer →
         </Button>
       </div>
-    </Container>
+    </div>
   );
 }

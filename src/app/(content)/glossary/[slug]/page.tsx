@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Container } from "@/components/layout/container";
 import { MDXContent } from "@/components/mdx";
 import { FAQBlock } from "@/components/mdx/faq-block";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -92,7 +91,9 @@ export default async function GlossaryTermPage({
       definition: term.definition,
       path: term.url,
     }),
-    ...(term.faqs && term.faqs.length > 0 ? [faqNode(term.url, term.faqs)] : []),
+    ...(term.faqs && term.faqs.length > 0
+      ? [faqNode(term.url, term.faqs)]
+      : []),
     ...(author ? [personNode(author)] : []),
     breadcrumbNode([
       { name: "Glossary", path: "/glossary" },
@@ -101,7 +102,7 @@ export default async function GlossaryTermPage({
   ]);
 
   return (
-    <Container className="py-12">
+    <div className="py-12">
       <JsonLd graph={jsonLd} />
       <article className="mx-auto max-w-[720px]">
         <nav
@@ -210,6 +211,6 @@ export default async function GlossaryTermPage({
           </Link>
         </nav>
       </article>
-    </Container>
+    </div>
   );
 }

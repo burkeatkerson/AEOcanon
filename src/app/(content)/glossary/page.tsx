@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Container } from "@/components/layout/container";
 import { Kicker } from "@/components/ui/eyebrow";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
@@ -9,7 +8,11 @@ import {
 } from "@/components/glossary/glossary-index";
 import { getAllGlossary } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
-import { breadcrumbNode, definedTermSetNode, graph } from "@/lib/structured-data";
+import {
+  breadcrumbNode,
+  definedTermSetNode,
+  graph,
+} from "@/lib/structured-data";
 
 const TITLE = "The AEO Glossary";
 const DESCRIPTION =
@@ -42,7 +45,7 @@ export default function GlossaryIndexPage() {
   ]);
 
   return (
-    <Container className="py-14">
+    <div className="py-14">
       <JsonLd graph={jsonLd} />
       <header className="max-w-3xl">
         <Kicker>Reference · {terms.length} terms</Kicker>
@@ -50,8 +53,8 @@ export default function GlossaryIndexPage() {
           The AEO Glossary
         </h1>
         <p className="text-ink-2 mt-5 max-w-[64ch] text-[18px] leading-relaxed">
-          A plain-language encyclopedia of answer-engine optimization. Every term
-          is defined answer-first — the one sentence you could quote — then
+          A plain-language encyclopedia of answer-engine optimization. Every
+          term is defined answer-first — the one sentence you could quote — then
           expanded with an example and linked to the relevant{" "}
           <Link href="/pillars" className="text-accent">
             Canon pillar
@@ -75,6 +78,6 @@ export default function GlossaryIndexPage() {
         </Link>{" "}
         overview.
       </p>
-    </Container>
+    </div>
   );
 }

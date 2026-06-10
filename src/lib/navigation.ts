@@ -52,6 +52,7 @@ export const footerNav: FooterColumn[] = [
     title: "Learn",
     links: [
       { href: "/learn", label: "AEO school" },
+      { href: "/articles", label: "Article archive" },
       { href: "/glossary", label: "Glossary" },
       { href: "/topics", label: "Topics" },
       { href: "/courses", label: "Courses" },

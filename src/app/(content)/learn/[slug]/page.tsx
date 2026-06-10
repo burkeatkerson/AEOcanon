@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Container } from "@/components/layout/container";
 import { MDXContent } from "@/components/mdx";
 import { FAQBlock } from "@/components/mdx/faq-block";
 import { TableOfContents } from "@/components/library/reading/table-of-contents";
@@ -106,9 +105,9 @@ export default async function ArticlePage({
   ]);
 
   return (
-    <Container className="py-12">
+    <div className="py-12">
       <JsonLd graph={jsonLd} />
-      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_200px] lg:gap-12">
+      <div className="2xl:grid 2xl:grid-cols-[minmax(0,1fr)_200px] 2xl:gap-12">
         <article className="mx-auto max-w-[720px] min-w-0">
           {/* breadcrumb */}
           <nav
@@ -228,7 +227,7 @@ export default async function ArticlePage({
         </article>
 
         {/* sticky TOC */}
-        <aside className="mt-12 hidden lg:mt-0 lg:block">
+        <aside className="mt-12 hidden 2xl:mt-0 2xl:block">
           <div className="sticky top-24">
             <TableOfContents toc={article.toc} />
           </div>
@@ -247,6 +246,6 @@ export default async function ArticlePage({
           </div>
         </section>
       ) : null}
-    </Container>
+    </div>
   );
 }

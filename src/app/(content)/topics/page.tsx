@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/layout/container";
 import { Kicker } from "@/components/ui/eyebrow";
 import { TopicGrid } from "@/components/library/topic-grid";
 import { getUsedTopics } from "@/lib/content";
@@ -16,7 +15,7 @@ export default function TopicsIndexPage() {
   const topics = getUsedTopics();
 
   return (
-    <Container className="py-14">
+    <div className="py-14">
       <header className="max-w-3xl">
         <Kicker>Browse by subject</Kicker>
         <h1 className="mt-4 text-[clamp(34px,5vw,52px)] leading-[1.02] font-medium tracking-[-0.02em]">
@@ -33,6 +32,6 @@ export default function TopicsIndexPage() {
       <div className="mt-10">
         <TopicGrid topics={topics} />
       </div>
-    </Container>
+    </div>
   );
 }

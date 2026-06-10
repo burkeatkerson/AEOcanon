@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/tag";
 import { ArticleCard } from "@/components/library/cards/article-card";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -59,7 +58,7 @@ export default async function TopicPage({
   ]);
 
   return (
-    <Container className="py-12">
+    <div className="py-12">
       <JsonLd graph={jsonLd} />
 
       <nav
@@ -154,6 +153,6 @@ export default async function TopicPage({
           ← All topics
         </Link>
       </p>
-    </Container>
+    </div>
   );
 }

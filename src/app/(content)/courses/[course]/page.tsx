@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/tag";
 import { Button } from "@/components/ui/button";
 import { CoursePreview } from "@/components/courses/course-preview";
@@ -9,7 +8,12 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { getAllCourses, getCourse } from "@/lib/courses";
 import { getAuthor, getArticle } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
-import { breadcrumbNode, courseNode, graph, personNode } from "@/lib/structured-data";
+import {
+  breadcrumbNode,
+  courseNode,
+  graph,
+  personNode,
+} from "@/lib/structured-data";
 
 export function generateStaticParams() {
   return getAllCourses().map((course) => ({ course: course.slug }));
@@ -67,7 +71,7 @@ export default async function CourseSyllabusPage({
   ]);
 
   return (
-    <Container className="py-12 pb-20">
+    <div className="py-12 pb-20">
       <JsonLd graph={jsonLd} />
 
       <nav
@@ -86,8 +90,9 @@ export default async function CourseSyllabusPage({
           <Badge className="capitalize">{course.level}</Badge>
           <span className="text-muted font-mono text-[11px]">
             {course.lessons.length} lessons
-            {course.estimatedHours ? ` · ~${course.estimatedHours}h` : null} ·{" "}
-            {course.tier} tier
+            {course.estimatedHours
+              ? ` · ~${course.estimatedHours}h`
+              : null} · {course.tier} tier
           </span>
         </div>
         <h1 className="mt-4 text-[clamp(30px,4.4vw,46px)] leading-[1.06] font-medium tracking-[-0.02em]">
@@ -126,7 +131,10 @@ export default async function CourseSyllabusPage({
         </h2>
         <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
           {course.outcomes.map((o) => (
-            <li key={o} className="text-ink-2 flex gap-2.5 text-[14.5px] leading-snug">
+            <li
+              key={o}
+              className="text-ink-2 flex gap-2.5 text-[14.5px] leading-snug"
+            >
               <span className="text-accent">✓</span>
               <span>{o}</span>
             </li>
@@ -187,14 +195,14 @@ export default async function CourseSyllabusPage({
           {course.certificate}.
         </h2>
         <p className="text-ink-2 mt-2 max-w-[60ch] text-[14.5px] leading-relaxed">
-          Complete every lesson and pass the knowledge checks to claim a shareable{" "}
-          {course.certificate} — proof you've mastered {course.title}. Practitioner
-          certificates stack toward full AEO mastery.
+          Complete every lesson and pass the knowledge checks to claim a
+          shareable {course.certificate} — proof you've mastered {course.title}.
+          Practitioner certificates stack toward full AEO mastery.
         </p>
         <div className="mt-4">
           <Button href={`${coursePath}/${first.slug}`}>Begin Lesson 1 →</Button>
         </div>
       </section>
-    </Container>
+    </div>
   );
 }

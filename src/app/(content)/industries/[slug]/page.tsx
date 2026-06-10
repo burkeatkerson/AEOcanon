@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Container } from "@/components/layout/container";
 import { MDXContent } from "@/components/mdx";
 import { ArticleCard } from "@/components/library/cards/article-card";
 import { TabGroup, type TabDef } from "@/components/library/tab-group";
@@ -149,7 +148,7 @@ export default async function IndustryPage({
   ];
 
   return (
-    <Container className="py-12 pb-20">
+    <div className="py-12 pb-20">
       <JsonLd graph={jsonLd} />
       <nav
         aria-label="Breadcrumb"
@@ -208,6 +207,6 @@ export default async function IndustryPage({
       <div className="mt-8">
         <TabGroup tabs={tabs} />
       </div>
-    </Container>
+    </div>
   );
 }

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Container } from "@/components/layout/container";
 import { MDXContent } from "@/components/mdx";
 import { ArticleCard } from "@/components/library/cards/article-card";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -54,7 +53,7 @@ export default async function AuthorPage({
   ]);
 
   return (
-    <Container className="py-12">
+    <div className="py-12">
       <JsonLd graph={jsonLd} />
       <header className="max-w-3xl">
         <div className="flex items-center gap-4">
@@ -155,6 +154,6 @@ export default async function AuthorPage({
           ← Back to the AEO School
         </Link>
       </p>
-    </Container>
+    </div>
   );
 }
