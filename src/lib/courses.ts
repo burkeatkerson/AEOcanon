@@ -2380,6 +2380,1130 @@ export const COURSES: Course[] = [
       },
     ],
   },
+  {
+    slug: "aeo-for-small-business",
+    title: "AEO for Small Business",
+    summary:
+      "Get a small business found, recommended, and cited by AI on limited time and budget — the highest-leverage moves, a 30-day plan, and solo execution.",
+    tier: "Specialist",
+    certificate: "Tier 3 Specialist Certificate",
+    level: "Specialist",
+    estimatedHours: 2,
+    authorSlug: "jordan-vega",
+    published: "2026-06-10",
+    updated: "2026-06-10",
+    outcomes: [
+      "Sequence AEO for a small business: foundation first, authority over time.",
+      "Judge where a small business can realistically win citations.",
+      "Execute the cheapest, highest-impact moves before paying for tools.",
+      "Run a 30-day plan from audit to first citations.",
+      "Do AEO solo, without a marketing team or budget.",
+      "Get a service business recommended by AI.",
+    ],
+    lessons: [
+      {
+        slug: "where-to-start",
+        title: "Where to Start",
+        intro:
+          "Build the foundation you control — readable, answer-first content — then earn authority over time. This is the order that fits a small business.",
+        objectives: [
+          "Sequence the 8 pillars for limited time and budget.",
+          "Separate the fast on-page wins from the slow authority build.",
+          "Set realistic expectations for when citations arrive.",
+        ],
+        articleSlug: "aeo-for-small-business",
+        takeaways: [
+          "Build what you control first (crawlable, answer-first content); authority compounds over months.",
+          "Engines cite the best answer to a specific question, not the biggest brand.",
+          "Foundation pays off in days–weeks; off-site authority takes months.",
+        ],
+        check: [
+          {
+            question: "What should a small business do first in AEO?",
+            options: [
+              "Buy ads in AI chat interfaces",
+              "Build the foundation it controls — readable, answer-first content",
+              "Wait for authority to accumulate",
+              "Block AI crawlers",
+            ],
+            correct: 1,
+            explanation:
+              "The foundation (crawlable, answer-first content) is fast and fully in your control; authority is the slower, parallel build.",
+          },
+          {
+            question: "Why can a small business win citations despite low authority?",
+            options: [
+              "Engines only cite big brands",
+              "Engines cite the best answer to a specific question, and citations are spread thin",
+              "Authority does not matter at all",
+              "Paid placement guarantees it",
+            ],
+            correct: 1,
+            explanation:
+              "Citations are spread thin across many sources, so a focused, well-evidenced answer to a specific question can win.",
+          },
+        ],
+      },
+      {
+        slug: "can-you-compete",
+        title: "Can You Compete With Big Brands?",
+        intro:
+          "On specific, well-answered questions, a small business can absolutely win AI citations. Here is why citations are not winner-take-all — and where to compete.",
+        objectives: [
+          "Explain why citations are not winner-take-all.",
+          "Pick the questions a small business can realistically win.",
+          "Avoid competing where authority is the deciding factor.",
+        ],
+        articleSlug: "small-business-ai-search",
+        takeaways: [
+          "No single domain dominates a topic's citations (Evertune: none over ~5%).",
+          "Specific, intent-rich questions are both more winnable and more valuable.",
+          "Compete on focus and originality, not breadth.",
+        ],
+        check: [
+          {
+            question: "How concentrated are AI citations within a topic?",
+            options: [
+              "One domain wins about 90%",
+              "Spread thin — no domain exceeds ~5% (Evertune)",
+              "Evenly split 50/50",
+              "Only the top three brands ever appear",
+            ],
+            correct: 1,
+            explanation:
+              "Evertune found no single domain exceeds about 5% citation share in a topic, leaving room for focused players.",
+          },
+          {
+            question: "Which questions should a small business target first?",
+            options: [
+              "The broadest possible head terms",
+              "Specific, intent-rich questions it can answer best",
+              "Questions unrelated to its business",
+              "Only its own brand name",
+            ],
+            correct: 1,
+            explanation:
+              "Specific questions are more winnable and carry higher commercial intent.",
+          },
+        ],
+      },
+      {
+        slug: "cheapest-moves",
+        title: "The Cheapest High-Impact Moves",
+        intro:
+          "The free or near-free actions that move AI visibility the most — in priority order, so a small business spends effort where it counts.",
+        objectives: [
+          "Rank AEO moves by impact per unit of effort.",
+          "Execute the free wins before paying for tools.",
+          "Avoid low-leverage busywork.",
+        ],
+        articleSlug: "cheapest-high-impact-aeo-moves",
+        takeaways: [
+          "The biggest levers cost effort, not money: answer-first rewrites, evidence, consistency, genuine mentions.",
+          "Confirm crawlability before anything else.",
+          "Skip paid tools until the basics are done.",
+        ],
+        check: [
+          {
+            question: "What does the highest-impact AEO work mostly cost?",
+            options: [
+              "Money for tools",
+              "Effort and honesty, not money",
+              "Large ad budgets",
+              "Agency retainers",
+            ],
+            correct: 1,
+            explanation:
+              "The top moves — answer-first writing, evidence, consistency, mentions — cost effort, not budget.",
+          },
+          {
+            question: "When should a small business buy paid AEO tools?",
+            options: [
+              "Immediately, before anything else",
+              "Before writing any content",
+              "After the free fundamentals are in place",
+              "Never, under any circumstances",
+            ],
+            correct: 2,
+            explanation:
+              "Tools help you measure and scale; do the free, high-impact basics first.",
+          },
+        ],
+      },
+      {
+        slug: "the-30-day-plan",
+        title: "The 30-Day Plan",
+        intro:
+          "A concrete, week-by-week ramp: audit and fix the foundation, publish answer-first pages, then start earning mentions and measuring.",
+        objectives: [
+          "Follow a day-by-day AEO ramp.",
+          "Order tasks so quick wins come first.",
+          "Know what to measure at the end of 30 days.",
+        ],
+        articleSlug: "30-day-aeo-plan",
+        takeaways: [
+          "Week 1 audits and fixes access; weeks 2–3 publish answer-first content; week 4 starts authority and measurement.",
+          "Quick on-page wins first, slow authority build in parallel.",
+          "Measure citation presence, not just rankings.",
+        ],
+        check: [
+          {
+            question: "What comes first in the 30-day plan?",
+            options: [
+              "Earning backlinks",
+              "Auditing and fixing crawl/access, plus answer-first basics",
+              "Running ads",
+              "Hiring an agency",
+            ],
+            correct: 1,
+            explanation:
+              "You fix the foundation you control first, because it pays off fastest.",
+          },
+          {
+            question: "What should you measure by day 30?",
+            options: [
+              "Only keyword rankings",
+              "Whether you are being mentioned/cited and your foundation is solid",
+              "Ad impressions",
+              "Nothing yet",
+            ],
+            correct: 1,
+            explanation:
+              "Track citation presence and confirm the fundamentals are in place; authority keeps compounding after.",
+          },
+        ],
+      },
+      {
+        slug: "without-a-team",
+        title: "AEO Without a Marketing Team",
+        intro:
+          "The minimum viable routine a solo owner can sustain — the few moves that matter, free tools, and manual measurement.",
+        objectives: [
+          "Reduce AEO to a sustainable solo routine.",
+          "Prioritize the few moves that matter most.",
+          "Use free tools and manual measurement.",
+        ],
+        articleSlug: "aeo-without-a-marketing-team",
+        takeaways: [
+          "A solo owner wins by being genuinely helpful and answer-first on real questions.",
+          "Consistency beats intensity — a sustainable cadence compounds.",
+          "You can measure manually; you do not need a paid stack to start.",
+        ],
+        check: [
+          {
+            question: "What is the solo owner's biggest advantage?",
+            options: [
+              "A huge budget",
+              "First-hand expertise and genuine, answer-first help",
+              "Automated mass content",
+              "Paid placements",
+            ],
+            correct: 1,
+            explanation:
+              "Authentic, first-hand answers to real questions are exactly what engines reward — and what a solo owner has.",
+          },
+          {
+            question: "How should a solo owner measure AEO?",
+            options: [
+              "Only with expensive tools",
+              "Manually — search your key questions and note who is cited",
+              "Not at all",
+              "By ad spend",
+            ],
+            correct: 1,
+            explanation:
+              "Manual checks on a fixed set of questions are enough to start; tools come later.",
+          },
+        ],
+      },
+      {
+        slug: "get-recommended",
+        title: "Get Recommended by AI",
+        intro:
+          "The reviews, mentions, and clear service answers that make AI name your business when someone asks who to hire.",
+        objectives: [
+          "Explain why corroboration drives service recommendations.",
+          "Structure service pages around real customer questions.",
+          "Earn the reviews and mentions that get you named.",
+        ],
+        articleSlug: "service-business-ai-recommendations",
+        takeaways: [
+          "AI recommends services the web consistently vouches for.",
+          "Answer the real 'who should I hire for X' questions clearly.",
+          "Genuine reviews and local mentions are the recommendation engine.",
+        ],
+        check: [
+          {
+            question: "Why does AI recommend one service business over another?",
+            options: [
+              "Random chance",
+              "Consistent third-party mentions and reviews vouch for it",
+              "It has the most pages",
+              "It pays the engine",
+            ],
+            correct: 1,
+            explanation:
+              "Recommendations follow corroboration — the web consistently vouching for you.",
+          },
+          {
+            question: "What content gets a service business recommended?",
+            options: [
+              "Generic marketing copy",
+              "Clear answers to the real questions customers ask before hiring",
+              "Keyword-stuffed pages",
+              "Hidden text",
+            ],
+            correct: 1,
+            explanation:
+              "Answer the actual hiring questions clearly and back them with evidence and reviews.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "aeo-content-operations",
+    title: "AEO Content Operations",
+    summary:
+      "Run AEO content at scale — a repeatable brief-to-refresh system with quality gates that protect citability as volume grows.",
+    tier: "Specialist",
+    certificate: "Tier 3 Specialist Certificate",
+    level: "Specialist",
+    estimatedHours: 2,
+    authorSlug: "jordan-vega",
+    published: "2026-06-10",
+    updated: "2026-06-10",
+    outcomes: [
+      "Run AEO content as a repeatable system, not ad-hoc output.",
+      "Write briefs that produce citable pages.",
+      "Operate an editorial workflow with clear roles and gates.",
+      "Enforce quality gates that protect citability.",
+      "Keep a growing library fresh as facts change.",
+      "Scale a Q&A library without diluting quality.",
+    ],
+    lessons: [
+      {
+        slug: "the-program",
+        title: "The Content Program",
+        intro:
+          "What an AEO content program looks like at scale: a repeatable brief → research → draft → evidence → QC → publish → refresh system.",
+        objectives: [
+          "Map the end-to-end content pipeline.",
+          "Explain why 'more content' alone does not win.",
+          "Identify the non-negotiable gates.",
+        ],
+        articleSlug: "aeo-content-program-at-scale",
+        takeaways: [
+          "Scale a system, not raw word count — engines reward the best answer, not the most pages.",
+          "Two gates are non-negotiable: human evidence/QC and substantive freshness.",
+          "Unedited mass output lowers visibility.",
+        ],
+        check: [
+          {
+            question: "What scales AEO content effectively?",
+            options: [
+              "Publishing as many pages as possible",
+              "A repeatable system with quality gates (brief to refresh)",
+              "Auto-generating content unedited",
+              "Buying links in bulk",
+            ],
+            correct: 1,
+            explanation:
+              "A governed system that protects quality scales; raw volume does not.",
+          },
+          {
+            question: "Why doesn't 'more content' win on its own?",
+            options: [
+              "Engines reward sheer volume",
+              "Engines reward the best, most citable answer — generic volume can dilute the site",
+              "More pages always rank higher",
+              "It actually does win",
+            ],
+            correct: 1,
+            explanation:
+              "Undifferentiated volume adds nothing citable and can dilute the site.",
+          },
+        ],
+      },
+      {
+        slug: "briefs",
+        title: "Briefs That Produce Citable Pages",
+        intro:
+          "An AEO brief targets a question and engineers extractability — specifying the answer-first summary, question-shaped headings, evidence, and links up front.",
+        objectives: [
+          "Write a brief that engineers extractability.",
+          "Specify the evidence and links each page needs.",
+          "Hand a writer everything to produce a citable draft.",
+        ],
+        articleSlug: "brief-writers-for-aeo",
+        takeaways: [
+          "An AEO brief targets a question, not just a keyword.",
+          "It dictates answer-first structure, evidence, and internal links up front.",
+          "A good brief is the difference between generic and citable.",
+        ],
+        check: [
+          {
+            question: "How does an AEO brief differ from a normal content brief?",
+            options: [
+              "It only sets a word count",
+              "It targets a question and engineers extractability (answer-first, evidence, links)",
+              "It ignores structure",
+              "It is exactly the same thing",
+            ],
+            correct: 1,
+            explanation:
+              "An AEO brief specifies the question, answer-first summary, headings, evidence, and links.",
+          },
+          {
+            question: "What must an AEO brief specify for credibility?",
+            options: [
+              "Nothing in particular",
+              "The evidence and sources each claim needs",
+              "Only the title",
+              "Only the publish date",
+            ],
+            correct: 1,
+            explanation:
+              "Every claim should carry a stat, quote, or named source — the brief calls these out.",
+          },
+        ],
+      },
+      {
+        slug: "editorial-workflow",
+        title: "The Editorial Workflow",
+        intro:
+          "The roles, stages, and handoffs that turn briefs into published, citable pages — and keep quality consistent at volume.",
+        objectives: [
+          "Define the roles in an AEO editorial workflow.",
+          "Sequence stages from brief to publish.",
+          "Build review handoffs that protect quality.",
+        ],
+        articleSlug: "aeo-editorial-workflow",
+        takeaways: [
+          "Clear roles and stage gates keep quality consistent at volume.",
+          "Human review is a stage, not an afterthought.",
+          "The workflow exists to protect citability as you scale.",
+        ],
+        check: [
+          {
+            question: "What is the editorial workflow's real job?",
+            options: [
+              "Maximize output speed at any cost",
+              "Protect quality and citability through defined stages and review",
+              "Remove human review",
+              "Publish drafts unedited",
+            ],
+            correct: 1,
+            explanation:
+              "The workflow's purpose is consistent quality through clear stages and human review.",
+          },
+          {
+            question: "Where does human review belong?",
+            options: [
+              "Nowhere",
+              "As a defined stage/gate before publish",
+              "Only after publishing",
+              "Optional and usually skipped",
+            ],
+            correct: 1,
+            explanation:
+              "Human evidence/QC is a non-negotiable gate before publishing.",
+          },
+        ],
+      },
+      {
+        slug: "quality-control",
+        title: "Quality Control for AI-Assisted Content",
+        intro:
+          "The gates that catch generic, unevidenced, or inaccurate drafts before they publish — so AI assistance speeds the work without lowering visibility.",
+        objectives: [
+          "Define the QC gates for AEO content.",
+          "Catch the failure modes of AI-assisted drafts.",
+          "Decide what must never ship ungated.",
+        ],
+        articleSlug: "quality-control-ai-content",
+        takeaways: [
+          "AI-assisted drafts must pass originality and verified-evidence gates.",
+          "Unedited AI output tends to lower visibility.",
+          "QC checks substance and accuracy, not just grammar.",
+        ],
+        check: [
+          {
+            question: "What is the risk of publishing unedited AI content?",
+            options: [
+              "Higher visibility",
+              "Generic, unevidenced pages that can lower visibility",
+              "Guaranteed citations",
+              "No effect at all",
+            ],
+            correct: 1,
+            explanation:
+              "Unedited mass output is generic and can dilute the site, lowering visibility.",
+          },
+          {
+            question: "What do AEO quality gates enforce?",
+            options: [
+              "Word count only",
+              "Originality and human-verified evidence",
+              "Keyword density",
+              "Nothing measurable",
+            ],
+            correct: 1,
+            explanation:
+              "The non-negotiable gates are originality and human-verified evidence.",
+          },
+        ],
+      },
+      {
+        slug: "refresh-system",
+        title: "A Content Refresh System",
+        intro:
+          "Keep a growing library current so engines keep citing it — a refresh cadence prioritized by impact and decay, updated substantively, not cosmetically.",
+        objectives: [
+          "Build a refresh cadence prioritized by impact.",
+          "Refresh substantively, not cosmetically.",
+          "Decide what to update, merge, or retire.",
+        ],
+        articleSlug: "content-refresh-system",
+        takeaways: [
+          "Engines favor recent, maintained content; stale pages decay out of answers.",
+          "Refresh substantively — changing the date alone does not count.",
+          "Prioritize refreshes by impact and how fast the topic changes.",
+        ],
+        check: [
+          {
+            question: "What counts as a real content refresh?",
+            options: [
+              "Changing the date only",
+              "A substantive update to facts, evidence, and claims",
+              "Adding more keywords",
+              "Deleting the page",
+            ],
+            correct: 1,
+            explanation:
+              "Cosmetic date changes read as stale; substantive updates are what engines reward.",
+          },
+          {
+            question: "How should refreshes be prioritized?",
+            options: [
+              "Alphabetically",
+              "By impact and how fast the topic decays",
+              "Randomly",
+              "Oldest first regardless of value",
+            ],
+            correct: 1,
+            explanation:
+              "Refresh by impact and decay rate so effort goes where it matters.",
+          },
+        ],
+      },
+      {
+        slug: "qa-library-at-scale",
+        title: "Scaling a Q&A Library",
+        intro:
+          "Turn the real questions customers ask into a deep, citable Q&A library — each answer a self-contained passage, scaled without diluting quality.",
+        objectives: [
+          "Source the real questions to answer.",
+          "Structure each Q&A to be independently citable.",
+          "Scale breadth while holding quality.",
+        ],
+        articleSlug: "scale-a-qa-library",
+        takeaways: [
+          "Each answer must stand alone as a citable passage.",
+          "Source questions from real customer language, not keyword tools.",
+          "Breadth plus quality, governed by the program's gates.",
+        ],
+        check: [
+          {
+            question: "How should each entry in a Q&A library be written?",
+            options: [
+              "As part of one long page",
+              "As a self-contained, answer-first passage that stands alone",
+              "With hidden keywords",
+              "As a short stub",
+            ],
+            correct: 1,
+            explanation:
+              "Engines cite passages, so each Q&A must be independently liftable.",
+          },
+          {
+            question: "Where do the best questions come from?",
+            options: [
+              "Keyword tools only",
+              "Real customer language — sales, support, and communities",
+              "Made-up questions",
+              "Competitors' page titles",
+            ],
+            correct: 1,
+            explanation:
+              "Real, conversational customer questions are what engines match against.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "local-and-multi-location-aeo",
+    title: "Local & Multi-Location AEO",
+    summary:
+      "Get a local or multi-location business recommended by AI — answer-first local content, consistent NAP and entity signals, and a recognized brand across the web.",
+    tier: "Specialist",
+    certificate: "Tier 3 Specialist Certificate",
+    level: "Specialist",
+    estimatedHours: 2,
+    authorSlug: "jordan-vega",
+    published: "2026-06-10",
+    updated: "2026-06-10",
+    outcomes: [
+      "Win local AI recommendations with answer-first local content.",
+      "Keep NAP and core facts consistent across the web.",
+      "Get a service business recommended by AI.",
+      "Build a recognized entity for your brand and locations.",
+      "Use sameAs and authoritative profiles to unify your identity.",
+      "Earn the entity recognition behind a Google knowledge panel.",
+    ],
+    lessons: [
+      {
+        slug: "local-foundations",
+        title: "Local AEO Foundations",
+        intro:
+          "How local and multi-location businesses get found and recommended by AI for 'near me' and service questions — the local foundation.",
+        objectives: [
+          "Explain how AI handles local recommendation queries.",
+          "Structure local pages around real customer questions.",
+          "Set the local AEO priorities.",
+        ],
+        articleSlug: "local-aeo",
+        takeaways: [
+          "Local recommendations follow consistent, corroborated presence.",
+          "Answer the real local questions clearly and answer-first.",
+          "Profiles, reviews, and consistency are the local foundation.",
+        ],
+        check: [
+          {
+            question: "What drives local AI recommendations?",
+            options: [
+              "Keyword density",
+              "Consistent, corroborated local presence and genuine reviews",
+              "Paying the engine",
+              "Having the most pages",
+            ],
+            correct: 1,
+            explanation:
+              "Local recommendations follow consistent presence and genuine reviews across the web.",
+          },
+          {
+            question: "How should local pages be written?",
+            options: [
+              "Generic, city-stuffed doorway pages",
+              "Answer-first content for the real questions local customers ask",
+              "Hidden text",
+              "Thin, near-duplicate pages",
+            ],
+            correct: 1,
+            explanation:
+              "Clear, answer-first local content wins; doorway and keyword-stuffed pages do not.",
+          },
+        ],
+      },
+      {
+        slug: "nap-consistency",
+        title: "NAP & Entity Consistency",
+        intro:
+          "Keeping Name, Address, Phone and core facts identical everywhere lets engines merge you into one trusted entity — and it is decisive for multi-location brands.",
+        objectives: [
+          "Define NAP consistency and why it matters for AI.",
+          "Spot the inconsistencies that fragment an entity.",
+          "Standardize details across locations and profiles.",
+        ],
+        articleSlug: "nap-consistency",
+        takeaways: [
+          "Identical NAP everywhere lets engines unify your listings into one trusted entity.",
+          "Inconsistency fragments you into several uncertain entities.",
+          "Multi-location brands must standardize per-location details carefully.",
+        ],
+        check: [
+          {
+            question: "What does inconsistent NAP cause?",
+            options: [
+              "A stronger entity",
+              "Fragmentation into several uncertain entities",
+              "Faster citations",
+              "No effect",
+            ],
+            correct: 1,
+            explanation:
+              "Conflicting details prevent engines from merging your presence into one trusted entity.",
+          },
+          {
+            question: "What is the goal of NAP consistency?",
+            options: [
+              "More keywords",
+              "One trusted entity engines recognize across the web",
+              "More pages",
+              "Higher ad spend",
+            ],
+            correct: 1,
+            explanation:
+              "Consistent details let engines connect everything to a single trusted entity.",
+          },
+        ],
+      },
+      {
+        slug: "get-recommended",
+        title: "Get Recommended by AI",
+        intro:
+          "The reviews, mentions, and clear service answers that make AI name your business when a local customer asks who to hire.",
+        objectives: [
+          "Explain why corroboration drives recommendations.",
+          "Earn genuine reviews and local mentions.",
+          "Answer the 'who should I hire' questions clearly.",
+        ],
+        articleSlug: "service-business-ai-recommendations",
+        takeaways: [
+          "AI names businesses the web consistently vouches for.",
+          "Reviews and local mentions are the recommendation signal.",
+          "Answer real hiring questions clearly and answer-first.",
+        ],
+        check: [
+          {
+            question: "Why does AI recommend one local business over another?",
+            options: [
+              "Random chance",
+              "Consistent third-party mentions and reviews vouch for it",
+              "It has the most pages",
+              "It pays the engine",
+            ],
+            correct: 1,
+            explanation:
+              "Recommendations follow corroboration — the web consistently vouching for you.",
+          },
+          {
+            question: "What content gets a service business recommended?",
+            options: [
+              "Generic marketing copy",
+              "Clear answers to the real questions customers ask before hiring",
+              "Keyword-stuffed pages",
+              "Hidden text",
+            ],
+            correct: 1,
+            explanation:
+              "Answer the actual hiring questions clearly and back them with evidence and reviews.",
+          },
+        ],
+      },
+      {
+        slug: "build-your-entity",
+        title: "Build Your Entity",
+        intro:
+          "Make AI recognize your brand as one known, trusted thing — the backbone of multi-location and local visibility.",
+        objectives: [
+          "Explain what an entity is and why recognition matters.",
+          "Establish consistent identity signals.",
+          "Earn the corroboration that connects your mentions.",
+        ],
+        articleSlug: "build-your-entity",
+        takeaways: [
+          "Recognition comes from consistent identity plus corroboration across the web.",
+          "A recognized entity is what lets engines confidently recommend you.",
+          "Entity work underpins both local and multi-location AEO.",
+        ],
+        check: [
+          {
+            question: "What makes AI recognize your brand as one entity?",
+            options: [
+              "A single great page",
+              "Consistent identity signals corroborated across many sources",
+              "Keyword density",
+              "Ad spend",
+            ],
+            correct: 1,
+            explanation:
+              "Engines unify scattered mentions into one entity when your identity is consistent and corroborated.",
+          },
+          {
+            question: "Why does entity recognition matter for multi-location brands?",
+            options: [
+              "It does not matter",
+              "It lets engines connect all locations to one trusted brand",
+              "It hides locations",
+              "It only matters for ecommerce",
+            ],
+            correct: 1,
+            explanation:
+              "A recognized entity ties all locations to one trusted brand engines can recommend.",
+          },
+        ],
+      },
+      {
+        slug: "sameas-and-profiles",
+        title: "sameAs & Authoritative Profiles",
+        intro:
+          "Use the sameAs property and authoritative profiles to link your identities into one entity engines trust — for clarity, not as a citation trick.",
+        objectives: [
+          "Explain what sameAs declares.",
+          "Choose which profiles belong in sameAs.",
+          "Use sameAs for entity clarity, not citation tricks.",
+        ],
+        articleSlug: "sameas-strategy",
+        takeaways: [
+          "sameAs links your Organization/Person to authoritative profiles, asserting one identity.",
+          "It aids entity clarity; it is not a direct citation boost.",
+          "Point it at authoritative, corroborating sources.",
+        ],
+        check: [
+          {
+            question: "What does the sameAs property do?",
+            options: [
+              "Boosts citations directly",
+              "Declares your entity is the same as a list of authoritative profiles",
+              "Blocks crawlers",
+              "Sets the page title",
+            ],
+            correct: 1,
+            explanation:
+              "sameAs unifies your identity across authoritative profiles; it is entity clarity, not a citation lever.",
+          },
+          {
+            question: "Which URLs belong in sameAs?",
+            options: [
+              "Any random sites",
+              "Authoritative, corroborating profiles (Wikipedia, LinkedIn, official accounts)",
+              "Competitor sites",
+              "Expired links",
+            ],
+            correct: 1,
+            explanation:
+              "Point sameAs at authoritative profiles that genuinely corroborate your identity.",
+          },
+        ],
+      },
+      {
+        slug: "knowledge-panel",
+        title: "Earn a Knowledge Panel",
+        intro:
+          "The entity recognition that turns your brand into a known node engines can describe — earned through corroboration, not requested.",
+        objectives: [
+          "Explain what a knowledge panel reflects.",
+          "Build the entity signals that earn one.",
+          "Avoid expecting shortcuts.",
+        ],
+        articleSlug: "google-knowledge-panel",
+        takeaways: [
+          "A knowledge panel reflects a recognized entity in the knowledge graph.",
+          "It is earned through corroboration and consistent identity, not requested.",
+          "Entity work that earns a panel also helps AI describe and recommend you.",
+        ],
+        check: [
+          {
+            question: "What does a Google knowledge panel reflect?",
+            options: [
+              "Paid placement",
+              "A recognized entity in the knowledge graph",
+              "A single meta tag",
+              "A backlink count",
+            ],
+            correct: 1,
+            explanation:
+              "Panels reflect entities the knowledge graph recognizes through corroborated signals.",
+          },
+          {
+            question: "How do you earn a knowledge panel?",
+            options: [
+              "Submit a form and pay",
+              "Build consistent identity and corroboration so engines recognize the entity",
+              "Add schema alone",
+              "Buy links",
+            ],
+            correct: 1,
+            explanation:
+              "It is earned by becoming a recognized, corroborated entity — not requested or bought.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "ecommerce-and-product-aeo",
+    title: "Ecommerce & Product AEO",
+    summary:
+      "Get products recommended and cited by AI shopping — product pages, feeds, buying guides, reviews, and the shift to agentic commerce.",
+    tier: "Specialist",
+    certificate: "Tier 3 Specialist Certificate",
+    level: "Specialist",
+    estimatedHours: 2,
+    authorSlug: "jordan-vega",
+    published: "2026-06-10",
+    updated: "2026-06-10",
+    outcomes: [
+      "Optimize product pages and catalogs to be cited by AI shopping.",
+      "Get products recommended by AI.",
+      "Structure product feeds for AI shopping surfaces.",
+      "Understand the signals behind AI product recommendations.",
+      "Win inclusion in AI buying guides.",
+      "Prepare a catalog for agentic commerce.",
+    ],
+    lessons: [
+      {
+        slug: "ecommerce-foundations",
+        title: "Ecommerce AEO Foundations",
+        intro:
+          "How product pages and catalogs get found, cited, and recommended by AI shopping — the ecommerce foundation.",
+        objectives: [
+          "Explain how AI sources product recommendations.",
+          "Structure product pages to be extractable.",
+          "Set ecommerce AEO priorities.",
+        ],
+        articleSlug: "aeo-for-ecommerce",
+        takeaways: [
+          "AI recommends products it can read and that others vouch for.",
+          "Structured, answer-first product facts beat marketing fluff.",
+          "Reviews and corroboration drive product recommendations.",
+        ],
+        check: [
+          {
+            question: "What gets a product cited or recommended by AI?",
+            options: [
+              "Marketing superlatives",
+              "Readable, structured product facts plus genuine reviews and corroboration",
+              "Hidden keywords",
+              "Simply having the most SKUs",
+            ],
+            correct: 1,
+            explanation:
+              "AI surfaces products it can read clearly and that the web vouches for.",
+          },
+          {
+            question: "How should product pages be written for AEO?",
+            options: [
+              "Vague superlatives",
+              "Specific, structured, answer-first product facts",
+              "Keyword-stuffed copy",
+              "Image-only, no text",
+            ],
+            correct: 1,
+            explanation:
+              "Engines extract specific, structured facts — not adjectives.",
+          },
+        ],
+      },
+      {
+        slug: "get-products-recommended",
+        title: "Get Products Recommended",
+        intro:
+          "The reviews, specs, and corroboration that make AI name your product when someone asks for the best option.",
+        objectives: [
+          "Explain why reviews and corroboration drive product picks.",
+          "Provide the specs and facts engines need.",
+          "Earn third-party mentions and reviews.",
+        ],
+        articleSlug: "get-products-recommended-by-ai",
+        takeaways: [
+          "AI recommends products consistently reviewed and described across the web.",
+          "Clear specs and comparisons make you easy to recommend.",
+          "Third-party reviews are decisive.",
+        ],
+        check: [
+          {
+            question: "Why does AI recommend one product over another?",
+            options: [
+              "Random chance",
+              "Consistent reviews, specs, and corroboration across sources",
+              "The most ads",
+              "The longest page",
+            ],
+            correct: 1,
+            explanation:
+              "Product recommendations follow corroboration — reviews and consistent descriptions.",
+          },
+          {
+            question: "What product information do engines need most?",
+            options: [
+              "Vague claims",
+              "Clear specs, comparisons, and genuine reviews",
+              "Hidden text",
+              "Only the price",
+            ],
+            correct: 1,
+            explanation:
+              "Specific specs and real reviews are what engines extract and trust.",
+          },
+        ],
+      },
+      {
+        slug: "product-feeds",
+        title: "Product Feeds for AI Shopping",
+        intro:
+          "Structuring your catalog data so AI shopping surfaces can read and surface your products — clean, accurate, current feeds.",
+        objectives: [
+          "Explain the role of product feeds in AI shopping.",
+          "Structure feed data engines can use.",
+          "Keep feeds accurate and current.",
+        ],
+        articleSlug: "product-feeds-ai-shopping",
+        takeaways: [
+          "Clean, structured feeds make your catalog machine-readable for AI shopping.",
+          "Accurate attributes (price, availability, specs) matter.",
+          "Feeds complement, not replace, citable product pages.",
+        ],
+        check: [
+          {
+            question: "Why do product feeds matter for AI shopping?",
+            options: [
+              "They do not matter",
+              "They give AI shopping clean, structured catalog data to surface",
+              "They replace your website",
+              "They block crawlers",
+            ],
+            correct: 1,
+            explanation:
+              "Structured feeds make your products machine-readable for AI shopping surfaces.",
+          },
+          {
+            question: "What makes a feed effective?",
+            options: [
+              "Outdated data",
+              "Accurate, complete, current attributes",
+              "Only product names",
+              "Random fields",
+            ],
+            correct: 1,
+            explanation:
+              "Accurate, current attributes — price, availability, specs — are essential.",
+          },
+        ],
+      },
+      {
+        slug: "how-ai-recommends",
+        title: "How AI Recommends Products",
+        intro:
+          "The signals behind 'best X for Y' answers — and how to be the product AI names.",
+        objectives: [
+          "Describe the signals behind AI product recommendations.",
+          "Map them to actions on your catalog.",
+          "Target the 'best X for Y' questions.",
+        ],
+        articleSlug: "how-ai-recommends-products",
+        takeaways: [
+          "AI synthesizes recommendations from reviews, specs, and corroboration.",
+          "'Best X for Y' questions are where commerce citations happen.",
+          "Be the clearly-described, well-reviewed option.",
+        ],
+        check: [
+          {
+            question: "What does AI synthesize product recommendations from?",
+            options: [
+              "A single page",
+              "Reviews, specs, and corroboration across many sources",
+              "Ad bids",
+              "Domain age only",
+            ],
+            correct: 1,
+            explanation:
+              "Recommendations are synthesized from many corroborating sources.",
+          },
+          {
+            question: "Where do commerce citations concentrate?",
+            options: [
+              "Brand-name searches only",
+              "'Best X for Y' and comparison questions",
+              "Unrelated queries",
+              "Nowhere in particular",
+            ],
+            correct: 1,
+            explanation:
+              "Decision-stage 'best X for Y' questions are where product citations matter most.",
+          },
+        ],
+      },
+      {
+        slug: "buying-guides",
+        title: "Win AI Buying Guides",
+        intro:
+          "How to be the product or source AI cites when it assembles a buying guide — comparative, well-evidenced, corroborated.",
+        objectives: [
+          "Explain how AI assembles buying guides.",
+          "Provide the comparative info guides need.",
+          "Earn inclusion through corroboration.",
+        ],
+        articleSlug: "ai-buying-guides",
+        takeaways: [
+          "AI buying guides pull from comparative, well-evidenced sources.",
+          "Clear comparisons and criteria get you included.",
+          "Corroboration across sources earns inclusion.",
+        ],
+        check: [
+          {
+            question: "What gets a product into an AI buying guide?",
+            options: [
+              "Paying the engine",
+              "Comparative, well-evidenced info corroborated across sources",
+              "Hidden keywords",
+              "The most ads",
+            ],
+            correct: 1,
+            explanation:
+              "Guides pull from comparative, corroborated sources — be one.",
+          },
+          {
+            question: "What information helps inclusion in buying guides?",
+            options: [
+              "Vague claims",
+              "Clear criteria, comparisons, and evidence",
+              "Only the price",
+              "No specs at all",
+            ],
+            correct: 1,
+            explanation:
+              "Comparative criteria and evidence are what guides synthesize.",
+          },
+        ],
+      },
+      {
+        slug: "agentic-commerce",
+        title: "Agentic Commerce",
+        intro:
+          "AI agents that research, compare, and even buy on a user's behalf — and what that means for product visibility and data.",
+        objectives: [
+          "Define agentic commerce.",
+          "Anticipate how agents evaluate products.",
+          "Prepare catalog and data for agent-driven buying.",
+        ],
+        articleSlug: "agentic-commerce",
+        takeaways: [
+          "Agents research and transact for users, raising the stakes for machine-readable, trustworthy product data.",
+          "Clear specs, availability, and reviews matter even more.",
+          "Prepare structured data and corroboration for agent evaluation.",
+        ],
+        check: [
+          {
+            question: "What is agentic commerce?",
+            options: [
+              "Human-only shopping",
+              "AI agents that research, compare, and can transact for users",
+              "Paid search ads",
+              "A product feed format",
+            ],
+            correct: 1,
+            explanation:
+              "Agentic commerce is AI agents acting on behalf of users to research and buy.",
+          },
+          {
+            question: "How do you prepare for agentic commerce?",
+            options: [
+              "Ignore it",
+              "Make product data machine-readable, accurate, and corroborated",
+              "Hide your specs",
+              "Block all agents",
+            ],
+            correct: 1,
+            explanation:
+              "Agents need accurate, structured, trustworthy product data and reviews to choose you.",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getAllCourses(): Course[] {

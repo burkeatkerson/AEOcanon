@@ -9,6 +9,7 @@ const LEVEL_COLOR: Record<string, string> = {
   advanced: "var(--c5)",
   applied: "var(--c6)",
   practitioner: "var(--c5)",
+  specialist: "var(--c6)",
 };
 
 /**
