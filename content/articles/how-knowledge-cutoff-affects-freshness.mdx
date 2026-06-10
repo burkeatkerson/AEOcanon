@@ -1,0 +1,82 @@
+---
+title: "How Does a Model's Knowledge Cutoff Affect Freshness?"
+slug: how-knowledge-cutoff-affects-freshness
+summary: A model's knowledge cutoff means its built-in training data stops at a fixed date, so it won't natively know anything published after it — which is why recent content reaches you only through engines that retrieve the live web. Freshness in AI search runs through retrieval, not the model's frozen memory.
+topics:
+  - ai-fundamentals
+  - answer-engines
+author: jordan-vega
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: How does a knowledge cutoff affect freshness?
+    a: A model's knowledge cutoff is the date its training data ends, so it has no native knowledge of anything published afterward. Recent content can only reach it through retrieval — engines that search the live web at query time. So freshness in AI search depends on retrieval, not on the model's frozen training memory.
+  - q: Will a model know my new content?
+    a: Not from training until it's retrained, which lags months behind the cutoff. But a search-augmented engine can retrieve and cite your new content within days of it being crawled. Whether the model knows you depends on whether it's answering from training data or from live retrieval.
+  - q: Does this mean recent topics are invisible to AI?
+    a: Only to base models answering from training data. For recent topics, web-grounded engines that retrieve live pages are how fresh information surfaces, so being crawlable and discoverable is what gets your new content into those answers despite any model's cutoff.
+  - q: How do I work around knowledge cutoffs?
+    a: Optimize for retrieval. Keep content crawlable, linked, and in your sitemap so search-augmented engines find it fast, and don't rely on base models knowing anything recent. The cutoff is fixed and out of your control; retrieval speed is the lever you can actually pull.
+---
+
+**A model's knowledge cutoff means its built-in training data stops at a fixed date,
+so it won't natively know anything published after it — which is why recent content
+reaches you only through engines that retrieve the live web.** Freshness in AI search
+runs through retrieval, not the model's frozen memory.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    A <strong>knowledge cutoff</strong> is where a model's training data ends — it
+    has <strong>no native knowledge</strong> of anything published after it. Recent
+    content reaches it <strong>only through retrieval</strong> — engines that search
+    the live web. So freshness in AI search depends on{" "}
+    <strong>being crawlable and retrievable</strong>, not on the model's frozen
+    memory.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "A knowledge cutoff is the fixed date a model's training data ends.",
+    "Base models have no native knowledge of anything published after the cutoff.",
+    "Recent content reaches engines only through live retrieval.",
+    "Search-augmented engines can cite new content within days of crawling.",
+    "The cutoff is fixed; retrieval speed is the lever you can pull.",
+  ]}
+/>
+
+## What is a knowledge cutoff, and why does it matter for freshness?
+
+It's the date a model stops learning. A [knowledge
+cutoff](/learn/what-is-a-knowledge-cutoff) is where a model's training data ends, so it
+has no native awareness of anything published afterward — meaning fresh information
+can't come from the model's memory at all. It has to come from
+[retrieval](/glossary/retrieval), which is exactly why freshness in AI search runs
+through engines that search the live web rather than through the model itself.
+
+## Will a model know my new content?
+
+Not from training until it's retrained, which lags months behind the cutoff. But a
+[search-augmented engine](/learn/base-vs-search-augmented-models) can retrieve and cite
+your new content within days of it being crawled. So whether a given system knows you
+depends on whether it's [answering from training data or live
+retrieval](/learn/how-fast-does-ai-pick-up-new-content) — the same content is invisible
+to one mode and citable in the other.
+
+## How do I work around it?
+
+Optimize for retrieval — it's the only part you control. Keep content crawlable,
+linked, and in your [sitemap](/learn/does-a-sitemap-help-ai-crawlers) so
+search-augmented engines find it fast, and don't count on base models knowing anything
+recent. The cutoff is fixed and out of your hands; retrieval speed is the lever you can
+actually pull, which makes [Access](/pillars/access) and
+[Freshness](/pillars/freshness) work hand in hand for recent topics.
+
+<RelatedQuestions
+  items={[
+    { q: "What is a knowledge cutoff?", a: "The date a model's training data ends — it doesn't natively know anything published after it.", href: "/learn/what-is-a-knowledge-cutoff" },
+    { q: "How fast does AI pick up new content?", a: "Web-grounded engines within days of crawling; base-model knowledge lags months behind its cutoff.", href: "/learn/how-fast-does-ai-pick-up-new-content" },
+    { q: "What's the difference between base and search-augmented models?", a: "Base models answer from training data; search-augmented ones retrieve live web pages.", href: "/learn/base-vs-search-augmented-models" },
+  ]}
+/>

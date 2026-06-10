@@ -1,0 +1,81 @@
+---
+title: "How Fast Does AI Pick Up New Content?"
+slug: how-fast-does-ai-pick-up-new-content
+summary: It depends on the engine — web-grounded engines like Perplexity and Google AI can surface new content within days once it's crawled, while a model's built-in training knowledge lags months behind its cutoff. So fresh content reaches retrieval-based answers quickly but base-model knowledge slowly.
+topics:
+  - answer-engines
+  - ai-fundamentals
+author: jordan-vega
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: How fast does AI pick up new content?
+    a: It depends on whether the engine retrieves from the live web or relies on training knowledge. Web-grounded engines like Perplexity and Google AI can surface new content within days once it's crawled and indexed. A model's built-in knowledge, by contrast, lags months behind its training cutoff, so it won't know recent content until retrained.
+  - q: Why do some AI tools know recent content and others don't?
+    a: Because of how they answer. Search-augmented engines retrieve live pages, so they reflect recent content quickly; base models answer from frozen training data with a knowledge cutoff, so they don't know anything published after it. The same question can get a fresh answer from one and a stale one from the other.
+  - q: How do I get new content surfaced faster?
+    a: Make it crawlable and discoverable. Ensure AI crawlers can reach it, link to it internally, and include it in your sitemap so retrieval-based engines find it quickly. You can't accelerate a model's training cutoff, but you can speed how fast web-grounded engines pick the page up.
+  - q: Does new content appear in ChatGPT immediately?
+    a: Only when ChatGPT uses web search for that query. With browsing or search enabled, it can retrieve recent pages; relying on its base training, it's limited to its knowledge cutoff. So whether your new content shows up depends on whether the engine is retrieving live or answering from memory.
+---
+
+**It depends on the engine — web-grounded engines like Perplexity and Google AI can
+surface new content within days once it's crawled, while a model's built-in training
+knowledge lags months behind its cutoff.** So fresh content reaches retrieval-based
+answers quickly but base-model knowledge slowly.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Two speeds. <strong>Web-grounded engines</strong> (Perplexity, Google AI) surface
+    new content <strong>within days</strong> once it's crawled. A model's{" "}
+    <strong>built-in training knowledge</strong> lags <strong>months</strong> behind
+    its cutoff. To speed pickup, make pages <strong>crawlable and
+    discoverable</strong> — but you can't accelerate a training cutoff.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Web-grounded engines can surface crawled content within days.",
+    "Base-model training knowledge lags months behind its cutoff.",
+    "The same question can get a fresh answer from one engine and a stale one from another.",
+    "Speed retrieval pickup with crawlability, internal links, and a current sitemap.",
+    "You can't accelerate a model's training cutoff — only retrieval.",
+  ]}
+/>
+
+## Why are there two different speeds?
+
+Because engines answer in two different ways. [Search-augmented
+engines](/learn/base-vs-search-augmented-models) retrieve live pages at query time, so
+they reflect recent content within days of it being [crawled](/learn/how-often-do-ai-crawlers-visit).
+Base models answer from frozen training data with a [knowledge
+cutoff](/learn/what-is-a-knowledge-cutoff), so they don't know anything published after
+it until retrained. The same question can therefore get a fresh answer from one system
+and a stale one from another.
+
+## Does new content appear in ChatGPT right away?
+
+Only when it's retrieving. With browsing or web search enabled, ChatGPT can pull
+recent pages; relying on its base training, it's limited to its knowledge cutoff. So
+whether your new content shows up depends on whether the engine is [retrieving live or
+answering from memory](/learn/base-vs-search-augmented-models) — which is increasingly
+the default for current questions, but not guaranteed for every query.
+
+## How do I get picked up faster?
+
+Make the page easy to find — that's the part you control. Ensure [AI crawlers can
+reach it](/learn/check-ai-crawlers-can-read-site), link to it internally so it's not
+orphaned, and include it in your [sitemap](/learn/does-a-sitemap-help-ai-crawlers) so
+retrieval-based engines discover it quickly. You can't accelerate a model's training
+cutoff, but you can shorten the gap between publishing and being retrievable — the
+practical lever for the [Freshness pillar](/pillars/freshness).
+
+<RelatedQuestions
+  items={[
+    { q: "What is a knowledge cutoff?", a: "The date a model's training data ends — it doesn't natively know anything published after it.", href: "/learn/what-is-a-knowledge-cutoff" },
+    { q: "What's the difference between base and search-augmented models?", a: "Base models answer from training data; search-augmented ones retrieve live web pages.", href: "/learn/base-vs-search-augmented-models" },
+    { q: "How often do AI crawlers visit my site?", a: "On no fixed schedule — frequency rises with publishing cadence, authority, and reachability.", href: "/learn/how-often-do-ai-crawlers-visit" },
+  ]}
+/>

@@ -1,0 +1,81 @@
+---
+title: "Should I Show a Last-Updated Date?"
+slug: should-i-show-last-updated-date
+summary: Yes — show an honest last-updated date, because it signals to engines and readers that the page is maintained and current, which supports freshness and trust on time-sensitive topics. The one rule is that it must reflect a genuine revision, since a bumped date on stale content erodes trust rather than building it.
+topics:
+  - content-strategy
+  - structured-data
+author: jordan-vega
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: Should I show a last-updated date?
+    a: Yes, when it's honest. A visible last-updated date tells engines and readers the page is maintained and current, which supports freshness and trust, especially on time-sensitive topics. The condition is that it must reflect a genuine revision — a bumped date on unchanged content erodes trust rather than building it.
+  - q: Is a last-updated date better than a publish date?
+    a: For maintained content, showing both is ideal — the publish date establishes original authority and the last-updated date signals current maintenance. If you can show only one prominently on a frequently-refreshed page, the last-updated date is usually the more useful freshness signal.
+  - q: Should the date be in the schema too?
+    a: Yes. Include accurate datePublished and dateModified in your structured data so the dates are machine-readable, not just visible to humans. Consistent on-page and schema dates reinforce the freshness signal and avoid sending engines conflicting information about when the page changed.
+  - q: Can showing a date ever hurt?
+    a: Only if it reveals neglect or is dishonest. An old, never-updated date on a time-sensitive page advertises staleness, and a freshly bumped date on unchanged content is deceptive. Both are fixed the same way — actually maintain the page, then let an honest date reflect it.
+---
+
+**Yes — show an honest last-updated date, because it signals to engines and readers
+that the page is maintained and current, which supports freshness and trust on
+time-sensitive topics.** The one rule is that it must reflect a genuine revision,
+since a bumped date on stale content erodes trust rather than building it.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Yes — an <strong>honest</strong> one. A visible last-updated date signals a{" "}
+    <strong>maintained, current page</strong>, supporting freshness and trust on
+    time-sensitive topics. Put accurate dates <strong>in schema too</strong>. The
+    only rule — it must reflect a <strong>real revision</strong>; a bumped date on
+    stale content is deceptive and erodes trust.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "An honest last-updated date signals a maintained, current page.",
+    "Showing both publish and updated dates is ideal — origin authority plus currency.",
+    "Include accurate datePublished and dateModified in schema, not just on-page.",
+    "A bumped date on unchanged content is deceptive and erodes trust.",
+    "An old, never-updated date on a time-sensitive page advertises staleness.",
+  ]}
+/>
+
+## Why show the date at all?
+
+Because it's a readable currency signal. A visible last-updated date tells engines and
+readers the page is maintained, which supports [freshness](/pillars/freshness) and
+trust — most of all on [time-sensitive
+topics](/learn/do-ai-engines-prefer-recent-content) where readers want to know the
+information is current. It's a small transparency that helps people decide whether to
+rely on you, and helps engines gauge currency.
+
+## Publish date, updated date, or both?
+
+Both, ideally. The publish date establishes original authority and the last-updated
+date signals current maintenance, so showing both tells the full story. If you can
+prominently show only one on a frequently-refreshed page, the last-updated date is
+usually the more useful signal. And put accurate `datePublished` and `dateModified` in
+your [structured data](/learn/structured-data-for-aeo) so the dates are
+machine-readable, with on-page and schema dates kept consistent.
+
+## Can a date ever hurt?
+
+Only if it reveals neglect or lies. An old, never-touched date on a time-sensitive
+page advertises staleness, and a freshly [bumped date on unchanged
+content](/learn/does-publish-date-affect-ai-citation) is deceptive — both undercut
+trust. The fix for either is the same: actually
+[maintain the page](/learn/does-updating-old-content-help-aeo), then let an honest date
+reflect the real work. The date is only as good as the upkeep behind it.
+
+<RelatedQuestions
+  items={[
+    { q: "Does publish date affect AI citation?", a: "It matters as a currency signal, most for time-sensitive topics — and must be honest.", href: "/learn/does-publish-date-affect-ai-citation" },
+    { q: "Does updating old content help AEO?", a: "Yes — refreshing preserves authority while restoring accuracy and freshness.", href: "/learn/does-updating-old-content-help-aeo" },
+    { q: "Does schema help AI citations?", a: "It helps engines parse pages — including accurate published and modified dates.", href: "/learn/does-schema-help-ai-citations" },
+  ]}
+/>
