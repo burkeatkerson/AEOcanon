@@ -1,0 +1,255 @@
+---
+title: "How AEO and SEO Work Together"
+slug: how-aeo-and-seo-work-together
+summary: AEO and SEO aren't rivals — they're one discipline pointed at two surfaces, the ranked link and the AI answer. The same crawl, index, and authority signals feed both, and being ranked and being cited reinforce each other in a single compounding loop. Here's how the relationship actually works.
+topics:
+  - aeo-fundamentals
+  - technical-seo
+author: burke-atkerson
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: How do AEO and SEO work together?
+    a: They work as one discipline pointed at two surfaces — the ranked link and the AI answer. The same foundation of crawlable, fast pages, clean semantics, and real authority feeds both, so a single content program can earn rankings and citations at once. They reinforce each other rather than compete, which is why you run them together instead of choosing between them.
+  - q: Does SEO help AEO?
+    a: Yes, directly. The crawlability, speed, semantics, and authority that earn rankings are the same signals an answer engine uses to retrieve and trust a source. AI Overviews are built on the same search index, so strong SEO is the foundation AEO stands on — without it you are neither ranked nor cited.
+  - q: Does AEO help SEO back?
+    a: Yes. Answer-first writing wins featured snippets and reads well, and Seer Interactive found pages cited in AI Overviews earned about 35% higher organic clickthrough — the citation and the ranked link compounding rather than cannibalizing. Optimizing for citation tends to lift ranking performance too.
+  - q: Should I do SEO and AEO separately?
+    a: No. They share roughly 70 to 80 percent of their fundamentals, so running two programs duplicates the work and lets them drift apart. One program builds the shared foundation once and adds the answer-first layer on top, serving both surfaces from a single effort.
+  - q: Will AEO make SEO obsolete?
+    a: No. AEO extends SEO to a new surface rather than replacing it. Search still drives enormous traffic, the answer layer is built on the search index, and the signals that earn rankings earn citations. The fundamentals matter more than ever, not less.
+---
+
+**AEO and SEO aren't two disciplines competing for your budget — they're one
+discipline pointed at two surfaces: the ranked link and the AI answer.** The same
+crawl, index, and authority signals feed both, and being ranked and being cited turn
+out to reinforce each other. Treating them as rivals is the mistake; understanding the
+relationship is the unlock.
+
+<KeyTakeaways
+  items={[
+    "AEO and SEO are one discipline aimed at two surfaces — the link and the answer.",
+    "Roughly 70–80% of the fundamentals overlap: crawlability, speed, semantics, authority.",
+    "AI answers are built on the same search index, so SEO is the foundation AEO stands on.",
+    "Citation and ranking compound: Seer found cited pages earned ~35% higher organic CTR.",
+    "Run one program that serves both surfaces — not two that compete for the same work.",
+  ]}
+/>
+
+## Are AEO and SEO really two different things?
+
+Not at the level that matters. SEO is the practice of being found and trusted by a
+search engine; AEO is the practice of being found and trusted by an answer engine.
+Strip away the acronyms and both are asking the same question — *is this the most
+findable, credible, useful source on the topic?* — of the same content, judged by
+largely the same machinery. What differs is the surface where the verdict shows up: a
+ranked link you click, or a synthesized answer that cites you.
+
+<PullQuote cite="The core reframe">
+  AEO and SEO aren't two games. They're one game with two scoreboards.
+</PullQuote>
+
+That reframe matters because the alternative — running "an SEO team" and "an AEO
+team" with separate plans — duplicates the 70–80% of work they share and quietly sets
+them against each other. The honest comparison of where they diverge lives in
+[AEO vs SEO](/learn/aeo-vs-seo); this piece is about the larger truth underneath it,
+which is how much they *cooperate*.
+
+## What do AEO and SEO actually share?
+
+They share the entire pipeline that turns a page into a result. A search engine and an
+answer engine both have to crawl your page, understand it, decide whether to trust it,
+and rank it against alternatives — and only at the very end does one hand back a list
+of links while the other hands back a cited answer.
+
+<ProcessFlow
+  steps={[
+    { label: "Crawl", sub: "Bots fetch your raw HTML" },
+    { label: "Index / retrieve", sub: "Your page joins the candidate pool" },
+    { label: "Rank / rerank", sub: "The most useful, trusted sources rise" },
+    { label: "Link + answer", sub: "Two outputs, one pipeline" },
+  ]}
+  caption="The same retrieval-and-ranking machine produces both surfaces. The ranked link and the AI citation come out the end of one pipeline, not two."
+/>
+
+Because the pipeline is shared, the things that help at each stage help *both*
+surfaces at once. The clearest way to see it is to lay the shared foundation beside
+the thin layer AEO adds on top.
+
+<ComparisonTable
+  caption="One shared foundation, a thin AEO layer on top"
+  columns={["Layer", "Does the work for both", "AEO's specific addition"]}
+  rows={[
+    ["Access", "Crawlable, fast, server-rendered pages", "Allow AI crawlers (GPTBot, ClaudeBot, PerplexityBot)"],
+    ["Semantics", "Clean HTML and logical headings", "Question-shaped headings, answer-first passages"],
+    ["Content", "Accurate, useful, in-depth coverage", "Self-contained, evidenced passages built to be quoted"],
+    ["Authority", "Backlinks, brand mentions, E-E-A-T", "Off-site corroboration tuned for citation"],
+    ["Measurement", "Rankings and organic clicks", "Citation share and AI referral traffic"],
+  ]}
+/>
+
+Read it column by column and the pattern is unmistakable: AEO doesn't delete a single
+SEO requirement. It refines the content layer for extraction and adds a way to measure
+success. That's not a replacement — it's the same foundation doing
+[double duty](/learn/is-aeo-replacing-seo).
+
+## How does SEO feed AEO?
+
+SEO builds the foundation AEO can't exist without. An answer engine can only cite a
+source it can first reach, read, and trust — which is precisely what good SEO
+delivers. If a page is blocked, slow, or [rendered only in the
+browser](/learn/javascript-breaks-ai-citation), it's invisible to the retrieval step
+that feeds AI answers, no matter how good the writing is. The
+[Access pillar](/pillars/access) is just SEO's technical core, viewed from the answer
+surface.
+
+The connection runs deeper than plumbing. Google's AI Overviews are generated *from
+the same index* Googlebot builds, so the page that ranks is the page in the pool the
+answer is drawn from. And the off-site reputation SEOs have chased for years turns out
+to be the strongest predictor of AI visibility:
+
+<BarChart
+  caption="Ahrefs' study of 75,000 brands — what predicts AI visibility"
+  max={0.8}
+  data={[
+    { label: "Brand mentions", value: 0.664, display: "0.664", emphasis: true, color: "var(--accent)" },
+    { label: "Backlinks", value: 0.218, display: "0.218", color: "var(--c2)" },
+  ]}
+/>
+
+[Ahrefs found brand mentions correlate with AI visibility at 0.664, far above
+backlinks at 0.218](/learn/mentions-vs-backlinks) — and brand mentions are exactly the
+reputation signal a mature SEO program already works to earn. Building authority for
+search builds it for AI in the same motion. SEO doesn't just coexist with AEO; it
+*supplies* it.
+
+## How does AEO repay SEO?
+
+The relationship runs both ways — optimizing for citation tends to lift your ranked
+performance too. The mechanism is simple: the work AEO asks for is work that search
+engines have always quietly rewarded. Writing the [answer
+first](/learn/answer-first-sentence) is what wins
+[featured snippets](/glossary/featured-snippet). Structuring content into clean,
+self-contained passages is what makes a page easy to skim and quote — for a human
+reader and a reranker alike. Earning the corroboration that makes you citable is the
+same authority that lifts rankings.
+
+There's direct evidence the surfaces compound rather than cannibalize. Seer
+Interactive
+[found that pages cited inside an AI Overview earned about 35% higher organic
+clickthrough](https://www.seerinteractive.com/insights/how-ai-overviews-are-impacting-ctr-5-initial-takeaways)
+than pages that weren't — the citation and the ranked link reinforcing each other on
+the same results page. Being the answer makes your link more clickable.
+
+<StatGrid>
+  <Stat value="70–80%" label="of SEO and AEO fundamentals overlap — one foundation, two surfaces" />
+  <Stat value="+35%" label="higher organic CTR for pages cited in AI Overviews (Seer Interactive)" color="var(--ok)" />
+  <Stat value="0.664" label="correlation between brand mentions and AI visibility — vs 0.218 for backlinks (Ahrefs)" />
+</StatGrid>
+
+## So is it a loop, not a ladder?
+
+Exactly — the relationship is a virtuous loop, not a sequence you graduate through.
+Strong SEO makes you retrievable and trusted, which makes you citable. Being cited
+earns visibility and clicks, which builds engagement and authority, which strengthens
+your rankings, which makes you *more* retrievable and trusted. Each surface feeds the
+other, and the brand that does both well compounds a lead competitors can't easily
+buy back.
+
+<PullQuote cite="Why running both wins">
+  Ranking makes you citable. Being cited makes you click-worthy. The loop only turns
+  when you run both.
+</PullQuote>
+
+This is why "should I switch from SEO to AEO?" is the wrong question. Switching breaks
+the loop. The brands pulling ahead aren't choosing — they're running one program that
+turns the wheel from both sides at once.
+
+## Where do they actually diverge?
+
+Only at the thin top of the shared stack — and it's worth being precise so the harmony
+doesn't sound like hand-waving. Two things genuinely differ. First, *structure*:
+classic SEO tolerates a slow build to the answer, while AEO demands the answer up
+front, in a [self-contained passage](/learn/passage-length-for-ai-citation) an engine
+can lift. Second, *measurement*: SEO counts rankings and clicks, while AEO counts
+[citation share per engine](/learn/per-engine-vs-blended-measurement) and AI referral
+traffic.
+
+Notice that even the one real tension resolves in cooperation: writing answer-first
+satisfies *both* surfaces, because it also wins snippets and reads better for humans.
+There's no trade-off to manage — only an emphasis to add. For the full side-by-side,
+see [AEO vs SEO](/learn/aeo-vs-seo).
+
+## Hasn't search always rewarded the best answer?
+
+It has — and seeing the pattern makes the present moment far less disorienting. Every
+major shift in search has rewarded the same underlying thing (being the best, most
+trustworthy answer) while changing the surface that thing appears on.
+
+<Timeline
+  items={[
+    { label: "Ten blue links", body: "Search returns a list; SEO optimizes to be one of the links worth clicking." },
+    { label: "Featured snippets", body: "Google lifts a single answer above the links; writing answer-first starts to pay off directly." },
+    { label: "AI answers & Overviews", body: "The engine synthesizes an answer and cites a few sources; AEO optimizes to be one of the cited.", highlight: true },
+  ]}
+  caption="The surface kept changing — links, then snippets, then synthesized answers — but the job never did: be the best, most trustworthy answer to the question."
+/>
+
+Seen this way, AEO isn't a break from SEO's history. It's the next step in it — search
+finally making literal the thing it always claimed to reward. The
+[shift from a list of links to a synthesized answer](/learn/ai-search-vs-traditional-search)
+is real, but it rhymes with mobile, voice, and snippets before it: a new surface for
+the same durable job.
+
+## How do you run them as one program?
+
+You protect the shared foundation, add the answer-first layer on top, and measure both
+surfaces — one workflow, one team, two scoreboards.
+
+<Steps
+  items={[
+    {
+      title: "Protect the foundation",
+      body: "Keep pages crawlable, fast, and authoritative, and allow AI crawlers explicitly. This serves rankings and AI retrieval at the same time.",
+    },
+    {
+      title: "Add the AEO layer",
+      body: "Rewrite key passages answer-first, make them self-contained and evidenced, and use question-shaped headings — the same edits win snippets and citations.",
+    },
+    {
+      title: "Measure both surfaces",
+      body: "Track citation share and AI referral traffic alongside rankings and clicks, so you can see the loop turning rather than guessing.",
+    },
+  ]}
+/>
+
+The operational detail — team structure, shared ~70–80% foundation, where to spend the
+marginal hour — lives in the [AEO + SEO integration
+guide](/learn/aeo-seo-integration-guide). The gut check is simpler than any framework:
+*if a change would help a human researcher find, trust, and quote you, it almost
+certainly helps both surfaces.* Fast pages, clear answers, credible authorship, honest
+and current information, a strong reputation across the web — none of it is new. It's
+the durable core of search, now rewarded in two places instead of one.
+
+<Callout variant="warning" title="The real risk isn't 'SEO vs AEO'">
+  <p>
+    The real risk is splitting them — running a pure-rankings program while a rival
+    adds the answer-first layer and starts getting cited on the queries that convert,
+    or chasing AI citations on a site so slow and unreadable that no engine can
+    retrieve it. Neither surface wins alone. Standing still on either is the only
+    losing move.
+  </p>
+</Callout>
+
+## Where this fits in the Canon
+
+AEO and SEO working together *is* [The AEO Canon](/learn/aeo-canon) — one operating
+system where [access](/pillars/access), [extractability](/pillars/extractability), and
+[authority](/pillars/authority) serve the ranked link and the AI answer from a single
+foundation. If you're still weighing the two, start with
+[is AEO replacing SEO](/learn/is-aeo-replacing-seo) and
+[AEO vs SEO](/learn/aeo-vs-seo); when you're ready to operate them as one, the
+[integration guide](/learn/aeo-seo-integration-guide) is the playbook. Either way, the
+relationship is the point: not a rivalry to resolve, but a loop to keep turning.
