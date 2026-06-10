@@ -45,6 +45,15 @@ server.
   ]}
 />
 
+<BeforeAfter
+  label="What the AI crawler receives"
+  beforeLabel="Client-rendered"
+  before={'An empty shell — <div id="root"></div> and a script bundle — with no content, because the crawler never runs the JavaScript that would build the page.'}
+  afterLabel="Server-rendered"
+  after={'The full HTML in the first response: headings, the answer passage, links — everything present and citable, no JavaScript required.'}
+  note="Most AI crawlers read raw HTML and do not execute JavaScript — Vercel/MERJ measured zero JS execution across 500M+ GPTBot requests."
+/>
+
 ## Why can't AI crawlers see client-rendered content?
 
 AI crawlers can't see client-rendered content because they fetch the raw HTML and
