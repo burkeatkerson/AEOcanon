@@ -14,6 +14,15 @@ export function SiteFooter() {
             <p className="text-ink-2 max-w-[34ch] text-sm leading-relaxed">
               {siteConfig.description}
             </p>
+            <p className="text-muted mt-4 text-sm">
+              Written by{" "}
+              <Link
+                href="/authors/burke-atkerson"
+                className="text-ink-2 hover:text-accent underline-offset-2 hover:underline"
+              >
+                Burke Atkerson
+              </Link>
+            </p>
           </div>
           {footerNav.map((column) => (
             <div key={column.title}>

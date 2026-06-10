@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import { MDXContent } from "@/components/mdx";
 import { ArticleCard } from "@/components/library/cards/article-card";
@@ -57,9 +58,26 @@ export default async function AuthorPage({
       <JsonLd graph={jsonLd} />
       <header className="max-w-3xl">
         <div className="flex items-center gap-4">
-          <span className="bg-accent-soft border-line-2 text-accent grid size-16 place-items-center rounded-full border font-serif text-2xl italic">
-            {author.name.charAt(0)}
-          </span>
+          {author.avatar ? (
+            <Image
+              src={author.avatar.src}
+              alt={author.avatarAlt ?? author.name}
+              width={author.avatar.width}
+              height={author.avatar.height}
+              {...(author.avatar.blurDataURL
+                ? {
+                    placeholder: "blur" as const,
+                    blurDataURL: author.avatar.blurDataURL,
+                  }
+                : {})}
+              priority
+              className="border-line-2 size-16 rounded-full border object-cover"
+            />
+          ) : (
+            <span className="bg-accent-soft border-line-2 text-accent grid size-16 place-items-center rounded-full border font-serif text-2xl italic">
+              {author.name.charAt(0)}
+            </span>
+          )}
           <div>
             <h1 className="text-[clamp(28px,4vw,40px)] leading-tight font-medium tracking-[-0.02em]">
               {author.name}
