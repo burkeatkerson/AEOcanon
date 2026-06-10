@@ -23,6 +23,18 @@ export const siteConfig = {
   organization: {
     name: "AEO Canon",
     legalName: "AEO Canon",
+    /**
+     * Brand logo for Organization JSON-LD. STOPGAP: points at the SVG mark.
+     * Replace with a raster (PNG ≥112×112, solid/transparent bg) per Google's
+     * logo guidelines when one is available.
+     */
+    logo: "/logo.svg",
+    /**
+     * Verified canonical profiles for the Organization (`sameAs`). Left empty
+     * until real URLs are confirmed — emitting unverified/placeholder profiles
+     * is worse than omitting them. Add the real X / LinkedIn / GitHub URLs here.
+     */
+    sameAs: [] as string[],
   },
 } as const;
 
@@ -30,3 +42,17 @@ export const siteConfig = {
 export function absoluteUrl(path: string): string {
   return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
+
+/**
+ * Deterministic URL for the dynamically generated social card (`/og`). Used by
+ * both the metadata layer (OpenGraph/Twitter) and JSON-LD `image` so a page's
+ * social image and its structured-data image are always the same asset.
+ */
+export function ogImageUrl(opts: { title: string; eyebrow?: string }): string {
+  const params = new URLSearchParams({ title: opts.title });
+  if (opts.eyebrow) params.set("eyebrow", opts.eyebrow);
+  return absoluteUrl(`/og?${params.toString()}`);
+}
+
+/** Canonical dimensions of the generated OG card, shared by route + metadata. */
+export const OG_IMAGE_SIZE = { width: 1200, height: 630 } as const;

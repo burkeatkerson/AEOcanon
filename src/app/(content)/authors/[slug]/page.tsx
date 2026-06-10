@@ -6,6 +6,7 @@ import { MDXContent } from "@/components/mdx";
 import { ArticleCard } from "@/components/library/cards/article-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getAllAuthors, getAuthor, getArticlesByAuthor } from "@/lib/content";
+import { topicLabel } from "@/lib/taxonomy";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbNode, graph, personNode } from "@/lib/structured-data";
 
@@ -39,8 +40,12 @@ export default async function AuthorPage({
   if (!author) notFound();
 
   const articles = getArticlesByAuthor(author.slug);
+  // Expertise derived from what they've actually published, not asserted.
+  const knowsAbout = [
+    ...new Set(articles.flatMap((a) => a.topics.map(topicLabel))),
+  ];
   const jsonLd = graph([
-    personNode(author),
+    personNode(author, { knowsAbout }),
     breadcrumbNode([
       { name: "AEO School", path: "/learn" },
       { name: author.name, path: author.url },

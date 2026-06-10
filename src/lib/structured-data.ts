@@ -12,12 +12,13 @@ import type {
   Organization,
   Person,
   Review,
+  Service,
   SoftwareApplication,
   Thing,
   WebSite,
 } from "schema-dts";
 import type { Article, Author, Vertical } from "@/lib/content";
-import { absoluteUrl, siteConfig } from "@/lib/site";
+import { absoluteUrl, ogImageUrl, siteConfig } from "@/lib/site";
 import { topicLabel } from "@/lib/taxonomy";
 
 const ORG_ID = absoluteUrl("/#organization");
@@ -29,12 +30,20 @@ export function graph(nodes: Thing[]): Graph {
 }
 
 export function organizationNode(): Organization {
+  const { organization } = siteConfig;
   return {
     "@type": "Organization",
     "@id": ORG_ID,
-    name: siteConfig.organization.name,
-    legalName: siteConfig.organization.legalName,
+    name: organization.name,
+    legalName: organization.legalName,
     url: siteConfig.url,
+    description: siteConfig.description,
+    logo: {
+      "@type": "ImageObject",
+      url: absoluteUrl(organization.logo),
+    },
+    // Only emit verified profiles; omit entirely when none are configured.
+    ...(organization.sameAs.length > 0 ? { sameAs: organization.sameAs } : {}),
   };
 }
 
@@ -49,7 +58,15 @@ export function websiteNode(): WebSite {
   };
 }
 
-export function personNode(author: Author): Person {
+/**
+ * Person node for an author. `knowsAbout` (the topics they actually write about)
+ * is supplied by the caller from the content layer so the expertise claim is
+ * derived from published work, not asserted in frontmatter.
+ */
+export function personNode(
+  author: Author,
+  opts?: { knowsAbout?: string[] },
+): Person {
   return {
     "@type": "Person",
     "@id": absoluteUrl(`${author.url}#person`),
@@ -57,6 +74,26 @@ export function personNode(author: Author): Person {
     url: absoluteUrl(author.url),
     ...(author.role ? { jobTitle: author.role } : {}),
     description: author.bio,
+    worksFor: { "@id": ORG_ID },
+    ...(author.avatar
+      ? {
+          image: {
+            "@type": "ImageObject",
+            url: absoluteUrl(author.avatar.src),
+          },
+        }
+      : {}),
+    ...(author.credentials.length > 0
+      ? {
+          hasCredential: author.credentials.map((c) => ({
+            "@type": "EducationalOccupationalCredential",
+            name: c,
+          })),
+        }
+      : {}),
+    ...(opts?.knowsAbout && opts.knowsAbout.length > 0
+      ? { knowsAbout: opts.knowsAbout }
+      : {}),
     ...(author.links.length > 0
       ? { sameAs: author.links.map((l) => l.url) }
       : {}),
@@ -66,9 +103,11 @@ export function personNode(author: Author): Person {
 export function breadcrumbNode(
   items: { name: string; path: string }[],
 ): BreadcrumbList {
+  // Always root the trail at Home so position 1 is the site origin.
+  const trail = [{ name: "Home", path: "/" }, ...items];
   return {
     "@type": "BreadcrumbList",
-    itemListElement: items.map((item, i) => ({
+    itemListElement: trail.map((item, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
@@ -89,12 +128,27 @@ function faqPageNode(article: Article): FAQPage {
   };
 }
 
+/**
+ * Social/structured-data image for an article: its cover when present, else the
+ * dynamically generated branded card — the same URL the metadata layer emits, so
+ * og:image and the JSON-LD image are always one asset.
+ */
+function articleImage(article: Article): string {
+  const eyebrow = article.topics[0] ? topicLabel(article.topics[0]) : undefined;
+  return article.cover
+    ? absoluteUrl(article.cover.src)
+    : ogImageUrl({ title: article.title, eyebrow });
+}
+
+// Fields common to every CreativeWork subtype we emit (Article, HowTo). Article-
+// only fields (wordCount, articleSection) are added in the Article branch below.
 function baseArticleProps(article: Article, author?: Author) {
   return {
     "@id": absoluteUrl(`${article.url}#article`),
     headline: article.title,
     description: article.summary,
     url: article.canonicalUrl,
+    image: articleImage(article),
     datePublished: article.published,
     dateModified: article.updated,
     inLanguage: "en",
@@ -132,9 +186,14 @@ export function articleContentNodes(
   } else if (article.schemaType === "FAQPage") {
     nodes.push(faqPageNode(article));
   } else {
+    const primaryTopic = article.topics[0];
     const articleNode: ArticleSchema = {
       "@type": "Article",
       ...baseArticleProps(article, author),
+      ...(primaryTopic ? { articleSection: topicLabel(primaryTopic) } : {}),
+      ...(article.metadata.wordCount
+        ? { wordCount: article.metadata.wordCount }
+        : {}),
     };
     nodes.push(articleNode);
   }
@@ -260,6 +319,7 @@ export function datasetNode(opts: {
     url: absoluteUrl(opts.path),
     creator: { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
+    image: ogImageUrl({ title: opts.name, eyebrow: "Original research" }),
     datePublished: opts.datePublished,
     dateModified: opts.dateModified,
     license: opts.license,
@@ -298,6 +358,7 @@ export function reviewNode(opts: {
     "@type": "Review",
     "@id": absoluteUrl(`${opts.path}#review`),
     url: absoluteUrl(opts.path),
+    image: ogImageUrl({ title: opts.toolName, eyebrow: "Tool review" }),
     datePublished: opts.datePublished,
     dateModified: opts.dateModified,
     itemReviewed,
@@ -338,6 +399,7 @@ export function researchArticleNode(opts: {
     headline: opts.headline,
     description: opts.description,
     url: absoluteUrl(opts.path),
+    image: ogImageUrl({ title: opts.headline }),
     datePublished: opts.datePublished,
     dateModified: opts.dateModified,
     inLanguage: "en",
@@ -392,6 +454,46 @@ export function definedTermSetNode(opts: {
       name: t.term,
       url: absoluteUrl(t.path),
       inDefinedTermSet: GLOSSARY_SET_ID,
+    })),
+  };
+}
+
+/**
+ * Service node for the productized AEO offering, with each pricing tier as a
+ * recurring monthly Offer. We deliberately omit aggregateRating: the on-page
+ * testimonials are illustrative, and Google's policy requires ratings to come
+ * from genuine, verifiable reviews (consistent with reviewNode's stance).
+ */
+export function serviceOfferNode(opts: {
+  name: string;
+  description: string;
+  path: string;
+  serviceType?: string;
+  tiers: { name: string; price: string; description: string }[];
+}): Service {
+  return {
+    "@type": "Service",
+    "@id": absoluteUrl(`${opts.path}#service`),
+    name: opts.name,
+    description: opts.description,
+    url: absoluteUrl(opts.path),
+    ...(opts.serviceType ? { serviceType: opts.serviceType } : {}),
+    provider: { "@id": ORG_ID },
+    offers: opts.tiers.map((tier) => ({
+      "@type": "Offer",
+      name: tier.name,
+      description: tier.description,
+      // Strip any currency symbol/commas to a bare numeric price.
+      price: tier.price.replace(/[^0-9.]/g, ""),
+      priceCurrency: "USD",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: tier.price.replace(/[^0-9.]/g, ""),
+        priceCurrency: "USD",
+        unitText: "MONTH",
+      },
+      availability: "https://schema.org/InStock",
+      url: absoluteUrl(opts.path),
     })),
   };
 }

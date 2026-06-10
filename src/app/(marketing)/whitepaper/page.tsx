@@ -2,14 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Kicker } from "@/components/ui/eyebrow";
+import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
+import { breadcrumbNode, graph } from "@/lib/structured-data";
 
 export const metadata: Metadata = buildMetadata({
   title: "The AEO Canon — Research Whitepaper",
   description:
     "Eight evidence-grounded principles for Answer Engine Optimization, in three layers — Foundation, Reputation, Momentum — built on controlled experiments and large-scale studies.",
   path: "/whitepaper",
+  eyebrow: "Research Whitepaper",
 });
+
+const jsonLd = graph([
+  breadcrumbNode([{ name: "Whitepaper", path: "/whitepaper" }]),
+]);
 
 const SECTIONS = [
   { id: "shift", n: "1", t: "The paradigm shifted" },
@@ -27,6 +34,7 @@ const SECTIONS = [
 export default function WhitepaperPage() {
   return (
     <Container className="py-12 pb-20">
+      <JsonLd graph={jsonLd} />
       <header className="border-line max-w-[760px] border-b pb-8">
         <Kicker>Research whitepaper · v1.0 · 2026</Kicker>
         <h1 className="mt-4 text-[clamp(30px,4.4vw,48px)] leading-[1.06] font-medium tracking-[-0.02em]">

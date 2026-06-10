@@ -11,6 +11,15 @@ import {
   getUsedTopics,
 } from "@/lib/content";
 
+/** Most recent `updated` date across a set of articles, or undefined if empty. */
+function latestUpdated(articles: { updated: string }[]): string | undefined {
+  let max: string | undefined;
+  for (const a of articles) {
+    if (!max || a.updated > max) max = a.updated;
+  }
+  return max;
+}
+
 /** Generated from every content collection; lastModified tracks `updated`. */
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -82,14 +91,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
+  const allArticles = getAllArticles();
+
   const authors: MetadataRoute.Sitemap = getAllAuthors().map((author) => ({
     url: absoluteUrl(author.url),
+    lastModified: latestUpdated(
+      allArticles.filter((a) => a.author === author.slug),
+    ),
     changeFrequency: "monthly",
     priority: 0.4,
   }));
 
   const topics: MetadataRoute.Sitemap = getUsedTopics().map((topic) => ({
     url: absoluteUrl(`/topics/${topic.slug}`),
+    lastModified: latestUpdated(
+      allArticles.filter((a) => a.topics.some((t) => t === topic.slug)),
+    ),
     changeFrequency: "weekly",
     priority: 0.6,
   }));

@@ -4,13 +4,23 @@ import { Section, SectionHead } from "@/components/sections/section";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Button } from "@/components/ui/button";
 import { Kicker } from "@/components/ui/eyebrow";
+import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
+import {
+  breadcrumbNode,
+  faqNode,
+  graph,
+  serviceOfferNode,
+} from "@/lib/structured-data";
+
+const PRICING_DESCRIPTION =
+  "Done-for-you Answer Engine Optimization. Every plan includes a complete custom website rebuild ($12,000 value) free, then the AEO content that gets you cited every month.";
 
 export const metadata: Metadata = buildMetadata({
   title: "Pricing — Done-for-you AEO",
-  description:
-    "Done-for-you Answer Engine Optimization. Every plan includes a complete custom website rebuild ($12,000 value) free, then the AEO content that gets you cited every month.",
+  description: PRICING_DESCRIPTION,
   path: "/pricing",
+  eyebrow: "Pricing",
 });
 
 const TIERS = [
@@ -152,8 +162,28 @@ const FAQ = [
 ];
 
 export default function PricingPage() {
+  const jsonLd = graph([
+    serviceOfferNode({
+      name: "Done-for-you AEO",
+      description: PRICING_DESCRIPTION,
+      path: "/pricing",
+      serviceType: "Answer Engine Optimization",
+      tiers: TIERS.map((t) => ({
+        name: t.name,
+        price: t.price,
+        description: t.hl,
+      })),
+    }),
+    faqNode(
+      "/pricing",
+      FAQ.map((f) => ({ q: f.q, a: f.a })),
+    ),
+    breadcrumbNode([{ name: "Pricing", path: "/pricing" }]),
+  ]);
+
   return (
     <>
+      <JsonLd graph={jsonLd} />
       <header className="py-14">
         <Container className="max-w-3xl">
           <Kicker>Done-for-you AEO</Kicker>

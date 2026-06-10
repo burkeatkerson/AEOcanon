@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import { MDXContent } from "@/components/mdx";
 import { FAQBlock } from "@/components/mdx/faq-block";
@@ -38,11 +39,15 @@ export async function generateMetadata({
   const article = getArticle(slug);
   if (!article) return {};
   const author = getAuthor(article.author);
+  const primaryTopic = article.topics[0];
   return buildMetadata({
     title: article.title,
     description: article.summary,
     path: article.url,
     type: "article",
+    // Eyebrow must match structured-data's articleImage() so the og:image and
+    // the JSON-LD image resolve to the same generated card when there's no cover.
+    eyebrow: primaryTopic ? topicLabel(primaryTopic) : undefined,
     publishedTime: article.published,
     modifiedTime: article.updated,
     authors: author ? [author.name] : undefined,
@@ -79,7 +84,13 @@ export default async function ArticlePage({
 
   const jsonLd = graph([
     ...articleContentNodes(article, author),
-    ...(author ? [personNode(author)] : []),
+    ...(author
+      ? [
+          personNode(author, {
+            knowsAbout: article.topics.map(topicLabel),
+          }),
+        ]
+      : []),
     breadcrumbNode([
       { name: "AEO School", path: "/learn" },
       ...(primaryTopic
@@ -154,6 +165,23 @@ export default async function ArticlePage({
               <span>{article.metadata.readingTime} min read</span>
             </div>
           </header>
+
+          {article.cover ? (
+            <Image
+              src={article.cover.src}
+              alt={article.coverAlt ?? article.title}
+              width={article.cover.width}
+              height={article.cover.height}
+              {...(article.cover.blurDataURL
+                ? {
+                    placeholder: "blur" as const,
+                    blurDataURL: article.cover.blurDataURL,
+                  }
+                : {})}
+              priority
+              className="border-line mt-8 w-full rounded-lg border"
+            />
+          ) : null}
 
           {/* body */}
           <div className="prose mt-8">

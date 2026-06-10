@@ -3,14 +3,21 @@ import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { Kicker } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/motion/reveal";
+import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
+import { breadcrumbNode, graph } from "@/lib/structured-data";
 
 export const metadata: Metadata = buildMetadata({
   title: "The AEO Manifesto",
   description:
     "What we believe about Answer Engine Optimization — and why deserving the citation is the only strategy that lasts.",
   path: "/manifesto",
+  eyebrow: "Manifesto",
 });
+
+const jsonLd = graph([
+  breadcrumbNode([{ name: "The AEO Manifesto", path: "/manifesto" }]),
+]);
 
 const TENETS: { n: number; h: string; p: string; proof?: string }[] = [
   {
@@ -61,6 +68,7 @@ const TENETS: { n: number; h: string; p: string; proof?: string }[] = [
 export default function ManifestoPage() {
   return (
     <Container className="max-w-[760px] py-16">
+      <JsonLd graph={jsonLd} />
       <header className="text-center">
         <Kicker>The AEO Manifesto</Kicker>
         <h1 className="mt-5 text-[clamp(34px,5.4vw,60px)] leading-[1.05] font-medium tracking-[-0.025em]">

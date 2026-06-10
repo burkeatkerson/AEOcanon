@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { absoluteUrl, siteConfig } from "@/lib/site";
+import { absoluteUrl, ogImageUrl, OG_IMAGE_SIZE, siteConfig } from "@/lib/site";
 
 /**
  * Central metadata builder. Every route derives its Next `Metadata` from
@@ -12,6 +12,8 @@ export function buildMetadata({
   description,
   path,
   type = "website",
+  /** Short kicker rendered on the generated social card, e.g. "AEO School". */
+  eyebrow,
   publishedTime,
   modifiedTime,
   authors,
@@ -22,13 +24,25 @@ export function buildMetadata({
   /** Site-relative canonical path, e.g. "/learn/what-is-aeo". */
   path: string;
   type?: "website" | "article" | "profile";
+  eyebrow?: string;
   publishedTime?: string;
   modifiedTime?: string;
   authors?: string[];
   images?: string[];
 }): Metadata {
   const url = absoluteUrl(path);
-  const ogImages = images?.map((src) => absoluteUrl(src));
+  // Prefer an explicit image (e.g. an article cover); otherwise fall back to the
+  // dynamically generated branded card so EVERY page has a large social image.
+  const ogImages = images?.length
+    ? images.map((src) => ({ url: absoluteUrl(src) }))
+    : [
+        {
+          url: ogImageUrl({ title, eyebrow }),
+          width: OG_IMAGE_SIZE.width,
+          height: OG_IMAGE_SIZE.height,
+          alt: title,
+        },
+      ];
 
   return {
     title,
@@ -41,15 +55,15 @@ export function buildMetadata({
       description,
       siteName: siteConfig.name,
       locale: siteConfig.locale,
-      ...(ogImages ? { images: ogImages } : {}),
+      images: ogImages,
       ...(type === "article" ? { publishedTime, modifiedTime, authors } : {}),
     },
     twitter: {
-      card: ogImages ? "summary_large_image" : "summary",
+      card: "summary_large_image",
       title,
       description,
       site: siteConfig.twitter,
-      ...(ogImages ? { images: ogImages } : {}),
+      images: ogImages.map((img) => img.url),
     },
   };
 }

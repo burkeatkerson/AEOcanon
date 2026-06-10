@@ -5,14 +5,19 @@ import { Kicker } from "@/components/ui/eyebrow";
 import { PillarExplorer } from "@/components/canon/pillar-explorer";
 import { PillarMark } from "@/components/mdx/pillar-mark";
 import { LAYERS, PILLARS } from "@/lib/canon";
+import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
+import { breadcrumbNode, graph } from "@/lib/structured-data";
 
 export const metadata: Metadata = buildMetadata({
   title: "The Canon — The framework for Answer Engine Optimization",
   description:
     "Eight pillars in three layers — Foundation, Reputation, Momentum — that make your content the source AI engines read, trust, and quote.",
   path: "/canon",
+  eyebrow: "The Framework",
 });
+
+const jsonLd = graph([breadcrumbNode([{ name: "The Canon", path: "/canon" }])]);
 
 const GLANCE = [
   { layer: "Foundation", q: "Can the machine use you?" },
@@ -23,6 +28,7 @@ const GLANCE = [
 export default function CanonPage() {
   return (
     <Container className="py-12 pb-20">
+      <JsonLd graph={jsonLd} />
       {/* hero */}
       <header className="max-w-4xl">
         <Kicker>The Canon · v1.0 · the framework</Kicker>
