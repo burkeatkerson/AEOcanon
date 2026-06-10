@@ -1,0 +1,147 @@
+---
+title: "Product Feeds and Schema for AI Shopping"
+slug: product-feeds-ai-shopping
+summary: Product feeds and Product schema give AI shopping surfaces clean, machine-readable facts — name, price, availability, ratings — so engines can identify and present your products. They're infrastructure for entity clarity and shopping eligibility, not a citation lever, and their value depends on accuracy and freshness.
+topics:
+  - structured-data
+  - content-strategy
+author: priya-nair
+published: 2026-04-02
+updated: 2026-06-09
+schemaType: Article
+faqs:
+  - q: What are product feeds and why do they matter for AI shopping?
+    a: A product feed is a structured file (or API) listing your products with machine-readable attributes — title, description, price, availability, GTIN/SKU, image, ratings — supplied to shopping platforms like Google Merchant Center. They matter because AI shopping surfaces and assistants need clean, current product data to identify and present your products. The feed is infrastructure for being eligible and accurately represented, not a guarantee of recommendation.
+  - q: Does Product schema help products show up in AI shopping?
+    a: It helps engines understand your products and can make you eligible for shopping and rich-result surfaces, but it doesn't directly lift AI citations or recommendations. Product, Offer, and AggregateRating markup provide entity clarity — accurate facts an engine can read — while reviews, comparisons, and fit decide what gets recommended. Implement schema correctly as low-cost infrastructure, and don't expect it to move recommendations on its own.
+  - q: What attributes should a product feed include?
+    a: "The identifying and decision-driving facts — a clear title and description, a stable product ID (GTIN or SKU), brand, price and currency, availability, condition, image, category, and ratings where genuine. Accuracy and freshness matter most: wrong prices or stale availability undermine trust and can get you filtered. Match the feed to your structured data so they don't contradict each other."
+  - q: How do I keep product data accurate for AI?
+    a: Automate it from your single source of truth and update frequently. Prices and availability change constantly, and AI surfaces favor current data, so sync your feed and on-page Product schema to the same backend and refresh them often. Validate the markup, monitor for feed errors and disapprovals, and make sure the feed, the page, and the schema all agree.
+---
+
+**Product feeds and Product structured data give AI shopping surfaces clean,
+machine-readable facts — name, price, availability, ratings — so engines can
+identify and present your products.** They're infrastructure for entity clarity and
+shopping eligibility, not a direct citation lever, and their value depends entirely
+on being accurate and current.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    A <strong>feed</strong> supplies machine-readable product data to shopping
+    platforms; <strong>Product schema</strong> does the same on your pages. Together
+    they make products <strong>identifiable and eligible</strong> for AI shopping
+    surfaces. But they&apos;re <strong>infrastructure, not a citation hack</strong> —
+    reviews, comparisons, and fit decide recommendations. Their whole value rests on{" "}
+    <strong>accuracy and freshness</strong>.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "A product feed is structured product data (title, price, availability, ID, ratings) for shopping platforms.",
+    "Product/Offer/AggregateRating schema gives engines the same clean facts on your pages.",
+    "Feeds and schema provide entity clarity and shopping eligibility — not a direct citation lift.",
+    "Accuracy and freshness are everything: wrong prices or stale stock undermine trust and get you filtered.",
+    "Sync feed and on-page schema to one source of truth so they never contradict.",
+  ]}
+/>
+
+## What is a product feed, and what does it do?
+
+A product feed is a structured file or API that lists your products with
+machine-readable attributes — title, description, price, availability, product ID,
+image, ratings — supplied to shopping platforms (such as Google Merchant Center) that
+feed search and AI shopping surfaces. Its job is to make your products **identifiable
+and accurately represented** to machines: an engine assembling a shopping answer
+needs clean facts it can read, and the feed is how you provide them. The feed doesn't
+*win* a recommendation — reviews and fit do that — but without accurate product data,
+you can't reliably be in the shopping surface at all.
+
+## What's the Product schema for a page?
+
+On your own product pages, Product structured data gives engines the same clean facts.
+Here's a complete example with an offer and ratings:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Acme Trail Runner 2",
+  "description": "Lightweight trail running shoe for technical terrain.",
+  "brand": { "@type": "Brand", "name": "Acme" },
+  "sku": "ACME-TR2-BLK-10",
+  "gtin13": "0123456789012",
+  "image": "https://www.acme.example/tr2.jpg",
+  "offers": {
+    "@type": "Offer",
+    "price": "139.00",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition",
+    "url": "https://www.acme.example/products/trail-runner-2"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.6",
+    "reviewCount": "128"
+  }
+}
+```
+
+Keep `aggregateRating` honest — it must reflect real reviews — and make sure the
+schema matches the visible page and your feed. As with schema generally, this aids
+understanding and eligibility but [doesn't directly lift AI
+citations](/learn/does-schema-help-ai-citations); see [how to implement structured
+data](/learn/structured-data-for-aeo) for the mechanics.
+
+## Which attributes matter most?
+
+The attributes that matter most are the ones that identify the product and drive the
+decision, kept accurate:
+
+<ComparisonTable
+  rowHeaders
+  caption="Product feed/schema attributes that matter"
+  columns={["Attribute", "Why it matters"]}
+  rows={[
+    ["Title & description", "How engines understand what the product is and who it's for — be specific."],
+    ["Product ID (GTIN/SKU)", "Stable identity so the same product is recognized across sources."],
+    ["Price & currency", "A decision-driving fact; must be current or you lose trust."],
+    ["Availability", "Stale 'in stock' is worse than honest 'out of stock' — keep it live."],
+    ["Image", "Required for shopping surfaces; accurate and clear."],
+    ["Ratings (genuine)", "Reflect real reviews only — the trust signal that supports recommendation."],
+  ]}
+/>
+
+## How do you keep it accurate and current?
+
+Keep it accurate by automating both the feed and the on-page schema from one source
+of truth and refreshing often. Prices and availability change constantly, and AI
+shopping surfaces favor current data, so a manual or stale feed quietly costs you
+visibility and trust. Sync the feed and the page's Product schema to the same backend,
+validate the markup, monitor for feed errors and disapprovals, and make sure the
+feed, the page, and the schema always agree. This is the [freshness](/pillars/freshness)
+pillar at the data layer.
+
+<Checklist
+  title="Product feed & schema checklist"
+  items={[
+    "A complete product feed is supplied to the shopping platforms that matter.",
+    "On-page Product/Offer/AggregateRating schema matches the feed and visible page.",
+    "Product IDs (GTIN/SKU) are stable and consistent across sources.",
+    "Prices and availability are automated from one source of truth and current.",
+    "aggregateRating reflects only genuine reviews.",
+    "Markup is validated and feed errors/disapprovals are monitored.",
+  ]}
+/>
+
+## Where this fits in the Canon
+
+Product feeds and schema are entity-clarity infrastructure for products — the
+[access](/pillars/access) and structured-data layer that makes you identifiable and
+eligible, kept honest by [freshness](/pillars/freshness). They support, but don't
+replace, the [authority](/pillars/authority) (reviews) and fit that actually drive
+[recommendation](/learn/how-ai-recommends-products). Use them within [the e-commerce
+playbook](/learn/aeo-for-ecommerce) and alongside [getting products
+recommended](/learn/get-products-recommended-by-ai).
