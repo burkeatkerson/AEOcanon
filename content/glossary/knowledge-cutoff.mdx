@@ -1,0 +1,31 @@
+---
+term: "Knowledge Cutoff"
+slug: knowledge-cutoff
+definition: A knowledge cutoff is the date beyond which an AI model's training data ends, so without live retrieval the model has no built-in knowledge of anything that happened after it.
+related:
+  - training-data
+  - rag
+  - content-freshness
+pillars:
+  - freshness
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**A knowledge cutoff is the model's "last day of school."** Its built-in knowledge
+stops at the date its [training data](/glossary/training-data) ends, so a model
+without web access can't know about events, products, or pages that appeared after
+that point — and may answer confidently anyway from stale memory.
+
+This is exactly why [retrieval](/glossary/rag) and the [freshness](/pillars/freshness)
+pillar matter. Live retrieval lets an engine pull current pages and cite them,
+bypassing the cutoff — which means up-to-date, clearly dated content can win
+citations that the model's frozen memory can't supply. Conversely, if your topic
+changes often and you don't keep pages current, the engine may rely on outdated
+training knowledge or a competitor's fresher page.
+
+**Example.** Ask an offline model about a product released last month and it either
+admits it doesn't know or guesses; the same engine with search retrieves and cites a
+current page. Being that fresh, retrievable page is the freshness opportunity.

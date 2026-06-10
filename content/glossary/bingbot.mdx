@@ -1,0 +1,31 @@
+---
+term: "Bingbot"
+slug: bingbot
+definition: Bingbot is Microsoft's web crawler that builds the Bing search index, which also powers Microsoft Copilot, so blocking it removes you from both Bing and Copilot answers.
+related:
+  - robots-txt
+  - copilot
+  - oai-searchbot
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Bingbot is the crawler behind Bing — and therefore behind Copilot.** It indexes
+the web for Microsoft's search engine, and because [Microsoft Copilot](/glossary/copilot)
+answers from the Bing index, Bingbot is the gateway to citation in both. It
+identifies itself with the `bingbot` user-agent and obeys
+[robots.txt](/glossary/robots-txt).
+
+Allowing Bingbot is squarely an [access](/pillars/access) move: block it and you
+disappear from Bing results and Copilot answers simultaneously. Bing also reportedly
+shares index signals with some other AI engines, so Bing crawlability can have reach
+beyond Microsoft's own surfaces. It's a frequently overlooked check for teams
+focused only on Google.
+
+**Example.** A site that inadvertently disallows bingbot in robots.txt loses Bing
+rankings and vanishes from Copilot citations at once — a single misconfigured line
+with outsized cost.

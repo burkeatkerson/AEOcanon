@@ -1,0 +1,32 @@
+---
+term: "Time to First Byte (TTFB)"
+slug: ttfb
+definition: Time to First Byte measures how long after a request the server sends the first byte of the response, an early speed signal that affects both crawl efficiency and how fast a page can load.
+aka:
+  - TTFB
+related:
+  - core-web-vitals
+  - fcp
+  - ssr
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**TTFB measures how fast your server starts responding.** It's the time from a request to
+the first byte coming back — capturing server processing, database queries, and network
+latency before any rendering even begins. A slow TTFB delays everything downstream,
+including [FCP](/glossary/fcp) and [LCP](/glossary/lcp).
+
+For the [access](/pillars/access) pillar, TTFB matters on both ends: crawlers fetching many
+pages are more efficient and thorough when your server responds quickly, and users get a
+faster start. The common improvements — caching, a CDN, and serving pre-rendered or
+[static](/glossary/ssr) responses instead of computing each page on demand — reduce TTFB and
+make your content promptly available to bots and people alike.
+
+**Example.** A static page served from a CDN can post a TTFB in the tens of milliseconds,
+while a slow app server doing heavy work per request might take a second or more before the
+first byte — delaying the crawler and the visitor before anything renders.

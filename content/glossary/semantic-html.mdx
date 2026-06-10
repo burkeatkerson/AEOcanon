@@ -1,0 +1,33 @@
+---
+term: "Semantic HTML"
+slug: semantic-html
+definition: Semantic HTML is markup that uses elements according to their meaning — headings, lists, articles, tables — so machines can understand a page's structure and extract its content accurately.
+related:
+  - question-shaped-heading
+  - schema-markup
+  - crawlability
+pillars:
+  - extractability
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Semantic HTML uses tags for what they mean, not just how they look.** Real headings
+(`<h1>`–`<h3>`), lists, `<article>`, `<table>`, and the like tell a machine how your content
+is organized — what's a section, what's a step, what's tabular — instead of a soup of
+styled `<div>`s that look right but carry no meaning.
+
+It supports the [extractability](/pillars/extractability) and [access](/pillars/access)
+pillars because engines lean on structure to parse and lift content. Proper headings define
+the sections a passage retriever can isolate; genuine lists and tables are extracted as
+lists and tables; clear hierarchy helps a model find the answer to a specific question.
+It's also the foundation that [schema markup](/glossary/schema-markup) builds on. Visually-
+identical pages can be very different to a machine depending on whether their HTML is
+semantic.
+
+**Example.** Marking your steps as a real `<ol>` with `<h2>` questions above each section
+lets an engine extract "step 3" cleanly — where the same content built from styled `<div>`s
+gives it nothing structural to grab.

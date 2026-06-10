@@ -1,0 +1,32 @@
+---
+term: "Hybrid Search"
+slug: hybrid-search
+definition: Hybrid search combines keyword-based and meaning-based retrieval so a system can match both exact terms and semantic intent, and is the common approach in modern AI search.
+related:
+  - dense-retrieval
+  - sparse-retrieval
+  - vector-search
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Hybrid search runs keyword and semantic retrieval together.** It blends
+[sparse retrieval](/glossary/sparse-retrieval) (exact word matching, like BM25) with
+[dense retrieval](/glossary/dense-retrieval) (meaning matching via embeddings), then
+merges the results — catching both the literal matches one method finds and the
+conceptual matches the other does. It's now the default in many production search and
+RAG systems.
+
+For AEO, hybrid search resolves the old keyword-versus-meaning debate: you need both.
+Use the precise terms your audience searches for exact matchability, and write clear,
+self-contained explanations so meaning-based retrieval can match intent. Strong,
+[extractable](/pillars/extractability) content that does both naturally is matchable
+no matter which signal an engine weights more for a given query.
+
+**Example.** For "cheapest way to ship a pallet cross-country," hybrid search can
+match "pallet" and "ship" literally while also understanding the intent is about
+freight cost — surfacing a page that's both precisely worded and clearly on-topic.

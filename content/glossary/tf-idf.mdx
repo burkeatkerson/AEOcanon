@@ -1,0 +1,33 @@
+---
+term: "TF-IDF"
+slug: tf-idf
+definition: TF-IDF is a classic method for scoring how important a word is to a document, balancing how often it appears against how common it is across all documents.
+aka:
+  - term frequency-inverse document frequency
+related:
+  - bm25
+  - keyword-search
+  - sparse-retrieval
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**TF-IDF weighs a word by how telling it is.** It multiplies term frequency (how
+often a word appears in a document) by inverse document frequency (how rare the word
+is across all documents), so distinctive words score high and ubiquitous ones like
+"the" score near zero. It's the conceptual ancestor of [BM25](/glossary/bm25) and
+much of [sparse retrieval](/glossary/sparse-retrieval).
+
+For AEO, TF-IDF illuminates why distinctive, specific language helps you get found:
+the rare, meaningful terms of your topic are exactly what these methods weight most.
+It also shows why stuffing common words is pointless — they carry almost no weight.
+The takeaway is to write naturally with the precise vocabulary of your subject,
+inside clear [extractable](/pillars/extractability) passages.
+
+**Example.** In an article about espresso, "portafilter" carries high TF-IDF weight
+because it's specific and rare, while "machine" carries little. Using the precise
+term where it belongs makes the page matchable for the queries that truly fit it.

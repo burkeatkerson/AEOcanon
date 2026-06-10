@@ -1,0 +1,30 @@
+---
+term: "Indexability"
+slug: indexability
+definition: Indexability is whether a crawled page is eligible to be stored in a search index, since a page can be crawlable yet still excluded from the index that retrieval and AI answers draw from.
+related:
+  - crawlability
+  - robots-txt
+  - ssr
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Indexability is whether a fetched page is allowed into the index.** It's the step
+after [crawlability](/glossary/crawlability): a bot can read your page, but signals like
+a `noindex` tag, a canonical pointing elsewhere, or thin or duplicate content can keep it
+out of the index — and only indexed pages are eligible to be retrieved and cited.
+
+It belongs to the [access](/pillars/access) pillar because crawlable-but-not-indexed is a
+silent, common failure. The usual culprits are an accidental `noindex` directive,
+canonical tags consolidating a page away, or content so thin the engine declines to store
+it. Auditing for these — and making sure each page you want cited is genuinely indexable —
+closes the gap between "a bot can read it" and "an engine can actually use it."
+
+**Example.** A page with a stray `<meta name="robots" content="noindex">` left over from
+staging is perfectly crawlable but will never be indexed — so it can never be cited,
+however good it is. Removing the tag restores its eligibility.

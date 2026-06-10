@@ -1,0 +1,33 @@
+---
+term: "Vector Database"
+slug: vector-database
+definition: A vector database stores content as embeddings and is optimized to quickly find the items whose vectors are most similar to a query, powering semantic retrieval at scale.
+related:
+  - embeddings
+  - vector-search
+  - approximate-nearest-neighbor
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**A vector database is built to search by meaning, fast.** It stores
+[embeddings](/glossary/embeddings) for huge numbers of passages and is engineered to
+find, in milliseconds, the ones nearest to a query's vector — using
+[approximate nearest neighbor](/glossary/approximate-nearest-neighbor) techniques.
+It's the infrastructure that makes [vector search](/glossary/vector-search) practical
+at web scale.
+
+You won't touch the database directly as a content creator, but it explains the
+shape of the game: your passages live in this index as points in meaning-space, and
+retrieval pulls the closest ones. The cleaner and more focused each passage, the more
+precisely it's placed — the [extractability](/pillars/extractability) pillar, viewed
+from the index side. It's also the same technology many teams use to build their own
+RAG-powered tools.
+
+**Example.** A documentation site might load all its pages as embeddings into a
+vector database so its support assistant can instantly retrieve the most relevant
+passage for any user question — the same mechanism public answer engines use.

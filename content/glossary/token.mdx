@@ -1,0 +1,31 @@
+---
+term: "Token"
+slug: token
+definition: A token is the basic unit of text an AI model processes — typically a word or word-piece — and is how model limits, costs, and context windows are measured.
+related:
+  - tokenization
+  - context-window
+  - large-language-model
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**A token is a chunk of text the model treats as one unit.** Models don't read
+characters or whole words exactly; they read tokens — often a short word or a piece
+of a longer one. Roughly, a token averages about four characters of English, so 100
+tokens is around 75 words. Tokens are the currency for everything a model does.
+
+Tokens matter to AEO indirectly but really: [context windows](/glossary/context-window)
+are sized in tokens, API costs are billed per token, and retrieval systems budget
+tokens when deciding how much of your content to include. Writing
+[extractable](/pillars/extractability), information-dense passages means more answer
+per token, which makes your content a more efficient — and more likely — inclusion in
+a limited window.
+
+**Example.** The sentence "AEO is answer engine optimization" is about six tokens.
+When an engine assembles an answer, every retrieved passage spends tokens from a
+fixed budget, so concise, high-value writing competes better for the space.

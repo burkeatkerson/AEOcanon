@@ -1,0 +1,32 @@
+---
+term: "Cosine Similarity"
+slug: cosine-similarity
+definition: Cosine similarity is a math measure of how alike two embeddings are based on the angle between them, and is the common way retrieval systems score how relevant a passage is to a query.
+related:
+  - embeddings
+  - vector-search
+  - approximate-nearest-neighbor
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Cosine similarity scores how close two meanings are.** It measures the angle
+between two [embeddings](/glossary/embeddings): vectors pointing in nearly the same
+direction score near 1 (very similar), unrelated ones near 0. It's the standard way a
+[vector search](/glossary/vector-search) ranks how relevant your passage is to a
+query.
+
+You'll never compute it by hand, but it's the quiet judge behind semantic retrieval.
+A passage whose meaning tightly matches a question has high cosine similarity to it
+and gets retrieved; a vague or off-topic one scores low and is skipped. That's the
+mathematical case for the [extractability](/pillars/extractability) pillar — one
+clear idea per passage produces an embedding that scores high for the questions it
+truly answers, instead of a muddled vector that's mediocre for everything.
+
+**Example.** For the query "how to descale a kettle," a focused paragraph on
+descaling scores high cosine similarity and is retrieved, while a general "kitchen
+tips" page scores lower and loses the slot — even if it mentions kettles in passing.

@@ -1,0 +1,30 @@
+---
+term: "CCBot"
+slug: ccbot
+definition: CCBot is the crawler operated by Common Crawl, whose open dataset is a foundational training source for many AI models, so allowing or blocking it shapes how widely your content trains AI.
+related:
+  - common-crawl
+  - robots-txt
+  - training-data
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**CCBot is the crawler that feeds Common Crawl.** It gathers public web pages into
+[Common Crawl](/glossary/common-crawl), the large open dataset that many AI models
+have trained on. Because so many downstream models derive from it, CCBot's reach is
+broad — allowing it means your content can flow into numerous training sets at once.
+
+It respects [robots.txt](/glossary/robots-txt) via the `CCBot` user-agent, so the
+[access](/pillars/access) decision is yours. Like other training crawlers, blocking
+CCBot is a [training](/glossary/training-data)-rights choice that won't change
+whether a search-grounded engine cites you today. Note that historical crawls
+already collected can't be retroactively removed by blocking it now.
+
+**Example.** A site that wants to limit its presence in open training corpora adds a
+`User-agent: CCBot` / `Disallow: /` rule — affecting future Common Crawl snapshots,
+though not copies already distributed.

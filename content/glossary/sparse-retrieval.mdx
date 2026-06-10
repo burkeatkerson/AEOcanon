@@ -1,0 +1,32 @@
+---
+term: "Sparse Retrieval"
+slug: sparse-retrieval
+definition: Sparse retrieval finds relevant content by matching actual words and their importance, using classic methods like BM25, and still complements meaning-based retrieval in modern systems.
+related:
+  - bm25
+  - keyword-search
+  - dense-retrieval
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Sparse retrieval matches on the words themselves.** It represents text by which
+terms appear and how important each is — most famously with [BM25](/glossary/bm25) —
+and scores passages by term overlap with the query. It's called "sparse" because
+those representations are mostly zeros, with weight only on the words present.
+
+Far from obsolete, sparse retrieval remains valuable for exact matches that
+meaning-based methods can fumble: specific product names, error codes, model
+numbers, rare jargon. That's why modern systems often combine it with
+[dense retrieval](/glossary/dense-retrieval) in a [hybrid](/glossary/hybrid-search)
+setup. For AEO it's a reminder to use the precise terms your audience uses — the
+exact product names and phrasings — alongside clear, [extractable](/pillars/extractability)
+explanations, so you're matchable both ways.
+
+**Example.** A query for "error 0x80070057" is best served by sparse retrieval
+finding that exact string — a case where literal word matching beats semantic
+similarity, and where having the precise term on your page matters.

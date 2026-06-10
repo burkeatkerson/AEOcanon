@@ -1,0 +1,31 @@
+---
+term: "Retrieval"
+slug: retrieval
+definition: Retrieval is the step where an AI system searches an index to find the most relevant passages for a query before generating an answer, and it decides which content is even eligible to be cited.
+related:
+  - rag
+  - passage-retrieval
+  - reranking
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Retrieval is the "find" half of how answer engines work.** Before a model writes
+anything, the system searches its index for passages relevant to the question and
+pulls back a candidate set. Only content that survives retrieval can be quoted or
+cited — everything else is invisible to the answer, no matter how good it is.
+
+That makes retrieval the gate every AEO tactic aims at. Being
+[crawlable](/pillars/extractability) gets you into the index; being a clear,
+self-contained, on-topic passage gets you retrieved for the right questions. Modern
+retrieval blends meaning-based and keyword-based methods and is usually followed by
+[reranking](/glossary/reranking), which trims the candidates down to the few the
+model actually reads.
+
+**Example.** For "how long does it take to charge an EV," the retrieval step might
+gather 40 candidate passages from across the web. If yours isn't among them, you
+can't be cited — winning retrieval is step one of being the answer.

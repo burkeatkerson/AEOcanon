@@ -1,0 +1,31 @@
+---
+term: "Attention"
+slug: attention
+definition: Attention is the mechanism that lets a language model weigh which words in the input matter most for understanding each part, and it tends to concentrate on prominent, early, and clearly-related text.
+related:
+  - transformer
+  - position-bias
+  - large-language-model
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Attention is how a model decides what to focus on.** Within a
+[transformer](/glossary/transformer), the attention mechanism scores how relevant
+every word is to every other, so the model can emphasize the parts that carry meaning
+for the task — connecting a pronoun to its subject, a claim to its evidence, an answer
+to its question.
+
+The practical AEO takeaway is that attention isn't evenly spread. Clear, prominent,
+well-structured statements draw more of it than buried or tangential text, which
+reinforces [position bias](/glossary/position-bias) and the case for answer-first,
+[extractable](/pillars/extractability) writing. Make the sentence you want quoted
+prominent and unambiguous, and you make it the part the model attends to and reuses.
+
+**Example.** In a paragraph that opens with a crisp answer and then elaborates, the
+model's attention lands on that opening claim — exactly the sentence you'd want an
+engine to lift and cite.

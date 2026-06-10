@@ -1,0 +1,32 @@
+---
+term: "Crawlability"
+slug: crawlability
+definition: Crawlability is whether automated crawlers can reach and read your pages, the absolute prerequisite for being indexed and cited, since content a crawler can't fetch is invisible to AI.
+related:
+  - robots-txt
+  - indexability
+  - ssr
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Crawlability is whether a bot can get to your content at all.** It depends on
+crawlers being able to find your pages (via links and sitemaps), being permitted to
+fetch them ([robots.txt](/glossary/robots-txt)), and receiving real content in the
+response rather than errors or empty shells. If a crawler can't reach a page, nothing
+else about it matters.
+
+It's the front of the [access](/pillars/access) pillar — the price of admission to AI
+visibility. The common failures are blunt: disallowing crawlers in robots.txt, hiding
+content behind JavaScript that bots don't execute, broken links, or server errors. Fixing
+crawlability is usually the highest-leverage AEO work precisely because it's binary —
+you're either readable or you're invisible. [Server-side rendering](/glossary/ssr) is the
+most reliable way to guarantee your content is there to be crawled.
+
+**Example.** A beautiful, authoritative page that returns content only after JavaScript
+runs may be effectively uncrawlable to an AI bot — present to humans, absent to the
+engine. Serving it as plain HTML makes it crawlable.

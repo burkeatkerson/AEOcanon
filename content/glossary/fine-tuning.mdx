@@ -1,0 +1,32 @@
+---
+term: "Fine-Tuning"
+slug: fine-tuning
+definition: Fine-tuning is the process of further training a pre-trained AI model on a narrower dataset to specialize its behavior, distinct from the retrieval that grounds live answers.
+related:
+  - training-data
+  - large-language-model
+  - knowledge-distillation
+pillars:
+  - originality
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Fine-tuning specializes a general model on focused data.** Starting from a
+pre-trained [large language model](/glossary/large-language-model), you continue
+training it on a smaller, targeted dataset so it adopts a particular style, domain,
+or task. The base knowledge stays; the behavior is nudged.
+
+For AEO, fine-tuning is worth understanding mainly to separate it from retrieval.
+Being cited in an answer engine comes from [grounding](/glossary/grounding) in
+retrieved sources, not from being in a model's fine-tuning set — so AEO targets
+retrieval, not training. Where your original work does influence models is through
+the broader [training data](/glossary/training-data) pipeline over time, which is one
+more reason that genuinely [original](/pillars/originality) content, found nowhere
+else, is valuable.
+
+**Example.** A company might fine-tune a model on its support transcripts to build a
+help bot. That's a product decision; it has little to do with whether a public answer
+engine cites the company's website, which is governed by retrieval.

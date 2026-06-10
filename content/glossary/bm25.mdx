@@ -1,0 +1,32 @@
+---
+term: "BM25"
+slug: bm25
+definition: BM25 is a classic ranking function that scores how well a document matches a query based on term frequency and rarity, and it remains a strong, widely-used retrieval baseline.
+related:
+  - tf-idf
+  - sparse-retrieval
+  - keyword-search
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**BM25 is the workhorse keyword-ranking algorithm.** It scores a document for a
+query by rewarding passages that contain the query's terms, weighting rarer terms
+more heavily and dampening the effect of sheer repetition and document length. It's a
+refinement of [TF-IDF](/glossary/tf-idf) and a backbone of
+[sparse retrieval](/glossary/sparse-retrieval).
+
+Decades old and still competitive, BM25 often runs alongside meaning-based retrieval
+in [hybrid](/glossary/hybrid-search) systems. Its key lesson for AEO is built into
+its math: it dampens repetition, so keyword stuffing doesn't help and can hurt
+readability. Using your topic's real terms naturally, within clear
+[extractable](/pillars/extractability) prose, is what BM25 rewards — relevance, not
+density.
+
+**Example.** For "BM25 ranking explained," BM25 favors a focused page that uses the
+term meaningfully a few times over one that repeats "BM25 ranking" twenty times —
+because it discounts the stuffing and rewards genuine relevance.

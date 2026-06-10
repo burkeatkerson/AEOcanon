@@ -1,0 +1,34 @@
+---
+term: "JSON-LD"
+slug: json-ld
+definition: JSON-LD is the recommended format for adding schema markup to a page, embedding structured data as a separate JSON block so machines can read your content's meaning without touching the visible layout.
+aka:
+  - JSON Linked Data
+related:
+  - schema-markup
+  - faqpage-schema
+  - article-schema
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**JSON-LD is the cleanest way to add structured data.** It places your
+[schema markup](/glossary/schema-markup) in a self-contained `<script type="application/ld+json">`
+block, separate from your visible HTML — so you describe your content to machines
+without altering the page's appearance or tangling markup into the layout. It's
+Google's recommended format and the industry default.
+
+For AEO, the practical advantages are maintainability and accuracy: because the
+structured data lives in one discrete block, it's easy to generate, validate, and keep
+in sync with the page. That makes it straightforward to express the entities and
+relationships an engine needs to read you correctly — the
+[extractability](/pillars/extractability) of your *metadata*. Tools like Google's Rich
+Results Test let you confirm it parses.
+
+**Example.** A recipe page includes a JSON-LD block listing its ingredients, cook
+time, and rating. Visitors see a normal page; machines read the structured block and
+know precisely what each value means.

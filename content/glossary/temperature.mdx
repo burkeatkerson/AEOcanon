@@ -1,0 +1,32 @@
+---
+term: "Temperature"
+slug: temperature
+definition: Temperature is a setting that controls how random or deterministic an AI model's output is, with higher values producing more varied responses and lower values more predictable ones.
+related:
+  - large-language-model
+  - hallucination
+  - system-prompt
+pillars:
+  - adaptability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Temperature dials how much an AI model improvises.** At low temperature the model
+picks the most likely next token almost every time, giving consistent, conservative
+answers; at high temperature it samples more freely, producing varied and creative —
+but less predictable — output.
+
+It explains a phenomenon every AEO practitioner hits: ask an engine the same question
+twice and you can get different answers, including different cited sources. That
+run-to-run variation is partly temperature (plus other sampling and retrieval
+randomness), and it's why measurement has to be the [adaptability](/pillars/adaptability)
+pillar — sample a fixed prompt set repeatedly and watch the trend rather than trusting
+a single reading. Higher temperature can also raise the odds of a
+[hallucination](/glossary/hallucination).
+
+**Example.** Run "best CRM for small teams" through an engine five times and you may
+see your brand cited in three of them. That inconsistency is expected; tracking the
+rate across many runs, not one, is how you read your real visibility.

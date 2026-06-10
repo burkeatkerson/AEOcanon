@@ -1,0 +1,31 @@
+---
+term: "OAI-SearchBot"
+slug: oai-searchbot
+definition: OAI-SearchBot is OpenAI's crawler that indexes pages for ChatGPT's search feature, making it the user-agent to allow if you want to be cited in ChatGPT's answers.
+related:
+  - gptbot
+  - chatgpt
+  - robots-txt
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**OAI-SearchBot is the crawler that makes you citable in ChatGPT search.** Unlike
+[GPTBot](/glossary/gptbot), which gathers training data, OAI-SearchBot indexes the
+web so [ChatGPT](/glossary/chatgpt) can retrieve and cite live sources. If you want
+ChatGPT to surface your pages, this is the bot to allow in
+[robots.txt](/glossary/robots-txt).
+
+The distinction matters for the [access](/pillars/access) pillar and for making an
+informed crawler policy: you can block training (GPTBot) while still allowing search
+(OAI-SearchBot), preserving your AI-citation visibility without contributing to model
+training. Confusing the two — and blocking both to "keep out OpenAI" — silently
+removes you from ChatGPT's cited results.
+
+**Example.** A publisher that wants ChatGPT to cite its journalism but not train on
+it allows OAI-SearchBot while disallowing GPTBot — a deliberate split that the two
+separate user-agents make possible.

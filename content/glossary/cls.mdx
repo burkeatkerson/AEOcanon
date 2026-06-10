@@ -1,0 +1,33 @@
+---
+term: "Cumulative Layout Shift (CLS)"
+slug: cls
+definition: Cumulative Layout Shift measures how much a page's content unexpectedly moves around as it loads, a Core Web Vital capturing visual stability.
+aka:
+  - CLS
+related:
+  - core-web-vitals
+  - lcp
+  - fcp
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**CLS measures how much the page jumps around while loading.** A [Core Web
+Vitals](/glossary/core-web-vitals) metric, it scores unexpected layout shifts — text that
+reflows when a late image loads, a button that moves just as you tap it — with a lower
+score meaning a more stable, predictable page.
+
+CLS is the most user-experience-focused of the vitals and the least directly tied to AEO,
+but it still belongs to the [access](/pillars/access) pillar's quality bar: a stable,
+well-built page signals technical care, and the fixes (reserving space for images and
+embeds, avoiding content injected above existing content) are cheap and improve the
+experience for everyone. It rounds out [LCP](/glossary/lcp) and
+[FCP](/glossary/fcp) as part of an overall fast, solid page.
+
+**Example.** Reserving explicit dimensions for images so the text doesn't jump when they
+load keeps CLS low — a small discipline that makes the page feel stable and professional as
+it renders.

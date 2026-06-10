@@ -1,0 +1,35 @@
+---
+term: "Approximate Nearest Neighbor (ANN)"
+slug: approximate-nearest-neighbor
+definition: Approximate nearest neighbor is a family of algorithms that quickly find the embeddings most similar to a query without checking every item, making large-scale semantic search fast enough to be practical.
+aka:
+  - ANN
+related:
+  - vector-database
+  - cosine-similarity
+  - vector-search
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**ANN is how semantic search stays fast at scale.** Comparing a query against every
+one of billions of [embeddings](/glossary/embeddings) would be far too slow, so
+approximate nearest neighbor algorithms cleverly narrow the search to the most
+promising candidates — trading a tiny bit of exactness for enormous speed. It's the
+core trick inside every [vector database](/glossary/vector-database).
+
+It's deep infrastructure with one indirect AEO consequence: because retrieval is
+approximate, being a clear, strong semantic match matters even more. A passage that's
+an obvious, high-[similarity](/glossary/cosine-similarity) match is reliably found,
+while a borderline one can be missed by the approximation. Decisive, focused,
+[extractable](/pillars/extractability) writing keeps you safely inside the
+shortlist.
+
+**Example.** A search across a billion passages uses ANN to consider only a few
+thousand likely candidates rather than all billion — returning results instantly. A
+clearly on-topic passage is almost certain to make that shortlist; a marginal one
+might not.

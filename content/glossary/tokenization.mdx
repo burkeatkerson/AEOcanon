@@ -1,0 +1,31 @@
+---
+term: "Tokenization"
+slug: tokenization
+definition: Tokenization is the process of splitting text into tokens before an AI model can process it, converting human-readable language into the units the model actually operates on.
+related:
+  - token
+  - embeddings
+  - large-language-model
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Tokenization is the step that turns your text into model-readable pieces.** Before
+a model can do anything with a passage, it breaks the text into
+[tokens](/glossary/token) — splitting words into common sub-pieces so it can handle
+any input, including names and rare terms it never saw whole during training.
+
+For AEO it's mostly background plumbing, but it has one practical implication: clear,
+conventional language tokenizes predictably and is represented cleanly, whereas
+odd formatting, run-together strings, or gimmicky spellings can fragment into messy
+tokens that are harder for the model to interpret and quote. Plain, well-formed
+prose — part of the [extractability](/pillars/extractability) pillar — is the safest
+input. Tokenization is also the precursor to creating [embeddings](/glossary/embeddings).
+
+**Example.** A normal word like "optimization" tokenizes neatly, while a stylized
+string like "Op-Ti-Miz-Ation!!!" fragments into many awkward tokens — needless
+friction for a model trying to read and reuse your point.

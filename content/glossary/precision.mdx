@@ -1,0 +1,32 @@
+---
+term: "Precision"
+slug: precision
+definition: Precision is a retrieval metric measuring what fraction of the passages a system returned were actually relevant, capturing how much of the result set is signal versus noise.
+related:
+  - recall
+  - reranking
+  - retrieval
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Precision asks: how much of what was retrieved is actually relevant?** It's the
+share of returned passages that genuinely answer the query. High precision means the
+result set is clean and on-point; low precision means it's padded with loosely-related
+noise. It's the natural counterpart to [recall](/glossary/recall).
+
+Precision matters to AEO because answer engines work from a tiny, high-precision set —
+[reranking](/glossary/reranking) exists to push precision up before the model writes,
+keeping only the few best passages. To be one of them, your content has to be
+unambiguously relevant to the question, not just adjacent to the topic. That's the
+[extractability](/pillars/extractability) pillar again: a passage that precisely
+answers one question survives the precision filter, while a vaguely on-theme one is
+trimmed away.
+
+**Example.** If an engine returns five passages and four truly answer the question,
+precision is 80%. Reranking aims to make those final few nearly all relevant — so only
+the sharpest, most on-target passages, ideally yours, remain.

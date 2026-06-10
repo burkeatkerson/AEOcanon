@@ -1,0 +1,31 @@
+---
+term: "Bytespider"
+slug: bytespider
+definition: Bytespider is ByteDance's web crawler, associated with gathering training data for its AI models, and is often noted for aggressive crawling that some sites rate-limit or block.
+related:
+  - robots-txt
+  - gptbot
+  - training-data
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Bytespider is ByteDance's crawler, used to collect AI training data.** It fetches
+public pages to support ByteDance's models and is frequently singled out for
+high-volume crawling, which leads some operators to block or rate-limit it for server-
+load reasons as much as content-rights ones.
+
+It checks [robots.txt](/glossary/robots-txt) under the `Bytespider` user-agent, so
+the [access](/pillars/access) choice is straightforward. As with other
+[training](/glossary/training-data) crawlers, blocking it limits how your content
+informs those models but doesn't affect search-grounded citations. Watching your
+server logs for crawler load is a reasonable reason to manage it, independent of any
+AEO consideration.
+
+**Example.** A site seeing heavy Bytespider traffic in its logs might add a
+`User-agent: Bytespider` / `Disallow: /` rule to reduce load — a performance and
+rights decision, not a visibility one.

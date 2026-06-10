@@ -1,0 +1,31 @@
+---
+term: "Applebot-Extended"
+slug: applebot-extended
+definition: Applebot-Extended is a robots.txt control that lets you opt out of having your content used to train Apple's AI models, without affecting Siri or Spotlight indexing by the regular Applebot.
+related:
+  - google-extended
+  - robots-txt
+  - training-data
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Applebot-Extended is Apple's AI-training opt-out token.** Like
+[Google-Extended](/glossary/google-extended), it isn't a crawler — it's a control
+you place in [robots.txt](/glossary/robots-txt) to tell Apple not to use your content
+to train its AI models. The regular Applebot, which powers Siri and Spotlight
+suggestions, keeps indexing you normally.
+
+This keeps the [access](/pillars/access) decision clean: opting out of
+[training](/glossary/training-data) use does not reduce your discoverability in
+Apple's search-driven features. As with the other "-Extended" tokens, it's a
+content-rights choice rather than an AEO visibility lever — it changes whether your
+material shapes the model, not whether a given answer surfaces you.
+
+**Example.** A site adds `User-agent: Applebot-Extended` / `Disallow: /` to keep its
+content out of Apple's AI training while leaving Applebot allowed, so Siri and
+Spotlight still surface its pages.

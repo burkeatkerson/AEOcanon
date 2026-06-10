@@ -1,0 +1,32 @@
+---
+term: "Recall"
+slug: recall
+definition: Recall is a retrieval metric measuring what fraction of all the relevant passages a system actually found, capturing whether the right content was retrieved at all.
+related:
+  - precision
+  - retrieval
+  - reranking
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Recall asks: did the system find the good stuff?** It's the share of all truly
+relevant passages that a [retrieval](/glossary/retrieval) step managed to surface. High
+recall means few relevant sources were missed; low recall means good answers — possibly
+yours — never made it into consideration.
+
+For AEO, recall is the first hurdle: if you're not retrieved, you can't be cited, no
+matter how authoritative you are. The levers that improve your odds of being recalled
+are being indexed (crawlable), using the real terms and concepts of the question, and
+writing clear, [extractable](/pillars/extractability) passages that match intent. Recall
+is usually traded off against [precision](/glossary/precision) — casting a wider net
+finds more relevant items but also more noise, which [reranking](/glossary/reranking)
+then cleans up.
+
+**Example.** If ten pages genuinely answer a question and the engine retrieves eight
+of them, recall is 80%. The two it missed lose their shot at being cited — so being
+clearly matchable is what keeps you in the retrieved set.

@@ -1,0 +1,33 @@
+---
+term: "Dense Retrieval"
+slug: dense-retrieval
+definition: Dense retrieval finds relevant passages by comparing the meaning-based vector embeddings of a query and your content, matching on semantics rather than exact words.
+related:
+  - vector-search
+  - embeddings
+  - sparse-retrieval
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Dense retrieval matches by meaning, using embeddings.** It converts the query and
+every candidate passage into dense vector [embeddings](/glossary/embeddings) and
+returns the passages whose vectors sit closest in meaning — the engine behind
+[vector search](/glossary/vector-search). "Dense" refers to these rich numeric
+representations, as opposed to the word-count vectors of
+[sparse retrieval](/glossary/sparse-retrieval).
+
+Its rise is why writing for concepts beats writing for keywords. Dense retrieval can
+match a query to your passage even with no shared words, as long as the meaning lines
+up — so a single, clearly-expressed idea per passage, the
+[extractability](/pillars/extractability) discipline, is what lands you a precise
+semantic match. Vague or multi-topic passages embed into fuzzy space and match
+nothing strongly.
+
+**Example.** Dense retrieval can surface a page about "lowering cholesterol through
+diet" for the query "foods that reduce LDL," because the meanings align — a match
+keyword-only methods would miss.

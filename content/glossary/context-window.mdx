@@ -1,0 +1,31 @@
+---
+term: "Context Window"
+slug: context-window
+definition: The context window is the maximum amount of text an AI model can consider at once, including the question, any retrieved sources, and its own answer, measured in tokens.
+related:
+  - token
+  - passage-retrieval
+  - rag
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**The context window is how much an AI model can read at one time.** Measured in
+[tokens](/glossary/token), it holds everything the model is working with for a
+single response — the user's question, the retrieved passages, and the answer being
+generated. Anything outside the window simply isn't available to the model.
+
+This is why answer engines retrieve *passages*, not whole sites: only so much
+content fits, so the system selects the few most relevant chunks to place in the
+window. Being concise and [extractable](/pillars/extractability) helps you earn one
+of those limited slots — a tight, complete answer uses the budget efficiently, while
+a rambling page is less likely to be included or, if it is, may be truncated
+mid-thought.
+
+**Example.** When [RAG](/glossary/rag) feeds an engine the top five passages for a
+query, those five plus the question must fit the context window. A crisp 150-word
+answer is a better candidate for that space than a meandering 600-word section.

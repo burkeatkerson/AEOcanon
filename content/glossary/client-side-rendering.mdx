@@ -1,0 +1,32 @@
+---
+term: "Client-Side Rendering (CSR)"
+slug: client-side-rendering
+definition: Client-side rendering is when a page ships minimal HTML and builds its content in the browser with JavaScript, which can hide that content from AI crawlers that don't execute scripts.
+aka:
+  - CSR
+related:
+  - ssr
+  - hydration
+  - fcp
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Client-side rendering builds the page in the visitor's browser.** The server sends a
+near-empty HTML shell plus JavaScript, and the browser then fetches data and assembles
+the content. It's common in single-page apps — and it's a frequent, silent AEO killer.
+
+The problem for the [access](/pillars/access) pillar is that many AI crawlers read raw
+HTML and don't run JavaScript, so with pure CSR they receive the empty shell and miss your
+content entirely. Even crawlers that can render JS often do so inconsistently or skip it
+under load. The fix is to deliver real content in the initial HTML via
+[server-side rendering](/glossary/ssr) or static generation, reserving client-side
+behavior for genuine interactivity rather than core content.
+
+**Example.** "View source" on a CSR page often shows just `<div id="root"></div>` and a
+script bundle — no article text. That's exactly what a non-rendering crawler sees, which
+is why CSR-only content frequently goes uncited.

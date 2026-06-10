@@ -1,0 +1,33 @@
+---
+term: "Largest Contentful Paint (LCP)"
+slug: lcp
+definition: Largest Contentful Paint measures how long it takes for the biggest piece of content to render, a Core Web Vital that captures how quickly a page feels loaded.
+aka:
+  - LCP
+related:
+  - core-web-vitals
+  - fcp
+  - ttfb
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**LCP measures when the main content appears.** As a [Core Web
+Vitals](/glossary/core-web-vitals) metric, it clocks the moment the largest visible
+element — usually a hero image or headline block — finishes rendering, which is a good
+proxy for when the page feels usefully loaded to a visitor.
+
+Where [First Contentful Paint](/glossary/fcp) marks the first pixel of content, LCP marks
+the main content, so it's a stricter speed signal. For the [access](/pillars/access)
+pillar, a fast LCP means your primary content is available quickly to users and well-placed
+for crawling. The usual improvements — serving content as HTML rather than assembling it in
+the browser, optimizing images, and reducing render-blocking work — also tend to make your
+content more reliably readable by AI.
+
+**Example.** If a page's headline and lead image render in under a couple of seconds, it has
+a good LCP; if the main content only appears after a long JavaScript load, LCP suffers — and
+so does the page's overall readiness for both users and crawlers.

@@ -1,0 +1,32 @@
+---
+term: "Cross-Encoder"
+slug: cross-encoder
+definition: A cross-encoder is a model that judges relevance by reading a query and a passage together, used in the reranking step to precisely reorder retrieved candidates before the answer is written.
+related:
+  - reranking
+  - embeddings
+  - retrieval
+pillars:
+  - extractability
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**A cross-encoder reads the question and your passage side by side.** Unlike the fast
+embedding models that score query and passage separately, a cross-encoder processes
+them together, which makes it far more precise at judging true relevance — at the
+cost of being slower. That's why it's used in [reranking](/glossary/reranking):
+applied to a small candidate set, not the whole index.
+
+Its precision is exactly what rewards genuinely on-point writing. A cross-encoder can
+tell the difference between a passage that merely mentions the topic and one that
+directly, completely answers the specific question — so the
+[extractability](/pillars/extractability) discipline of writing a real, self-contained
+answer is what wins the rerank. Loosely-related filler that slipped through fast
+retrieval gets caught and demoted here.
+
+**Example.** Two passages both mention "passport renewal," but only one states the
+actual processing time. A cross-encoder, reading each against the query "how long
+does passport renewal take," promotes the one that truly answers it.

@@ -1,0 +1,31 @@
+---
+term: "Hydration"
+slug: hydration
+definition: Hydration is the process where JavaScript attaches interactivity to server-rendered HTML in the browser, letting a page be both crawlable as text and interactive for users.
+related:
+  - client-side-rendering
+  - ssr
+  - core-web-vitals
+pillars:
+  - access
+author: priya-nair
+published: 2026-06-09
+updated: 2026-06-09
+schemaType: Article
+---
+
+**Hydration makes server-rendered HTML interactive.** With [server-side
+rendering](/glossary/ssr), the browser first receives complete HTML — readable
+immediately by users and crawlers — and then JavaScript "hydrates" it, wiring up clicks,
+forms, and dynamic behavior on top of the already-present markup.
+
+This is the best-of-both pattern for the [access](/pillars/access) pillar: because the
+content exists in the initial HTML before hydration, AI crawlers that don't run JavaScript
+still see it, while human visitors get a fully interactive page once hydration completes.
+The caveat is performance — heavy hydration can delay interactivity and hurt
+[Core Web Vitals](/glossary/core-web-vitals) — so the goal is to keep content in the
+server HTML and hydrate only what genuinely needs to be interactive.
+
+**Example.** A product page renders its full description and price on the server (crawlers
+read it instantly), then hydrates to enable the "add to cart" button for shoppers — the
+content visible to machines without waiting on JavaScript.
