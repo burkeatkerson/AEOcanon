@@ -1,0 +1,81 @@
+---
+title: "Does Infinite Scroll Hurt AI Citation?"
+slug: does-infinite-scroll-hurt-ai-citation
+summary: It can — if content only loads as the user scrolls via JavaScript, an AI crawler that doesn't scroll or run scripts never sees it, so anything below the initial load is invisible. The fix is to make that content reachable through real, crawlable links or server-rendered HTML, not just scroll events.
+topics:
+  - technical-seo
+  - answer-engines
+author: jordan-vega
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: Does infinite scroll hurt AI citation?
+    a: It can, when content is loaded only by scroll-triggered JavaScript. AI crawlers generally don't scroll or run scripts, so anything that appears only after a scroll event is never fetched and can't be cited. If your real content lives below an infinite-scroll boundary, engines may see just the first slice.
+  - q: How do I make infinite-scroll content crawlable?
+    a: Back it with real URLs. Provide paginated links or a server-rendered archive that exposes every item at a fetchable address, so a crawler can reach content without scrolling. Progressive enhancement — links that work without JavaScript, scroll as a nicety on top — keeps both users and bots covered.
+  - q: Do crawlers scroll a page like a person?
+    a: Generally not. Most AI crawlers fetch the HTML a server returns and stop there; they don't simulate scrolling, clicks, or other interactions. Googlebot renders more, but even it doesn't reliably trigger infinite scroll. Content gated behind interaction is unreliable to crawl.
+  - q: Is lazy loading bad for AEO?
+    a: Lazy loading images is usually fine, but lazy-loading core text or links via scroll can hide them from crawlers. The test is simple — if the content isn't in the initial HTML and only appears on interaction, a non-scrolling crawler won't get it. Keep important content in the served markup.
+---
+
+**It can — if content only loads as the user scrolls via JavaScript, an AI crawler
+that doesn't scroll or run scripts never sees it, so anything below the initial load
+is invisible.** The fix is to make that content reachable through real, crawlable
+links or server-rendered HTML, not just scroll events.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Yes, if it's <strong>JavaScript scroll-loaded</strong>. Crawlers generally{" "}
+    <strong>don't scroll or run scripts</strong>, so content that appears only on a
+    scroll event is never fetched. Back infinite scroll with{" "}
+    <strong>real paginated URLs or server-rendered HTML</strong> so every item has a
+    fetchable address — scroll as enhancement, links as the foundation.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Scroll-loaded JavaScript content is invisible to non-scrolling crawlers.",
+    "Most AI crawlers fetch served HTML and don't simulate scrolling or clicks.",
+    "Expose content through paginated links or a server-rendered archive.",
+    "Lazy-loading images is fine; lazy-loading core text or links is risky.",
+    "Test: if it's not in the initial HTML and needs interaction, bots miss it.",
+  ]}
+/>
+
+## Why does infinite scroll cause problems?
+
+Because crawling isn't browsing. A person triggers more content by scrolling, but
+most AI crawlers just [fetch the HTML the server returns and
+stop](/learn/javascript-breaks-ai-citation) — they don't scroll, click, or wait for
+scroll-triggered scripts. So if your articles, products, or answers only appear as
+the user scrolls, the crawler sees just the first slice and everything below it is
+effectively unpublished to engines. It's an [Access pillar](/pillars/access) leak.
+
+## How do I keep the content reachable?
+
+Give every item a real, fetchable URL. Provide [paginated
+links](/learn/server-side-vs-client-side-rendering) or a server-rendered archive so a
+crawler can walk to each piece without scrolling, and list those URLs in your
+[sitemap](/learn/does-a-sitemap-help-ai-crawlers). Use progressive enhancement: links
+that work with JavaScript off, with infinite scroll layered on top for humans. That
+way users get the smooth feed and bots get addressable content.
+
+## How do I know if it's hurting me?
+
+Test what the crawler receives. [Fetch the page with JavaScript
+disabled](/learn/check-ai-crawlers-can-read-site) or as an AI user-agent and see how
+much content is actually present — if only the first batch returns, the rest is
+hidden. Lazy-loading images is generally safe, but lazy-loading core text or
+navigation behind scroll is the failure mode. Anything important belongs in the
+served markup, not behind an interaction.
+
+<RelatedQuestions
+  items={[
+    { q: "Does JavaScript break AI citation?", a: "Often — most AI crawlers don't run JavaScript, so client-side-only content is invisible.", href: "/learn/javascript-breaks-ai-citation" },
+    { q: "How do I make a single-page app citable?", a: "Server-render or pre-render the content so crawlers receive real HTML, not an empty shell.", href: "/learn/make-spa-citable" },
+    { q: "How do I check AI crawlers can read my site?", a: "Fetch your pages as each bot's user-agent and confirm the full content returns.", href: "/learn/check-ai-crawlers-can-read-site" },
+  ]}
+/>

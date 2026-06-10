@@ -1,0 +1,83 @@
+---
+title: "Why Isn't GPTBot Crawling My Site?"
+slug: why-isnt-gptbot-crawling-my-site
+summary: GPTBot usually isn't crawling your site for one specific, fixable reason — a robots.txt or CDN block, JavaScript-only content it can't render, orphaned pages with no links, or a new low-authority domain it hasn't prioritized yet. Check your server logs to confirm which, then fix that one gate.
+topics:
+  - technical-seo
+  - answer-engines
+author: jordan-vega
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: Why is GPTBot not crawling my website?
+    a: Almost always one concrete cause — your robots.txt or CDN is blocking it, your content is rendered client-side so it sees nothing worth indexing, your pages are orphaned with no internal or external links, or your domain is new and low-authority and hasn't been prioritized. Server logs tell you which.
+  - q: How do I confirm GPTBot is being blocked?
+    a: Check your robots.txt for a Disallow on GPTBot, review your CDN or firewall (Cloudflare can block AI bots by default), and fetch a page using the GPTBot user-agent to see what comes back. Then read your server logs — if GPTBot never appears, it's being blocked or hasn't discovered you.
+  - q: Does a new site get crawled by GPTBot right away?
+    a: Often not. New, low-authority domains with few inbound links are crawled slowly or late because crawlers prioritize established, well-linked sites. Earning a few external mentions, submitting a sitemap, and building internal links all help a new site get discovered sooner.
+  - q: Can JavaScript stop GPTBot from crawling?
+    a: It can stop it from reading anything useful. GPTBot fetches raw HTML and doesn't execute JavaScript, so if your content loads client-side it sees an empty shell. The crawler may technically visit but find nothing to use — serving server-rendered HTML fixes this.
+---
+
+**GPTBot usually isn't crawling your site for one specific, fixable reason — a
+robots.txt or CDN block, JavaScript-only content it can't render, orphaned pages
+with no links, or a new low-authority domain it hasn't prioritized yet.** Check your
+server logs to confirm which, then fix that one gate.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    It's one locatable cause, in order: a <strong>robots.txt or CDN block</strong>,{" "}
+    <strong>JavaScript-only content</strong> it can't read, <strong>orphaned
+    pages</strong> with no links, or a <strong>new low-authority domain</strong> it
+    hasn't reached. Your <strong>server logs</strong> show whether GPTBot is being
+    blocked or simply hasn't discovered you yet.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Non-crawling is a specific broken gate, not a mystery.",
+    "Check robots.txt and your CDN first — Cloudflare can block AI bots by default.",
+    "GPTBot doesn't run JavaScript, so client-side content reads as empty.",
+    "Orphaned, unlinked pages and brand-new domains get discovered slowly or never.",
+    "Server logs are the source of truth for whether GPTBot is visiting at all.",
+  ]}
+/>
+
+## How do I find the actual cause?
+
+Walk the access gates in order and stop at the first failure. Check
+[robots.txt](/learn/allow-ai-crawlers-robots-txt) for a `Disallow` on GPTBot, then
+your CDN or firewall — [Cloudflare can block AI bots by
+default](/learn/does-cloudflare-block-ai-crawlers), above your own config. Next
+confirm the page returns real content to a [raw
+fetch](/learn/check-ai-crawlers-can-read-site). Finally, read your [server
+logs](/learn/read-server-logs-ai-crawlers): if GPTBot never appears at all, it's
+either blocked or hasn't discovered you.
+
+## Could my content be the problem?
+
+If it's rendered client-side, yes. GPTBot fetches raw HTML and [doesn't execute
+JavaScript](/learn/javascript-breaks-ai-citation), so a page assembled in the browser
+looks like an empty shell — the bot may visit but find nothing usable. Serving
+[server-rendered or static HTML](/learn/server-side-vs-client-side-rendering) makes
+sure that when GPTBot does arrive, there's real content to read.
+
+## What if nothing is blocked but it's still not visiting?
+
+Then it probably hasn't prioritized you yet. New, low-authority domains with few
+inbound links get crawled late, because crawlers favor established, well-linked
+sites. Speed up discovery by [submitting a
+sitemap](/learn/does-a-sitemap-help-ai-crawlers), building strong internal links so
+no page is orphaned, and earning a few [external
+mentions](/learn/mentions-vs-backlinks) that put you on the map. This is the
+[Access pillar](/pillars/access) plus a little authority to get noticed.
+
+<RelatedQuestions
+  items={[
+    { q: "Is Cloudflare blocking AI crawlers from my site?", a: "Possibly — Cloudflare offers AI-bot blocking and enables it by default for some new domains.", href: "/learn/does-cloudflare-block-ai-crawlers" },
+    { q: "How do I read server logs for AI crawlers?", a: "Filter access logs by AI user-agents to see exactly which pages each bot fetched and when.", href: "/learn/read-server-logs-ai-crawlers" },
+    { q: "Why isn't my site being cited by AI?", a: "Usually a broken gate in the cascade — diagnose access, alignment, extractability, then authority.", href: "/learn/why-isnt-my-site-cited-by-ai" },
+  ]}
+/>

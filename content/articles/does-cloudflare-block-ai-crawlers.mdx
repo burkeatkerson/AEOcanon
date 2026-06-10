@@ -1,0 +1,81 @@
+---
+title: "Is Cloudflare Blocking AI Crawlers From My Site?"
+slug: does-cloudflare-block-ai-crawlers
+summary: Possibly — Cloudflare can block AI crawlers through its bot-management and one-click AI-bot-blocking features, and as of 2025 it began blocking known AI bots by default for new sites. If your content vanished from AI answers, check your Cloudflare bot settings before assuming the problem is your content.
+topics:
+  - technical-seo
+  - answer-engines
+author: jordan-vega
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: Does Cloudflare block AI crawlers?
+    a: It can, and increasingly does. Cloudflare offers a one-click "block AI bots" control and, as of 2025, started blocking known AI crawlers by default for new domains unless the owner opts in. So a site behind Cloudflare may be invisible to AI engines purely because of a network-layer setting, not its content.
+  - q: How do I check if Cloudflare is blocking GPTBot?
+    a: Look in the Cloudflare dashboard under Bots and the AI crawler controls, and check any WAF or firewall rules for AI user-agents. Then confirm with your server logs — if AI bots stop appearing after a Cloudflare change, that's your answer. You can also test by fetching a page as the bot's user-agent.
+  - q: How do I let AI crawlers through Cloudflare?
+    a: In the Cloudflare dashboard, disable the AI-bot-blocking toggle or add explicit allow rules for the user-agents you want, such as GPTBot, ClaudeBot, and PerplexityBot. Then verify in server logs that those bots resume fetching your pages.
+  - q: Why did my AI citations suddenly disappear?
+    a: A network-layer block is a common, overlooked cause. If a CDN or security provider like Cloudflare started blocking AI bots — sometimes by default or after a setting change — engines can no longer read your pages even though nothing about your content changed. Check bot settings before rewriting anything.
+---
+
+**Possibly — Cloudflare can block AI crawlers through its bot-management and
+one-click AI-bot-blocking controls, and in 2025 it began blocking known AI bots by
+default for new sites.** If your content vanished from AI answers, check your
+Cloudflare bot settings before assuming the problem is your content.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Yes, it can — and sometimes does <strong>by default</strong>. Cloudflare has a{" "}
+    one-click "block AI bots" control and now blocks known AI crawlers by default
+    for new domains. A site can be invisible to ChatGPT or Perplexity purely from a{" "}
+    <strong>network-layer setting</strong>. Check the Bots dashboard and your{" "}
+    server logs before touching your content.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Cloudflare can block AI crawlers at the network layer, above your site.",
+    "Since 2025 it blocks known AI bots by default for new domains unless you opt in.",
+    "A CDN/security block is a common, overlooked reason AI citations vanish.",
+    "Verify with server logs — bots disappearing after a config change is the tell.",
+    "Fix it in the dashboard: disable AI-bot blocking or add explicit allow rules.",
+  ]}
+/>
+
+## How would Cloudflare be blocking my pages?
+
+At the network layer, before a request ever reaches your origin. Cloudflare sits in
+front of your server, so its bot-management rules decide which crawlers get through.
+It offers an explicit "block AI bots" toggle, and for new domains it began applying
+AI-bot blocking by default — meaning you can be blocking GPTBot without ever
+touching your own [robots.txt](/learn/allow-ai-crawlers-robots-txt). This is why a
+site with perfect content can still be unreadable to engines.
+
+## How do I check and fix it?
+
+Start in the Cloudflare dashboard under Bots and the AI-crawler controls, and review
+any WAF or firewall rules that match AI user-agents. Then confirm against your
+[server logs](/learn/read-server-logs-ai-crawlers): if AI bots stopped appearing
+after a Cloudflare change, that's the cause. To re-open access, disable the
+AI-bot-blocking toggle or add explicit allow rules for the engines you want, then
+watch the logs for those bots to resume.
+
+## Why this matters more than people think
+
+Because it's an invisible failure. A network-layer block produces no error you'd
+notice — your site loads fine for humans while [AI crawlers see
+nothing](/learn/check-ai-crawlers-can-read-site). Teams often spend weeks rewriting
+content to chase lost AI citations when the real cause was a CDN setting. Rule out
+the [Access](/pillars/access) layer — robots.txt, rendering, *and* your CDN —
+first.
+
+<RelatedQuestions
+  items={[
+    { q: "How do I check AI crawlers can read my site?", a: "Fetch your pages as each bot's user-agent and confirm in server logs that they receive full HTML.", href: "/learn/check-ai-crawlers-can-read-site" },
+    { q: "Why isn't GPTBot crawling my site?", a: "Causes range from robots.txt and CDN blocks to JavaScript-only content and orphaned pages.", href: "/learn/why-isnt-gptbot-crawling-my-site" },
+    { q: "How do I allow AI crawlers in robots.txt?", a: "Add explicit allow rules for AI user-agents — but remember a CDN can override robots.txt entirely.", href: "/learn/allow-ai-crawlers-robots-txt" },
+  ]}
+/>

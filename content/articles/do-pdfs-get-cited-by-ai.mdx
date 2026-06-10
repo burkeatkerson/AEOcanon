@@ -1,0 +1,81 @@
+---
+title: "Can PDFs Get Cited by AI?"
+slug: do-pdfs-get-cited-by-ai
+summary: Yes — AI engines can read and cite PDFs when they're text-based, crawlable, and well-structured, but a clean HTML page is almost always easier to extract and cite. Use PDFs for documents that must be PDFs, and publish the key answers as HTML when you actually want the citation.
+topics:
+  - technical-seo
+  - content-strategy
+author: jordan-vega
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: Can AI cite a PDF?
+    a: Yes, if the PDF contains real, selectable text and is crawlable. Engines can extract and quote from text-based PDFs. Scanned image PDFs without OCR are mostly opaque, and even good PDFs are usually harder to parse cleanly than an equivalent HTML page, so HTML is the safer choice when citation is the goal.
+  - q: Are PDFs or HTML pages better for AEO?
+    a: HTML, in almost every case. HTML pages are easier for crawlers to fetch, parse into passages, and link to a specific section, and they're simpler to keep fresh. PDFs add an extraction layer and update friction. Reserve PDFs for documents that genuinely need that format, like forms or reports.
+  - q: Why might my PDF not get cited?
+    a: Common reasons are that it's a scanned image without OCR, it isn't linked or in your sitemap so crawlers never find it, or its text lacks clear answer-first structure. A buried, unlinked, image-only PDF is invisible; a linked, text-based, well-structured one can be read.
+  - q: How do I make a PDF more citable?
+    a: Use real text rather than scanned images, give it clear headings and answer-first passages, link to it and include it in your sitemap, and add a short HTML summary page that points to it. Better still, publish the core content as HTML and keep the PDF as the downloadable companion.
+---
+
+**Yes — AI engines can read and cite PDFs when they're text-based, crawlable, and
+well-structured, but a clean HTML page is almost always easier to extract and
+cite.** Use PDFs for documents that must be PDFs, and publish the key answers as HTML
+when you actually want the citation.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    PDFs <em>can</em> be cited — if they hold <strong>real selectable text</strong>,
+    are crawlable, and are well structured. But HTML is almost always{" "}
+    <strong>easier to parse, passage-split, and keep fresh</strong>. Reserve PDFs
+    for documents that must be PDFs, and publish your <strong>key answers as
+    HTML</strong> when citation is the goal.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Text-based, crawlable, well-structured PDFs can be read and cited.",
+    "Scanned image PDFs without OCR are mostly opaque to engines.",
+    "HTML is easier to fetch, split into passages, deep-link, and keep current.",
+    "Unlinked PDFs not in your sitemap may never be discovered.",
+    "Publish core answers as HTML; keep the PDF as a downloadable companion.",
+  ]}
+/>
+
+## When can a PDF actually be cited?
+
+When an engine can both reach it and read it. A PDF with genuine, selectable text
+that's [linked and listed in your sitemap](/learn/does-a-sitemap-help-ai-crawlers)
+can be fetched and quoted. The failure cases are predictable: a scanned image PDF
+with no OCR is just pixels to a crawler, and an unlinked PDF nobody references may
+never be discovered. Reachability plus real text is the bar — the
+[Access pillar](/pillars/access) again.
+
+## Why is HTML usually the better bet?
+
+Because it's built for extraction. An HTML page is easier for a crawler to parse into
+[citable passages](/learn/passage-length-for-ai-citation), supports deep links to a
+specific heading, and is far simpler to [keep fresh](/learn/content-refresh-system)
+than re-exporting a document. PDFs add an extraction layer and update friction at
+every step. When the point is to be quoted, HTML removes obstacles the PDF
+introduces.
+
+## How do I make a PDF more citable?
+
+Give it the same qualities you'd give a page. Use real text, not scanned images; add
+clear headings and [answer-first passages](/learn/answer-first-sentence); link to it
+and include it in your sitemap; and pair it with a short HTML summary page that
+introduces and points to it. The strongest pattern is to publish the core content as
+HTML and offer the PDF as the printable companion — you get citability *and* the
+document.
+
+<RelatedQuestions
+  items={[
+    { q: "What content format does AI cite most?", a: "Clear, answer-first HTML with self-contained passages tends to be cited most readily.", href: "/learn/content-format-ai-cites-most" },
+    { q: "Do XML sitemaps help AI crawlers?", a: "Yes — listing PDFs and pages in a current sitemap speeds discovery for crawlers that use it.", href: "/learn/does-a-sitemap-help-ai-crawlers" },
+    { q: "How long should a passage be for AI citation?", a: "Short, self-contained passages that fully answer one question are the most liftable unit.", href: "/learn/passage-length-for-ai-citation" },
+  ]}
+/>

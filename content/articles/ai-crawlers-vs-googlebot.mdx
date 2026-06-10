@@ -1,0 +1,83 @@
+---
+title: "How Are AI Crawlers Different From Googlebot?"
+slug: ai-crawlers-vs-googlebot
+summary: AI crawlers and Googlebot are separate bots with different jobs — Googlebot renders JavaScript and builds a search index, while most AI crawlers fetch raw HTML, skip JavaScript, and feed answer engines. The practical upshot is that ranking in Google does not guarantee an AI crawler can even read your page.
+topics:
+  - technical-seo
+  - answer-engines
+author: jordan-vega
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: What's the difference between AI crawlers and Googlebot?
+    a: They're run by different companies for different purposes. Googlebot crawls and renders pages — including executing JavaScript — to build Google's search index. AI crawlers like GPTBot and ClaudeBot fetch content to feed answer engines, and most of them retrieve raw HTML without running JavaScript, so they see a simpler version of your page.
+  - q: Do AI crawlers run JavaScript like Googlebot?
+    a: Mostly no. Googlebot has a rendering step that executes JavaScript, so it can index client-side content. Most AI crawlers don't — Vercel found GPTBot executed zero JavaScript across more than 500 million requests. If your content only appears after JavaScript runs, those crawlers may see an empty shell.
+  - q: If I rank on Google, can AI engines read my site?
+    a: Not necessarily. Googlebot rendering your JavaScript and ranking you doesn't mean an AI crawler can read the same page, because most AI bots skip JavaScript. A site can rank well yet be invisible to answer engines, which is why server-rendered HTML matters for AEO.
+  - q: Should I treat AI crawlers and Googlebot the same in robots.txt?
+    a: You can allow both, but they're addressed by different user-agent names. Googlebot is one user-agent; GPTBot, ClaudeBot, PerplexityBot, and Google-Extended are separate ones. Allowing Googlebot says nothing about the AI bots — you have to permit each explicitly.
+---
+
+**AI crawlers and Googlebot are separate bots with different jobs — Googlebot
+renders JavaScript and builds a search index, while most AI crawlers fetch raw HTML,
+skip JavaScript, and feed answer engines.** The practical upshot: ranking in Google
+does not guarantee an AI crawler can even read your page.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Different owners, different behavior. <strong>Googlebot renders
+    JavaScript</strong> to build a search index;{" "}
+    <strong>most AI crawlers fetch raw HTML and skip JavaScript</strong> to feed
+    answer engines. So a page can rank on Google yet be an <em>empty shell</em> to
+    GPTBot. Treat them as separate user-agents and serve readable HTML to both.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Googlebot and AI crawlers are run by different companies for different ends.",
+    "Googlebot renders JavaScript; most AI crawlers fetch raw HTML and don't.",
+    "Vercel found GPTBot executed zero JavaScript across 500M+ requests.",
+    "Ranking on Google does not prove an AI crawler can read your page.",
+    "They use different user-agent names — allow each one explicitly.",
+  ]}
+/>
+
+## What does each crawler actually do?
+
+Googlebot exists to build a search index, so it crawls, renders, and ranks — and its
+rendering step executes JavaScript, letting it index content assembled in the
+browser. AI crawlers like [GPTBot and the
+others](/learn/which-ai-crawlers-to-allow) exist to feed answer engines, and most of
+them simply fetch the raw HTML a server returns. They're reading for retrieval and
+citation, not building a ranked index.
+
+## Why the JavaScript difference matters most
+
+Because it decides whether you're visible at all. [Vercel found GPTBot executed zero
+JavaScript across more than 500 million
+requests](https://vercel.com/blog/the-rise-of-the-ai-crawler) — so if your content
+only appears after client-side JavaScript runs, that crawler sees an empty page. The
+fix is to serve [server-rendered or static
+HTML](/learn/server-side-vs-client-side-rendering) so both Googlebot and the
+JavaScript-blind AI crawlers get the real content.
+
+## Why "I rank on Google" isn't enough
+
+Because the two systems read differently. Googlebot can render and rank a
+JavaScript-heavy page that an AI crawler experiences as blank, so strong rankings can
+coexist with total AI invisibility. That's exactly why [a site that ranks can still
+go uncited](/learn/why-isnt-my-site-cited-by-ai). Don't assume Google success
+transfers — [verify each AI bot can read your raw
+HTML](/learn/check-ai-crawlers-can-read-site) as its own check under the
+[Access pillar](/pillars/access).
+
+<RelatedQuestions
+  items={[
+    { q: "Why isn't my site being cited by AI?", a: "Most often a broken Access gate — crawlers can't read your client-rendered page.", href: "/learn/why-isnt-my-site-cited-by-ai" },
+    { q: "Does JavaScript break AI citation?", a: "Often yes — most AI crawlers don't run JavaScript, so client-side content is invisible to them.", href: "/learn/javascript-breaks-ai-citation" },
+    { q: "Which AI crawlers should I allow?", a: "Allow the major answer-engine bots by their specific user-agent names — separate from Googlebot.", href: "/learn/which-ai-crawlers-to-allow" },
+  ]}
+/>

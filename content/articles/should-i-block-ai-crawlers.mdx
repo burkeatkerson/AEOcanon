@@ -1,0 +1,89 @@
+---
+title: "Should I Block AI Crawlers Like GPTBot?"
+slug: should-i-block-ai-crawlers
+summary: For almost every site that wants visibility, no — blocking AI crawlers removes you from the AI answers your customers now ask, which is the opposite of what AEO is for. Block only specific bots for a deliberate reason like protecting paid or proprietary content, never as a default.
+topics:
+  - technical-seo
+  - answer-engines
+author: jordan-vega
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: Should I block AI crawlers from my website?
+    a: For almost any site that wants to be found, no. Blocking crawlers like GPTBot, ClaudeBot, and PerplexityBot removes your content from the AI answers people increasingly use instead of search, so you lose citations and referral traffic. Block selectively only when you have a concrete reason, such as keeping paid or proprietary content out of training data.
+  - q: What happens if I block GPTBot?
+    a: You opt out of being read and cited by that engine. Blocking GPTBot in robots.txt tells OpenAI's crawler not to fetch your pages, so they can't be surfaced or quoted in ChatGPT answers that pull from the live web. It does not affect Google rankings, but it does shrink your AI citation surface.
+  - q: Is blocking AI crawlers good for SEO?
+    a: No, and the two are separate. Blocking AI crawlers does nothing for traditional SEO because Googlebot is a different crawler, and it actively hurts AEO by making you invisible to answer engines. There is no SEO benefit to trade for the lost AI visibility.
+  - q: When does blocking an AI crawler make sense?
+    a: When the cost of being read outweighs the visibility. Publishers protecting subscription content, sites with proprietary data, or brands that simply don't want their text in model training sometimes block specific bots. That is a deliberate business choice, not a default — and it still means giving up citations from that engine.
+---
+
+**For almost every site that wants visibility, the answer is no — blocking AI
+crawlers removes you from the AI answers your customers now ask, which is the exact
+opposite of what AEO is for.** Block a specific bot only for a deliberate reason,
+never as a reflex.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    If you want to be found, <strong>let them in</strong>. Crawlers like GPTBot,
+    ClaudeBot, and PerplexityBot are how answer engines read and cite you — block
+    them and you disappear from AI answers while gaining <strong>nothing</strong>{" "}
+    for Google. Reserve blocking for a concrete reason, such as protecting paid or
+    proprietary content from a single engine.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Blocking AI crawlers makes you invisible in AI answers — that's the opposite of AEO.",
+    "It gives zero SEO benefit: Googlebot is a separate crawler.",
+    "Block selectively only to protect paid or proprietary content.",
+    "AI-citation traffic is small but high-intent; opting out forfeits it entirely.",
+    "Decide per bot in robots.txt, not with a blanket block.",
+  ]}
+/>
+
+## Does blocking AI crawlers help my SEO?
+
+No — it helps nothing. AI crawlers like GPTBot and [the other answer-engine
+bots](/learn/which-ai-crawlers-to-allow) are entirely separate from Googlebot, so
+blocking them changes neither your rankings nor your Google traffic. The only thing
+a block does is stop that engine from reading your pages, which removes you from its
+answers. You pay a real cost (lost AI visibility) for a benefit that doesn't exist.
+
+## When is it reasonable to block a bot?
+
+Block deliberately, not by default. There are legitimate reasons: a publisher
+keeping subscription articles out of model training, a site with proprietary data,
+or a brand that doesn't want its text used for training at all. In each case the
+decision is "the cost of being read is higher than the citations we'd earn" — a
+business judgment. Even then, block the *specific* bot in
+[robots.txt](/learn/allow-ai-crawlers-robots-txt) rather than walling off every
+engine.
+
+## What do I actually lose by blocking?
+
+You lose the citation and the high-intent visitor behind it. AI referral traffic is
+still small in volume, but [people arriving from AI answers convert far better than
+generic search clicks](/learn/how-ai-referral-traffic-behaves) because the engine
+has already pre-qualified them. Blocking the crawler forfeits that traffic
+permanently for that engine — and your competitors who stay open get cited in your
+place.
+
+## What should most sites do instead?
+
+Let the crawlers in and compete on the quality of what they read. Confirm your
+[robots.txt allows the major AI bots](/learn/allow-ai-crawlers-robots-txt),
+[verify they can actually render your pages](/learn/check-ai-crawlers-can-read-site),
+and then earn the citation with answer-first, evidenced content. Openness is the
+precondition; everything else in the [Access pillar](/pillars/access) builds on it.
+
+<RelatedQuestions
+  items={[
+    { q: "Which AI crawlers should I allow?", a: "Allow the major answer-engine bots — GPTBot, ClaudeBot, PerplexityBot, Google-Extended — unless you have a specific reason not to.", href: "/learn/which-ai-crawlers-to-allow" },
+    { q: "How do I allow AI crawlers in robots.txt?", a: "Add explicit Allow rules (or simply don't disallow) for each AI user-agent in your robots.txt file.", href: "/learn/allow-ai-crawlers-robots-txt" },
+    { q: "Will blocking GPTBot hurt my SEO?", a: "No — Googlebot is separate, so there's no SEO effect, but you do lose ChatGPT citations.", href: "/learn/will-blocking-gptbot-hurt-seo" },
+  ]}
+/>

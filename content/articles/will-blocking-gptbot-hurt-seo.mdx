@@ -1,0 +1,79 @@
+---
+title: "Will Blocking GPTBot Hurt My SEO?"
+slug: will-blocking-gptbot-hurt-seo
+summary: No — blocking GPTBot has zero effect on your Google rankings because GPTBot and Googlebot are completely separate crawlers. It only stops OpenAI from reading your pages, which costs you ChatGPT citations and the high-intent traffic they bring, with no offsetting SEO upside.
+topics:
+  - technical-seo
+  - answer-engines
+author: jordan-vega
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: Does blocking GPTBot affect Google rankings?
+    a: No. GPTBot is OpenAI's crawler and Googlebot is Google's; they are independent, so disallowing one in robots.txt has no effect on the other. Your Google rankings, indexing, and organic clicks are unchanged whether GPTBot is allowed or blocked.
+  - q: What does blocking GPTBot actually do?
+    a: It stops OpenAI's crawler from fetching your pages, so your content can't be read or cited in ChatGPT answers that draw on the live web. The only thing you lose is AI visibility on that engine — there is no traditional-search consequence either way.
+  - q: Is there any SEO benefit to blocking AI crawlers?
+    a: None. Some people assume blocking bots saves crawl budget or protects content, but Googlebot doesn't share a budget with GPTBot, and the lost AI citations are a pure cost. Blocking buys you no ranking advantage to offset that loss.
+  - q: Should I block GPTBot to save server resources?
+    a: Rarely worth it. AI crawler traffic is usually a small fraction of total requests, and if load is a genuine problem, rate-limiting or caching is a better fix than a full block that also erases your ChatGPT citations.
+---
+
+**No — blocking GPTBot has zero effect on your Google rankings, because GPTBot and
+Googlebot are completely separate crawlers.** Blocking it only stops OpenAI from
+reading your pages, costing you ChatGPT citations and the high-intent traffic behind
+them, with no SEO upside in return.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    GPTBot and Googlebot are <strong>different crawlers</strong>, so blocking one
+    does nothing to the other. Your rankings stay exactly the same — but you{" "}
+    <strong>lose ChatGPT citations</strong> and the visitors they send. There is no
+    SEO benefit to trade for that loss, so a block is almost always a net negative.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "GPTBot (OpenAI) and Googlebot (Google) are independent — blocking one doesn't touch the other.",
+    "Google rankings, indexing, and clicks are unchanged whether GPTBot is allowed or not.",
+    "There is no crawl-budget or ranking benefit to blocking AI crawlers.",
+    "The only effect of blocking is losing citations in that engine's answers.",
+    "If server load is the worry, rate-limit or cache instead of blocking.",
+  ]}
+/>
+
+## Why doesn't blocking GPTBot affect SEO?
+
+Because Google never used GPTBot to begin with. Search engines and answer engines
+run their own crawlers — Googlebot for Google, [GPTBot for
+OpenAI](/learn/which-ai-crawlers-to-allow), and so on — and a `Disallow` rule for
+one user-agent in [robots.txt](/learn/allow-ai-crawlers-robots-txt) is invisible to
+the others. So your ranking signals, index status, and organic clicks don't move at
+all when you block GPTBot. The two systems simply don't share plumbing.
+
+## So what does blocking actually cost me?
+
+It costs the citation and the visitor. With GPTBot blocked, OpenAI can't read your
+pages, so you can't be the named source in ChatGPT's web-grounded answers. That
+matters because [AI referral visitors convert better than ordinary search
+clicks](/learn/how-ai-referral-traffic-behaves) — the engine pre-qualifies them. You
+give that up for nothing.
+
+## Are there real reasons to block it anyway?
+
+A few, and they're about content rights, not SEO. Publishers protecting paywalled
+work or brands that don't want their text in training data sometimes block GPTBot
+deliberately — accepting the lost citations as the price. If your concern is just
+server load, [rate-limiting or caching](/pillars/access) is a far better tool than a
+block that also erases your AI presence. For the broader decision, see
+[whether you should block AI crawlers at all](/learn/should-i-block-ai-crawlers).
+
+<RelatedQuestions
+  items={[
+    { q: "Should I block AI crawlers like GPTBot?", a: "Usually no — blocking removes you from AI answers and gains nothing for SEO.", href: "/learn/should-i-block-ai-crawlers" },
+    { q: "Which AI crawlers should I allow?", a: "Allow the major answer-engine bots unless you have a specific content-rights reason not to.", href: "/learn/which-ai-crawlers-to-allow" },
+    { q: "How are AI crawlers different from Googlebot?", a: "They're separate user-agents with different owners, behavior, and JavaScript support.", href: "/learn/ai-crawlers-vs-googlebot" },
+  ]}
+/>

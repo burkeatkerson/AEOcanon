@@ -1,0 +1,81 @@
+---
+title: "How Often Do AI Crawlers Visit My Site?"
+slug: how-often-do-ai-crawlers-visit
+summary: AI crawlers visit on no fixed schedule — frequency scales with how often you publish, how authoritative your domain is, and how easily bots can reach your pages. Active, well-linked sites get crawled often; thin or hard-to-reach ones get crawled rarely, which is why server logs are the only reliable way to know.
+topics:
+  - technical-seo
+  - answer-engines
+author: jordan-vega
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: How often do AI crawlers like GPTBot crawl a website?
+    a: There is no fixed interval. Crawl frequency depends on how often you publish, how authoritative and well-linked your domain is, and how fast and reachable your pages are. High-authority sites that publish regularly may be crawled daily or more; small static sites might be visited only every few weeks.
+  - q: How do I know how often AI bots crawl my site?
+    a: Check your server logs. Filter access logs by AI user-agents such as GPTBot, ClaudeBot, PerplexityBot, and OAI-SearchBot to see exact timestamps and which pages they fetched. Logs are the only source of truth — analytics tools that rely on JavaScript usually miss bots entirely.
+  - q: Why isn't an AI crawler visiting my new pages?
+    a: Usually because nothing points to them yet. Crawlers discover pages through internal links, sitemaps, and external references, so an orphaned new page may go unseen for a long time. Linking it from crawled pages and listing it in your sitemap speeds discovery.
+  - q: Can I make AI crawlers visit more often?
+    a: Indirectly. Publishing fresh content on a steady cadence, keeping pages fast and server-rendered, maintaining a current sitemap, and earning external links all increase how often and how deeply bots crawl. You can't set a schedule, but you can make your site worth crawling more.
+---
+
+**AI crawlers visit on no fixed schedule — frequency scales with how often you
+publish, how authoritative your domain is, and how easily bots can reach your
+pages.** Active, well-linked sites get crawled often; thin or hard-to-reach ones get
+crawled rarely, and your server logs are the only reliable way to know which you
+are.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    There's <strong>no set interval</strong>. Crawl frequency rises with your{" "}
+    <strong>publishing cadence, domain authority, and reachability</strong> — busy,
+    trusted sites get visited daily; sleepy ones every few weeks. The only way to
+    see your real rate is to <strong>filter server logs by AI user-agents</strong>,
+    since JavaScript analytics miss bots.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Crawl frequency has no fixed schedule — it's earned, not guaranteed.",
+    "It scales with publishing cadence, authority, speed, and internal linking.",
+    "Server logs are the only reliable record; JS analytics miss bots.",
+    "Orphaned pages with no links or sitemap entry may never get crawled.",
+    "You can raise frequency by being more worth crawling, not by scheduling it.",
+  ]}
+/>
+
+## What determines how often I get crawled?
+
+Three things: how much changes, how trusted you are, and how reachable you are. A
+site that publishes weekly and earns external links signals that it's worth
+revisiting, so crawlers come back sooner. A static brochure site with little inbound
+authority gets a thin, infrequent crawl. Reachability matters too — fast,
+[server-rendered pages](/learn/server-side-vs-client-side-rendering) that bots can
+fetch cheaply get crawled more deeply than slow or JavaScript-dependent ones.
+
+## How do I see my actual crawl frequency?
+
+Read your server logs — it's the only ground truth. [Filtering access logs by AI
+user-agents](/learn/read-server-logs-ai-crawlers) like GPTBot, ClaudeBot, and
+OAI-SearchBot shows you exact visit timestamps and the pages each bot fetched.
+JavaScript-based analytics won't help: most AI crawlers don't run JavaScript, so
+they never trigger client-side tracking and stay invisible to those tools.
+
+## How do I get crawled more often?
+
+Make the site worth re-crawling. Publish on a steady cadence so there's always
+something new, keep a [current sitemap](/learn/does-a-sitemap-help-ai-crawlers) and
+strong internal links so new pages are discoverable, keep pages fast and
+server-rendered, and earn external mentions that raise authority. You can't dictate a
+schedule, but each of these nudges frequency and crawl depth up — all part of the
+[Access pillar](/pillars/access).
+
+<RelatedQuestions
+  items={[
+    { q: "How do I read server logs for AI crawlers?", a: "Filter your access logs by AI user-agent strings to see exactly which pages each bot fetched and when.", href: "/learn/read-server-logs-ai-crawlers" },
+    { q: "Why isn't GPTBot crawling my site?", a: "Common causes: a robots.txt block, JavaScript-only content, orphaned pages, or a brand-new low-authority domain.", href: "/learn/why-isnt-gptbot-crawling-my-site" },
+    { q: "Do XML sitemaps help AI crawlers?", a: "Yes — a current sitemap speeds discovery of new and updated pages for crawlers that honor it.", href: "/learn/does-a-sitemap-help-ai-crawlers" },
+  ]}
+/>

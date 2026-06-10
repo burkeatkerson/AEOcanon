@@ -1,0 +1,82 @@
+---
+title: "Should I Use Dynamic Rendering for AI Crawlers?"
+slug: should-i-use-dynamic-rendering-for-ai
+summary: Dynamic rendering — serving crawlers a pre-rendered HTML version while users get the JavaScript app — can make a client-side site readable to AI bots, but it's a workaround. The more durable fix is real server-side or static rendering that gives everyone the same crawlable HTML, with no separate bot path to maintain.
+topics:
+  - technical-seo
+  - answer-engines
+author: jordan-vega
+published: 2026-06-10
+updated: 2026-06-10
+schemaType: Article
+faqs:
+  - q: Should I use dynamic rendering for AI crawlers?
+    a: It works as a stopgap, not a first choice. Dynamic rendering detects bots and serves them a pre-rendered HTML snapshot while users get the JavaScript app, which does make a client-side site readable to crawlers that skip JavaScript. But it adds a separate path to maintain, so true server-side or static rendering is the more durable fix.
+  - q: What is dynamic rendering?
+    a: It's serving different responses based on the requester — a fully rendered HTML version to crawlers and the client-side JavaScript app to human users. The aim is to give bots that don't execute JavaScript something readable without re-architecting the whole site. It's a bridge technique for JavaScript-heavy sites.
+  - q: Is dynamic rendering better than server-side rendering?
+    a: Generally no. Server-side or static rendering gives every visitor the same crawlable HTML with one code path and no risk of the bot and user versions drifting apart. Dynamic rendering maintains two outputs, which is more fragile. Prefer it only when re-architecting to SSR isn't feasible soon.
+  - q: Will dynamic rendering get me cited by AI?
+    a: It removes the access barrier, which is necessary but not sufficient. Once crawlers can read your HTML, citations still depend on answer-first, evidenced, original content. Dynamic rendering only ensures the bot sees your content; it doesn't make that content worth quoting.
+---
+
+**Dynamic rendering — serving crawlers a pre-rendered HTML version while users get
+the JavaScript app — can make a client-side site readable to AI bots, but it's a
+workaround.** The more durable fix is real server-side or static rendering that gives
+everyone the same crawlable HTML, with no separate bot path to maintain.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    It works, but treat it as a <strong>bridge, not a destination</strong>. Dynamic
+    rendering feeds bots a pre-rendered snapshot while users get the JS app — which
+    fixes readability for JavaScript-blind crawlers. The downside is{" "}
+    <strong>two code paths that can drift apart</strong>. Prefer{" "}
+    <strong>true SSR or static rendering</strong> when you can.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Dynamic rendering serves crawlers HTML and users the JavaScript app.",
+    "It makes a client-side site readable to JS-blind AI crawlers — a real fix for access.",
+    "Cost: a separate bot path that can drift from what users see.",
+    "Server-side or static rendering is more durable — one code path for all.",
+    "It clears the access gate but doesn't make content worth citing.",
+  ]}
+/>
+
+## What problem does dynamic rendering solve?
+
+The same one [JavaScript breaks](/learn/javascript-breaks-ai-citation): crawlers that
+don't run scripts can't read client-side content. Dynamic rendering detects the
+requester and serves bots a pre-rendered HTML snapshot while humans get the
+single-page app. For a JavaScript-heavy site that can't be re-architected quickly,
+it's a legitimate way to become readable to engines without rebuilding the
+front end — a patch on the [Access pillar](/pillars/access).
+
+## Why isn't it the best option?
+
+Because it maintains two versions of the truth. With dynamic rendering, the bot
+snapshot and the user app are separate outputs that can drift apart over time, and
+serving different content to bots requires care to stay honest and consistent. [True
+server-side or static rendering](/learn/server-side-vs-client-side-rendering) avoids
+all of that: one code path, the same crawlable HTML for everyone, nothing to keep in
+sync. That's why it's the recommended fix when feasible — and dynamic rendering the
+fallback when it isn't.
+
+## Will it actually get me cited?
+
+It only opens the door. Once crawlers can [read your
+HTML](/learn/check-ai-crawlers-can-read-site), citation still depends on
+[answer-first](/learn/answer-first-sentence), evidenced, original content — dynamic
+rendering doesn't supply any of that. Use it to clear the access barrier on a
+JavaScript app, plan a move to real SSR, and put your real effort into being worth
+quoting. The technique gets you read; your content earns the citation.
+
+<RelatedQuestions
+  items={[
+    { q: "How do I make a single-page app citable?", a: "Server-render or pre-render so crawlers receive real HTML instead of an empty JavaScript shell.", href: "/learn/make-spa-citable" },
+    { q: "Server-side vs client-side rendering: which is better for AEO?", a: "Server-side or static rendering gives crawlers readable HTML in one fetch — the safer default.", href: "/learn/server-side-vs-client-side-rendering" },
+    { q: "Does JavaScript break AI citation?", a: "Often — most AI crawlers don't execute JavaScript, so client-rendered content is invisible.", href: "/learn/javascript-breaks-ai-citation" },
+  ]}
+/>
