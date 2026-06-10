@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { Badge } from "@/components/ui/tag";
-import { CourseThumbnail } from "@/components/library/thumbnail";
+import { CourseCover } from "@/components/library/thumbnail";
 import type { Course } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
@@ -13,16 +12,16 @@ const LEVEL_COLOR: Record<string, string> = {
 };
 
 /**
- * Summary card for a course. Leads with a generated "lesson path" thumbnail
- * (coloured by level), then the level, title, summary, and lesson/credential
- * meta. Shared by /learn and /courses for one consistent treatment.
+ * Summary card for a course. A typographic cover (the course title on a level-
+ * tinted ground) leads; the body carries the summary and lesson/credential meta.
+ * Shared by /learn and /courses.
  */
 export function CourseCard({
   course,
-  index = 0,
   className,
 }: {
   course: Course;
+  /** Accepted for backwards-compatibility; no longer used. */
   index?: number;
   className?: string;
 }) {
@@ -36,17 +35,8 @@ export function CourseCard({
         className,
       )}
     >
-      <CourseThumbnail slug={course.slug} level={course.level} lessons={count} />
+      <CourseCover slug={course.slug} level={course.level} title={course.title} />
       <div className="flex flex-1 flex-col gap-3 p-6">
-        <div className="flex items-center justify-between">
-          <Badge className="capitalize" style={{ color, borderColor: color }}>
-            {course.level}
-          </Badge>
-          <span className="text-muted font-mono text-[11px]">
-            Course {String(index + 1).padStart(2, "0")}
-          </span>
-        </div>
-        <h3 className="text-[22px] font-medium">{course.title}</h3>
         <p className="text-ink-2 text-[14px] leading-relaxed">{course.summary}</p>
         <div className="text-muted mt-auto flex flex-wrap gap-4 pt-1 font-mono text-[11px]">
           <span>
