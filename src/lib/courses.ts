@@ -63,7 +63,7 @@ export const COURSES: Course[] = [
     certificate: "Tier 1 Certificate",
     level: "Beginner",
     estimatedHours: 3,
-    authorSlug: "jordan-vega",
+    authorSlug: "burke-atkerson",
     published: "2026-06-08",
     updated: "2026-06-09",
     preview: {
@@ -421,7 +421,7 @@ export const COURSES: Course[] = [
     certificate: "Tier 1 Certificate",
     level: "Beginner",
     estimatedHours: 3,
-    authorSlug: "jordan-vega",
+    authorSlug: "burke-atkerson",
     published: "2026-06-08",
     updated: "2026-06-09",
     preview: {
@@ -763,7 +763,7 @@ export const COURSES: Course[] = [
     certificate: "Tier 2 Certificate",
     level: "Intermediate",
     estimatedHours: 3,
-    authorSlug: "jordan-vega",
+    authorSlug: "burke-atkerson",
     published: "2026-02-23",
     updated: "2026-06-09",
     outcomes: [
@@ -1037,7 +1037,7 @@ export const COURSES: Course[] = [
     certificate: "Tier 2 Certificate",
     level: "Intermediate",
     estimatedHours: 4,
-    authorSlug: "jordan-vega",
+    authorSlug: "burke-atkerson",
     published: "2026-02-23",
     updated: "2026-06-09",
     outcomes: [
@@ -1308,7 +1308,7 @@ export const COURSES: Course[] = [
     certificate: "Tier 2 Certificate",
     level: "Intermediate",
     estimatedHours: 4,
-    authorSlug: "priya-nair",
+    authorSlug: "burke-atkerson",
     published: "2026-02-23",
     updated: "2026-06-09",
     outcomes: [
@@ -1585,7 +1585,7 @@ export const COURSES: Course[] = [
     certificate: "Tier 2 Certificate",
     level: "Intermediate",
     estimatedHours: 3,
-    authorSlug: "jordan-vega",
+    authorSlug: "burke-atkerson",
     published: "2026-02-23",
     updated: "2026-06-09",
     outcomes: [
@@ -1844,7 +1844,7 @@ export const COURSES: Course[] = [
     certificate: "Tier 2 Certificate",
     level: "Intermediate",
     estimatedHours: 3,
-    authorSlug: "jordan-vega",
+    authorSlug: "burke-atkerson",
     published: "2026-02-23",
     updated: "2026-06-09",
     outcomes: [
@@ -2116,7 +2116,7 @@ export const COURSES: Course[] = [
     certificate: "Tier 2 Certificate",
     level: "Intermediate",
     estimatedHours: 3,
-    authorSlug: "jordan-vega",
+    authorSlug: "burke-atkerson",
     published: "2026-02-23",
     updated: "2026-06-09",
     outcomes: [
@@ -2389,7 +2389,7 @@ export const COURSES: Course[] = [
     certificate: "Tier 3 Specialist Certificate",
     level: "Specialist",
     estimatedHours: 2,
-    authorSlug: "jordan-vega",
+    authorSlug: "burke-atkerson",
     published: "2026-06-10",
     updated: "2026-06-10",
     outcomes: [
@@ -2670,7 +2670,7 @@ export const COURSES: Course[] = [
     certificate: "Tier 3 Specialist Certificate",
     level: "Specialist",
     estimatedHours: 2,
-    authorSlug: "jordan-vega",
+    authorSlug: "burke-atkerson",
     published: "2026-06-10",
     updated: "2026-06-10",
     outcomes: [
@@ -2951,7 +2951,7 @@ export const COURSES: Course[] = [
     certificate: "Tier 3 Specialist Certificate",
     level: "Specialist",
     estimatedHours: 2,
-    authorSlug: "jordan-vega",
+    authorSlug: "burke-atkerson",
     published: "2026-06-10",
     updated: "2026-06-10",
     outcomes: [
@@ -3232,7 +3232,7 @@ export const COURSES: Course[] = [
     certificate: "Tier 3 Specialist Certificate",
     level: "Specialist",
     estimatedHours: 2,
-    authorSlug: "jordan-vega",
+    authorSlug: "burke-atkerson",
     published: "2026-06-10",
     updated: "2026-06-10",
     outcomes: [
