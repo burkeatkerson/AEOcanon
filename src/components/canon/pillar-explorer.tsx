@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PILLARS, LAYERS } from "@/lib/canon";
+import { PillarMark } from "@/components/mdx/pillar-mark";
 import { cn } from "@/lib/utils";
 
 /** Interactive 8-pillar explorer: pick a pillar (left) to read its detail (right). */
@@ -58,7 +59,8 @@ export function PillarExplorer() {
                   {p.n}
                 </span>
                 <span>
-                  <span className="block font-serif text-[15.5px]">
+                  <span className="flex items-center gap-1.5 font-serif text-[15.5px]">
+                    <PillarMark pillar={p.title} size={15} />
                     {p.title}
                   </span>
                   <span className="text-muted block text-[11.5px]">

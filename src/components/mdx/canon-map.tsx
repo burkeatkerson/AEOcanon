@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { PILLARS, LAYERS, type CanonLayer } from "@/lib/canon";
+import { PillarMark } from "./pillar-mark";
 import { cn } from "@/lib/utils";
 
 /** Deep-dive page URL for a pillar (e.g. /pillars/access). */
@@ -100,6 +101,7 @@ export function CanonMap() {
                       >
                         {p.n}
                       </span>
+                      <PillarMark pillar={p.title} size={18} />
                       <span className="text-ink font-serif text-[17px] leading-none">
                         {p.title}
                       </span>

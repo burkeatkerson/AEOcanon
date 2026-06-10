@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { Kicker } from "@/components/ui/eyebrow";
 import { PillarExplorer } from "@/components/canon/pillar-explorer";
+import { PillarMark } from "@/components/mdx/pillar-mark";
 import { LAYERS, PILLARS } from "@/lib/canon";
 import { buildMetadata } from "@/lib/seo";
 
@@ -91,11 +92,12 @@ export default function CanonPage() {
                   {PILLARS.filter((p) => p.layer === g.layer).map((p) => (
                     <li
                       key={p.n}
-                      className="text-ink-2 flex items-baseline gap-2.5 text-[13.5px]"
+                      className="text-ink-2 flex items-center gap-2 text-[13.5px]"
                     >
                       <span className="font-mono text-[11px]" style={{ color }}>
                         {p.n}
                       </span>
+                      <PillarMark pillar={p.title} size={15} />
                       {p.title}
                     </li>
                   ))}
