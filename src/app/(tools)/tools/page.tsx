@@ -50,6 +50,13 @@ const TOOLS = [
     badge: "Live",
   },
   {
+    t: "8-Pillar Scorecard",
+    d: "Answer eight quick questions; get an instant grade and a playbook matched to your biggest gap.",
+    c: "var(--c2)",
+    href: "/scorecard",
+    badge: "Live",
+  },
+  {
     t: "Schema Generator",
     d: "Generate clean LocalBusiness & Service structured data — copy-paste ready.",
     c: "var(--c6)",

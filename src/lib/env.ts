@@ -59,3 +59,15 @@ export function supabaseServerConfig(): SupabaseServerConfig {
 export function auditUserAgent(): string {
   return process.env.AUDIT_USER_AGENT ?? "AEOCanonAuditBot";
 }
+
+/**
+ * Optional outbound webhook for scorecard submissions. When set, the scorecard
+ * server action POSTs each captured lead (email + resolved segment + playbook
+ * link) here, fire-and-forget — the seam a later email-automation/drip wires
+ * into. Returns null when unset, so the action no-ops cleanly and on-screen
+ * results never depend on it.
+ */
+export function scorecardWebhookUrl(): string | null {
+  const value = process.env.SCORECARD_WEBHOOK_URL;
+  return value && value.length > 0 ? value : null;
+}
