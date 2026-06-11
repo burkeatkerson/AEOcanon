@@ -19,6 +19,7 @@ export const TOPIC_SLUGS = [
   "keyword-research",
   "link-building",
   "local-seo",
+  "local-aeo",
   "analytics-measurement",
 ] as const;
 
@@ -35,6 +36,7 @@ export const TOPIC_LABELS: Record<TopicSlug, string> = {
   "keyword-research": "Keyword Research",
   "link-building": "Link Building",
   "local-seo": "Local SEO",
+  "local-aeo": "Local AEO",
   "analytics-measurement": "Analytics & Measurement",
 };
 
@@ -60,6 +62,8 @@ export const TOPIC_DESCRIPTIONS: Record<TopicSlug, string> = {
     "Earning the links, brand mentions, and off-site authority that answer engines use to decide whom to trust.",
   "local-seo":
     "Getting found by AI and search for location-based, near-me, and service-area queries.",
+  "local-aeo":
+    "Getting your local business found, cited, and recommended by AI for near-me, service-area, and 'best in town' questions — the local playbook for answer engines.",
   "analytics-measurement":
     "Tracking rankings, citation share, and AI referral traffic to prove what is actually working.",
 };

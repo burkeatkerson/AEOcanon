@@ -18,6 +18,7 @@ export const TOPIC_COLOR: Record<string, string> = {
   "keyword-research": "var(--accent-2)",
   "link-building": "var(--c6)",
   "local-seo": "var(--c2)",
+  "local-aeo": "var(--accent-2)",
   "analytics-measurement": "var(--c4)",
 };
 
@@ -98,6 +99,14 @@ const ICONS: Record<string, React.ReactNode> = {
     <>
       <path d="M12 20s6-5.3 6-10a6 6 0 1 0-12 0c0 4.7 6 10 6 10Z" />
       <circle cx="12" cy="10" r="2.2" />
+    </>
+  ),
+  // map pin + answer spark — local AEO
+  "local-aeo": (
+    <>
+      <path d="M11 20.5s5.5-5 5.5-9.5a5.5 5.5 0 1 0-11 0c0 4.5 5.5 9.5 5.5 9.5Z" />
+      <path d="M11 8.2v4.6M8.7 10.5h4.6" />
+      <path d="M18.5 4.2v2.6M17.2 5.5h2.6" />
     </>
   ),
   // bars — analytics & measurement
