@@ -1,20 +1,21 @@
-import { streamText } from "ai";
+import { streamObject } from "ai";
 import { auditModel } from "@/lib/ai/anthropic";
+import { INTERPRETATION_FRAMEWORK } from "@/lib/scorecard/interpretation-framework";
+import { resultSchema } from "@/lib/scorecard/result-schema";
+import { buildLeadContext } from "@/lib/scorecard/writeup-prompt";
 import { writeupSchema } from "@/lib/scorecard/types";
-import {
-  buildNoWebsitePrompt,
-  buildWriteupPrompt,
-  NO_WEBSITE_SYSTEM,
-  WRITEUP_SYSTEM,
-} from "@/lib/scorecard/writeup-prompt";
-import type { SiteRead } from "@/lib/scorecard/types";
 
 /**
- * POST /api/scorecard/writeup — streams the short, personalized on-screen read
- * (Claude, via the Vercel AI SDK). This is the ONLY place the model is used:
- * the downloadable playbook is a pre-made file, not generated. The score always
- * comes from the quiz answers; the optional site-read only enriches the read.
- * The stream is decorative — the results screen renders with or without it.
+ * POST /api/scorecard/writeup — streams the personalized result as a structured
+ * object (framework §6's fixed 7-part shape), so the UI can render each section
+ * in its own block as it arrives. This is the ONLY place the model is used; the
+ * downloadable playbook is a pre-made file, not generated.
+ *
+ * The interpretation framework is the system prompt and is sent as a cached
+ * (ephemeral) block — it's large and identical on every call, so caching it
+ * keeps each request cheap and fast. The per-lead data is the user message; for
+ * the no-website branch its addendum rides in the user message so the cached
+ * framework block stays byte-identical across both branches.
  */
 
 export const runtime = "nodejs";
@@ -27,28 +28,23 @@ export async function POST(req: Request) {
     return new Response("Invalid request", { status: 400 });
   }
 
-  const { system, prompt } =
-    parsed.branch === "no_website"
-      ? {
-          system: NO_WEBSITE_SYSTEM,
-          prompt: buildNoWebsitePrompt(parsed.offsite, parsed.businessType),
-        }
-      : {
-          system: WRITEUP_SYSTEM,
-          prompt: buildWriteupPrompt(
-            parsed.answers,
-            parsed.businessType,
-            parsed.siteRead as SiteRead | undefined,
-          ),
-        };
-
-  const stream = streamText({
+  const result = streamObject({
     model: auditModel(),
-    system,
-    prompt,
-    temperature: 0.6,
-    maxOutputTokens: 320,
+    schema: resultSchema,
+    schemaName: "ScorecardResult",
+    schemaDescription:
+      "The personalized AEO Scorecard result in the framework's fixed 7-part shape.",
+    messages: [
+      {
+        role: "system",
+        content: INTERPRETATION_FRAMEWORK,
+        providerOptions: { anthropic: { cacheControl: { type: "ephemeral" } } },
+      },
+      { role: "user", content: buildLeadContext(parsed) },
+    ],
+    temperature: 0.5,
+    maxOutputTokens: 1100,
   });
 
-  return stream.toTextStreamResponse();
+  return result.toTextStreamResponse();
 }

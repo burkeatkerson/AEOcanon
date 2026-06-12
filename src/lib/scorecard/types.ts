@@ -119,18 +119,26 @@ export const submissionSchema = z.discriminatedUnion("branch", [
 
 export type Submission = z.infer<typeof submissionSchema>;
 
+/** Lead context every write-up request carries, so the model can personalize. */
+const writeupLeadFields = {
+  businessType: z.string().max(120).optional().default(""),
+  businessName: z.string().max(200).optional().default(""),
+  location: z.string().max(200).optional().default(""),
+  website: z.string().max(300).optional().default(""),
+};
+
 /** Payload the client posts to the streaming write-up route. */
 export const writeupSchema = z.discriminatedUnion("branch", [
   z.object({
     branch: z.literal("has_website"),
     answers: answersSchema,
-    businessType: z.string().max(120).optional().default(""),
     siteRead: z.unknown().optional(),
+    ...writeupLeadFields,
   }),
   z.object({
     branch: z.literal("no_website"),
     offsite: offsiteSchema,
-    businessType: z.string().max(120).optional().default(""),
+    ...writeupLeadFields,
   }),
 ]);
 

@@ -59,14 +59,14 @@ export function FullResult({
         <BareStartingPoint />
       )}
 
-      <Writeup payload={writeupPayload} fallback={fallback} />
-
       {branch === "has_website" && result ? (
         <PillarBreakdown
           scores={result.pillarScores}
           weakest={result.weakestPillar}
         />
       ) : null}
+
+      <Writeup payload={writeupPayload} fallback={fallback} />
 
       {/* Primary action differs by branch. */}
       {branch === "no_website" ? (

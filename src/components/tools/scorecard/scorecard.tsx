@@ -53,6 +53,8 @@ export function Scorecard() {
   );
   const [siteRead, setSiteRead] = useState<SiteRead | null>(null);
   const [result, setResult] = useState<ScorecardResult | null>(null);
+  const [leadName, setLeadName] = useState("");
+  const [leadLocation, setLeadLocation] = useState("");
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
   const reduceMotion = useReducedMotion();
   const readStarted = useRef<string | null>(null);
@@ -153,6 +155,10 @@ export function Scorecard() {
       const completedAnswers = answers.map((a) => a ?? 0);
       const completedOffsite = offsite.map((a) => a ?? 0);
 
+      // Keep the optional lead fields so the write-up can personalize.
+      setLeadName(fields.businessName);
+      setLeadLocation(fields.location);
+
       // Reveal the full (gated) result immediately; persistence runs after.
       setPhase("result");
       window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
@@ -183,18 +189,22 @@ export function Scorecard() {
     [answers, offsite, branch, businessType, website, siteRead, reduceMotion],
   );
 
-  const writeupPayload: WriteupRequest = useMemo(
-    () =>
-      branch === "no_website"
-        ? { branch, offsite: offsite.map((a) => a ?? 0), businessType }
-        : {
-            branch,
-            answers: answers.map((a) => a ?? 0),
-            businessType,
-            siteRead: siteRead ?? undefined,
-          },
-    [branch, offsite, answers, businessType, siteRead],
-  );
+  const writeupPayload: WriteupRequest = useMemo(() => {
+    const lead = {
+      businessType,
+      businessName: leadName,
+      location: leadLocation,
+      website,
+    };
+    return branch === "no_website"
+      ? { branch, offsite: offsite.map((a) => a ?? 0), ...lead }
+      : {
+          branch,
+          answers: answers.map((a) => a ?? 0),
+          siteRead: siteRead ?? undefined,
+          ...lead,
+        };
+  }, [branch, offsite, answers, businessType, leadName, leadLocation, website, siteRead]);
 
   const segment = branch === "no_website" ? "foundations" : result?.segment;
 
