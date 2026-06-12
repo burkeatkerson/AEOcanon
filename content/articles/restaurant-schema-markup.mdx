@@ -1,0 +1,88 @@
+---
+title: "Schema Markup for Restaurants: What AI Actually Uses"
+slug: restaurant-schema-markup
+summary: Restaurants should use Restaurant schema with accurate name, address, phone, hours, cuisine, price range, menu, and reservation info, plus FAQ schema on answer pages — it helps engines parse what you serve and confirm you're open. Schema clarifies a readable menu for AI; it never rescues a PDF menu or wrong hours.
+topics:
+  - structured-data
+  - technical-seo
+verticals:
+  - restaurants
+author: burke-atkerson
+published: 2026-06-11
+updated: 2026-06-11
+schemaType: Article
+faqs:
+  - q: What schema markup do restaurants need?
+    a: Use Restaurant schema (a LocalBusiness/FoodEstablishment subtype) with accurate name, address, phone, geo, opening hours, servesCuisine, priceRange, a menu (or menu link), and acceptsReservations — plus FAQ schema on pages that answer common questions. This helps engines parse what you serve, where you are, and whether you're open, reinforcing your listings. Every value must match what's visible on the page.
+  - q: Does schema help a restaurant get cited by AI?
+    a: It helps engines parse and trust your details, but it's a reinforcement, not a magic switch. Schema labels content engines can already read; it can't rescue a PDF menu the crawler can't parse, wrong hours, or thin reviews. Use it on a readable menu page with accurate hours and it strengthens the signal.
+  - q: What's the most important schema for a restaurant?
+    a: The Restaurant type with accurate hours, servesCuisine, and menu, because those answer the most common dining queries — 'open now', 'best [cuisine] near me', and 'what's on the menu'. Reservation and price-range properties help too, but hours, cuisine, and a readable menu carry the most weight.
+---
+
+**Restaurants should use Restaurant schema with accurate name, address, phone, hours, cuisine, price
+range, menu, and reservation info, plus FAQ schema on answer pages — it helps engines parse what you
+serve and confirm you're open.** Schema clarifies a readable menu for AI; it never rescues a PDF menu
+or wrong hours.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Use <strong>Restaurant schema</strong> (a LocalBusiness/FoodEstablishment subtype) with accurate{" "}
+    <strong>name, address, phone, hours, servesCuisine, priceRange, menu, and acceptsReservations</strong>,
+    plus <strong>FAQ schema</strong> on answer pages. It makes your details{" "}
+    <strong>machine-readable</strong> — but it <strong>reinforces a readable menu and accurate hours,
+    doesn't replace them</strong>.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Use the Restaurant schema type (a FoodEstablishment/LocalBusiness subtype).",
+    "Include hours, servesCuisine, priceRange, menu, acceptsReservations, geo, and reviews.",
+    "Hours, cuisine, and a readable menu carry the most weight — they answer the top queries.",
+    "Schema reinforces a readable menu; it can't rescue a PDF menu or wrong hours.",
+    "Every value must match your visible page exactly — never fake it.",
+  ]}
+/>
+
+## What does restaurant schema actually do?
+
+It makes your dining details unambiguous to a machine. [LocalBusiness and Restaurant
+schema](https://developers.google.com/search/docs/appearance/structured-data/local-business) label
+your name, address, hours, cuisine, price range, menu, and reservation info so engines parse them
+cleanly rather than guessing — reinforcing the [consistent identity](/learn/nap-consistency) and
+availability local recommendations depend on. It's the [structured data for
+AEO](/learn/structured-data-for-aeo) pattern applied to dining: clarity for the parser, on top of a
+menu and hours that are already clear and readable for the diner.
+
+## What should I include?
+
+The full, accurate picture of your restaurant — matched to what's visible.
+
+<Steps
+  items={[
+    { title: "Identity and location", body: "Exact name, full address, phone, URL, and geo coordinates — identical to your page and listings." },
+    { title: "What and when", body: "Opening hours (including special hours), servesCuisine, priceRange, and a menu or menu link, using the Restaurant type." },
+    { title: "Reservations and reviews", body: "acceptsReservations and aggregate review rating, plus sameAs links to your profiles, so engines connect the markup to your recognized entity." },
+    { title: "Answers", body: "FAQ schema on pages that answer common questions (dietary, parking, private events), so the pairs are explicit to the parser." },
+  ]}
+/>
+
+## Will schema get me cited on its own?
+
+No — it's a clarity layer, not a citation lever. Schema makes your details machine-readable, which
+*supports* recognition, but the citation still depends on a [readable
+menu](/learn/restaurant-menu-pages-for-ai) the crawler can actually parse, [accurate
+hours](/learn/local-aeo-for-restaurants), and [genuine
+reviews](/learn/restaurant-reviews-ai-recommendations). Schema can't rescue a PDF menu the engine
+can't read or hours that are wrong — and faking reviews or details in markup is a misuse engines can
+[detect](/learn/does-schema-help-ai-citations). Accurate schema on top of a real, readable menu is the
+combination that works.
+
+<RelatedQuestions
+  items={[
+    { q: "How do I make my menu pages AI will cite?", a: "Put the full menu in real HTML text with dishes, prices, and dietary tags — not a PDF.", href: "/learn/restaurant-menu-pages-for-ai" },
+    { q: "Does schema help AI citations?", a: "It helps engines parse and trust pages, but readable content and accurate details come first.", href: "/learn/does-schema-help-ai-citations" },
+    { q: "What is local AEO for restaurants?", a: "Getting cited for near-me and 'open now' via accurate hours, listings, a readable menu, and reviews.", href: "/learn/local-aeo-for-restaurants" },
+  ]}
+/>
