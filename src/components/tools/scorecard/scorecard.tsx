@@ -1,92 +1,210 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { submitScorecard } from "@/lib/scorecard/actions";
 import { PLAYBOOKS, playbookUrl } from "@/lib/scorecard/playbooks";
-import { QUESTION_COUNT, QUESTIONS } from "@/lib/scorecard/questions";
+import {
+  OFFSITE_COUNT,
+  OFFSITE_QUESTIONS,
+  QUESTION_COUNT,
+  QUESTIONS,
+} from "@/lib/scorecard/questions";
 import { scoreSubmission } from "@/lib/scorecard/scoring";
-import type { ScorecardResult } from "@/lib/scorecard/types";
-import { IntroStep } from "@/components/tools/scorecard/intro-step";
+import type {
+  Branch,
+  ScorecardResult,
+  SiteRead,
+  WriteupRequest,
+} from "@/lib/scorecard/types";
+import { BusinessTypeStep } from "@/components/tools/scorecard/business-type-step";
+import { ChoiceStep } from "@/components/tools/scorecard/choice-step";
 import { ProgressBar } from "@/components/tools/scorecard/progress-bar";
-import { QuestionStep } from "@/components/tools/scorecard/question-step";
-import { EmailStep, type LeadFields } from "@/components/tools/scorecard/email-step";
-import { Results, type SaveStatus } from "@/components/tools/scorecard/results";
+import { ScoreGate } from "@/components/tools/scorecard/score-gate";
+import { WebsiteStep } from "@/components/tools/scorecard/website-step";
+import {
+  FullResult,
+  type SaveStatus,
+} from "@/components/tools/scorecard/full-result";
+import type { LeadFields } from "@/components/tools/scorecard/email-step";
 
-type Phase = "intro" | "question" | "email" | "results";
+type Phase = "business-type" | "website" | "questions" | "score-gate" | "result";
 
 /**
- * The 8-Pillar AEO Scorecard — a guided, one-question-at-a-time quiz that scores
- * the visitor, gates results behind an email, and serves the matched pre-made
- * playbook instantly. Scoring is fully client-side and deterministic, so the
- * results + download appear the moment the email is submitted; persistence and
- * the personalized write-up happen in the background and never gate the result.
+ * The 8-Pillar AEO Scorecard. Mobile-first, one screen at a time:
+ *   business type → website (branches) → branch questions → free score →
+ *   email gate → full AI result.
+ * The eight scored questions and the scoring are unchanged — they always drive
+ * the score. A real URL is read quietly in the background while the visitor
+ * answers (enrichment only, never the score). "No site yet" or a social profile
+ * takes the shorter off-site branch, framed as a starting point.
  */
 export function Scorecard() {
-  const [phase, setPhase] = useState<Phase>("intro");
+  const [phase, setPhase] = useState<Phase>("business-type");
+  const [branch, setBranch] = useState<Branch>("has_website");
+  const [businessType, setBusinessType] = useState("");
+  const [website, setWebsite] = useState("");
   const [index, setIndex] = useState(0);
-  const [answers, setAnswers] = useState<(number | undefined)[]>(
-    () => Array(QUESTION_COUNT).fill(undefined),
+  const [answers, setAnswers] = useState<(number | undefined)[]>(() =>
+    Array(QUESTION_COUNT).fill(undefined),
   );
+  const [offsite, setOffsite] = useState<(number | undefined)[]>(() =>
+    Array(OFFSITE_COUNT).fill(undefined),
+  );
+  const [siteRead, setSiteRead] = useState<SiteRead | null>(null);
   const [result, setResult] = useState<ScorecardResult | null>(null);
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
   const reduceMotion = useReducedMotion();
+  const readStarted = useRef<string | null>(null);
+
+  const questionCount = branch === "no_website" ? OFFSITE_COUNT : QUESTION_COUNT;
+  const totalSteps = 2 + questionCount; // business type + website + questions
+
+  /** Quietly read the site in the background; result enriches the write-up. */
+  const startSiteRead = useCallback((url: string) => {
+    if (readStarted.current === url) return;
+    readStarted.current = url;
+    setSiteRead(null);
+    fetch("/api/scorecard/site-read", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ url }),
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: SiteRead | null) => setSiteRead(data?.ok ? data : null))
+      .catch(() => setSiteRead(null));
+  }, []);
+
+  const handleBusinessType = useCallback((value: string) => {
+    setBusinessType(value);
+    setPhase("website");
+  }, []);
+
+  const handleWebsite = useCallback(
+    ({
+      raw,
+      readUrl,
+      noSite,
+    }: {
+      raw: string;
+      readUrl: string | null;
+      noSite: boolean;
+    }) => {
+      setWebsite(raw);
+      setBranch(noSite ? "no_website" : "has_website");
+      if (!noSite && readUrl) startSiteRead(readUrl);
+      setIndex(0);
+      setPhase("questions");
+    },
+    [startSiteRead],
+  );
 
   const selectOption = useCallback(
     (optionIndex: number) => {
-      setAnswers((prev) => {
-        const next = [...prev];
-        next[index] = optionIndex;
-        return next;
-      });
-      // Advance one screen at a time; the email gate follows the last question.
+      if (branch === "no_website") {
+        setOffsite((prev) => {
+          const next = [...prev];
+          next[index] = optionIndex;
+          return next;
+        });
+      } else {
+        setAnswers((prev) => {
+          const next = [...prev];
+          next[index] = optionIndex;
+          return next;
+        });
+      }
+      // Advance one screen at a time; the free score follows the last question.
       window.setTimeout(() => {
-        if (index < QUESTION_COUNT - 1) {
+        if (index < questionCount - 1) {
           setIndex((i) => i + 1);
         } else {
-          setPhase("email");
+          if (branch === "has_website") {
+            const complete = answers.map((a, i) =>
+              i === index ? optionIndex : (a ?? 0),
+            );
+            setResult(scoreSubmission(complete));
+          }
+          setPhase("score-gate");
         }
-      }, 180);
+      }, 160);
     },
-    [index],
+    [branch, index, questionCount, answers],
   );
 
   const goBack = useCallback(() => {
-    if (phase === "email") {
-      setPhase("question");
-      setIndex(QUESTION_COUNT - 1);
+    if (phase === "website") {
+      setPhase("business-type");
       return;
     }
-    if (index > 0) setIndex((i) => i - 1);
-    else setPhase("intro");
-  }, [phase, index]);
+    if (phase === "questions") {
+      if (index > 0) setIndex((i) => i - 1);
+      else setPhase("website");
+      return;
+    }
+    if (phase === "score-gate") {
+      setPhase("questions");
+      setIndex(questionCount - 1);
+    }
+  }, [phase, index, questionCount]);
 
   const handleEmailSubmit = useCallback(
     (fields: LeadFields) => {
-      const complete = answers.map((a) => a ?? 0);
-      const computed = scoreSubmission(complete);
+      const completedAnswers = answers.map((a) => a ?? 0);
+      const completedOffsite = offsite.map((a) => a ?? 0);
 
-      // 1) Show results immediately — zero dependence on any network call.
-      setResult(computed);
-      setPhase("results");
+      // Reveal the full (gated) result immediately; persistence runs after.
+      setPhase("result");
       window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
 
-      // 2) Persist + fire the lead webhook in the background (best-effort).
       setSaveStatus("saving");
-      submitScorecard({
+      const base = {
         email: fields.email,
+        businessType,
         businessName: fields.businessName,
-        website: fields.website,
-        answers: complete,
+        location: fields.location,
+        website,
         company: fields.company,
-      })
+      };
+      const submission =
+        branch === "no_website"
+          ? ({ ...base, branch, offsite: completedOffsite } as const)
+          : ({
+              ...base,
+              branch,
+              answers: completedAnswers,
+              siteRead: siteRead ?? undefined,
+            } as const);
+
+      submitScorecard(submission)
         .then((res) => setSaveStatus(res.ok ? "saved" : "error"))
         .catch(() => setSaveStatus("error"));
     },
-    [answers, reduceMotion],
+    [answers, offsite, branch, businessType, website, siteRead, reduceMotion],
   );
 
-  const stepKey = phase === "question" ? `q-${index}` : phase;
+  const writeupPayload: WriteupRequest = useMemo(
+    () =>
+      branch === "no_website"
+        ? { branch, offsite: offsite.map((a) => a ?? 0), businessType }
+        : {
+            branch,
+            answers: answers.map((a) => a ?? 0),
+            businessType,
+            siteRead: siteRead ?? undefined,
+          },
+    [branch, offsite, answers, businessType, siteRead],
+  );
+
+  const segment = branch === "no_website" ? "foundations" : result?.segment;
+
+  const showProgress =
+    phase === "business-type" || phase === "website" || phase === "questions";
+  const currentStep =
+    phase === "business-type" ? 1 : phase === "website" ? 2 : index + 3;
+
+  const stepKey =
+    phase === "questions" ? `q-${branch}-${index}` : phase;
 
   const variants = reduceMotion
     ? undefined
@@ -96,12 +214,10 @@ export function Scorecard() {
         exit: { opacity: 0, x: -24 },
       };
 
-  const completedAnswers = useMemo(() => answers.map((a) => a ?? 0), [answers]);
-
   return (
-    <div className="border-line bg-bg-2/40 mx-auto w-full max-w-[680px] rounded-3xl border p-6 sm:p-9">
-      {phase === "question" ? (
-        <ProgressBar current={index + 1} total={QUESTION_COUNT} />
+    <div className="border-line bg-bg-2/40 mx-auto w-full max-w-[680px] rounded-3xl border p-5 sm:p-9">
+      {showProgress ? (
+        <ProgressBar current={currentStep} total={totalSteps} />
       ) : null}
 
       <AnimatePresence mode="wait" initial={false}>
@@ -111,32 +227,58 @@ export function Scorecard() {
           initial="enter"
           animate="center"
           exit="exit"
-          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
         >
-          {phase === "intro" ? (
-            <IntroStep onStart={() => setPhase("question")} />
+          {phase === "business-type" ? (
+            <BusinessTypeStep value={businessType} onSubmit={handleBusinessType} />
           ) : null}
 
-          {phase === "question" ? (
-            <QuestionStep
-              question={QUESTIONS[index]!}
+          {phase === "website" ? (
+            <WebsiteStep value={website} onSubmit={handleWebsite} onBack={goBack} />
+          ) : null}
+
+          {phase === "questions" && branch === "has_website" ? (
+            <ChoiceStep
+              eyebrow={`${QUESTIONS[index]!.title} · ${QUESTIONS[index]!.layer}`}
+              color={QUESTIONS[index]!.color}
+              prompt={QUESTIONS[index]!.prompt}
+              options={QUESTIONS[index]!.options.map((o) => o.label)}
               selected={answers[index]}
               onSelect={selectOption}
               onBack={goBack}
-              canGoBack={index > 0}
+              canGoBack
             />
           ) : null}
 
-          {phase === "email" ? (
-            <EmailStep onSubmit={handleEmailSubmit} back={goBack} />
+          {phase === "questions" && branch === "no_website" ? (
+            <ChoiceStep
+              eyebrow={OFFSITE_QUESTIONS[index]!.title}
+              color={OFFSITE_QUESTIONS[index]!.color}
+              prompt={OFFSITE_QUESTIONS[index]!.prompt}
+              options={OFFSITE_QUESTIONS[index]!.options}
+              selected={offsite[index]}
+              onSelect={selectOption}
+              onBack={goBack}
+              canGoBack
+            />
           ) : null}
 
-          {phase === "results" && result ? (
-            <Results
+          {phase === "score-gate" ? (
+            <ScoreGate
+              branch={branch}
               result={result}
-              answers={completedAnswers}
-              playbook={PLAYBOOKS[result.segment]}
-              playbookHref={playbookUrl(result.segment)}
+              onSubmit={handleEmailSubmit}
+              onBack={goBack}
+            />
+          ) : null}
+
+          {phase === "result" && segment ? (
+            <FullResult
+              branch={branch}
+              result={result}
+              writeupPayload={writeupPayload}
+              playbook={PLAYBOOKS[segment]}
+              playbookHref={playbookUrl(segment)}
               saveStatus={saveStatus}
             />
           ) : null}

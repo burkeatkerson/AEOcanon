@@ -1,5 +1,5 @@
 import { PILLARS } from "@/lib/canon";
-import type { PillarKey } from "@/lib/scorecard/types";
+import type { OffsiteKey, PillarKey } from "@/lib/scorecard/types";
 
 /**
  * The eight scorecard questions — one per Canon pillar, in pillar order. Each is
@@ -132,5 +132,74 @@ export const QUESTIONS: Question[] = [...PILLARS]
       })),
     };
   });
+
+/**
+ * The no-website branch's off-site questions. They DON'T feed the 0–24 score
+ * (the site-based pillars don't apply without a site) — they shape the
+ * starting-point read and tell us where the visitor already has presence to
+ * build on. Single-select, four options each, no hidden points.
+ */
+export interface OffsiteQuestion {
+  key: OffsiteKey;
+  /** Short eyebrow label. */
+  title: string;
+  /** CSS var for the accent dot. */
+  color: string;
+  prompt: string;
+  options: string[];
+}
+
+export const OFFSITE_QUESTIONS: OffsiteQuestion[] = [
+  {
+    key: "gbp",
+    title: "Google Business Profile",
+    color: "var(--c2)",
+    prompt: "Do you have a Google Business Profile?",
+    options: [
+      "Yes — claimed, verified, and kept up to date",
+      "Yes, but I rarely touch it",
+      "I think it exists but I haven't claimed it",
+      "No, or I'm not sure",
+    ],
+  },
+  {
+    key: "reviews",
+    title: "Reviews",
+    color: "var(--c3)",
+    prompt: "Where do customers leave you reviews?",
+    options: [
+      "Google plus other sites, and there are a good number",
+      "Mostly one platform, a handful of reviews",
+      "A few scattered here and there",
+      "We don't really have reviews yet",
+    ],
+  },
+  {
+    key: "social",
+    title: "Social presence",
+    color: "var(--c4)",
+    prompt: "How active are you on social platforms?",
+    options: [
+      "Active and consistent on at least one platform",
+      "We post now and then",
+      "We have profiles but rarely post",
+      "No real social presence",
+    ],
+  },
+  {
+    key: "discovery",
+    title: "How customers find you",
+    color: "var(--c5)",
+    prompt: "How do most customers find you right now?",
+    options: [
+      "Word of mouth and repeat customers",
+      "Social media and local groups",
+      "Online directories or marketplaces",
+      "Honestly, we chase most of our work",
+    ],
+  },
+];
+
+export const OFFSITE_COUNT = OFFSITE_QUESTIONS.length;
 
 export const QUESTION_COUNT = QUESTIONS.length;

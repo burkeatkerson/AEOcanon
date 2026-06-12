@@ -1,33 +1,50 @@
 import { streamText } from "ai";
 import { auditModel } from "@/lib/ai/anthropic";
-import { scoreSubmission } from "@/lib/scorecard/scoring";
-import { answersSchema } from "@/lib/scorecard/types";
-import { buildWriteupPrompt, WRITEUP_SYSTEM } from "@/lib/scorecard/writeup-prompt";
+import { writeupSchema } from "@/lib/scorecard/types";
+import {
+  buildNoWebsitePrompt,
+  buildWriteupPrompt,
+  NO_WEBSITE_SYSTEM,
+  WRITEUP_SYSTEM,
+} from "@/lib/scorecard/writeup-prompt";
+import type { SiteRead } from "@/lib/scorecard/types";
 
 /**
  * POST /api/scorecard/writeup — streams the short, personalized on-screen read
  * (Claude, via the Vercel AI SDK). This is the ONLY place the model is used:
- * the downloadable playbook is a pre-made file, not generated. The stream is
- * decorative — the results screen and download render with or without it.
+ * the downloadable playbook is a pre-made file, not generated. The score always
+ * comes from the quiz answers; the optional site-read only enriches the read.
+ * The stream is decorative — the results screen renders with or without it.
  */
 
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
-  let answers: number[];
+  let parsed;
   try {
-    const body = await req.json();
-    answers = answersSchema.parse(body?.answers);
+    parsed = writeupSchema.parse(await req.json());
   } catch {
-    return new Response("Invalid answers", { status: 400 });
+    return new Response("Invalid request", { status: 400 });
   }
 
-  const result = scoreSubmission(answers);
-  const prompt = buildWriteupPrompt(answers, result);
+  const { system, prompt } =
+    parsed.branch === "no_website"
+      ? {
+          system: NO_WEBSITE_SYSTEM,
+          prompt: buildNoWebsitePrompt(parsed.offsite, parsed.businessType),
+        }
+      : {
+          system: WRITEUP_SYSTEM,
+          prompt: buildWriteupPrompt(
+            parsed.answers,
+            parsed.businessType,
+            parsed.siteRead as SiteRead | undefined,
+          ),
+        };
 
   const stream = streamText({
     model: auditModel(),
-    system: WRITEUP_SYSTEM,
+    system,
     prompt,
     temperature: 0.6,
     maxOutputTokens: 320,

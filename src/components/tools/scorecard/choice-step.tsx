@@ -1,20 +1,26 @@
 import { Check } from "lucide-react";
-import type { Question } from "@/lib/scorecard/questions";
 import { cn } from "@/lib/utils";
 
 /**
- * A single question screen: pillar eyebrow, prompt, and four single-select
- * options. Point values are intentionally never rendered. Selecting an option
- * advances the quiz (handled by the parent).
+ * A single question screen with a labelled eyebrow and big, thumb-friendly
+ * single-select options. Used for both the eight scored pillar questions and the
+ * off-site questions — the score (when any) is computed elsewhere; this is pure
+ * UI. Hidden point values are never rendered. Selecting advances the quiz.
  */
-export function QuestionStep({
-  question,
+export function ChoiceStep({
+  eyebrow,
+  color,
+  prompt,
+  options,
   selected,
   onSelect,
   onBack,
   canGoBack,
 }: {
-  question: Question;
+  eyebrow: string;
+  color: string;
+  prompt: string;
+  options: string[];
   selected: number | undefined;
   onSelect: (optionIndex: number) => void;
   onBack: () => void;
@@ -25,22 +31,22 @@ export function QuestionStep({
       <div className="flex items-center gap-2.5">
         <span
           className="size-2.5 rounded-full"
-          style={{ background: question.color }}
+          style={{ background: color }}
           aria-hidden
         />
         <span className="text-muted font-mono text-[11px] tracking-[0.1em] uppercase">
-          {question.title} · {question.layer}
+          {eyebrow}
         </span>
       </div>
 
-      <h2 className="mt-3 max-w-[26ch] text-[clamp(22px,3.2vw,32px)] leading-[1.12] font-medium tracking-[-0.015em]">
-        {question.prompt}
+      <h2 className="mt-3 max-w-[26ch] text-[clamp(21px,3.4vw,30px)] leading-[1.14] font-medium tracking-[-0.015em]">
+        {prompt}
       </h2>
 
-      <fieldset className="mt-7">
-        <legend className="sr-only">{question.prompt}</legend>
-        <div className="flex flex-col gap-3">
-          {question.options.map((option, i) => {
+      <fieldset className="mt-6">
+        <legend className="sr-only">{prompt}</legend>
+        <div className="flex flex-col gap-2.5">
+          {options.map((label, i) => {
             const isSelected = selected === i;
             return (
               <button
@@ -52,7 +58,7 @@ export function QuestionStep({
                   "group flex items-center gap-3.5 rounded-xl border p-4 text-left transition-colors",
                   isSelected
                     ? "border-accent bg-accent-soft"
-                    : "border-line-2 bg-paper hover:border-accent",
+                    : "border-line-2 bg-paper hover:border-accent active:border-accent",
                 )}
               >
                 <span
@@ -72,7 +78,7 @@ export function QuestionStep({
                     isSelected ? "text-ink font-medium" : "text-ink-2",
                   )}
                 >
-                  {option.label}
+                  {label}
                 </span>
               </button>
             );

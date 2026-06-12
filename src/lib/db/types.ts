@@ -6,10 +6,11 @@
  * scorecard enum types are reused from the app's scorecard contract so the
  * typed client and the scoring logic can never drift.
  */
-import type { Segment, Tier } from "@/lib/scorecard/types";
+import type { Branch, Segment, Tier } from "@/lib/scorecard/types";
 
 type ScorecardTier = Tier;
 type PlaybookSegment = Segment;
+type ScorecardBranch = Branch;
 
 export type Json =
   | string
@@ -96,40 +97,52 @@ export interface Database {
         Row: {
           id: string;
           email: string;
+          business_type: string | null;
           business_name: string | null;
+          location: string | null;
           website: string | null;
+          branch: ScorecardBranch;
           answers: Json;
-          pillar_scores: Json;
-          total_score: number;
-          percent: number;
-          tier: ScorecardTier;
+          pillar_scores: Json | null;
+          total_score: number | null;
+          percent: number | null;
+          tier: ScorecardTier | null;
           segment: PlaybookSegment;
+          site_read: Json | null;
           created_at: string;
         };
         Insert: {
           id?: string;
           email: string;
+          business_type?: string | null;
           business_name?: string | null;
+          location?: string | null;
           website?: string | null;
+          branch: ScorecardBranch;
           answers: Json;
-          pillar_scores: Json;
-          total_score: number;
-          percent: number;
-          tier: ScorecardTier;
+          pillar_scores?: Json | null;
+          total_score?: number | null;
+          percent?: number | null;
+          tier?: ScorecardTier | null;
           segment: PlaybookSegment;
+          site_read?: Json | null;
           created_at?: string;
         };
         Update: {
           id?: string;
           email?: string;
+          business_type?: string | null;
           business_name?: string | null;
+          location?: string | null;
           website?: string | null;
+          branch?: ScorecardBranch;
           answers?: Json;
-          pillar_scores?: Json;
-          total_score?: number;
-          percent?: number;
-          tier?: ScorecardTier;
+          pillar_scores?: Json | null;
+          total_score?: number | null;
+          percent?: number | null;
+          tier?: ScorecardTier | null;
           segment?: PlaybookSegment;
+          site_read?: Json | null;
           created_at?: string;
         };
         Relationships: [];
@@ -140,6 +153,7 @@ export interface Database {
     Enums: {
       scorecard_tier: ScorecardTier;
       playbook_segment: PlaybookSegment;
+      scorecard_branch: ScorecardBranch;
     };
     CompositeTypes: Record<string, never>;
   };

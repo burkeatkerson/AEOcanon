@@ -22,10 +22,10 @@ export default function ScorecardPage() {
             <em className="text-accent [font-style:italic]">or them?</em>
           </h1>
           <p className="text-ink-2 mx-auto mt-5 max-w-[54ch] text-[18px] leading-relaxed">
-            Eight quick questions score how findable, trustworthy, and citable
-            you are across the pillars that decide who AI names. Get your grade,
-            a per-pillar breakdown, and a playbook matched to your biggest gap —
-            instantly.
+            A few quick questions score how findable, trustworthy, and citable
+            you are across the pillars that decide who AI names. See your grade
+            free, then unlock a per-pillar breakdown and a playbook matched to
+            your biggest gap.
           </p>
         </Container>
       </header>
