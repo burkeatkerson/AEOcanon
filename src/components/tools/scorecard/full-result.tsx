@@ -66,7 +66,7 @@ export function FullResult({
         />
       ) : null}
 
-      <Writeup payload={writeupPayload} fallback={fallback} />
+      <Writeup payload={writeupPayload} result={result} fallback={fallback} />
 
       {/* Primary action differs by branch. */}
       {branch === "no_website" ? (

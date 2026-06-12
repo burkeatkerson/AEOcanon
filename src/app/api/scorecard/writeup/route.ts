@@ -43,7 +43,7 @@ export async function POST(req: Request) {
       { role: "user", content: buildLeadContext(parsed) },
     ],
     temperature: 0.5,
-    maxOutputTokens: 1100,
+    maxOutputTokens: 1800,
   });
 
   return result.toTextStreamResponse();
