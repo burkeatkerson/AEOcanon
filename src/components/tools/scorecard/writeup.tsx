@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { experimental_useObject as useObject } from "@ai-sdk/react";
 import {
   ArrowRight,
@@ -40,23 +40,30 @@ export function Writeup({
   result: ScorecardResult | null;
   fallback: string;
 }) {
-  const { object, submit, isLoading, error, stop } = useObject({
+  const { object, submit, isLoading, error } = useObject({
     api: "/api/scorecard/writeup",
     schema: resultSchema,
   });
   const started = useRef(false);
+  // Safety net: if nothing has streamed in after a while (route slow/down),
+  // fall back to the static read rather than spin forever.
+  const [timedOut, setTimedOut] = useState(false);
 
   useEffect(() => {
     if (started.current) return;
     started.current = true;
     submit(payload);
-    return () => stop();
+    // NOTE: deliberately no stop() on cleanup — React StrictMode double-invokes
+    // effects in dev, and aborting here would kill the only request and (with the
+    // run-once guard) never resubmit, leaving the read stuck loading.
+    const t = setTimeout(() => setTimedOut(true), 30_000);
+    return () => clearTimeout(t);
     // payload is a stable, memoized value for the lifetime of this result.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const showSkeleton = !object && isLoading;
-  const failed = !!error && !object;
+  const failed = (!!error || timedOut) && !object;
+  const showSkeleton = !object && !failed;
 
   return (
     <div className="border-line bg-paper rounded-2xl border p-5 sm:p-6">

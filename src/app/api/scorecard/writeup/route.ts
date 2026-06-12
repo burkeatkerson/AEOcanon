@@ -1,5 +1,5 @@
 import { streamObject } from "ai";
-import { auditModel } from "@/lib/ai/anthropic";
+import { scorecardModel } from "@/lib/ai/anthropic";
 import { INTERPRETATION_FRAMEWORK } from "@/lib/scorecard/interpretation-framework";
 import { resultSchema } from "@/lib/scorecard/result-schema";
 import { buildLeadContext } from "@/lib/scorecard/writeup-prompt";
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
   }
 
   const result = streamObject({
-    model: auditModel(),
+    model: scorecardModel(),
     schema: resultSchema,
     schemaName: "ScorecardResult",
     schemaDescription:

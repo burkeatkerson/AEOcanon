@@ -23,3 +23,14 @@ export const AUDIT_MODEL_ID = "claude-sonnet-4-6";
 export function auditModel() {
   return anthropic()(AUDIT_MODEL_ID);
 }
+
+/**
+ * Faster, cheaper model for the scorecard write-up. The result is a constrained,
+ * framework-grounded interpretation (not open-ended reasoning), so Haiku 4.5
+ * handles it well while streaming noticeably quicker than Sonnet.
+ */
+export const SCORECARD_MODEL_ID = "claude-haiku-4-5-20251001";
+
+export function scorecardModel() {
+  return anthropic()(SCORECARD_MODEL_ID);
+}
