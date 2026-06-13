@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Newsreader, Spline_Sans, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { SITE_URL, siteConfig } from "@/lib/site";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -70,6 +71,18 @@ export default function RootLayout({
         </main>
         <SiteFooter />
         <ThemeToggle />
+
+        {/* Google Analytics (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-N292CPXCB4"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-N292CPXCB4');`}
+        </Script>
       </body>
     </html>
   );
