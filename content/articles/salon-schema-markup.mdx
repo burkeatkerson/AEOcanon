@@ -1,0 +1,87 @@
+---
+title: "Schema Markup for Salons: What AI Uses"
+slug: salon-schema-markup
+summary: Salons should use the HairSalon or BeautySalon (LocalBusiness subtypes) schema with accurate name, address, phone, hours, and services, plus FAQ schema on answer pages — it helps engines parse what you offer and confirm you're open. Schema clarifies readable content; it never rescues a booking widget.
+topics:
+  - structured-data
+  - technical-seo
+verticals:
+  - salons
+author: burke-atkerson
+published: 2026-06-11
+updated: 2026-06-11
+schemaType: Article
+faqs:
+  - q: What schema markup do salons need?
+    a: Use the HairSalon or BeautySalon schema type (both LocalBusiness subtypes) with accurate name, address, phone, geo, opening hours, and your services, plus FAQ schema on pages that answer common questions. This helps engines parse what kind of salon you are, where you are, and when you're open, reinforcing your listings. Every value must match what's visible on the page.
+  - q: Does schema help a salon get cited by AI?
+    a: It helps engines parse and trust your details, but it's a reinforcement, not a magic switch. Schema labels content engines can already read; it can't rescue a menu trapped in a booking widget, wrong hours, or thin reviews. Use it on readable service and pricing pages with accurate hours and it strengthens the signal.
+  - q: What's the difference between HairSalon and BeautySalon schema?
+    a: Both are specific LocalBusiness subtypes for personal-care businesses. HairSalon fits a hair salon or barbershop; BeautySalon fits a broader beauty business offering skin, nails, or makeup alongside hair. Use whichever best matches your services, with all the LocalBusiness properties. Either gives a clearer category signal than plain LocalBusiness.
+---
+
+**Salons should use the HairSalon or BeautySalon (LocalBusiness subtypes) schema with accurate name,
+address, phone, hours, and services, plus FAQ schema on answer pages — it helps engines parse what you
+offer and confirm where and when you're open.** Schema clarifies readable content for AI; it never
+rescues a booking widget or wrong hours.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Use the <strong>HairSalon or BeautySalon schema type</strong> (LocalBusiness subtypes) with accurate{" "}
+    <strong>name, address, phone, geo, hours, and services</strong>, plus <strong>FAQ schema</strong> on
+    answer pages. It makes your details <strong>machine-readable</strong> — but it{" "}
+    <strong>reinforces a readable menu and accurate hours, doesn't replace them</strong>.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Use the HairSalon or BeautySalon schema type (LocalBusiness subtypes) for a salon.",
+    "Include name, address, phone, geo, hours, services, reviews, and sameAs links.",
+    "Add FAQ schema to pages that answer common questions (pricing, balayage, walk-ins).",
+    "Schema reinforces readable content; it can't rescue a widget-trapped menu or wrong hours.",
+    "Every value must match your visible page exactly — never fake it.",
+  ]}
+/>
+
+## What does salon schema actually do?
+
+It makes your salon details unambiguous to a machine. [LocalBusiness
+schema](https://developers.google.com/search/docs/appearance/structured-data/local-business), and the
+HairSalon or BeautySalon subtype, labels your name, address, hours, services, and reviews so engines
+parse them cleanly rather than guessing — reinforcing the [consistent identity](/learn/nap-consistency)
+local recommendations depend on. It's the [structured data for AEO](/learn/structured-data-for-aeo)
+pattern applied to hair: clarity for the parser, on top of a menu and pricing that are already clear and
+readable for the client.
+
+## What should I include?
+
+The full, accurate picture of your salon — matched to what's visible.
+
+<Steps
+  items={[
+    { title: "Identity and location", body: "Exact name, full address, phone, URL, and geo coordinates — identical to your page and listings." },
+    { title: "Hours and type", body: "Opening hours and the HairSalon or BeautySalon type that best fits your business — barbershop, hair salon, or full beauty salon." },
+    { title: "Proof", body: "Aggregate review rating and sameAs links to your profiles and social, so engines connect the markup to your recognized entity." },
+    { title: "Answers", body: "FAQ schema on pages that answer common questions (pricing, balayage, walk-ins, parking), so the pairs are explicit to the parser." },
+  ]}
+/>
+
+## Will schema get me cited on its own?
+
+No — it's a clarity layer, not a citation lever. Schema makes your details machine-readable, which
+*supports* recognition, but the citation still depends on [a readable service menu and
+pricing](/learn/salon-service-pages-for-ai) the crawler can parse, [accurate
+hours](/learn/local-aeo-for-salons), and [genuine
+reviews](/learn/salon-reviews-ai-recommendations). Schema can't rescue a menu trapped in a booking
+widget or hours that are wrong — and faking reviews or details in markup is a misuse engines can
+[detect](/learn/does-schema-help-ai-citations). Accurate schema on top of a readable menu and pricing is
+the combination that works.
+
+<RelatedQuestions
+  items={[
+    { q: "How do I make my salon service pages AI will cite?", a: "Put services, pricing, and specialties in real HTML text — not a booking widget or menu image.", href: "/learn/salon-service-pages-for-ai" },
+    { q: "Does schema help AI citations?", a: "It helps engines parse and trust pages, but readable content and accurate details come first.", href: "/learn/does-schema-help-ai-citations" },
+    { q: "What is local AEO for salons?", a: "Getting cited for near-me questions via accurate hours, listings, a readable menu, and reviews.", href: "/learn/local-aeo-for-salons" },
+  ]}
+/>
