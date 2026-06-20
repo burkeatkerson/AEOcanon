@@ -1,0 +1,88 @@
+---
+title: "Schema Markup for Breweries: What AI Uses"
+slug: brewery-schema-markup
+summary: Breweries should use Brewery schema (a FoodEstablishment/LocalBusiness subtype) with accurate name, address, hours, amenities, and a menu, plus FAQ schema on answer pages — it helps engines parse what you pour and confirm you're open. Schema clarifies a readable tap list; it can't rescue a photo or wrong hours.
+topics:
+  - structured-data
+  - technical-seo
+verticals:
+  - breweries
+author: burke-atkerson
+published: 2026-06-11
+updated: 2026-06-11
+schemaType: Article
+faqs:
+  - q: What schema markup do breweries need?
+    a: Use Brewery schema (a FoodEstablishment/LocalBusiness subtype) with accurate name, address, phone, geo, opening hours, a menu (or tap-list link), priceRange, and amenity attributes (food, dog-friendly, outdoor seating, parking) — plus FAQ schema on pages that answer common questions. This helps engines parse what you pour, where you are, and whether you're open, reinforcing your listings. Every value must match what's visible on the page.
+  - q: Does schema help a brewery get cited by AI?
+    a: It helps engines parse and trust your details, but it's a reinforcement, not a magic switch. Schema labels content engines can already read; it can't rescue a chalkboard-photo tap list the crawler can't parse, wrong hours, or thin reviews. Use it on a readable tap-list page with accurate hours and it strengthens the signal.
+  - q: What's the most important schema for a brewery?
+    a: The Brewery type with accurate hours, amenities, and a readable menu, because those answer the most common queries — 'open now', 'brewery with food near me', 'dog-friendly brewery', and 'what's on tap'. Price-range and event properties help too, but hours, amenities, and a readable tap list carry the most weight.
+---
+
+**Breweries should use Brewery schema with accurate name, address, phone, hours, amenities, price range,
+and a beer or food menu, plus FAQ schema on answer pages — it helps engines parse what you pour and
+confirm you're open.** Schema clarifies a readable tap list for AI; it never rescues a chalkboard photo
+or wrong hours.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Use <strong>Brewery schema</strong> (a FoodEstablishment/LocalBusiness subtype) with accurate{" "}
+    <strong>name, address, phone, hours, a menu or tap-list link, priceRange, and amenity
+    attributes</strong> (food, dog-friendly, patio, parking), plus <strong>FAQ schema</strong> on answer
+    pages. It makes your details <strong>machine-readable</strong> — but it{" "}
+    <strong>reinforces a readable tap list and accurate hours, doesn't replace them</strong>.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Use the Brewery schema type (a FoodEstablishment/LocalBusiness subtype).",
+    "Include hours, a menu or tap-list link, priceRange, amenities, geo, and reviews.",
+    "Hours, amenities, and a readable tap list carry the most weight — they answer the top queries.",
+    "Schema reinforces a readable tap list; it can't rescue a chalkboard photo or wrong hours.",
+    "Every value must match your visible page exactly — never fake it.",
+  ]}
+/>
+
+## What does brewery schema actually do?
+
+It makes your taproom details unambiguous to a machine. [LocalBusiness and Brewery
+schema](https://developers.google.com/search/docs/appearance/structured-data/local-business) label your
+name, address, hours, amenities, price range, and menu so engines parse them cleanly rather than guessing
+— reinforcing the [consistent identity](/learn/nap-consistency) and availability local recommendations
+depend on. It's the [structured data for AEO](/learn/structured-data-for-aeo) pattern applied to the
+taproom: clarity for the parser, on top of a tap list and hours that are already clear and readable for
+the drinker.
+
+## What should I include?
+
+The full, accurate picture of your brewery — matched to what's visible.
+
+<Steps
+  items={[
+    { title: "Identity and location", body: "Exact name, full address, phone, URL, and geo coordinates — identical to your page and listings." },
+    { title: "What and when", body: "Opening hours (including special and food-truck-night hours), a menu or tap-list link, and priceRange, using the Brewery type." },
+    { title: "Amenities and reviews", body: "Attributes like food, dog-friendly, outdoor seating, and parking, plus aggregate review rating and sameAs links to your profiles, so engines connect the markup to your recognized entity." },
+    { title: "Answers and events", body: "FAQ schema on pages that answer common questions (food, dog-friendly, tours, private events), and Event schema for tours, releases, and bookings." },
+  ]}
+/>
+
+## Will schema get me cited on its own?
+
+No — it's a clarity layer, not a citation lever. Schema makes your details machine-readable, which
+*supports* recognition, but the citation still depends on a [readable tap
+list](/learn/brewery-menu-pages-for-ai) the crawler can actually parse, [accurate
+hours](/learn/local-aeo-for-breweries), and [genuine
+reviews](/learn/brewery-reviews-ai-recommendations). Schema can't rescue a chalkboard photo the engine
+can't read or hours that are wrong — and faking reviews or details in markup is a misuse engines can
+[detect](/learn/does-schema-help-ai-citations). Accurate schema on top of a real, readable tap list is
+the combination that works.
+
+<RelatedQuestions
+  items={[
+    { q: "How do I make my tap list pages AI will cite?", a: "Put the full tap list in real HTML text with styles, ABV, and descriptions — not a photo.", href: "/learn/brewery-menu-pages-for-ai" },
+    { q: "Does schema help AI citations?", a: "It helps engines parse and trust pages, but readable content and accurate details come first.", href: "/learn/does-schema-help-ai-citations" },
+    { q: "What is local AEO for breweries?", a: "Getting cited for near-me and 'open now' via accurate hours, listings, a readable tap list, and reviews.", href: "/learn/local-aeo-for-breweries" },
+  ]}
+/>

@@ -1,0 +1,88 @@
+---
+title: "Schema Markup for Caterers: What AI Uses"
+slug: caterer-schema-markup
+summary: Caterers should use FoodEstablishment schema with accurate name, address, phone, cuisine, price range, menu, and service area, plus FAQ schema on answer pages — it helps engines parse what you offer and where you serve. Schema clarifies readable packages for AI; it never rescues a PDF menu or a hidden service area.
+topics:
+  - structured-data
+  - technical-seo
+verticals:
+  - caterers
+author: burke-atkerson
+published: 2026-06-11
+updated: 2026-06-11
+schemaType: Article
+faqs:
+  - q: What schema markup do caterers need?
+    a: Use FoodEstablishment schema (a LocalBusiness subtype) with accurate name, address, phone, geo, servesCuisine, priceRange, a menu (or package link), and an areaServed for your service area — plus FAQ schema on pages that answer common questions. You can also note Service or FoodService markup for catering offerings. This helps engines parse what you offer and where you serve, reinforcing your listings. Every value must match what's visible on the page.
+  - q: Does schema help a caterer get cited by AI?
+    a: It helps engines parse and trust your details, but it's a reinforcement, not a magic switch. Schema labels content engines can already read; it can't rescue a PDF package sheet the crawler can't parse, a hidden service area, or thin reviews. Use it on readable package pages with a clear service area and it strengthens the signal.
+  - q: What's the most important schema for a caterer?
+    a: The FoodEstablishment type with accurate servesCuisine, areaServed (service area), and priceRange, because those answer the most common catering queries — 'caterer near me', 'wedding catering per person', and 'who does vegan catering'. A menu or package link helps too, but cuisine, service area, and pricing carry the most weight.
+---
+
+**Caterers should use FoodEstablishment schema with accurate name, address, phone, cuisine, price range,
+menu, and service area, plus FAQ schema on answer pages — it helps engines parse what you offer and where
+you serve.** Schema clarifies readable packages for AI; it never rescues a PDF menu or a hidden service
+area.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Use <strong>FoodEstablishment schema</strong> (a LocalBusiness subtype) with accurate{" "}
+    <strong>name, address, phone, servesCuisine, priceRange, menu, and areaServed</strong>, plus{" "}
+    <strong>FAQ schema</strong> on answer pages. You can add Service/FoodService markup for catering
+    offerings. It makes your details <strong>machine-readable</strong> — but it{" "}
+    <strong>reinforces readable packages and a clear service area, doesn't replace them</strong>.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Use the FoodEstablishment schema type (a LocalBusiness subtype).",
+    "Include servesCuisine, priceRange, menu, areaServed (service area), geo, and reviews.",
+    "Cuisine, service area, and pricing carry the most weight — they answer the top queries.",
+    "Add areaServed so the engine knows the cities and venues you cover.",
+    "Schema reinforces readable packages; every value must match your visible page exactly.",
+  ]}
+/>
+
+## What does caterer schema actually do?
+
+It makes your catering details unambiguous to a machine. [LocalBusiness and FoodEstablishment
+schema](https://developers.google.com/search/docs/appearance/structured-data/local-business) label your
+name, address, cuisine, price range, menu, and service area so engines parse them cleanly rather than
+guessing — reinforcing the [consistent identity](/learn/nap-consistency) and coverage local
+recommendations depend on. It's the [structured data for AEO](/learn/structured-data-for-aeo) pattern
+applied to catering: clarity for the parser, on top of packages and a service area that are already clear
+and readable for the client.
+
+## What should I include?
+
+The full, accurate picture of your catering business — matched to what's visible.
+
+<Steps
+  items={[
+    { title: "Identity and location", body: "Exact name, full address, phone, URL, and geo coordinates — identical to your page and listings." },
+    { title: "What and where", body: "servesCuisine, priceRange, a menu or package link, and areaServed for the cities and venues you cover, using the FoodEstablishment type. You can add Service/FoodService for specific catering offerings." },
+    { title: "Reviews and connections", body: "Aggregate review rating, plus sameAs links to your profiles, so engines connect the markup to your recognized entity." },
+    { title: "Answers", body: "FAQ schema on pages that answer common questions (pricing, dietary, lead time, what's included), so the pairs are explicit to the parser." },
+  ]}
+/>
+
+## Will schema get me cited on its own?
+
+No — it's a clarity layer, not a citation lever. Schema makes your details machine-readable, which
+*supports* recognition, but the citation still depends on [readable
+packages](/learn/caterer-menu-pages-for-ai) the crawler can actually parse, a [clear service
+area](/learn/local-aeo-for-caterers), and [genuine reviews](/learn/caterer-reviews-ai-recommendations).
+Schema can't rescue a PDF package sheet the engine can't read or a service area buried in a quote form —
+and faking reviews or details in markup is a misuse engines can
+[detect](/learn/does-schema-help-ai-citations). Accurate schema on top of real, readable packages is the
+combination that works.
+
+<RelatedQuestions
+  items={[
+    { q: "How do I make my menu and package pages AI will cite?", a: "Put packages, per-head pricing, and dietary options in real HTML text — not a PDF.", href: "/learn/caterer-menu-pages-for-ai" },
+    { q: "Does schema help AI citations?", a: "It helps engines parse and trust pages, but readable content and accurate details come first.", href: "/learn/does-schema-help-ai-citations" },
+    { q: "What is local AEO for caterers?", a: "Getting cited for near-me and service-area questions via accurate location, listings, packages, and reviews.", href: "/learn/local-aeo-for-caterers" },
+  ]}
+/>

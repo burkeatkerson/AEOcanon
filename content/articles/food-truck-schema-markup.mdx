@@ -1,0 +1,89 @@
+---
+title: "Schema Markup for Food Trucks: What AI Uses"
+slug: food-truck-schema-markup
+summary: Food trucks should use FoodEstablishment or Restaurant schema with accurate name, contact, service area, hours, cuisine, and menu, plus FAQ schema — it helps engines parse what you serve and where you operate. Schema clarifies a readable menu and live schedule; it never rescues an image menu or a stale location.
+topics:
+  - structured-data
+  - technical-seo
+verticals:
+  - food-trucks
+author: burke-atkerson
+published: 2026-06-11
+updated: 2026-06-11
+schemaType: Article
+faqs:
+  - q: What schema markup do food trucks need?
+    a: Use FoodEstablishment or Restaurant schema (both LocalBusiness subtypes) with accurate name, contact, areaServed or service area, opening hours, servesCuisine, priceRange, and a menu (or menu link) — plus FAQ schema on pages that answer common questions. Because your location moves, lean on areaServed and a current address rather than a fixed geo pin, and keep every value matching what's visible on the page.
+  - q: Does schema help a food truck get cited by AI?
+    a: It helps engines parse and trust your details, but it's a reinforcement, not a magic switch. Schema labels content engines can already read; it can't rescue a menu trapped as an image, a stale location, or thin reviews. Use it on a readable menu page with a current schedule and it strengthens the signal.
+  - q: How should a food truck handle the changing location in schema?
+    a: Use the areaServed or serviceArea property to describe the neighborhoods or city you operate in, since a single fixed geo coordinate doesn't fit a truck that moves. Keep your readable schedule page as the live source of today's exact spot, and let schema describe the broader area. Update both as your routes change so signals stay consistent.
+---
+
+**Food trucks should use FoodEstablishment or Restaurant schema with accurate name, contact, service
+area, hours, cuisine, price range, and menu, plus FAQ schema on answer pages — it helps engines parse what
+you serve and where you operate.** Schema clarifies a readable menu and live schedule for AI; it never
+rescues an image menu or a stale location.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Use <strong>FoodEstablishment or Restaurant schema</strong> (both LocalBusiness subtypes) with
+    accurate <strong>name, contact, areaServed, hours, servesCuisine, priceRange, and menu</strong>, plus{" "}
+    <strong>FAQ schema</strong> on answer pages. Because you move, lean on{" "}
+    <strong>areaServed and a current location</strong> over a fixed pin. It makes your details
+    machine-readable — but it <strong>reinforces a readable menu and live schedule, doesn't replace
+    them</strong>.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Use the FoodEstablishment or Restaurant schema type (both LocalBusiness subtypes).",
+    "Include hours, servesCuisine, priceRange, menu, and areaServed for your service region.",
+    "Because you move, use areaServed instead of relying on one fixed geo pin.",
+    "Schema reinforces a readable menu and live schedule; it can't rescue an image menu or a stale location.",
+    "Every value must match your visible page exactly — never fake it.",
+  ]}
+/>
+
+## What does food truck schema actually do?
+
+It makes your mobile-food details unambiguous to a machine. [LocalBusiness and FoodEstablishment
+schema](https://developers.google.com/search/docs/appearance/structured-data/local-business) label your
+name, contact, service area, hours, cuisine, price range, and menu so engines parse them cleanly rather
+than guessing — reinforcing the [consistent identity](/learn/nap-consistency) and service-area certainty
+local recommendations depend on. It's the [structured data for AEO](/learn/structured-data-for-aeo)
+pattern applied to a moving business: clarity for the parser, on top of a menu and schedule that are
+already clear and readable for the customer.
+
+## What should I include?
+
+The full, accurate picture of your truck — matched to what's visible.
+
+<Steps
+  items={[
+    { title: "Identity and contact", body: "Exact name, contact, URL, and your booking or inquiry path — identical to your page and listings." },
+    { title: "Service area, not a fixed pin", body: "Use areaServed or serviceArea to describe the neighborhoods or city you operate in, since a single geo coordinate doesn't fit a truck that moves." },
+    { title: "What and when", body: "servesCuisine, priceRange, opening hours, and a menu or menu link, using the FoodEstablishment or Restaurant type." },
+    { title: "Answers and reviews", body: "FAQ schema on pages that answer common questions (catering, dietary, where-are-you), plus aggregate review rating and sameAs links to your profiles." },
+  ]}
+/>
+
+## Will schema get me cited on its own?
+
+No — it's a clarity layer, not a citation lever. Schema makes your details machine-readable, which
+*supports* recognition, but the citation still depends on a [readable menu and live
+schedule](/learn/food-truck-menu-pages-for-ai) the crawler can actually parse, a [current
+location](/learn/local-aeo-for-food-trucks), and [genuine
+reviews](/learn/food-truck-reviews-ai-recommendations). Schema can't rescue a menu trapped as an image or
+a location that's stale — and faking reviews or details in markup is a misuse engines can
+[detect](/learn/does-schema-help-ai-citations). Accurate schema on top of a real, readable menu and a
+fresh schedule is the combination that works.
+
+<RelatedQuestions
+  items={[
+    { q: "How do I make my menu and schedule pages AI will cite?", a: "Put the full menu and a live schedule in real HTML text with dishes, prices, and locations — not images.", href: "/learn/food-truck-menu-pages-for-ai" },
+    { q: "Does schema help AI citations?", a: "It helps engines parse and trust pages, but readable content and accurate details come first.", href: "/learn/does-schema-help-ai-citations" },
+    { q: "What is local AEO for food trucks?", a: "Getting cited for near-me as you move, via a current location, schedule, listings, and reviews.", href: "/learn/local-aeo-for-food-trucks" },
+  ]}
+/>
