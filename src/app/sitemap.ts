@@ -8,6 +8,7 @@ import {
   getAllPlaybooks,
   getAllPillars,
   getAllGlossary,
+  getAllTools,
   getUsedTopics,
 } from "@/lib/content";
 
@@ -46,6 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     { url: absoluteUrl("/tools"), changeFrequency: "monthly", priority: 0.7 },
+    { url: absoluteUrl("/scorecard"), changeFrequency: "monthly", priority: 0.7 },
     { url: absoluteUrl("/glossary"), changeFrequency: "weekly", priority: 0.7 },
     { url: absoluteUrl("/pricing"), changeFrequency: "monthly", priority: 0.8 },
     {
@@ -133,6 +135,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
+  // Tool reviews, comparisons, roundups, and guides — high-intent commercial
+  // pages that were crawlable via internal links but absent from the sitemap.
+  const tools: MetadataRoute.Sitemap = getAllTools().map((t) => ({
+    url: absoluteUrl(t.url),
+    lastModified: t.updated,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   return [
     ...staticRoutes,
     ...articles,
@@ -143,5 +154,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...playbooks,
     ...pillars,
     ...glossary,
+    ...tools,
   ];
 }

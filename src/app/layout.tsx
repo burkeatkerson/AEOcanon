@@ -39,6 +39,17 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: siteConfig.name,
+    statusBarStyle: "default",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: siteConfig.twitter,
+    creator: siteConfig.twitter,
+  },
 };
 
 // Set data-theme before first paint to avoid a flash of the wrong theme.
