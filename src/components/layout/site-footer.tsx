@@ -9,6 +9,7 @@ import { topicLabel } from "@/lib/taxonomy";
 import {
   getUsedTopics,
   getArticle,
+  getVertical,
   getAllVerticals,
   getAllGlossary,
   getAllTools,
@@ -16,6 +17,27 @@ import {
 } from "@/lib/content";
 
 type FootLink = { href: string; label: string };
+
+/**
+ * The highest-demand industries — the ones people most often ask AI to
+ * recommend. Surfacing a curated dozen keeps the footer balanced; the full
+ * catalog (59 and counting) lives at /industries. Short labels match how
+ * people actually search ("plumber near me"), not the hub page titles.
+ */
+const POPULAR_INDUSTRIES: { slug: string; label: string }[] = [
+  { slug: "hvac", label: "HVAC" },
+  { slug: "plumbing", label: "Plumbing" },
+  { slug: "electrical", label: "Electrical" },
+  { slug: "roofing", label: "Roofing" },
+  { slug: "general-contractors", label: "Contractors" },
+  { slug: "landscaping", label: "Landscaping" },
+  { slug: "auto-repair", label: "Auto Repair" },
+  { slug: "restaurants", label: "Restaurants" },
+  { slug: "salons", label: "Salons & Barbers" },
+  { slug: "gyms", label: "Gyms & Studios" },
+  { slug: "pest-control", label: "Pest Control" },
+  { slug: "florists", label: "Florists" },
+];
 
 /**
  * Resolve a curated list of cornerstone slugs to real articles, so the footer's
@@ -95,10 +117,14 @@ export function SiteFooter() {
     { href: "/articles", label: "Full article archive" },
   ];
 
-  const industryLinks: FootLink[] = [
-    ...verticals.map((v) => ({ href: v.url, label: v.title })),
-    { href: "/industries", label: "All industries →" },
-  ];
+  // Curated "most-searched" subset, resolved against live verticals so a link
+  // can never point at an unbuilt industry. The full count drives the CTA.
+  const popularIndustries: FootLink[] = POPULAR_INDUSTRIES.map(
+    ({ slug, label }) => {
+      const vertical = getVertical(slug);
+      return vertical ? { href: vertical.url, label } : null;
+    },
+  ).filter((x): x is FootLink => x !== null);
 
   // Reuse the curated static columns (Services, The Canon); the rest is dynamic.
   const staticCols = footerNav.filter((c) => c.title !== "Learn");
@@ -189,8 +215,25 @@ export function SiteFooter() {
             <LinkList links={exploreLinks} />
           </div>
           <div>
-            <FootHeading href="/industries">By industry</FootHeading>
-            <LinkList links={industryLinks} />
+            <FootHeading href="/industries">Popular industries</FootHeading>
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
+              {popularIndustries.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-ink-2 hover:text-accent text-sm leading-snug"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/industries"
+              className="text-accent mt-4 inline-block font-mono text-[11px]"
+            >
+              All {verticals.length} industries &rarr;
+            </Link>
           </div>
           <div>
             <FootHeading href="/pillars">The 8 pillars</FootHeading>
