@@ -95,8 +95,9 @@ export default function LearnPage() {
         </h1>
         <p className="text-ink-2 mt-4 text-[19px] leading-relaxed">
           Structured courses and a growing free archive — built the way the best
-          technical educators teach: read it, then actually do it. Start with
-          the fundamentals, free.
+          technical educators teach: read it, then actually do it. Learn how AI
+          decides who to name, and start becoming the business it recommends.
+          The fundamentals are free.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           {courses[0] ? (

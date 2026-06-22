@@ -112,8 +112,9 @@ export default function ToolsPage() {
           </h1>
           <p className="text-ink-2 mt-4 max-w-[62ch] text-[19px] leading-relaxed">
             A free toolkit to diagnose, build, and track your AI search
-            visibility. Start with the AEO Analyzer; pick up the rest as they
-            arrive. No signup to run any of them.
+            visibility. Most owners have never seen what the engines say about
+            them — and it&rsquo;s rarely what they expect. Start with the AEO
+            Analyzer; no signup to run any of them.
           </p>
         </Container>
       </header>
@@ -139,7 +140,7 @@ export default function ToolsPage() {
             <p className="text-ink-2 mt-2.5 mb-5 max-w-[46ch] text-[15px] leading-relaxed">
               Enter your site and get a 0–100 AI-visibility score — plus exactly
               how ChatGPT, Perplexity, and Google AI describe and recommend you
-              right now.
+              right now, and the gaps quietly handing customers to competitors.
             </p>
             <AuditTeaser />
           </div>

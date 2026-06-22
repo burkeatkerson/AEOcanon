@@ -39,7 +39,9 @@ export default function CanonPage() {
         <p className="text-ink-2 mt-5 max-w-[56ch] text-[18px] leading-relaxed">
           Eight pillars, in three layers, that make your content the source AI
           engines read, trust, and quote. Not tricks — the conditions under
-          which any well-built engine recognizes you as the best answer.
+          which any well-built engine recognizes you as the best answer, today
+          and as the models keep changing. Master them and visibility stops
+          being a guessing game.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Button href="/learn/aeo-canon" size="lg">

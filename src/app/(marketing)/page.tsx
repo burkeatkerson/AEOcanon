@@ -99,10 +99,10 @@ export default function HomePage() {
                 </em>
               </h1>
               <p className="text-ink-2 mt-6 max-w-[48ch] text-[19px] leading-relaxed">
-                Search clicks are vanishing into AI answers. The businesses
-                winning now are the ones AI recommends by name — and
-                that&rsquo;s exactly what the AEO Canon framework is built to
-                make you.
+                Search clicks are vanishing into AI answers — and when someone
+                asks, the assistant names just one or two businesses. Be the
+                name it gives, and the customer is yours. The AEO Canon is the
+                framework built to get you there.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Button href="/audit" size="lg">
@@ -278,8 +278,9 @@ export default function HomePage() {
               A site built to be cited
             </h3>
             <p className="text-ink-2 mt-2 text-[14.5px] leading-relaxed">
-              Pages engines can actually read, trust, and quote — the part
-              almost every small-business site gets wrong.
+              Pages engines can actually read, trust, and quote. It&rsquo;s the
+              part almost every small-business site gets wrong — and the quiet
+              reason great companies stay invisible.
             </p>
             <ul className="mt-4 flex flex-col gap-2.5">
               {[
@@ -303,8 +304,9 @@ export default function HomePage() {
               Content that earns the recommendation
             </h3>
             <p className="text-ink-2 mt-2 text-[14.5px] leading-relaxed">
-              The question-first content your customers actually ask AI — that
-              gets you named, then keeps you named as engines evolve.
+              The question-first content your customers actually ask AI — the
+              kind that gets you named, then keeps you named as the engines
+              evolve. Every article is one more door a customer walks through.
             </p>
             <ul className="mt-4 flex flex-col gap-2.5">
               {[
@@ -339,7 +341,8 @@ export default function HomePage() {
             <p className="text-ink-2 mt-4 max-w-[46ch] leading-relaxed">
               AEO Canon is the working framework for answer-engine optimization
               — the research, the model, and the library practitioners learn
-              from.
+              from. Understand how engines actually choose, and being chosen
+              stops being luck.
             </p>
             <Button href="/learn" variant="ghost" size="lg" className="mt-5">
               Explore the framework →

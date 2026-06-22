@@ -195,8 +195,9 @@ export default function PricingPage() {
           </h1>
           <p className="text-ink-2 mt-5 text-[19px] leading-relaxed">
             Every plan includes a complete, custom AEO-structured website
-            rebuild — a $12,000+ project on its own — then the content that
-            keeps you cited, month after month.
+            rebuild — a $12,000+ project on its own — then the monthly content
+            that keeps you the answer AI gives. You run your business; we keep
+            you the name it recommends.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Button href="/audit" size="lg">

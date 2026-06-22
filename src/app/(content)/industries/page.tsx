@@ -51,9 +51,11 @@ export default function IndustriesIndexPage() {
           </em>
         </h1>
         <p className="text-ink-2 mt-5 max-w-[64ch] text-[18px] leading-relaxed">
-          Every industry library is a self-contained set for one kind of
-          business — the guides, real teardowns, query maps, and copy templates
-          that actually move AI visibility in <em>your</em> world.
+          Your customers don&rsquo;t ask AI generic questions — they ask about
+          your trade, in your town. Every industry library is a self-contained
+          set for one kind of business — the guides, teardowns, query maps, and
+          templates that turn those exact questions into booked work in{" "}
+          <em>your</em> world.
         </p>
         <div className="mt-6 flex flex-wrap gap-2">
           {FAMILIES.map((f) => (
