@@ -1,0 +1,88 @@
+---
+title: "Schema Markup for Boutiques: What AI Uses"
+slug: boutique-schema-markup
+summary: Boutiques should use the ClothingStore (a LocalBusiness subtype) schema with accurate name, address, phone, and hours, plus Product schema for items and FAQ schema on answer pages — it helps engines parse where you are and what you sell. Schema clarifies readable content; it never rescues a lookbook-only site.
+topics:
+  - structured-data
+  - technical-seo
+verticals:
+  - boutiques
+author: burke-atkerson
+published: 2026-06-11
+updated: 2026-06-11
+schemaType: Article
+faqs:
+  - q: What schema markup do boutiques need?
+    a: Use the ClothingStore schema type (a LocalBusiness subtype) with accurate name, address, phone, geo, and opening hours, plus Product schema for individual items (name, brand, sizes, price, availability) and FAQ schema on pages that answer common questions (sizing, shipping, returns). This helps engines parse where you are, when you're open, and what you sell. Every value must match what's visible on the page.
+  - q: Does schema help a boutique get cited by AI?
+    a: It helps engines parse and trust your details, but it's a reinforcement, not a magic switch. Schema labels content engines can already read; it can't rescue a lookbook-only site, wrong hours, or thin reviews. Use it on a readable site with accurate products and policies and it strengthens the signal.
+  - q: What's the difference between LocalBusiness and ClothingStore schema?
+    a: ClothingStore is a more specific subtype, so it tells engines precisely what kind of business you are. Using the ClothingStore type (with all the LocalBusiness properties) gives the clearest category signal, and pairing it with Product schema describes what you sell. Either base works, but the more specific type removes ambiguity about your category.
+---
+
+**Boutiques should use the ClothingStore (a LocalBusiness subtype) schema with accurate name, address,
+phone, and hours, plus Product schema for items and FAQ schema on answer pages — it helps engines parse
+where you are, when you're open, and what you sell.** Schema clarifies readable content for AI; it never
+rescues a lookbook-only site or wrong hours.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Use the <strong>ClothingStore schema type</strong> (a LocalBusiness subtype) with accurate{" "}
+    <strong>name, address, phone, geo, and hours</strong>, plus <strong>Product schema</strong> for
+    items and <strong>FAQ schema</strong> on answer pages (sizing, shipping, returns). It makes your
+    details <strong>machine-readable</strong> — but it{" "}
+    <strong>reinforces a readable site and accurate products, doesn't replace them</strong>.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Use the ClothingStore schema type (a LocalBusiness subtype) for a boutique.",
+    "Add Product schema for items — name, brand, sizes, price, and availability.",
+    "Add FAQ schema for sizing, shipping, and return questions.",
+    "Schema reinforces a readable site; it can't rescue a lookbook-only page or wrong hours.",
+    "Every value must match your visible page exactly — never fake it.",
+  ]}
+/>
+
+## What does boutique schema actually do?
+
+It makes your shop's details unambiguous to a machine. [LocalBusiness
+schema](https://developers.google.com/search/docs/appearance/structured-data/local-business), and the
+ClothingStore subtype, labels your name, address, hours, and category so engines parse them cleanly
+rather than guessing — and Product schema labels each item's brand, sizes, and price — reinforcing the
+[consistent identity](/learn/nap-consistency) local recommendations depend on. It's the [structured
+data for AEO](/learn/structured-data-for-aeo) pattern applied to retail: clarity for the parser, on top
+of products and policies that are already clear and readable for the shopper.
+
+## What should I include?
+
+The full, accurate picture of your shop — matched to what's visible.
+
+<Steps
+  items={[
+    { title: "Identity and location", body: "Exact name, full address, phone, URL, and geo coordinates — identical to your page and listings, using the ClothingStore type." },
+    { title: "Hours and category", body: "Opening hours and your category, plus attributes like in-store pickup and accessibility." },
+    { title: "Products", body: "Product schema for items — name, brand, size range, price, and availability — so the engine knows exactly what you stock." },
+    { title: "Proof and answers", body: "Aggregate review rating, sameAs links to your profiles and social, and FAQ schema on pages that answer sizing, shipping, and return questions." },
+  ]}
+/>
+
+## Will schema get me cited on its own?
+
+No — it's a clarity layer, not a citation lever. Schema makes your details machine-readable, which
+*supports* recognition, but the citation still depends on [readable products and
+sizing](/learn/boutique-product-pages-for-ai) the crawler can parse, [accurate hours and
+policies](/learn/local-aeo-for-boutiques), and [genuine
+reviews](/learn/boutique-reviews-ai-recommendations). Schema can't rescue a lookbook-only site or wrong
+hours — and faking reviews or details in markup is a misuse engines can
+[detect](/learn/does-schema-help-ai-citations). Accurate schema on top of a readable, real site is the
+combination that works.
+
+<RelatedQuestions
+  items={[
+    { q: "How do I make my product pages AI will cite?", a: "Put products, styles, sizing, and price in real text with descriptions — not just lookbook photos.", href: "/learn/boutique-product-pages-for-ai" },
+    { q: "Does schema help AI citations?", a: "It helps engines parse and trust pages, but readable content and accurate details come first.", href: "/learn/does-schema-help-ai-citations" },
+    { q: "What is local AEO for boutiques?", a: "Getting cited for near-me and style via accurate location, a stated niche, and reviews.", href: "/learn/local-aeo-for-boutiques" },
+  ]}
+/>
