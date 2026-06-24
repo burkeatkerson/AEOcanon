@@ -9,22 +9,46 @@ verticals:
   - hvac
 author: burke-atkerson
 published: 2026-05-17
-updated: 2026-06-09
+updated: 2026-06-23
 schemaType: Article
 featured: true
 faqs:
-  - q: What is answer engine optimization in simple terms?
-    a: Answer engine optimization (AEO) is the practice of structuring your content so AI answer engines — ChatGPT, Perplexity, Google AI Overviews, Gemini, Copilot — can extract a passage from your page, trust it, and cite it as part of the answer they give a user. Where SEO competes for a ranked link, AEO competes to be the sentence the engine quotes.
+  - q: What is answer engine optimization (AEO) in simple terms?
+    a: Answer engine optimization (AEO) is the practice of structuring your content so AI answer engines — ChatGPT, Perplexity, Google AI Overviews, Gemini, and Copilot — can extract a passage from your page, trust it, and cite it as part of the answer they give a user. Where SEO competes for a ranked link, AEO competes to be the sentence the engine quotes.
   - q: Is AEO the same as SEO?
-    a: No, but they overlap heavily. SEO optimizes for ranked lists of links; AEO optimizes for the single synthesized answer an AI engine returns. Most of the technical foundation is shared — crawlability, clean semantics, authority, fast pages — so well-executed AEO content also performs in classic search. Treat AEO as an extension of SEO, not a replacement.
-  - q: Does AEO actually work, or is it hype?
-    a: It works and there is peer-reviewed evidence. The Princeton-led "GEO" study (arXiv 2311.09735) found that optimizing content for generative engines — adding citations, quotations, and statistics — lifted a source's visibility in AI answers by up to 40%. Ahrefs' analysis of 75,000 brands found off-site brand mentions were the single strongest correlate of appearing in AI Overviews.
+    a: No, but they overlap heavily. SEO optimizes for ranked lists of links; AEO optimizes for the single synthesized answer an AI engine returns. Most of the technical foundation is shared — crawlability, clean semantics, authority, and fast pages — so well-executed AEO content also performs in classic search. Treat AEO as an extension of SEO, not a replacement.
+  - q: What is the difference between AEO, GEO, and SEO?
+    a: SEO optimizes for ranked links on a search results page, AEO optimizes for being cited inside an AI engine's answer, and GEO (generative engine optimization) is the academic term for the same goal as AEO, coined by the Princeton-led team that first measured it in arXiv paper 2311.09735. In practice AEO and GEO are near-synonyms — both reward clarity, structure, evidence, and authority.
+  - q: Does AEO actually work, or is it just hype?
+    a: It works, and there is peer-reviewed evidence. The Princeton-led GEO study (arXiv 2311.09735) found that optimizing content for generative engines — adding citations, quotations, and statistics — lifted a source's visibility in AI answers by up to 40%, while keyword stuffing did nothing. Ahrefs analyzed 75,000 brands and found off-site brand mentions were the strongest correlate of appearing in Google AI Overviews, far ahead of backlinks.
+  - q: Why does AEO matter now?
+    a: AEO matters now because AI answers are replacing the click. A Pew Research Center study from July 2025 found Google users clicked a result just 8% of the time when an AI summary appeared, versus 15% without — and only 1% clicked a link inside the summary. Gartner has predicted that traditional search engine volume will fall 25% by 2026 as people shift to AI assistants. When the answer is synthesized, being the cited source is the visibility that remains.
   - q: Which answer engines should I optimize for first?
-    a: Prioritize the engines your audience already uses — usually Google AI Overviews, ChatGPT, and Perplexity. The good news is the underlying techniques (answer-first writing, extractable passages, structured data, and strong off-site authority) generalize across every engine, because they all rely on retrieval-augmented generation.
-  - q: How do I know if AEO is working?
-    a: Track citations and referral traffic from AI surfaces, not just rankings. Watch for your domain appearing as a cited source in AI Overviews and Perplexity, monitor referral traffic from chatgpt.com and perplexity.ai in analytics, and measure branded search lift. Because AI answers reduce clicks, citation share — being named in the answer — becomes the headline metric.
+    a: Prioritize the engines your audience already uses, usually Google AI Overviews, ChatGPT, and Perplexity. The good news is that the core techniques — answer-first writing, extractable passages, structured data, and strong off-site authority — generalize across every engine, because they all rely on retrieval-augmented generation to ground answers in retrieved web passages.
+  - q: How do answer engines decide what to cite?
+    a: Answer engines retrieve candidate passages from the web, then a language model composes an answer grounded in the ones it trusts most. Selection favors passages that answer the question directly and self-containedly, carry inline evidence, and come from sources the wider web corroborates. Because engines quote passages rather than whole pages, the unit you optimize is a roughly 120-to-180-word block that answers one question completely.
+  - q: What types of content get cited most by AI answer engines?
+    a: Content that answers a specific question directly, leads with the answer, and backs it with a concrete statistic, named source, or quotation. The Princeton GEO study found that adding citations, quotations, and statistics drove the largest visibility gains. Formats that map cleanly to one question — FAQs, how-tos, definitions, and comparison tables — extract especially well, because each block stands on its own.
+  - q: What makes a passage extractable or answer-first?
+    a: An extractable passage answers the question in its first sentence and makes sense out of context, with no orphan pronouns and no references back to earlier sections. Put it under a heading phrased as the exact question, keep it to roughly 120 to 180 words, and place a specific number or named source inside the same passage as the claim. That is the sentence an engine can quote verbatim and still have it make sense.
+  - q: Does structured data (schema markup) help with AEO?
+    a: Yes, as infrastructure rather than a magic boost. Marking up articles, FAQs, and how-tos with schema.org types, as described in Google's structured-data documentation, helps engines parse the role of each passage and reuse it confidently. Schema will not rescue thin content, but on a strong page it removes ambiguity about what each block is. Implement valid markup, then put your effort into the answer itself.
+  - q: Are brand mentions more important than backlinks for AI visibility?
+    a: For AI Overview visibility, the evidence says yes. Ahrefs' study of 75,000 brands found the volume of off-site brand mentions correlated with AI Overview presence at 0.664, far ahead of backlinks at 0.218. How often the wider web talks about you predicts AI visibility better than how many links point at you, which reframes AEO as partly a digital-PR and authority discipline, not only an on-page one.
+  - q: How do I check whether AI crawlers can read my site?
+    a: Fetch one of your key pages with JavaScript disabled and confirm the main content is present in the raw HTML; if the page is blank without scripts, AI crawlers probably cannot read it. Then confirm your robots.txt does not block agents like GPTBot, ClaudeBot, PerplexityBot, or Google-Extended, and that pages load fast. Crawlable, server-rendered HTML is the precondition for being cited at all.
+  - q: What free tools can help me get started with AEO?
+    a: Start by diagnosing where you stand. A free AI-visibility audit shows how engines see your site today, and an eight-pillar AEO scorecard grades your readiness across the factors that decide whether AI recommends you. From there, a prompt-set template helps you track which questions name you versus competitors, and an audit checklist turns the gaps into fixes. Each one runs in your browser without a sign-up.
+  - q: How do I measure whether AEO is working?
+    a: Measure citation share and AI referral traffic, not rankings alone, because the win condition has moved from a ranked link to a named source. Track how often your domain is cited across ChatGPT, Perplexity, and Google AI Overviews for your priority questions, watch referral traffic from chatgpt.com and perplexity.ai in analytics, and measure branded-search lift, since an engine naming you leads more people to search your brand directly.
   - q: How long does AEO take to show results?
-    a: Faster than classic SEO for extractability changes, slower for authority. Answer-first rewrites and structured data can change how engines parse a page within a crawl cycle (days to weeks). Building the off-site brand mentions and authority that drive AI visibility is a multi-month effort, the same as earning links in traditional SEO.
+    a: Faster than classic SEO for extractability changes, slower for authority. Answer-first rewrites and structured data can change how engines parse a page within a crawl cycle, from days to weeks. Building the off-site brand mentions and authority that drive AI visibility is a multi-month effort, the same as earning links in traditional SEO. Most businesses see citation share compound over a quarter or two of consistent work.
+  - q: Is AEO worth it for a small or local business?
+    a: Often more than for big brands, because AI answers name only two or three sources and reward specific, trustworthy expertise over sheer size. A local business that answers the real questions customers ask — with clear pages, consistent name, address, and phone details, and genuine reviews — can win the cited spot in its category. The stakes are highest where the buying journey starts with a research question.
+  - q: Can I do AEO myself, or do I need an agency?
+    a: You can do the fundamentals yourself — lead with the answer, write self-contained passages, evidence claims inline, add valid schema, and earn brand mentions. None of it requires coding. A done-for-you service mainly buys speed and consistency — a rebuilt, crawlable site plus steady published content — which is what compounds into durable citations. The method is the same whether you run it in-house or hire it out.
+  - q: Where should I start with AEO?
+    a: Start with one high-intent question your customers ask an AI, and make your page the best possible answer — put that answer in the first sentence, keep the passage self-contained, add one specific statistic or named source, and mark it up with FAQ or Article schema. Then repeat the pattern across your most important questions and begin earning the off-site mentions that build authority.
 ---
 
 **Answer engine optimization (AEO) is the practice of structuring content so AI
@@ -346,6 +370,16 @@ From there, work through the
 and use [The AEO Canon](/learn/aeo-canon) — eight pillars across
 Access, Reputation, and Momentum — as the map for everything that makes a page
 the one the engine pulls.
+
+If you would rather start by measuring, the free tools do it in minutes. Run an
+[AI-visibility audit](/audit) to see how engines read your site today, grade
+yourself with the [8-pillar AEO scorecard](/scorecard), then work the
+[free AEO toolkit](/tools) — including a
+[prompt-set builder](/tools/build-an-ai-prompt-set) for tracking which questions
+name you, an [AEO audit checklist](/tools/aeo-audit-checklist), and a
+[robots.txt generator](/tools/robots-txt-generator-ai-crawlers) to confirm the AI
+crawlers are welcome. Not sure your pages are even readable? Start with
+[how to check that AI crawlers can read your site](/learn/check-ai-crawlers-can-read-site).
 
 <RelatedQuestions
   items={[

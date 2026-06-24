@@ -109,6 +109,7 @@ export function SiteFooter() {
 
   const exploreLinks: FootLink[] = [
     { href: "/learn", label: "AEO school" },
+    { href: "/learn/what-is-aeo#faq-heading", label: "AEO FAQ" },
     { href: "/glossary", label: `Glossary — ${glossaryCount} terms` },
     { href: "/topics", label: "Topics" },
     { href: "/courses", label: "Courses" },
