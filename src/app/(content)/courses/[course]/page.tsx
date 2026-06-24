@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/tag";
 import { Button } from "@/components/ui/button";
 import { CoursePreview } from "@/components/courses/course-preview";
 import { JsonLd } from "@/components/seo/json-ld";
-import { getAllCourses, getCourse } from "@/lib/courses";
+import { getAllCourses, getCourse, getNextCourse } from "@/lib/courses";
 import { getAuthor, getArticle } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 import {
@@ -49,6 +49,7 @@ export default async function CourseSyllabusPage({
   const author = getAuthor(course.authorSlug);
   const coursePath = `/courses/${course.slug}`;
   const first = course.lessons[0]!;
+  const nextCourse = getNextCourse(course.slug);
 
   const jsonLd = graph([
     courseNode({
@@ -202,6 +203,43 @@ export default async function CourseSyllabusPage({
         <div className="mt-4">
           <Button href={`${coursePath}/${first.slug}`}>Begin Lesson 1 →</Button>
         </div>
+      </section>
+
+      {/* continue the path — where to go after this course */}
+      <section className="mt-12 max-w-3xl" aria-labelledby="whats-next">
+        <h2 id="whats-next" className="text-[22px] font-medium tracking-tight">
+          {nextCourse ? "Continue your path" : "Where to go next"}
+        </h2>
+        {nextCourse ? (
+          <Link
+            href={`/courses/${nextCourse.slug}`}
+            className="border-line hover:border-accent bg-paper mt-4 flex flex-col gap-1.5 rounded-2xl border p-6 no-underline transition-colors"
+          >
+            <span className="text-muted font-mono text-[10.5px] tracking-[0.08em] uppercase">
+              Next course · {nextCourse.tier} tier →
+            </span>
+            <span className="text-ink text-[18px] font-medium">
+              {nextCourse.title}
+            </span>
+            <span className="text-ink-2 text-[14px] leading-relaxed">
+              {nextCourse.summary}
+            </span>
+          </Link>
+        ) : (
+          <p className="text-ink-2 mt-3 text-[15px] leading-relaxed">
+            You&rsquo;ve reached the end of the curriculum. Put it into practice
+            with the <Link href="/tools" className="text-accent">free AEO tools</Link>,
+            keep building with the{" "}
+            <Link href="/authority" className="text-accent">
+              off-site authority playbooks
+            </Link>
+            , or revisit{" "}
+            <Link href="/courses" className="text-accent">
+              all courses
+            </Link>
+            .
+          </p>
+        )}
       </section>
     </div>
   );

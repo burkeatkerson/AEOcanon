@@ -3524,3 +3524,33 @@ export function getLesson(
   if (index === -1) return undefined;
   return { course, lesson: course.lessons[index]!, index };
 }
+
+/**
+ * Curriculum tiers in the order a learner should progress through them. The
+ * COURSES array is authored in this same order, so array position doubles as the
+ * recommended sequence (used by getNextCourse).
+ */
+export const TIER_ORDER = ["Foundation", "Practitioner", "Specialist"] as const;
+
+/**
+ * Courses grouped by tier for the index page, each tier and its courses in
+ * curriculum order. Empty tiers are dropped so the page never renders a blank
+ * section.
+ */
+export function getCoursesByTier(): { tier: string; courses: Course[] }[] {
+  return TIER_ORDER.map((tier) => ({
+    tier,
+    courses: COURSES.filter((c) => c.tier === tier),
+  })).filter((group) => group.courses.length > 0);
+}
+
+/**
+ * The next course in curriculum order, or undefined if this is the last one.
+ * Powers the "continue your path" handoff so finishing a course leads somewhere
+ * instead of dead-ending at the certificate.
+ */
+export function getNextCourse(slug: string): Course | undefined {
+  const i = COURSES.findIndex((c) => c.slug === slug);
+  if (i === -1 || i >= COURSES.length - 1) return undefined;
+  return COURSES[i + 1];
+}
