@@ -6,6 +6,7 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { Button } from "@/components/ui/button";
 import { Kicker } from "@/components/ui/eyebrow";
 import { ArticleCard } from "@/components/library/cards/article-card";
+import { HeroDemo } from "@/components/marketing/hero-demo";
 import { Reveal } from "@/components/motion/reveal";
 import { getFeaturedArticles, getAllArticles } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
@@ -121,29 +122,8 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* chat mock */}
-            <div className="border-line bg-panel overflow-hidden rounded-[20px] border shadow-[0_40px_80px_-50px_rgba(0,0,0,0.5)]">
-              <div className="border-line text-muted flex items-center gap-2 border-b px-[18px] py-3 font-mono text-[11px]">
-                <span
-                  className="size-2 rounded-full"
-                  style={{ background: "var(--accent)" }}
-                />
-                A customer, this morning
-              </div>
-              <div className="flex flex-col gap-3 p-[22px]">
-                <div className="bg-accent self-end rounded-2xl rounded-br-[5px] px-4 py-3 text-[14.5px] leading-snug text-white">
-                  Who&rsquo;s the best HVAC company near me for a new system?
-                </div>
-                <div className="bg-bg-2 border-line text-ink-2 max-w-[88%] self-start rounded-2xl rounded-bl-[5px] border px-4 py-3 text-[14.5px] leading-snug">
-                  A few well-reviewed options are{" "}
-                  <b style={{ color: "var(--bad)" }}>[a competitor]</b> and{" "}
-                  <b style={{ color: "var(--bad)" }}>[another competitor]</b>…
-                </div>
-                <div className="bg-ink text-bg self-end rounded-2xl rounded-br-[5px] px-4 py-3 font-serif text-[14.5px] italic">
-                  …and not you. Yet.
-                </div>
-              </div>
-            </div>
+            {/* live answer-engine demo (interactive) */}
+            <HeroDemo />
           </div>
         </Container>
       </header>
