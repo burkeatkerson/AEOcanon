@@ -1,0 +1,144 @@
+---
+title: "Redirects and AI Crawlers: How 301s, 302s, and Chains Affect Citation"
+slug: redirects-ai-crawlers
+summary: AI crawlers follow redirects much like search crawlers — a 301 passes accrued signals to the new URL, a 302 may not, and JavaScript or meta-refresh redirects can be missed entirely. Chains and loops waste crawl budget and decay signals. Here's how each redirect type behaves and how to migrate without losing citations.
+topics:
+  - technical-seo
+author: burke-atkerson
+published: 2026-06-25
+updated: 2026-06-25
+schemaType: Article
+faqs:
+  - q: Do AI crawlers follow redirects?
+    a: Yes, most AI crawlers follow server-side HTTP redirects (301, 302, 307, 308) the same way search crawlers do — they receive the redirect status, read the new location, and fetch it. The exceptions are JavaScript redirects, which many AI crawlers won't execute, and long chains, where some crawlers stop after a set number of hops. Server-side 301s are the safest, most universally followed option.
+  - q: What is the difference between a 301 and a 302 for AI citation?
+    a: A 301 is a permanent redirect that tells engines to consolidate the old URL's accrued signals onto the new one — the right choice for a real URL move. A 302 (or 307) is temporary and signals that the original URL should remain the canonical target, so engines may not transfer authority. Using a 302 for a permanent move can leave citation signals stranded on a URL you've abandoned.
+  - q: Why do redirect chains hurt AI crawling?
+    a: Each extra hop wastes crawl budget, slows the crawler, and risks signal decay as authority passes through intermediate URLs. Some crawlers cap how many hops they'll follow and give up before reaching the destination, so a long chain can leave the final page uncrawled. Collapse chains so every old URL points directly to the final destination in a single hop.
+  - q: How do I migrate URLs without losing AI citations?
+    a: Use single-hop 301 redirects from every old URL to its exact new equivalent, update internal links and sitemaps to the new URLs, keep the redirects in place long enough for crawlers to recrawl, and make sure the new URLs return 200 with the same content and a self-referencing canonical. Map URLs one-to-one rather than redirecting everything to the homepage.
+---
+
+**AI crawlers follow redirects much like search crawlers do — a 301 passes a page's accrued signals to the new URL, a 302 may strand them, and JavaScript or meta-refresh redirects can be missed entirely.** Redirect chains and loops waste crawl budget and decay the signals you're trying to preserve, and some crawlers stop following after a few hops. When you move URLs, the redirect type and structure decide whether your hard-won citations follow the content or evaporate.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Use <strong>single-hop server-side 301s</strong> to move a URL permanently — they
+    tell engines to consolidate the old URL&apos;s signals onto the new one.{" "}
+    <strong>302/307</strong> are temporary and may not transfer authority.{" "}
+    <strong>JavaScript and meta-refresh redirects can be missed</strong> by
+    non-rendering AI crawlers. Collapse chains so every old URL points directly to its
+    final destination.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "301 = permanent: consolidates accrued signals onto the new URL. Use it for real moves.",
+    "302/307 = temporary: engines may keep the original as canonical and not transfer authority.",
+    "308 is the permanent counterpart of 307 and preserves the request method.",
+    "JavaScript and meta-refresh redirects can be invisible to non-rendering AI crawlers.",
+    "Chains waste crawl budget and decay signals; some crawlers cap the hops they'll follow.",
+  ]}
+/>
+
+## How do AI crawlers follow redirects?
+
+AI crawlers follow redirects at the HTTP layer the same way search crawlers do: they request a URL, receive a redirect status code with a `Location` header, and fetch the new address. This works reliably for server-side redirects because the instruction arrives in the response headers before any page content — no rendering required. The trouble starts when a redirect depends on something the crawler doesn't process. A **JavaScript redirect** (`window.location = ...`) only fires if the crawler executes JavaScript, and [most AI crawlers don't run JavaScript](/learn/javascript-breaks-ai-citation), so the crawler sees the intermediate page and stops. A **meta-refresh** redirect sits in the HTML and is interpreted inconsistently. The dependable mechanism is a server-side HTTP redirect, which every compliant crawler understands without rendering.
+
+## What is the difference between 301, 302, 307, and 308?
+
+The status code tells the engine *why* you're redirecting, and that meaning controls whether signals transfer. Permanence is the key axis: permanent codes invite consolidation of authority onto the destination, temporary codes tell engines the original URL is still the one to keep.
+
+<ComparisonTable
+  caption="Redirect types: how each behaves for AI crawlers"
+  columns={["Type", "Signals passed?", "Crawler-safe?", "When to use"]}
+  rows={[
+    ["301 (permanent)", "Yes — consolidates onto new URL", "Yes, universally followed", "Permanent URL moves and migrations"],
+    ["308 (permanent)", "Yes — like 301, preserves method", "Yes", "Permanent moves where the request method must stay (e.g. POST)"],
+    ["302 (temporary)", "Often not — original stays canonical", "Yes, but signals may not transfer", "Genuinely temporary detours only"],
+    ["307 (temporary)", "Often not, preserves method", "Yes, but temporary semantics", "Temporary redirect that must keep the method"],
+    ["Meta-refresh", "Weak and inconsistent", "Unreliable", "Avoid — use a server 301 instead"],
+    ["JavaScript redirect", "Usually not", "No — missed by non-rendering crawlers", "Avoid for citable content"],
+  ]}
+/>
+
+The frequent mistake is using a **302 for a permanent move** because it's the default in some frameworks. The content lives at the new URL, but the temporary status tells engines to keep treating the old URL as canonical — so accrued citation signals never migrate. Match the code to your intent: permanent move, permanent code.
+
+## Why do redirect chains and loops break crawling?
+
+Chains and loops break crawling by spending the crawler's limited budget on hops instead of content. A **chain** — A redirects to B redirects to C redirects to D — forces the crawler through every intermediate URL before reaching the page that matters. Each hop costs a request, slows the crawl, and risks **signal decay** as authority is handed down the chain. Critically, **some crawlers cap the number of hops** they'll follow and abandon the request before reaching the destination, leaving the final page uncrawled and uncitable. A **loop** — where redirects circle back on themselves — never resolves and burns budget until the crawler gives up.
+
+<PullQuote cite="The cost of a chain">
+  Every extra hop is a request the crawler didn't spend on a page worth citing — and
+  if the chain is long enough, it gives up before it ever reaches the destination.
+</PullQuote>
+
+The fix is structural: every old URL should redirect **directly** to its final destination in a single hop. After a migration, audit for chains that accumulate as URLs move more than once, and flatten them.
+
+## How do I migrate URLs without losing accrued citations?
+
+You migrate safely by mapping every old URL one-to-one to its exact new equivalent and reinforcing the move with every other signal. The principle: preserve the relationship between content and address so engines recognize the new URL as the same page that earned its citations, not a new one starting from zero.
+
+<Steps
+  items={[
+    { title: "Map URLs one-to-one", body: "Match each old URL to its exact new equivalent. Don't redirect everything to the homepage — that tells engines the old content is gone, and accrued signals dissipate." },
+    { title: "Use single-hop 301s", body: "Redirect every old URL directly to its final destination with a permanent 301 (or 308 where the method matters). No chains." },
+    { title: "Update internal links and sitemaps", body: "Point internal links and sitemap entries at the new URLs so engines aren't repeatedly rediscovering the redirect." },
+    { title: "Verify the destination", body: "Confirm each new URL returns 200 with the same content and a self-referencing canonical — not another redirect or an error." },
+    { title: "Keep redirects live long enough", body: "Leave the 301s in place until crawlers have recrawled and consolidated the new URLs — months, not days." },
+  ]}
+/>
+
+Redirecting many old URLs to a single generic page is the migration killer: engines treat a redirect to an irrelevant destination as a soft signal that the original content no longer exists, so the citations don't transfer. One-to-one mapping is what carries authority across the move.
+
+<Checklist
+  title="Safe-redirect checklist"
+  items={[
+    "Permanent moves use 301 (or 308), not 302/307.",
+    "Every redirect is server-side, not JavaScript or meta-refresh.",
+    "No chains — each old URL points directly to its final destination.",
+    "No loops — redirects always resolve to a 200.",
+    "Old URLs map one-to-one to their new equivalents, not to the homepage.",
+    "Internal links and the sitemap reference the new URLs.",
+    "Destination URLs return 200 with a self-referencing canonical.",
+    "Redirects stay in place long enough for crawlers to recrawl and consolidate.",
+  ]}
+/>
+
+This is squarely an [access](/pillars/access) concern: redirects decide whether a crawler can reach your content and whether the signals it carries survive the trip. Redirects and canonicals work as a pair — redirects physically move the crawler while [canonical tags declare the preferred URL](/learn/canonical-urls-ai-citation) — and both feed into how you manage [crawl budget for AI crawlers](/learn/crawl-budget-ai), since wasted hops are wasted visits.
+
+<RelatedQuestions
+  items={[
+    {
+      q: "Why does JavaScript break AI citation eligibility?",
+      a: "Most AI crawlers don't execute JavaScript, so a JS-only redirect — like JS-rendered content — is invisible to them and the destination is never reached.",
+      href: "/learn/javascript-breaks-ai-citation",
+    },
+    {
+      q: "Which URL does AI cite when content exists at multiple addresses?",
+      a: "Engines consolidate duplicates to one canonical version; redirects and canonical tags together tell them which URL to treat as authoritative.",
+      href: "/learn/canonical-urls-ai-citation",
+    },
+    {
+      q: "How does crawl budget affect AI crawlers?",
+      a: "Crawlers spend limited visits per site; chains and loops waste that budget on hops instead of citable pages.",
+      href: "/learn/crawl-budget-ai",
+    },
+    {
+      q: "What is crawlability?",
+      a: "Crawlability is whether a crawler can reach and fetch a URL; broken or chained redirects are a common reason it fails.",
+      href: "/glossary/crawlability",
+    },
+    {
+      q: "What is the access pillar in the AEO Canon?",
+      a: "Access covers permission, crawlability, and consolidation — whether an engine can reach your content and attribute it to the right URL.",
+      href: "/pillars/access",
+    },
+    {
+      q: "noindex, nofollow, and the robots meta tag: what do AI engines obey?",
+      a: "Robots directives control indexing and serving after a fetch; pair them with clean redirects so crawlers reach the pages you want and skip the ones you don't.",
+      href: "/learn/meta-robots-ai-crawlers",
+    },
+  ]}
+/>

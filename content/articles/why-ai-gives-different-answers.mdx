@@ -1,0 +1,166 @@
+---
+title: "Why AI Gives Different Answers to the Same Question"
+slug: why-ai-gives-different-answers
+summary: AI gives different answers to the same question because generation is probabilistic and the retrieval feeding it varies run to run. For AEO this means citation is a probability, not a fixed result — so you measure citation share over many runs and build redundancy to raise your odds.
+topics:
+  - ai-fundamentals
+  - answer-engines
+author: burke-atkerson
+published: 2026-06-25
+updated: 2026-06-25
+schemaType: Article
+faqs:
+  - q: Why does AI give different answers to the same prompt?
+    a: Because the model picks each word by sampling from a probability distribution, not by choosing one fixed output. Settings like temperature and top-p add controlled randomness, the sources retrieved can differ from run to run, and session context, personalization, and model updates all shift the result. Ask twice and you may get two valid but different answers.
+  - q: What are temperature and top-p?
+    a: Temperature and top-p are sampling controls that govern how random the model's word choices are. Higher temperature flattens the probability distribution so less-likely words get chosen more often; top-p (nucleus sampling) restricts choices to the smallest set of words that together cover a probability threshold. Both trade consistency for variety, which is why repeated answers differ.
+  - q: How should I measure AI citations given this variance?
+    a: Measure citation share across many runs, not a single check. Run the same and related queries repeatedly across engines, log how often you appear, and track that rate over time. One absence means little; a low share across dozens of runs is the real signal, and a rising share is the real win.
+  - q: How do I raise my odds of being cited under non-determinism?
+    a: Build redundancy. Make every key passage answer-first and self-contained so it scores well on any run, cover a question from several angles, and earn broad off-site authority so multiple signals point to you. The goal is to be the strong answer often enough that probability works in your favor.
+---
+
+**AI gives different answers to the same question because it generates each word
+probabilistically and the sources it retrieves vary from one run to the next.** The
+same prompt can produce two correct but differently-worded answers, citing different
+sites, minutes apart. This is not a bug — it is how the systems are built — and it
+reshapes how you should think about, and measure, AI citations.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Language models choose each token by sampling from a probability distribution, and
+    settings like temperature and top-p inject controlled randomness. Layer on
+    retrieval variance, session context, personalization, and version updates, and the
+    same question yields different answers. For AEO the lesson is that citation is
+    probabilistic: measure your citation share over many runs, and build redundancy to
+    raise the odds you are cited on any given one.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Models generate text by sampling the next token from a probability distribution, not by returning one fixed answer.",
+    "Temperature and top-p (nucleus sampling) control how much randomness enters that choice.",
+    "Retrieval varies too: a different candidate set each run means different sources get cited.",
+    "Session context, personalization, and model/version updates add further variation.",
+    "AEO response: measure citation SHARE across many runs, and build redundancy to raise your per-run probability.",
+  ]}
+/>
+
+## Why is AI generation non-deterministic?
+
+AI generation is non-deterministic because the model produces text one
+[token](/glossary/token) at a time by sampling from a probability distribution over
+all possible next tokens. At each step it does not ask "what is the single correct next
+word?" but "given everything so far, how likely is each possible next word?" — and then
+it draws from those likelihoods. Run it again and a different draw produces a different,
+often equally valid, continuation.
+
+This is the core mechanism behind [how LLMs work](/learn/how-llms-work). Even small
+differences early in a response compound: pick a slightly different opening clause and
+the rest of the answer follows a different path. The model is not confused or
+inconsistent — it is doing exactly what a probabilistic generator does, which is to
+explore the space of good answers rather than memorize one.
+
+## What do temperature and top-p actually change?
+
+Temperature and top-p change how adventurous the sampling is.
+[Temperature](/glossary/temperature) scales the probability distribution before
+sampling: low temperature sharpens it toward the single most likely token (more
+repeatable, more conservative), while high temperature flattens it so less-likely
+tokens get picked more often (more varied, more creative). Top-p, or nucleus sampling,
+takes a different cut — it restricts choices to the smallest set of tokens whose
+probabilities sum to a threshold, then samples within that set.
+
+<BarChart
+  caption="Illustrative example (not a measured finding): how often the same prompt repeats its exact top answer as temperature rises. Real values vary by model and prompt."
+  data={[
+    { label: "Temp 0.0", value: 95, display: "~95%", color: "var(--accent)" },
+    { label: "Temp 0.5", value: 70, display: "~70%", color: "var(--accent)" },
+    { label: "Temp 1.0", value: 40, display: "~40%", color: "var(--accent)" },
+  ]}
+/>
+
+Most public AI answer engines do not run at temperature zero. They keep some
+randomness for fluency and variety, which means you should expect — and plan around —
+answers that differ each time, even before retrieval enters the picture.
+
+## Why do the cited sources change between runs?
+
+The cited sources change because retrieval itself varies. As covered in
+[how AI retrieval works](/learn/how-ai-retrieval-works), the engine rewrites your query
+(sometimes into several variants), runs it against an index, and pulls a candidate set
+before the model writes anything. Slightly different query phrasing, index updates
+between runs, freshly crawled pages, and approximate nearest-neighbor search that does
+not return identical results every time all shift which passages enter the candidate
+pool — and therefore which sources are available to cite.
+
+<Callout variant="insight" title="Two layers of variance, stacked">
+  <p>
+    There are two independent sources of variation, and they multiply. First,
+    <strong> retrieval</strong> may hand the model a different candidate set this run.
+    Second, <strong>generation</strong> may sample a different answer from whatever it
+    was given. A single check sees one roll of both dice — which is why one observation
+    tells you almost nothing about your real standing.
+  </p>
+</Callout>
+
+## What else makes answers differ?
+
+Beyond sampling and retrieval, three forces add variation. Session context: earlier
+turns in a conversation steer later answers, so the same question lands differently
+depending on what preceded it. Personalization: some engines weight a user's location,
+history, or settings. And model updates: vendors ship new versions and adjust
+[retrieval](/glossary/retrieval) and ranking continuously, so an answer that cited you
+last month may not this month — and one that ignored you may start. None of this is
+under your direct control, which is precisely why the response is statistical.
+
+## How do you measure citations under this variance?
+
+You measure citation *share*, not a single result. Because any one answer is a roll of
+the dice, the meaningful number is how often you appear across many runs of the same
+and related queries, tracked over time. A rising share is a real win; one absence is
+noise.
+
+<Steps
+  items={[
+    { title: "Define the query set", body: "List the real questions your audience asks, plus close paraphrases — variance lives in the phrasing." },
+    { title: "Run repeatedly across engines", body: "Query each engine many times, on different days. One run per question is not a measurement." },
+    { title: "Log appearance rate", body: "Record how often you are cited or named per query — that rate is your citation share." },
+    { title: "Track the trend, not the snapshot", body: "Watch whether share rises after you ship changes; week-to-week wobble is expected." },
+  ]}
+/>
+
+This is the discipline behind [how to track AI citations](/learn/how-to-track-ai-citations):
+treat the data as a distribution, not a verdict.
+
+## How do you raise your odds of being cited?
+
+You raise your odds by building redundancy so that on any given run, multiple paths
+lead to you. Make every key passage answer-first and self-contained, so it scores well
+no matter which query variant retrieval used — this is the
+[extractability](/pillars/extractability) pillar working in your favor. Cover an
+important question from several angles and pages, so more than one candidate can
+surface. And earn broad off-site authority, so the reranker keeps trusting you across
+versions and updates.
+
+<PullQuote cite="The probabilistic view of AEO">
+  You cannot guarantee a citation on a single run. You can make yourself the answer so
+  often that probability stops being your enemy.
+</PullQuote>
+
+The opposite approach — checking once, seeing yourself absent, and concluding AEO
+"doesn't work" — mistakes one sample for the whole distribution. Citation is a
+probability you raise, run after run, not a switch you flip.
+
+<RelatedQuestions
+  items={[
+    { q: "How do AI engines retrieve sources before answering?", a: "They rewrite the query, run hybrid keyword and vector search, rerank the candidates, then generate and cite.", href: "/learn/how-ai-retrieval-works" },
+    { q: "How do I track AI citations?", a: "Run query sets repeatedly across engines and measure how often you appear over time, not in a single check.", href: "/learn/how-to-track-ai-citations" },
+    { q: "How do LLMs work?", a: "They predict the next token from a probability distribution learned over huge amounts of text.", href: "/learn/how-llms-work" },
+    { q: "What is tokenization?", a: "The process of splitting text into tokens, the units a model generates one at a time.", href: "/learn/what-is-tokenization" },
+    { q: "Why do AI models hallucinate?", a: "Probabilistic generation can produce fluent but unsupported text when grounding is weak or missing.", href: "/learn/why-do-ai-models-hallucinate" },
+    { q: "How do AI engines choose citations?", a: "A reranker scores retrieved passages on relevance, authority, and freshness before the model cites them.", href: "/learn/how-ai-engines-choose-citations" },
+    { q: "What is a context window?", a: "The span of text a model can consider at once, which shapes how session context steers each answer.", href: "/learn/what-is-a-context-window" },
+  ]}
+/>

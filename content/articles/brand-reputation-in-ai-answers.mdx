@@ -1,0 +1,166 @@
+---
+title: "When AI Gets You Wrong: Managing Brand Reputation in AI Answers"
+slug: brand-reputation-in-ai-answers
+summary: AI answers describe and recommend your brand with no editorial review, so they can be outdated, wrong, or hallucinated. Manage it by monitoring what engines say across a prompt set, then correcting your source of truth, your entity, and your corroborating sources.
+topics:
+  - analytics-measurement
+  - answer-engines
+author: burke-atkerson
+published: 2026-06-25
+updated: 2026-06-25
+schemaType: Article
+faqs:
+  - q: Why does AI describe my brand incorrectly?
+    a: Usually because the sources it draws on are stale, thin, or contradictory. AI answers are assembled from training data and retrieved pages without editorial review, so an outdated fact on your own site, a weak or conflicting third-party source, a confusable competitor, or a thin entity profile can all produce a wrong description. Sometimes the model simply hallucinates a plausible-sounding detail that no source supports.
+  - q: How do I monitor what AI says about my brand?
+    a: Build a fixed set of prompts a real customer might ask — what does X do, is X any good, X vs a competitor, X pricing — and run them across the major engines on a regular cadence. Track not just whether you're cited but whether the answer is accurate and how it characterizes you. Logging the same prompts over time turns one-off impressions into a measurable reputation signal.
+  - q: How do I correct a false claim an AI is making about my brand?
+    a: Fix the source of truth first — the page on your own site that should be authoritative — then strengthen corroborating third-party sources that say the same thing, and clean up your entity and knowledge-graph presence so engines can resolve who you are. Engines update as they re-crawl and retrain, so correction is about changing the evidence landscape, not filing a takedown.
+  - q: Can I force an AI to fix a mistake about my company?
+    a: Not directly and not instantly. There is no edit button on a model's answer. What you can do is make the correct, well-sourced information unmistakably easy to find and corroborate, so the next crawl and retrain pick it up. For a damaging, spreading falsehood, escalate through the engine's feedback channels while you repair the underlying sources.
+---
+
+**AI answers describe and recommend your brand with no editorial review, so they
+can be outdated, wrong, confuse you with a competitor, surface a stale negative, or
+hallucinate facts outright.** Managing reputation in AI answers means monitoring
+what engines *say* about you — not just whether they cite you — and then repairing
+the sources those answers are built from.
+
+<Callout variant="warning" title="There is no edit button">
+  <p>
+    No engine lets you correct its answer directly. You influence what AI says by
+    changing the <strong>evidence it reads</strong> — your site, your entity, and
+    your corroborating third-party sources — then waiting for the next crawl and
+    retrain. Reputation work here is <strong>source repair</strong>, not a takedown
+    request.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "AI answers about your brand have no editorial review — they can be stale, wrong, mixed up, or hallucinated.",
+    "Monitor what engines say, tracking accuracy and sentiment, not just citation counts.",
+    "Most errors trace to stale, thin, or contradictory sources — or a weak entity.",
+    "Fix the source of truth first, then strengthen corroborating third-party sources.",
+    "A clean, well-connected entity is the strongest defense against confusion and hallucination.",
+  ]}
+/>
+
+## Why does AI get brands wrong?
+
+AI gets brands wrong because it assembles answers from imperfect evidence with no
+fact-checker in the loop. Four causes recur. **Stale training data** means the model
+learned an old fact — a former product, price, or leadership detail — that it
+repeats long after you changed it. **Weak or contradictory sources** leave the engine
+guessing between conflicting claims about you. A **thin [entity](/glossary/entity)**
+— little clear, structured information about who you are — makes you easy to confuse
+with a similarly named competitor. And sometimes the model simply
+[hallucinates](/glossary/hallucination): it generates a plausible detail no source
+supports. [Why AI models hallucinate](/learn/why-do-ai-models-hallucinate) explains
+the mechanism. Layered on top is [citation
+volatility](/glossary/citation-volatility): the same prompt can yield different
+sources and framings on different days, so a wrong answer may appear intermittently
+rather than every time.
+
+## How do you monitor what AI says about you?
+
+Monitor with a fixed prompt set run across engines on a cadence, scoring accuracy
+and sentiment — not only citations. Pick the questions a real prospect would ask,
+run them on each major engine, and log what comes back.
+
+<Steps
+  items={[
+    { title: "1. Build a brand prompt set", body: "Write the questions customers actually ask: \"What does [brand] do?\", \"Is [brand] any good?\", \"[brand] vs [competitor]\", \"[brand] pricing\", \"problems with [brand]\"." },
+    { title: "2. Run across engines", body: "Execute the same prompts on each major answer engine on a regular schedule, so you capture per-engine differences and drift over time." },
+    { title: "3. Score accuracy & sentiment", body: "For each answer, record whether the facts are correct, whether tone is positive/neutral/negative, and which sources the engine leaned on." },
+    { title: "4. Log and trend", body: "Keep the results in a simple tracker so a one-off bad answer is visible as a pattern — or as noise from citation volatility." },
+    { title: "5. Triage", body: "Flag answers that are factually wrong or damaging for the response playbook; note minor staleness for the routine refresh queue." },
+  ]}
+/>
+
+This is the reputation-facing side of measurement; pair it with [how to track AI
+citations](/learn/how-to-track-ai-citations) for the visibility side.
+
+## What's the response playbook when AI is wrong?
+
+The response playbook is to repair the evidence the answer was built from, in order
+of leverage — source of truth first, then corroboration, then entity, then
+freshness.
+
+<Steps
+  items={[
+    { title: "Correct your source of truth", body: "Fix the authoritative page on your own site — About, product, pricing, leadership — so the canonical fact is unambiguous and answer-first." },
+    { title: "Strengthen corroborating sources", body: "Make sure credible third-party sources say the same correct thing. One isolated correct page loses to several stale or conflicting ones." },
+    { title: "Clean your entity & knowledge graph", body: "Ensure your entity is clearly defined and connected (sameAs, consistent naming) so engines resolve who you are and don't blend you with a competitor." },
+    { title: "Refresh stale content", body: "Update old pages carrying the outdated fact, and add clear publish/updated signals so engines prefer the current version." },
+  ]}
+/>
+
+[Building your entity](/learn/build-your-entity) and [building trust with AI
+engines](/learn/how-to-build-trust-with-ai-engines) are the durable foundation —
+they make the correct answer the path of least resistance for the model.
+
+## Why does the entity matter most?
+
+The entity matters most because confusion and hallucination both stem from an engine
+not clearly knowing *who you are*. When your [entity](/glossary/entity) is
+well-defined — consistent name and description, connected to authoritative
+references, corroborated across the web — engines can resolve you unambiguously,
+attach the right facts, and resist mixing you with a same-named competitor. A thin
+entity does the opposite: it leaves gaps the model fills with guesses. Investing in
+entity clarity is the single highest-leverage reputation move, because it reduces
+the *cause* of errors rather than chasing each wrong answer after the fact. It also
+compounds with everything else — a strong entity makes your source-of-truth
+corrections land faster and your corroborating sources count for more.
+
+## What about a damaging, spreading falsehood?
+
+Treat a damaging false claim as a crisis path, not the routine queue. When a
+specific, harmful, untrue claim about you starts appearing across engines, work two
+tracks at once.
+
+<Callout variant="tip" title="Two tracks in a reputation crisis">
+  <p>
+    <strong>Repair the evidence</strong> — publish a clear, well-sourced correction
+    on your own authoritative page, line up credible third-party corroboration, and
+    fix the entity — while you <strong>escalate</strong> through each engine&apos;s
+    feedback or reporting channel. The first track is what actually changes future
+    answers; the second flags urgency. Document instances with dates and screenshots
+    so the pattern is provable.
+  </p>
+</Callout>
+
+<Checklist
+  title="Brand-in-AI monitoring & response readiness"
+  items={[
+    "A fixed brand prompt set is run across engines on a regular cadence.",
+    "You score accuracy and sentiment, not just whether you're cited.",
+    "Results are logged over time so patterns separate from volatility.",
+    "Your source-of-truth pages carry clear, current, answer-first facts.",
+    "Credible third-party sources corroborate your key claims.",
+    "Your entity is clearly defined and connected so engines don't confuse you.",
+    "A documented crisis path exists for damaging false claims.",
+  ]}
+/>
+
+## Where this fits in the Canon
+
+Managing brand reputation in AI answers extends measurement from "are we cited?" to
+"what is said about us?" — and it leans on the same foundations as visibility.
+Build the base with [your entity](/learn/build-your-entity) and [trust with AI
+engines](/learn/how-to-build-trust-with-ai-engines), understand the failure mode in
+[why AI models hallucinate](/learn/why-do-ai-models-hallucinate), and track signals
+with [how to track AI citations](/learn/how-to-track-ai-citations). As reputation
+work scales across a team, formalize the standards in [AEO
+governance](/learn/aeo-governance).
+
+<RelatedQuestions
+  items={[
+    { q: "Why do AI models hallucinate?", a: "Models generate plausible text from patterns, so with thin or conflicting evidence they can invent details about your brand.", href: "/learn/why-do-ai-models-hallucinate" },
+    { q: "How do I track my AI citations?", a: "Run a fixed prompt set across engines and log where and how often you appear over time.", href: "/learn/how-to-track-ai-citations" },
+    { q: "How do I build trust with AI engines?", a: "Consistent authorship, corroborated facts, and clear sourcing make your content the answer engines prefer to rely on.", href: "/learn/how-to-build-trust-with-ai-engines" },
+    { q: "How do I build my brand's entity?", a: "Define a consistent name and description, connect it to authoritative references, and corroborate it across the web.", href: "/learn/build-your-entity" },
+    { q: "What is citation volatility?", a: "It's the day-to-day variation in which sources and framings an engine returns for the same prompt.", href: "/glossary/citation-volatility" },
+    { q: "How do I govern AEO across a team?", a: "Set policy for accuracy review, sourcing standards, and disclosure so claims hold up as AI amplifies them.", href: "/learn/aeo-governance" },
+  ]}
+/>

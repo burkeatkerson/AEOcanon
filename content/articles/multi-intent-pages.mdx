@@ -1,0 +1,137 @@
+---
+title: "One Page or Many? Structuring Multi-Intent Topics for AEO"
+slug: multi-intent-pages
+summary: Keep related questions on one page when each can stand alone as a self-contained, answer-first section; split into focused pages when intents diverge enough to need separate canonical query targets. Structure either with one question per H2.
+topics:
+  - on-page-seo
+  - content-strategy
+author: burke-atkerson
+published: 2026-06-25
+updated: 2026-06-25
+schemaType: Article
+faqs:
+  - q: Should I answer multiple questions on one page or split them?
+    a: Consolidate when the questions share intent and each can be a self-contained section. Split when intents diverge enough that one URL cannot answer or rank cleanly, or when each question deserves its own canonical query target.
+  - q: Can one page get cited for several different questions?
+    a: Yes. Engines lift self-contained passages, so a single page can hold many distinct answer-first sections, each cited for a different question, as long as every section stands alone.
+  - q: When does splitting into separate pages help AEO?
+    a: When intents diverge, when each question has enough depth to warrant its own URL, or when combining them would dilute the canonical query target and confuse what the page is about.
+  - q: How do I avoid keyword cannibalization with multi-intent pages?
+    a: Give each distinct canonical query its own page, and within a single page ensure sections target genuinely different questions so two URLs do not compete for the same query.
+---
+
+**Keep related questions on one page when each can stand alone as a self-contained, answer-first section; split them into separate pages when their intents diverge enough that one URL cannot answer or rank cleanly.** Engines cite passages, not whole pages, so a long page can earn multiple citations, but only if each section is independently liftable.
+
+The decision is not about length. It is about whether each question deserves its own canonical query target.
+
+<Callout variant="key" title="Quick answer">
+<p>Consolidate when questions share intent and each can be a self-contained chunk under its own question-shaped H2. Split when intents diverge, each question has real depth, or each needs a distinct canonical URL. One page can be cited for many questions if every section answers on its own.</p>
+</Callout>
+
+<KeyTakeaways items={[
+  "Engines cite self-contained passages, so one page can earn many citations.",
+  "Consolidate when intents are close and each section can stand alone.",
+  "Split when intents diverge or each question deserves its own canonical URL.",
+  "Structure multi-intent pages as one question per H2, each a liftable chunk.",
+  "Avoid cannibalization by giving distinct canonical queries distinct pages."
+]} />
+
+## Why can one page get cited for many questions?
+
+**Because engines extract passages, not entire documents.** A page about a product can be cited for "what is X" from one section, "how to use X" from another, and "X pricing" from a third, provided each section answers its question completely without leaning on the others.
+
+This is the core of [extractability](/pillars/extractability): the unit of citation is the [chunk](/glossary/chunking), not the URL. A well-built multi-intent page is effectively a Q&A library where each entry is independently liftable. The risk is the opposite of length: sections that reference each other ("as we saw above") break self-containment and become uncitable. See [should content sections stand alone](/learn/should-content-sections-stand-alone).
+
+## When should you consolidate versus split?
+
+**Consolidate around shared intent; split around divergent intent or distinct canonical targets.**
+
+<DecisionBlock
+  title="Combine onto one page or split into many?"
+  options={[
+    {label: "Combine onto one page", when: [
+      "The questions share a single underlying intent",
+      "Each answer is short to medium and can stand alone",
+      "Readers naturally want them together in one place",
+      "No single question has enough depth to need its own URL"
+    ]},
+    {label: "Split into focused pages", when: [
+      "Intents diverge (informational versus transactional)",
+      "Each question has enough depth for a full article",
+      "Each deserves its own canonical query target",
+      "Combining would blur what the page is fundamentally about"
+    ]}
+  ]}
+/>
+
+A useful test: if you can name a single dominant question the page answers, you can probably keep the supporting questions as sections. If two questions each demand their own dominant query, give them their own pages.
+
+## How do intents differ on a typical topic?
+
+**Some intents sit close enough to share a page; others pull in opposite directions.**
+
+<ComparisonTable
+  caption="Same topic, different intents and the likely structure"
+  columns={["Question", "Intent", "Likely placement"]}
+  rows={[
+    ["What is X?", "Informational, definitional", "Section on a hub page"],
+    ["How do I use X?", "Instructional", "Section, or its own page if deep"],
+    ["X vs Y", "Comparative, decision", "Often its own page"],
+    ["How much does X cost?", "Transactional", "Often its own page"],
+    ["Best X for beginners", "Commercial investigation", "Its own page"]
+  ]}
+/>
+
+Definitional and instructional intents often coexist comfortably. Comparative and transactional intents usually want dedicated URLs because their canonical queries and reader mindsets differ sharply.
+
+## How do you structure a multi-intent page?
+
+**Build it as a Q&A library: one question per H2, each section answer-first and self-contained, with anchor links for navigation.**
+
+<Steps items={[
+  {title: "Map the questions", body: "List every question the page will answer and confirm they share intent enough to coexist."},
+  {title: "Write question-shaped H2s", body: "Phrase each heading as the actual question a user would ask the engine."},
+  {title: "Answer-first in each section", body: "Open every section with a complete, self-contained answer before adding detail."},
+  {title: "Add an anchor table of contents", body: "Link internal anchors so readers and engines can navigate to each distinct answer."},
+  {title: "Cross-link split topics", body: "Where a question grew into its own page, link to it rather than duplicating the depth."}
+]} />
+
+Each H2 should be a [question-shaped heading](/glossary/question-shaped-heading) so the section maps directly to a query. For the full pattern, see [turn a page into a Q&A library](/learn/turn-page-into-qa-library) and the limits in [how many questions per page](/learn/how-many-questions-per-page).
+
+## What is the cannibalization risk when splitting?
+
+**Splitting helps only when each new page owns a genuinely different canonical query; otherwise you create two URLs competing for the same one.** That is keyword cannibalization, and it dilutes both pages.
+
+Before splitting, confirm each page targets a query the other does not. If "X pricing" and "X cost" are the same intent, they belong together, not on two thin pages. Cluster related pages under a clear [topic cluster](/glossary/topic-cluster) with one hub, so the structure builds topical depth instead of internal competition.
+
+<Callout variant="warning" title="Thin splits hurt">
+<p>Splitting one solid page into several thin ones rarely helps. If a would-be page cannot stand as a complete, self-contained answer on its own, keep it as a section of the stronger page.</p>
+</Callout>
+
+## How do you decide and ship?
+
+<Checklist
+  title="Multi-intent structuring checklist"
+  items={[
+    "Every question is mapped to a clear intent",
+    "Co-located sections share a single dominant intent",
+    "Each section opens with a self-contained, answer-first passage",
+    "Each H2 is phrased as the user's actual question",
+    "Split pages each own a distinct canonical query",
+    "No two URLs compete for the same query",
+    "An anchor table of contents links each section",
+    "Deep, divergent questions get their own pages and are cross-linked"
+  ]}
+/>
+
+For deciding which questions deserve a page at all, pair this with [prioritize questions for AEO](/prioritize-questions-aeo).
+
+<RelatedQuestions items={[
+  {q: "How many questions should one page answer?", a: "As many as can each stand alone as a self-contained, answer-first section without diluting the page's focus.", href: "/learn/how-many-questions-per-page"},
+  {q: "Should content sections stand alone?", a: "Yes. Self-contained sections are the unit engines lift, so each must answer without relying on others.", href: "/learn/should-content-sections-stand-alone"},
+  {q: "How do I turn a page into a Q&A library?", a: "Use one question-shaped H2 per section, each opening with a complete answer.", href: "/learn/turn-page-into-qa-library"},
+  {q: "How do I prioritize which questions to answer?", a: "Rank questions by demand, intent value, and your ability to answer them uniquely.", href: "/prioritize-questions-aeo"},
+  {q: "What is chunking in AEO?", a: "Breaking content into self-contained passages an engine can extract and cite independently.", href: "/glossary/chunking"},
+  {q: "What is a topic cluster?", a: "A hub page plus related pages that together build topical authority on a subject.", href: "/glossary/topic-cluster"},
+  {q: "What is the extractability pillar?", a: "The principle that content must be structured so engines can lift self-contained answers.", href: "/pillars/extractability"}
+]} />

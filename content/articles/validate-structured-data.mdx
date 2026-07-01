@@ -1,0 +1,94 @@
+---
+title: "How to Validate Your Schema — and the Mistakes That Break Entity Recognition"
+slug: validate-structured-data
+summary: Schema only works when it is valid and matches your visible content. Validate it with the Schema Markup Validator and Rich Results Test, and fix errors like wrong @type, broken sameAs, and markup-content mismatches that quietly undermine entity recognition.
+topics:
+  - structured-data
+  - technical-seo
+author: burke-atkerson
+published: 2026-06-25
+updated: 2026-06-25
+schemaType: Article
+faqs:
+  - q: Where do I validate structured data?
+    a: Use the Schema Markup Validator at validator.schema.org to check whether your JSON-LD parses and conforms to schema.org. Use Google's Rich Results Test to see whether your markup qualifies for specific rich result features. They answer different questions, so run both.
+  - q: Will broken schema hurt my AI citations?
+    a: Valid schema is not a proven AI-citation lever, but broken or mismatched schema can undermine the entity clarity it is supposed to provide. Invalid JSON, wrong types, and markup that contradicts the page create confusion and a trust risk, so validation is about protecting your entity signals rather than chasing a ranking boost.
+  - q: What is the most common schema mistake?
+    a: Markup that describes content not visible on the page. Search engines treat this as a quality and trust violation. The fix is simple — only mark up what a user can actually see and read on the page, and keep the markup in sync whenever the visible content changes.
+  - q: Do I need every property schema.org lists?
+    a: No. Each type has required properties that must be present and recommended properties that improve completeness. Fill the required ones first, add recommended ones where they reflect real page content, and skip properties that do not apply rather than padding with filler.
+---
+
+**Schema markup only helps you if it is valid, complete, and consistent with what the page actually shows.** Broken or mismatched markup does not just fail to help; it can quietly erode the entity clarity that schema exists to provide. Validation is the cheap insurance that keeps your structured data working as infrastructure.
+
+<Callout variant="key" title="Quick answer"><p>Validate schema with the Schema Markup Validator (validator.schema.org) for conformance and Google's Rich Results Test for feature eligibility. Fix invalid JSON, wrong @type values, broken sameAs links, missing @id linkage, conflicting blocks, and any markup that describes content not on the page. Valid schema is not a proven AI-citation booster, but broken schema can damage entity recognition.</p></Callout>
+
+<KeyTakeaways items={[
+  "Run two checks: the Schema Markup Validator for conformance and the Rich Results Test for feature eligibility.",
+  "Required properties must be present; recommended ones add completeness but only when they reflect real content.",
+  "Markup must match visible content, or search engines treat the mismatch as a trust violation.",
+  "Common silent failures: invalid JSON, wrong @type, broken sameAs, missing @id linkage, and conflicting blocks.",
+  "Schema is not a proven AI-citation lever, but broken schema can undermine entity recognition, so validate it."
+]} />
+
+## What does it mean for schema to be valid?
+
+**Valid schema parses as correct JSON, uses real schema.org types and properties, and accurately describes the page it sits on.** Validity has layers. The first is syntactic: the [JSON-LD](/glossary/json-ld) must be well-formed, with no trailing commas, unescaped quotes, or broken brackets. A single syntax error can cause a parser to discard the entire block.
+
+The second layer is semantic: the `@type` must be a recognized type, properties must belong to that type, and values must be the expected shape. The third and most overlooked layer is consistency: the markup must reflect content a user can actually see. A `Recipe` block on a page with no recipe, or a `Review` rating that appears nowhere on screen, is technically parseable but functionally invalid in the eyes of search engines. All three layers must hold for [schema markup](/glossary/schema-markup) to do its job.
+
+## How do I validate structured data step by step?
+
+**Run your markup through both validators, fix what breaks parsing first, then resolve warnings and mismatches.** The two tools answer different questions, so neither replaces the other.
+
+<Steps items={[
+  {title: "Check conformance with the Schema Markup Validator", body: "Paste your URL or code into validator.schema.org. This confirms the JSON-LD parses and uses valid schema.org types and properties. Resolve every error before moving on, because errors often mean the block is being discarded entirely."},
+  {title: "Check feature eligibility with the Rich Results Test", body: "Run the same page through Google's Rich Results Test. This tells you whether the markup qualifies for specific rich result types, such as FAQ or Article, and flags missing required properties for those features."},
+  {title: "Compare markup to the visible page", body: "Read your markup side by side with the rendered page. Every value, name, rating, date, and FAQ answer in the schema must correspond to something a visitor can see."},
+  {title: "Verify entity linkage", body: "Confirm your @id values connect related blocks, that sameAs URLs point to live, correct profiles, and that your Organization or Person entity is consistent across pages."},
+  {title: "Re-validate after content changes", body: "Treat validation as part of publishing. Whenever the visible content changes, re-check that the markup still matches it."}
+]} />
+
+## Which errors silently break schema?
+
+**The worst errors do not throw obvious failures; they parse fine but mislead the engine or get quietly dropped.** A clean validator pass on syntax can still hide consistency problems that damage how your [entity](/glossary/entity) is understood.
+
+<Checklist title="Common schema errors to hunt for" items={[
+  "Invalid JSON: trailing commas, smart quotes, or unescaped characters that void the whole block",
+  "Wrong @type: using a type that does not match the content, or a misspelled or non-existent type",
+  "Markup describing content not on the page, which search engines treat as a trust risk",
+  "Broken or fabricated sameAs URLs that point to dead, wrong, or unrelated profiles",
+  "Missing @id linkage, leaving related entities disconnected instead of tied together",
+  "Multiple conflicting blocks on one page that assert contradictory facts about the same entity",
+  "Required properties absent, causing the markup to fail feature eligibility silently"
+]} />
+
+The [sameAs](/glossary/sameas) property deserves special attention because it is how you connect your entity to authoritative references. A broken sameAs link is a missed connection at best and a credibility problem at worst.
+
+## Why must markup match visible content?
+
+**Because search engines explicitly penalize markup that describes things the user cannot see, treating it as a manipulation signal.** This is the single most important consistency rule in structured data, and it is easy to violate by accident, for example when a template injects a default rating or when content gets edited but the schema does not.
+
+<Callout variant="insight" title="Markup must mirror the page"><p>Structured data is a machine-readable summary of what is already on the page, not a place to add extra claims. If your FAQ schema lists a question that does not appear in the visible FAQ, or your Article schema cites an author who is not credited on the page, the mismatch can be read as deceptive. Keep markup and content in lockstep, and update both together.</p></Callout>
+
+## Does valid schema actually win AI citations?
+
+**No. Valid schema is reliable infrastructure for entity clarity and rich results, but it is not a proven lever for AI citation.** This is an important framing to get right so you spend effort where it pays off. An Ahrefs study of 1,885 pages in May 2026 found that the presence of schema produced no measurable lift in AI citations. Schema earns rich results in traditional search and gives engines a structured, unambiguous statement of your entity, but it does not buy its way into AI answers.
+
+That does not make validation optional. The reasoning flips: because schema is part of how engines build their understanding of your entity, broken schema can degrade that understanding. You validate not to chase a citation boost, but to make sure your entity signals are clean. For the bigger picture, see [does schema help AI citations](/learn/does-schema-help-ai-citations) and the foundational guide [structured data for AEO](/learn/structured-data-for-aeo).
+
+## How does validated schema support my entity?
+
+**Clean, consistent markup reinforces a single, unambiguous picture of who you are across your whole site.** Schema is one input into entity recognition, and consistency across pages is what makes it trustworthy. Your Organization name, logo, and sameAs links should match on every page; your author markup should describe the same Person consistently.
+
+When all of that is valid and aligned, you give engines a coherent signal rather than a contradictory one. That coherence is the goal of [build your entity](/learn/build-your-entity): not a single perfect block on one page, but a consistent identity expressed everywhere. Validation is how you confirm the signal you intend to send is the signal that actually goes out.
+
+<RelatedQuestions items={[
+  {q: "Does schema help AI citations?", a: "Valid schema supports entity clarity and rich results, but studies show no direct AI-citation lift from its presence.", href: "/learn/does-schema-help-ai-citations"},
+  {q: "What is structured data for AEO?", a: "Structured data is machine-readable markup that states facts about your content and entity in a standardized format.", href: "/learn/structured-data-for-aeo"},
+  {q: "How do I build my entity?", a: "Establish a consistent identity across your site with aligned names, descriptions, and authoritative sameAs links.", href: "/learn/build-your-entity"},
+  {q: "What is JSON-LD?", a: "JSON-LD is the recommended JSON-based syntax for embedding schema.org structured data in a page.", href: "/glossary/json-ld"},
+  {q: "What is an entity?", a: "An entity is a distinct, identifiable thing, such as a person, organization, or product, that engines recognize and connect.", href: "/glossary/entity"},
+  {q: "What is sameAs?", a: "sameAs is a schema property that links your entity to authoritative reference URLs like official profiles and knowledge bases.", href: "/glossary/sameas"}
+]} />

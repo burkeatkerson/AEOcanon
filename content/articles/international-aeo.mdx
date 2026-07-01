@@ -1,0 +1,100 @@
+---
+title: "International AEO: Getting Cited Across Languages and Regions"
+slug: international-aeo
+summary: To get cited across languages and regions, publish native-language content, signal versions with hreflang and x-default, build regional authority, localize examples, research prompts per language, and measure citations per market.
+topics:
+  - content-strategy
+  - technical-seo
+author: burke-atkerson
+published: 2026-06-25
+updated: 2026-06-25
+schemaType: Article
+faqs:
+  - q: Is machine translation good enough for international AEO?
+    a: Usually not on its own. Raw machine translation often misses the phrasing, terminology, and intent that native speakers actually use, which is what AI engines match against. It can work as a first draft, but native authoring or thorough localization produces the natural-language answers engines prefer to cite.
+  - q: Does hreflang help AI engines pick the right version?
+    a: Hreflang signals which language and regional version of a page serves which audience, and x-default names the fallback. It is a clarity signal that helps engines associate the right version with the right query, reducing the chance the wrong-language page surfaces for a given market.
+  - q: Do people phrase AI prompts differently in different languages?
+    a: Yes. Question phrasing, terminology, and even the questions people ask vary by language and region. Translating your English question headings word for word can miss how native speakers actually ask, so research prompts per language rather than translating your existing ones.
+  - q: Should I measure AI citations separately per region?
+    a: Yes. A page cited well in one market can be invisible in another because of language, regional authority, and engine differences. Track citations per language and region so you can see where you are winning and where a market needs more native content or authority work.
+---
+
+**Getting cited across languages and regions is an operational discipline: publish genuinely native content, signal your versions clearly, and build authority market by market.** A single English page translated by machine rarely becomes the cited answer abroad, because engines match the natural phrasing and trusted sources of each language and region.
+
+<Callout variant="key" title="Quick answer"><p>International AEO means earning citations in each target market on its own terms. Write or localize content natively rather than machine-translating, use hreflang plus x-default to signal language and regional versions, build regional entity and authority, localize examples and units, research how people phrase prompts in each language, and measure citations per market because results vary widely between them.</p></Callout>
+
+<KeyTakeaways items={[
+  "Native-language content beats raw machine translation, which misses the phrasing engines match against.",
+  "Use hreflang and x-default to signal which version serves which language and region.",
+  "Build entity and authority within each region, not just at your home market.",
+  "Localize currency, units, and examples so the answer actually fits the reader's context.",
+  "Research prompts and measure citations per language and region, because outcomes differ by market."
+]} />
+
+This guide is the operational playbook. For the separate question of whether engines tend to cite the same sources across languages, see [AI citation across languages](/learn/ai-citation-across-languages).
+
+## Why isn't machine translation enough?
+
+**Because AI engines match the natural language, terminology, and intent of native speakers, and raw machine translation rarely captures all three.** A literal translation can be grammatically correct yet read as foreign: wrong idioms, awkward term choices, and phrasing no native would use. Since engines are selecting the most fitting answer to a native-language prompt, content that reads like a translation competes poorly against content that reads like it was written for that audience.
+
+<ComparisonTable caption="Translation approach and its likely citation outcome" columns={["Approach", "What it produces", "Citation outcome"]} rows={[
+  ["Machine-only", "Literal, fast, cheap translation with no review", "Weak; unnatural phrasing and term mismatches lose to native content"],
+  ["Localized", "Machine draft edited by a fluent speaker for terminology, tone, and local context", "Solid; reads naturally and matches real prompts in most cases"],
+  ["Native-authored", "Content written from scratch by a native expert for that market", "Strongest; best phrasing match, local examples, and authority signals"]
+]} />
+
+The practical takeaway: machine translation is acceptable as a starting draft, but the version you publish should read as if a native expert wrote it.
+
+## How do hreflang and x-default work?
+
+**Hreflang tells engines which language and regional version of a page is meant for which audience, and x-default names the fallback for everyone else.** When you maintain multiple versions of the same content, you need to tell engines they are alternates rather than duplicates, and which one fits each user.
+
+Each version declares the full set of alternates with their language and optional region codes, for example `en`, `en-GB`, `es`, or `es-MX`. The `x-default` value designates the version to serve when no other matches, such as a language-selection page or your primary version. Done correctly, this association helps the right version surface for the right market and reduces the chance an engine pairs a query with a wrong-language page. It is a clarity signal, working alongside the rest of your technical foundation rather than as a citation lever on its own.
+
+## What does regional authority and localization require?
+
+**Each market evaluates relevance and trust on its own terms, so you build authority and adapt context region by region.** Localization is more than language. The examples, currency, units, regulations, and references in your content all signal whether the answer truly fits a reader's context. A pricing example in dollars or a measurement in miles tells a European reader the content was not made for them, which weakens both relevance and trust.
+
+<Checklist title="Per-market localization and authority checklist" items={[
+  "Content authored or fully localized by a native speaker, not just machine-translated",
+  "Currency, units, dates, and regulatory references adapted to the region",
+  "Examples and case studies drawn from the local market where possible",
+  "Regional entity signals consistent: localized organization details and local profiles",
+  "Authority built in-region through local citations, mentions, and references",
+  "hreflang and x-default implemented and validated across all versions"
+]} />
+
+Building a recognizable [entity](/glossary/entity) in each region strengthens the [authority pillar](/pillars/authority) locally, while adapting context to the reader serves the [alignment pillar](/pillars/alignment) by matching the answer to real intent.
+
+## How do I research prompts per language?
+
+**Research how native speakers actually ask, because question phrasing and even the questions themselves differ across languages and regions.** Translating your existing [question-shaped headings](/glossary/question-shaped-heading) word for word produces phrasing that may not match how people in that market query an AI engine. The underlying concept might be identical while the wording, terminology, and emphasis differ.
+
+<Steps items={[
+  {title: "Identify native phrasings", body: "Work with native speakers or local research to find how people in each market actually phrase questions about your topic, rather than translating your English headings."},
+  {title: "Map regional intent differences", body: "Some questions matter more in one region than another. Prioritize the prompts that real users in that market ask, even if they differ from your home market."},
+  {title: "Write headings in native voice", body: "Craft question-shaped headings that mirror those native phrasings, so your answers align with the prompts engines receive."},
+  {title: "Localize the answer, not just the question", body: "Make sure the answer beneath each heading uses local terminology, examples, and context to match the question naturally."}
+]} />
+
+## How do I measure international citation performance?
+
+**Track citations separately for each language and region, because a page that wins one market can be invisible in another.** Aggregate numbers hide the truth in international work. A page might be the cited answer in your home market and never appear in a target region because of language quality, weak regional authority, or differences in which engines dominate that market.
+
+Segment your measurement by language and region from the start. Watch which markets cite you, which engines drive those citations, and where strong content still fails to surface. That segmentation turns a vague sense of "we translated the site" into a clear map of where to invest next: more native content here, more regional authority there. Some pages will also need to serve several intents at once across markets, which connects to the work in [multi-intent pages](/learn/multi-intent-pages).
+
+## How do regional engine differences change strategy?
+
+**Different engines lead in different regions, so your citation targets and tactics shift by market.** The AI engine that dominates one country may have little presence in another, where a regional or local-language engine leads instead. Optimizing only for the engines popular in your home market leaves entire regions uncovered.
+
+Find out which engines your target audiences actually use in each region, confirm their crawlers can reach your localized content, and prioritize the markets where you can realistically build the authority to be cited. International AEO rewards focus: a few markets done natively and measured carefully will outperform a dozen markets covered by thin machine translation.
+
+<RelatedQuestions items={[
+  {q: "Do AI engines cite the same sources across languages?", a: "Not always; citation sources can differ by language, which is why native content and regional authority matter.", href: "/learn/ai-citation-across-languages"},
+  {q: "How do I optimize multi-intent pages?", a: "Structure pages so each distinct intent gets a clear, answer-first section that engines can extract.", href: "/learn/multi-intent-pages"},
+  {q: "What is a question-shaped heading?", a: "A heading phrased as the question a user would ask, so engines can match it to a prompt directly.", href: "/glossary/question-shaped-heading"},
+  {q: "What is an entity in AEO?", a: "An entity is a recognizable thing, like your organization, that engines identify and connect across sources.", href: "/glossary/entity"},
+  {q: "What is the authority pillar?", a: "Authority covers the trust and recognition signals that make engines confident in citing you, and it is built per region.", href: "/pillars/authority"},
+  {q: "What is the alignment pillar?", a: "Alignment is about matching your content to the real intent behind the queries you want to answer.", href: "/pillars/alignment"}
+]} />

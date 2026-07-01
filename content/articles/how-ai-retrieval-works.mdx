@@ -1,0 +1,182 @@
+---
+title: "How AI Search Actually Finds You: Keyword, Vector, and Hybrid Retrieval"
+slug: how-ai-retrieval-works
+summary: AI search finds you through a retrieval layer that runs before the model writes anything. It combines keyword matching with vector similarity, then reranks the survivors — so both exact terms and meaning decide whether your passage is even eligible to be cited.
+topics:
+  - answer-engines
+  - ai-fundamentals
+author: burke-atkerson
+published: 2026-06-25
+updated: 2026-06-25
+schemaType: Article
+faqs:
+  - q: How does AI search retrieve sources before answering?
+    a: The engine turns the user's query into a search, runs it against an index, and pulls back a candidate set of passages. Most modern systems run two methods at once — keyword (sparse) and vector (dense) retrieval — then merge and rerank the results. Only the top few survivors are passed to the model, which writes the answer and cites from them.
+  - q: What is the difference between keyword and vector retrieval?
+    a: Keyword retrieval (BM25/TF-IDF) matches the literal terms in the query against the literal terms on your page, rewarding exact-word overlap. Vector retrieval embeds the query and your passages into numbers and matches by meaning using cosine similarity, so it can find you even when your wording differs. Engines use both because each catches what the other misses.
+  - q: Why do AI engines use hybrid retrieval?
+    a: Hybrid retrieval blends keyword and vector search because neither alone is reliable. Keyword search nails rare terms, product names, and exact phrases but misses paraphrases; vector search captures meaning but can drift onto topics that are merely related. Running both and merging the scores recovers more genuinely relevant passages than either method on its own.
+  - q: What does this mean for getting cited by AI?
+    a: Write the literal question and its meaning. Use the exact terms a person would type so keyword retrieval matches, and answer the underlying intent completely so vector retrieval and the reranker rate you as the best passage. Self-contained, answer-first passages survive every stage of the pipeline.
+---
+
+**AI search finds you through a retrieval layer that runs before the model writes a
+single word — it matches your pages by exact terms and by meaning, then reranks the
+survivors to decide which few become eligible to be cited.** This is the plumbing
+beneath every AI answer. Understanding it tells you why some pages get pulled in and
+others, no less relevant to a human, never make it into the room.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    An AI engine converts your query into a search, runs it against an index using
+    both keyword (sparse) and vector (dense) retrieval, merges the candidates, and
+    reranks them. Only the top passages reach the model, which then writes and cites.
+    To be retrievable you need both exact-term coverage and semantic relevance — so
+    write the literal question and the meaning behind it.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Retrieval happens before generation: if your passage is not retrieved, it cannot be cited.",
+    "Keyword retrieval (BM25/TF-IDF) matches literal terms; vector retrieval matches meaning via embeddings and cosine similarity.",
+    "Engines use hybrid retrieval because keyword and vector search each catch what the other misses.",
+    "A reranker (often a cross-encoder) re-scores the merged candidates and decides which few survive into the answer.",
+    "Practical takeaway: use the exact words people type AND answer the underlying intent in self-contained passages.",
+  ]}
+/>
+
+This is the architecture angle. The companion piece,
+[how AI engines choose citations](/learn/how-ai-engines-choose-citations), covers the
+selection judgment — relevance, authority, freshness. Here we look one layer down: the
+mechanics of how passages get *found* in the first place.
+
+## How does a query become a search?
+
+A query becomes a search the moment the engine decides it needs outside information
+rather than answering from memory. The system takes the user's question — often
+rewritten or expanded into several variants — and issues it against a search index
+built from crawled pages. That index does not store whole documents; it stores
+[passages](/glossary/passage-retrieval), small chunks created by
+[chunking](/glossary/chunking) each page so the engine can pull the exact paragraph
+that answers a question rather than a 3,000-word article.
+
+Two scoring methods then run against those chunks. One matches literal words. The
+other matches meaning. The engine keeps the best of both, because each is blind to
+something the other sees clearly. This is the [retrieval](/glossary/retrieval) stage,
+and it is governed by the [extractability](/pillars/extractability) pillar: a passage
+that is hard to isolate and score is a passage that loses here.
+
+## What is keyword (sparse) retrieval?
+
+Keyword retrieval scores pages by how well their literal terms overlap with the
+query's literal terms. The dominant algorithm is [BM25](/glossary/bm25), a refinement
+of TF-IDF: it rewards a page for containing the query's words, weights rarer words
+more heavily, and discounts words that appear everywhere. It is called *sparse*
+because each document is represented as a long, mostly-empty vector of term counts.
+
+BM25 is fast, transparent, and unbeatable at exact matches — a product SKU, a person's
+name, a specific error code, a precise phrase. Its weakness is that it has no idea
+what words *mean*. Ask it about "cars that sip fuel" and it will not connect that to a
+page about "fuel-efficient vehicles" unless the words literally overlap. That blind
+spot is exactly what vector retrieval was built to cover.
+
+## What is vector (dense) retrieval?
+
+Vector retrieval scores pages by meaning rather than by matching words. An
+[embeddings](/glossary/embeddings) model converts the query and every candidate
+passage into a dense list of numbers — a vector — positioned so that texts with
+similar meaning sit close together in that space. The engine then measures closeness
+with [cosine similarity](/glossary/cosine-similarity) and, because comparing against
+millions of vectors exactly would be too slow, uses approximate nearest neighbor
+search to find the closest matches quickly.
+
+This is [vector search](/glossary/vector-search), and its strength is paraphrase: it
+finds your "fuel-efficient vehicles" page from a "cars that sip fuel" query because the
+two mean the same thing. Its weakness is the mirror image of BM25's — it can rate a
+passage highly for being broadly on-topic even when it never answers the question, and
+it can fumble rare exact terms that have weak meaning signals.
+
+<VersusSplit
+  left={{ title: "Keyword / sparse (BM25)", items: ["Matches literal words", "Excellent at exact terms, names, codes", "Transparent and fast", "Blind to paraphrase and synonyms"] }}
+  right={{ title: "Vector / dense (embeddings)", items: ["Matches meaning", "Excellent at paraphrase and intent", "Finds you when wording differs", "Can drift onto merely-related topics; weak on rare exact terms"] }}
+  caption="Each method's strength is the other's blind spot — which is exactly why engines run both."
+/>
+
+## Why do engines use hybrid retrieval?
+
+Engines use [hybrid retrieval](/glossary/hybrid-search) — running keyword and vector
+search together and merging their scores — because the two methods fail in opposite
+directions. Keyword search anchors the result set to the literal terms that matter;
+vector search rescues the relevant passages that used different words. Fuse the two
+rankings and you recover more genuinely relevant candidates than either produces
+alone, with fewer of each method's characteristic mistakes.
+
+For you, that has a concrete consequence: covering only one register is leaving
+retrieval on the table. A page that uses jargon but never the plain-language question
+may match vectors yet miss keyword scoring on the terms people actually type — and
+vice versa. The fix is to write *both*: the exact question a person asks as a heading,
+and a complete, meaning-rich answer beneath it.
+
+## What does the reranker do before the answer?
+
+After hybrid retrieval produces a merged candidate set, a reranker re-scores those
+candidates against the exact query and keeps only the top few. This is
+[reranking](/glossary/reranking), usually performed by a
+[cross-encoder](/glossary/cross-encoder) — a model that reads the query and a passage
+*together* and judges how well that passage actually answers the question, rather than
+comparing two precomputed vectors at a distance. It is slower than retrieval, so it
+only runs on the shortlist, and it is precise where retrieval is merely fast.
+
+<ProcessFlow
+  steps={[
+    { label: "Query", sub: "rewritten / expanded" },
+    { label: "Retrieve", sub: "hybrid: keyword + vector" },
+    { label: "Rerank", sub: "cross-encoder re-scores" },
+    { label: "Generate", sub: "model writes answer" },
+    { label: "Cite", sub: "links the surviving passages" },
+  ]}
+  caption="The retrieval pipeline beneath an AI answer. Each stage filters harder than the last; a passage must survive all of them to be cited."
+/>
+
+The reranker is where retrieval ends and selection begins — and it is covered in depth
+in [how AI engines choose citations](/learn/how-ai-engines-choose-citations) and
+[what is a reranker](/learn/what-is-a-reranker). The point to carry from here is that
+nothing reaches the reranker unless retrieval found it first.
+
+## What does this mean for your content?
+
+It means you optimize for the whole pipeline, not one stage. Match keyword retrieval
+by using the literal words people search; match vector retrieval by answering the real
+intent completely; survive the reranker by being the clearly best, self-contained
+answer to the exact question. These are not three different jobs — they are one
+well-shaped passage that happens to satisfy every stage.
+
+<Checklist
+  title="Is your passage retrievable and rerank-proof?"
+  items={[
+    "The heading is the exact question a person would type.",
+    "The first sentence answers it completely, with no setup required.",
+    "The passage uses the literal key terms (names, products, numbers) for keyword match.",
+    "It also covers the meaning and intent for vector match.",
+    "It stands alone — readable without the paragraphs around it.",
+    "It is roughly 120–180 words, the citable-passage sweet spot SE Ranking observes.",
+  ]}
+/>
+
+The retrieval layer is also why [how RAG works](/learn/what-is-rag) and
+[embeddings](/learn/what-are-embeddings) are worth understanding directly: they are the
+machinery deciding, before any answer is written, whether you are in the conversation
+at all.
+
+<RelatedQuestions
+  items={[
+    { q: "How do AI engines choose which sources to cite?", a: "After retrieval, a reranker scores candidates on relevance, authority, and freshness, and the model cites the few survivors.", href: "/learn/how-ai-engines-choose-citations" },
+    { q: "What is a reranker?", a: "The model that re-scores retrieved passages for the exact query and decides which few reach the answer.", href: "/learn/what-is-a-reranker" },
+    { q: "What are embeddings?", a: "Numeric representations of text that let engines match passages by meaning rather than exact words.", href: "/learn/what-are-embeddings" },
+    { q: "What is RAG?", a: "Retrieval-augmented generation — the pattern of retrieving passages and feeding them to a model before it answers.", href: "/learn/what-is-rag" },
+    { q: "Why does AI give different answers to the same question?", a: "Generation is probabilistic and retrieval varies run to run, so citation is a probability you raise, not a switch you flip.", href: "/learn/why-ai-gives-different-answers" },
+    { q: "What content format do AI engines cite most?", a: "Self-contained, answer-first passages with inline evidence outperform long unstructured prose.", href: "/learn/content-format-ai-cites-most" },
+    { q: "Why isn't my site cited by AI?", a: "Often a retrieval failure: the page is unreachable, unrenderable, or its passages never match the query well enough to survive.", href: "/learn/why-isnt-my-site-cited-by-ai" },
+  ]}
+/>

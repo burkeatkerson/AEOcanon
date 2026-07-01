@@ -1,0 +1,161 @@
+---
+title: "Crawl Budget for AI: Why Big Sites Don't Get Fully Read"
+slug: crawl-budget-ai
+summary: AI crawlers don't read every page — large or low-authority sites get partial coverage shaped by authority, internal linking, speed, and crawl waste. The fix is to make your most citable pages reachable and prioritized through flat architecture, strong internal links, and clean signals.
+topics:
+  - technical-seo
+author: burke-atkerson
+published: 2026-06-25
+updated: 2026-06-25
+schemaType: Article
+faqs:
+  - q: Do AI crawlers read every page on my site?
+    a: No. Crawlers like GPTBot, ClaudeBot, PerplexityBot, and OAI-SearchBot — plus Common Crawl, which feeds many models — fetch a finite number of pages per site. Large or low-authority sites routinely get only partial coverage, so pages buried deep, slow to load, or poorly linked may never be fetched and therefore can never be cited.
+  - q: What determines how much of my site AI crawlers read?
+    a: Site authority, internal linking and page depth, freshness signals, server speed and error rates, sitemap clarity, and robots rules all shape coverage. Authoritative, fast, well-linked sites get crawled more deeply; slow sites that waste crawler time on junk URLs get crawled more shallowly. You influence coverage mostly through architecture and performance.
+  - q: How do I get my most important pages crawled by AI?
+    a: Make them reachable in a few clicks from the homepage, link to them strongly from related pages, keep them fast, and list them in a clean sitemap. Then stop wasting crawl on junk — fix faceted-URL explosions, soft 404s, and redirect chains so crawlers spend their limited budget on pages that can actually earn citations.
+  - q: What wastes AI crawl budget the most?
+    a: Faceted and filter URLs that generate near-infinite combinations, soft 404s that return 200 for missing pages, long redirect chains, and duplicate URLs without canonicals. Each one consumes fetches that could have gone to citable content. Cleaning these up is often the fastest way to improve effective coverage on a large site.
+---
+
+**AI crawlers do not read every page — large or low-authority sites routinely get
+only partial coverage, and which pages get fetched is shaped by authority, internal
+linking, speed, and how much crawler time you waste on junk.** A page that is never
+crawled can never be cited, so on a big site, crawl coverage is an AEO problem before
+it is anything else.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    The crawlers feeding AI engines — GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot,
+    and Common Crawl — fetch a finite number of pages per site. Coverage is driven by
+    site authority, link depth, freshness, server speed, sitemap clarity, and robots
+    rules. Make your most citable pages reachable in a few clicks, link to them
+    strongly, keep them fast, and stop wasting fetches on faceted URLs, soft 404s, and
+    redirect chains.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "AI crawlers fetch a finite budget per site; big or low-authority sites get partial coverage.",
+    "A page that is never crawled can never be retrieved or cited — coverage gates everything.",
+    "Coverage is driven by authority, internal linking/depth, freshness, server speed, sitemaps, and robots rules.",
+    "Flat architecture and strong internal links pull crawlers to your most citable pages first.",
+    "Crawl waste — faceted URLs, soft 404s, redirect chains — steals budget from pages that matter.",
+  ]}
+/>
+
+## What is crawl budget, and does it apply to AI?
+
+Crawl budget is the practical limit on how many of your pages a crawler will fetch in a
+given window, and yes — it applies squarely to AI. The crawlers that feed AI engines do
+not have infinite time or appetite. GPTBot, ClaudeBot, PerplexityBot, and OAI-SearchBot
+each fetch a bounded set of pages per visit, and Common Crawl — the open web archive
+many models train and ground on — samples the web rather than mirroring it whole.
+
+The consequence is that [crawlability](/glossary/crawlability) is necessary but not
+sufficient. Allowing a crawler in your [robots.txt](/glossary/robots-txt) only grants
+permission; it does not guarantee every page gets visited. On a small, fast,
+authoritative site, budget is rarely the binding constraint. On a large site, it
+becomes the first thing standing between your best pages and any citation at all — the
+[access](/pillars/access) pillar tested at scale.
+
+## Why don't big sites get fully read?
+
+Big sites do not get fully read because crawl budget scales with trust and efficiency,
+not with page count. An authoritative domain earns a larger, deeper crawl; a new or
+low-authority one gets a cautious, shallow pass. Pile millions of URLs onto a thin
+domain and the crawler samples a fraction, often missing exactly the pages you most
+want surfaced.
+
+<StatGrid>
+  <Stat value="finite" label="pages fetched per crawl window (illustrative — exact budgets are not published)" color="var(--accent)" />
+  <Stat value="depth↓" label="deeper pages crawled less often as click-distance grows" color="var(--accent)" />
+  <Stat value="trust↑" label="higher domain authority earns larger, deeper crawls" color="var(--accent)" />
+</StatGrid>
+
+Depth compounds the problem. Each click away from the homepage signals lower priority,
+so pages four or five levels deep may be crawled rarely or never. The pages most likely
+to be missed are often orphaned, deeply nested, or reachable only through search and
+filters — which brings us to the two levers you actually control.
+
+## What drives AI crawl coverage?
+
+Six factors drive how much of your site gets crawled, and most are within your reach:
+
+<ComparisonTable
+  caption="The main drivers of AI crawl coverage and how to influence each"
+  columns={["Driver", "Effect on coverage", "Your lever"]}
+  rows={[
+    ["Site authority", "Higher trust earns a larger, deeper crawl", "Earn mentions and links off-site"],
+    ["Internal linking / depth", "Well-linked, shallow pages get found and refetched", "Flatten architecture, link key pages"],
+    ["Freshness signals", "Frequently updated sites get crawled more often", "Keep important pages current"],
+    ["Server speed / errors", "Slow or error-prone responses shrink effective budget", "Fast responses, clean 200s"],
+    ["Sitemap clarity", "A clean sitemap nominates pages and dates", "List canonical, citable URLs only"],
+    ["Robots rules", "Disallows and blocks remove pages from the crawl", "Allow citation bots, block only junk"],
+  ]}
+/>
+
+Server speed deserves a special note: every slow or failed response spends budget
+without returning a usable page, so performance and error hygiene quietly determine how
+far a crawler gets before it stops. This is where server performance
+stops being a UX nicety and becomes a crawl-coverage lever.
+
+## How do you make your best pages reachable and prioritized?
+
+You make your most citable pages reachable by flattening architecture and linking them
+hard, then prioritized by feeding clean signals. The aim is for any page you want cited
+to sit a few clicks from the homepage, with multiple internal links pointing at it.
+
+<Steps
+  items={[
+    { title: "Flatten the architecture", body: "Keep important pages within two or three clicks of the homepage. Deep burial reads as low priority." },
+    { title: "Link key pages strongly", body: "Point internal links from related, well-crawled pages to your citable ones so crawlers discover and revisit them." },
+    { title: "Serve fast, clean responses", body: "Fast 200s let the crawler cover more pages per visit; slow pages and errors burn budget." },
+    { title: "Publish a clean sitemap", body: "List only canonical, indexable, citable URLs with accurate lastmod dates — no junk, no redirects." },
+    { title: "Keep priority pages fresh", body: "Updating pages that matter signals they are worth recrawling, pulling budget toward them." },
+  ]}
+/>
+
+A clean sitemap is a nomination, not a guarantee — see
+[does a sitemap help AI crawlers](/learn/does-a-sitemap-help-ai-crawlers) for what it
+does and does not do — and the bot-by-bot allow/block decisions live in
+[which AI crawlers to allow](/learn/which-ai-crawlers-to-allow).
+
+## What wastes AI crawl budget?
+
+Crawl waste is any fetch that does not lead to a citable page, and four patterns cause
+most of it. Eliminating them is often the fastest coverage win on a large site, because
+every wasted fetch is one your good pages did not get.
+
+<Callout variant="warning" title="The four big crawl-waste mistakes">
+  <p>
+    <strong>Faceted / filter URLs</strong> that multiply into near-infinite
+    combinations (color, size, sort, page) drown your real pages.
+    <strong> Soft 404s</strong> return a 200 status for missing content, so crawlers
+    keep fetching dead pages. <strong>Redirect chains</strong> spend multiple fetches
+    to reach one page. <strong>Uncanonicalized duplicates</strong> split budget across
+    many URLs of the same content. Each one quietly steals fetches from pages that
+    could earn citations.
+  </p>
+</Callout>
+
+Fix these by blocking or canonicalizing faceted URLs, returning a true 404 (or 410) for
+missing pages, collapsing redirect chains to a single hop, and pointing duplicates at one
+canonical URL — see [canonical URLs and AI citation](/learn/canonical-urls-ai-citation)
+and [redirects and AI crawlers](/learn/redirects-ai-crawlers) for the specifics. Done
+together, these recover budget and steer it toward the pages you actually want read,
+retrieved, and cited.
+
+<RelatedQuestions
+  items={[
+    { q: "Which AI crawlers should I allow?", a: "Allow the citation-driving search and user-fetch bots; decide training crawlers deliberately.", href: "/learn/which-ai-crawlers-to-allow" },
+    { q: "Does a sitemap help AI crawlers?", a: "A clean sitemap nominates and dates your pages but does not guarantee every URL is fetched.", href: "/learn/does-a-sitemap-help-ai-crawlers" },
+    { q: "How do canonical URLs affect AI citation?", a: "Canonicals consolidate duplicate URLs so crawl budget and citation signals concentrate on one page.", href: "/learn/canonical-urls-ai-citation" },
+    { q: "How do redirects affect AI crawlers?", a: "Clean single-hop redirects preserve signals; long chains waste budget and can drop pages from coverage.", href: "/learn/redirects-ai-crawlers" },
+    { q: "Should I block AI crawlers?", a: "Block only junk and training bots you object to; blocking citation bots removes you from AI answers.", href: "/learn/should-i-block-ai-crawlers" },
+    { q: "Does llms.txt work?", a: "It is a proposed convention for guiding AI to your key pages, with limited adoption today.", href: "/learn/does-llms-txt-work" },
+    { q: "How do I do an AEO audit?", a: "Check access, retrievability, and authority end to end — starting with whether your pages are even crawled.", href: "/learn/how-to-do-an-aeo-audit" },
+  ]}
+/>

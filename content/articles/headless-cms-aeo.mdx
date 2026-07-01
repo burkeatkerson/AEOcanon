@@ -1,0 +1,99 @@
+---
+title: "Headless, SPA, and API-First Sites: Can AI Cite Them?"
+slug: headless-cms-aeo
+summary: Yes, headless and API-first sites can get cited, but only if they render answer text into the initial HTML. Most AI crawlers do not run JavaScript, so a client-rendered SPA can be invisible.
+topics:
+  - technical-seo
+author: burke-atkerson
+published: 2026-06-25
+updated: 2026-06-25
+schemaType: Article
+faqs:
+  - q: Can a headless CMS site get cited by AI engines?
+    a: Yes. A headless CMS is just a content backend, and it has no effect on whether AI can read your pages. What matters is the front end — if it renders complete HTML on the server, AI crawlers can read it. The headless decision is neutral; the rendering decision is not.
+  - q: Why can't most AI crawlers see my single-page app?
+    a: Most AI crawlers fetch the raw HTML response and do not execute JavaScript the way a browser does. A client-rendered SPA returns a near-empty HTML shell and builds the content with JS after load. The crawler sees the empty shell, so your answer text never reaches the model.
+  - q: How do I test whether AI crawlers can see my content?
+    a: Disable JavaScript in your browser and reload the page, or fetch the raw HTML with a tool like curl. If your answer text, headings, and key facts are missing from that source, AI crawlers likely cannot see them either. The browser view is misleading because it runs JS.
+  - q: Is server-side rendering required for AEO?
+    a: Effectively yes for client-heavy frameworks. You need the answer text present in the HTML the server returns, which you achieve through SSR, static generation, or prerendering. The technique matters less than the outcome — complete, readable HTML in the initial response.
+---
+
+**Modern decoupled architectures can absolutely get cited, but only when they deliver the answer in server-rendered HTML.** Headless CMS, JAMstack, and API-first stacks are neutral. The risk is a purely client-rendered single-page app that looks flawless in a browser yet returns an empty shell to crawlers that do not run JavaScript.
+
+<Callout variant="key" title="Quick answer"><p>AI crawlers want complete HTML in the initial server response. Most do not reliably execute JavaScript, so a client-rendered SPA can be invisible even when it renders perfectly in a browser. Headless and API-first sites are fine as long as they render answer text server-side via SSR, SSG, or prerendering.</p></Callout>
+
+<KeyTakeaways items={[
+  "Headless CMS choice is neutral; the rendering strategy of your front end is what decides AI visibility.",
+  "Most AI crawlers read raw HTML and do not run JavaScript like Googlebot does.",
+  "A client-rendered SPA can return an empty shell, hiding your answer from models entirely.",
+  "Fix it with SSR, static generation, or prerendering so the answer text lives in the HTML source.",
+  "Test by loading the page with JavaScript disabled or fetching the raw HTML with curl."
+]} />
+
+## Does a headless CMS hurt AI citation?
+
+**No. A headless CMS has no bearing on whether AI engines can read your content.** A headless setup simply separates where content is stored from how it is displayed: the CMS serves content over an API, and a separate front end renders it. AI crawlers never touch your CMS. They request the URL your front end serves and read whatever HTML comes back.
+
+So the question is never "is this headless?" It is "what does the front end return on the first request?" If your front end builds pages on the server and ships finished HTML, you are in good shape. If it ships a blank shell and assembles the page in the browser, you have a problem regardless of how clean the CMS is. The architecture decision that matters sits downstream of the CMS, in the rendering layer.
+
+## Why are client-rendered SPAs risky for AEO?
+
+**Because most AI crawlers fetch HTML and stop, while a client-rendered SPA puts its content behind JavaScript that the crawler never runs.** Googlebot maintains a rendering pipeline that executes JS on a delay. Most AI crawlers do not. According to searchVIU, AI crawlers read the visible rendered HTML, but for many of them "rendered" means whatever the server already produced, not the result of running client scripts.
+
+The failure is silent. In your browser, the SPA hydrates and looks complete. To a crawler that requests the same URL, the response is `<div id="root"></div>` and a bundle of scripts. None of your answer text, headings, or facts are present, so none of it can be retrieved or cited. This is the architecture-level version of the problem covered in [JavaScript breaks AI citation](/learn/javascript-breaks-ai-citation): the issue is not JS itself, but JS being the only path to your content.
+
+<VersusSplit left={{title: "Client-side rendering (CSR)", items: ["Server returns an empty HTML shell plus JS bundles", "Content assembled in the browser after load", "AI crawlers that skip JS see nothing", "Looks perfect in a browser, invisible to many models", "High risk for citation"]}} right={{title: "SSR / SSG", items: ["Server returns complete HTML with the answer text", "Content present before any JS runs", "Readable by crawlers that do not execute JS", "Browser view and crawler view match", "Safe for citation"]}} caption="The same React or Vue app can be either of these depending on how it renders." />
+
+## How do SSR, SSG, and prerendering fix it?
+
+**They move page assembly to the server or build step, so the answer text is already in the HTML before a crawler or browser runs any JavaScript.** All three produce the same crawler-facing outcome through different mechanics.
+
+[Server-side rendering (SSR)](/glossary/ssr) builds the HTML on each request, which suits highly dynamic pages. [Static site generation (SSG)](/glossary/ssg) builds the HTML once at deploy time and serves the same fast file to everyone, which suits content that changes infrequently, like articles. Prerendering sits in between, generating static snapshots for crawlers while keeping a dynamic app for users.
+
+The deeper background on the SSR-versus-CSR tradeoff lives in [server-side vs client-side rendering](/learn/server-side-vs-client-side-rendering). For AEO purposes the rule collapses to one line: the answer must be in the HTML source.
+
+<Callout variant="warning" title="Hydration is not rendering"><p>Frameworks often add <a href="/glossary/hydration">hydration</a>, where server-rendered HTML is shipped first and then JS attaches interactivity on top. Done right, this is ideal: crawlers get full HTML, users get interactivity. Done wrong, where content only appears after hydration, you are back to <a href="/glossary/client-side-rendering">client-side rendering</a> with extra steps. Verify the pre-hydration HTML contains your text.</p></Callout>
+
+## How do I know which path my framework is using?
+
+**Check the raw response, not the browser, because the browser always runs JavaScript and will mask a CSR problem.** Next.js, Nuxt, Astro, SvelteKit and similar frameworks can run in multiple modes, so the framework name alone does not tell you what ships.
+
+The reliable test is to view what a non-JS client sees.
+
+<Steps items={[
+  {title: "Fetch the raw HTML", body: "Run curl on the URL, or use 'View Source' in the browser (not 'Inspect', which shows the hydrated DOM). Look for your headline and answer paragraphs in that output."},
+  {title: "Disable JavaScript", body: "Turn off JS in your browser settings and reload the page. If the content vanishes or shows a loading spinner, crawlers that skip JS see the same emptiness."},
+  {title: "Confirm the answer is present", body: "Your H1, question-shaped H2s, and key answer sentences must appear in the source. If they are injected after load, fix the render strategy before anything else."},
+  {title: "Re-test after each deploy", body: "Render mode can change with a config tweak or a new route. Make the no-JS check part of your release checklist so regressions get caught early."}
+]} />
+
+## What should an API-first or JAMstack team actually do?
+
+**Keep the decoupled architecture, but guarantee the front end emits complete HTML for content pages.** API-first and JAMstack are well suited to AEO when paired with static generation, because they tend to produce fast, prebuilt HTML files. The danger only appears when teams default to a fully client-rendered app for content that needs to be discoverable.
+
+<Checklist title="Headless / API-first AEO checklist" items={[
+  "Content pages render answer text on the server (SSR, SSG, or prerender), not only in the browser",
+  "Raw HTML source contains your H1, H2s, and answer paragraphs without running JS",
+  "Hydration enhances server HTML rather than being the only source of content",
+  "Critical facts, stats, and quotes are in the HTML, not lazy-loaded by JS on scroll",
+  "The crawler-facing view and the human-facing view match",
+  "Render mode is re-verified after every deploy and framework upgrade"
+]} />
+
+This keeps your content reachable, which is the foundation of the [access pillar](/pillars/access): if a model cannot retrieve your HTML, nothing else about your content matters.
+
+## Are interactive apps and dashboards a lost cause?
+
+**No, but separate the app from the content.** Genuinely interactive surfaces, like dashboards, configurators, or logged-in tools, can stay client-rendered because they are not meant to be cited. The mistake is rendering your articles, docs, product descriptions, and FAQs the same way.
+
+Split the concerns. Serve marketing and knowledge content as server-rendered or static HTML so it can be retrieved and cited. Let the genuinely app-like parts hydrate in the browser. This hybrid is exactly what modern frameworks are built to support, and it lets a single codebase be both a fast app for users and a fully readable document set for AI engines.
+
+<RelatedQuestions items={[
+  {q: "Does JavaScript break AI citation?", a: "It can, when content is only available after client-side JS runs and the crawler does not execute it.", href: "/learn/javascript-breaks-ai-citation"},
+  {q: "What is the difference between server-side and client-side rendering?", a: "SSR builds HTML on the server before sending it; CSR builds it in the browser after load.", href: "/learn/server-side-vs-client-side-rendering"},
+  {q: "Is WordPress good for AEO?", a: "It can be strong because it renders HTML server-side by default, which crawlers read easily.", href: "/learn/is-wordpress-good-for-aeo"},
+  {q: "Can Squarespace and Wix do AEO?", a: "Yes, with attention to how they render content and expose answer text in the HTML.", href: "/learn/can-squarespace-wix-do-aeo"},
+  {q: "Which AI crawlers should I allow?", a: "Allow the crawlers from engines you want citations from, and confirm they can reach your HTML.", href: "/learn/which-ai-crawlers-to-allow"},
+  {q: "What is the access pillar in AEO?", a: "Access covers whether AI systems can reach and read your content at all, the prerequisite for citation.", href: "/pillars/access"}
+]} />

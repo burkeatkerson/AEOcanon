@@ -1,0 +1,157 @@
+---
+title: "noindex, nofollow, and the Robots Meta Tag: What AI Engines Obey"
+slug: meta-robots-ai-crawlers
+summary: robots.txt controls crawling; the robots meta tag and X-Robots-Tag header control indexing and serving. AI crawlers read them differently — a noindex meant for search won't necessarily stop a separately-purposed AI crawler from reading the page. Here's what each directive does and the mistakes that break citation.
+topics:
+  - technical-seo
+author: burke-atkerson
+published: 2026-06-25
+updated: 2026-06-25
+schemaType: Article
+faqs:
+  - q: What is the difference between robots.txt and the robots meta tag?
+    a: robots.txt controls crawling — whether a bot is allowed to fetch a URL at all. The robots meta tag (and the X-Robots-Tag HTTP header) controls indexing and serving — what happens to a page after it has been fetched. They operate at different stages, which is why blocking a page in robots.txt does not remove it from an index, and why noindex only works if the crawler is allowed to fetch the page and read the tag.
+  - q: Does noindex stop AI engines from citing a page?
+    a: It depends on the crawler's purpose. A noindex tag is honored by crawlers that build a searchable index, but a separately-purposed AI crawler may fetch the same page for a different use and not treat noindex as a citation block. Treat noindex as a strong signal against search indexing, not a guaranteed AI-citation off switch — combine it with crawler-level controls if you truly need a page excluded.
+  - q: If I block a page in robots.txt, can it still be referenced?
+    a: Yes. robots.txt stops the fetch, but a URL that other sites link to can still be referenced by its address and anchor text even though its content was never read. Worse, a noindex tag inside a robots.txt-blocked page can never be seen, so blocking can accidentally preserve a reference you meant to remove. To suppress a page, allow the crawl and use noindex instead.
+  - q: What is the most common self-inflicted robots mistake?
+    a: Shipping a sitewide noindex from staging to production. Staging environments are usually set to noindex; if that configuration is deployed unchanged, the live site silently asks every compliant engine to drop it. A close second is an accidental X-Robots-Tag noindex header injected by a CDN or server config that overrides what the page itself says.
+---
+
+**robots.txt controls whether a crawler may fetch a page; the robots meta tag and the X-Robots-Tag header control what happens to the page after it's fetched — and AI engines treat these differently than you might expect.** A directive meant to keep a page out of search results does not automatically make it ineligible for AI citation, because a separately-purposed AI crawler may read the same page for a different reason. Understanding which layer each control operates at is the difference between confidently shaping what AI cites and silently deindexing yourself.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    <strong>robots.txt = crawl control</strong> (may the bot fetch this URL?).{" "}
+    <strong>Robots meta tag / X-Robots-Tag = index and serve control</strong> (what
+    happens after fetch?). A <code>noindex</code> only works if the crawler is allowed
+    to fetch the page and reads the tag — and it stops search indexing, not
+    necessarily AI reading. Blocking in robots.txt can leave a URL referenced but
+    unreadable.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "robots.txt governs crawling; the robots meta tag and X-Robots-Tag govern indexing and serving.",
+    "noindex requires the page to be crawlable — block it in robots.txt and the tag is never seen.",
+    "A page blocked in robots.txt can still be referenced by URL and anchor text from other sites.",
+    "noindex is a search-index directive; it isn't a guaranteed AI-citation off switch.",
+    "The classic disaster is shipping a staging-wide noindex to production.",
+  ]}
+/>
+
+## What is the difference between robots.txt and the robots meta tag?
+
+The two controls act at different stages of the crawl-to-citation pipeline, and confusing them is the root of most robots mistakes. **robots.txt** is a file at your site root that tells a crawler which URLs it may fetch — it gates the *crawl*. The **robots meta tag** (in the page `<head>`) and the equivalent **X-Robots-Tag** HTTP header gate what happens *after* a successful fetch: whether the page may be indexed, whether its links are followed, whether a snippet may be shown. Because the meta tag lives inside the page, the crawler must be allowed to fetch the page to ever see it. That single dependency explains the most common failure: blocking a page in robots.txt so a crawler never fetches it, then wondering why your `noindex` had no effect — the crawler never read it.
+
+```html
+<!-- In the page <head> — only seen if the crawler is allowed to fetch the page -->
+<meta name="robots" content="noindex, nofollow" />
+```
+
+```http
+# As an HTTP response header — useful for non-HTML files like PDFs
+X-Robots-Tag: noindex
+```
+
+## What does each robots directive actually do?
+
+Each directive targets a specific behavior, and they combine. Knowing exactly what each one suppresses keeps you from over- or under-restricting a page.
+
+<ComparisonTable
+  caption="Robots meta / X-Robots-Tag directives and their effect"
+  columns={["Directive", "What it controls", "Effect on AI citation"]}
+  rows={[
+    ["noindex", "Keeps the page out of the search index", "Strong signal against indexing; not a guaranteed AI-read block"],
+    ["nofollow", "Tells the engine not to follow links on the page", "Reduces discovery of linked pages; doesn't block the page itself"],
+    ["none", "Equivalent to noindex, nofollow combined", "Both effects at once"],
+    ["noarchive", "Prevents a cached copy from being served", "Limits cached snapshots; page can still be read live"],
+    ["nosnippet", "Suppresses text and preview snippets", "Can reduce the extractable passage an engine would quote"],
+    ["max-snippet:[n]", "Caps snippet length to n characters", "Limits how much text may be shown or lifted"],
+  ]}
+/>
+
+A page is *crawlable but not indexable* when it returns 200 and serves a `noindex` — the engine reads it and is told not to keep it. A page is *blocked but discoverable* when robots.txt forbids the fetch — the engine never reads it but may still know the URL exists from inbound links.
+
+## Does noindex stop AI engines from citing a page?
+
+Not reliably, because "indexed in search" and "eligible for AI citation" are not the same state. A `noindex` directive was designed to keep a page out of a *search index* — the ranked list of results. A crawler whose purpose is building that index honors it. But an AI crawler fetching the page for a different purpose may not treat `noindex` as an instruction about its own behavior, and the distinction between the two uses is exactly where assumptions break.
+
+<Callout variant="warning" title="noindex is not a universal AI off switch">
+  <p>
+    Treat <code>noindex</code> as a strong instruction to search indexers, not a
+    guaranteed block on every AI crawler reading the page. If a page must be excluded
+    from AI use specifically, control it at the crawler level — see{" "}
+    <a href="/learn/which-ai-crawlers-to-allow">which AI crawlers to allow</a> — rather
+    than assuming one search-era directive covers every engine.
+  </p>
+</Callout>
+
+## How should I sequence robots.txt and meta robots together?
+
+You sequence them according to what you want to happen, because the two layers can cooperate or cancel each other. The rule: **to suppress a page, allow the crawl and use `noindex`; to save crawl budget on worthless URLs, block in robots.txt.** They conflict when you block a page in robots.txt *and* expect a `noindex` to work — the block prevents the fetch, so the tag is never read, and an externally-linked URL can linger as a bare reference.
+
+<ProcessFlow
+  steps={[
+    { label: "Want it gone from results?", sub: "Allow crawl in robots.txt, then serve noindex" },
+    { label: "Want to save crawl budget?", sub: "Disallow in robots.txt — accept the page may still be referenced" },
+    { label: "Want to exclude from AI specifically?", sub: "Control the named AI crawler, not just noindex" },
+    { label: "Want to limit the quotable snippet?", sub: "Use nosnippet or max-snippet, keep the page indexable" },
+  ]}
+  caption="Choosing the right layer for the outcome you want"
+/>
+
+## What robots mistakes quietly break AI citation?
+
+The damaging mistakes are the silent ones — directives that override your intent without any visible error on the page. They look fine in a browser and surface only when citations or traffic disappear.
+
+<Checklist
+  title="Robots directive audit"
+  items={[
+    "No sitewide noindex was shipped from staging to production.",
+    "Pages you want cited return no noindex in either the meta tag or X-Robots-Tag header.",
+    "Your CDN or reverse proxy isn't injecting an X-Robots-Tag you didn't set.",
+    "Pages you want suppressed are crawlable so the noindex can actually be read.",
+    "robots.txt doesn't block pages whose meta noindex you depend on.",
+    "AI-crawler access is controlled at the crawler level where exclusion truly matters.",
+  ]}
+/>
+
+The two headline disasters: a **staging-wide `noindex` deployed to production**, which politely asks every compliant engine to drop your entire site, and an **accidental `X-Robots-Tag: noindex` from a CDN or server config** that overrides what the HTML says — invisible in View Source because it lives in the response headers. Always check the actual HTTP headers, not just the page source. This is the [indexability](/glossary/indexability) layer of the [access](/learn/should-i-block-ai-crawlers) decision, and it interacts directly with how you manage [crawl budget for AI crawlers](/learn/crawl-budget-ai): blocking the right low-value pages frees the crawler to spend its visits on the pages you actually want cited.
+
+<RelatedQuestions
+  items={[
+    {
+      q: "What is robots.txt and what does it control?",
+      a: "robots.txt is a root-level file that tells crawlers which URLs they may fetch; it gates crawling, not indexing or serving.",
+      href: "/glossary/robots-txt",
+    },
+    {
+      q: "What is indexability?",
+      a: "Indexability is whether a fetched page is eligible to be stored and surfaced; noindex and X-Robots-Tag directives control it.",
+      href: "/glossary/indexability",
+    },
+    {
+      q: "What is GPTBot and how does it behave?",
+      a: "GPTBot is OpenAI's crawler; like other AI crawlers it has its own access rules, so crawler-level control is more reliable than meta directives for AI exclusion.",
+      href: "/glossary/gptbot",
+    },
+    {
+      q: "Which AI crawlers should I allow?",
+      a: "Decide per crawler based on whether you want that engine's citations; crawler-level allow/deny is the precise lever for AI access.",
+      href: "/learn/which-ai-crawlers-to-allow",
+    },
+    {
+      q: "Should I block AI crawlers at all?",
+      a: "Blocking trades citation eligibility for control; weigh the visibility you'd lose against the content you need to protect.",
+      href: "/learn/should-i-block-ai-crawlers",
+    },
+    {
+      q: "How does crawl budget affect AI crawlers?",
+      a: "Crawlers spend limited visits per site; blocking low-value URLs in robots.txt concentrates that budget on pages you want cited.",
+      href: "/learn/crawl-budget-ai",
+    },
+  ]}
+/>
