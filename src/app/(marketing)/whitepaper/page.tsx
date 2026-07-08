@@ -3,20 +3,40 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Kicker } from "@/components/ui/eyebrow";
 import { JsonLd } from "@/components/seo/json-ld";
+import { getAuthor } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
-import { breadcrumbNode, graph } from "@/lib/structured-data";
+import {
+  breadcrumbNode,
+  graph,
+  personNode,
+  researchArticleNode,
+} from "@/lib/structured-data";
+
+const WHITEPAPER_PATH = "/whitepaper";
+const WHITEPAPER_HEADLINE =
+  "The AEO Canon: eight principles for earning AI citation";
+const WHITEPAPER_DESCRIPTION =
+  "Eight evidence-grounded principles for Answer Engine Optimization, in three layers — Foundation, Reputation, Momentum — built on controlled experiments and large-scale studies.";
+const WHITEPAPER_PUBLISHED = "2026-01-20";
+const WHITEPAPER_UPDATED = "2026-07-07";
+const WHITEPAPER_KEYWORDS = [
+  "answer engine optimization",
+  "AEO",
+  "AI search",
+  "generative engine optimization",
+  "AEO framework",
+];
 
 export const metadata: Metadata = buildMetadata({
   title: "The AEO Canon — Research Whitepaper",
-  description:
-    "Eight evidence-grounded principles for Answer Engine Optimization, in three layers — Foundation, Reputation, Momentum — built on controlled experiments and large-scale studies.",
-  path: "/whitepaper",
+  description: WHITEPAPER_DESCRIPTION,
+  path: WHITEPAPER_PATH,
   eyebrow: "Research Whitepaper",
+  type: "article",
+  publishedTime: WHITEPAPER_PUBLISHED,
+  modifiedTime: WHITEPAPER_UPDATED,
+  authors: ["Burke Atkerson"],
 });
-
-const jsonLd = graph([
-  breadcrumbNode([{ name: "Whitepaper", path: "/whitepaper" }]),
-]);
 
 const SECTIONS = [
   { id: "shift", n: "1", t: "The paradigm shifted" },
@@ -32,14 +52,38 @@ const SECTIONS = [
 ];
 
 export default function WhitepaperPage() {
+  const author = getAuthor("burke-atkerson");
+  const jsonLd = graph([
+    researchArticleNode({
+      headline: WHITEPAPER_HEADLINE,
+      description: WHITEPAPER_DESCRIPTION,
+      path: WHITEPAPER_PATH,
+      datePublished: WHITEPAPER_PUBLISHED,
+      dateModified: WHITEPAPER_UPDATED,
+      authorUrl: author?.url,
+      keywords: WHITEPAPER_KEYWORDS,
+    }),
+    ...(author ? [personNode(author)] : []),
+    breadcrumbNode([{ name: "Whitepaper", path: WHITEPAPER_PATH }]),
+  ]);
+
   return (
     <Container className="py-12 pb-20">
       <JsonLd graph={jsonLd} />
       <header className="border-line max-w-[760px] border-b pb-8">
         <Kicker>Research whitepaper · v1.0 · 2026</Kicker>
         <h1 className="mt-4 text-[clamp(30px,4.4vw,48px)] leading-[1.06] font-medium tracking-[-0.02em]">
-          The AEO Canon: eight principles for earning AI citation
+          {WHITEPAPER_HEADLINE}
         </h1>
+        {author ? (
+          <p className="text-muted mt-5 font-mono text-[11.5px]">
+            By{" "}
+            <Link href={author.url} className="text-ink hover:text-accent">
+              <b>{author.name}</b>
+            </Link>
+            {author.role ? `, ${author.role}` : null}
+          </p>
+        ) : null}
       </header>
 
       <div className="mt-10 lg:grid lg:grid-cols-[200px_minmax(0,760px)] lg:gap-12">
