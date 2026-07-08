@@ -20,8 +20,8 @@ export const mainNav: NavItem[] = [
 
 /** Header right-side CTAs. */
 export const navCtas = {
-  ghost: { href: "/audit", label: "Free Analyzer" },
-  primary: { href: "/pricing", label: "Done for you" },
+  ghost: { href: "/pricing", label: "Done-for-you" },
+  primary: { href: "/contact", label: "Book a call" },
 } as const;
 
 export interface FooterColumn {
@@ -33,9 +33,10 @@ export const footerNav: FooterColumn[] = [
   {
     title: "Services",
     links: [
+      { href: "/contact", label: "Book a call" },
       { href: "/pricing", label: "Pricing" },
       { href: "/pricing#gallery", label: "Portfolio" },
-      { href: "/audit", label: "Free audit" },
+      { href: "/contact", label: "Contact" },
     ],
   },
   {

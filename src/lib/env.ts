@@ -61,6 +61,37 @@ export function auditUserAgent(): string {
 }
 
 /**
+ * Resend API key for transactional email (the contact form). Returns null when
+ * unset so the contact action can degrade gracefully — the page still steers
+ * prospects to booking — rather than throwing at request time.
+ */
+export function resendApiKey(): string | null {
+  const value = process.env.RESEND_API_KEY;
+  return value && value.length > 0 ? value : null;
+}
+
+/**
+ * From-address for contact emails. Must be a Resend-verified sender in
+ * production; defaults to Resend's shared onboarding sender so the form works
+ * out of the box in development. Override via CONTACT_FROM_EMAIL.
+ */
+export function contactFromEmail(): string {
+  return (
+    process.env.CONTACT_FROM_EMAIL ??
+    process.env.AUDIT_FROM_EMAIL ??
+    "AEO Canon <onboarding@resend.dev>"
+  );
+}
+
+/**
+ * Destination for contact-form submissions. Server-only — the address is never
+ * exposed to the client or rendered anywhere. Override via CONTACT_TO_EMAIL.
+ */
+export function contactToEmail(): string {
+  return process.env.CONTACT_TO_EMAIL ?? "burkelatkerson@gmail.com";
+}
+
+/**
  * Optional outbound webhook for scorecard submissions. When set, the scorecard
  * server action POSTs each captured lead (email + resolved segment + playbook
  * link) here, fire-and-forget — the seam a later email-automation/drip wires

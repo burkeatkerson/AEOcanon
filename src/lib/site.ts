@@ -19,6 +19,14 @@ export const siteConfig = {
     "Practical, answer-first guidance on Answer Engine Optimization (AEO) and SEO — a continuously expanding library for marketers and operators.",
   locale: "en_US",
   twitter: "@aeocanon",
+  /**
+   * Booking link for sales/service conversations. The prominent, primary way
+   * for prospects to reach Burke — used across service CTAs and the /contact
+   * hub. Override per-environment via NEXT_PUBLIC_CALENDLY_URL.
+   */
+  calendlyUrl:
+    process.env.NEXT_PUBLIC_CALENDLY_URL ??
+    "https://calendly.com/atkerson/phonecall",
   /** Organization entity reused across JSON-LD graphs. */
   organization: {
     name: "AEO Canon",

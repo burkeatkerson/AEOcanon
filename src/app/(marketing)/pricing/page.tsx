@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/container";
 import { Section, SectionHead } from "@/components/sections/section";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Button } from "@/components/ui/button";
+import { BookCallButton } from "@/components/contact/book-call-button";
 import { Kicker } from "@/components/ui/eyebrow";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
@@ -121,11 +122,11 @@ const TESTIMONIALS = [
 
 const PROCESS = [
   {
-    t: "Free audit",
-    d: "See exactly how AI describes your business today. No commitment, no email required to view your score.",
+    t: "Book a call",
+    d: "Grab a time that works. We'll show you exactly how AI describes your business today — free, no commitment.",
   },
   {
-    t: "Strategy call",
+    t: "Strategy & audit",
     d: "We walk your results together and map the highest-leverage fixes for your trade and market.",
   },
   {
@@ -200,9 +201,7 @@ export default function PricingPage() {
             you the name it recommends.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Button href="/audit" size="lg">
-              See your free AI score →
-            </Button>
+            <BookCallButton size="lg" label="Book your free call →" />
             <Button href="#pricing" variant="ghost" size="lg">
               View plans &amp; pricing
             </Button>
@@ -279,14 +278,12 @@ export default function PricingPage() {
                   </li>
                 ))}
               </ul>
-              <Button
-                href="/audit"
+              <BookCallButton
                 variant={tier.featured ? "primary" : "ghost"}
                 size="lg"
                 className="mt-7"
-              >
-                Start with a free audit →
-              </Button>
+                label="Book your free call →"
+              />
             </div>
           ))}
         </div>
@@ -386,7 +383,7 @@ export default function PricingPage() {
             <div className="font-serif text-[40px] leading-none">
               $12,000<span className="text-muted text-[20px]">+</span>
             </div>
-            <Button href="/audit" variant="ghost" size="sm" className="mt-3">
+            <Button href="/contact" variant="ghost" size="sm" className="mt-3">
               Request a quote →
             </Button>
           </div>
@@ -443,8 +440,8 @@ export default function PricingPage() {
               <em className="text-accent [font-style:italic]">free.</em>
             </>
           }
-          description="See your AI-visibility score first. If it makes sense, we'll make you the answer."
-          primary={{ href: "/audit", label: "Run my free audit →" }}
+          description="Book a quick call and see how AI describes you today. If it makes sense, we'll make you the answer."
+          primary={{ href: "/contact", label: "Book a free call →" }}
           secondary={{ href: "/canon", label: "Explore the framework" }}
         />
       </Section>

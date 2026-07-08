@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/container";
 import { Section, SectionHead } from "@/components/sections/section";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Button } from "@/components/ui/button";
+import { BookCallButton } from "@/components/contact/book-call-button";
 import { Kicker } from "@/components/ui/eyebrow";
 import { ArticleCard } from "@/components/library/cards/article-card";
 import { HeroDemo } from "@/components/marketing/hero-demo";
@@ -106,9 +107,7 @@ export default function HomePage() {
                 framework built to get you there.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <Button href="/audit" size="lg">
-                  See your free AI score →
-                </Button>
+                <BookCallButton size="lg" />
                 <Button href="#how" variant="ghost" size="lg">
                   How it works
                 </Button>
@@ -379,8 +378,8 @@ export default function HomePage() {
               <em className="text-accent [font-style:italic]">free.</em>
             </>
           }
-          description="No signup to see your score. Just your website and about a minute."
-          primary={{ href: "/audit", label: "Run my free audit →" }}
+          description="Book a quick call and we'll show you how AI describes your business — and the fixes that make you the answer."
+          primary={{ href: "/contact", label: "Book a free call →" }}
           secondary={{ href: "/learn", label: "Explore the AEO School" }}
         />
       </Section>
