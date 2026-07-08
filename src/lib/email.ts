@@ -1,6 +1,7 @@
 import "server-only";
 import { Resend } from "resend";
 import { contactFromEmail, contactToEmail, resendApiKey } from "./env";
+import { siteConfig } from "./site";
 
 /**
  * Server-only email delivery for the contact form. The destination address is
@@ -73,6 +74,60 @@ export async function sendContactEmail(
       subject: `New AEO inquiry from ${sub.name} — ${sub.interest}`,
       text: renderText(sub),
       html: renderHtml(sub),
+    });
+    if (error) return { ok: false, reason: "error" };
+    return { ok: true };
+  } catch {
+    return { ok: false, reason: "error" };
+  }
+}
+
+function confirmationText(sub: ContactSubmission): string {
+  return [
+    `Hi ${sub.name},`,
+    ``,
+    `Thanks for reaching out to AEO Canon — your message came through and we'll`,
+    `reply personally soon.`,
+    ``,
+    `Want to talk sooner? Grab a time here and we'll walk through where AI puts`,
+    `your business today and the highest-leverage fixes:`,
+    siteConfig.calendlyUrl,
+    ``,
+    `— Burke Atkerson, AEO Canon`,
+  ].join("\n");
+}
+
+function confirmationHtml(sub: ContactSubmission): string {
+  return [
+    `<p style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.6">Hi ${escapeHtml(sub.name)},</p>`,
+    `<p style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.6">Thanks for reaching out to AEO Canon — your message came through and we&rsquo;ll reply personally soon.</p>`,
+    `<p style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.6">Want to talk sooner? <a href="${siteConfig.calendlyUrl}">Book a quick call</a> and we&rsquo;ll walk through where AI puts your business today and the highest-leverage fixes.</p>`,
+    `<p style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.6">— Burke Atkerson, AEO Canon</p>`,
+  ].join("");
+}
+
+/**
+ * Confirmation autoresponder sent to the person who submitted the form. Sent
+ * best-effort (a failure never blocks the main inquiry). NOTE: delivery to
+ * external submitters requires a Resend-verified sending domain — the shared
+ * onboarding sender only delivers to your own account address. So this activates
+ * fully once CONTACT_FROM_EMAIL is set to a verified-domain sender.
+ */
+export async function sendContactConfirmation(
+  sub: ContactSubmission,
+): Promise<SendResult> {
+  const key = resendApiKey();
+  if (!key) return { ok: false, reason: "unconfigured" };
+
+  try {
+    const resend = new Resend(key);
+    const { error } = await resend.emails.send({
+      from: contactFromEmail(),
+      to: sub.email,
+      replyTo: contactToEmail(),
+      subject: "Thanks for reaching out to AEO Canon",
+      text: confirmationText(sub),
+      html: confirmationHtml(sub),
     });
     if (error) return { ok: false, reason: "error" };
     return { ok: true };

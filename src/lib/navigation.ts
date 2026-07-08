@@ -18,10 +18,14 @@ export const mainNav: NavItem[] = [
   { href: "/pricing", label: "Pricing" },
 ];
 
-/** Header right-side CTAs. */
+/**
+ * Header right-side CTAs. The primary "Book a call" button is rendered
+ * separately (it links straight to Calendly), so the header intentionally does
+ * NOT route to /contact — that page is surfaced from the footer and in-page CTAs
+ * instead.
+ */
 export const navCtas = {
   ghost: { href: "/pricing", label: "Done-for-you" },
-  primary: { href: "/contact", label: "Book a call" },
 } as const;
 
 export interface FooterColumn {
@@ -33,7 +37,6 @@ export const footerNav: FooterColumn[] = [
   {
     title: "Services",
     links: [
-      { href: "/contact", label: "Book a call" },
       { href: "/pricing", label: "Pricing" },
       { href: "/pricing#gallery", label: "Portfolio" },
       { href: "/contact", label: "Contact" },

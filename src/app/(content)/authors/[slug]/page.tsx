@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { MDXContent } from "@/components/mdx";
+import { Button } from "@/components/ui/button";
 import { ArticleCard } from "@/components/library/cards/article-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getAllAuthors, getAuthor, getArticlesByAuthor } from "@/lib/content";
@@ -120,6 +121,12 @@ export default async function AuthorPage({
             ))}
           </div>
         ) : null}
+
+        <div className="mt-6">
+          <Button href="/contact" size="sm">
+            Work with {author.name.split(" ")[0]} →
+          </Button>
+        </div>
       </header>
 
       {author.body ? (

@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { sendContactEmail } from "@/lib/email";
+import { sendContactConfirmation, sendContactEmail } from "@/lib/email";
 import { CONTACT_INTERESTS, type ContactState } from "@/lib/contact";
 
 const schema = z.object({
@@ -68,6 +68,10 @@ export async function submitContact(
       values: raw,
     };
   }
+
+  // Best-effort confirmation back to the submitter. Never fails the inquiry —
+  // the lead email above already succeeded.
+  await sendContactConfirmation(parsed.data);
 
   return { status: "success" };
 }

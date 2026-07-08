@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Logo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
+import { BookCallButton } from "@/components/contact/book-call-button";
 import { mainNav, navCtas } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
@@ -67,13 +68,11 @@ export function SiteHeader() {
             >
               {navCtas.ghost.label}
             </Button>
-            <Button
-              href={navCtas.primary.href}
+            <BookCallButton
               size="sm"
+              label="Book a call"
               className="hidden sm:inline-flex"
-            >
-              {navCtas.primary.label}
-            </Button>
+            />
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -113,9 +112,7 @@ export function SiteHeader() {
                 <Button href={navCtas.ghost.href} variant="ghost" size="sm">
                   {navCtas.ghost.label}
                 </Button>
-                <Button href={navCtas.primary.href} size="sm">
-                  {navCtas.primary.label}
-                </Button>
+                <BookCallButton size="sm" label="Book a call" />
               </div>
             </Container>
           </div>
