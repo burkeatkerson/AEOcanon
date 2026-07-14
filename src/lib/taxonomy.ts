@@ -83,6 +83,29 @@ export { industryName };
 export const ARTICLE_SCHEMA_TYPES = ["Article", "HowTo", "FAQPage"] as const;
 export type ArticleSchemaType = (typeof ARTICLE_SCHEMA_TYPES)[number];
 
+/** Categories for the News & Updates feed — the timely, dated content stream. */
+export const NEWS_CATEGORIES = [
+  "platform-updates",
+  "research-data",
+  "industry-moves",
+  "policy-legal",
+  "predictions",
+] as const;
+
+export type NewsCategory = (typeof NEWS_CATEGORIES)[number];
+
+export const NEWS_CATEGORY_LABELS: Record<NewsCategory, string> = {
+  "platform-updates": "Platform Updates",
+  "research-data": "Research & Data",
+  "industry-moves": "Industry Moves",
+  "policy-legal": "Policy & Legal",
+  predictions: "Predictions",
+};
+
+export function newsCategoryLabel(slug: string): string {
+  return NEWS_CATEGORY_LABELS[slug as NewsCategory] ?? slug;
+}
+
 /** Difficulty levels for learning paths. */
 export const PATH_LEVELS = ["beginner", "intermediate", "advanced"] as const;
 export type PathLevel = (typeof PATH_LEVELS)[number];

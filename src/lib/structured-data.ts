@@ -9,6 +9,7 @@ import type {
   Graph,
   HowTo,
   LearningResource,
+  NewsArticle as NewsArticleSchema,
   Organization,
   Person,
   Review,
@@ -395,6 +396,39 @@ export function researchArticleNode(opts: {
 }): ArticleSchema {
   return {
     "@type": "Article",
+    "@id": absoluteUrl(`${opts.path}#article`),
+    headline: opts.headline,
+    description: opts.description,
+    url: absoluteUrl(opts.path),
+    image: ogImageUrl({ title: opts.headline }),
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified,
+    inLanguage: "en",
+    isPartOf: { "@id": SITE_ID },
+    mainEntityOfPage: absoluteUrl(opts.path),
+    publisher: { "@id": ORG_ID },
+    ...(opts.authorUrl
+      ? { author: { "@id": absoluteUrl(`${opts.authorUrl}#person`) } }
+      : {}),
+    ...(opts.keywords ? { keywords: opts.keywords.join(", ") } : {}),
+  };
+}
+
+/**
+ * NewsArticle node for the News & Updates feed — the same shape as an Article
+ * but typed NewsArticle so engines read it as timely, dated reporting.
+ */
+export function newsArticleNode(opts: {
+  headline: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified: string;
+  authorUrl?: string;
+  keywords?: string[];
+}): NewsArticleSchema {
+  return {
+    "@type": "NewsArticle",
     "@id": absoluteUrl(`${opts.path}#article`),
     headline: opts.headline,
     description: opts.description,

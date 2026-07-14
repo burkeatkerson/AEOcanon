@@ -12,6 +12,7 @@ import {
   tools as rawTools,
   pillars as rawPillars,
   glossary as rawGlossary,
+  news as rawNews,
   type Article,
   type Author,
   type Vertical,
@@ -19,6 +20,7 @@ import {
   type ToolDoc,
   type PillarDoc,
   type GlossaryTerm,
+  type NewsPost,
 } from "#velite";
 import { getAllCourses, getCourse, type Course } from "@/lib/courses";
 
@@ -30,6 +32,7 @@ export type {
   ToolDoc,
   PillarDoc,
   GlossaryTerm,
+  NewsPost,
   Course,
 };
 export { getAllCourses, getCourse };
@@ -211,4 +214,24 @@ export function getRelatedGlossary(term: GlossaryTerm): GlossaryTerm[] {
   return term.related
     .map((slug) => getGlossaryTerm(slug))
     .filter((t): t is GlossaryTerm => Boolean(t));
+}
+
+// --- News & updates (the timely, dated content stream) ----------------------
+
+/** All news posts, newest first. */
+export function getAllNews(): NewsPost[] {
+  return [...rawNews].sort((a, b) => b.published.localeCompare(a.published));
+}
+
+export function getNews(slug: string): NewsPost | undefined {
+  return rawNews.find((n) => n.slug === slug);
+}
+
+export function getNewsByCategory(category: string): NewsPost[] {
+  return getAllNews().filter((n) => n.category === category);
+}
+
+/** The most recent news posts — for surfacing "latest" on other pages. */
+export function getLatestNews(limit = 3): NewsPost[] {
+  return getAllNews().slice(0, limit);
 }

@@ -1,0 +1,72 @@
+---
+title: "llms.txt One Year On: ~10% Adoption, and AI Crawlers Still Ignore It"
+slug: llms-txt-adoption-2026
+summary: An SE Ranking study of 300,000 domains found about 10% of sites now publish llms.txt, but AI search crawlers overwhelmingly skip it and read HTML directly. It is not a citation lever — its real value is in the agentic developer layer.
+category: research-data
+prediction: false
+author: burke-atkerson
+published: 2026-04-15
+updated: 2026-04-15
+sources:
+  - label: "SE Ranking study (300k domains) via Limy — llms.txt in 2026"
+    url: https://limy.ai/blog/llms.txt-in-2026-the-full-guide
+  - label: "Yotpo — What is llms.txt?"
+    url: https://www.yotpo.com/blog/what-is-llms-txt/
+faqs:
+  - q: Do AI search engines use llms.txt in 2026?
+    a: Overwhelmingly no. GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot, and Google-Extended almost never fetch /llms.txt — they crawl your HTML directly. As a way to raise AI search visibility, llms.txt is not a working lever today.
+  - q: Is it still worth adding an llms.txt file?
+    a: Yes, as cheap infrastructure for the agentic layer. IDE and coding agents like Cursor, Windsurf, Claude Code, GitHub Copilot, Cline, and Aider routinely fetch it, making llms.txt the first widely-adopted business-to-agent standard. Just do not expect it to earn citations.
+---
+
+**After roughly eighteen months of industry conversation, an SE Ranking study of
+300,000 domains found a [llms.txt](/glossary/llms-txt) adoption rate of 10.13% —
+about one in ten sites. But AI search crawlers are almost never fetching it.**
+[GPTBot](/glossary/gptbot), ClaudeBot, PerplexityBot, OAI-SearchBot, and
+Google-Extended overwhelmingly skip /llms.txt and crawl your HTML directly. The
+file is real; its role in AI search is not.
+
+<Callout variant="key" title="Why it matters">
+  <p>
+    Teams keep adding llms.txt expecting more citations. The data says it will not
+    move that needle — search crawlers ignore it. The visibility levers remain
+    answer-first content, crawlable HTML, and off-site authority.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "SE Ranking (300k domains): 10.13% llms.txt adoption — roughly 1 in 10 sites.",
+    "AI search crawlers (GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot, Google-Extended) overwhelmingly skip the file.",
+    "llms.txt IS being used by agentic/coding tools — the first real B2A standard.",
+    "Treat it as cheap infrastructure, not a citation lever.",
+  ]}
+/>
+
+## How widely adopted is llms.txt?
+
+<StatGrid>
+  <Stat value="10.13%" label="of 300k domains publish llms.txt (SE Ranking)" color="var(--accent)" />
+  <Stat value="~1 in 10" label="sites, after ~18 months of discussion" color="var(--muted)" />
+</StatGrid>
+
+Adoption sounds respectable until you check who is reading the file. SE Ranking's
+crawl data shows the major AI search agents fetch HTML pages and skip /llms.txt
+almost entirely — so the standard is spreading faster than it is being consumed
+by the engines it was pitched to help.
+
+## So where does llms.txt actually work?
+
+In the agentic layer. llms.txt has become the first widely-adopted
+business-to-agent ("B2A") standard that IDE and coding agents — Cursor, Windsurf,
+Claude Code, GitHub Copilot, Cline, and Aider — routinely fetch to orient
+themselves in a codebase or product doc. That is real utility, just not the AI
+search citation utility it is often sold as. This matches the stance in
+[does llms.txt work](/learn/does-llms-txt-work).
+
+## What should you do about it?
+
+Keep llms.txt if you want the developer-agent benefit — it is cheap to maintain
+via your [access](/pillars/access) setup — but do not expect it to raise AI
+visibility. Put the effort where citations are actually decided:
+[how AI engines choose citations](/learn/how-ai-engines-choose-citations).

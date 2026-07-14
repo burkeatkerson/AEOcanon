@@ -11,6 +11,7 @@ import {
   TOPIC_SLUGS,
   VERTICAL_SLUGS,
   ARTICLE_SCHEMA_TYPES,
+  NEWS_CATEGORIES,
 } from "./src/lib/taxonomy";
 
 // Velite runs in its own Node process and does not load Next's .env, so this
@@ -235,6 +236,36 @@ const glossary = defineCollection({
     })),
 });
 
+const news = defineCollection({
+  name: "NewsPost",
+  pattern: "news/**/*.mdx",
+  schema: s
+    .object({
+      title: s.string().max(120),
+      slug: s.slug("news"),
+      summary: s.string().min(20).max(320),
+      body: s.mdx(),
+      category: s.enum(NEWS_CATEGORIES),
+      // True for forward-looking prediction pieces (badged in the UI).
+      prediction: s.boolean().default(false),
+      author: s.string(), // author slug; existence enforced in prepare()
+      published: s.isodate(),
+      updated: s.isodate(),
+      // Cited sources backing the piece — surfaced as a references list.
+      sources: s
+        .array(s.object({ label: s.string(), url: s.string().url() }))
+        .default([]),
+      faqs: s.array(s.object({ q: s.string(), a: s.string() })).optional(),
+      metadata: s.metadata(),
+      toc: s.toc(),
+    })
+    .transform((data) => ({
+      ...data,
+      url: `/news/${data.slug}`,
+      canonicalUrl: `${SITE_URL}/news/${data.slug}`,
+    })),
+});
+
 export default defineConfig({
   root: "content",
   collections: {
@@ -245,6 +276,7 @@ export default defineConfig({
     tools,
     pillars,
     glossary,
+    news,
   },
   mdx: {
     remarkPlugins: [remarkGfm],
@@ -253,7 +285,7 @@ export default defineConfig({
   // Cross-collection referential integrity. Throwing here aborts `velite build`,
   // which (via the `build` npm script) aborts `next build` — bad references fail
   // the build instead of 404-ing in production.
-  prepare: ({ articles, authors, playbooks, tools, pillars, glossary }) => {
+  prepare: ({ articles, authors, playbooks, tools, pillars, glossary, news }) => {
     const authorSlugs = new Set(authors.map((a) => a.slug));
     const errors: string[] = [];
 
@@ -293,6 +325,14 @@ export default defineConfig({
       if (!authorSlugs.has(term.author)) {
         errors.push(
           `Glossary term "${term.slug}" references unknown author "${term.author}".`,
+        );
+      }
+    }
+
+    for (const post of news) {
+      if (!authorSlugs.has(post.author)) {
+        errors.push(
+          `News post "${post.slug}" references unknown author "${post.author}".`,
         );
       }
     }

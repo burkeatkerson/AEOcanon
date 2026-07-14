@@ -1,0 +1,80 @@
+---
+title: "Cloudflare Wants AI to Pay for Content: 'Pay Per Crawl' Becomes 'Pay Per Answer'"
+slug: cloudflare-pay-per-crawl
+summary: Cloudflare's Pay Per Crawl marketplace is evolving toward Pay Per Answer, charging AI companies when publisher content appears in an answer. For most businesses the real risk is accidentally blocking the AI crawlers you want, so audit your robots and CDN settings now.
+category: industry-moves
+prediction: false
+author: burke-atkerson
+published: 2026-07-11
+updated: 2026-07-11
+sources:
+  - label: "TechCrunch — Cloudflare pushes AI companies to pay for publishers' content"
+    url: https://techcrunch.com/2026/07/01/cloudflares-new-policy-pushes-ai-companies-to-pay-for-publishers-content/
+  - label: "Cloudflare — Introducing pay per crawl"
+    url: https://blog.cloudflare.com/introducing-pay-per-crawl/
+faqs:
+  - q: What is Cloudflare's Pay Per Crawl, and how is it changing?
+    a: Pay Per Crawl is a marketplace that lets sites charge AI bots to scrape their content. On July 1, 2026 Cloudflare proposed evolving it into Pay Per Use, or Pay Per Answer, which would pay publishers when their content actually appears inside an AI answer rather than only when it is fetched.
+  - q: Could this block the AI crawlers I actually want?
+    a: Yes, if you are not careful. From September 15, 2026 Cloudflare's default settings will block mixed-use crawlers on any pages hosting ads, so you should audit your robots rules and CDN settings to make sure the crawlers that cite you are still allowed.
+---
+
+**Cloudflare wants AI companies to pay for the content they read — and it is
+moving from charging per crawl toward charging per answer.** On July 1, 2026 the
+company proposed evolving its Pay Per Crawl marketplace into "Pay Per Use" or
+"Pay Per Answer," which would pay publishers when their content actually appears
+inside an AI response, not just when a bot fetches it. For most businesses, the
+urgent takeaway is defensive: don't accidentally block the AI crawlers you
+*want*.
+
+<Callout variant="warning" title="Why it matters">
+  <p>
+    The machine-read content economy is being priced in real time. Big publishers
+    are negotiating payment, but the immediate risk for everyone else is a default
+    block that silently cuts off the AI engines that would otherwise cite you.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Cloudflare proposed Pay Per Answer on July 1, 2026, paying publishers when content appears in an AI answer.",
+    "AI companies have until Sept 15, 2026 to separate search crawlers from AI-training and agent crawlers.",
+    "From Sept 15, default settings block mixed-use crawlers on any pages hosting ads.",
+    "The practical move for most sites is to audit robots and CDN rules so wanted crawlers get through.",
+  ]}
+/>
+
+## What is Cloudflare actually proposing?
+
+A shift in what gets charged. Pay Per Crawl let sites charge AI bots to scrape
+content; the new Pay Per Answer model would tie payment to the moment content
+shows up inside an AI answer. Alongside it, Cloudflare is giving AI companies
+until September 15, 2026 to separate their search crawlers from their
+AI-training and agent crawlers — or be blocked by default on many publisher
+sites. After that date, default settings block "mixed-use" crawlers on any pages
+that host ads. Cloudflare has also accused [Perplexity](/glossary/perplexity) of
+dodging scraping blocks, a sign of how contested crawler access has become.
+
+## What does this mean for AEO?
+
+It raises the stakes on crawler hygiene. Getting cited by an AI engine requires
+that engine to reach your content in the first place, so a well-meaning but
+overbroad block is the fastest way to disappear from AI answers. The engines you
+want — the ones that read a page and name you as the source — depend on clean,
+intentional [robots.txt](/glossary/robots-txt) rules and CDN settings that
+distinguish them from crawlers you would rather refuse.
+
+## What should you do about it?
+
+Audit before the September deadline. Confirm which bots your CDN and robots rules
+currently allow, and make sure the citation-driving crawlers are on the allow
+list even as defaults tighten. This is a settings problem more than a strategy
+problem — but a settings mistake here is expensive.
+
+Start with [which AI crawlers to allow](/learn/which-ai-crawlers-to-allow) and
+[how to set them in robots.txt](/learn/allow-ai-crawlers-robots-txt), and if you
+are on Cloudflare, read
+[does Cloudflare block AI crawlers](/learn/does-cloudflare-block-ai-crawlers).
+For where this is heading, see
+[the pay-per-answer web](/news/pay-per-answer-web-prediction) and
+[AI search regulation in 2026](/news/ai-search-regulation-2026).

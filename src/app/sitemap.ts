@@ -9,6 +9,7 @@ import {
   getAllPillars,
   getAllGlossary,
   getAllTools,
+  getAllNews,
   getUsedTopics,
 } from "@/lib/content";
 
@@ -49,6 +50,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/tools"), changeFrequency: "monthly", priority: 0.7 },
     { url: absoluteUrl("/scorecard"), changeFrequency: "monthly", priority: 0.7 },
     { url: absoluteUrl("/glossary"), changeFrequency: "weekly", priority: 0.7 },
+    { url: absoluteUrl("/news"), changeFrequency: "daily", priority: 0.8 },
+    { url: absoluteUrl("/contact"), changeFrequency: "monthly", priority: 0.7 },
     { url: absoluteUrl("/pricing"), changeFrequency: "monthly", priority: 0.8 },
     {
       url: absoluteUrl("/whitepaper"),
@@ -144,6 +147,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // News & updates — timely, dated posts; crawl often.
+  const news: MetadataRoute.Sitemap = getAllNews().map((n) => ({
+    url: absoluteUrl(n.url),
+    lastModified: n.updated,
+    changeFrequency: "weekly",
+    priority: 0.6,
+  }));
+
   return [
     ...staticRoutes,
     ...articles,
@@ -155,5 +166,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...pillars,
     ...glossary,
     ...tools,
+    ...news,
   ];
 }

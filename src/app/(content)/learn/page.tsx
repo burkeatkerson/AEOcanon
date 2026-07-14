@@ -108,6 +108,9 @@ export default function LearnPage() {
           <Button href="/audit" variant="ghost" size="lg">
             Not sure where to start? Run the analyzer
           </Button>
+          <Button href="/news" variant="ghost" size="lg">
+            AEO news &amp; updates →
+          </Button>
         </div>
       </header>
 

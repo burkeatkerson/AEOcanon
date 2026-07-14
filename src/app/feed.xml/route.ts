@@ -1,5 +1,6 @@
 import { absoluteUrl, siteConfig } from "@/lib/site";
-import { getAllArticles, getAuthor } from "@/lib/content";
+import { getAllArticles, getAllNews, getAuthor } from "@/lib/content";
+import { newsCategoryLabel } from "@/lib/taxonomy";
 
 function escapeXml(value: string): string {
   return value
@@ -16,15 +17,17 @@ export const dynamic = "force-static";
 /** RSS 2.0 feed for the AEO School, generated from the article pool. */
 export function GET() {
   const articles = getAllArticles();
+  const news = getAllNews();
   const self = absoluteUrl("/feed.xml");
-  const lastBuild = articles[0]
-    ? new Date(articles[0].updated).toUTCString()
-    : new Date(0).toUTCString();
 
-  const items = articles
-    .map((article) => {
-      const author = getAuthor(article.author);
-      return [
+  type FeedEntry = { published: string; updated: string; xml: string };
+
+  const articleEntries: FeedEntry[] = articles.map((article) => {
+    const author = getAuthor(article.author);
+    return {
+      published: article.published,
+      updated: article.updated,
+      xml: [
         "    <item>",
         `      <title>${escapeXml(article.title)}</title>`,
         `      <link>${absoluteUrl(article.url)}</link>`,
@@ -40,9 +43,41 @@ export function GET() {
         "    </item>",
       ]
         .filter(Boolean)
-        .join("\n");
-    })
-    .join("\n");
+        .join("\n"),
+    };
+  });
+
+  const newsEntries: FeedEntry[] = news.map((post) => {
+    const author = getAuthor(post.author);
+    return {
+      published: post.published,
+      updated: post.updated,
+      xml: [
+        "    <item>",
+        `      <title>${escapeXml(post.title)}</title>`,
+        `      <link>${absoluteUrl(post.url)}</link>`,
+        `      <guid isPermaLink="true">${absoluteUrl(post.url)}</guid>`,
+        `      <description>${escapeXml(post.summary)}</description>`,
+        author
+          ? `      <dc:creator>${escapeXml(author.name)}</dc:creator>`
+          : "",
+        `      <pubDate>${new Date(post.published).toUTCString()}</pubDate>`,
+        `      <category>${escapeXml(newsCategoryLabel(post.category))}</category>`,
+        "    </item>",
+      ]
+        .filter(Boolean)
+        .join("\n"),
+    };
+  });
+
+  const all = [...articleEntries, ...newsEntries].sort((a, b) =>
+    b.published.localeCompare(a.published),
+  );
+  const latestUpdated = all
+    .map((e) => e.updated)
+    .sort((a, b) => b.localeCompare(a))[0];
+  const lastBuild = new Date(latestUpdated ?? 0).toUTCString();
+  const items = all.map((e) => e.xml).join("\n");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
