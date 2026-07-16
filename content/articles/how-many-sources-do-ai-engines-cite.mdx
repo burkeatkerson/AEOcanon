@@ -1,0 +1,94 @@
+---
+title: "How Many Sources Do AI Engines Cite Per Answer?"
+slug: how-many-sources-do-ai-engines-cite
+summary: AI engines vary widely in how many sources they cite — Perplexity often lists a dozen or more numbered sources, while ChatGPT, Gemini, and Google AI Overviews typically name just a handful. More citation slots means more chances to be the source that gets named.
+topics:
+  - answer-engines
+author: burke-atkerson
+published: 2026-07-13
+updated: 2026-07-13
+schemaType: Article
+faqs:
+  - q: How many sources do AI engines cite per answer?
+    a: It varies a lot by engine. Perplexity is citation-heavy and typically shows a numbered list of roughly 5 to 15 or more sources, while ChatGPT, Gemini, and Google AI Overviews usually cite just a few. These are typical ranges, not fixed limits — the count shifts by query and freshness.
+  - q: Which AI engine cites the most sources?
+    a: Perplexity, by design. It is built citation-first and surfaces a long numbered list per answer, giving it the most citation slots of the major engines. That means more opportunities to be one of the sources named for a given question.
+  - q: Why does the number of citations matter for AEO?
+    a: Because each citation slot is a chance to be named. An engine that cites a dozen sources gives you many more openings than one that cites two or three — so citation-heavy engines can be easier to break into, even if each click is worth less.
+---
+
+**AI engines differ sharply in how many sources they cite — from a long numbered
+list to just two or three names.** That difference matters, because every citation
+slot is another chance for your page to be the one an engine picks.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    <a href="/glossary/perplexity">Perplexity</a> is citation-heavy — typically a
+    numbered list of roughly <strong>5–15+ sources</strong>. ChatGPT, Gemini, and
+    <a href="/glossary/google-ai-overviews">Google AI Overviews</a> usually cite just
+    a <strong>handful</strong>. More slots means more chances to be named, so
+    citation-dense engines can be easier to break into.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Perplexity cites the most — typically a long numbered list (~5–15+ sources).",
+    "ChatGPT cites a handful, woven selectively into the prose.",
+    "Google AI Overviews and Gemini typically surface just a few linked sources.",
+    "More citation slots = more chances to be named, even if each click is worth less.",
+  ]}
+/>
+
+## How many sources does each engine typically cite?
+
+The count ranges from a dozen-plus down to two or three, depending on the engine.
+[Perplexity](/glossary/perplexity) is built citation-first and shows a long numbered
+list; ChatGPT names a handful within its answer; Google AI Overviews and Gemini
+usually surface a few linked sources beside the response. The chart below shows
+typical ranges — treat them as approximate, since the real number shifts with the
+query, freshness, and how much the engine needs to support its answer.
+
+<BarChart
+  caption="Typical sources cited per answer by engine — approximate ranges, not fixed limits"
+  max={15}
+  data={[
+    { label: "Perplexity", value: 12, display: "~5–15+", color: "var(--accent)", emphasis: true },
+    { label: "ChatGPT", value: 5, display: "~a handful", color: "var(--c3)" },
+    { label: "Google AI Overviews", value: 4, display: "~a few", color: "var(--c4)" },
+    { label: "Gemini", value: 4, display: "~a few", color: "var(--muted)" },
+  ]}
+/>
+
+## Which engine gives the most citation slots?
+
+Perplexity, and it is not close. Because it is designed to show its work, it exposes
+far more numbered sources per answer than any other major engine. Each of those slots
+is an opening — a place where a clear, extractable passage from your site can be the
+one it lists. That is why citation-dense engines can be easier to break into even
+when they send less traffic overall.
+
+## Why does the citation count matter for AEO?
+
+It matters because every slot is a chance to be named. An engine that cites two
+sources is a near-winner-take-all game; an engine that cites a dozen rewards being
+one useful voice among many. The lever is the same either way — write the passage an
+engine can lift cleanly — but the odds differ. Understanding how engines pick those
+sources is the real work: see
+[how AI engines choose citations](/learn/how-ai-engines-choose-citations).
+
+## What should you do with this?
+
+Match your effort to the opportunity. On citation-heavy engines, focus on breadth —
+answer-first passages across many questions, each extractable enough to earn a slot.
+On sparse engines, focus on being the single best answer for your priority queries.
+Both start with [the content format AI cites most](/learn/content-format-ai-cites-most)
+and [how AI retrieval works](/learn/how-ai-retrieval-works).
+
+<RelatedQuestions
+  items={[
+    { q: "How do AI engines choose which sources to cite?", a: "They retrieve candidate passages, rerank them for relevance and trust, and cite the most useful.", href: "/learn/how-ai-engines-choose-citations" },
+    { q: "What content format do AI engines cite most?", a: "Answer-first, extractable passages — clear headings, direct answers, and evidence.", href: "/learn/content-format-ai-cites-most" },
+    { q: "Which AI engines send the most traffic?", a: "ChatGPT dominates referral volume; Perplexity cites more sources but sends fewer clicks.", href: "/learn/which-ai-engines-send-most-traffic" },
+  ]}
+/>

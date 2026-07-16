@@ -1,0 +1,84 @@
+---
+title: "The Anatomy of a JSON-LD Block"
+slug: anatomy-of-json-ld
+summary: A JSON-LD block has four load-bearing parts — @context sets the vocabulary (schema.org), @type declares what the thing is, @id gives it a stable identifier other nodes can reference, and the remaining properties describe it. Understanding each part lets you write and debug markup with confidence.
+topics:
+  - structured-data
+author: burke-atkerson
+published: 2026-06-30
+updated: 2026-06-30
+schemaType: Article
+faqs:
+  - q: What are the main parts of a JSON-LD block?
+    a: The four core parts are @context, which sets the vocabulary to schema.org; @type, which declares what the thing is; @id, which gives it a stable identifier; and the properties, which describe the entity. Nesting lets one entity reference or contain another.
+  - q: What does @id do in JSON-LD?
+    a: The @id property assigns a stable, unique identifier — usually a URL — to a node so other nodes can reference the same entity instead of duplicating it. It lets you link an Article to its author or publisher cleanly across your markup.
+  - q: Is @context always schema.org?
+    a: For AEO, effectively yes. @context points to the vocabulary that defines your terms, and schema.org is the standard vocabulary Google and answer engines understand. You set it to https://schema.org.
+---
+
+**A [JSON-LD](/glossary/json-ld) block has four load-bearing parts: `@context` sets the
+vocabulary, `@type` declares what the thing is, `@id` gives it a stable identifier, and the
+remaining properties describe it.** Learn these and you can write and debug any block.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Every JSON-LD block reads the same way: <strong>@context</strong> names the vocabulary
+    (<a href="/glossary/schema-markup">schema.org</a>), <strong>@type</strong> says what the
+    entity is, <strong>@id</strong> gives it a <strong>stable identifier</strong> so other
+    nodes can reference it, and <strong>properties</strong> fill in the details. Nesting lets
+    one entity point to another.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "@context sets the vocabulary — schema.org.",
+    "@type declares what the thing is (Article, Organization, Person).",
+    "@id is a stable identifier so nodes can reference each other.",
+    "Properties describe the entity; nesting links related entities.",
+  ]}
+/>
+
+## What does a real block look like?
+
+Here's a compact Article with a nested author and publisher:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "https://aeocanon.com/learn/anatomy-of-json-ld#article",
+  "headline": "The Anatomy of a JSON-LD Block",
+  "author": {
+    "@type": "Person",
+    "@id": "https://aeocanon.com/authors/burke-atkerson#person",
+    "name": "Burke Atkerson"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AEO Canon"
+  },
+  "datePublished": "2026-06-30"
+}
+```
+
+## How do I read each part?
+
+Left to right, top to bottom — each key has a job.
+
+<Steps
+  items={[
+    { title: "@context — the vocabulary", body: "Points to https://schema.org, the shared dictionary that defines what every term below means. Without it, an engine can't interpret your keys." },
+    { title: "@type — what it is", body: "Declares the entity class — here Article, with a nested Person and Organization. This is how a parser knows to treat the block as an article versus a product." },
+    { title: "@id — the stable identifier", body: "A unique URL that names this exact node so other markup can reference it instead of duplicating it. The author's @id lets every article point to the same Person." },
+    { title: "Properties + nesting", body: "headline, datePublished, author, and publisher describe the entity. Nesting an object (author) links a related entity inline." },
+  ]}
+/>
+
+## Where to go next
+
+Once you understand the parts, [validate your structured
+data](/learn/validate-structured-data) before shipping, review the
+[JSON-LD glossary entry](/glossary/json-ld), and see which [schema types matter most for
+AEO](/learn/schema-types-for-aeo).

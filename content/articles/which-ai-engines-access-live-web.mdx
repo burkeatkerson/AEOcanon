@@ -1,0 +1,97 @@
+---
+title: "Which AI Engines Access the Live Web?"
+slug: which-ai-engines-access-live-web
+summary: Most major AI engines now reach the live web — ChatGPT, Perplexity, Gemini, Copilot, and Claude can all search current pages rather than answering only from training data. That freshness is what makes recent, well-structured content citable, so knowing each engine's access shapes your AEO play.
+topics:
+  - answer-engines
+  - ai-fundamentals
+author: burke-atkerson
+published: 2026-07-11
+updated: 2026-07-11
+schemaType: Article
+faqs:
+  - q: Which AI engines can access the live web?
+    a: All of the major ones now can. ChatGPT searches live via its OAI-SearchBot and browsing, Perplexity retrieves from the live web plus its own index, Gemini uses Google's live infrastructure, Copilot uses Bing, and Claude has web search. Each can pull current pages rather than relying only on training data.
+  - q: Why does live web access matter for AEO?
+    a: Because it decides whether fresh content can be cited at all. An engine that only answers from training data can't see a page you published last week, but one with live access can retrieve, read, and cite it — so freshness and crawlability become ranking levers.
+  - q: Do AI engines still use training data if they have live web access?
+    a: Yes. Even engines with live search fall back on training data for general knowledge and blend it with retrieved pages. Live access mainly affects time-sensitive or specific queries, where the engine reaches out to current sources to ground its answer.
+---
+
+**Nearly every major AI engine can now reach the live web — they no longer answer
+only from frozen training data.** That shift is what makes recent, well-structured
+content citable, so knowing how each engine gets its information shapes where your
+AEO effort pays off.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    <strong>All the major engines now access the live web</strong> —
+    <a href="/glossary/chatgpt">ChatGPT</a>, <a href="/glossary/perplexity">Perplexity</a>,
+    <a href="/glossary/gemini">Gemini</a>, <a href="/glossary/copilot">Copilot</a>, and
+    <a href="/glossary/claude">Claude</a> can all retrieve current pages. That means
+    fresh, crawlable, extractable content can be cited — <a href="/glossary/retrieval">retrieval</a>,
+    not just training data, decides what shows up.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "ChatGPT, Perplexity, Gemini, Copilot, and Claude can all reach the live web.",
+    "Live access means content you published this week can be retrieved and cited.",
+    "Engines still blend live pages with training-data knowledge for general questions.",
+    "Freshness and crawlability become real ranking levers once an engine browses live.",
+  ]}
+/>
+
+## Which engines actually browse the live web?
+
+All the major ones do, though they get there by different routes. The matrix below
+lays out how each engine reaches current pages and how it tends to cite them.
+
+<ComparisonTable
+  caption="How the major AI engines access the live web and cite sources"
+  columns={["Engine", "Live web access", "Freshness", "Citation style"]}
+  rows={[
+    ["ChatGPT", "Yes — OAI-SearchBot + browsing", "High on time-sensitive queries", "A handful, woven into the answer"],
+    ["Perplexity", "Yes — live web + its own index", "Very high, real-time", "Citation-first, long numbered list"],
+    ["Gemini", "Yes — via Google's infrastructure", "High, tied to Google's index", "A few linked sources"],
+    ["Copilot", "Yes — via Bing", "High, tied to Bing's index", "Linked sources beside the answer"],
+    ["Claude", "Yes — has web search", "High when search is used", "Cited inline when it retrieves"],
+  ]}
+/>
+
+## Why does live web access matter for getting cited?
+
+It matters because it decides whether your new content can be seen at all. An engine
+answering only from training data can't cite a page you published last week — it
+doesn't know it exists. An engine with live access can [retrieve](/glossary/retrieval)
+that page, read it, and cite it, which turns freshness and crawlability into direct
+ranking levers. If your pages block AI crawlers or bury the answer, live access does
+you no good.
+
+## Do engines still lean on training data?
+
+Yes — live access supplements training data, it doesn't replace it. Engines pull
+current pages for time-sensitive or specific questions and fall back on their trained
+knowledge for general ones, then blend the two. This is why the same question can
+produce different answers on different days: what the engine retrieved live changes,
+even when its base knowledge doesn't. See
+[why AI gives different answers](/learn/why-ai-gives-different-answers) for the
+mechanics.
+
+## What should you do with this?
+
+Make sure every engine can reach and read your best content: allow the AI crawlers,
+render your answers in clean server-side HTML, and lead with the answer so a retrieved
+passage is easy to lift. Then keep priority pages fresh, because on live-web engines
+recency is a genuine signal. Start with
+[the content format AI cites most](/learn/content-format-ai-cites-most) and
+[how AI retrieval works](/learn/how-ai-retrieval-works).
+
+<RelatedQuestions
+  items={[
+    { q: "How does retrieval work in AI search?", a: "Engines search a corpus, rank passages, and feed the best ones to the model to ground its answer.", href: "/learn/how-ai-retrieval-works" },
+    { q: "Why do AI engines give different answers?", a: "Different indexes and live retrievals mean each engine sees a different set of sources.", href: "/learn/why-ai-gives-different-answers" },
+    { q: "What content format do AI engines cite most?", a: "Answer-first, extractable passages with clear headings and direct answers.", href: "/learn/content-format-ai-cites-most" },
+  ]}
+/>

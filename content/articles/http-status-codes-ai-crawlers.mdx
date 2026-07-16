@@ -1,0 +1,77 @@
+---
+title: "What HTTP Status Codes Tell an AI Crawler"
+slug: http-status-codes-ai-crawlers
+summary: HTTP status codes are instructions to AI crawlers — 200 means crawl and use, 301 consolidates signals to a new URL, 404 drops a page slowly while 410 drops it fast, 429 says back off, and repeated 5xx errors can get a page removed from the answer pool entirely.
+topics:
+  - technical-seo
+author: burke-atkerson
+published: 2026-07-08
+updated: 2026-07-08
+schemaType: Article
+faqs:
+  - q: What is the difference between a 404 and a 410 for AI crawlers?
+    a: Both mean the page is missing, but 410 Gone signals a permanent, intentional removal, so crawlers tend to drop the URL faster. A 404 Not Found is treated as possibly temporary, so the page is usually revisited a few times before being dropped from the answer pool.
+  - q: Do redirects hurt AI crawling?
+    a: A single clean redirect is fine, but long redirect chains waste crawl budget and some crawlers cap the number of hops they will follow. If the chain exceeds that limit, the crawler gives up before reaching your real content, so keep redirects to one hop where possible.
+  - q: What does a 429 status code do to an AI crawler?
+    a: A 429 Too Many Requests tells the crawler to slow down and try again later. Well-behaved bots back off and retry, but if your server keeps returning 429 or 503, the crawler may fetch you less often, which delays how quickly new content enters AI answers.
+---
+
+**To an AI crawler, an HTTP status code is a command — it decides whether your page gets used, consolidated, retried, or dropped.** A 200 says use me; a 301 passes your signals forward; a 410 removes you fast. Getting these right keeps your best pages in the answer pool.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    <strong>200</strong> = crawl and use. <strong>301</strong> = follow and move your
+    signals to the new URL. <strong>404</strong> = dropped slowly;{" "}
+    <strong>410</strong> = dropped fast and for good. <strong>429</strong> and{" "}
+    <strong>5xx</strong> = back off and retry — but <em>repeated</em> server errors can
+    remove the page from AI answers entirely.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "200 OK is the only status that lets a crawler read and cite your content.",
+    "301 consolidates signals to the new URL; 302/307 keep the old URL canonical.",
+    "404 is dropped gradually; 410 Gone is dropped faster and permanently.",
+    "429 and 5xx mean retry later — but repeated 5xx can drop the page.",
+  ]}
+/>
+
+## Which status codes keep me in AI answers?
+
+Only 200 OK actively helps — it tells the crawler the content is live and usable. A 304 Not Modified is also friendly: it confirms your cached copy is still current, saving a full fetch. Everything else either moves, delays, or removes you.
+
+## How do redirects change what a crawler keeps?
+
+The redirect type decides which URL survives. A 301 permanent redirect tells the crawler to follow the hop and consolidate your accumulated signals onto the new URL. A 302 or 307 temporary redirect is followed too, but the crawler keeps treating the old URL as canonical. See [redirects for AI crawlers](/learn/redirects-ai-crawlers) for the full playbook — and avoid long chains, which burn [crawl budget](/learn/crawl-budget-ai) and can exceed a crawler's hop cap.
+
+## What removes a page from the answer pool?
+
+Persistent errors. A single 404 or 5xx is survivable, but repeated 404s eventually drop the URL, a 410 Gone drops it faster and permanently, and repeated 500/503 responses signal an unreliable page that crawlers stop trusting.
+
+<ComparisonTable
+  rowHeaders
+  caption="What each HTTP status code tells an AI crawler"
+  columns={["Code", "Meaning", "What an AI crawler does"]}
+  rows={[
+    ["200 OK", "Success", "Crawls and uses the content — eligible to be cited"],
+    ["301 Moved Permanently", "Permanent redirect", "Follows and consolidates signals onto the new URL"],
+    ["302 / 307 Found / Temporary", "Temporary redirect", "Follows but keeps the old URL as canonical"],
+    ["304 Not Modified", "Unchanged since last fetch", "Uses its cached copy — no re-download"],
+    ["404 Not Found", "Missing (maybe temporary)", "Revisits, then eventually drops the URL"],
+    ["410 Gone", "Permanently removed", "Drops the URL faster and permanently"],
+    ["429 Too Many Requests", "Rate limited", "Backs off and retries later"],
+    ["500 / 503 Server error", "Server failure", "Retries later; repeated 5xx can drop the page"],
+  ]}
+/>
+
+Serve clean 200s for what you want cited, and use 301s deliberately. More in [redirects for AI crawlers](/learn/redirects-ai-crawlers) and [crawl budget for AI](/learn/crawl-budget-ai).
+
+<RelatedQuestions
+  items={[
+    { q: "How do redirects affect AI crawlers?", a: "301s pass your signals forward; 302/307 keep the old URL canonical. Avoid long chains.", href: "/learn/redirects-ai-crawlers" },
+    { q: "What is crawl budget for AI?", a: "The finite attention a crawler spends on your site — wasted on errors and redirect chains.", href: "/learn/crawl-budget-ai" },
+    { q: "Do canonical URLs affect AI citation?", a: "Yes — the canonical URL is the one crawlers consolidate signals onto and cite.", href: "/learn/canonical-urls-ai-citation" },
+  ]}
+/>

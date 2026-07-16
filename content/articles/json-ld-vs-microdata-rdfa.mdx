@@ -1,0 +1,88 @@
+---
+title: "JSON-LD vs Microdata vs RDFa — Which to Use"
+slug: json-ld-vs-microdata-rdfa
+summary: Use JSON-LD. It lives in a separate script block, is the easiest format to add and maintain, and is the one Google recommends. Microdata and RDFa embed markup as inline HTML attributes, which is verbose and harder to maintain — and both Google and AI parsers favor JSON-LD.
+topics:
+  - structured-data
+author: burke-atkerson
+published: 2026-07-01
+updated: 2026-07-01
+schemaType: Article
+faqs:
+  - q: Which structured data format should I use?
+    a: JSON-LD. It sits in a self-contained script block separate from your HTML, is the easiest to add and maintain, and is the format Google explicitly recommends. Microdata and RDFa work but are inline and harder to keep clean.
+  - q: What is the difference between JSON-LD and Microdata?
+    a: JSON-LD is a standalone script block of structured data, while Microdata is a set of attributes woven into your visible HTML tags. JSON-LD keeps markup separate from presentation; Microdata mixes them, which makes maintenance harder.
+  - q: Do AI parsers prefer JSON-LD?
+    a: Yes, in practice. JSON-LD is a clean, self-contained block that is trivial to extract, and it is Google's recommended format. Inline formats like Microdata and RDFa are parseable but messier to read.
+---
+
+**Use [JSON-LD](/glossary/json-ld).** It lives in a separate script block, is the easiest
+format to add and maintain, and is the one Google recommends. Microdata and RDFa embed
+markup inline in your HTML — verbose and harder to maintain — and both Google and AI
+parsers favor JSON-LD.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    All three encode the same <a href="/glossary/schema-markup">schema.org</a> vocabulary,
+    but they differ in <strong>where the markup lives</strong>. JSON-LD is a
+    <strong> self-contained script block</strong> — easiest to maintain and
+    <strong> Google's recommended format</strong>. Microdata and RDFa scatter attributes
+    <strong> inside your HTML tags</strong>, which is verbose and error-prone. Choose JSON-LD.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "JSON-LD is a separate script block — the easiest to add and maintain.",
+    "Microdata and RDFa embed markup inline as HTML attributes.",
+    "Google recommends JSON-LD; AI parsers extract it cleanly.",
+    "All three use the same schema.org vocabulary — the difference is placement.",
+  ]}
+/>
+
+## What's the difference between the three?
+
+Placement. JSON-LD is a standalone `<script type="application/ld+json">` block that never
+touches your visible markup. Microdata adds `itemscope`, `itemtype`, and `itemprop`
+attributes directly onto your HTML tags. RDFa is similar — inline attributes like
+`typeof` and `property` — and tends to be the most verbose of the three.
+
+## Which one does Google recommend?
+
+JSON-LD. Google names it as the preferred format, and the reasons are practical: it keeps
+data separate from presentation, it's easy to generate from typed content, and it's simple
+to validate as one block. AI parsers benefit from the same trait — a clean, isolated
+object is trivial to lift.
+
+<ComparisonTable
+  caption="The three schema.org formats compared"
+  columns={["Format", "Where it lives", "Maintainability", "Recommended?"]}
+  rows={[
+    ["JSON-LD", "Separate <script> block", "Easiest — one isolated object", "Yes — Google's pick"],
+    ["Microdata", "Inline HTML attributes", "Harder — tangled with markup", "Works, not preferred"],
+    ["RDFa", "Inline HTML attributes", "Hardest — most verbose", "Works, not preferred"],
+  ]}
+/>
+
+## What does the recommended approach look like?
+
+A small, self-contained block like this:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "AEO Canon",
+  "url": "https://aeocanon.com",
+  "sameAs": [
+    "https://www.linkedin.com/company/aeocanon",
+    "https://www.wikidata.org/wiki/Q000000"
+  ]
+}
+```
+
+## Where to go next
+
+See [how to implement structured data for AEO](/learn/structured-data-for-aeo) for the full
+workflow, and the [JSON-LD glossary entry](/glossary/json-ld) for a deeper definition.

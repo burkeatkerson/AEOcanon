@@ -1,0 +1,73 @@
+---
+title: "FAQPage vs HowTo Schema — When to Use Each"
+slug: faqpage-vs-howto-schema
+summary: Use FAQPage schema for question-and-answer content and HowTo for ordered, step-by-step tasks. Google deprecated HowTo rich results and limited FAQ rich results to government and health sites in 2023 — but the markup still gives AI parsers clean, structured data.
+topics:
+  - structured-data
+author: burke-atkerson
+published: 2026-07-02
+updated: 2026-07-02
+schemaType: Article
+faqs:
+  - q: When should I use FAQPage vs HowTo schema?
+    a: Use FAQPage for discrete question-and-answer pairs and HowTo for a single ordered procedure with sequential steps. Match the markup to the content's actual shape — questions map to FAQPage, tasks map to HowTo.
+  - q: Do FAQPage and HowTo still get rich results?
+    a: Mostly no. In 2023 Google deprecated HowTo rich results and limited FAQ rich results to authoritative government and health sites. Most sites no longer see those snippets, though the structured markup still helps AI parsers read your content.
+  - q: Should I add fake FAQs just to use the schema?
+    a: No. Inventing questions users never ask produces thin, low-value content and can look manipulative. Only mark up genuine Q&A that reflects what people actually want to know.
+---
+
+**Use [FAQPage](/glossary/faqpage-schema) schema for question-and-answer content and HowTo
+schema for ordered, step-by-step tasks.** Since 2023 most sites no longer earn rich
+results from either — but the markup still hands AI parsers clean, structured Q&A and step data.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    <strong>FAQPage</strong> = discrete question/answer pairs. <strong>HowTo</strong> =
+    one ordered procedure with steps. Google <strong>deprecated HowTo rich results</strong>
+    and <strong>restricted FAQ rich results</strong> to government and health sites in 2023,
+    so most pages won't get those snippets — yet the markup still gives AI a
+    <strong> structured version</strong> of your content. Never invent fake FAQs for markup.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "FAQPage for question/answer content; HowTo for ordered task steps.",
+    "Google deprecated HowTo rich results in 2023.",
+    "FAQ rich results are limited to authoritative government and health sites.",
+    "Markup still gives AI parsers clean, structured data — so don't fake FAQs.",
+  ]}
+/>
+
+## What changed in 2023?
+
+Google narrowed both. It deprecated HowTo rich results entirely and restricted FAQ rich
+results to well-known, authoritative government and health websites. For most sites, that
+means the visible snippet is gone — but the underlying [structured
+data](/glossary/schema-markup) still describes your content to any parser reading the page.
+
+## When do I use FAQPage?
+
+When the content is genuine question-and-answer pairs. Support pages, "common questions"
+sections, and objection-handling blocks all fit FAQPage — each `Question` node holds one
+real question and its `acceptedAnswer`. The rule: mark up questions people actually ask,
+not padding.
+
+## When do I use HowTo?
+
+When you're documenting a single ordered procedure. A HowTo describes a task with
+sequential steps — "how to reset a router," "how to change a tire." If the content isn't a
+step-by-step task, it isn't HowTo.
+
+<VersusSplit
+  left={{ title: "FAQPage", items: ["Discrete question/answer pairs", "Support, common-questions, objections", "No fixed order between items", "FAQ rich results now limited to gov/health", "Still gives AI clean Q&A structure"] }}
+  right={{ title: "HowTo", items: ["One ordered, sequential procedure", "Tutorials and step-by-step tasks", "Order is meaningful", "Rich results deprecated in 2023", "Still gives AI clean step structure"] }}
+  caption="Pick by content shape — questions map to FAQPage, ordered tasks map to HowTo."
+/>
+
+## Where to go next
+
+The honest question is whether any of this moves citations — read [does schema help AI
+citations](/learn/does-schema-help-ai-citations), then check the details of
+[FAQPage schema](/glossary/faqpage-schema) before you implement.

@@ -1,0 +1,81 @@
+---
+title: "AI Crawler User Agents — The 2026 Cheat Sheet"
+slug: ai-crawler-user-agents-cheat-sheet
+summary: One scannable reference for the major AI bots — GPTBot and OAI-SearchBot (OpenAI), ClaudeBot and Claude-SearchBot (Anthropic), Google-Extended, Applebot-Extended, PerplexityBot, CCBot, and Bytespider — with each bot's owner, purpose, and whether it actually obeys robots.txt.
+topics:
+  - technical-seo
+author: burke-atkerson
+published: 2026-07-09
+updated: 2026-07-09
+schemaType: Article
+faqs:
+  - q: How many AI crawlers does OpenAI run?
+    a: Three. GPTBot collects training data, OAI-SearchBot powers retrieval and citation for ChatGPT Search, and ChatGPT-User fetches a page on demand when a user asks about it. Each is a separate user-agent, so a robots.txt rule for one does not cover the others.
+  - q: Does Google-Extended affect my Google Search ranking?
+    a: No. Google-Extended controls only whether your content trains Gemini and related AI products. Blocking it has no effect on Googlebot, indexing, or your position in classic Google Search results.
+  - q: Do all AI crawlers obey robots.txt?
+    a: No. Most major bots from OpenAI, Anthropic, and Google honor robots.txt, but Bytespider and some stealth crawlers have been documented fetching content despite disallow rules. Robots.txt is a request, not an enforced firewall.
+---
+
+**The major AI bots split into three jobs — training, search-and-cite, and on-demand fetch — and each needs its own robots.txt rule.** OpenAI alone runs three separate crawlers; Anthropic runs three more. Below is one scannable reference so you can decide who to allow.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    There is no single <em>AI bot</em>. <strong>GPTBot</strong> and{" "}
+    <strong>Google-Extended</strong> train models; <strong>OAI-SearchBot</strong> and{" "}
+    <strong>Claude-SearchBot</strong> retrieve and cite; <strong>ChatGPT-User</strong>{" "}
+    and <strong>Claude-User</strong> fetch on demand. Each is a distinct user-agent —
+    address them individually, and know that a few (Bytespider, some stealth crawlers)
+    ignore robots.txt.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "OpenAI runs three bots: GPTBot (train), OAI-SearchBot (cite), ChatGPT-User (on-demand).",
+    "Anthropic runs three too: ClaudeBot, Claude-SearchBot, Claude-User.",
+    "Google-Extended and Applebot-Extended are training-only toggles — no search impact.",
+    "Bytespider and some stealth crawlers have been caught ignoring robots.txt.",
+  ]}
+/>
+
+## Which bots power training vs citation?
+
+They are different bots with different goals. Training crawlers like [GPTBot](/glossary/gptbot), Google-Extended, and Applebot-Extended collect content to teach future models — blocking them keeps you out of the training set but not out of live answers. Search-and-cite bots like OAI-SearchBot and Claude-SearchBot fetch pages to build the answers users see right now, and they are the ones that send citations. On-demand bots (ChatGPT-User, Claude-User) fetch a single page the moment a user references it.
+
+## Why does each bot need its own rule?
+
+Because a rule for one says nothing about the others. Allowing GPTBot does not allow OAI-SearchBot, and blocking ClaudeBot does not block Claude-User. They share a company but not a user-agent string, so you must name each one explicitly in robots.txt.
+
+## Do these crawlers actually respect robots.txt?
+
+Mostly, but not all. The major OpenAI, Anthropic, and Google bots honor disallow rules. [Bytespider](/glossary/bytespider) (ByteDance/TikTok) and certain stealth Perplexity crawlers have been [documented fetching content despite robots.txt](https://www.anagram.ai/blog/ai-crawlers-explained-gptbot-claudebot-perplexitybot-and-how-to-let-them-in-2026), so treat robots.txt as a signal, not a wall.
+
+<ComparisonTable
+  rowHeaders
+  caption="Major AI crawlers at a glance (2026). Source: Anagram, AI Crawlers Explained."
+  columns={["Bot", "Company", "Purpose", "Obeys robots.txt?"]}
+  rows={[
+    ["GPTBot", "OpenAI", "Model training", "Yes"],
+    ["OAI-SearchBot", "OpenAI", "Search retrieval + citation", "Yes"],
+    ["ChatGPT-User", "OpenAI", "On-demand fetch", "Yes"],
+    ["ClaudeBot", "Anthropic", "Model training", "Yes"],
+    ["Claude-SearchBot", "Anthropic", "Search retrieval + citation", "Yes"],
+    ["Claude-User", "Anthropic", "On-demand fetch", "Yes"],
+    ["Google-Extended", "Google", "Gemini training only (no Search impact)", "Yes"],
+    ["Applebot-Extended", "Apple", "Apple Intelligence training", "Yes"],
+    ["PerplexityBot", "Perplexity", "Search retrieval + citation", "Mostly — stealth crawlers documented ignoring it"],
+    ["CCBot", "Common Crawl", "Open dataset (feeds many models)", "Yes"],
+    ["Bytespider", "ByteDance / TikTok", "Training / scraping", "Documented ignoring it"],
+  ]}
+/>
+
+Use this to decide who reads you. Next, see [which AI crawlers to allow](/learn/which-ai-crawlers-to-allow) and the full [GPTBot glossary entry](/glossary/gptbot).
+
+<RelatedQuestions
+  items={[
+    { q: "Which AI crawlers should I allow?", a: "Allow the search-and-cite bots at minimum — they send citations. Training bots are a separate choice.", href: "/learn/which-ai-crawlers-to-allow" },
+    { q: "What is GPTBot?", a: "OpenAI's training crawler — separate from OAI-SearchBot, which handles ChatGPT Search retrieval.", href: "/glossary/gptbot" },
+    { q: "How do meta robots tags affect AI crawlers?", a: "Some AI bots honor noindex and specific meta directives — but not all, and not identically.", href: "/learn/meta-robots-ai-crawlers" },
+  ]}
+/>

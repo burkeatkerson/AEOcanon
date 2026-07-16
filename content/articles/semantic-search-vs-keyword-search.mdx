@@ -1,0 +1,67 @@
+---
+title: "Semantic Search vs Keyword Search — What Changes for Writing"
+slug: semantic-search-vs-keyword-search
+summary: Keyword search matches the literal words you type; semantic search matches meaning by embedding your query and comparing it to passages — and modern AI engines run both as hybrid retrieval. The rule for writers is to cover a topic completely and naturally, while still including the exact terms people use.
+topics:
+  - ai-fundamentals
+author: burke-atkerson
+published: 2026-07-05
+updated: 2026-07-05
+schemaType: Article
+faqs:
+  - q: What is the difference between semantic and keyword search?
+    a: Keyword search, using algorithms like BM25 and TF-IDF, matches the literal words in a query against the literal words on a page. Semantic search converts both the query and your passages into embeddings — numeric vectors — and matches them by meaning using cosine similarity, so it can find you even when your wording differs from the query.
+  - q: Do AI engines use keyword or semantic search?
+    a: Both. Modern answer engines use hybrid retrieval, running keyword and vector search together and merging the scores. Keyword search anchors results to exact terms and rare names, while semantic search catches paraphrases and intent, so the two methods cover each other's blind spots.
+  - q: How should semantic search change how I write?
+    a: Write naturally and cover the topic completely so the meaning is clear to a vector model, but keep including the literal terms, names, and phrases your audience actually searches. Meaning wins retrieval most of the time, yet exact terms still matter for rare names, product codes, and precise queries.
+---
+
+**Keyword search matches the words you typed; semantic search matches what you meant — and AI engines run both at once.** That is why stuffing exact phrases no longer wins, and why writing clearly and completely does.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    <strong>Keyword (lexical) search</strong> matches literal words with algorithms
+    like BM25 and TF-IDF. <strong>Semantic (vector) search</strong> embeds your query
+    and your passages, then matches by <em>meaning</em> via cosine similarity. Modern
+    engines use <strong>hybrid</strong> — both together. So write naturally for meaning,
+    but still include the literal terms people actually use.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Keyword search matches literal words; semantic search matches meaning via embeddings.",
+    "Semantic search compares vectors with cosine similarity — it finds paraphrases.",
+    "Modern AI engines use hybrid retrieval — keyword and vector together.",
+    "Write completely and naturally, but keep the exact terms people search for.",
+  ]}
+/>
+
+## How does keyword search work?
+
+It matches literal terms. [Keyword search](/glossary/keyword-search) algorithms like [BM25](/glossary/bm25) and TF-IDF score a page by how often and how distinctively your query's words appear on it. That makes it excellent for exact names, product codes, and rare terms — but blind to synonyms and paraphrase.
+
+## How does semantic search work?
+
+It matches meaning, not spelling. Semantic search turns your query and each passage into [embeddings](/glossary/embeddings) — vectors that encode meaning — and finds the passages whose vectors sit closest to the query via [cosine similarity](/glossary/vector-search). So it retrieves a passage about "cutting cloud costs" for a query about "reducing AWS spend," even with no shared words.
+
+## What should writers do differently?
+
+Serve both systems. Cover the topic completely and phrase it naturally so the meaning is unmistakable to a vector model — but keep the literal terms, names, and phrases your audience actually types, because keyword search still anchors rare and exact queries.
+
+<VersusSplit
+  left={{ title: "Keyword search (BM25 / TF-IDF)", items: ["Matches literal words", "Excellent for exact names, codes, rare terms", "Transparent and fast", "Blind to synonyms and paraphrase"] }}
+  right={{ title: "Semantic search (embeddings)", items: ["Matches meaning, not spelling", "Handles paraphrase and intent", "Finds you when wording differs", "Can drift onto merely-related topics; weak on rare exact terms"] }}
+  caption="Each method's strength is the other's blind spot — which is why AI engines run both as hybrid retrieval."
+/>
+
+Write for meaning first, exact terms second. More in [how AI retrieval works](/learn/how-ai-retrieval-works), [vector search](/glossary/vector-search), and [BM25](/glossary/bm25).
+
+<RelatedQuestions
+  items={[
+    { q: "How does AI retrieval work?", a: "Engines rewrite the query, retrieve candidates with hybrid search, rerank, then cite.", href: "/learn/how-ai-retrieval-works" },
+    { q: "What is vector search?", a: "Matching by meaning — comparing embedding vectors with cosine similarity.", href: "/glossary/vector-search" },
+    { q: "What is BM25?", a: "A classic keyword-ranking algorithm that scores pages by literal term relevance.", href: "/glossary/bm25" },
+  ]}
+/>

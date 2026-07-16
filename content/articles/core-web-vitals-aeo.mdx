@@ -1,0 +1,74 @@
+---
+title: "Core Web Vitals Thresholds for AEO"
+slug: core-web-vitals-aeo
+summary: The Core Web Vitals thresholds are fixed — LCP good under 2.5s, INP good under 200ms, CLS good under 0.1 — and you pass only when 75% of visits hit good on all three. Speed does not directly rank you in AI answers, but it keeps crawlers fetching and users landing on the pages that get cited.
+topics:
+  - technical-seo
+author: burke-atkerson
+published: 2026-07-07
+updated: 2026-07-07
+schemaType: Article
+faqs:
+  - q: What are the good Core Web Vitals thresholds?
+    a: A page scores good when Largest Contentful Paint is under 2.5 seconds, Interaction to Next Paint is under 200 milliseconds, and Cumulative Layout Shift is under 0.1. To pass overall, at least 75% of real visits must hit good on all three metrics at the 75th percentile.
+  - q: Do Core Web Vitals directly affect AI citations?
+    a: Not directly. AI engines cite pages based on content and retrievability, not page speed. But fast, stable pages keep crawlers fetching efficiently and keep human visitors on the pages that earn citations, so Core Web Vitals support AEO indirectly rather than ranking you in AI answers.
+  - q: Which Core Web Vital is hardest to pass in 2026?
+    a: Interaction to Next Paint, which replaced First Input Delay, is the most-failed metric — roughly 43% of sites fail it. INP measures responsiveness across all interactions on a page, so heavy JavaScript and slow event handlers push many sites into the needs-work or poor range.
+---
+
+**Core Web Vitals thresholds are fixed numbers, and you pass only when 75% of real visits hit "good" on all three.** They do not directly rank you in AI answers — but a slow, unstable page quietly costs you the crawls and the visits that citations depend on.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    <strong>Good = LCP under 2.5s, INP under 200ms, CLS under 0.1.</strong> You{" "}
+    <em>pass</em> only when 75% of visits reach good on all three at the 75th
+    percentile. Speed doesn&apos;t directly earn AI citations — but it keeps crawlers
+    fetching and keeps humans on the pages that do get cited. INP (which replaced FID)
+    is the most-failed metric in 2026.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "LCP good under 2.5s; INP good under 200ms; CLS good under 0.1.",
+    "Passing means 75% of visits hit good at the 75th percentile — on all three.",
+    "Core Web Vitals support AEO indirectly; they don't directly rank AI citations.",
+    "INP replaced FID and is the most-failed metric in 2026 (~43% of sites fail).",
+  ]}
+/>
+
+## What are the exact thresholds?
+
+Each metric has three bands. [Largest Contentful Paint](/glossary/lcp) is good under 2.5s and poor past 4.0s; Interaction to Next Paint is good under 200ms and poor past 500ms; [Cumulative Layout Shift](/glossary/cls) is good under 0.1 and poor past 0.25. Google defines these on [web.dev](https://web.dev/articles/defining-core-web-vitals-thresholds) and in [Search Central](https://developers.google.com/search/docs/appearance/core-web-vitals).
+
+## What does it take to "pass"?
+
+You pass when 75% of real-user visits land in the good band, measured at the 75th percentile, across all three metrics at once. One weak metric fails the whole page — so a fast-loading page with jumpy layout still fails.
+
+## Why do Core Web Vitals matter for AEO if they don't rank citations?
+
+Because they protect the conditions for citation. AI engines cite content, not speed, but slow servers waste [crawl efficiency](/learn/page-speed-ai-citations) and unstable pages lose the human visitors who read, link, and mention you. Speed is a supporting signal, not a direct one.
+
+<ComparisonTable
+  rowHeaders
+  caption="Core Web Vitals thresholds (web.dev / Google Search Central)"
+  columns={["Metric", "Good", "Needs work", "Poor"]}
+  rows={[
+    ["LCP (loading)", "Under 2.5s", "2.5s – 4.0s", "Over 4.0s"],
+    ["INP (responsiveness)", "Under 200ms", "200ms – 500ms", "Over 500ms"],
+    ["CLS (visual stability)", "Under 0.1", "0.1 – 0.25", "Over 0.25"],
+  ]}
+/>
+
+<Gauge value={57} label="Sites passing INP in 2026" caption="Roughly 43% of sites fail INP — the most-failed Core Web Vital in 2026." />
+
+Fix the slowest metric first, then protect the rest. More in [page speed and AI citations](/learn/page-speed-ai-citations) and the [Core Web Vitals glossary entry](/glossary/core-web-vitals).
+
+<RelatedQuestions
+  items={[
+    { q: "Does page speed affect AI citations?", a: "Indirectly — speed keeps crawlers efficient and visitors present, but content earns the citation.", href: "/learn/page-speed-ai-citations" },
+    { q: "What are Core Web Vitals?", a: "Google's three real-user metrics for loading, responsiveness, and visual stability.", href: "/glossary/core-web-vitals" },
+    { q: "What is LCP?", a: "Largest Contentful Paint — how fast the main content of a page renders. Good is under 2.5s.", href: "/glossary/lcp" },
+  ]}
+/>

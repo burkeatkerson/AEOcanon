@@ -1,0 +1,75 @@
+---
+title: "Which XML Sitemap Fields Crawlers Actually Use"
+slug: xml-sitemap-fields-that-matter
+summary: In an XML sitemap only a few fields carry weight — loc is essential, lastmod is trusted as a freshness signal if you keep it honest, while changefreq and priority are largely ignored. Include only canonical, indexable 200 URLs and split large files with a sitemap index under 50,000 URLs.
+topics:
+  - technical-seo
+author: burke-atkerson
+published: 2026-07-06
+updated: 2026-07-06
+schemaType: Article
+faqs:
+  - q: Do changefreq and priority tags do anything?
+    a: Very little. Google and most crawlers largely ignore changefreq and priority because sites set them arbitrarily and they proved unreliable. Your crawl priority is inferred from links, freshness, and site structure instead, so spending time tuning these two tags rarely changes how often pages are crawled.
+  - q: Does lastmod actually help?
+    a: Yes, when it is honest. Crawlers use lastmod as a freshness signal to decide what to re-crawl, but only if it reflects real content changes. Faking or auto-bumping lastmod on every page teaches crawlers to distrust it, which can hurt how quickly your genuinely updated pages get re-fetched.
+  - q: How big can an XML sitemap be?
+    a: A single sitemap file is limited to 50,000 URLs and 50MB uncompressed. Larger sites split their URLs across multiple sitemap files and list them in a sitemap index file, which itself can reference up to 50,000 sitemaps. Only include canonical, indexable URLs that return a 200 status.
+---
+
+**Most sitemap tags do almost nothing — the two that matter are `<loc>` and an honest `<lastmod>`.** Crawlers largely ignore `<changefreq>` and `<priority>`, so a lean sitemap of canonical 200 URLs beats a cluttered one every time.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    <strong>&lt;loc&gt;</strong> is essential — it is the URL.{" "}
+    <strong>&lt;lastmod&gt;</strong> is trusted as a freshness signal <em>only if you
+    keep it honest.</em> <strong>&lt;changefreq&gt;</strong> and{" "}
+    <strong>&lt;priority&gt;</strong> are largely ignored. List only canonical,
+    indexable 200 URLs, and split anything over 50,000 URLs with a sitemap index.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "<loc> is the only required field — the canonical URL of the page.",
+    "<lastmod> is used and trusted as a freshness signal, but only when honest.",
+    "<changefreq> and <priority> are largely ignored by Google and most crawlers.",
+    "Keep files under 50,000 URLs / 50MB; split with a sitemap index; include only 200 URLs.",
+  ]}
+/>
+
+## Which fields do crawlers actually read?
+
+Two carry real weight. `<loc>` is non-negotiable — it names the URL. `<lastmod>` helps crawlers decide what to re-fetch, but only if it reflects genuine edits; auto-bumping it site-wide trains crawlers to ignore it. The rest is mostly decorative.
+
+## Why are changefreq and priority ignored?
+
+Because sites gamed them. Nearly everyone set `priority` to 1.0 and `changefreq` to "daily," so the signals became meaningless. Google now infers crawl frequency from links, real freshness, and structure instead — so tuning these tags is wasted effort.
+
+## What belongs in a clean sitemap?
+
+Only URLs you want indexed and cited: [canonical](/learn/canonical-urls-ai-citation), indexable pages returning 200. Exclude redirects, noindex pages, 404s, and non-canonical duplicates. Media discovery is the one place extensions earn their keep — image and video sitemap tags help engines find media they would otherwise miss.
+
+<ComparisonTable
+  rowHeaders
+  caption="XML sitemap fields — which ones crawlers use"
+  columns={["Field", "Used by crawlers?", "Notes"]}
+  rows={[
+    ["<loc>", "Yes — essential", "The URL itself; use the canonical, indexable version"],
+    ["<lastmod>", "Yes, if honest", "Freshness signal for re-crawl — don't fake or auto-bump it"],
+    ["<changefreq>", "Largely ignored", "Sites set it arbitrarily; crawlers infer frequency instead"],
+    ["<priority>", "Largely ignored", "Nearly everyone sets 1.0 — signal is worthless"],
+    ["Image / video extensions", "Yes — useful", "Helps engines discover media they'd otherwise miss"],
+    ["File size limits", "Enforced", "Max 50,000 URLs / 50MB — split with a sitemap index"],
+  ]}
+/>
+
+A short, honest sitemap of canonical URLs does more than a padded one. More in [does a sitemap help AI crawlers](/learn/does-a-sitemap-help-ai-crawlers) and [canonical URLs and AI citation](/learn/canonical-urls-ai-citation).
+
+<RelatedQuestions
+  items={[
+    { q: "Does a sitemap help AI crawlers?", a: "Yes — it helps them discover and prioritize your canonical URLs efficiently.", href: "/learn/does-a-sitemap-help-ai-crawlers" },
+    { q: "Do canonical URLs affect AI citation?", a: "Yes — crawlers consolidate signals onto the canonical URL and cite that one.", href: "/learn/canonical-urls-ai-citation" },
+    { q: "What is crawl budget for AI?", a: "The finite attention crawlers spend on your site — a clean sitemap spends it well.", href: "/learn/crawl-budget-ai" },
+  ]}
+/>

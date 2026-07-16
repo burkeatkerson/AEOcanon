@@ -1,0 +1,94 @@
+---
+title: "How Does Perplexity Work?"
+slug: how-perplexity-works
+summary: Perplexity works by searching the live web for your question, retrieving and reranking the most relevant passages, then synthesizing an answer with numbered citations. That retrieval-first pipeline is why it cites more sources than any other engine — and why extractable, answer-first content wins.
+topics:
+  - answer-engines
+author: burke-atkerson
+published: 2026-07-10
+updated: 2026-07-10
+schemaType: Article
+faqs:
+  - q: How does Perplexity work?
+    a: Perplexity takes your question, searches the live web for relevant pages, retrieves and reranks the most useful passages, then uses a language model to synthesize an answer with numbered citations pointing back to those sources. It is retrieval-first by design, which is why it shows its sources so prominently.
+  - q: Why does Perplexity cite so many sources?
+    a: Because it is built citation-first. Its whole design surfaces the passages it retrieved, so instead of hiding its reasoning it lists the sources numerically. That gives Perplexity more citation slots per answer than other engines — and more chances for your page to be named.
+  - q: How do I get cited by Perplexity?
+    a: Write answer-first, extractable passages that directly answer specific questions, keep them on crawlable pages, and back claims with evidence. Perplexity retrieves and reranks passages, so the cleaner and more directly relevant your passage is, the more likely it becomes one of the numbered sources.
+---
+
+**Perplexity works by searching the live web for your question, ranking the best
+passages it finds, and writing an answer that cites them by number.** That
+retrieval-first design is exactly why it names more sources than any other engine —
+and why extractable content wins there.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    <a href="/glossary/perplexity">Perplexity</a> runs a
+    <a href="/glossary/retrieval">retrieval</a> pipeline: it searches the live web,
+    <a href="/glossary/reranking">reranks</a> the most relevant passages, then
+    synthesizes an answer with <strong>numbered citations</strong>. It's citation-first
+    by design, so the cleaner and more directly relevant your passage, the more likely
+    it becomes one of those numbered sources.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Perplexity is retrieval-first — it searches the live web for every question.",
+    "It retrieves and reranks candidate passages before writing anything.",
+    "The model synthesizes an answer and attaches numbered citations to the sources it used.",
+    "Answer-first, extractable, evidenced passages are the ones most likely to get cited.",
+  ]}
+/>
+
+## How does Perplexity work, step by step?
+
+Perplexity turns your question into a live web search, pulls back candidate pages,
+reranks their passages for relevance and trust, and then has a language model write a
+synthesized answer with numbered citations. Unlike an engine that leans on training
+data, it grounds nearly every answer in sources it just retrieved — which is why it
+shows its work so openly.
+
+<ProcessFlow
+  steps={[
+    { label: "Query", sub: "your question, rewritten / expanded" },
+    { label: "Live web search", sub: "finds current candidate pages" },
+    { label: "Retrieve + rerank", sub: "scores passages for relevance & trust" },
+    { label: "Synthesize", sub: "model writes a grounded answer" },
+    { label: "Cite sources", sub: "attaches numbered citations" },
+  ]}
+  caption="Perplexity's retrieval-first pipeline — every stage after the query is grounded in sources it just fetched, which is why it cites so heavily."
+/>
+
+## Why does Perplexity cite so many sources?
+
+Because citation is the point, not an afterthought. Perplexity was built to show the
+passages it retrieved, so instead of hiding its reasoning it lists sources
+numerically — often a long list. Each of those numbers is a citation slot, which
+gives your page more openings than a sparse engine does. More on that spread:
+[how many sources AI engines cite](/learn/how-many-sources-do-ai-engines-cite).
+
+## How do you earn a Perplexity citation?
+
+You earn it by being the passage its reranker wants to lift. That means leading with a
+direct answer, keeping each passage self-contained and extractable, and backing claims
+with evidence — so when Perplexity retrieves your page, the most relevant chunk reads
+like a ready-made citation. Bury the answer under preamble and the reranker skips you.
+See [the content format AI cites most](/learn/content-format-ai-cites-most).
+
+## Where does this fit in AEO?
+
+Perplexity is the clearest example of retrieval-and-rerank in action, so optimizing
+for it teaches the fundamentals that travel to every engine: be crawlable,
+answer-first, and evidenced. Master those and you're citable everywhere, not just
+here. Go deeper with [how AI retrieval works](/learn/how-ai-retrieval-works) and
+[how AI engines choose citations](/learn/how-ai-engines-choose-citations).
+
+<RelatedQuestions
+  items={[
+    { q: "How does AI retrieval work?", a: "Engines search a corpus, rank passages, and feed the best ones to the model to ground its answer.", href: "/learn/how-ai-retrieval-works" },
+    { q: "How many sources do AI engines cite?", a: "Perplexity cites the most — a long numbered list — while other engines name just a few.", href: "/learn/how-many-sources-do-ai-engines-cite" },
+    { q: "What content format do AI engines cite most?", a: "Answer-first, extractable passages with clear headings and direct answers.", href: "/learn/content-format-ai-cites-most" },
+  ]}
+/>

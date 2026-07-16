@@ -1,0 +1,83 @@
+---
+title: "Which Schema Types Matter Most for AEO?"
+slug: schema-types-for-aeo
+summary: The schema types with the highest AEO payoff are Organization and Person (entity clarity and sameAs) and LocalBusiness (local context) — Article, FAQPage, and HowTo help parsing and rich-result eligibility, and Product helps shopping. Rank types by entity value instead of marking up everything.
+topics:
+  - structured-data
+author: burke-atkerson
+published: 2026-07-03
+updated: 2026-07-03
+schemaType: Article
+faqs:
+  - q: Which schema type has the highest AEO value?
+    a: Organization and Person carry the most entity value because they define who you are and connect you to authoritative profiles through sameAs. LocalBusiness is highest for local businesses. These types clarify your identity in a way answer engines can reuse.
+  - q: Should I add every schema type I can?
+    a: No. Marking up everything wastes effort and can introduce conflicting or invalid types. Use one primary type per page and prioritize the types that clarify your entity or make you eligible for a rich result you actually want.
+  - q: Does more schema mean more AI citations?
+    a: No. Schema aids entity clarity and rich-result eligibility, but it is not a proven citation lever. It helps an engine understand what your content is — it does not force the engine to quote you.
+---
+
+**The schema types with the highest AEO payoff are [Organization](/glossary/organization-schema)
+and [Person](/glossary/person-schema) for entity clarity, and LocalBusiness for local
+context.** Article, FAQPage, and HowTo help parsing and rich-result eligibility, and
+Product helps shopping — but stop marking up everything and rank types by entity value.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Prioritize <strong>Organization + Person</strong> (they define your entity and
+    carry <a href="/glossary/sameas">sameAs</a> links) and <strong>LocalBusiness</strong>
+    if you're local. Treat <strong>Article, FAQPage, HowTo</strong> as parsing and
+    eligibility helpers, and <strong>Product</strong> as shopping infrastructure. Schema
+    is <strong>entity clarity, not a citation guarantee</strong>.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Organization and Person carry the most entity value via sameAs.",
+    "LocalBusiness is the top type for local businesses.",
+    "Article, FAQPage, and HowTo aid parsing and rich-result eligibility.",
+    "Use one primary type per page — don't mark up everything.",
+  ]}
+/>
+
+## Which types carry the most entity value?
+
+The identity types. [Organization](/glossary/organization-schema) and
+[Person](/glossary/person-schema) tell an engine exactly who is behind the content and,
+through [sameAs](/glossary/sameas), connect that entity to authoritative profiles like
+Wikidata and LinkedIn. That's real [entity](/glossary/entity) clarity — the kind that
+helps a model resolve "who is this" with confidence. For local businesses, LocalBusiness
+plays the same role with address, hours, and geography.
+
+## What about Article, FAQPage, and HowTo?
+
+They help parsing and eligibility, not identity. These types label the *shape* of a
+page — an explainer, a set of Q&A pairs, an ordered procedure — so an engine can
+decompose it into clean units. FAQPage and HowTo can also make you eligible for certain
+rich results. Useful, but a tier below the entity types.
+
+## How should I prioritize?
+
+Match effort to entity value. Do the identity types first, add shape types where they
+fit the content, and reserve Product for pages that sell.
+
+<Heatmap
+  caption="Schema types ranked by AEO payoff — entity value vs. effort to implement"
+  columns={["Entity value", "Effort"]}
+  rows={[
+    { label: "Organization", cells: [{ value: "High", tone: "ok" }, { value: "Low", tone: "ok" }] },
+    { label: "Person", cells: [{ value: "High", tone: "ok" }, { value: "Low", tone: "ok" }] },
+    { label: "LocalBusiness", cells: [{ value: "High (local)", tone: "ok" }, { value: "Medium", tone: "warn" }] },
+    { label: "Article", cells: [{ value: "Medium", tone: "warn" }, { value: "Low", tone: "ok" }] },
+    { label: "FAQPage", cells: [{ value: "Medium", tone: "warn" }, { value: "Low", tone: "ok" }] },
+    { label: "HowTo", cells: [{ value: "Medium", tone: "warn" }, { value: "Medium", tone: "warn" }] },
+    { label: "Product", cells: [{ value: "Shopping only", tone: "warn" }, { value: "High", tone: "bad" }] },
+  ]}
+/>
+
+## Where to go next
+
+Start with [how to implement structured data for AEO](/learn/structured-data-for-aeo),
+then read the honest take on [whether schema helps AI
+citations](/learn/does-schema-help-ai-citations) before you invest in markup you don't need.

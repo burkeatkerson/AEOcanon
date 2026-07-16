@@ -1,0 +1,73 @@
+---
+title: "What Is Chunking? How AI Splits Your Page Before Reading It"
+slug: what-is-chunking
+summary: Before an AI reads your page, a retrieval system splits it into chunks — passages divided by heading or token window — then embeds and retrieves the best match. A self-contained, answer-first passage under a clear heading survives chunking and gets cited; a buried answer split across chunks does not.
+topics:
+  - ai-fundamentals
+  - content-strategy
+author: burke-atkerson
+published: 2026-07-04
+updated: 2026-07-04
+schemaType: Article
+faqs:
+  - q: What is chunking in AI retrieval?
+    a: Chunking is the step where a retrieval system splits your page into smaller passages before storing it. Systems chunk by heading or section, or by fixed token windows, then embed each chunk separately. When someone asks a question, the engine retrieves the best-matching chunks rather than the whole page.
+  - q: Why do chunk boundaries decide whether I get cited?
+    a: Because the engine retrieves and cites individual chunks, not whole pages. If your answer sits complete inside one chunk under a clear heading, that chunk can be retrieved and quoted. If the answer is split across two chunks or buried in a long block, no single chunk contains the full answer, so none matches well enough to be cited.
+  - q: How do I write content that survives chunking?
+    a: Put a complete, self-contained answer directly under a clear, descriptive heading, and keep it near the top of that section. Avoid answers that depend on earlier paragraphs for context, because chunking may separate them. Each passage should make sense on its own if lifted out of the page.
+---
+
+**Before any AI "reads" your page, a retrieval system chops it into chunks — and it retrieves single chunks, not whole pages.** That means a self-contained answer under a clear heading gets cited, while a brilliant answer split across chunk boundaries never surfaces.
+
+<Callout variant="key" title="Quick answer">
+  <p>
+    Retrieval systems <strong>split your page into chunks</strong> — by heading/section
+    or by fixed token windows — then <strong>embed each chunk</strong> and retrieve the
+    ones that best match a query. So an <em>answer-first, self-contained passage under a
+    clear heading survives chunking and gets cited</em>. A buried answer split across
+    chunks does not.
+  </p>
+</Callout>
+
+<KeyTakeaways
+  items={[
+    "Chunking splits your page into passages before it's ever embedded or read.",
+    "Systems chunk by heading/section or by fixed token windows.",
+    "Engines retrieve and cite the best-matching chunk — not the whole page.",
+    "A self-contained answer under a clear heading survives; a buried, split answer doesn't.",
+  ]}
+/>
+
+## What is chunking?
+
+Chunking is the splitting step. A retrieval system breaks your page into smaller passages — often along [heading and section boundaries](/glossary/semantic-chunking), or by fixed token windows — so each piece is small enough to embed and compare. Your page never enters the system as one blob; it enters as a set of [chunks](/glossary/chunking).
+
+## Why does the chunk boundary decide citation?
+
+Because retrieval happens at the chunk level. The engine embeds each chunk, matches the query against every chunk, and pulls the closest ones. If one chunk holds your full answer, it can be retrieved and quoted. If the answer is spread across two chunks — or buried mid-paragraph — no single chunk matches strongly, so none gets cited.
+
+## How do I write chunk-proof passages?
+
+Make each passage stand alone. Put a complete answer directly under a clear, descriptive heading, near the top of the section, without relying on earlier paragraphs for context. If a passage still makes sense when lifted out of the page, it will survive chunking.
+
+<ProcessFlow
+  steps={[
+    { label: "Your page", sub: "full article as published" },
+    { label: "Split into chunks", sub: "by heading or token window" },
+    { label: "Embed each chunk", sub: "one vector per passage" },
+    { label: "Retrieve best chunk", sub: "closest match to the query" },
+    { label: "Cited", sub: "the surviving passage is quoted" },
+  ]}
+  caption="How a page becomes a citation. The engine matches and quotes individual chunks — so the answer must live complete inside one."
+/>
+
+Write for the chunk, not just the page. More in [the content format AI cites most](/learn/content-format-ai-cites-most), [chunking](/glossary/chunking), and [semantic chunking](/glossary/semantic-chunking).
+
+<RelatedQuestions
+  items={[
+    { q: "What content format does AI cite most?", a: "Self-contained, answer-first passages under clear question-shaped headings.", href: "/learn/content-format-ai-cites-most" },
+    { q: "What is chunking?", a: "The step that splits a page into passages before embedding and retrieval.", href: "/glossary/chunking" },
+    { q: "What is semantic chunking?", a: "Splitting by meaning and section boundaries so each chunk is a coherent passage.", href: "/glossary/semantic-chunking" },
+  ]}
+/>
