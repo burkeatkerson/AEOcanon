@@ -70,6 +70,24 @@ export default function IndustriesIndexPage() {
         </div>
       </header>
 
+      {/* Bridge band — you use AI to run the business; is AI recommending it? */}
+      <Link
+        href="/learn/use-ai-but-is-ai-recommending-you"
+        className="border-line-2 bg-accent-soft hover:border-accent mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border px-6 py-5 no-underline transition-transform hover:-translate-y-[1px]"
+      >
+        <span className="text-ink-2 max-w-[68ch] text-[14.5px] leading-snug">
+          <b className="text-ink">
+            You already use AI to run your business. Is AI recommending it?
+          </b>{" "}
+          Every trade below now uses AI for quotes, scheduling, and marketing —
+          but that&rsquo;s a different game from being the business AI names when a
+          customer asks who to hire.
+        </span>
+        <span className="text-accent font-mono text-[12px] whitespace-nowrap">
+          Read the shift →
+        </span>
+      </Link>
+
       {/* what lives in every industry library */}
       <section className="mt-12">
         <div className="mb-6 flex items-baseline justify-between">
@@ -179,12 +197,13 @@ export default function IndustriesIndexPage() {
             Don&rsquo;t see your trade?
           </h2>
           <p className="text-ink-2 max-w-[60ch] text-[14px]">
-            The core Canon applies to any local or small business. Run the
-            analyzer and we&rsquo;ll point you to the closest industry library.
+            The core Canon applies to any local or small business. Tell us your
+            trade and we&rsquo;ll point you to the closest library — or build
+            yours.
           </p>
         </div>
-        <Button href="/audit" variant="ghost">
-          Run the analyzer →
+        <Button href="/contact" variant="ghost">
+          Book a call →
         </Button>
       </div>
     </div>

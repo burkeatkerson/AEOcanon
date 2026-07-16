@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { Kicker } from "@/components/ui/eyebrow";
@@ -117,6 +118,16 @@ export default function ToolsPage() {
               Get early access
             </Button>
           </div>
+          <p className="text-muted mt-4 text-[13.5px]">
+            Meanwhile, see{" "}
+            <Link
+              href="/learn/ai-tools-for-small-business"
+              className="text-accent hover:underline"
+            >
+              the AI tools small businesses actually use in 2026
+            </Link>{" "}
+            — and the visibility gap they all share.
+          </p>
         </Container>
       </header>
 

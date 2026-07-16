@@ -92,10 +92,10 @@ export function SiteFooter() {
   const startHere = pickReads([
     { slug: "what-is-aeo", label: "What is AEO?" },
     { slug: "aeo-explained-simply", label: "AEO explained simply" },
+    { slug: "use-ai-but-is-ai-recommending-you", label: "You use AI — but does AI recommend you?" },
     { slug: "aeo-vs-seo", label: "AEO vs SEO" },
     { slug: "how-ai-engines-choose-citations", label: "How AI picks who to cite" },
     { slug: "30-day-aeo-plan", label: "The 30-day AEO plan" },
-    { slug: "business-case-for-aeo", label: "The business case for AEO" },
   ]);
 
   const keepReading = pickReads([
