@@ -3,6 +3,7 @@
 import { createServiceClient } from "@/lib/db/supabase/server";
 import type { Json } from "@/lib/db/types";
 import { scorecardWebhookUrl } from "@/lib/env";
+import { ingestLead } from "@/lib/crm/ingest";
 import { playbookUrl } from "@/lib/scorecard/playbooks";
 import { scoreSubmission } from "@/lib/scorecard/scoring";
 import { submissionSchema, type Submission } from "@/lib/scorecard/types";
@@ -74,8 +75,35 @@ export async function submitScorecard(
     return { ok: false, segment: row.segment };
   }
 
-  // Fire the lead webhook (first touch of a future drip). Best-effort: failures
-  // are logged and swallowed so the visitor's results are never affected.
+  // Unify into the CRM: upsert the contact, log the completion on the timeline,
+  // tag it, and auto-enroll into the funnel drip (funnel.ts maps scorecard →
+  // the AEO Foundations course drip). Best-effort — never affects the visitor.
+  try {
+    await ingestLead({
+      email: data.email,
+      businessName: data.businessName || undefined,
+      businessType: data.businessType || undefined,
+      location: data.location || undefined,
+      website: data.website || undefined,
+      source: "scorecard",
+      tags: ["scorecard"],
+      activity: {
+        type: "scorecard_completed",
+        title: "Completed the AEO scorecard",
+        data: {
+          branch: data.branch,
+          segment: row.segment,
+          tier: row.tier,
+          percent: row.percent,
+        },
+      },
+    });
+  } catch (err) {
+    console.error("[scorecard] CRM ingest failed:", err);
+  }
+
+  // Fire the lead webhook (legacy seam, kept for any external consumer).
+  // Best-effort: failures are logged and swallowed.
   await fireLeadWebhook({
     email: data.email,
     businessType: data.businessType || null,

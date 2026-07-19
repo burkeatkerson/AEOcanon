@@ -3,6 +3,22 @@
 import { z } from "zod";
 import { sendContactConfirmation, sendContactEmail } from "@/lib/email";
 import { CONTACT_INTERESTS, type ContactState } from "@/lib/contact";
+import { ingestLead } from "@/lib/crm/ingest";
+
+/**
+ * Map a declared interest to CRM funnel tags. "Website rebuild" and "Done-for-you"
+ * carry the tags the funnel (funnel.ts) uses to enroll into the website/sales drip.
+ */
+function interestTags(interest: string): string[] {
+  switch (interest) {
+    case "Website rebuild (one-time)":
+      return ["website-interest"];
+    case "Done-for-you AEO (monthly)":
+      return ["dfy-interest"];
+    default:
+      return [];
+  }
+}
 
 const schema = z.object({
   name: z.string().trim().min(1, "Please enter your name.").max(120),
@@ -72,6 +88,25 @@ export async function submitContact(
   // Best-effort confirmation back to the submitter. Never fails the inquiry —
   // the lead email above already succeeded.
   await sendContactConfirmation(parsed.data);
+
+  // Unify into the CRM: upsert the contact, log the inquiry, tag by interest,
+  // and let the funnel enroll website/DFY prospects into the sales drip.
+  try {
+    await ingestLead({
+      email: parsed.data.email,
+      name: parsed.data.name,
+      website: parsed.data.website || undefined,
+      source: "contact_form",
+      tags: ["contact-form", ...interestTags(parsed.data.interest)],
+      activity: {
+        type: "form_submitted",
+        title: `Contact form: ${parsed.data.interest}`,
+        data: { interest: parsed.data.interest, message: parsed.data.message.slice(0, 500) },
+      },
+    });
+  } catch (err) {
+    console.error("[contact] CRM ingest failed:", err);
+  }
 
   return { status: "success" };
 }

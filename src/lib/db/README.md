@@ -24,13 +24,32 @@ content:
 
 ## Schema
 
-See `supabase/migrations/0001_init.sql` (`audits`, `leads`; RLS enabled with no
-public policies → deny-by-default, service-role only). Apply with
-`supabase db push` or via the project's SQL editor.
+Migrations (apply with `supabase db push` or the project's SQL editor). All
+tables have RLS enabled with no public policies → deny-by-default, service-role
+only:
 
-## Not yet wired
+- `0001_init.sql` — `audits`, `leads`.
+- `0002_scorecard.sql` / `0003_scorecard_branch.sql` — `scorecard_submissions`
+  + the public `playbooks` storage bucket.
+- `0004_crm.sql` — the **admin CRM + email automation** tables (`contacts`, `tags`,
+  `segments`, `activities`, `notes`, `email_templates`, `campaigns`,
+  `campaign_steps`, `enrollments`, `email_sends`, `suppressions`). See
+  **`ADMIN_CRM.md`** (repo root) for the model, invariants, and runbook.
+- `0005_crm_seed.sql` — idempotent starter data (funnel campaigns, segments, tags,
+  templates).
 
-The clients and schema exist, but no feature writes to them yet — lead capture
-and audit persistence are built in their respective phases. Required env vars are
-in `.env.example` (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
-`SUPABASE_SERVICE_ROLE_KEY`).
+`types.ts` hand-mirrors all of the above; the CRM enum unions come from
+`src/lib/crm/enums.ts` so the typed client and app logic never drift.
+
+## Who writes to the DB
+
+- **Scorecard** (`src/lib/scorecard/actions.ts`) → `scorecard_submissions` +
+  CRM ingest.
+- **Contact form** (`src/app/(marketing)/contact/actions.ts`) → CRM ingest.
+- **CRM / automation** (`src/lib/crm`, `src/lib/mailer`, `src/lib/automation`) →
+  all `0004`/`0005` tables, via the service client behind the admin session or the
+  cron secret.
+
+Required env vars are in `.env.example` (`NEXT_PUBLIC_SUPABASE_URL`,
+`NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`; admin/automation vars
+documented in `ADMIN_CRM.md`).
