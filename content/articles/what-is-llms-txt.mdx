@@ -1,0 +1,314 @@
+---
+title: "What Is llms.txt? The Complete Guide"
+slug: what-is-llms-txt
+summary: llms.txt is a proposed markdown file at your site root that gives AI systems a curated map of your most important content. Here is what it is, who proposed it, how llms-full.txt differs, and exactly how to write one.
+topics:
+  - technical-seo
+  - aeo-fundamentals
+author: burke-atkerson
+published: 2026-07-21
+updated: 2026-07-21
+schemaType: Article
+faqs:
+  - q: What is llms.txt?
+    a: "llms.txt is a proposed standard file, written in markdown and served at your domain root (example.com/llms.txt), that gives AI systems a curated map of your most important content. It lists your key pages as markdown links with one-line descriptions, grouped under H2 headings. It is a discovery and curation aid — distinct from robots.txt, which governs permission, and sitemap.xml, which enumerates every URL for search crawlers."
+  - q: Who created llms.txt?
+    a: "llms.txt was proposed in September 2024 by Jeremy Howard, co-founder of Answer.AI and fast.ai, and published as an open specification at llmstxt.org. The motivation was practical: language models have limited context windows and struggle with HTML full of navigation, scripts, and ads, so a clean markdown index of a site's best content is easier for them to use than crawling everything."
+  - q: What is the difference between llms.txt and llms-full.txt?
+    a: "llms.txt is an index — a short markdown file of links and descriptions pointing at your important pages. llms-full.txt is the companion convention that inlines the full text of that documentation into a single markdown file, so a model can ingest everything in one fetch instead of following every link. Index sites publish llms.txt; documentation sites often publish both."
+  - q: Is llms.txt worth creating?
+    a: "It is worth about ten minutes and no more. No major AI engine has confirmed reading it, and server-log evidence shows crawlers essentially ignore it — see our companion piece on whether llms.txt actually works. Publishing one is cheap, harmless, and occasionally useful for tools and humans who fetch it deliberately, but it is not a citation lever and should never displace answer-first content, evidence, and authority."
+---
+
+**llms.txt is a proposed standard file — written in markdown, served at your
+domain root — that hands AI systems a curated map of your site's most important
+content.** It is not a permission file and not a crawl manifest. It is an
+editorial index: your best pages, listed as links with one-line descriptions, in
+the plainest format a language model can read.
+
+This guide covers what the proposal actually specifies, who wrote it, how it
+differs from the two files people confuse it with, what `llms-full.txt` adds, and
+exactly how to write a well-formed one. For the harder question — whether any of
+this moves your visibility — read the companion piece,
+[does llms.txt actually work?](/learn/does-llms-txt-work), which owns the verdict.
+
+<KeyTakeaways
+  items={[
+    "llms.txt is a markdown file at your domain root that curates and describes your most important pages.",
+    "It was proposed in September 2024 by Jeremy Howard of Answer.AI and published at llmstxt.org.",
+    "robots.txt governs permission, sitemap.xml governs enumeration, llms.txt governs curation — three different jobs.",
+    "llms-full.txt is the companion file that inlines the whole documentation body instead of linking to it.",
+    "No major engine has confirmed reading it — treat it as cheap infrastructure, not an optimization tactic.",
+  ]}
+/>
+
+## What exactly is llms.txt?
+
+llms.txt is a plain markdown file, served at `https://example.com/llms.txt`, that
+describes what your site contains and points at the pages worth reading. The
+format is deliberately minimal: an H1 with the site or project name, an optional
+one-line summary in a blockquote, optional prose context, then H2 sections each
+containing a bulleted list of markdown links with short descriptions.
+
+The reasoning behind it is mechanical rather than ideological. Language models
+work inside a finite context window, and a modern web page is mostly not content —
+it is navigation, scripts, cookie banners, related-post modules, and analytics. A
+model that fetches your homepage spends most of its budget on markup it will
+discard. A markdown index costs a few hundred tokens and tells it where the actual
+answers live. That is the entire pitch.
+
+<Callout variant="definition" title="llms.txt in one sentence">
+  <p>
+    A curated, machine-readable table of contents for your site, written in
+    markdown, published at the root, and aimed at language models rather than
+    search crawlers. See the{" "}
+    <a href="/glossary/llms-txt">llms.txt glossary entry</a> for the short
+    version.
+  </p>
+</Callout>
+
+It is worth being precise about what llms.txt does *not* claim to be. It is not a
+ranking signal, not enforceable, not a substitute for having your pages crawled,
+and not a mechanism for hiding anything. It is a suggestion, published in the
+open, that a system may or may not choose to read.
+
+## Who proposed llms.txt, and why?
+
+llms.txt was proposed in **September 2024 by Jeremy Howard**, co-founder of
+Answer.AI and fast.ai, and published as an open specification at
+[llmstxt.org](https://llmstxt.org/). Howard's stated problem was that context
+windows are too small to hold a whole site and that HTML is a poor delivery format
+for machines — so site owners should be able to offer a clean, curated alternative
+rather than hoping a crawler infers structure from markup.
+
+The proposal spread fastest through developer documentation, where the pain is
+sharpest: an engineer asking a model about a library wants the library's docs, not
+its marketing site. Documentation platforms began emitting llms.txt files
+automatically, and the convention of serving markdown versions of pages — often by
+appending `.md` to a URL — grew alongside it. That origin explains a lot about the
+file's shape. It was designed for docs, and it still reads best on sites that are
+essentially a documentation tree.
+
+<Callout variant="insight" title="Why the format is markdown, not XML">
+  <p>
+    Sitemaps are XML because they are consumed by parsers. llms.txt is markdown
+    because it is consumed by language models, which were trained on enormous
+    volumes of markdown and handle it natively. The format choice is the clearest
+    signal of who the file is for.
+  </p>
+</Callout>
+
+## How is llms.txt different from robots.txt and sitemap.xml?
+
+The three files answer three different questions: robots.txt answers *may you
+fetch this*, sitemap.xml answers *what URLs exist*, and llms.txt answers *what is
+worth reading*. They are complements, not alternatives, and only one of them is an
+established standard that engines actually obey.
+
+<ComparisonTable
+  rowHeaders
+  caption="Three root-level files, three different jobs"
+  columns={["File", "Question it answers", "Format", "Honored today?"]}
+  rows={[
+    ["robots.txt", "May a crawler fetch this?", "Plain text directives", "Yes — reputable crawlers obey it"],
+    ["sitemap.xml", "Which URLs exist, and when did they change?", "XML", "Yes — used by search engines"],
+    ["llms.txt", "Which pages matter, and what is each about?", "Markdown", "No major engine confirms use"],
+  ]}
+/>
+
+The distinction matters because the three are routinely conflated in AEO advice.
+[robots.txt](/glossary/robots-txt) is the access layer — it is where you decide
+which AI user-agents may fetch your pages at all, which is a genuine visibility
+decision covered in
+[how to allow AI crawlers in robots.txt](/learn/allow-ai-crawlers-robots-txt) and
+[which AI crawlers to allow](/learn/which-ai-crawlers-to-allow). Get that wrong
+and nothing else matters, because an engine cannot cite a page it was forbidden to
+read. If you would rather not hand-write it, use the
+[robots.txt generator for AI crawlers](/tools/robots-txt-generator-ai-crawlers).
+
+Sitemaps sit one layer up: they enumerate URLs and freshness for crawlers that
+already have permission. Whether that helps AI specifically is its own question,
+answered in
+[does a sitemap help AI crawlers?](/learn/does-a-sitemap-help-ai-crawlers) and
+[the XML sitemap fields that matter](/learn/xml-sitemap-fields-that-matter).
+
+llms.txt sits one layer above that again — pure editorial curation, with no
+enforcement and no established consumer. It is the only one of the three that is
+still a proposal.
+
+## What is llms-full.txt?
+
+`llms-full.txt` is the companion convention that inlines your entire
+documentation body into a single markdown file, rather than linking out to it.
+Where llms.txt is a table of contents, llms-full.txt is the whole book — one
+fetch, no link-following, everything a model needs in one context load.
+
+The trade-off is size. An index for a large site might be two hundred lines; the
+full text of the same site could be hundreds of thousands of tokens, which exceeds
+what many models can hold and costs real money to process when they can. In
+practice, llms-full.txt makes sense for tightly scoped documentation — an API
+reference, a library, a product manual — and makes very little sense for a
+content site with hundreds of long articles.
+
+<Callout variant="tip" title="Which file should you publish?">
+  <p>
+    Publish <code>llms.txt</code> if your site is a collection of pages worth
+    navigating. Add <code>llms-full.txt</code> only if the entire corpus is small
+    enough to be useful as one document — a docs site, not a blog archive. There
+    is no benefit to publishing a 400,000-token file nothing can ingest.
+  </p>
+</Callout>
+
+## How do you write an llms.txt file?
+
+You write llms.txt as a markdown document with four parts, in order: an H1 name, a
+blockquote summary, optional context prose, and H2-headed lists of links with
+descriptions. Here is a well-formed example, modeled on the file this site
+publishes at `/llms.txt`.
+
+```markdown
+# AEO Canon
+
+> The definitive resource for answer engine optimization — how to be found,
+> read, and cited by AI answer engines.
+
+All content is answer-first and structured for extraction. Articles are the
+single source of truth; courses and industry libraries are curated views over
+them.
+
+## The AEO Canon (framework pillars)
+
+- [The AEO Canon](https://aeocanon.com/learn/aeo-canon): The eight-pillar
+  framework for being cited by AI answer engines, in three layers.
+- [Access](https://aeocanon.com/pillars/access): Whether AI crawlers can reach,
+  fetch, and render your pages at all.
+- [Extractability](https://aeocanon.com/pillars/extractability): Whether a
+  passage can be lifted whole and still make sense.
+
+## Guides
+
+- [What is AEO?](https://aeocanon.com/learn/what-is-aeo): The cornerstone
+  explainer on answer engine optimization.
+- [What is GEO?](https://aeocanon.com/learn/what-is-geo): The research-world
+  term for the same discipline, and what the study measured.
+
+## Glossary
+
+- [The AEO Glossary](https://aeocanon.com/glossary): An answer-first
+  encyclopedia of answer-engine optimization terms.
+
+## Optional
+
+- [RSS feed](https://aeocanon.com/feed.xml)
+- [Sitemap](https://aeocanon.com/sitemap.xml)
+```
+
+Five rules make the difference between a file that reads cleanly and one that is
+just a link dump.
+
+<Steps
+  items={[
+    {
+      title: "Lead with the H1 and a blockquote summary",
+      body: "The H1 is the site or project name. The blockquote immediately after it is the one-sentence description a model will use to decide what your site is. Write it as an answer, not a slogan.",
+    },
+    {
+      title: "Use absolute URLs",
+      body: "Relative paths force the consumer to guess the base. Every link should be a full https:// URL to the canonical version of the page.",
+    },
+    {
+      title: "Describe every link",
+      body: "The colon-and-description form — [Name](url): what it covers — is where the file earns its keep. A bare list of links tells a model nothing it could not get from a sitemap.",
+    },
+    {
+      title: "Group by H2 sections that mean something",
+      body: "Sections should map to how a reader thinks about your site (guides, reference, glossary), not to your CMS structure. Each H2 contains one bulleted list and nothing else.",
+    },
+    {
+      title: "Reserve the 'Optional' section for skippable material",
+      body: "The specification treats a section literally headed 'Optional' as content a consumer may drop when it needs a shorter context. Put feeds, changelogs, and secondary pages there.",
+    },
+  ]}
+/>
+
+Two mechanical requirements are easy to miss. The file must be served from the
+**root** of the domain — `example.com/llms.txt`, never a subdirectory — and it
+should be served as plain text or markdown, not rendered as an HTML page. And
+because it is hand-curated by definition, it goes stale: if you generate it from
+your content layer, as this site does, it stays correct for free. If you write it
+by hand, put a reminder in your calendar or accept that it will drift.
+
+<Callout variant="warning" title="Do not put anything in llms.txt you would not publish">
+  <p>
+    llms.txt is a public file at a predictable URL. It offers no access control,
+    no obfuscation, and no privacy. Listing an unlinked page there makes it more
+    discoverable, not less — the same mistake people make when they name private
+    directories in robots.txt.
+  </p>
+</Callout>
+
+## What are the common mistakes in an llms.txt file?
+
+The most common mistake is treating llms.txt as a sitemap — dumping every URL you
+have into it — which destroys the only property that makes the format worth
+anything. Curation is the feature. A file listing forty pages with real
+descriptions is more useful than one listing four hundred without them, because
+the point is to tell a model what to read *instead of* everything else.
+
+The second mistake is writing descriptions as marketing copy. "The industry's
+leading guide to AI search" tells a model nothing; "explains how retrieval
+grounds an AI answer in source passages" tells it exactly when this page is the
+right one. Write each description as the answer to *what question does this page
+settle*, in the same plain, answer-first voice you should be using on the pages
+themselves.
+
+Third: linking to pages that are not actually your best work, or that are gated,
+redirected, or slow. The file is a recommendation, and a recommendation is only as
+good as what it points at. Fourth: forgetting it exists. A curated index that
+describes your site as it was eighteen months ago is worse than no index, because
+it actively misrepresents you. Generating the file from your content layer at
+build time removes this failure mode entirely — the file cannot drift from
+content it is derived from.
+
+Finally, do not build llms.txt before the layers beneath it work. If AI crawlers
+are blocked, or your pages render only in JavaScript, a curated markdown index
+changes nothing about your visibility. Access first, always.
+
+## Who actually honors llms.txt today?
+
+No major AI answer engine has confirmed that it reads llms.txt, and server-log
+evidence indicates crawlers essentially ignore it. That is the short answer, and
+the long one — with the log data and Google's public comparison of llms.txt to the
+long-dead keywords meta tag — belongs to
+[does llms.txt actually work?](/learn/does-llms-txt-work). If you are deciding
+whether to invest, read that piece before this section persuades you of anything.
+
+What does consume it, today, is narrower and more mundane: people and tools that
+fetch the file *deliberately*. A developer pasting a docs site's llms.txt into a
+chat, an agent configured to pull a known URL, an internal script building context
+for a model — these work because a human pointed at the file, not because an
+engine discovered it. That is a real use case. It is just not the same as
+organic AI visibility, and conflating the two is how llms.txt acquired its
+reputation as an AEO tactic.
+
+## Is llms.txt worth the effort?
+
+It is worth roughly ten minutes and a place in your build pipeline — no more. The
+honest cost-benefit is that publishing one is cheap, carries no downside, may help
+the occasional deliberate consumer, and positions you if adoption ever arrives;
+while the benefit to your AI citations today is, on the available evidence, zero.
+
+The failure mode is not the file. It is the opportunity cost. Every hour spent
+perfecting a curated index that nothing fetches is an hour not spent on the things
+that demonstrably decide whether you get cited: making sure AI crawlers can
+actually reach and render your pages
+([check whether AI crawlers can read your site](/learn/check-ai-crawlers-can-read-site)),
+writing answer-first passages that survive being lifted out of context, and
+earning the independent authority that engines weigh far above anything you
+declare about yourself — the [Access pillar](/pillars/access) and everything
+above it in [The AEO Canon](/learn/aeo-canon).
+
+So: generate one, ship it, forget it. Then go do the work in
+[what is AEO](/learn/what-is-aeo). And if you are auditing your stack for other
+plausible-sounding tactics that do not hold up, start with
+[AI search optimization myths, debunked](/learn/aeo-myths).

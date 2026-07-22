@@ -1,0 +1,324 @@
+---
+title: "LLM SEO (LLMO): Optimizing Content for Large Language Models"
+slug: llm-seo-llmo
+summary: LLM SEO, or LLMO, is optimizing content for the two paths a language model can reach it — training data and live retrieval. Understanding the pipeline from tokenization to generation tells you exactly what to change.
+topics:
+  - ai-fundamentals
+  - aeo-fundamentals
+author: burke-atkerson
+published: 2026-07-21
+updated: 2026-07-21
+schemaType: Article
+faqs:
+  - q: What is LLM SEO (LLMO)?
+    a: "LLM SEO — also called LLMO, large language model optimization — is the practice of structuring and writing content so a large language model can reach it, understand it, and reproduce it accurately in a generated answer. It differs from ordinary SEO in that it targets a retrieval-and-generation pipeline rather than a ranked list, so the work is organized around passages instead of pages."
+  - q: How does an LLM actually find my content?
+    a: "Two paths. The first is training data: text scraped from the web before the model's knowledge cutoff, absorbed as statistical patterns rather than retrievable documents. The second is live retrieval, or RAG, where the system searches at query time, pulls candidate passages, reranks them, and hands the winners to the model as context. Retrieval is the path you can influence quickly; training data is the slow, compounding one."
+  - q: Does chunking affect whether my content gets cited?
+    a: "Yes, directly. Retrieval systems split documents into chunks and embed each one separately, so the chunk — not the page — is what gets matched and quoted. A chunk that opens mid-argument, depends on a paragraph above it, or spans three unrelated ideas scores poorly and reads badly when lifted. Writing self-contained sections under descriptive headings is the single most effective structural change you can make."
+  - q: Can I optimize for a model's training data?
+    a: "Only indirectly, and only over long horizons. You cannot edit a trained model, and anything you publish today can influence only future training runs. What you can do is increase how often your brand and claims appear across the web — on the forums, publications, and reference sites that training corpora draw from — so that consistent, corroborated information about you exists to be absorbed."
+---
+
+**LLM SEO (LLMO) is the practice of structuring and writing content so a large
+language model can reach it, understand it, and reproduce it accurately in a
+generated answer.** The acronym is one of several floating around for the same
+goal, but the label matters less than the reason it exists: a language model
+does not browse your site the way a person does or index it the way a search
+crawler does. It reaches you through a pipeline, and every stage of that pipeline
+implies something concrete about how a page should be written.
+
+<KeyTakeaways
+  items={[
+    "An LLM reaches your content two ways: absorbed into training data, or retrieved live at query time.",
+    "Retrieval is the fast, controllable path; training data is the slow, compounding one.",
+    "The retrieval pipeline is chunk, embed, retrieve, rerank, generate — and each stage has a writing implication.",
+    "The chunk, not the page, is the unit that gets matched and quoted.",
+    "Optimizing for LLMs means making self-contained, well-evidenced passages easy to lift and safe to repeat.",
+  ]}
+/>
+
+## What are the two paths an LLM takes to your content?
+
+An LLM reaches your content by one of two paths: it was absorbed during
+training, or it is retrieved live at the moment someone asks a question. These
+are genuinely different mechanisms with different timescales, and conflating them
+is the most common source of confusion in this field.
+
+<VersusSplit
+  caption="Two paths, two timescales. Most practical LLMO work targets the right-hand column."
+  left={{
+    title: "Training data (the slow path)",
+    items: [
+      "Text scraped from the web before the model's knowledge cutoff",
+      "Absorbed as statistical patterns, not stored as retrievable documents",
+      "Cannot be edited, corrected, or updated after the fact",
+      "Influences what the model 'knows' about your brand unprompted",
+      "Horizon measured in model generations, not weeks",
+    ],
+  }}
+  right={{
+    title: "Live retrieval / RAG (the fast path)",
+    items: [
+      "A search runs at query time and returns candidate passages",
+      "Passages are handed to the model as context to write from",
+      "Reflects your page as it exists today, edits included",
+      "Produces the citations you see under an AI answer",
+      "Responds to changes in days or weeks, not years",
+    ],
+  }}
+/>
+
+The training path is why a model can describe your company without searching for
+it — and why it can describe you wrongly and confidently, since nothing in a
+trained model is a lookup. It is also why the model's
+[knowledge cutoff](/glossary/knowledge-cutoff) matters: the corpus is a frozen
+snapshot, explained in [what is training data](/learn/what-is-training-data) and
+[how knowledge cutoff affects freshness](/learn/how-knowledge-cutoff-affects-freshness).
+
+The retrieval path is [retrieval-augmented generation](/learn/what-is-rag), the
+architecture behind essentially every AI answer engine that shows citations. It
+is the path you can influence in a normal planning cycle, which is why the rest
+of this article follows it stage by stage. If you want the model itself explained
+first, start with [what is an LLM](/learn/what-is-an-llm) and
+[how LLMs work](/learn/how-llms-work).
+
+<Callout variant="insight" title="Why both paths point at the same work">
+  <p>
+    Content that is clearly written, well structured, and consistently repeated
+    across the web does better on <em>both</em> paths. Retrieval favors passages
+    that stand alone and carry evidence; training favors claims that appear often
+    enough, and consistently enough, to become the pattern a model settles on.
+    There is no version of LLMO where you optimize for one at the expense of the
+    other.
+  </p>
+</Callout>
+
+## How does the retrieval pipeline actually work?
+
+The retrieval pipeline turns a question into a cited answer in five stages:
+the query is embedded, candidate passages are retrieved, those candidates are
+reranked, the winners are fed to the model as context, and the model generates an
+answer that attributes what it used. Every stage is a filter — content that fails
+at stage two never reaches stage four, no matter how well written it is.
+
+<RagPipeline caption="The pipeline every AI answer engine runs. Your content competes at stages 2 and 3, and is reproduced at stages 4 and 5." />
+
+Before any of that runs, your page has to be processed into a retrievable form.
+That preparation is where most LLMO leverage actually sits, because it decides
+what the retrievable units even are.
+
+<ProcessFlow
+  caption="What happens to a published page before it can be retrieved — the ingestion side of the pipeline."
+  steps={[
+    { label: "Fetch", sub: "A crawler retrieves the HTML" },
+    { label: "Extract", sub: "Boilerplate stripped, main content isolated" },
+    { label: "Tokenize", sub: "Text split into model-readable tokens" },
+    { label: "Chunk", sub: "Split into passage-sized units" },
+    { label: "Embed", sub: "Each chunk becomes a vector" },
+    { label: "Index", sub: "Vectors stored for similarity search" },
+  ]}
+/>
+
+Read those two diagrams together and the shape of the discipline appears. You do
+not optimize a page for an LLM. You optimize the chunks a page will be cut into,
+so that each one survives extraction, embeds cleanly, wins a similarity search,
+holds up under reranking, and reads as a complete thought when quoted.
+
+## What do tokenization and chunking imply for writing?
+
+Tokenization and chunking imply that the retrievable unit of your content is a
+few hundred words, not a page — so every few hundred words should make sense on
+their own. Models read [tokens](/glossary/token), not characters or words, and
+retrieval systems slice documents into chunks sized to fit those token budgets.
+
+[Tokenization](/learn/what-is-tokenization) is the step that converts text into
+the numeric units a model processes. Its practical implication is quiet but real:
+clear, conventional prose tokenizes efficiently, while dense abbreviation,
+inconsistent naming, and unusual formatting consume more of a limited budget to
+convey the same meaning. Spelling your brand and product names consistently
+across a site is a small act with outsized effect — it gives the model one stable
+pattern to attach to instead of three competing ones.
+
+[Chunking](/learn/what-is-chunking) is where the real leverage is. A system that
+splits your article on a fixed token count will cut wherever the count lands,
+possibly mid-argument. A system using
+[semantic chunking](/glossary/semantic-chunking) splits on meaning — most often
+at heading boundaries, because headings are the strongest available signal of
+where one idea ends and the next begins. You do not control which method an
+engine uses, but you control how much damage the crude one can do.
+
+<Steps
+  items={[
+    {
+      title: "Write to heading boundaries",
+      body: "Treat every H2 and H3 as the edge of a retrievable unit. If a section only makes sense after reading the one above it, it will retrieve badly. Phrase headings as questions, per the pattern in question-shaped headings.",
+    },
+    {
+      title: "Answer in the first sentence",
+      body: "The opening sentence of a section is the highest-value real estate in LLMO. It is what a chunk leads with, what an embedding weights heavily, and what a model can quote without editing.",
+    },
+    {
+      title: "Resolve pronouns and references",
+      body: "'This approach', 'as noted above', 'the second option' — all of these break when a chunk is lifted out of context. Name the thing again. Redundancy that feels slightly clumsy to a reader is clarity to a retriever.",
+    },
+    {
+      title: "Keep one idea per section",
+      body: "A section covering three loosely related points produces a muddy embedding that matches nothing strongly. Split it. Narrow, well-titled sections retrieve far better than broad ones.",
+    },
+    {
+      title: "Put the evidence inside the passage",
+      body: "A statistic or citation two paragraphs away is not in the chunk. If a claim needs support to be repeatable, the support has to sit next to the claim.",
+    },
+  ]}
+/>
+
+<PullQuote cite="The central LLMO principle">
+  Write every section so it still makes sense when it is the only part anyone
+  reads.
+</PullQuote>
+
+## How do embeddings and retrieval decide what gets pulled?
+
+Embeddings and retrieval decide what gets pulled by comparing the meaning of a
+question to the meaning of your passages, not their wording. Each chunk is
+converted into an [embedding](/glossary/embeddings) — a vector that positions the
+text in a high-dimensional space where semantically similar things sit close
+together. The query is embedded the same way, and
+[retrieval](/glossary/retrieval) returns the nearest neighbors.
+
+This is the stage that most changes how you think about keywords. Because
+similarity is computed on meaning, a passage can be retrieved for a question that
+uses none of its words, and can be skipped despite containing the exact phrase.
+[Cosine similarity](/glossary/cosine-similarity) does not reward repetition; it
+rewards a passage whose meaning is tightly clustered around one clear idea. The
+practical consequence is the opposite of keyword density — a chunk that says one
+thing clearly beats a chunk that says four things while mentioning the target
+phrase six times.
+
+Most production systems do not rely on embeddings alone. They run
+[hybrid search](/glossary/hybrid-search), combining
+[dense retrieval](/glossary/dense-retrieval) with a lexical method like
+[BM25](/glossary/bm25) so that exact terms — product names, error codes, statute
+numbers, model numbers — still match reliably. That is the one place literal
+phrasing retains real force: use the exact name of the thing at least once,
+somewhere a chunk boundary will not orphan it. The fuller comparison is in
+[semantic search vs keyword search](/learn/semantic-search-vs-keyword-search).
+
+<ComparisonTable
+  caption="What each pipeline stage rewards — and the writing move it implies"
+  rowHeaders
+  columns={["Stage", "What it rewards", "What to do about it"]}
+  rows={[
+    ["Tokenization", "Conventional, consistent language", "Name entities the same way every time"],
+    ["Chunking", "Clean semantic boundaries", "Write self-contained sections under descriptive headings"],
+    ["Embedding", "One tightly focused idea per chunk", "Split multi-topic sections; cut hedging and preamble"],
+    ["Retrieval", "Semantic proximity plus exact-term matches", "Cover the question thoroughly; state key terms literally once"],
+    ["Reranking", "Relevance, authority, and freshness", "Add evidence, named authorship, and visible update dates"],
+    ["Generation", "Text that is safe to repeat verbatim", "Write declarative, checkable sentences with sources attached"],
+  ]}
+/>
+
+## What does reranking reward, and how do you win it?
+
+Reranking rewards passages that are not just topically close but genuinely the
+best available answer — judged on relevance, authority, and freshness together.
+Retrieval is fast and shallow; it casts a wide net. The
+[reranker](/learn/what-is-a-reranker) is slow and careful, examining the query and
+each candidate passage jointly rather than comparing precomputed vectors.
+
+That joint examination, usually performed by a
+[cross-encoder](/glossary/cross-encoder), is why reranking is the stage where
+quality signals bite. The model is effectively asking: does this passage
+actually answer this question, and can I trust it enough to repeat it? Passages
+that assert without evidence, hedge without committing, or answer a slightly
+different question get demoted here even after retrieving well.
+
+This is also the stage the empirical research speaks to most directly. The
+Princeton-led GEO study (arXiv 2311.09735) tested optimization tactics against a
+benchmark of real queries and found that adding authoritative citations, direct
+quotations, and relevant statistics lifted a source's visibility in generated
+answers by up to 40%, while keyword stuffing produced no gain. Those three
+winning tactics are exactly what a reranker is built to notice: a citation
+signals [grounding](/glossary/grounding), a quotation supplies attributable text,
+and a statistic supplies a checkable fact.
+
+Authority arrives at this stage from off-site too. Ahrefs' study of 75,000
+brands found off-site brand mentions correlated with AI visibility at 0.664,
+against 0.218 for backlinks — so being discussed across the web changes which of
+several adequate passages gets promoted. That is the argument developed in
+[does E-E-A-T matter for AI citation](/learn/does-eeat-matter-for-ai-citation).
+
+<Callout variant="tip" title="A fast reranker self-test">
+  <p>
+    Take any passage on your site and read it alone, with no page around it. Ask:
+    does it state its answer in the first sentence? Does it name the entities it
+    refers to? Does it support its central claim with a source, number, or
+    quotation that is <em>inside the passage</em>? Would a careful editor repeat
+    it verbatim? Four yeses is a passage that survives reranking.
+  </p>
+</Callout>
+
+## What happens at generation, and how does that change your writing?
+
+At generation, the model writes an answer using the retrieved passages as
+context — which means your text stops being something to rank and becomes
+something to be reproduced. The retrieved chunks enter the model's
+[context window](/glossary/context-window) alongside the question and the system
+instructions, and the answer is composed from that material.
+
+Two properties decide whether your passage survives into the final text. The
+first is **liftability**: a sentence that is complete, declarative, and free of
+context-dependent references can be reused nearly verbatim, while one that
+depends on setup has to be rewritten — and rewriting is where attribution gets
+lost. The second is **safety**: models are tuned to avoid stating things they
+cannot support, so a claim that arrives with a source attached is far likelier to
+be repeated than an unsupported assertion of the same fact.
+
+Generation is also where things go wrong in ways you should anticipate. A model
+working from thin or ambiguous context will fill gaps —
+[hallucination](/glossary/hallucination) is likelier when the retrieved passages
+do not clearly answer the question. Ambiguous writing on your side raises the
+odds of being paraphrased into something you did not say. Precision is not
+pedantry here; it is defensive.
+
+<Funnel
+  caption="Every stage discards candidates. The passages that survive to citation are the ones that were self-contained, focused, and evidenced from the start."
+  steps={[
+    { label: "All pages on your site", pct: 100 },
+    { label: "Crawled and ingested", pct: 82 },
+    { label: "Chunked and embedded", pct: 68 },
+    { label: "Retrieved for a query", pct: 44 },
+    { label: "Survives reranking", pct: 26 },
+    { label: "Used in the generated answer", pct: 16 },
+    { label: "Cited by name", pct: 10, highlight: true },
+  ]}
+/>
+
+The shape of that funnel — not the specific widths, which are illustrative — is
+the argument for working the pipeline in order. Content that fails at ingestion
+never gets a chance at reranking, and content that survives reranking but reads
+as a fragment gets paraphrased instead of quoted.
+
+## Where should you go next?
+
+Start with the mechanism if you are still building intuition:
+[what is an LLM](/learn/what-is-an-llm), then
+[how LLMs work](/learn/how-llms-work), then
+[what is RAG](/learn/what-is-rag) for the retrieval architecture and
+[how AI retrieval works](/learn/how-ai-retrieval-works) for the engine-side view.
+The individual stages each have their own explainer:
+[tokenization](/learn/what-is-tokenization),
+[chunking](/learn/what-is-chunking),
+[embeddings](/learn/what-are-embeddings), and
+[rerankers](/learn/what-is-a-reranker).
+
+When you move from understanding to writing, the highest-leverage pieces are
+[the answer-first sentence](/learn/answer-first-sentence),
+[the nine properties of a citable passage](/learn/nine-properties-citable-passage),
+and [passage length for AI citation](/learn/passage-length-for-ai-citation). For
+the discipline this all sits inside — and the terminology, since LLMO, AEO, GEO,
+and [AI SEO](/learn/ai-seo) describe the same goal — read
+[what is AEO](/learn/what-is-aeo). Then use
+[The AEO Canon](/learn/aeo-canon) as the operating checklist: eight pillars that
+take a page from crawlable to cited, in the order the pipeline actually reads it.

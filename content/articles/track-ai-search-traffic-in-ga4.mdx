@@ -1,0 +1,278 @@
+---
+title: "How to Track AI Search Traffic and ChatGPT Referrals in GA4"
+slug: track-ai-search-traffic-in-ga4
+summary: GA4 does not separate AI traffic for you — you build it, by matching the referrer hostnames the engines send (chatgpt.com, perplexity.ai, gemini.google.com, copilot.microsoft.com, claude.ai) in an exploration or a custom channel group. Here is the setup, and why the number will always be too low.
+topics:
+  - analytics-measurement
+  - aeo-fundamentals
+author: burke-atkerson
+published: 2026-07-21
+updated: 2026-07-21
+schemaType: Article
+faqs:
+  - q: How do I track ChatGPT referrals in GA4?
+    a: "Filter on the referrer hostname. When someone follows a source link out of an AI answer, the visit arrives in analytics as a referral from a domain like chatgpt.com — alongside perplexity.ai, gemini.google.com, copilot.microsoft.com, and claude.ai for the other engines. Build a free-form exploration with Session source as the dimension and a regex filter matching those hostnames, or promote the same pattern into a custom channel group so every standard report shows an AI channel."
+  - q: Why is my AI referral traffic in GA4 so low?
+    a: "Because analytics can only see the clicks, and most AI value is zero-click. When an engine answers using your content, the user usually gets what they need without visiting, so there is no session to record — the citation happened and analytics never saw it. Pew Research found users clicked a link just 8% of the time when an AI summary was present, versus 15% without. On top of that, some AI surfaces pass no referrer at all and some referrers are misattributed, so even the click-through slice is understated."
+  - q: Should AI traffic be its own channel group in GA4?
+    a: "Yes, once you have confirmed the hostnames are showing up. GA4's default channel groups tend to scatter AI referrals across Referral and Organic Search, which makes the trend impossible to read. A custom channel group with a single regex condition on the referrer hostname collects them into one AI channel that then appears in acquisition reports, comparisons, and audiences automatically."
+  - q: What should I pair GA4 with to measure AI search properly?
+    a: "Citation tracking and share of voice. GA4 measures visits; a prompt set measures how often engines name you at all, which is the majority of AEO's effect and is entirely invisible in analytics. Run a fixed set of your customers' questions across the engines on a schedule, log who gets cited, and report that number alongside your GA4 referral trend. Neither is sufficient alone."
+---
+
+**GA4 will not separate AI search traffic for you — you build it yourself, by
+matching the referrer hostnames the engines send: chatgpt.com, perplexity.ai,
+gemini.google.com, copilot.microsoft.com, and claude.ai.** Everything else in
+this guide is detail on that one idea: where to put the filter, how to make it
+permanent, and why the number it produces will always be smaller than your real
+AI visibility.
+
+<KeyTakeaways
+  items={[
+    "AI referrals arrive as ordinary referral sessions from the engines' own hostnames.",
+    "Build a free-form exploration first to confirm the hostnames appear, then promote the pattern to a custom channel group.",
+    "One regex condition on the referrer hostname is the whole configuration.",
+    "The number is structurally undercounted — zero-click answers leave no session at all.",
+    "Pair it with citation tracking; GA4 measures visits, not visibility.",
+  ]}
+/>
+
+## Which referrer hostnames do the AI engines send?
+
+When someone clicks a source link inside an AI answer, the visit lands in
+analytics as a referral from the engine's own domain — chatgpt.com,
+perplexity.ai, gemini.google.com, copilot.microsoft.com, or claude.ai. There is
+no special AI parameter and no dedicated GA4 dimension; it is an ordinary
+referral, which is exactly why it hides in plain sight among the rest of your
+referral traffic.
+
+<ComparisonTable
+  rowHeaders
+  caption="The AI referrer hostnames to match, and what each one represents"
+  columns={["Engine", "Referrer hostname", "What a session from it means"]}
+  rows={[
+    ["ChatGPT", "chatgpt.com", "A user followed a source link out of a ChatGPT answer"],
+    ["Perplexity", "perplexity.ai", "A user clicked one of Perplexity's visible citations"],
+    ["Gemini", "gemini.google.com", "A user followed a linked source from Gemini"],
+    ["Microsoft Copilot", "copilot.microsoft.com", "A user clicked through from a Bing-grounded Copilot answer"],
+    ["Claude", "claude.ai", "A user followed a source link from a Claude web answer"],
+  ]}
+/>
+
+Two notes before you build anything. First, Google's AI Overviews sit inside
+Google Search itself, so clicks from them do not arrive as a distinct AI
+referrer — they blend into your ordinary Google organic traffic, which is one
+reason AI Overview impact is so hard to isolate. Second, these are the hostnames
+worth matching today; treat the list as something you revisit rather than set
+once, because engines add and rename surfaces regularly. The behavior of the
+visitors themselves — small in number, unusually high in intent — is covered in
+[how AI referral traffic behaves](/learn/how-ai-referral-traffic-behaves), and
+the concept has its own definition at
+[AI referral traffic](/glossary/ai-referral-traffic).
+
+## How do I build a GA4 exploration for AI referrals?
+
+Start with a free-form exploration, because it is the fastest way to confirm the
+hostnames are actually appearing in your property before you commit to a
+permanent configuration. This takes about five minutes and needs no code, no tag
+changes, and no developer.
+
+<Steps
+  items={[
+    {
+      title: "Open Explore and create a blank free-form exploration",
+      body: "In GA4, go to Explore and start a blank report. Free-form gives you the dimension-and-filter control that the canned acquisition reports do not.",
+    },
+    {
+      title: "Add Session source as the dimension",
+      body: "Session source is the hostname that referred the visit. Add it as a row dimension. Add Landing page as a second dimension if you want to see which pages the engines are sending people to.",
+    },
+    {
+      title: "Add Sessions, Engaged sessions, and a conversion as metrics",
+      body: "Volume alone tells you very little here. Engagement and conversion are where AI referrals distinguish themselves — Ahrefs found AI-referred visitors converted about 23x better than organic.",
+    },
+    {
+      title: "Filter Session source with a regex match",
+      body: "Set the filter to 'matches regex' and paste the hostname pattern below. This is the single step that turns a generic referral report into an AI-traffic report.",
+    },
+    {
+      title: "Set a long date range and read the trend, not the day",
+      body: "AI referral volume is small enough that daily numbers are noise. Look at month over month, and always break it out by engine rather than as one blended total.",
+    },
+  ]}
+/>
+
+Here is the regex to paste into the filter. It anchors on the full hostname so
+you do not accidentally match unrelated domains that merely contain one of these
+strings:
+
+```text
+^(chatgpt\.com|perplexity\.ai|gemini\.google\.com|copilot\.microsoft\.com|claude\.ai)$
+```
+
+If your property records subdomains or regional variants and you would rather
+catch everything at the cost of some precision, loosen the anchors to match any
+hostname ending in those domains:
+
+```text
+.*\.?(chatgpt\.com|perplexity\.ai|gemini\.google\.com|copilot\.microsoft\.com|claude\.ai)$
+```
+
+Run the exploration before you go further. If you see zero sessions from every
+hostname, that is worth knowing on its own — it usually means either that you are
+not being cited yet, or that you are being cited in answers nobody clicks
+through from. Those two situations look identical in GA4 and are told apart only
+by [citation tracking](/learn/how-to-track-ai-citations).
+
+## How do I make AI its own channel in GA4?
+
+Promote the same regex into a custom channel group, so AI traffic appears as a
+named channel in your standard acquisition reports instead of living only inside
+one exploration. GA4's default channel groups scatter these sessions across
+Referral and Organic Search, which makes the trend nearly unreadable.
+
+In Admin, under Data display, create a custom channel group. Add a new channel —
+call it AI Search — and give it a single condition: **Source matches regex**,
+using the same pattern as above. Order matters in channel groups, so place the AI
+Search channel above Referral and Organic Search; GA4 assigns each session to the
+first channel whose condition it satisfies, and a channel placed below Referral
+will never receive anything.
+
+<Callout variant="tip" title="Build the per-engine breakdown, not just the total">
+  <p>
+    A single &quot;AI Search&quot; number will be dominated by one engine and will
+    hide everything else.{" "}
+    <a href="/learn/which-ai-engines-send-most-traffic">
+      SearchEngineLand&apos;s referral data
+    </a>{" "}
+    puts ChatGPT at roughly <strong>87–92%</strong> of all AI referral sessions,
+    with Perplexity near <strong>2.8%</strong> — so a blended total is effectively
+    a ChatGPT chart. Keep Session source as a breakdown dimension so you can see
+    the smaller engines moving.
+  </p>
+</Callout>
+
+Once the channel exists, everything downstream comes free: it appears in Traffic
+acquisition, in comparisons, and as a building block for audiences and
+conversion reports. Pair it with a conversion event and you can answer the
+question that actually matters to a business — not how much AI traffic you get,
+but what it does when it arrives.
+
+One configuration detail catches people out here. Custom channel groups in GA4
+apply going forward and to a limited window of historical data, not to your
+entire property history, so build the channel now even if you are not ready to
+report on it — the sooner it exists, the sooner you have a comparable baseline.
+And keep the regex in a document somewhere with a date on it. When a new engine
+launches or an existing one changes its surface domain, the only thing standing
+between you and a silently broken report is remembering where the pattern lives.
+
+## Why is the number structurally undercounted?
+
+Because analytics can only see the clicks, and most AI value never produces one.
+When an engine answers a question using your content, the reader usually gets
+what they came for inside the answer — your citation happened, your brand was
+named, and no session was ever created. This is not a tracking bug you can fix
+with better configuration; it is the shape of the medium.
+
+<Funnel
+  caption="Illustrative shape, not measured proportions: everything above the last band is real AI visibility, and only the last band exists in GA4."
+  steps={[
+    { label: "Questions your content could answer", pct: 100 },
+    { label: "Answers where an engine actually cites you", pct: 74 },
+    { label: "Answers where the citation is visible and clickable", pct: 52 },
+    { label: "Readers who click a source at all", pct: 32 },
+    { label: "Sessions GA4 attributes to an AI referrer", pct: 20, highlight: true },
+  ]}
+/>
+
+Three separate losses stack up. The
+[Pew Research Center found in 2025](https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/)
+that users clicked a link just 8% of the time when an AI summary was present,
+versus 15% without — so the click itself is rarer than it used to be. Some
+surfaces pass no referrer at all, or pass one that gets misattributed, so a share
+of the clicks that *do* happen never reach your AI channel. And AI Overview
+clicks, as noted above, are indistinguishable from ordinary Google organic. The
+underlying dynamic has its own entry:
+[zero-click search](/glossary/zero-click-search).
+
+<PullQuote cite="The measurement rule for AI search">
+  Analytics counts the visits. It cannot count the times you were the answer.
+</PullQuote>
+
+None of this makes GA4 useless — it makes it partial. It is an accurate
+measurement of one real thing (AI-referred sessions and what they do) and a
+badly incomplete proxy for a different thing (your AI visibility). Judging an AEO
+program on the GA4 number alone will tell you it is failing while it is working,
+which is the argument made in full in
+[can I track AI traffic in Google Analytics](/learn/can-i-track-ai-traffic-in-google-analytics).
+
+## What should I pair it with?
+
+Pair GA4 with citation tracking, because the two measure opposite halves of the
+same picture. GA4 measures the visits you get; a prompt set measures how often
+engines name you at all — including every answer that produced no click, which is
+the majority of them.
+
+The method is simple enough to run in a spreadsheet: fix a list of your
+customers' real questions, run it across every engine on a schedule, and log
+whether you were named, who else was, and which sources were linked. Turn that
+log into a percentage — the share of tracked questions where you appear — and you
+have [share of voice in AI search](/learn/share-of-voice-ai-search), the closest
+thing this discipline has to a headline metric. The related concept of how much
+of a category's answers you occupy is defined at
+[share of model](/glossary/share-of-model), and the step-by-step DIY setup is in
+[how to measure your AI visibility](/tools/measure-aeo).
+
+<Callout variant="insight" title="The three-number dashboard">
+  <p>
+    Most teams need exactly three numbers, reviewed monthly.{" "}
+    <strong>Citation share per engine</strong> — from your prompt set — tells you
+    whether AEO is working. <strong>AI-referred sessions per engine</strong> — from
+    GA4 — tells you how much of that visibility converts into visits.{" "}
+    <strong>Conversions from those sessions</strong> tells you what it is worth.
+    More on choosing them:{" "}
+    <a href="/learn/what-aeo-metrics-to-track">what AEO metrics to track</a>.
+  </p>
+</Callout>
+
+A fourth source is worth adding once you care about the technical side: your
+server logs. They show which AI crawlers are fetching which pages and how often —
+information that exists nowhere in GA4, because crawlers do not execute the
+JavaScript that fires your analytics tag.
+[Reading server logs for AI crawlers](/learn/read-server-logs-ai-crawlers)
+covers what to look for.
+
+## How should I read the numbers once I have them?
+
+Read them as a trend by engine, weighted by quality rather than volume. AI
+referral traffic is a small stream that behaves nothing like organic search, and
+comparing it to your organic numbers on volume alone will always be
+disappointing and always be the wrong comparison.
+
+The reason is qualification.
+[Ahrefs found AI-referred visitors converted about 23x better than organic](/learn/does-ai-search-send-traffic)
+in its analysis of its own traffic — because by the time someone clicks a
+citation, they have read a synthesized answer, seen you named as a credible
+source, and chosen to go deeper. That is three steps of qualification a keyword
+click skips. So the right frame is revenue per session, not sessions; and the
+right response to a small AI channel that converts well is to make its landing
+experience better, which is exactly what
+[landing pages for AI traffic](/learn/landing-pages-for-ai-traffic) is about.
+
+## Where should I go next?
+
+Go to whichever half of the picture you are missing. If you now have a working AI
+channel in GA4 but no idea how often you are actually cited, build the prompt set
+in [how to track AI citations](/learn/how-to-track-ai-citations). If you have
+citation data but the traffic is not materializing, the question is which engines
+your audience uses, answered in
+[which AI engines send the most traffic](/learn/which-ai-engines-send-most-traffic).
+
+And if the measurement is telling you that you are barely present anywhere, the
+problem is upstream of analytics. Start with
+[how to rank in ChatGPT, Perplexity, Gemini, and AI Overviews](/learn/how-to-rank-in-ai-search-engines)
+for the engine-by-engine map, or
+[how to show up in AI search](/learn/how-to-show-up-in-ai-search) for the
+plain-English sequence that gets you cited in the first place. Measurement is
+worth building early — but it only ever tells you the truth about the work, and
+never does the work for you.

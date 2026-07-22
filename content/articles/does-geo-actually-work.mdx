@@ -1,0 +1,320 @@
+---
+title: "Does GEO Actually Work? The Evidence, Honestly Assessed"
+slug: does-geo-actually-work
+summary: Yes, with real caveats. One controlled study measured visibility lifts from citations, quotations, and statistics; a large correlation study links brand mentions to AI visibility. Neither proves causation on the live web, and the evidence base is thinner than the marketing suggests.
+topics:
+  - aeo-fundamentals
+  - answer-engines
+author: burke-atkerson
+published: 2026-07-21
+updated: 2026-07-21
+schemaType: Article
+faqs:
+  - q: Does GEO actually work?
+    a: "The best available evidence says yes, with caveats worth stating plainly. The Princeton-led GEO study (arXiv 2311.09735) measured visibility lifts of roughly 41% from quotations, 30% from statistics, and 30% from citing sources under controlled benchmark conditions. That is real evidence, but it was measured on a benchmark rather than the live web, and generative engines have changed substantially since. Treat it as a strong prior, not a guarantee."
+  - q: Is GEO worth it?
+    a: "For most publishers, yes — because the tactics with the best evidence behind them are things you should be doing anyway. Adding citations, quotations, and specific statistics improves content for human readers and, per the GEO research, for generative engines. The cost is low and the work does not become worthless if the AI-visibility thesis is wrong, which makes it a favorable bet under uncertainty."
+  - q: Is AEO just SEO with a new name?
+    a: "Partly, and the honest answer is a percentage rather than a yes or no. Roughly 70–80% of AEO is strong SEO — crawlability, speed, semantics, authority. The remaining portion is genuinely different: engines retrieve and cite passages rather than ranking pages, brand mentions correlate with AI visibility far more strongly than backlinks (0.664 vs 0.218 in Ahrefs' study of 75,000 brands), and success is measured as citation share rather than position."
+  - q: What is the strongest evidence that GEO works?
+    a: "The Princeton-led GEO paper and its GEO-Bench benchmark remain the strongest evidence, because they tested tactics against a controlled set of roughly 10,000 real queries rather than reasoning from anecdote. The strongest observational evidence is Ahrefs' analysis of 75,000 brands, which found brand mentions correlated with AI visibility at 0.664. Correlation studies cannot establish causation, so the two lines of evidence are complementary rather than confirming."
+---
+
+**Yes — but the evidence base is narrower than the industry's confidence
+suggests, and saying so is the point of this article.** There is one good
+controlled study, one large correlation study, some solid behavioral data, and a
+great deal of vendor content dressed as research. That is enough to justify
+acting, and not enough to justify certainty.
+
+This piece is an evidence review rather than a pitch. Every figure below appears
+elsewhere on this site, and here the job is to say what each study actually
+measured, what it cannot support, and what a rational person should conclude when
+the honest answer is "probably, and here is how we'd know."
+
+<KeyTakeaways
+  items={[
+    "One controlled study anchors the field: the Princeton-led GEO paper (arXiv 2311.09735) and GEO-Bench.",
+    "It measured lifts of ~41% (quotations), ~30% (statistics), ~30% (citing sources), and −10% for keyword stuffing.",
+    "Ahrefs' 75,000-brand study found mentions correlate with AI visibility at 0.664 vs 0.218 for backlinks — correlation, not causation.",
+    "Benchmark conditions are not the live web, and engines have changed since the research was run.",
+    "The rational conclusion: act on the evidence, because the recommended tactics are low-regret even if the thesis is wrong.",
+  ]}
+/>
+
+## Does GEO actually work?
+
+GEO works in the sense that the tactics it recommends have measurably improved a
+source's visibility in generative answers under test conditions — and it is
+unproven in the stronger sense that anyone can promise you a specific outcome on
+a specific engine today. Those two statements are both true, and most content on
+this topic picks one and hides the other.
+
+What we can say with confidence is narrower than "GEO works": adding inline
+evidence to content increased how prominently that content appeared in generated
+answers in a controlled benchmark, and brands with more off-site mentions appear
+more often in AI answers at scale. Neither finding is trivial. Neither is a
+guarantee that a given page will get cited next Tuesday. If you want the
+definition and origin of the term before the evidence, start with
+[what is GEO?](/learn/what-is-geo).
+
+## What evidence do we actually have?
+
+We have three distinct kinds of evidence, and they are not equally strong. In
+descending order of rigor: one controlled experiment on a purpose-built
+benchmark, one large-scale observational correlation study, and a body of
+behavioral data about how users interact with AI answers. Nothing here is a
+randomized trial on the live web, because no one can run one.
+
+<ComparisonTable
+  caption="The evidence base for GEO, by type and strength"
+  rowHeaders
+  columns={["Source", "Type", "What it can support", "Main limitation"]}
+  rows={[
+    [
+      "Princeton GEO study (arXiv 2311.09735)",
+      "Controlled benchmark",
+      "That specific content edits change visibility in generated answers",
+      "Benchmark conditions; 2023 engines",
+    ],
+    [
+      "Ahrefs, 75,000 brands",
+      "Observational correlation",
+      "That mentions and AI visibility move together at scale",
+      "Cannot establish causal direction",
+    ],
+    [
+      "Pew Research click data",
+      "Behavioral survey/telemetry",
+      "That AI summaries reduce clicks on links",
+      "Describes the problem, not the solution",
+    ],
+    [
+      "Vendor case studies",
+      "Anecdote",
+      "Existence proofs; hypothesis generation",
+      "Selection bias, no controls, commercial interest",
+    ],
+  ]}
+/>
+
+The bottom row deserves its own warning. Most "GEO works!" content circulating
+online is a vendor describing a client whose citations went up, with no control
+group, no accounting for concurrent changes, and no published methodology. That
+is not evidence of anything except that citations sometimes go up. Treat it as
+hypothesis, never as proof — and note that AI citations are noisy enough on their
+own that they fluctuate week to week without anyone doing anything.
+
+## What did the Princeton GEO study actually measure?
+
+The Princeton-led GEO study measured the change in a source's visibility inside a
+generated answer after applying specific content edits to that source, across a
+benchmark of roughly 10,000 real queries.
+[The paper (arXiv 2311.09735)](https://arxiv.org/abs/2311.09735) introduced both
+the term GEO and **GEO-Bench**, and it is the only widely cited work in this
+field that tested tactics rather than asserting them.
+
+<BarChart
+  caption="Princeton GEO study: measured effect of content tactics on AI answer visibility"
+  max={45}
+  data={[
+    { label: "Add quotations", value: 41, display: "+41%", color: "var(--c3)", emphasis: true },
+    { label: "Add statistics", value: 30, display: "+30%", color: "var(--c3)" },
+    { label: "Cite sources", value: 30, display: "+30%", color: "var(--c3)" },
+    { label: "Keyword stuffing", value: 0, display: "−10%", color: "var(--bad)" },
+  ]}
+/>
+
+Two things make this study unusually valuable. First, it manipulated the input
+and observed the output, which is the difference between an experiment and an
+observation. Second, its negative result is as informative as its positive ones:
+keyword stuffing reduced visibility by about 10%, which tells us the mechanism is
+not term matching. Content that reads as credible and verifiable wins; content
+that reads as optimized loses. That finding is the empirical basis for the
+[Credibility pillar](/pillars/credibility) and for the practice described in
+[using statistics, quotes, and citations](/learn/statistics-quotes-citations-aeo).
+
+<Callout variant="warning" title="What the GEO study cannot tell you">
+  <p>
+    <strong>It was a benchmark, not the open web.</strong> GEO-Bench isolates
+    variables by construction — which is what makes it rigorous and also what
+    makes it unlike a live query where thousands of competing sources exist.
+  </p>
+  <p>
+    <strong>The visibility metrics were purpose-built.</strong> The researchers
+    defined how prominence and answer-share were scored. Reasonable definitions,
+    but not an industry standard, and not the same thing as a citation link a user
+    can click.
+  </p>
+  <p>
+    <strong>It ran on 2023-era engines.</strong> Retrieval stacks, rerankers, and
+    grounding behavior have changed materially since. The findings may hold; they
+    have not been re-verified at the same rigor on current systems.
+  </p>
+</Callout>
+
+The perishability point is the one practitioners underweight. A finding about
+search engines from 2023 is a finding about a specific set of models and
+retrieval pipelines, and generative engines iterate faster than search engines
+ever did. The mechanism the study identified — engines prefer sources that are
+safe to repeat — is likely durable. The specific percentages almost certainly are
+not.
+
+## What does the Ahrefs correlation study prove?
+
+Ahrefs' study proves that brand mentions and AI visibility move together at
+scale, and it cannot prove that mentions cause AI visibility. That distinction is
+not pedantry; it changes what you should do with the finding.
+[Ahrefs' analysis of 75,000 brands](https://ahrefs.com/blog/ai-overview-brand-correlation/)
+found brand web mentions correlated with AI visibility at **0.664**, versus
+**0.218 for backlinks** — a striking gap, and the single most-quoted number in
+this field.
+
+<PullQuote cite="The correlation problem, stated plainly">
+  Big brands get mentioned a lot. Big brands also get cited a lot. The study
+  cannot tell you which one is doing the work.
+</PullQuote>
+
+The plausible causal stories are at least three. Mentions could cause citations,
+if engines weight corroboration across the web. Brand size could cause both, in
+which case mentions are a symptom rather than a lever. Or citations could
+generate mentions, as AI-recommended brands get discussed more. The correlation
+is consistent with all three, and the study design cannot separate them. Anyone
+quoting 0.664 as proof that a mention-building campaign will raise your AI
+visibility is going past what the data supports.
+
+That said, the finding is still actionable, for a specific reason: under every
+one of those causal stories, being genuinely more mentioned is either helpful or
+neutral. It is never harmful. That asymmetry — high potential upside, near-zero
+downside — is what makes off-site authority work a rational bet even without
+causal proof. The [Authority pillar](/pillars/authority) and the
+[off-site authority audit](/authority/off-site-authority-audit) are built on that
+logic rather than on a claim of proven causation.
+
+## What about the click data — does it prove anything about GEO?
+
+The click data proves the problem exists; it proves nothing about whether GEO
+solves it. This is the most common piece of sleight-of-hand in AEO marketing:
+citing traffic loss as evidence that a particular remedy works.
+[Pew Research found in July 2025](https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/)
+that users clicked a traditional link just **8% of the time** when an AI summary
+appeared versus **15%** without one, and that **58%** encountered at least one AI
+summary in a single month. Those numbers establish urgency. They say nothing
+about whether your content edits will get you into the summary.
+
+There is adjacent evidence that being cited is worth something once you get
+there. Seer Interactive
+[found that pages cited inside an AI Overview earned a 35% higher organic
+clickthrough rate](https://www.seerinteractive.com/insights/how-ai-overviews-are-impacting-ctr-5-initial-takeaways),
+and Ahrefs reported
+[AI-search visitors converting roughly 23x better than organic search
+visitors](https://ahrefs.com/blog/ai-search-traffic-conversions-ahrefs/) on their
+own site. Both are observational and both come from interested parties, but they
+point the same direction: the citation appears to be worth having, even if the
+volume behind it is small. Notice that this is still not evidence that GEO
+tactics get you cited — only that citation, once earned, has value.
+
+## Is AEO just SEO with a new name?
+
+Partly — and the honest answer is a percentage, not a yes or a no. Roughly
+**70–80%** of what AEO asks for is what good SEO already asked for:
+crawlability, fast pages, clean semantic HTML, accurate content, and real
+authority. Anyone claiming AEO is a wholly new discipline is selling something.
+
+The remaining portion is not a rebrand, and the evidence is what distinguishes
+it. Engines retrieve and rerank *passages* rather than ranking pages, which makes
+passage-level structure a first-class concern in a way it never was for SEO.
+Ahrefs' correlation gap (mentions at 0.664 versus backlinks at 0.218) implies a
+different weighting of authority signals than link-driven SEO assumed. And the
+success metric changes from position to [citation share](/glossary/citation-share),
+which is measured differently and behaves differently. That argument is developed
+at length in [is AEO just SEO?](/learn/is-aeo-just-seo) and
+[is AEO replacing SEO?](/learn/is-aeo-replacing-seo).
+
+<VersusSplit
+  left={{
+    title: "Reasonably well supported",
+    items: [
+      "Inline evidence raises visibility in generated answers",
+      "Keyword stuffing does not help and may hurt",
+      "Mentions track AI visibility better than backlinks",
+      "AI summaries reduce clicks on informational queries",
+      "Uncrawlable pages cannot be cited",
+    ],
+  }}
+  right={{
+    title: "Still genuinely uncertain",
+    items: [
+      "Whether mentions cause citations or merely accompany them",
+      "How durable 2023 benchmark findings are on 2026 engines",
+      "How much schema markup independently affects citation",
+      "Whether per-engine tactics differ enough to matter",
+      "What a defensible citation-share benchmark even looks like",
+    ],
+  }}
+  caption="An honest map of the evidence: the left column earns action, the right column earns experiments."
+/>
+
+## Where should the uncertainty change your behavior?
+
+The uncertainty should change how you sequence and how you report, not whether
+you act. A field with one good experiment and one good correlation study is a
+field where you should prefer tactics that are robust to being wrong, and where
+you should measure your own results rather than trusting anyone's benchmark —
+including this site's.
+
+<Steps
+  items={[
+    {
+      title: "Prefer low-regret tactics first",
+      body: "Citations, statistics, direct quotations, answer-first structure, technical crawlability, and genuine authority all improve content for humans regardless of whether the AI-visibility thesis holds. Do these before anything speculative.",
+    },
+    {
+      title: "Treat published figures as priors, not targets",
+      body: "The ~41% and ~30% lifts describe a benchmark, not your site. Use them to rank which tactics to try first, never as a forecast to put in a deck.",
+    },
+    {
+      title: "Measure on your own corpus",
+      body: "Track citation share across a fixed prompt set over time, per engine. Your own before-and-after data on your own pages beats any external study for deciding what to do next.",
+    },
+    {
+      title: "Expect noise and design around it",
+      body: "Citation results are volatile. Compare rolling windows rather than single checks, and be suspicious of any change you cannot reproduce across two measurement periods.",
+    },
+    {
+      title: "Re-verify annually",
+      body: "Engine behavior churns. Assume any tactic's measured effect has a shelf life and revisit your assumptions on a schedule rather than when something breaks.",
+    },
+  ]}
+/>
+
+Step three is where most programs fail, because it requires infrastructure rather
+than opinion. Practical approaches live in
+[how to track AI citations](/learn/how-to-track-ai-citations) and
+[what AEO metrics to track](/learn/what-aeo-metrics-to-track). The tooling
+landscape for it is covered in [how to measure AEO](/tools/measure-aeo).
+
+## What should a rational person conclude?
+
+A rational person should conclude that GEO is probably effective, that the
+evidence justifies acting, and that anyone offering certainty is either
+uninformed or selling. The tactics with the best support are also the tactics you
+would want on your site if AI search vanished tomorrow — cite your sources, use
+real numbers, quote credible people, write clearly, be crawlable, be genuinely
+worth mentioning. That is an unusually comfortable position to be in under
+uncertainty: the bet pays off if the thesis is right, and costs you almost
+nothing if it is wrong.
+
+What that does not license is the confident promise. No one can tell you that a
+given edit will produce a given citation rate, because no one has run the study
+that would support it, and the systems change faster than such a study could be
+replicated. The correct posture is the one the original researchers modeled: form
+a hypothesis, measure it, publish the negative results alongside the positive
+ones, and update.
+
+For the mechanics behind why these tactics plausibly work, see
+[how AI engines choose what to cite](/learn/how-ai-engines-choose-citations). For
+the adjacent question this evidence is usually marshalled to answer, see
+[whether SEO is dead](/learn/is-seo-dead). And for the
+operational version of everything above, [the AEO Canon](/learn/aeo-canon) turns
+the defensible parts of this evidence into eight testable practices — starting,
+as always, from [what is AEO](/learn/what-is-aeo).

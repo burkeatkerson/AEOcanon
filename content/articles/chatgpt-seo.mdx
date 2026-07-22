@@ -1,0 +1,352 @@
+---
+title: "ChatGPT SEO: How to Get Your Site Into ChatGPT's Answers"
+slug: chatgpt-seo
+summary: ChatGPT can surface your brand three ways — from model memory, from live search retrieval, and from context a user hands it. Each one is earned differently, and only one of them reliably produces a clickable link.
+topics:
+  - answer-engines
+  - aeo-fundamentals
+author: burke-atkerson
+published: 2026-07-21
+updated: 2026-07-21
+schemaType: Article
+faqs:
+  - q: What is ChatGPT SEO?
+    a: "ChatGPT SEO is the practice of making your site visible inside ChatGPT's answers rather than in a ranked list of links. It covers three distinct surfaces: the model's training memory (which produces unlinked brand mentions), live search retrieval (which produces linked citations), and user-supplied context such as a pasted URL. Most of the controllable work sits in retrieval — being crawlable by OAI-SearchBot and writing answer-first, evidenced passages worth quoting."
+  - q: Which OpenAI crawler do I need to allow to be cited in ChatGPT?
+    a: "OAI-SearchBot. It is the user-agent that indexes pages for ChatGPT's search feature, so it is the one that determines whether you can be retrieved and cited. GPTBot collects training data and ChatGPT-User fetches a single page on demand when a user references it. They are three separate user-agents, so a robots.txt rule for one does not cover the others."
+  - q: Does blocking GPTBot remove me from ChatGPT?
+    a: "No. Blocking GPTBot restricts OpenAI's use of your content for model training; it does not remove you from ChatGPT's search results, which are served by OAI-SearchBot. The common and costly mistake is blocking every OpenAI user-agent to 'keep OpenAI out' and silently disappearing from ChatGPT's cited sources in the process."
+  - q: How do I check whether my site appears in ChatGPT?
+    a: "Build a fixed prompt set of 20–50 real questions your buyers ask, run them in ChatGPT with search on, and log whether you are mentioned, whether you are linked, and who is cited instead. Repeat on a schedule so you are tracking a trend rather than a single sample, and confirm the plumbing separately by checking your server logs for OAI-SearchBot and ChatGPT-User hits."
+---
+
+**To get into ChatGPT's answers you have to win three different surfaces: the
+model's training memory, its live search retrieval, and the context a user hands
+it — and only retrieval reliably produces a linked citation.** "ChatGPT SEO" is a
+convenient label for a discipline that does not work like search engine
+optimization at all. There is no ranking to climb and no results page to occupy.
+There is a generated paragraph, and the question is whether your brand and your
+URL are inside it.
+
+<KeyTakeaways
+  items={[
+    "ChatGPT surfaces you three ways: training memory (unlinked mentions), live retrieval (linked citations), and user-supplied context.",
+    "OAI-SearchBot is the crawler that makes you citable; GPTBot only governs training use.",
+    "Blocking every OpenAI user-agent to 'keep OpenAI out' silently removes you from ChatGPT's cited sources.",
+    "ChatGPT's live search is grounded largely in Bing's index — Google rankings do not feed it.",
+    "Measure with a fixed prompt set run on a schedule, not a one-off search for your own name.",
+  ]}
+/>
+
+## What does "ChatGPT SEO" actually mean?
+
+ChatGPT SEO means making your site the source [ChatGPT](/glossary/chatgpt) uses
+when it answers a question in your category — not making your site rank. The
+distinction is not pedantic. A search engine returns your page and lets the user
+decide; ChatGPT reads a handful of pages, composes one answer, and decides on the
+user's behalf which brands are worth naming. You are optimizing for inclusion in
+a sentence, not position in a list.
+
+That reframing changes what "winning" looks like. There is no position to report,
+so success shows up as **presence**: how often ChatGPT names you for the
+questions that matter, whether it links you when it does, and how it
+characterizes you. This is the same goal the rest of this site calls
+[answer engine optimization](/learn/what-is-aeo) — ChatGPT SEO is just AEO
+narrowed to one engine, and that narrowing matters because engines overlap far
+less than people assume. Winning ChatGPT does not hand you Perplexity or Google
+AI Overviews — their indexes, their retrieval, and their trust signals differ
+enough that a citation on one predicts very little about the others.
+
+<PullQuote cite="The ChatGPT SEO premise">
+  There is no position to win. There is a paragraph, and you are either in it or
+  you are not.
+</PullQuote>
+
+## What are the three ways ChatGPT can surface your brand?
+
+ChatGPT can surface your brand from **model memory**, from **live retrieval**, or
+from **context the user supplies** — and each one is earned by different work.
+Confusing them is the most common reason a ChatGPT strategy stalls, because
+tactics aimed at one surface do nothing for the others.
+
+<ProcessFlow
+  caption="Three routes into a ChatGPT answer. Only the middle one reliably produces a clickable link back to you."
+  steps={[
+    { label: "Model memory", sub: "What the model absorbed in training — recalls your brand, rarely links it" },
+    { label: "Live retrieval", sub: "Search-grounded fetch of current pages — this is where linked citations come from" },
+    { label: "User context", sub: "A pasted URL, uploaded file, or page the user points at — fetched on demand" },
+  ]}
+/>
+
+**Model memory** is parametric knowledge: the patterns the model absorbed from
+its training data and froze at its knowledge cutoff.
+When ChatGPT answers without searching, this is all it has. Memory is what makes it say "the usual options
+here are X, Y, and Z" — and it is why well-known brands get named in answers they
+never optimized for. You cannot edit memory. You can only become the kind of
+entity that broad, credible, widely-repeated coverage puts into the next training
+run.
+
+**Live retrieval** is the layer you can actually influence this quarter. With
+search on, ChatGPT issues queries, pulls candidate passages, reranks them, and
+links the sources of the passages it actually uses — the
+[retrieval-augmented generation](/learn/what-is-rag) pattern that underpins every
+modern answer engine. Because that retrieval is grounded largely in Bing's index
+rather than Google's, a page can rank beautifully in Google and be entirely
+invisible to ChatGPT.
+
+**User-supplied context** is the surface almost nobody plans for. When someone
+pastes your URL or asks ChatGPT to compare you against a named competitor,
+ChatGPT fetches and reads that material directly — a model reading your page in
+front of a buyer with intent. The clarity of your own pages is a sales asset, not
+just a marketing one.
+
+<Callout variant="insight" title="Why the three surfaces need three strategies">
+  <p>
+    Memory rewards <strong>being widely known</strong> and pays off over years.
+    Retrieval rewards <strong>being crawlable and quotable</strong> and pays off
+    in weeks. User context rewards <strong>being legible on your own site</strong>
+    and pays off the moment a prospect pastes your link. A program that only does
+    on-page work is optimizing one third of the problem.
+  </p>
+</Callout>
+
+## Which OpenAI crawler actually matters?
+
+**OAI-SearchBot is the crawler that determines whether ChatGPT can cite you.**
+OpenAI runs three separate crawlers with three separate jobs, and they share a
+company but not a user-agent string — so a robots.txt rule for one says nothing
+about the others.
+
+<ComparisonTable
+  rowHeaders
+  caption="OpenAI's three crawlers and what each one controls"
+  columns={["User-agent", "Job", "Blocking it means…", "Affects citations?"]}
+  rows={[
+    ["GPTBot", "Collects content for model training", "Your content is not used to train future models", "No"],
+    ["OAI-SearchBot", "Indexes pages for ChatGPT's search feature", "You cannot be retrieved or cited in ChatGPT answers", "Yes — directly"],
+    ["ChatGPT-User", "Fetches a single page on demand when a user references it", "A user who pastes your URL gets nothing back", "Yes — for user-initiated lookups"],
+  ]}
+/>
+
+The practical consequence is a decision most site owners get backwards.
+[GPTBot](/glossary/gptbot) is a **rights** decision: allowing it permits training
+use and does not directly earn you anything, while blocking it costs you nothing
+in ChatGPT's search results. [OAI-SearchBot](/glossary/oai-searchbot) is a
+**visibility** decision, and blocking it removes you from the answers entirely.
+Teams that blanket-block "OpenAI" take out their own citation channel by
+accident, and the damage is invisible — no error, no alert, just a slow absence
+from answers nobody was measuring. Audit your robots.txt specifically for this;
+the rule was often added years ago by someone who has since left. The full
+decision, including the Anthropic and Google equivalents, is in
+[should I block AI crawlers?](/learn/should-i-block-ai-crawlers).
+
+For the complete user-agent list, use the
+[AI crawler user agents cheat sheet](/learn/ai-crawler-user-agents-cheat-sheet),
+then set your policy with
+[which AI crawlers to allow](/learn/which-ai-crawlers-to-allow).
+
+## How do you make sure ChatGPT can reach your site?
+
+You make sure ChatGPT can reach you by confirming three things in order: the
+robots.txt rules permit the right bots, the server actually serves them, and the
+page's substance exists in the HTML before any JavaScript runs. Access is
+binary — nothing downstream matters if the fetch fails.
+
+<Steps
+  items={[
+    {
+      title: "Allow the search and on-demand bots explicitly",
+      body: "Name OAI-SearchBot and ChatGPT-User in robots.txt rather than relying on a permissive default. Decide on GPTBot separately, as a training-rights question, not a visibility one.",
+    },
+    {
+      title: "Verify the fetch really succeeds",
+      body: "A robots.txt allow means nothing if a WAF or CDN edge rule returns a 403 to the bot. Check what the crawler actually receives, not what your config says it should.",
+    },
+    {
+      title: "Serve the answer in server-rendered HTML",
+      body: "AI crawlers read raw HTML and do not execute JavaScript. Content assembled client-side is invisible to them, which is the single most common silent failure on modern sites.",
+    },
+    {
+      title: "Confirm you are in Bing's index",
+      body: "ChatGPT's live search is grounded largely in Bing. If Bing has not indexed a page, it is not in ChatGPT's candidate set — no matter how well it ranks in Google.",
+    },
+    {
+      title: "Read your server logs for the bots by name",
+      body: "Logged OAI-SearchBot and ChatGPT-User hits are the only proof access works. Absence of hits is a diagnosis, not a mystery.",
+    },
+  ]}
+/>
+
+The order matters, because each step is a precondition for the next and every
+failure looks identical from the outside: no citations. Work top-down and you
+find the broken gate in an afternoon; guess, and you can spend a quarter
+rewriting content no crawler was ever able to fetch. If your logs are empty,
+start with
+[why isn't GPTBot crawling my site?](/learn/why-isnt-gptbot-crawling-my-site),
+which covers the same diagnostic tree for every OpenAI user-agent. This whole
+layer is the [access](/pillars/access) pillar — the price of admission, not a
+competitive advantage.
+
+## What actually gets a source cited in a ChatGPT answer?
+
+ChatGPT cites the **passage** it used, not your page and not your domain — so the
+unit of optimization is a self-contained paragraph that answers one question
+completely and carries its own evidence. A single strong passage on an otherwise
+ordinary page can earn a linked citation, and an excellent page can be skipped
+entirely if its best answer is buried under three paragraphs of preamble.
+
+The qualities that get a passage lifted are the ones that make it safe to repeat.
+The [Princeton GEO study (arXiv 2311.09735)](https://arxiv.org/abs/2311.09735)
+tested this directly and found that adding authoritative citations, direct
+quotations, and relevant statistics lifted a source's visibility in generative
+answers by up to 40%, while keyword stuffing produced no gain at all. A model
+choosing what to quote is managing risk: an evidenced sentence with a named
+source is cheaper to repeat than an unsupported assertion.
+
+<Callout variant="key" title="The citable passage, in one shape">
+  <p>
+    Question-shaped heading. First sentence answers it completely, in language
+    that survives being lifted out of context. Next two or three sentences supply
+    a statistic, a named source, or a quotation. Whole block is self-contained —
+    it makes sense with nothing above it and nothing below it.
+  </p>
+</Callout>
+
+Placement compounds the effect. Answers near the top of a page are retrieved and
+lifted disproportionately often, which is why the
+[extractability](/pillars/extractability) pillar insists you write the sentence
+you want quoted and then put it first. The tactical, ChatGPT-specific checklist
+lives in
+[how do I get cited by ChatGPT?](/learn/how-to-get-cited-by-chatgpt) — the
+hands-on companion to this strategic overview.
+
+## How do you get into ChatGPT's model memory?
+
+You get into model memory the slow way: by becoming an entity that credible
+sources talk about repeatedly, in enough places that the pattern survives
+training. There is no submission form and no lever, which frustrates people used
+to the immediacy of technical SEO — but it is also the most durable form of
+visibility, because memory keeps naming you even when no search is run.
+
+The strongest available evidence points at off-site reputation rather than links.
+[Ahrefs' study of 75,000 brands](https://ahrefs.com/blog/ai-overview-brand-correlation/)
+found brand mentions correlated with AI visibility at 0.664 versus 0.218 for
+backlinks — a striking inversion of the classic SEO hierarchy. For ChatGPT
+specifically, that work does double duty: the same coverage that helps you get
+retrieved today is the coverage that becomes memory tomorrow.
+
+<Callout variant="tip" title="Where memory-building effort actually goes">
+  <p>
+    Into the places your category is genuinely discussed — communities, industry
+    publications, comparison and review platforms, and a correct, well-cited
+    encyclopedia entity where you are notable. None of it looks like SEO. All of
+    it is what makes a model &quot;know&quot; you.
+  </p>
+</Callout>
+
+The community side is worth singling out, because ChatGPT leans on forum
+discussion more than most publishers expect —
+[do I need to be on Reddit to get cited by AI?](/learn/reddit-ai-citations) covers
+what genuine participation looks like and what gets you ignored. All of this is
+the [authority](/pillars/authority) pillar, and it is worth being honest
+about the timeline: retrieval fixes land in weeks, memory shifts over model
+generations. Budget accordingly rather than expecting the second from the first.
+
+## How do you check whether you appear in ChatGPT?
+
+You check by running a fixed set of real questions on a schedule and logging what
+comes back — not by searching your own brand name once and drawing conclusions.
+Asking ChatGPT "what do you know about my company" tells you almost nothing,
+because it tests recall of a name you supplied rather than whether you are the
+answer to a question a buyer would actually ask.
+
+<Steps
+  items={[
+    {
+      title: "Build a prompt set of 20–50 real buyer questions",
+      body: "Use the questions people ask before they know your brand exists — 'best X for Y', 'how do I fix Z', 'X vs Y'. Never include your brand name in the prompt; that is what you are testing for.",
+    },
+    {
+      title: "Run them with search on, and log three things",
+      body: "Were you mentioned at all? Were you linked? Who was cited instead of you? The third column is the one that tells you what to build next.",
+    },
+    {
+      title: "Repeat on a fixed cadence",
+      body: "Same prompts, same intervals. AI answers are non-deterministic, so a single run is a sample, not a measurement. The trend is the signal.",
+    },
+    {
+      title: "Check the plumbing separately",
+      body: "Server logs for OAI-SearchBot and ChatGPT-User hits, plus Bing index coverage. If access is broken, no amount of content work will move the prompt-set numbers.",
+    },
+  ]}
+/>
+
+The prompt set is the whole methodology, and
+[building an AI prompt set](/tools/build-an-ai-prompt-set) walks through
+constructing one that survives contact with reality. From there,
+[how to track AI citations](/learn/how-to-track-ai-citations) covers turning a
+pile of logged answers into a number you can report — and, more usefully, into a
+list of the specific competitors you keep losing to and the specific questions
+where you are absent.
+
+## Should you treat ChatGPT as its own program?
+
+Treat ChatGPT as its own **measurement** surface but not its own **content**
+program. The content that earns a ChatGPT citation — answer-first, evidenced,
+crawlable, authoritative — is the same content that earns one from Perplexity or
+an AI Overview. What is genuinely ChatGPT-specific is the crawler policy, the
+Bing dependency, and the fact that you have to score it separately because
+citation overlap between engines is low.
+
+<DecisionBlock
+  title="Where to put ChatGPT effort first"
+  options={[
+    {
+      label: "Fix access",
+      when: [
+        "Your server logs show no OAI-SearchBot hits",
+        "Key pages render their content client-side",
+        "You blanket-blocked OpenAI user-agents at some point",
+        "Bing has not indexed your important pages",
+      ],
+    },
+    {
+      label: "Fix passages",
+      when: [
+        "You are crawled and indexed but never cited",
+        "Your answers appear below long introductions",
+        "Claims on key pages carry no statistic or named source",
+        "Headings describe topics rather than asking questions",
+      ],
+    },
+    {
+      label: "Build authority",
+      when: [
+        "You are cited occasionally but competitors dominate",
+        "ChatGPT names rivals from memory without searching",
+        "Your category is discussed in places you are absent from",
+        "You have on-page fundamentals already handled",
+      ],
+    },
+  ]}
+/>
+
+Most teams discover, uncomfortably, that they belong in the first column. That is
+good news: access failures are the cheapest thing here to fix and the only ones
+that can take you from zero to visible in a single deploy.
+
+## Where to go next
+
+ChatGPT SEO resolves into three jobs on three timescales — open the door for
+OAI-SearchBot this week, rewrite your most important passages this month, and
+build the off-site reputation that feeds memory over the next year. If you want
+the tactical version of the middle job, go to
+[how do I get cited by ChatGPT?](/learn/how-to-get-cited-by-chatgpt). If you want
+to know how ChatGPT differs from the other engines you are also trying to win,
+read
+[ChatGPT vs Perplexity vs Google AI Overviews](/learn/chatgpt-vs-perplexity-vs-google-ai-overviews).
+
+And if you would rather work the whole problem systematically than one engine at
+a time, [The AEO Canon](/learn/aeo-canon) organizes it into eight pillars across
+Access, Reputation, and Momentum — the framework that makes your page the source
+every answer engine chooses to cite, ChatGPT included.
