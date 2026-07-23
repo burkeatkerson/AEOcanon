@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Newsreader, Spline_Sans, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SITE_URL, siteConfig } from "@/lib/site";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -94,6 +95,9 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-N292CPXCB4');`}
         </Script>
+
+        {/* Vercel Web Analytics (enabled in the Vercel project settings). */}
+        <Analytics />
       </body>
     </html>
   );
